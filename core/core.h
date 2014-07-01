@@ -30,27 +30,6 @@ struct core_base_struct
 	core_direction_t direction;
 	const char *description;
 	core_base_struct_t *next;
-
-/*	union
-	{
-		uint16_t whole_size_pipenum;
-		struct
-		{
-			uint8_t size;
-			uint8_t pipenum;
-		};
-	};
-	union
-	{
-		uint8_t pload[RF_MAX_PAYLOAD_LENGTH+2];
-		struct
-		{
-			uint8_t src_addr;
-			uint8_t dst_addr;
-			uint8_t cmd;
-			uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
-		};
-	};*/
 };
 
 core_base_struct_t Core_Base;
