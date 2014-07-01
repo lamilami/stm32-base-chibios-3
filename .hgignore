@@ -1,0 +1,6 @@
+syntax: glob
+
+ChibiOS_Test/*
+STM32F100C/*
+logs/*
+*/.svn/*
