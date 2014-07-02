@@ -11,15 +11,26 @@ THD_FUNCTION(DS18B20,arg)
 	chRegSetThreadName("DS18B20");
 
 	OW_Init();
+	OW_Send(OW_SEND_RESET, "\xcc\x4e\x00\x00\x3f", 5, NULL, NULL, OW_NO_READ);
 	while (TRUE)
 	{
 		OW_Send(OW_SEND_RESET, "\xcc\x44", 2, NULL, NULL, OW_NO_READ);
 //    for (i=0; i<1000000; i++);
 
-		chThdSleepMilliseconds(800);
+		chThdSleepMilliseconds(200);
 
-    	uint8_t buf[2];
-    	OW_Send(OW_SEND_RESET, "\xcc\xbe\xff\xff", 4, buf,2, 2);
+		union
+		{
+			uint8_t buf[2];
+			uint16_t temp;
+		} DS_OUT;
+		volatile uint16_t temp_fract;
+
+		OW_Send(OW_SEND_RESET, "\xcc\xbe\xff\xff", 4, DS_OUT.buf, 2, 2);
+
+		temp_fract=(DS_OUT.buf[0]&0b00001111)*625;
+
+    	DS_OUT.temp=DS_OUT.temp>>4;
 
 		chThdSleepSeconds(5);
 	}

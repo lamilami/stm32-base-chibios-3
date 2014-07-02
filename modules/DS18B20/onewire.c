@@ -139,7 +139,7 @@ uint8_t OW_Init() {
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
 
 		GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_1);
-		GPIO_PinAFConfig(GPIOA,GPIO_PinSource10,GPIO_AF_1);
+//		GPIO_PinAFConfig(GPIOA,GPIO_PinSource10,GPIO_AF_1);
 
 		// USART TX
 		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
@@ -151,7 +151,7 @@ uint8_t OW_Init() {
 		GPIO_Init(GPIOA, &GPIO_InitStruct);
 		GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_1);
 
-
+/*
 		// USART RX
 		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10;
 //		GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN_FLOATING;
@@ -162,7 +162,7 @@ uint8_t OW_Init() {
 //		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
 
 		GPIO_Init(GPIOA, &GPIO_InitStruct);
-
+*/
 		SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Rx,ENABLE);
 		SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Tx,ENABLE);
 #endif
@@ -177,7 +177,7 @@ uint8_t OW_Init() {
 
 	USART_Init(OW_USART, &USART_InitStructure);
     // Здесь вставим разрешение работы USART в полудуплексном режиме
-//    USART_HalfDuplexCmd(OW_USART, ENABLE);
+    USART_HalfDuplexCmd(OW_USART, ENABLE);
 	USART_Cmd(OW_USART, ENABLE);
 
 
