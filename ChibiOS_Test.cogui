@@ -24,45 +24,45 @@
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3945" selectionTopPixel="2190"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" partName="DS18B20.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" title="DS18B20.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="506" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.h" partName="DS18B20.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.h" title="DS18B20.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="141" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.h" partName="onewire.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/onewire.h" title="onewire.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/onewire.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/onewire.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="38" selectionOffset="48" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" partName="radio.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/src/radio.c" title="radio.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/src/radio.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/nRF24/src/radio.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="131" selectionOffset="5027" selectionTopPixel="2430"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="radio.h" partName="radio.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/include/radio.h" title="radio.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/include/radio.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/nRF24/include/radio.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1800"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="board.c" partName="board.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F050F/board.c" title="board.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F050F/board.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/board/STM32F050F/board.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1125"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="board.h" partName="board.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F050F/board.h" title="board.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F050F/board.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/board/STM32F050F/board.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="90"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.c" partName="FloorHeater.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.c" title="FloorHeater.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.c" partName="FloorHeater.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.c" title="FloorHeater.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="297" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="852" selectionTopPixel="360"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.h" partName="FloorHeater.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.h" title="FloorHeater.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="230" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="radio.h" partName="radio.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/include/radio.h" title="radio.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/include/radio.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/nRF24/include/radio.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1965"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" partName="DS18B20.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" title="DS18B20.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="229" selectionTopPixel="45"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.c" partName="onewire.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/onewire.c" title="onewire.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/onewire.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/onewire.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3569" selectionTopPixel="2013"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f0xx_gpio.h" partName="stm32f0xx_gpio.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/stm32_lib/inc/stm32f0xx_gpio.h" title="stm32f0xx_gpio.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/stm32_lib/inc/stm32f0xx_gpio.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/stm32_lib/inc/stm32f0xx_gpio.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="16" selectionOffset="5077" selectionTopPixel="2025"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" partName="core.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/core/core.h" title="core.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/core/core.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/core/core.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="452" selectionTopPixel="120"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" partName="core.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/core/core.c" title="core.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/core/core.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/core/core.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="277" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" partName="radio.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/src/radio.c" title="radio.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/src/radio.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/nRF24/src/radio.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1940" selectionTopPixel="1935"/>
 </editor>
 </editors>
 <views>
@@ -70,7 +70,7 @@
 <viewState/>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="9">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="13">
 <expanded>
 <element path="/ChibiOS_Test"/>
 <element path="/ChibiOS_Test/board"/>
@@ -79,13 +79,21 @@
 <element path="/ChibiOS_Test/cmsis_core"/>
 <element path="/ChibiOS_Test/core"/>
 <element path="/ChibiOS_Test/modules"/>
+<element path="/ChibiOS_Test/modules/DS18B20"/>
 <element path="/ChibiOS_Test/modules/FloorHeater"/>
+<element path="/ChibiOS_Test/modules/nRF24"/>
+<element path="/ChibiOS_Test/modules/nRF24/include"/>
+<element path="/ChibiOS_Test/modules/nRF24/src"/>
+<element path="/ChibiOS_Test/os"/>
+<element path="/ChibiOS_Test/os/hal"/>
+<element path="/ChibiOS_Test/os/hal/ports"/>
+<element path="/ChibiOS_Test/os/hal/ports/STM32"/>
 <element path="/ChibiOS_Test/stm32_lib"/>
 <element path="/ChibiOS_Test/stm32_lib/inc"/>
 <element path="/ChibiOS_Test/stm32_lib/src"/>
 </expanded>
 <selection>
-<element path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.h"/>
+<element path="/ChibiOS_Test/modules/nRF24/include/radio.h"/>
 </selection>
 </viewState>
 </view>
@@ -95,6 +103,7 @@
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
 <viewState isPinned="false">
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+<view IMemento.internal.id="org.eclipse.search.text.FileSearchResultPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" org.eclipse.search.resultpage.limit="1000" org.eclipse.search.resultpage.sorting="2"/>
 </viewState>
 </view>
 <view id="org.eclipse.debug.ui.DebugView" partName="Debug">
@@ -320,163 +329,169 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/board/STM32F050F/board.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/board/STM32F050F/board.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/onewire.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/stm32_lib/inc/stm32f0xx_gpio.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/hal/include/pwm.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/hal/src/pwm.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/hal/ports/STM32/STM32F0xx/stm32_rcc.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/core/core.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/core/core.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/nRF24/src/radio.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/nRF24/include/radio.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/stm32_lib/src/stm32f0xx_gpio.c"/>
 </editors>
-<item historyLabel="board.h" index="3">
+<item historyLabel="onewire.c" index="0">
+<position info="not_deleted" x="3981" y="50"/>
+</item>
+<item historyLabel="FloorHeater.c" index="1">
+<position info="not_deleted" x="867" y="8"/>
+</item>
+<item historyLabel="pwm.h" index="3">
+<position info="not_deleted" x="8837" y="8"/>
+</item>
+<item historyLabel="pwm.c" index="4">
+<position info="not_deleted" x="3115" y="8"/>
+</item>
+<item historyLabel="pwm_lld.c" index="5">
+<position info="not_deleted" x="11066" y="0"/>
+</item>
+<item historyLabel="stm32_rcc.h" index="6">
+<position/>
+</item>
+<item historyLabel="pwm_lld.c" index="5">
+<position info="not_deleted" x="11094" y="0"/>
+</item>
+<item historyLabel="stm32_rcc.h" index="6">
+<position info="not_deleted" x="11290" y="12"/>
+</item>
+<item historyLabel="pwm_lld.c" index="5">
+<position info="not_deleted" x="11094" y="0"/>
+</item>
+<item historyLabel="FloorHeater.c" index="1">
+<position info="not_deleted" x="1157" y="0"/>
+</item>
+<item historyLabel="onewire.c" index="0">
+<position info="not_deleted" x="3981" y="50"/>
+</item>
+<item historyLabel="FloorHeater.h" index="7">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="board.c" index="4">
+<item historyLabel="FloorHeater.c" index="1">
+<position info="not_deleted" x="1157" y="0"/>
+</item>
+<item historyLabel="core.h" index="8">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3564" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="432" y="0"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="267" y="0"/>
+<item historyLabel="radio.c" index="10">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DS18B20.h" index="2">
-<position info="not_deleted" x="0" y="38"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="691" y="18"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="226" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DS18B20.h" index="2">
-<position info="not_deleted" x="42" y="58"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="691" y="18"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="226" y="0"/>
+<item historyLabel="radio.h" index="11">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DS18B20.h" index="2">
-<position info="not_deleted" x="42" y="58"/>
+<item historyLabel="radio.c" index="10">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="226" y="0"/>
+<item historyLabel="radio.h" index="11">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="226" y="0"/>
+<item historyLabel="radio.c" index="10">
+<position info="not_deleted" x="3756" y="7"/>
 </item>
-<item historyLabel="DS18B20.h" index="2">
-<position info="not_deleted" x="50" y="15"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="62" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="226" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="124" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="257" y="0"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="494" y="0"/>
 </item>
-<item historyLabel="DS18B20.h" index="2">
-<position info="not_deleted" x="71" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="274" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="257" y="0"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="687" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3564" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="274" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="856" y="0"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="687" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="257" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="274" y="0"/>
 </item>
-<item historyLabel="DS18B20.h" index="2">
-<position info="not_deleted" x="141" y="0"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="687" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="267" y="0"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="607" y="0"/>
 </item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="432" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="274" y="0"/>
 </item>
-<item historyLabel="DS18B20.c" index="1">
-<position info="not_deleted" x="81" y="571"/>
+<item historyLabel="radio.c" index="10">
+<position info="not_deleted" x="3756" y="7"/>
 </item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="432" y="0"/>
+<item historyLabel="FloorHeater.c" index="1">
+<position info="not_deleted" x="419" y="0"/>
 </item>
-<item historyLabel="DS18B20.c" index="1">
-<position info="not_deleted" x="0" y="650"/>
+<item historyLabel="stm32f0xx_gpio.h" index="2">
+<position info="not_deleted" x="5077" y="16"/>
 </item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="266" y="0"/>
+<item historyLabel="onewire.c" index="0">
+<position info="not_deleted" x="3569" y="0"/>
 </item>
-<item historyLabel="DS18B20.c" index="1">
-<position info="not_deleted" x="237" y="269"/>
+<item historyLabel="FloorHeater.c" index="1">
+<position info="not_deleted" x="761" y="9"/>
 </item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="241" y="0"/>
+<item historyLabel="stm32f0xx_gpio.c" index="12">
+<position info="not_deleted" x="6918" y="9"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="856" y="0"/>
+<item historyLabel="FloorHeater.c" index="1">
+<position info="not_deleted" x="852" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3945" y="0"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="374" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="267" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="277" y="0"/>
 </item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="273" y="24"/>
+<item historyLabel="FloorHeater.c" index="1">
+<position info="not_deleted" x="852" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="255" y="0"/>
+<item historyLabel="radio.c" index="10">
+<position info="not_deleted" x="3756" y="7"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3945" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="277" y="0"/>
 </item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="273" y="24"/>
+<item historyLabel="core.h" index="8">
+<position info="not_deleted" x="452" y="0"/>
 </item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="255" y="0"/>
+<item historyLabel="core.c" index="9">
+<position info="not_deleted" x="277" y="0"/>
 </item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="273" y="24"/>
-</item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="230" y="0"/>
-</item>
-<item historyLabel="DS18B20.h" index="2">
-<position info="not_deleted" x="141" y="0"/>
-</item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="273" y="24"/>
-</item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="230" y="0"/>
-</item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="273" y="24"/>
-</item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="230" y="0"/>
-</item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="273" y="24"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3945" y="0"/>
-</item>
-<item historyLabel="FloorHeater.h" index="6">
-<position info="not_deleted" x="230" y="0"/>
-</item>
-<item historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="297" y="0"/>
-</item>
-<item historyLabel="DS18B20.c" index="1">
-<position info="not_deleted" x="506" y="0"/>
-</item>
-<item active="true" historyLabel="FloorHeater.c" index="5">
-<position info="not_deleted" x="297" y="0"/>
+<item active="true" historyLabel="radio.c" index="10">
+<position info="not_deleted" x="3756" y="7"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -485,52 +500,47 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.h" tooltip="ChibiOS_Test/modules/FloorHeater/FloorHeater.h">
-<persistable path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.c" tooltip="ChibiOS_Test/modules/FloorHeater/FloorHeater.c">
-<persistable path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="board.h" tooltip="ChibiOS_Test/board/STM32F050F/board.h">
-<persistable path="/ChibiOS_Test/board/STM32F050F/board.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="board.c" tooltip="ChibiOS_Test/board/STM32F050F/board.c">
-<persistable path="/ChibiOS_Test/board/STM32F050F/board.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.h" tooltip="ChibiOS_Test/modules/nRF24/include/radio.h">
-<persistable path="/ChibiOS_Test/modules/nRF24/include/radio.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f0xx_gpio.c" tooltip="ChibiOS_Test/stm32_lib/src/stm32f0xx_gpio.c">
+<persistable path="/ChibiOS_Test/stm32_lib/src/stm32f0xx_gpio.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" tooltip="ChibiOS_Test/modules/nRF24/src/radio.c">
 <persistable path="/ChibiOS_Test/modules/nRF24/src/radio.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.h" tooltip="ChibiOS_Test/modules/DS18B20/onewire.h">
-<persistable path="/ChibiOS_Test/modules/DS18B20/onewire.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="ChibiOS_Test/core/core.c">
+<persistable path="/ChibiOS_Test/core/core.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.h" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.h">
-<persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_Test/core/core.h">
+<persistable path="/ChibiOS_Test/core/core.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32_rcc.h" tooltip="ChibiOS_Test/os/hal/ports/STM32/STM32F0xx/stm32_rcc.h">
+<persistable path="/ChibiOS_Test/os/hal/ports/STM32/STM32F0xx/stm32_rcc.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pwm.h" tooltip="ChibiOS_Test/os/hal/include/pwm.h">
+<persistable path="/ChibiOS_Test/os/hal/include/pwm.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f0xx_gpio.h" tooltip="ChibiOS_Test/stm32_lib/inc/stm32f0xx_gpio.h">
+<persistable path="/ChibiOS_Test/stm32_lib/inc/stm32f0xx_gpio.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.c" tooltip="ChibiOS_Test/modules/DS18B20/onewire.c">
+<persistable path="/ChibiOS_Test/modules/DS18B20/onewire.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ch.h" tooltip="ChibiOS_Test/os/rt/include/ch.h">
+<persistable path="/ChibiOS_Test/os/rt/include/ch.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.c">
 <persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ChibiOS_Test/main.c">
-<persistable path="/ChibiOS_Test/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="board.h" tooltip="ChibiOS_Test/board/STM32F050F/board.h">
+<persistable path="/ChibiOS_Test/board/STM32F050F/board.h"/>
 </file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
-<persistable>
-<org.coocox.builder.ui.editors.ConfigEditor/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="osal.h" tooltip="ChibiOS_Test/os/hal/osal/rt/osal.h">
+<persistable path="/ChibiOS_Test/os/hal/osal/rt/osal.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.c" tooltip="USART/onewire.c">
-<persistable path="/USART/onewire.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="st_lld.c" tooltip="ChibiOS_Test/os/hal/ports/STM32/LLD/TIMv1/st_lld.c">
+<persistable path="/ChibiOS_Test/os/hal/ports/STM32/LLD/TIMv1/st_lld.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f0xx_usart.h" tooltip="USART/stm32_lib/inc/stm32f0xx_usart.h">
-<persistable path="/USART/stm32_lib/inc/stm32f0xx_usart.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f0xx_usart.c" tooltip="USART/stm32_lib/src/stm32f0xx_usart.c">
-<persistable path="/USART/stm32_lib/src/stm32f0xx_usart.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f0xx_gpio.h" tooltip="USART/stm32_lib/inc/stm32f0xx_gpio.h">
-<persistable path="/USART/stm32_lib/inc/stm32f0xx_gpio.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pwm_lld.c" tooltip="ChibiOS_Test/os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c">
+<persistable path="/ChibiOS_Test/os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c"/>
 </file>
 </mruList>
 </workbench>

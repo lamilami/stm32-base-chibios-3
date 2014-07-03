@@ -138,7 +138,7 @@ uint8_t OW_Init() {
 		RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
 
-		GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_1);
+//		GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_1);
 //		GPIO_PinAFConfig(GPIOA,GPIO_PinSource10,GPIO_AF_1);
 
 		// USART TX
