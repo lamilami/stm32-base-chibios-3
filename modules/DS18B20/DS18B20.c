@@ -2,18 +2,40 @@
 #include "hal.h"
 #include "onewire.h"
 #include "DS18B20.h"
+#include "core.h"
+
+volatile core_base_struct_t Core_DS18B20;
+
+void DS18B20_Init ()
+{
+	Core_DS18B20.id = 1;
+	Core_DS18B20.type = Temp;
+//	Core_Base.addr = MY_ADDR;
+//	Core_Base.mbox = &core_mb;
+	Core_DS18B20.thread = chThdGetSelfX();
+	Core_DS18B20.direction = RW;
+	Core_DS18B20.next = NULL;
+	Core_DS18B20.description = "4 Floor Temp Sensors DS18B20";
+	Core_Base.next = &Core_DS18B20;
+}
 
 THD_WORKING_AREA(waDS18B20, 128);
 //__attribute__((noreturn))
 THD_FUNCTION(DS18B20,arg)
 {
 	(void) arg;
+	thread_t *answer_thread;
 	chRegSetThreadName("DS18B20");
+
+	DS18B20_Init ();
 
 	OW_Init();
 	OW_Send(OW_SEND_RESET, "\xcc\x4e\x00\x00\x3f", 5, NULL, NULL, OW_NO_READ);
 	while (TRUE)
 	{
+		answer_thread = chMsgWait();
+		chMsgGet(answer_thread);
+
 		OW_Send(OW_SEND_RESET, "\xcc\x44", 2, NULL, NULL, OW_NO_READ);
 //    for (i=0; i<1000000; i++);
 
@@ -32,7 +54,7 @@ THD_FUNCTION(DS18B20,arg)
 
     	DS_OUT.temp=DS_OUT.temp>>4;
 
-		chThdSleepSeconds(5);
+    	chMsgRelease (answer_thread, (msg_t) DS_OUT.temp);
 	}
 }
 

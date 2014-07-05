@@ -9,7 +9,8 @@ void Core_Init()
 	Core_Base.id = 0;
 	Core_Base.type = Base;
 //	Core_Base.addr = MY_ADDR;
-	Core_Base.mbox = &core_mb;
+//	Core_Base.mbox = &core_mb;
+	Core_Base.thread = chThdGetSelfX();
 	Core_Base.direction = None;
 	Core_Base.next = NULL;
 	Core_Base.description = "Test Board 1\0";
@@ -25,7 +26,7 @@ THD_FUNCTION(Core,arg)
 	Core_Init();
 	core_base_struct_t *current;
 	current = &Core_Base;
-	chMBObjectInit(&core_mb, core_mb_b, 1);
+//	chMBObjectInit(&core_mb, core_mb_b, 1);
 
 	while (TRUE)
 	{

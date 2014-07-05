@@ -27,7 +27,8 @@ struct core_base_struct
 	uint8_t	id;
 	core_types_t type;
 //	uint8_t addr;
-	mailbox_t *mbox;
+//	mailbox_t *mbox;
+	thread_t *thread;
 	core_direction_t direction;
 	uint8_t	current_value;
 	uint8_t	set_value;
