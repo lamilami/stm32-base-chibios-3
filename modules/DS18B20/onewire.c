@@ -146,7 +146,7 @@ uint8_t OW_Init() {
 		  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 		  GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;
 		  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-		  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
+		  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
 
 		GPIO_Init(GPIOA, &GPIO_InitStruct);
 		GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_1);
@@ -297,7 +297,7 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 		USART_Cmd(OW_USART, ENABLE);
 
 		// ∆дем, пока не примем 8 байт
-		while (DMA_GetFlagStatus(OW_DMA_FLAG) == RESET){
+ 		while (DMA_GetFlagStatus(OW_DMA_FLAG) == RESET){
 #ifdef OW_GIVE_TICK_RTOS
 			taskYIELD();
 #endif
@@ -407,7 +407,7 @@ uint8_t OW_Scan(uint8_t *buf, uint8_t num) {
 			for (cnt_bit=0; cnt_bit!=8; cnt_bit++){
 				//(read two bits, 'bit' and 'chk', from the 1-wire bus)
 				OW_toBits(OW_R_1,ow_buf);
-				OW_SendBits(2);
+ 				OW_SendBits(2);
 				bit = (ow_buf[0] == OW_1); chk = (ow_buf[1] == OW_1);
 				if(bit && chk) return 0; // error
 				if(!bit && !chk){ // collision, both are zero

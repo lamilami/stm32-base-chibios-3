@@ -31,13 +31,13 @@ THD_FUNCTION(DS18B20,arg)
 
 	OW_Init();
 	uint8_t buf[32];
-	OW_Scan(buf, 4);
+//	OW_Scan(buf,4);
 
 	OW_Send(OW_SEND_RESET, "\xcc\x4e\x00\x00\x3f", 5, NULL, NULL, OW_NO_READ);
 	while (TRUE)
 	{
-		answer_thread = chMsgWait();
-		chMsgGet(answer_thread);
+//		answer_thread = chMsgWait();
+//		chMsgGet(answer_thread);
 
 		OW_Send(OW_SEND_RESET, "\xcc\x44", 2, NULL, NULL, OW_NO_READ);
 //    for (i=0; i<1000000; i++);
@@ -52,13 +52,13 @@ THD_FUNCTION(DS18B20,arg)
 		volatile uint16_t temp_fract;
 
 //		OW_Send(OW_SEND_RESET, "\xcc\xbe\xff\xff", 4, DS_OUT.buf, 2, 2);
-		OW_Send(OW_SEND_RESET, "\x55\x28\x8b\x2d\xbf\x03\x00\x00\xf7\xbe\xff\xff", 12, DS_OUT.buf,2, 10);
+		OW_Send(OW_SEND_RESET, "\x55\x28\x08\x38\xbf\x03\x00\x00\xea\xbe\xff\xff", 12, DS_OUT.buf,2, 10);
 
 		temp_fract=(DS_OUT.buf[0]&0b00001111)*625;
 
     	DS_OUT.temp=DS_OUT.temp>>4;
 
-    	chMsgRelease (answer_thread, (msg_t) DS_OUT.temp);
+//    	chMsgRelease (answer_thread, (msg_t) DS_OUT.temp);
 	}
 }
 
