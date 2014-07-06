@@ -5,18 +5,18 @@
 
 typedef struct
 {
-  double dState;                  // Last position input
-  double iState;                  // Integrator state
-  double iMax, iMin;
+//  double dState;                  // Last position input
+	float iState;                  // Integrator state
+	float iMax, iMin;
   // Maximum and minimum allowable integrator state
-  double    iGain,        // integral gain
-            pGain,        // proportional gain
-             dGain;         // derivative gain
+	float    iGain,        // integral gain
+            pGain;        // proportional gain
+//             dGain;         // derivative gain
 } SPid;
 
-double UpdatePID(SPid * pid, double error, double position)
+float UpdatePID(SPid * pid, float error)//, double position)
 {
-  double pTerm, dTerm, iTerm;
+  float pTerm, /*dTerm,*/ iTerm;
 
   pTerm = pid->pGain * error;    // calculate the proportional term
   pid->iState += error;          // calculate the integral state with appropriate limiting
@@ -26,9 +26,9 @@ double UpdatePID(SPid * pid, double error, double position)
   else if (pid->iState < pid->iMin)
       pid->iState = pid->iMin;
   iTerm = pid->iGain * pid->iState;    // calculate the integral term
-  dTerm = pid->dGain * (position - pid->dState);
-  pid->dState = position;
-  return (pTerm + iTerm - dTerm);
+//  dTerm = pid->dGain * (position - pid->dState);
+//  pid->dState = position;
+  return (pTerm + iTerm);// - dTerm);
 }
 
 static PWMConfig pwmcfg = {
@@ -85,21 +85,34 @@ THD_FUNCTION(FloorHeater,arg)
 	}
 
 	thread_t *DS18B20_Thread = (*Tmp_Base).thread;
-	uint16_t msg;
+	volatile uint16_t msg;
 
-	pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 9000));   // 10% duty cycle
+	SPid Floor_PID;
+	Floor_PID.pGain=75;
+	Floor_PID.iGain=30;
+	Floor_PID.iState=0;
+	Floor_PID.iMax=300*Floor_PID.iGain;
+	Floor_PID.iMin=-100*Floor_PID.iGain;
+
+
+//	pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 9000));   // 10% duty cycle
 	while (TRUE)
 	{
+		volatile uint16_t ipwr;
 		msg = chMsgSend (DS18B20_Thread, msg);
-		if (msg > 30)
-		{
-			pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 1000));   // 10% duty cycle
+/*		volatile float pwr = UpdatePID(&Floor_PID, (float)(Set_TEMP-msg));
+		if (pwr>100) pwr=100;
+		if (pwr<0) pwr=0;
+		ipwr = (uint16_t) pwr;*/
 
-		}
-		else
-		{
-			pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 9000));   // 10% duty cycle
-		}
+		if (msg>Set_TEMP)
+			{
+				ipwr = 10;
+			}
+		else ipwr = 90;
+
+		pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, ipwr*100));   // 10% duty cycle
+
 		chThdSleepSeconds(5);
 	}
 }

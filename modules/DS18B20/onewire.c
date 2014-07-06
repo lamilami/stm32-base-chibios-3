@@ -322,3 +322,109 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 
 	return OW_OK;
 }
+
+// send nbits bits from ow_buf to 1-wire
+void OW_SendBits(uint8_t nbits){
+	DMA_InitTypeDef DMA_InitStructure;
+	// DMA for reading
+	DMA_DeInit(OW_DMA_CH_RX);
+	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t) &(OW_USART->RDR);
+	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t) ow_buf;
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+	DMA_InitStructure.DMA_BufferSize = nbits;
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_Low;
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+	DMA_Init(OW_DMA_CH_RX, &DMA_InitStructure);
+
+	// DMA for writting
+	DMA_DeInit(OW_DMA_CH_TX);
+	DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t) &(OW_USART->TDR);
+	DMA_InitStructure.DMA_MemoryBaseAddr = (uint32_t) ow_buf;
+	DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
+	DMA_InitStructure.DMA_BufferSize = nbits;
+	DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+	DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+	DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+	DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
+	DMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+	DMA_InitStructure.DMA_Priority = DMA_Priority_Low;
+	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+	DMA_Init(OW_DMA_CH_TX, &DMA_InitStructure);
+
+	// start send cycle
+	USART_ClearFlag(OW_USART, USART_FLAG_RXNE | USART_FLAG_TC | USART_FLAG_TXE);
+	USART_DMACmd(OW_USART, USART_DMAReq_Tx | USART_DMAReq_Rx, ENABLE);
+	DMA_Cmd(OW_DMA_CH_RX, ENABLE);
+	DMA_Cmd(OW_DMA_CH_TX, ENABLE);
+	USART_Cmd(OW_USART, ENABLE);
+
+	// wait end of transmission
+//	while OW_DMA_TRANSFER_END;
+	// ∆дем, пока не примем 8 байт
+	while (DMA_GetFlagStatus(OW_DMA_FLAG) == RESET){
+#ifdef OW_GIVE_TICK_RTOS
+		taskYIELD();
+#endif
+	}
+
+	// turn off DMA
+	DMA_Cmd(OW_DMA_CH_TX, DISABLE);
+	DMA_Cmd(OW_DMA_CH_RX, DISABLE);
+	USART_DMACmd(OW_USART, USART_DMAReq_Tx | USART_DMAReq_Rx, DISABLE);
+}
+
+
+//-----------------------------------------------------------------------------
+// ƒанна€ функци€ осуществл€ет сканирование сети 1-wire и записывает найденные
+//   ID устройств в массив buf, по 8 байт на каждое устройство.
+// переменна€ num ограничивает количество находимых устройств, чтобы не переполнить
+// буфер.
+//-----------------------------------------------------------------------------
+/*
+ * scan 1-wire bus
+ * 		num - max number of devices
+ * 		buf - array for devices' ID's (8*num bytes)
+ * return amount of founded devices
+ */
+uint8_t OW_Scan(uint8_t *buf, uint8_t num) {
+	unsigned long path,next,pos;
+	uint8_t bit,chk;
+	uint8_t cnt_bit, cnt_byte, cnt_num;
+	path=0;
+	cnt_num=0;
+	do{
+		//(issue the 'ROM search' command)
+		if( 0 == OW_WriteCmd(OW_SEARCH_ROM)) return 0;
+		next=0; // next path to follow
+		pos=1;  // path bit pointer
+		for (cnt_byte=0; cnt_byte!=8; cnt_byte++){
+			buf[cnt_num*8 + cnt_byte] = 0;
+			for (cnt_bit=0; cnt_bit!=8; cnt_bit++){
+				//(read two bits, 'bit' and 'chk', from the 1-wire bus)
+				OW_toBits(OW_R_1,ow_buf);
+				OW_SendBits(2);
+				bit = (ow_buf[0] == OW_1); chk = (ow_buf[1] == OW_1);
+				if(bit && chk) return 0; // error
+				if(!bit && !chk){ // collision, both are zero
+						if(pos&path) bit=1;     // if we've been here before
+						else next=(path&(pos-1))|pos; // else, new branch for next
+						pos<<=1;
+					}
+				//(save this bit as part of the current ROM value)
+				if (bit) buf[cnt_num*8 + cnt_byte]|=(1<<cnt_bit);
+				//(write 'bit' to the 1-wire bus)
+				OW_toBits(bit,ow_buf);
+				OW_SendBits(1);
+			}
+		}
+		//(output the just-completed ROM value)
+		path=next;
+		cnt_num++;
+	}while(path && cnt_num < num);
+	return cnt_num;
+}

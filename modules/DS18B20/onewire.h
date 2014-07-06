@@ -42,4 +42,14 @@
 uint8_t OW_Init();
 uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data, uint8_t dLen, uint8_t readStart);
 
+#define OW_SEARCH_ROM		(uint8_t*)"\xf0"
+
+// shortcuts for functions
+// only send message b wich length is c with RESET flag a
+#define OW_SendOnly(a,b,c)  OW_Send(a, b, c, (void*)0, 0, OW_NO_READ)
+// send 1 command (with bus reset)
+#define OW_WriteCmd(cmd) OW_Send(1, cmd, 1, (void*)0, 0, OW_NO_READ)
+// send 1 function (without bus reset)
+#define OW_WriteFn(cmd) OW_Send(0, cmd, 1, (void*)0, 0, OW_NO_READ)
+
 #endif /* ONEWIRE_H_ */

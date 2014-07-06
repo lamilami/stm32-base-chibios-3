@@ -30,6 +30,9 @@ THD_FUNCTION(DS18B20,arg)
 	DS18B20_Init ();
 
 	OW_Init();
+	uint8_t buf[32];
+	OW_Scan(buf, 4);
+
 	OW_Send(OW_SEND_RESET, "\xcc\x4e\x00\x00\x3f", 5, NULL, NULL, OW_NO_READ);
 	while (TRUE)
 	{
@@ -48,7 +51,8 @@ THD_FUNCTION(DS18B20,arg)
 		} DS_OUT;
 		volatile uint16_t temp_fract;
 
-		OW_Send(OW_SEND_RESET, "\xcc\xbe\xff\xff", 4, DS_OUT.buf, 2, 2);
+//		OW_Send(OW_SEND_RESET, "\xcc\xbe\xff\xff", 4, DS_OUT.buf, 2, 2);
+		OW_Send(OW_SEND_RESET, "\x55\x28\x8b\x2d\xbf\x03\x00\x00\xf7\xbe\xff\xff", 12, DS_OUT.buf,2, 10);
 
 		temp_fract=(DS_OUT.buf[0]&0b00001111)*625;
 

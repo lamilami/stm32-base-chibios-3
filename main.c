@@ -145,11 +145,12 @@ int main(void)
 /*	chThdCreateStatic(waTransmit, sizeof(waTransmit), NORMALPRIO, Transmit,
 			NULL);
 */
+/*
 #ifdef DEBUG_Discovery
 	chThdCreateStatic(waLedBlinker, sizeof(waLedBlinker), NORMALPRIO,
 			LedBlinker, NULL);
 #endif
-
+*/
 /*	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO, Radio, NULL);
 	chThdCreateStatic(waRadio_Processor, sizeof(waRadio_Processor), NORMALPRIO,
 			Radio_Processor, NULL);
@@ -166,7 +167,7 @@ int main(void)
 	 * pressed the test procedure is launched with output on the serial
 	 * driver 1.
 	 */
-	LEDB1Swap();
+//	LEDB1Swap();
 
 	DS18B20_Start();
 	FloorHeater_Start();
