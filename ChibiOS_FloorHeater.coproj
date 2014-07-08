@@ -144,10 +144,10 @@
     <File name="cmsis_boot" path="" type="2"/>
     <File name="os/hal/include/serial_usb.h" path="os/hal/include/serial_usb.h" type="1"/>
     <File name="cmsis_core" path="" type="2"/>
-    <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
     <File name="pal.h" path="pal.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F0xx/hal_lld.h" path="os/hal/ports/STM32/STM32F0xx/hal_lld.h" type="1"/>
+    <File name="os/rt/ports/ARMCMx" path="" type="2"/>
+    <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
     <File name="os/rt/src/chvt.c" path="os/rt/src/chvt.c" type="1"/>
     <File name="os/rt/src/chstats.c" path="os/rt/src/chstats.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2" path="" type="2"/>
@@ -279,9 +279,9 @@
     <File name="stm32_lib/inc/stm32f0xx_exti.h" path="stm32_lib/inc/stm32f0xx_exti.h" type="1"/>
     <File name="os/hal/include/spi.h" path="os/hal/include/spi.h" type="1"/>
     <File name="os/rt/include/chmemcore.h" path="os/rt/include/chmemcore.h" type="1"/>
-    <File name="os/rt/src/chqueues.c" path="os/rt/src/chqueues.c" type="1"/>
     <File name="core/core.c" path="core/core.c" type="1"/>
     <File name="os/rt/include/chtm.h" path="os/rt/include/chtm.h" type="1"/>
+    <File name="os/rt/src/chqueues.c" path="os/rt/src/chqueues.c" type="1"/>
     <File name="os/rt/src/chregistry.c" path="os/rt/src/chregistry.c" type="1"/>
     <File name="os/hal/src/i2c.c" path="os/hal/src/i2c.c" type="1"/>
     <File name="os" path="" type="2"/>

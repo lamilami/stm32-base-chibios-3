@@ -4,6 +4,8 @@
 #include "DS18B20.h"
 #include "core.h"
 
+volatile uint16_t out_temp[4];
+
 volatile core_base_struct_t Core_DS18B20;
 
 void DS18B20_Init ()
@@ -55,20 +57,23 @@ THD_FUNCTION(DS18B20,arg)
 //		OW_Send(OW_SEND_RESET, "\xcc\xbe\xff\xff", 4, DS_OUT.buf, 2, 2);
 		OW_Send(OW_SEND_RESET, "\x55\x28\x08\x38\xbf\x03\x00\x00\xea\xbe\xff\xff", 12, DS_OUT[0].buf,2, 10);
 //		temp_fract=(DS_OUT[0].buf[0]&0b00001111)*625;
-    	DS_OUT[0].temp=DS_OUT[0].temp>>4;
+		out_temp[0]=DS_OUT[0].temp>>4;
 
 		OW_Send(OW_SEND_RESET, "\x55\x28\xd8\x2a\xbf\x03\x00\x00\xd1\xbe\xff\xff", 12, DS_OUT[1].buf,2, 10);
-    	DS_OUT[1].temp=DS_OUT[1].temp>>4;
+		out_temp[1]=DS_OUT[1].temp>>4;
 
 		OW_Send(OW_SEND_RESET, "\x55\x28\x0b\x51\xbf\x03\x00\x00\x51\xbe\xff\xff", 12, DS_OUT[2].buf,2, 10);
-    	DS_OUT[2].temp=DS_OUT[2].temp>>4;
+		out_temp[2]=DS_OUT[2].temp>>4;
 
 		OW_Send(OW_SEND_RESET, "\x55\x28\x97\xbb\xd5\x03\x00\x00\x71\xbe\xff\xff", 12, DS_OUT[3].buf,2, 10);
-    	DS_OUT[3].temp=DS_OUT[3].temp>>4;
+		out_temp[3]=DS_OUT[3].temp>>4;
+
+		Core_DS18B20.current_value=(out_temp[0]+out_temp[1]+out_temp[2]+out_temp[3])/4;
 
 //    	msg_t OutTemp =
 
-    	chThdSleepSeconds(3);
+		LEDSwap();
+      	chThdSleepSeconds(3);
 //    	chMsgRelease (answer_thread, (msg_t) DS_OUT.temp);
 	}
 }
