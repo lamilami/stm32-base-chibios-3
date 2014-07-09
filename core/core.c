@@ -39,7 +39,7 @@ THD_FUNCTION(Core,arg)
 	(void) arg;
 	thread_t 	*answer_thread;
 	msg_t		message;
-	chRegSetThreadName("Core");
+//	chRegSetThreadName("Core");
 
 	Core_Init();
 	core_base_struct_t *current;

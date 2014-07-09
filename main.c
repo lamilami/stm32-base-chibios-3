@@ -42,7 +42,7 @@ static THD_FUNCTION(LedBlinker,arg)
 {
 
 	(void) arg;
-	chRegSetThreadName("LedBlinker");
+//	chRegSetThreadName("LedBlinker");
 	while (TRUE)
 	{
 		msg_t msg;
@@ -103,7 +103,7 @@ static THD_FUNCTION (Transmit,arg)
 {
 
 	(void) arg;
-	chRegSetThreadName("Transmitter");
+//	chRegSetThreadName("Transmitter");
 	rf_sended_debug = FALSE;
 	chThdSleepSeconds(3);
 	while (TRUE)
@@ -180,13 +180,14 @@ int main(void)
 
 	iwdgStart(IWDGD, watchdog_cfg);
 */
-	Core_Start();
+//	Core_Start();
 	DS18B20_Start(1);
-	FloorHeater_Start();
+//	FloorHeater_Start();
 
 	while (TRUE)
 	{
-		chThdSleepSeconds(5);
+//		chThdSleepSeconds(5);
+		chMsgWait();
 //		iwdgReset(IWDGD);
 	}
 }

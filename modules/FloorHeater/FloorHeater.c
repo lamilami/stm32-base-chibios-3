@@ -73,7 +73,7 @@ THD_WORKING_AREA(waFloorHeater, 128);
 THD_FUNCTION(FloorHeater,arg)
 {
 	(void) arg;
-	chRegSetThreadName("FloorHeater");
+//	chRegSetThreadName("FloorHeater");
 
 	PWM_Init();
 

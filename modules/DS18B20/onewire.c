@@ -168,7 +168,7 @@ uint8_t OW_Init() {
 		SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Tx,ENABLE);
 #endif
 
-	USART_InitStructure.USART_BaudRate = 115200;
+	USART_InitStructure.USART_BaudRate = 100000;
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
 	USART_InitStructure.USART_StopBits = USART_StopBits_2;
 	USART_InitStructure.USART_Parity = USART_Parity_No;
@@ -210,7 +210,7 @@ uint8_t OW_Reset() {
 	uint8_t cntr;
 	cntr = 0;
 
-	while ((cntr < 3) && (USART_GetFlagStatus(OW_USART, USART_FLAG_TC) == RESET))
+	while ((cntr < 5) && (USART_GetFlagStatus(OW_USART, USART_FLAG_TC) == RESET))
 	{
 		cntr++;
 		chThdSleepMilliseconds(1);
@@ -218,7 +218,7 @@ uint8_t OW_Reset() {
 
 	ow_presence = USART_ReceiveData(OW_USART);
 
-	USART_InitStructure.USART_BaudRate = 115200;
+	USART_InitStructure.USART_BaudRate = 100000;
 	USART_InitStructure.USART_WordLength = USART_WordLength_8b;
 	USART_InitStructure.USART_StopBits = USART_StopBits_2;
 	USART_InitStructure.USART_Parity = USART_Parity_No;
@@ -227,7 +227,7 @@ uint8_t OW_Reset() {
 	USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
 	USART_Init(OW_USART, &USART_InitStructure);
 
-	if (cntr==3)
+	if (cntr==5)
 	{
 		return OW_ERROR;
 	}
@@ -236,7 +236,7 @@ uint8_t OW_Reset() {
 		return OW_OK;
 	}
 
-	return OW_NO_DEVICE;
+ 	return OW_NO_DEVICE;
 }
 
 
@@ -313,8 +313,11 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 
 		uint8_t cntr;
 		cntr = 0;
+
+// 		chThdSleepMilliseconds(100);
+
 		// ∆дем, пока не примем 8 байт
- 		while ((cntr < 3) && (DMA_GetFlagStatus(OW_DMA_FLAG) == RESET))
+ 		while ((cntr < 5) && (DMA_GetFlagStatus(OW_DMA_FLAG) == RESET))
  		{
  			cntr++;
  			chThdSleepMilliseconds(1);
@@ -325,7 +328,7 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 		DMA_Cmd(OW_DMA_CH_RX, DISABLE);
 		USART_DMACmd(OW_USART, USART_DMAReq_Tx | USART_DMAReq_Rx, DISABLE);
 
- 		if (cntr==3) {return OW_ERROR;}
+ 		if (cntr==5) {return OW_ERROR;}
 
 		// если прочитанные данные кому-то нужны - выкинем их в буфер
 		if (readStart == 0 && dLen > 0) {

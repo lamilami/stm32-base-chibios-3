@@ -171,7 +171,7 @@ CH_IRQ_HANDLER(EXTI0_1_IRQHandler)
 THD_FUNCTION(Radio,arg)
 {
 	(void) arg;
-	chRegSetThreadName("Radio");
+//	chRegSetThreadName("Radio");
 
 	Radio_Thread = chThdGetSelfX();
 
@@ -382,7 +382,7 @@ void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command)
 THD_FUNCTION(Radio_Processor,arg)
 {
 	(void) arg;
-	chRegSetThreadName("Radio_Processor");
+//	chRegSetThreadName("Radio_Processor");
 	payload_t * rx_buffer = 0;
 	chThdSleepSeconds(1);
 	while (TRUE)

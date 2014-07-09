@@ -50,7 +50,7 @@ THD_FUNCTION(DS18B20,arg)
 {
 	(void) arg;
 	thread_t *answer_thread;
-	chRegSetThreadName("DS18B20");
+//	chRegSetThreadName("DS18B20");
 
 	static ucnt_t global_errors=0;
 	static ucnt_t critical_errors=0;
@@ -146,7 +146,7 @@ THD_FUNCTION(DS18B20,arg)
 			chSysLock();
 			Core_DS18B20.current_value=(DS_OUT[0].temp+DS_OUT[1].temp+DS_OUT[2].temp+DS_OUT[3].temp)/cntr;
 			chSysUnlock();
-			if ((old_temp!=0xffff) && (abs(Core_DS18B20.current_value-old_temp)<=(10<<2)))
+			if ((old_temp!=0xffff) && (abs(Core_DS18B20.current_value-old_temp)>(10<<2)))
 			{
 				chSysLock();
 				Core_DS18B20.current_value=old_temp;
@@ -178,7 +178,7 @@ THD_FUNCTION(DS18B20,arg)
 void DS18B20_Start(void *arg)
 {
 #if DS18B20_PRESENT
-	chThdCreateStatic(waDS18B20, sizeof(waDS18B20), NORMALPRIO,
+	chThdCreateStatic(waDS18B20, sizeof(waDS18B20), HIGHPRIO,
 			DS18B20, arg);
 #endif
 }

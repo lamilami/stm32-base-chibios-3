@@ -73,7 +73,7 @@ static THD_WORKING_AREA(_idle_thread_wa, PORT_IDLE_THREAD_STACK_SIZE);
 static void _idle_thread(void *p) {
 
   (void)p;
-  chRegSetThreadName("idle");
+//  chRegSetThreadName("idle");
   while (true) {
     port_wait_for_interrupt();
     CH_CFG_IDLE_LOOP_HOOK();
@@ -140,7 +140,7 @@ void chSysInit(void) {
 
   /* Note, &ch_debug points to the string "main" if the registry is
      active, else the parameter is ignored.*/
-  chRegSetThreadName((const char *)&ch_debug);
+//  chRegSetThreadName((const char *)&ch_debug);
 
 #if !CH_CFG_NO_IDLE_THREAD
   /* This thread has the lowest priority in the system, its role is just to
