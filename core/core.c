@@ -39,3 +39,18 @@ void Core_Start()
 	chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO,
 			Core, NULL);
 }
+
+void sleepUntil(systime_t *previous, systime_t period)
+{
+  systime_t future = *previous + period;
+  chSysLock();
+  systime_t now = chVTGetSystemTime();
+  int mustDelay = now < *previous ?
+    (now < future && future < *previous) :
+    (now < future || future < *previous);
+  if (mustDelay)
+    chThdSleepS(future - now);
+  chSysUnlock();
+  *previous = future;
+}
+

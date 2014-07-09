@@ -30,12 +30,15 @@ struct core_base_struct
 //	mailbox_t *mbox;
 	thread_t *thread;
 	core_direction_t direction;
-	uint8_t	current_value;
-	uint8_t	set_value;
-	const char *description;
+	uint16_t	current_value;
+	uint16_t	set_value;
+	uint16_t*	inner_values;
+	const char*	description;
 	core_base_struct_t *next;
 };
 
 core_base_struct_t Core_Base;
+
+void sleepUntil(systime_t *previous, systime_t period);
 
 #endif

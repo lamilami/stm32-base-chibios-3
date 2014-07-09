@@ -24,7 +24,7 @@
 
 
 // если нужно отдавать тики FreeRTOS, то раскомментировать
-//#define OW_GIVE_TICK_RTOS
+//#define OW_GIVE_TICK_RTOS_CMD	chThdYield();
 
 // первый параметр функции OW_Send
 #define OW_SEND_RESET		1

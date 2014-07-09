@@ -94,18 +94,20 @@ THD_FUNCTION(FloorHeater,arg)
 	Floor_PID.iMax=300*Floor_PID.iGain;
 	Floor_PID.iMin=-100*Floor_PID.iGain;
 
+	uint16_t Desired_Temp = Set_TEMP<<2;
 
+	systime_t time = chVTGetSystemTime();
 //	pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 9000));   // 10% duty cycle
 	while (TRUE)
 	{
 		volatile uint16_t ipwr;
 		msg = chMsgSend (DS18B20_Thread, msg);
-/*		volatile float pwr = UpdatePID(&Floor_PID, (float)(Set_TEMP-msg));
+/*		volatile float pwr = UpdatePID(&Floor_PID, (float)(Desired_Temp-msg));
 		if (pwr>100) pwr=100;
 		if (pwr<0) pwr=0;
 		ipwr = (uint16_t) pwr;*/
 
-		if (msg>Set_TEMP)
+		if (msg>Desired_Temp)
 			{
 				ipwr = 10;
 			}
@@ -113,7 +115,8 @@ THD_FUNCTION(FloorHeater,arg)
 
 		pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, ipwr*100));   // 10% duty cycle
 
-		chThdSleepSeconds(5);
+//		time += S2ST(120);
+		sleepUntil(&time, S2ST(120));
 	}
 }
 

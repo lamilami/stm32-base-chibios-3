@@ -4,7 +4,8 @@
  *  Created on: 13.02.2012
  *      Author: di
  */
-
+#include "ch.h"
+#include "hal.h"
 #include "onewire.h"
 
 #ifdef OW_USART1
@@ -205,10 +206,14 @@ uint8_t OW_Reset() {
 	// отправляем 0xf0 на скорости 9600
 	USART_ClearFlag(OW_USART, USART_FLAG_TC);
 	USART_SendData(OW_USART, 0xf0);
-	while (USART_GetFlagStatus(OW_USART, USART_FLAG_TC) == RESET) {
-#ifdef OW_GIVE_TICK_RTOS
-		taskYIELD();
-#endif
+
+	uint8_t cntr;
+	cntr = 0;
+
+	while ((cntr < 3) && (USART_GetFlagStatus(OW_USART, USART_FLAG_TC) == RESET))
+	{
+		cntr++;
+		chThdSleepMilliseconds(1);
 	}
 
 	ow_presence = USART_ReceiveData(OW_USART);
@@ -221,6 +226,11 @@ uint8_t OW_Reset() {
 			USART_HardwareFlowControl_None;
 	USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
 	USART_Init(OW_USART, &USART_InitStructure);
+
+	if (cntr==3)
+	{
+		return OW_ERROR;
+	}
 
 	if (ow_presence != 0xf0) {
 		return OW_OK;
@@ -246,8 +256,13 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 
 	// если требуется сброс - сбрасываем и проверяем на наличие устройств
 	if (sendReset == OW_SEND_RESET) {
-		if (OW_Reset() == OW_NO_DEVICE) {
+		uint8_t reset_out = OW_Reset();
+		if (reset_out == OW_NO_DEVICE) {
 			return OW_NO_DEVICE;
+		}
+		if (reset_out == OW_ERROR)
+		{
+			return OW_ERROR;
 		}
 	}
 
@@ -296,17 +311,21 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 		DMA_Cmd(OW_DMA_CH_TX, ENABLE);
 		USART_Cmd(OW_USART, ENABLE);
 
+		uint8_t cntr;
+		cntr = 0;
 		// Ждем, пока не примем 8 байт
- 		while (DMA_GetFlagStatus(OW_DMA_FLAG) == RESET){
-#ifdef OW_GIVE_TICK_RTOS
-			taskYIELD();
-#endif
+ 		while ((cntr < 3) && (DMA_GetFlagStatus(OW_DMA_FLAG) == RESET))
+ 		{
+ 			cntr++;
+ 			chThdSleepMilliseconds(1);
 		}
 
 		// отключаем DMA
 		DMA_Cmd(OW_DMA_CH_TX, DISABLE);
 		DMA_Cmd(OW_DMA_CH_RX, DISABLE);
 		USART_DMACmd(OW_USART, USART_DMAReq_Tx | USART_DMAReq_Rx, DISABLE);
+
+ 		if (cntr==3) {return OW_ERROR;}
 
 		// если прочитанные данные кому-то нужны - выкинем их в буфер
 		if (readStart == 0 && dLen > 0) {
@@ -365,11 +384,13 @@ void OW_SendBits(uint8_t nbits){
 
 	// wait end of transmission
 //	while OW_DMA_TRANSFER_END;
+	uint8_t cntr;
+	cntr = 0;
 	// Ждем, пока не примем 8 байт
-	while (DMA_GetFlagStatus(OW_DMA_FLAG) == RESET){
-#ifdef OW_GIVE_TICK_RTOS
-		taskYIELD();
-#endif
+	while ((cntr < 5) && (DMA_GetFlagStatus(OW_DMA_FLAG) == RESET))
+	{
+			cntr++;
+			chThdSleepMicroseconds(nbits*100);
 	}
 
 	// turn off DMA
@@ -427,4 +448,29 @@ uint8_t OW_Scan(uint8_t *buf, uint8_t num) {
 		cnt_num++;
 	}while(path && cnt_num < num);
 	return cnt_num;
+}
+
+//***************************************************************************
+// CRC8
+// Для серийного номера вызывать 8 раз
+// Для данных вызвать 9 раз
+// Если в результате crc == 0, то чтение успешно
+//***************************************************************************
+unsigned char crc8 (unsigned char data, unsigned char crc)
+#define CRC8INIT   0x00
+#define CRC8POLY   0x18              //0X18 = X^8+X^5+X^4+X^0
+{
+unsigned char bit_counter;
+unsigned char feedback_bit;
+bit_counter = 8;
+do
+{
+    feedback_bit = (crc ^ data) & 0x01;
+    if ( feedback_bit == 0x01 ) crc = crc ^ CRC8POLY;
+    crc = (crc >> 1) & 0x7F;
+    if ( feedback_bit == 0x01 ) crc = crc | 0x80;
+    data = data >> 1;
+    bit_counter--;
+}  while (bit_counter > 0);
+return crc;
 }
