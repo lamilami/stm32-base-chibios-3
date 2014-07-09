@@ -335,6 +335,14 @@ void LEDBlinkI(uint8_t cnt);
 #define SPI_USE_MUTUAL_EXCLUSION    FALSE
 #endif
 
+/**
+ * @brief   Enables the WATCHDOG subsystem.
+ */
+#if !defined(HAL_USE_IWDG) || defined(__DOXYGEN__)
+#define HAL_USE_IWDG    TRUE
+#endif
+
+
 #endif /* _HALCONF_H_ */
 
 /** @} */

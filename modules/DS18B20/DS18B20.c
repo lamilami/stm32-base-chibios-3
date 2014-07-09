@@ -23,10 +23,10 @@ volatile static struct
 	};
 } Inner_Val;
 
-void DS18B20_Init ()
+void DS18B20_Init (void *arg)
 {
 
-	Core_DS18B20.id = 1;
+	Core_DS18B20.id = (uint8_t) arg;
 	Core_DS18B20.type = Temp;
 //	Core_Base.addr = MY_ADDR;
 //	Core_Base.mbox = &core_mb;
@@ -37,9 +37,11 @@ void DS18B20_Init ()
 	Core_DS18B20.current_value=0xffff;
 	Core_DS18B20.inner_values=&Inner_Val;
 
-	chSysLock();
+/*	chSysLock();
 		Core_Base.next = &Core_DS18B20;
-	chSysUnlock();
+	chSysUnlock();*/
+
+	Module_Register (Core_DS18B20);
 }
 
 THD_WORKING_AREA(waDS18B20, 128);
@@ -55,7 +57,7 @@ THD_FUNCTION(DS18B20,arg)
 	static uint16_t cont_errors=0;
 	static uint16_t old_temp=0xffff;
 
-	DS18B20_Init ();
+	DS18B20_Init (arg);
 
 	OW_Init();
 	uint8_t buf[32];
@@ -173,11 +175,11 @@ THD_FUNCTION(DS18B20,arg)
 	}
 }
 
-void DS18B20_Start()
+void DS18B20_Start(void *arg)
 {
 #if DS18B20_PRESENT
 	chThdCreateStatic(waDS18B20, sizeof(waDS18B20), NORMALPRIO,
-			DS18B20, NULL);
+			DS18B20, arg);
 #endif
 }
 

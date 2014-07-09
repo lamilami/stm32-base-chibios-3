@@ -4,6 +4,6 @@
 #define DS18B20_PRESENT		TRUE
 #define NUMBER_OF_SENSORS	4
 
-void DS18B20_Start(void);
+void DS18B20_Start(void *arg);
 
 #endif

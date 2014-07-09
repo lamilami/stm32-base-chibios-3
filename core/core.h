@@ -39,6 +39,8 @@ struct core_base_struct
 
 core_base_struct_t Core_Base;
 
+void Module_Register (core_base_struct_t Base_Struct);
+
 void sleepUntil(systime_t *previous, systime_t period);
 
 #endif

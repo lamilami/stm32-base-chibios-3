@@ -4,6 +4,22 @@
 
 static msg_t core_msg_b;
 
+void Module_Register (core_base_struct_t Base_Struct)
+{
+	core_base_struct_t *current;
+	current = &Core_Base;
+	chSysLock();
+	while ((*current).next!=NULL)
+	{
+		current = (*current).next;
+	}
+
+	(*current).next = &Base_Struct;
+	Base_Struct.next = NULL;
+}
+
+//HAL_FAILED
+
 void Core_Init()
 {
 	Core_Base.id = 0;
@@ -21,6 +37,8 @@ THD_WORKING_AREA(waCore, 128);
 THD_FUNCTION(Core,arg)
 {
 	(void) arg;
+	thread_t 	*answer_thread;
+	msg_t		message;
 	chRegSetThreadName("Core");
 
 	Core_Init();
@@ -31,6 +49,10 @@ THD_FUNCTION(Core,arg)
 	while (TRUE)
 	{
 //		chMBFetch(&core_mb, (msg_t *) &tx_buffer, TIME_INFINITE);
+		answer_thread = chMsgWait();
+		message = chMsgGet(answer_thread);
+		chMsgRelease (answer_thread, (msg_t) message);
+
 	}
 }
 

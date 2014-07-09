@@ -27,6 +27,7 @@
 #include "halconf.h"
 #include "DS18B20.h"
 #include "FloorHeater.h"
+#include "iwdg.h"
 
 //#include "test.h"
 
@@ -135,6 +136,9 @@ int main(void)
 	 *   RTOS is active.
 	 */
  	halInit();
+#if HAL_USE_IWDG || defined(__DOXYGEN__)
+ 	iwdgInit();
+#endif
 //  Init_GPIOs();
 	chSysInit();
 
@@ -169,11 +173,20 @@ int main(void)
 	 */
 //	LEDB1Swap();
 
-	DS18B20_Start();
+/*
+	IWDGConfig watchdog_cfg;
+	watchdog_cfg.counter = 0x0C35;
+	watchdog_cfg.div = IWDG_DIV_128;
+
+	iwdgStart(IWDGD, watchdog_cfg);
+*/
+	Core_Start();
+	DS18B20_Start(1);
 	FloorHeater_Start();
 
 	while (TRUE)
 	{
 		chThdSleepSeconds(5);
+//		iwdgReset(IWDGD);
 	}
 }
