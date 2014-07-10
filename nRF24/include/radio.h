@@ -14,6 +14,8 @@
 #ifndef RADIO_H__
 #define RADIO_H__
 
+#define RADIO_PRESENT		TRUE
+
 /** @file
  * @ingroup main
  * Radio header file for the nRF24LU1 example application
@@ -35,6 +37,8 @@ typedef enum
 	RF_NOP = 0x00,
 	RF_PING,
 	RF_PONG,
+	RF_GET,
+	RF_PUT,
 	RF_END = 0xFF
 } RF_commands_t;
 
@@ -120,16 +124,10 @@ void radio_send_packet(uint8_t *packet, uint8_t length);
  * flags and act on them. Sets the status with \
  */
 // void radio_irq (void);
-void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command);
+//void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t *data);
 void Radio_Receive_Command(void);
 
-THD_WORKING_AREA(waRadio, 256);
-//__attribute__((noreturn))
-THD_FUNCTION(Radio,arg);
-
-THD_WORKING_AREA(waRadio_Processor, 256);
-//__attribute__((noreturn))
-THD_FUNCTION(Radio_Processor,arg);
+void Radio_Start(void *arg);
 
 typedef struct
 {

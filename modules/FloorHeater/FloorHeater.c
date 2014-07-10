@@ -3,6 +3,15 @@
 #include "FloorHeater.h"
 #include "core.h"
 
+volatile core_base_struct_t Core_FloorHeater;
+volatile static struct
+{
+	uint16_t	Power;
+	uint16_t	pPower;
+	uint16_t	iPower;
+	const uint16_t	IVAL_END;
+} Inner_Val;
+
 typedef struct
 {
 //  double dState;                  // Last position input
@@ -28,6 +37,12 @@ float UpdatePID(SPid * pid, float error)//, double position)
   iTerm = pid->iGain * pid->iState;    // calculate the integral term
 //  dTerm = pid->dGain * (position - pid->dState);
 //  pid->dState = position;
+
+	chSysLock();
+	Inner_Val.pPower = pTerm;
+	Inner_Val.iPower = iTerm;
+	chSysUnlock();
+
   return (pTerm + iTerm);// - dTerm);
 }
 
@@ -44,6 +59,29 @@ static PWMConfig pwmcfg = {
   },
   0
 };
+
+
+void FloorHeater_Init (void *arg)
+{
+
+	Core_FloorHeater.id = (uint8_t) arg;
+	Core_FloorHeater.type = Heater;
+//	Core_Base.addr = MY_ADDR;
+//	Core_Base.mbox = &core_mb;
+	Core_FloorHeater.thread = chThdGetSelfX();
+	Core_FloorHeater.direction = RO;
+	Core_FloorHeater.next = NULL;
+	Core_FloorHeater.description = "FloorHeater, 330 Watt PWM (PI)";
+	Core_FloorHeater.current_value=0xffff;
+	Core_FloorHeater.inner_values=&Inner_Val;
+	Core_FloorHeater.ival_size=sizeof(Inner_Val);
+
+/*	chSysLock();
+		Core_Base.next = &Core_DS18B20;
+	chSysUnlock();*/
+
+	Core_Module_Register (Core_FloorHeater);
+}
 
 void PWM_Init()
 {
@@ -74,6 +112,8 @@ THD_FUNCTION(FloorHeater,arg)
 {
 	(void) arg;
 //	chRegSetThreadName("FloorHeater");
+
+	FloorHeater_Init(arg);
 
 	PWM_Init();
 
@@ -113,6 +153,10 @@ THD_FUNCTION(FloorHeater,arg)
 			}
 		else ipwr = 90;
 
+		chSysLock();
+		Inner_Val.Power = ipwr;
+		chSysUnlock();
+
 		pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, ipwr*100));   // 10% duty cycle
 
 //		time += S2ST(120);
@@ -120,12 +164,11 @@ THD_FUNCTION(FloorHeater,arg)
 	}
 }
 
-void FloorHeater_Start()
+void FloorHeater_Start(void *arg)
 {
 #if FloorHeater_PRESENT
 	chThdCreateStatic(waFloorHeater, sizeof(waFloorHeater), NORMALPRIO,
-			FloorHeater, NULL);
+			FloorHeater, arg);
 #endif
 }
-
 

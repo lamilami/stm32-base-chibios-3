@@ -69,6 +69,14 @@ volatile static radio_status_t status, status_prev;
 
 //static uint8_t full_address[3] = {RF_BROADBAND_1ST_BYTE, RF_BROADBAND_2ND_BYTE, RF_3RD_BYTE};
 
+THD_WORKING_AREA(waRadio, 256);
+//__attribute__((noreturn))
+THD_FUNCTION(Radio,arg);
+
+THD_WORKING_AREA(waRadio_Processor, 256);
+//__attribute__((noreturn))
+THD_FUNCTION(Radio_Processor,arg);
+
 void radio_send_packet(uint8_t *packet, uint8_t length)
 {
 	radio_set_status(RF_BUSY); // trans. in progress; RF_BUSY
@@ -186,6 +194,9 @@ THD_FUNCTION(Radio,arg)
 	}
 
 	radio_init();
+
+	chThdCreateStatic(waRadio_Processor, sizeof(waRadio_Processor), NORMALPRIO,
+				Radio_Processor, NULL);
 
 //	nRF24_hw_ce_high();
 
@@ -340,13 +351,14 @@ void radio_set_mode(nRF24_operation_mode_t rmode, uint8_t full_address[3])
 	nRF24_hw_ce_high();
 }
 
+
 /*
  void Radio_Send(void)
  {
  chEvtSignal(Radio_Thread, (eventmask_t) EVENTMASK_SEND);
  }
  */
-void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command)
+void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t data_size, uint8_t *data)
 {
 	payload_t * tx_buffer = 0;
 	chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *) &tx_buffer, TIME_INFINITE);
@@ -354,6 +366,8 @@ void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command)
 	(*tx_buffer).dst_addr = rcv_addr;
 	(*tx_buffer).cmd = command;
 	(*tx_buffer).pipenum = 1;
+	(*tx_buffer).size = 3+data_size;
+	ByteArrayCopy(data,(*tx_buffer).data,data_size);
 
 	/*	full_tx_addr[0] = RF_WORK_PIPE_BYTE;
 	 full_tx_addr[1] = rcv_addr;
@@ -366,9 +380,7 @@ void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command)
 	{
 	case RF_PING:
 	case RF_PONG:
-//		pload_tx.size = 3;
-		(*tx_buffer).size = 3;
-//		Radio_Send();
+	case RF_GET:
 		chMBPost(&rf_mb[RF_MB_TX], (msg_t) tx_buffer, TIME_INFINITE);
 		chEvtSignal(Radio_Thread, (eventmask_t) EVENTMASK_SEND);
 		break;
@@ -384,6 +396,7 @@ THD_FUNCTION(Radio_Processor,arg)
 	(void) arg;
 //	chRegSetThreadName("Radio_Processor");
 	payload_t * rx_buffer = 0;
+	uint8_t cnt;
 	chThdSleepSeconds(1);
 	while (TRUE)
 	{
@@ -394,13 +407,18 @@ THD_FUNCTION(Radio_Processor,arg)
 		{
 		case RF_PING:
 //			LEDB1Swap();
-			Radio_Send_Command((*rx_buffer).src_addr, RF_PONG); // load message into radio
+			Radio_Send_Command((*rx_buffer).src_addr, RF_PONG, 0, NULL); // load message into radio
 			break;
 		case RF_PONG:
 //			LEDB1Swap();
-			Radio_Send_Command((*rx_buffer).src_addr, RF_PING);
+			Radio_Send_Command((*rx_buffer).src_addr, RF_PING, 0, NULL);
 //			nRF24_hw_ce_high();
 			break;
+		case RF_GET:
+			cnt = Core_GetDataById((*rx_buffer).data[0], (*rx_buffer).data[1], (*rx_buffer).data+2);
+			Radio_Send_Command((*rx_buffer).src_addr, RF_PUT, cnt, (*rx_buffer).data);
+			break;
+		case RF_PUT:
 
 		default:
 //		nRF24_hw_ce_high();
@@ -408,4 +426,11 @@ THD_FUNCTION(Radio_Processor,arg)
 		}
 		chMBPost(&rf_mb[RF_MB_FREE], (msg_t) rx_buffer, TIME_INFINITE);
 	}
+}
+
+void Radio_Start(void *arg)
+{
+#if RADIO_PRESENT
+	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO, Radio, NULL);
+#endif
 }

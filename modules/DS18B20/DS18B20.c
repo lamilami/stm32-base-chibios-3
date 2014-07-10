@@ -36,12 +36,12 @@ void DS18B20_Init (void *arg)
 	Core_DS18B20.description = "4 Floor Temp Sensors DS18B20";
 	Core_DS18B20.current_value=0xffff;
 	Core_DS18B20.inner_values=&Inner_Val;
-
+	Core_DS18B20.ival_size=sizeof(Inner_Val);
 /*	chSysLock();
 		Core_Base.next = &Core_DS18B20;
 	chSysUnlock();*/
 
-	Module_Register (Core_DS18B20);
+	Core_Module_Register (Core_DS18B20);
 }
 
 THD_WORKING_AREA(waDS18B20, 128);

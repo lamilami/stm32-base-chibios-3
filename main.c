@@ -47,11 +47,11 @@ static THD_FUNCTION(LedBlinker,arg)
 	{
 		msg_t msg;
 //		msg=255;
-		chSysLock();
-		Blinker_Thread = chThdGetSelfX();
+//		chSysLock();
+//		Blinker_Thread = chThdGetSelfX();
 //		chSchGoSleepS(CH_STATE_SUSPENDED);
 //		msg = chThdGetSelfX()->p_u.rdymsg; /* Retrieving the message, optional.*/
-		chSysUnlock();
+//		chSysUnlock();
 //		uint16_t cnt = 0;
 //		chThdYield();
 		chThdSleepMilliseconds(250);
@@ -180,9 +180,10 @@ int main(void)
 
 	iwdgStart(IWDGD, watchdog_cfg);
 */
-//	Core_Start();
-	DS18B20_Start(1);
-//	FloorHeater_Start();
+	Core_Start();
+	Radio_Start(1);
+	DS18B20_Start(2);
+	FloorHeater_Start();
 
 	while (TRUE)
 	{
