@@ -381,6 +381,7 @@ void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t data_si
 	case RF_PING:
 	case RF_PONG:
 	case RF_GET:
+	case RF_PUT:
 		chMBPost(&rf_mb[RF_MB_TX], (msg_t) tx_buffer, TIME_INFINITE);
 		chEvtSignal(Radio_Thread, (eventmask_t) EVENTMASK_SEND);
 		break;

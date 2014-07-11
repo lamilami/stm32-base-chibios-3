@@ -14,8 +14,6 @@
 #ifndef RADIO_H__
 #define RADIO_H__
 
-#define RADIO_PRESENT		TRUE
-
 /** @file
  * @ingroup main
  * Radio header file for the nRF24LU1 example application
