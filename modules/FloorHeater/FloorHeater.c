@@ -9,32 +9,31 @@ volatile static struct
 	uint16_t	Power;
 	uint16_t	pPower;
 	uint16_t	iPower;
-	const uint16_t	IVAL_END;
 } Inner_Val;
 
 typedef struct
 {
 //  double dState;                  // Last position input
-	float iState;                  // Integrator state
-	float iMax, iMin;
+	int32_t iState;                  // Integrator state
+	int32_t iMax, iMin;
   // Maximum and minimum allowable integrator state
-	float    iGain,        // integral gain
+	int32_t    iGain,        // integral gain
             pGain;        // proportional gain
 //             dGain;         // derivative gain
 } SPid;
 
-float UpdatePID(SPid * pid, float error)//, double position)
+int32_t UpdatePID(SPid * pid, int32_t error)//, double position)
 {
   float pTerm, /*dTerm,*/ iTerm;
 
-  pTerm = pid->pGain * error;    // calculate the proportional term
+  pTerm = error<<pid->pGain;    // calculate the proportional term
   pid->iState += error;          // calculate the integral state with appropriate limiting
 
   if (pid->iState > pid->iMax)
       pid->iState = pid->iMax;
   else if (pid->iState < pid->iMin)
       pid->iState = pid->iMin;
-  iTerm = pid->iGain * pid->iState;    // calculate the integral term
+  iTerm = pid->iState<<pid->iGain;    // calculate the integral term
 //  dTerm = pid->dGain * (position - pid->dState);
 //  pid->dState = position;
 
@@ -128,11 +127,11 @@ THD_FUNCTION(FloorHeater,arg)
 	volatile uint16_t msg;
 
 	SPid Floor_PID;
-	Floor_PID.pGain=75;
-	Floor_PID.iGain=30;
+	Floor_PID.pGain=4;
+	Floor_PID.iGain=2;
 	Floor_PID.iState=0;
-	Floor_PID.iMax=300*Floor_PID.iGain;
-	Floor_PID.iMin=-100*Floor_PID.iGain;
+	Floor_PID.iMax=25;
+	Floor_PID.iMin=-2;
 
 	uint16_t Desired_Temp = Set_TEMP<<2;
 
@@ -140,18 +139,18 @@ THD_FUNCTION(FloorHeater,arg)
 //	pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 9000));   // 10% duty cycle
 	while (TRUE)
 	{
-		volatile uint16_t ipwr;
+		volatile int16_t ipwr;
 		msg = chMsgSend (DS18B20_Thread, msg);
-/*		volatile float pwr = UpdatePID(&Floor_PID, (float)(Desired_Temp-msg));
+		volatile int32_t pwr = UpdatePID(&Floor_PID, (float)(Desired_Temp-msg));
 		if (pwr>100) pwr=100;
 		if (pwr<0) pwr=0;
-		ipwr = (uint16_t) pwr;*/
+		ipwr = (int16_t) pwr;
 
-		if (msg>Desired_Temp)
+/*		if (msg>Desired_Temp)
 			{
 				ipwr = 10;
 			}
-		else ipwr = 90;
+		else ipwr = 90;*/
 
 		chSysLock();
 		Inner_Val.Power = ipwr;

@@ -1,7 +1,7 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
-#define MY_ADDR			0x03
+#define MY_ADDR			0x00
 #define RADIO_PRESENT		TRUE
 #define DS18B20_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
@@ -55,7 +55,7 @@ struct core_base_struct
 core_base_struct_t Core_Base;
 
 void Core_Module_Register (core_base_struct_t Base_Struct);
-uint8_t Core_GetDataById(const uint8_t id, const uint8_t val, uint16_t* data);
+uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
 
 void sleepUntil(systime_t *previous, systime_t period);
 

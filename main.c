@@ -183,12 +183,44 @@ int main(void)
 	Core_Start();
 	Radio_Start(1);
 	DS18B20_Start(2);
-	FloorHeater_Start();
+	FloorHeater_Start(3);
+	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
+
+    InitializeLCD(); //Инициализация дисплея
+    ClearLCDScreen(); //Очистка дисплея от мусора
+
+//    LCD_PutSignedInt(istr);
+//    PrintStr("CXEM.NET");
 
 	while (TRUE)
 	{
-//		chThdSleepSeconds(5);
-		chMsgWait();
+		data[0]=2;
+		int16_t tmp;
+	    Radio_Send_Command(10, RF_GET, 1, data);
+	    data[0]=3;
+	    Radio_Send_Command(10, RF_GET, 1, data);
+	    chThdSleepSeconds(3);
+	    Cursor(0,0); //Установка курсора
+	    PrintStr("T="); //Написание текста
+/*	    PutData[2][0]=1;
+	    PutData[2][1]=2;
+	    PutData[2][2]=3;
+	    PutData[2][3]=4;
+	    PutData[2][4]=5;*/
+	    tmp = PutData[2][3]*256+PutData[2][4];
+	    LCD_PutSignedInt(tmp>>2);
+	    PrintStr(".");
+	    LCD_PutUnsignedInt((tmp&3)*25);
+	    PrintStr("              ");
+	    Cursor(1,0);
+	    PrintStr("PWR="); //Написание текста
+	    tmp = PutData[3][3]*256+PutData[3][4];
+//	    LCD_PutSignedInt(tmp>>2);
+//	    PrintStr(".");
+	    LCD_PutUnsignedInt(tmp);
+	    PrintStr("              ");
+		chThdSleepSeconds(7);
+//		chMsgWait();
 //		iwdgReset(IWDGD);
 	}
 }

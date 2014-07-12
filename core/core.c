@@ -19,7 +19,7 @@ void Core_Module_Register (core_base_struct_t Base_Struct)
 	chSysUnlock();
 }
 
-uint8_t Core_GetDataById(const uint8_t id, const uint8_t val, uint16_t* data)
+uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
 {
 	core_base_struct_t *current;
 	current = &Core_Base;

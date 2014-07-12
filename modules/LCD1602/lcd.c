@@ -29,18 +29,18 @@ void delay(int a)
 void PulseLCD()
 {
     LCM_OUT &= ~LCM_PIN_EN;
-    delay(220);
+    delay(1);
     LCM_OUT |= LCM_PIN_EN;
-    delay(220);
+    delay(1);
     LCM_OUT &= (~LCM_PIN_EN);
-    delay(220);
+    delay(1);
 }
 
 //---Отсылка байта в дисплей---//
-void SendByte(char ByteToSend, int IsData)
+void LCD_SendByte(char ByteToSend, int IsData)
 {
     LCM_OUT &= (~LCM_PIN_MASK);
-    LCM_OUT |= (ByteToSend & 0xF0);
+    LCM_OUT |= ((ByteToSend & 0xF0) >> 4);
 
     if (IsData == 1)
         LCM_OUT |= LCM_PIN_RS;
@@ -48,7 +48,7 @@ void SendByte(char ByteToSend, int IsData)
         LCM_OUT &= ~LCM_PIN_RS;
     PulseLCD();
     LCM_OUT &= (~LCM_PIN_MASK);
-    LCM_OUT |= ((ByteToSend & 0x0F) << 4);
+    LCM_OUT |= (ByteToSend & 0x0F);
 
     if (IsData == 1)
         LCM_OUT |= LCM_PIN_RS;
@@ -68,15 +68,15 @@ void Cursor(char Row, char Col)
     else
         address = 0x40;
     address |= Col;
-    SendByte(0x80 | address, 0);
+    LCD_SendByte(0x80 | address, 0);
 }
 
 
 //---Очистка дисплея---//
 void ClearLCDScreen()
 {
-    SendByte(0x01, 0);
-    SendByte(0x02, 0);
+    LCD_SendByte(0x01, 0);
+    LCD_SendByte(0x02, 0);
 }
 
 
@@ -92,16 +92,23 @@ void InitializeLCD(void)
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
     GPIO_Init(GPIOA, &GPIO_InitStructure);
     LCM_OUT &= ~(LCM_PIN_MASK);
-    delay(32000);
-    delay(32000);
-    delay(32000);
+    chThdSleepMilliseconds(15);
     LCM_OUT &= ~LCM_PIN_RS;
     LCM_OUT &= ~LCM_PIN_EN;
-    LCM_OUT = 0x20;
+    LCM_OUT = 0x03;
     PulseLCD();
-    SendByte(0x28, 0);
-    SendByte(0x0E, 0);
-    SendByte(0x06, 0);
+    chThdSleepMilliseconds(5);
+    PulseLCD();
+    chThdSleepMicroseconds(100);
+    PulseLCD();
+    chThdSleepMicroseconds(50);
+    LCM_OUT = 0x02;
+    PulseLCD();
+    chThdSleepMicroseconds(50);
+
+    LCD_SendByte(0x28, 0);
+    LCD_SendByte(0x0E, 0);
+    LCD_SendByte(0x06, 0);
 }
 
 //---Печать строки---//
@@ -111,7 +118,66 @@ void PrintStr(char *Text)
     c = Text;
     while ((c != 0) && (*c != 0))
     {
-        SendByte(*c, 1);
+        LCD_SendByte(*c, 1);
         c++;
     }
+}
+
+void LCD_PutSignedInt(int32_t n)
+{
+	char c1[32];
+
+	if(n == 0)
+	{
+		LCD_SendByte('0',1);
+		return;
+	}
+
+	signed int value = n;
+	unsigned int absolute;
+
+	int i = 0;
+
+	if(value < 0) {
+		absolute = -value;
+	} else {
+		absolute = value;
+	}
+
+	while (absolute > 0) {
+		c1[i] = '0' + absolute % 10;
+		absolute /= 10;
+		i++;
+	}
+
+	LCD_SendByte((value < 0) ? '-' : '+',1);
+
+	i--;
+
+	while(i >= 0){
+		LCD_SendByte(c1[i--],1);
+	}
+}
+
+void LCD_PutUnsignedInt(uint32_t n)
+{
+	char c1[32];
+	uint32_t value = n;
+	uint32_t i = 0;
+
+	if(n == 0)
+	{
+		LCD_SendByte('0',1);
+		return;
+	}
+
+	while (value > 0) {
+		c1[i] = '0' + value % 10;
+		value /= 10;
+		i++;
+	}
+
+	while(i-- > 0){
+		LCD_SendByte(c1[i],1);
+	}
 }

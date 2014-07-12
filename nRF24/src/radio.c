@@ -217,7 +217,7 @@ THD_FUNCTION(Radio,arg)
 				break;
 			default:
 #ifdef SPI_DMA
-				__asm("BKPT #0\n");
+//				__asm("BKPT #0\n");
 #endif
 				// Break into the debugger
 				radio_flush();
@@ -268,7 +268,7 @@ THD_FUNCTION(Radio,arg)
 					radio_flush();
 //					TX_DS();
 #ifdef SPI_DMA
-					__asm("BKPT #0\n");
+//					__asm("BKPT #0\n");
 #endif
 					// Break into the debugger
 					break;
@@ -416,11 +416,14 @@ THD_FUNCTION(Radio_Processor,arg)
 //			nRF24_hw_ce_high();
 			break;
 		case RF_GET:
-			cnt = Core_GetDataById((*rx_buffer).data[0], (*rx_buffer).data[1], (*rx_buffer).data+2);
-			Radio_Send_Command((*rx_buffer).src_addr, RF_PUT, cnt, (*rx_buffer).data);
+			cnt = Core_GetDataById((*rx_buffer).data[0], (*rx_buffer).data+1);
+			Radio_Send_Command((*rx_buffer).src_addr, RF_PUT, cnt+1, (*rx_buffer).data);
 			break;
 		case RF_PUT:
-
+			chSysLock();
+			ByteArrayCopy((*rx_buffer).data,PutData[(*rx_buffer).data[0]],(*rx_buffer).size);
+			chSysUnlock();
+			break;
 		default:
 //		nRF24_hw_ce_high();
 			break;
