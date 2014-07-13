@@ -3,12 +3,11 @@
 #include "FloorHeater.h"
 #include "core.h"
 
-volatile core_base_struct_t Core_FloorHeater;
 volatile static struct
 {
-	uint16_t	Power;
-	uint16_t	pPower;
-	uint16_t	iPower;
+	volatile uint16_t	Power;
+	volatile uint16_t	pPower;
+	volatile uint16_t	iPower;
 } Inner_Val;
 
 typedef struct
@@ -79,7 +78,7 @@ void FloorHeater_Init (void *arg)
 		Core_Base.next = &Core_DS18B20;
 	chSysUnlock();*/
 
-	Core_Module_Register (Core_FloorHeater);
+	Core_Module_Register (&Core_FloorHeater);
 }
 
 void PWM_Init()
@@ -105,7 +104,7 @@ void PWM_Init()
 	  pwmStart(&PWMD1, &pwmcfg);
 }
 
-THD_WORKING_AREA(waFloorHeater, 128);
+THD_WORKING_AREA(waFloorHeater, 512);
 //__attribute__((noreturn))
 THD_FUNCTION(FloorHeater,arg)
 {
@@ -159,7 +158,7 @@ THD_FUNCTION(FloorHeater,arg)
 		pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, ipwr*100));   // 10% duty cycle
 
 //		time += S2ST(120);
-		sleepUntil(&time, S2ST(120));
+		sleepUntil(&time, S2ST(60));
 	}
 }
 

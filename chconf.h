@@ -1,4 +1,4 @@
-/*
+ /*
     ChibiOS/RT - Copyright (C) 2006-2013 Giovanni Di Sirio
 
     Licensed under the Apache License, Version 2.0 (the "License");

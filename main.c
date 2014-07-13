@@ -137,7 +137,7 @@ int main(void)
 	 */
  	halInit();
 #if HAL_USE_IWDG || defined(__DOXYGEN__)
- 	iwdgInit();
+// 	iwdgInit();
 #endif
 //  Init_GPIOs();
 	chSysInit();
@@ -184,16 +184,19 @@ int main(void)
 	Radio_Start(1);
 	DS18B20_Start(2);
 	FloorHeater_Start(3);
-	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
+//	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 
+#if LCD1602_PRESENT
     InitializeLCD(); //Инициализация дисплея
     ClearLCDScreen(); //Очистка дисплея от мусора
+#endif
 
 //    LCD_PutSignedInt(istr);
 //    PrintStr("CXEM.NET");
 
 	while (TRUE)
 	{
+#if LCD1602_PRESENT
 		data[0]=2;
 		int16_t tmp;
 	    Radio_Send_Command(10, RF_GET, 1, data);
@@ -219,7 +222,8 @@ int main(void)
 //	    PrintStr(".");
 	    LCD_PutUnsignedInt(tmp);
 	    PrintStr("              ");
-		chThdSleepSeconds(7);
+#endif
+		chThdSleepSeconds(180);
 //		chMsgWait();
 //		iwdgReset(IWDGD);
 	}

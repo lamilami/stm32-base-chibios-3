@@ -4,7 +4,7 @@
 
 static msg_t core_msg_b;
 
-void Core_Module_Register (core_base_struct_t Base_Struct)
+void Core_Module_Register (core_base_struct_t* Base_Struct)
 {
 	core_base_struct_t *current;
 	current = &Core_Base;
@@ -14,8 +14,8 @@ void Core_Module_Register (core_base_struct_t Base_Struct)
 		current = (*current).next;
 	}
 
-	(*current).next = &Base_Struct;
-	Base_Struct.next = NULL;
+	(*current).next = Base_Struct;
+	(*Base_Struct).next = NULL;
 	chSysUnlock();
 }
 
@@ -72,17 +72,18 @@ THD_FUNCTION(Core,arg)
 	while (TRUE)
 	{
 //		chMBFetch(&core_mb, (msg_t *) &tx_buffer, TIME_INFINITE);
-		answer_thread = chMsgWait();
-		message = chMsgGet(answer_thread);
-		chMsgRelease (answer_thread, (msg_t) message);
-
+//		answer_thread = chMsgWait();
+//		message = chMsgGet(answer_thread);
+//		chMsgRelease (answer_thread, (msg_t) message);
+		chThdSleepSeconds(50);
 	}
 }
 
 void Core_Start()
 {
-	chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO,
-			Core, NULL);
+	Core_Init();
+//	chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO,
+//			Core, NULL);
 }
 
 void sleepUntil(systime_t *previous, systime_t period)

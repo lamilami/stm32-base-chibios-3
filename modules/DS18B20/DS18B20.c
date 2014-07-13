@@ -5,27 +5,25 @@
 #include "core.h"
 
 //volatile uint16_t out_temp[4];
-
-volatile core_base_struct_t Core_DS18B20;
+volatile static core_base_struct_t Core_DS18B20;
 volatile static struct
 {
-	uint16_t	temp[4];
-	uint16_t	cont_errors;
+	volatile uint16_t	temp[4];
+	volatile uint16_t	cont_errors;
 	union
 	{
-		uint16_t	global_errors[2];
-		uint32_t	global_errors_32;
+		volatile uint16_t	global_errors[2];
+		volatile uint32_t	global_errors_32;
 	};
 	union
 	{
-		uint16_t	critical_errors[2];
-		uint32_t	critical_errors_32;
+		volatile uint16_t	critical_errors[2];
+		volatile uint32_t	critical_errors_32;
 	};
 } Inner_Val;
 
 void DS18B20_Init (void *arg)
 {
-
 	Core_DS18B20.id = (uint8_t) arg;
 	Core_DS18B20.type = Temp;
 //	Core_Base.addr = MY_ADDR;
@@ -41,27 +39,35 @@ void DS18B20_Init (void *arg)
 		Core_Base.next = &Core_DS18B20;
 	chSysUnlock();*/
 
-	Core_Module_Register (Core_DS18B20);
+	Core_Module_Register (&Core_DS18B20);
 }
 
-THD_WORKING_AREA(waDS18B20, 128);
+THD_WORKING_AREA(waDS18B20, 256);
 //__attribute__((noreturn))
 THD_FUNCTION(DS18B20,arg)
 {
 	(void) arg;
 	thread_t *answer_thread;
-//	chRegSetThreadName("DS18B20");
+	//	chRegSetThreadName("DS18B20");
+
+	DS18B20_Init (arg);
+
+/*	volatile core_base_struct_t Core_DS18B20 =
+	{ 2,Temp,chThdGetSelfX(),RW,0,0,&Inner_Val,sizeof(Inner_Val),"4 Floor Temp Sensors DS18B20",NULL
+	};*/
+
+//	Core_Module_Register (&Core_DS18B20);
 
 	static ucnt_t global_errors=0;
 	static ucnt_t critical_errors=0;
 	static uint16_t cont_errors=0;
 	static uint16_t old_temp=0xffff;
 
-	DS18B20_Init (arg);
-
 	OW_Init();
 	uint8_t buf[32];
 //	OW_Scan(buf,4);
+
+//	DS18B20_Init (arg,Core_DS18B20);
 
 	while (OW_Send(OW_SEND_RESET, "\xcc\x4e\x00\x00\x3f", 5, NULL, NULL, OW_NO_READ)==OW_ERROR)
 	{
@@ -71,8 +77,8 @@ THD_FUNCTION(DS18B20,arg)
 
 	while (TRUE)
 	{
-//		answer_thread = chMsgWait();
-//		chMsgGet(answer_thread);
+		answer_thread = chMsgWait();
+		chMsgGet(answer_thread);
 
 		while (OW_Send(OW_SEND_RESET, "\xcc\x44", 2, NULL, NULL, OW_NO_READ)==OW_ERROR)
 		{
@@ -170,8 +176,8 @@ THD_FUNCTION(DS18B20,arg)
 //    	msg_t OutTemp =
 
 		LEDSwap();
-      	chThdSleepSeconds(3);
-//    	chMsgRelease (answer_thread, (msg_t) DS_OUT.temp);
+//      	chThdSleepSeconds(3);
+    	chMsgRelease (answer_thread, (msg_t) Core_DS18B20.current_value);
 	}
 }
 

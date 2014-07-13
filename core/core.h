@@ -1,11 +1,11 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
-#define MY_ADDR			0x00
+#define MY_ADDR			0x10
 #define RADIO_PRESENT		TRUE
-#define DS18B20_PRESENT		FALSE
-#define FloorHeater_PRESENT FALSE
-#define LCD1602_PRESENT TRUE
+#define DS18B20_PRESENT		TRUE
+#define FloorHeater_PRESENT TRUE
+#define LCD1602_PRESENT FALSE
 
 
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
@@ -34,27 +34,27 @@ typedef enum
 	RW
 } core_direction_t;
 
-typedef struct core_base_struct core_base_struct_t;
+typedef volatile struct core_base_struct core_base_struct_t;
 
-struct core_base_struct
+volatile struct core_base_struct
 {
-	uint8_t				id;
-	core_types_t 		type;
+	volatile uint8_t				id;
+	volatile core_types_t 		type;
 //	uint8_t addr;
 //	mailbox_t *mbox;
-	thread_t 			*thread;
-	core_direction_t 	direction;
-	uint16_t			current_value;
-	uint16_t			set_value;
-	void*				inner_values;
-	uint8_t				ival_size;
-	const char*			description;
-	core_base_struct_t *next;
+	volatile thread_t 			*thread;
+	volatile core_direction_t 	direction;
+	volatile uint16_t			current_value;
+	volatile uint16_t			set_value;
+	volatile void*				inner_values;
+	volatile uint8_t				ival_size;
+	volatile const char*			description;
+	volatile core_base_struct_t *next;
 };
 
-core_base_struct_t Core_Base;
+volatile core_base_struct_t Core_Base;
 
-void Core_Module_Register (core_base_struct_t Base_Struct);
+void Core_Module_Register (core_base_struct_t* Base_Struct);
 uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
 
 void sleepUntil(systime_t *previous, systime_t period);
