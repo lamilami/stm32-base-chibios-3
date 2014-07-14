@@ -9,7 +9,6 @@
 #define     LCM_PIN_D6            GPIO_Pin_2          // PB6
 #define     LCM_PIN_D5            GPIO_Pin_1          // PB5
 #define     LCM_PIN_D4            GPIO_Pin_0          // PB4
-
 void LCD1602_Start(void *arg);
 
 #endif

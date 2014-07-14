@@ -125,7 +125,7 @@ void radio_send_packet(uint8_t *packet, uint8_t length);
 //void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t *data);
 void Radio_Receive_Command(void);
 
-void Radio_Start(void *arg);
+void Radio_Start(uint8_t id);
 
 typedef struct
 {
@@ -140,21 +140,20 @@ typedef struct
 	};
 	union
 	{
-		uint8_t pload[RF_MAX_PAYLOAD_LENGTH+2];
+		uint8_t pload[RF_MAX_PAYLOAD_LENGTH + 2];
 		struct
 		{
 			uint8_t src_addr;
 			uint8_t dst_addr;
 			uint8_t cmd;
-			uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
+			uint8_t data[RF_MAX_PAYLOAD_LENGTH - 1];
 		};
 	};
 } payload_t;
 
 #define RF_MAX_IO_BUFFERS 3
 
-uint8_t PutData[5][RF_MAX_PAYLOAD_LENGTH-1];
-
+uint8_t PutData[5][RF_MAX_PAYLOAD_LENGTH - 1];
 
 bool rf_sended_debug;
 

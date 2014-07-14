@@ -588,7 +588,7 @@ uint16_t nRF24_read_multibyte_reg(uint8_t reg, uint8_t *pbuf)
 
 #ifdef SPI_DMA
 	if (ctr > 0)
-	spiReceive(&SPID1, ctr, pbuf);
+		spiReceive(&SPID1, ctr, pbuf);
 #else
 	while (ctr--)
 	{
@@ -636,10 +636,10 @@ void nRF24_write_multibyte_reg(uint8_t reg, const uint8_t *pbuf, uint8_t length)
 	 spiPolledExchange(&SPID1,*pbuf++);*/
 #ifdef SPI_DMA
 	if (length > 0)
-	spiSend(&SPID1, length, pbuf);
+		spiSend(&SPID1, length, pbuf);
 #else
 	while (length--)
-		spiPolledExchange(&SPID1, *pbuf++);
+	spiPolledExchange(&SPID1, *pbuf++);
 #endif
 //	else
 //		spiUnselect(&SPID1); /* Slave Select de-assertion.       */

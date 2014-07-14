@@ -10,18 +10,16 @@
 // для разных процессоров потребуется проверить функцию OW_Init
 // на предмет расположения ножек USART
 #ifdef STM32F100C8
-	#include "stm32f10x.h"
+#include "stm32f10x.h"
 // выбираем, на каком USART находится 1-wire
-	#define OW_USART1
+#define OW_USART1
 //#define OW_USART2
 //#define OW_USART3
 //#define OW_USART4
 #else
-	#include "stm32f0xx.h"
-	#define OW_USART1
+#include "stm32f0xx.h"
+#define OW_USART1
 #endif
-
-
 
 // если нужно отдавать тики FreeRTOS, то раскомментировать
 //#define OW_GIVE_TICK_RTOS_CMD	chThdYield();
@@ -40,7 +38,8 @@
 #define OW_READ_SLOT	0xff
 
 uint8_t OW_Init();
-uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data, uint8_t dLen, uint8_t readStart);
+uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
+		uint8_t *data, uint8_t dLen, uint8_t readStart);
 
 #define OW_SEARCH_ROM		(uint8_t*)"\xf0"
 

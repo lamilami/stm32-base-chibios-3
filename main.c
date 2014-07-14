@@ -14,9 +14,9 @@
  limitations under the License.
  */
 #ifdef STM32F100C8
-	#include "stm32f10x.h"
+#include "stm32f10x.h"
 #else
-	#include "stm32f0xx.h"
+#include "stm32f0xx.h"
 #endif
 
 #include "ch.h"
@@ -27,17 +27,22 @@
 #include "halconf.h"
 #include "DS18B20.h"
 #include "FloorHeater.h"
-#include "iwdg.h"
+#include "WatchDog.h"
 
 //#include "test.h"
 
 #ifdef DEBUG_Discovery
+
+#ifdef comment
+
 static thread_t *Blinker_Thread = NULL;
 /*
  * LED blinker thread, times are in milliseconds.
  */
+
+
 static THD_WORKING_AREA(waLedBlinker, 128);
-//__attribute__((noreturn))
+__attribute__((noreturn))
 static THD_FUNCTION(LedBlinker,arg)
 {
 
@@ -45,7 +50,7 @@ static THD_FUNCTION(LedBlinker,arg)
 //	chRegSetThreadName("LedBlinker");
 	while (TRUE)
 	{
-		msg_t msg;
+//		msg_t msg;
 //		msg=255;
 //		chSysLock();
 //		Blinker_Thread = chThdGetSelfX();
@@ -56,17 +61,18 @@ static THD_FUNCTION(LedBlinker,arg)
 //		chThdYield();
 		chThdSleepMilliseconds(250);
 		LEDSwap();
-/*		for (cnt = 0; cnt < 65535; cnt++)
-		{
-			msg++;
-//			nop();
-//			LEDSwap();
-//			chThdSleepMilliseconds(100);
-//			LEDSwap();
-//			chThdSleepMilliseconds(100);
-		}*/
+//				for (cnt = 0; cnt < 65535; cnt++)
+//		 {
+//		 msg++;
+		 //			nop();
+		 //			LEDSwap();
+		 //			chThdSleepMilliseconds(100);
+		 //			LEDSwap();
+		 //			chThdSleepMilliseconds(100);
+//		 }
 	}
 }
+
 
 void ll_ledblink(uint8_t cnt)
 {
@@ -93,10 +99,11 @@ void LEDBlinkI(uint8_t cnt)
 }
 
 #endif
-
+#endif
 /*
  * Green LED blinker thread, times are in milliseconds.
  */
+/*
 static THD_WORKING_AREA(waTransmit, 128);
 //__attribute__((noreturn))
 static THD_FUNCTION (Transmit,arg)
@@ -121,7 +128,7 @@ static THD_FUNCTION (Transmit,arg)
 		chThdSleepSeconds(15);
 	}
 }
-
+*/
 /*
  * Application entry point.
  */
@@ -135,10 +142,7 @@ int main(void)
 	 * - Kernel initialization, the main() function becomes a thread and the
 	 *   RTOS is active.
 	 */
- 	halInit();
-#if HAL_USE_IWDG || defined(__DOXYGEN__)
-// 	iwdgInit();
-#endif
+	halInit();
 //  Init_GPIOs();
 	chSysInit();
 
@@ -146,23 +150,22 @@ int main(void)
 	 * Creates the blinker threads.
 	 */
 //  chThdCreateStatic(waThread1, sizeof(waThread1), NORMALPRIO, Thread1, NULL);
-/*	chThdCreateStatic(waTransmit, sizeof(waTransmit), NORMALPRIO, Transmit,
-			NULL);
-*/
-/*
-#ifdef DEBUG_Discovery
-	chThdCreateStatic(waLedBlinker, sizeof(waLedBlinker), NORMALPRIO,
-			LedBlinker, NULL);
-#endif
-*/
-/*	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO, Radio, NULL);
-	chThdCreateStatic(waRadio_Processor, sizeof(waRadio_Processor), NORMALPRIO,
-			Radio_Processor, NULL);
-*/
+	/*	chThdCreateStatic(waTransmit, sizeof(waTransmit), NORMALPRIO, Transmit,
+	 NULL);
+	 */
+	/*
+	 #ifdef DEBUG_Discovery
+	 chThdCreateStatic(waLedBlinker, sizeof(waLedBlinker), NORMALPRIO,
+	 LedBlinker, NULL);
+	 #endif
+	 */
+	/*	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO, Radio, NULL);
+	 chThdCreateStatic(waRadio_Processor, sizeof(waRadio_Processor), NORMALPRIO,
+	 Radio_Processor, NULL);
+	 */
 
 //  chThdSleepSeconds(2);
 //  Radio_Send_Command (3, RF_PING);
-
 //  nRF24_hw_ce_low();
 //  radio_init();
 	/*
@@ -173,22 +176,17 @@ int main(void)
 	 */
 //	LEDB1Swap();
 
-/*
-	IWDGConfig watchdog_cfg;
-	watchdog_cfg.counter = 0x0C35;
-	watchdog_cfg.div = IWDG_DIV_128;
-
-	iwdgStart(IWDGD, watchdog_cfg);
-*/
-	Core_Start();
+	WatchDog_Start(-1);
+	Core_Start(0);
 	Radio_Start(1);
 	DS18B20_Start(2);
 	FloorHeater_Start(3);
+
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 
 #if LCD1602_PRESENT
-    InitializeLCD(); //Инициализация дисплея
-    ClearLCDScreen(); //Очистка дисплея от мусора
+	InitializeLCD(); //Инициализация дисплея
+	ClearLCDScreen();//Очистка дисплея от мусора
 #endif
 
 //    LCD_PutSignedInt(istr);
@@ -199,32 +197,30 @@ int main(void)
 #if LCD1602_PRESENT
 		data[0]=2;
 		int16_t tmp;
-	    Radio_Send_Command(10, RF_GET, 1, data);
-	    data[0]=3;
-	    Radio_Send_Command(10, RF_GET, 1, data);
-	    chThdSleepSeconds(3);
-	    Cursor(0,0); //Установка курсора
-	    PrintStr("T="); //Написание текста
-/*	    PutData[2][0]=1;
-	    PutData[2][1]=2;
-	    PutData[2][2]=3;
-	    PutData[2][3]=4;
-	    PutData[2][4]=5;*/
-	    tmp = PutData[2][3]*256+PutData[2][4];
-	    LCD_PutSignedInt(tmp>>2);
-	    PrintStr(".");
-	    LCD_PutUnsignedInt((tmp&3)*25);
-	    PrintStr("              ");
-	    Cursor(1,0);
-	    PrintStr("PWR="); //Написание текста
-	    tmp = PutData[3][3]*256+PutData[3][4];
+		Radio_Send_Command(10, RF_GET, 1, data);
+		data[0]=3;
+		Radio_Send_Command(10, RF_GET, 1, data);
+		chThdSleepSeconds(3);
+		Cursor(0,0); //Установка курсора
+		PrintStr("T=");//Написание текста
+		/*	    PutData[2][0]=1;
+		 PutData[2][1]=2;
+		 PutData[2][2]=3;
+		 PutData[2][3]=4;
+		 PutData[2][4]=5;*/
+		tmp = PutData[2][3]*256+PutData[2][4];
+		LCD_PutSignedInt(tmp>>2);
+		PrintStr(".");
+		LCD_PutUnsignedInt((tmp&3)*25);
+		PrintStr("              ");
+		Cursor(1,0);
+		PrintStr("PWR="); //Написание текста
+		tmp = PutData[3][3]*256+PutData[3][4];
 //	    LCD_PutSignedInt(tmp>>2);
 //	    PrintStr(".");
-	    LCD_PutUnsignedInt(tmp);
-	    PrintStr("              ");
+		LCD_PutUnsignedInt(tmp);
+		PrintStr("              ");
 #endif
 		chThdSleepSeconds(180);
-//		chMsgWait();
-//		iwdgReset(IWDGD);
 	}
 }

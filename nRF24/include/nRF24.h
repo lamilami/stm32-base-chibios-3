@@ -9,7 +9,7 @@
  * the file.
  *
  * $LastChangedRevision: 2132 $
- */ 
+ */
 
 /** @file
  * Interface for nRF HAL
@@ -30,7 +30,8 @@
 #define SPI_DMA
 
 #ifdef __cplusplus
-extern "C" {
+extern "C"
+{
 #endif
 
 /** @name  << SETUP FUNCTIONS >> */
@@ -46,7 +47,7 @@ extern "C" {
  *
  * @param int_source Radio interrupt Source.
  * @param irq_state Enable or Disable.
-*/
+ */
 void nRF24_set_irq_mode(nRF24_irq_source_t int_source, bool irq_state);
 
 /** Activate features
@@ -72,9 +73,9 @@ void nRF24_enable_dynamic_pl(void);
 void nRF24_disable_dynamic_pl(void);
 
 /** Sets the dynamic payload features for the RX pipes
-* The input parameter contains is a byte where the bit values tells weather the
-*  pipe uses the ack payload feature or not. For example if bit 0 is set then 
-* Pipe 0 uses ack payload,
+ * The input parameter contains is a byte where the bit values tells weather the
+ *  pipe uses the ack payload feature or not. For example if bit 0 is set then
+ * Pipe 0 uses ack payload,
  * @param setup Byte value with bit set for pipes that uses the dynamic payload feature
  */
 void nRF24_setup_dyn_pl(uint8_t setup);
@@ -90,7 +91,8 @@ uint8_t nRF24_read_rx_fifo_payload_width(void);
  * @param tx_payload Pointer to the payload data
  * @param length Size of the data to transmit
  */
-void nRF24_write_ack_payload(uint8_t pipe, const uint8_t *tx_payload, uint8_t length);
+void nRF24_write_ack_payload(uint8_t pipe, const uint8_t *tx_payload,
+		uint8_t length);
 
 /** Enables the no-ack feature
  */
@@ -108,7 +110,7 @@ void nRF24_disable_dynamic_ack(void);
  * @retval 0x10 Max Retransmit interrupt
  * @retval 0x20 TX Data sent interrupt
  * @retval 0x40 RX Data received interrupt
-*/
+ */
 uint8_t nRF24_get_clear_irq_flags(void);
 
 /** Clear one selected interrupt flag.
@@ -116,14 +118,14 @@ uint8_t nRF24_get_clear_irq_flags(void);
  * Other interrupt flags are left unchanged.
  *
  * @param int_source Interrupt source of which flag to clear
-*/
+ */
 void nRF24_clear_irq_flag(nRF24_irq_source_t int_source);
 
 /** Set the CRC mode used by the radio.
  * Use this function to set the CRC mode; CRC disabled, 1 or 2 bytes.
  *
  * @param crc_mode CRC mode to use
-*/
+ */
 void nRF24_set_crc_mode(nRF24_crc_mode_t crc_mode);
 
 /** Open radio pipe(s) and enable/ disable auto acknowledge.
@@ -133,14 +135,14 @@ void nRF24_set_crc_mode(nRF24_crc_mode_t crc_mode);
  * @param pipe_num Radio pipe to open
  * @param auto_ack Auto_Ack ON/OFF
  * @see nRF24_address_t
-*/
+ */
 void nRF24_open_pipe(nRF24_address_t pipe_num, bool auto_ack);
 
 /** Close radio pipe(s).
  * Use this function to close one pipe or all pipes.
  *
  * @param pipe_num Pipe# number to close
-*/
+ */
 void nRF24_close_pipe(nRF24_address_t pipe_num);
 
 /** Set radio's RX address and TX address.
@@ -149,7 +151,7 @@ void nRF24_close_pipe(nRF24_address_t pipe_num);
  *
  * @param address Which address to set
  * @param *addr Buffer from which the address is stored in
-*/
+ */
 void nRF24_set_address(nRF24_address_t address, const uint8_t *addr);
 
 /** Set auto acknowledge parameters.
@@ -158,7 +160,7 @@ void nRF24_set_address(nRF24_address_t address, const uint8_t *addr);
  *
  * @param retr Number of retransmit, 0 equ retransmit OFF
  * @param delay Retransmit delay in �s
-*/
+ */
 void nRF24_set_auto_retr(uint8_t retr, uint16_t delay);
 
 /** Set radio's address width.
@@ -166,7 +168,7 @@ void nRF24_set_auto_retr(uint8_t retr, uint16_t delay);
  * referes to both RX and TX.
  *
  * @param address_width Address with in bytes
-*/
+ */
 void nRF24_set_address_width(nRF24_address_width_t address_width);
 
 /** Set payload width for selected pipe.
@@ -175,7 +177,7 @@ void nRF24_set_address_width(nRF24_address_width_t address_width);
  *
  * @param pipe_num Pipe number to set payload width for
  * @param payload_width number of bytes expected
-*/
+ */
 void nRF24_set_rx_payload_width(uint8_t pipe_num, uint8_t payload_width);
 
 /** Read current interrupt mode for selected interrupt source.
@@ -187,8 +189,7 @@ void nRF24_set_rx_payload_width(uint8_t pipe_num, uint8_t payload_width);
  * @return Interrupt Mode
  * @retval FALSE Interrupt disabled
  * @retval TRUE Interrupt enabled
-*/
-bool nRF24_get_irq_mode(nRF24_irq_source_t int_source);
+ */bool nRF24_get_irq_mode(nRF24_irq_source_t int_source);
 
 /** Read all interrupt flags.
  * Use this function to get the interrupt flags. This function is similar
@@ -199,7 +200,7 @@ bool nRF24_get_irq_mode(nRF24_irq_source_t int_source);
  * @retval 0x10 Max Retransmit interrupt
  * @retval 0x20 TX Data sent interrupt
  * @retval 0x40 RX Data received interrupt
-*/
+ */
 uint8_t nRF24_get_irq_flags(void);
 
 /** Get CRC mode.
@@ -209,7 +210,7 @@ uint8_t nRF24_get_irq_flags(void);
  * @retval 0x00 CRC_OFF
  * @retval 0x02 CRC_8BIT
  * @retval 0x03 CRC_16BIT
-*/
+ */
 uint8_t nRF24_get_crc_mode(void);
 
 /** Get pipe status.
@@ -221,7 +222,7 @@ uint8_t nRF24_get_crc_mode(void);
  * @retval 0x00 Pipe is closed, autoack disabled
  * @retval 0x01 Pipe is open, autoack disabled
  * @retval 0x03 Pipe is open, autoack enabled
-*/
+ */
 uint8_t nRF24_get_pipe_status(uint8_t pipe_num);
 
 /** Get address for selected pipe.
@@ -234,7 +235,7 @@ uint8_t nRF24_get_pipe_status(uint8_t pipe_num);
  * in the<BR> *addr buffer.
  *
  * @return Address_Width in bytes
-*/
+ */
 uint8_t nRF24_get_address(uint8_t address, uint8_t *addr);
 
 /** Get auto retransmit parameters.
@@ -245,14 +246,14 @@ uint8_t nRF24_get_address(uint8_t address, uint8_t *addr);
  *
  * @retval UpperNibble Retransmit Delay
  * @retval LowerNibble Retransmit Count
-*/
+ */
 uint8_t nRF24_get_auto_retr_status(void);
 
 /** Get packet lost counter
  * Use this function to get the packet(s) counter.
  *
  * @return packet lost counter
-*/
+ */
 uint8_t nRF24_get_packet_lost_ctr(void);
 
 /** Get address width for radio.
@@ -260,7 +261,7 @@ uint8_t nRF24_get_packet_lost_ctr(void);
  * the radio, both RX and TX.
  *
  * @return Address_Width in bytes
-*/
+ */
 uint8_t nRF24_get_address_width(void);
 
 /** Get RX payload width for selected pipe.
@@ -270,7 +271,7 @@ uint8_t nRF24_get_address_width(void);
  * @param pipe_num Pipe number to get payload width for
  *
  * @return Payload_Width in bytes
-*/
+ */
 uint8_t nRF24_get_rx_payload_width(uint8_t pipe_num);
 //@}
 
@@ -283,28 +284,28 @@ uint8_t nRF24_get_rx_payload_width(uint8_t pipe_num);
  * or PRX (primary RX).
  *
  * @param op_mode Operation mode
-*/
+ */
 void nRF24_set_operation_mode(nRF24_operation_mode_t op_mode);
 
 /** Set radio's power mode.
  * Use this function to power_up or power_down radio.
  *
  * @param pwr_mode POWER_UP or POWER_DOWN
-*/
+ */
 void nRF24_set_power_mode(nRF24_pwr_mode_t pwr_mode);
 
 /** Set radio's RF channel.
  * Use this function to select which RF channel to use.
  *
  * @param channel RF channel
-*/
+ */
 void nRF24_set_rf_channel(uint8_t channel);
 
 /** Set radio's TX output power.
  * Use this function set the radio's TX output power.
  *
  * @param power Radio's TX output power
-*/
+ */
 void nRF24_set_output_power(nRF24_output_power_t power);
 
 /** Set radio's on-air datarate.
@@ -312,7 +313,7 @@ void nRF24_set_output_power(nRF24_output_power_t power);
  * datarate.
  *
  * @param datarate On-air datarate
-*/
+ */
 void nRF24_set_datarate(nRF24_datarate_t datarate);
 
 /** Get radio's current operation mode.
@@ -322,7 +323,7 @@ void nRF24_set_datarate(nRF24_datarate_t datarate);
  * @return Operation_Mode
  * @retval 0x00 Primary RX (PRX)
  * @retval 0x01 Primary TX (PTX)
-*/
+ */
 uint8_t nRF24_get_operation_mode(void);
 
 /** Get radio's current power mode.
@@ -332,7 +333,7 @@ uint8_t nRF24_get_operation_mode(void);
  * @return Power_Mode
  * @retval 0x00 POWER_DOWN
  * @retval 0x01 POWER_UP
-*/
+ */
 uint8_t nRF24_get_power_mode(void);
 
 /** Get radio's current RF channel.
@@ -340,7 +341,7 @@ uint8_t nRF24_get_power_mode(void);
  * selected RF channel
  *
  * @return RF channel
-*/
+ */
 uint8_t nRF24_get_rf_channel(void);
 
 /** Get radio's current TX output power.
@@ -352,7 +353,7 @@ uint8_t nRF24_get_rf_channel(void);
  * @retval 0x01 -12dBm
  * @retval 0x02 -6dBm
  * @retval 0x03 0dBm
-*/
+ */
 uint8_t nRF24_get_output_power(void);
 
 /** Get radio's current on-air datarate.
@@ -362,7 +363,7 @@ uint8_t nRF24_get_output_power(void);
  * @return On-air datarate
  * @retval 0x00 1Mbps selected
  * @retval 0x01 2Mbps selected
-*/
+ */
 uint8_t nRF24_get_datarate(void);
 
 /* Status functions prototypes */
@@ -376,7 +377,7 @@ uint8_t nRF24_get_datarate(void);
  * @retval 0x01 FIFO empty
  * @retval 0x02 FIFO full
  *
-*/
+ */
 uint8_t nRF24_get_tx_fifo_status(void);
 
 /** Check for TX FIFO empty.
@@ -387,8 +388,7 @@ uint8_t nRF24_get_tx_fifo_status(void);
  * @retval FALSE TX FIFO NOT empty
  * @retval TRUE TX FIFO empty
  *
-*/
-bool nRF24_tx_fifo_empty(void);
+ */bool nRF24_tx_fifo_empty(void);
 
 /** Check for TX FIFO full.
  * Use this function to check if TX FIFO
@@ -398,8 +398,7 @@ bool nRF24_tx_fifo_empty(void);
  * @retval FALSE TX FIFO NOT full
  * @retval TRUE TX FIFO full
  *
-*/
-bool nRF24_tx_fifo_full(void);
+ */bool nRF24_tx_fifo_full(void);
 
 /** Get radio's RX FIFO status.
  * Use this function to get the radio's TX
@@ -410,7 +409,7 @@ bool nRF24_tx_fifo_full(void);
  * @retval 0x01 RX FIFO empty
  * @retval 0x02 RX FIFO full
  *
-*/
+ */
 uint8_t nRF24_get_rx_fifo_status(void);
 
 /** Check for RX FIFO empty.
@@ -423,8 +422,7 @@ uint8_t nRF24_get_rx_fifo_status(void);
  * @retval FALSE RX FIFO NOT empty
  * @retval TRUE RX FIFO empty
  *
-*/
-bool nRF24_rx_fifo_empty(void);
+ */bool nRF24_rx_fifo_empty(void);
 
 /** Check for RX FIFO full.
  * Use this function to check if RX FIFO
@@ -434,15 +432,14 @@ bool nRF24_rx_fifo_empty(void);
  * @retval FALSE RX FIFO NOT full
  * @retval TRUE RX FIFO full
  *
-*/
-bool nRF24_rx_fifo_full(void);
+ */bool nRF24_rx_fifo_full(void);
 
 /** Get radio's transmit attempts status.
  * Use this function to get number of retransmit
  * attempts and number of packet lost.
  *
  * @return Retransmit attempts counters
-*/
+ */
 uint8_t nRF24_get_transmit_attempts(void);
 
 /** Get the carrier detect flag.
@@ -453,8 +450,7 @@ uint8_t nRF24_get_transmit_attempts(void);
  * @return Carrier Detect
  * @retval FALSE Carrier NOT Detected
  * @retval TRUE Carrier Detected
-*/
-bool nRF24_get_carrier_detect(void);
+ */bool nRF24_get_carrier_detect(void);
 
 /* Data operation prototypes */
 
@@ -463,7 +459,7 @@ bool nRF24_get_carrier_detect(void);
  * was received on for current top level FIFO data packet.
  *
  * @return pipe number of current packet present
-*/
+ */
 uint8_t nRF24_get_rx_data_source(void);
 
 /** Read RX payload.
@@ -472,7 +468,7 @@ uint8_t nRF24_get_rx_data_source(void);
  *
  * @param  *rx_payload pointer to buffer in which RX payload are stored
  * @return pipe number (MSB byte) and packet length (LSB byte)
-*/
+ */
 uint16_t nRF24_read_rx_payload(uint8_t *rx_payload);
 
 /** Write TX payload to radio.
@@ -482,14 +478,14 @@ uint16_t nRF24_read_rx_payload(uint8_t *rx_payload);
  *
  * @param *tx_payload pointer to buffer in which TX payload are present
  * @param length number of bytes to write
-*/
+ */
 void nRF24_write_tx_payload(const uint8_t *tx_payload, uint8_t length);
 
 /** Reuse TX payload.
  * Use this function to set that the radio is using
  * the last transmitted payload for the next packet as well.
  *
-*/
+ */
 void nRF24_reuse_tx(void);
 
 /** Get status of reuse TX function.
@@ -499,21 +495,20 @@ void nRF24_reuse_tx(void);
  * @return Reuse TX payload mode
  * @retval FALSE Not activated
  * @retval TRUE Activated
-*/
-bool nRF24_get_reuse_tx_status(void);
+ */bool nRF24_get_reuse_tx_status(void);
 
 /** Flush RX FIFO.
  * Use this function to flush the radio's
  * RX FIFO.
  *
-*/
+ */
 void nRF24_flush_rx(void);
 
 /** Flush TX FIFO.
  * Use this function to flush the radio's
  * TX FIFO.
  *
-*/
+ */
 void nRF24_flush_tx(void);
 
 /** No Operation command.
@@ -521,7 +516,7 @@ void nRF24_flush_tx(void);
  * status register.
  *
  * @return Status register
-*/
+ */
 uint8_t nRF24_nop(void);
 //@}
 
@@ -534,7 +529,7 @@ uint8_t nRF24_nop(void);
  * or UNLOCK the radio's PLL.
  *
  * @param pll_mode PLL locked, TRUE or FALSE
-*/
+ */
 void nRF24_set_pll_mode(nRF24_pll_mode_t pll_mode);
 
 /** Get PLL mode.
@@ -542,7 +537,7 @@ void nRF24_set_pll_mode(nRF24_pll_mode_t pll_mode);
  * current PLL mode.
  *
  * @return PLL_mode
-*/
+ */
 nRF24_pll_mode_t nRF24_get_pll_mode(void);
 
 /** Set radio's LNA gain mode.
@@ -550,7 +545,7 @@ nRF24_pll_mode_t nRF24_get_pll_mode(void);
  * current or LOW current mode for the radio.
  *
  * @param lna_gain LNA gain mode
-*/
+ */
 void nRF24_set_lna_gain(nRF24_lna_mode_t lna_gain);
 
 /** Get LNA gain mode.
@@ -560,23 +555,21 @@ void nRF24_set_lna_gain(nRF24_lna_mode_t lna_gain);
  * @return LNA gain mode
  * @retval 0 LNA LOW current
  * @retval 1 LNA HI current
-*/
+ */
 nRF24_lna_mode_t nRF24_get_lna_gain(void);
 
 /* nRF24_l01 basic functions, used by all the other functions */
 
 //@}
-
 /** @name  << BASIS FUNCTIONS >> */
 //@{
-
 /** Basis function read_reg.
  * Use this function to read the contents
  * of one radios register.
  *
  * @param reg Register to read
  * @return Register contents
-*/
+ */
 uint8_t nRF24_read_reg(uint8_t reg);
 
 /** Basis function write_reg.
@@ -586,7 +579,7 @@ uint8_t nRF24_read_reg(uint8_t reg);
  * @param reg Register to write
  * @param value New value to write
  * @return Status register
-*/
+ */
 uint8_t nRF24_write_reg(uint8_t reg, uint8_t value);
 
 /** Basis function, read_multibyte register .
@@ -599,7 +592,7 @@ uint8_t nRF24_write_reg(uint8_t reg, uint8_t value);
  * @return pipe# of received data (MSB), if operation used by a nRF24_read_rx_payload
  * @return length of read data (LSB), either for nRF24_read_rx_payload or
  * for nRF24_get_address.
-*/
+ */
 uint16_t nRF24_read_multibyte_reg(uint8_t reg, uint8_t *pbuf);
 
 /** Basis function, write_multibyte register.
@@ -609,7 +602,7 @@ uint16_t nRF24_read_multibyte_reg(uint8_t reg, uint8_t *pbuf);
  * @param reg Register to write
  * @param *pbuf pointer to buffer in which data to write is
  * @param length \# of bytes to write
-*/
+ */
 void nRF24_write_multibyte_reg(uint8_t reg, const uint8_t *pbuf, uint8_t length);
 //@}
 
@@ -619,6 +612,6 @@ void nRF24_write_multibyte_reg(uint8_t reg, const uint8_t *pbuf, uint8_t length)
 
 #endif // nRF24_H__
 /** 
-@} 
-@} */
+ @}
+ @} */
 

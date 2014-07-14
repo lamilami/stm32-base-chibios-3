@@ -71,11 +71,11 @@ volatile static radio_status_t status, status_prev;
 
 THD_WORKING_AREA(waRadio, 256);
 //__attribute__((noreturn))
-THD_FUNCTION(Radio,arg);
+THD_FUNCTION(Radio, arg);
 
 THD_WORKING_AREA(waRadio_Processor, 256);
 //__attribute__((noreturn))
-THD_FUNCTION(Radio_Processor,arg);
+THD_FUNCTION(Radio_Processor, arg);
 
 void radio_send_packet(uint8_t *packet, uint8_t length)
 {
@@ -90,10 +90,10 @@ radio_status_t radio_get_status(void)
 }
 
 /*
-uint8_t radio_get_pload_byte(uint8_t byte_index)
-{
-	return pload_rx.pload[byte_index];
-}*/
+ uint8_t radio_get_pload_byte(uint8_t byte_index)
+ {
+ return pload_rx.pload[byte_index];
+ }*/
 
 void radio_set_status(radio_status_t new_status)
 {
@@ -171,7 +171,8 @@ CH_IRQ_HANDLER(EXTI0_1_IRQHandler)
 	chEvtSignalI(Radio_Thread, (eventmask_t) EVENTMASK_IRQ);
 	osalSysUnlockFromISR();
 
-	CH_IRQ_EPILOGUE();
+	CH_IRQ_EPILOGUE()
+	;
 }
 
 //static WORKING_AREA(waRadio, 128);
@@ -196,7 +197,7 @@ THD_FUNCTION(Radio,arg)
 	radio_init();
 
 	chThdCreateStatic(waRadio_Processor, sizeof(waRadio_Processor), NORMALPRIO,
-				Radio_Processor, NULL);
+			Radio_Processor, NULL);
 
 //	nRF24_hw_ce_high();
 
@@ -322,16 +323,16 @@ void RX_DR(void)
 //	SetTask(Receive,HighPriority);
 }
 /*
-void TX_AP(void)
-{
-	while (!nRF24_rx_fifo_empty())
-	{
-		nRF24_read_rx_payload(pload_rx.pload);
-	}
-	radio_set_status(RF_TX_AP);
-//	nRF24_hw_ce_high();
-}
-*/
+ void TX_AP(void)
+ {
+ while (!nRF24_rx_fifo_empty())
+ {
+ nRF24_read_rx_payload(pload_rx.pload);
+ }
+ radio_set_status(RF_TX_AP);
+ //	nRF24_hw_ce_high();
+ }
+ */
 
 void radio_flush()
 {
@@ -351,14 +352,14 @@ void radio_set_mode(nRF24_operation_mode_t rmode, uint8_t full_address[3])
 	nRF24_hw_ce_high();
 }
 
-
 /*
  void Radio_Send(void)
  {
  chEvtSignal(Radio_Thread, (eventmask_t) EVENTMASK_SEND);
  }
  */
-void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t data_size, uint8_t *data)
+void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command,
+		uint8_t data_size, uint8_t *data)
 {
 	payload_t * tx_buffer = 0;
 	chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *) &tx_buffer, TIME_INFINITE);
@@ -366,8 +367,8 @@ void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t data_si
 	(*tx_buffer).dst_addr = rcv_addr;
 	(*tx_buffer).cmd = command;
 	(*tx_buffer).pipenum = 1;
-	(*tx_buffer).size = 3+data_size;
-	ByteArrayCopy(data,(*tx_buffer).data,data_size);
+	(*tx_buffer).size = 3 + data_size;
+	ByteArrayCopy(data, (*tx_buffer).data, data_size);
 
 	/*	full_tx_addr[0] = RF_WORK_PIPE_BYTE;
 	 full_tx_addr[1] = rcv_addr;
@@ -416,12 +417,15 @@ THD_FUNCTION(Radio_Processor,arg)
 //			nRF24_hw_ce_high();
 			break;
 		case RF_GET:
-			cnt = Core_GetDataById((*rx_buffer).data[0], (*rx_buffer).data+1);
-			Radio_Send_Command((*rx_buffer).src_addr, RF_PUT, cnt+1, (*rx_buffer).data);
+			cnt = Core_GetDataById((*rx_buffer).data[0],
+					(uint16_t*) &((*rx_buffer).data[1]));
+			Radio_Send_Command((*rx_buffer).src_addr, RF_PUT, cnt + 1,
+					(*rx_buffer).data);
 			break;
 		case RF_PUT:
 			chSysLock();
-			ByteArrayCopy((*rx_buffer).data,PutData[(*rx_buffer).data[0]],(*rx_buffer).size);
+			ByteArrayCopy((*rx_buffer).data, PutData[(*rx_buffer).data[0]],
+					(*rx_buffer).size);
 			chSysUnlock();
 			break;
 		default:
@@ -432,7 +436,7 @@ THD_FUNCTION(Radio_Processor,arg)
 	}
 }
 
-void Radio_Start(void *arg)
+void Radio_Start(uint8_t id)
 {
 #if RADIO_PRESENT
 	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO, Radio, NULL);
