@@ -122,6 +122,7 @@
     <File name="stm32_lib/src/stm32f0xx_syscfg.c" path="stm32_lib/src/stm32f0xx_syscfg.c" type="1"/>
     <File name="modules/FloorHeater/FloorHeater.c" path="modules/FloorHeater/FloorHeater.c" type="1"/>
     <File name="stm32_lib/inc" path="" type="2"/>
+    <File name="modules/core/core.c" path="modules/core/core.c" type="1"/>
     <File name="os/rt/ports/ARMCMx/chcore_timer.h" path="os/rt/ports/ARMCMx/chcore_timer.h" type="1"/>
     <File name="os/rt/include/chsys.h" path="os/rt/include/chsys.h" type="1"/>
     <File name="os/hal/osal/rt/osal.c" path="os/hal/osal/rt/osal.c" type="1"/>
@@ -146,6 +147,7 @@
     <File name="cmsis_boot" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD" path="" type="2"/>
     <File name="os/hal/include/serial_usb.h" path="os/hal/include/serial_usb.h" type="1"/>
+    <File name="modules/core/core.h" path="modules/core/core.h" type="1"/>
     <File name="cmsis_core" path="" type="2"/>
     <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
     <File name="os/rt/ports/ARMCMx" path="" type="2"/>
@@ -154,7 +156,6 @@
     <File name="os/rt/src/chvt.c" path="os/rt/src/chvt.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2" path="" type="2"/>
     <File name="os/rt/src/chstats.c" path="os/rt/src/chstats.c" type="1"/>
-    <File name="core" path="" type="2"/>
     <File name="board" path="" type="2"/>
     <File name="os/rt/include/chvt.h" path="os/rt/include/chvt.h" type="1"/>
     <File name="stm32_lib/src/stm32f0xx_dma.c" path="stm32_lib/src/stm32f0xx_dma.c" type="1"/>
@@ -179,8 +180,8 @@
     <File name="os/hal/ports/STM32/STM32F0xx/hal_lld.c" path="os/hal/ports/STM32/STM32F0xx/hal_lld.c" type="1"/>
     <File name="os/rt/src/chdebug.c" path="os/rt/src/chdebug.c" type="1"/>
     <File name="os/rt/include/chdynamic.h" path="os/rt/include/chdynamic.h" type="1"/>
-    <File name="os/rt/include/chbsem.h" path="os/rt/include/chbsem.h" type="1"/>
     <File name="modules/Watchdog/iwdg_lld.c" path="modules/Watchdog/iwdg_lld.c" type="1"/>
+    <File name="os/rt/include/chbsem.h" path="os/rt/include/chbsem.h" type="1"/>
     <File name="modules/DS18B20" path="" type="2"/>
     <File name="os/hal/src/spi.c" path="os/hal/src/spi.c" type="1"/>
     <File name="os/hal/src/st.c" path="os/hal/src/st.c" type="1"/>
@@ -210,6 +211,7 @@
     <File name="os/rt/ports" path="" type="2"/>
     <File name="os/common" path="" type="2"/>
     <File name="os/rt/include/chregistry.h" path="os/rt/include/chregistry.h" type="1"/>
+    <File name="modules/core" path="" type="2"/>
     <File name="os/rt/ports/ARMCMx/chcore_v6m.c" path="os/rt/ports/ARMCMx/chcore_v6m.c" type="1"/>
     <File name="os/hal" path="" type="2"/>
     <File name="os/hal/include/sdc.h" path="os/hal/include/sdc.h" type="1"/>
@@ -275,8 +277,8 @@
     <File name="board/STM32F050F/mcuconf.h" path="board/STM32F050F/mcuconf.h" type="1"/>
     <File name="os/rt/include/chstreams.h" path="os/rt/include/chstreams.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" type="1"/>
-    <File name="cmsis_boot/stm32f0xx_conf.h" path="cmsis_boot/stm32f0xx_conf.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" type="1"/>
+    <File name="cmsis_boot/stm32f0xx_conf.h" path="cmsis_boot/stm32f0xx_conf.h" type="1"/>
     <File name="os/hal/include/icu.h" path="os/hal/include/icu.h" type="1"/>
     <File name="os/rt/include/chstats.h" path="os/rt/include/chstats.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2/spi_lld.h" path="os/hal/ports/STM32/LLD/SPIv2/spi_lld.h" type="1"/>
@@ -288,14 +290,12 @@
     <File name="stm32_lib/inc/stm32f0xx_exti.h" path="stm32_lib/inc/stm32f0xx_exti.h" type="1"/>
     <File name="os/hal/include/spi.h" path="os/hal/include/spi.h" type="1"/>
     <File name="os/rt/include/chmemcore.h" path="os/rt/include/chmemcore.h" type="1"/>
-    <File name="core/core.c" path="core/core.c" type="1"/>
     <File name="os/rt/src/chqueues.c" path="os/rt/src/chqueues.c" type="1"/>
     <File name="os/rt/include/chtm.h" path="os/rt/include/chtm.h" type="1"/>
     <File name="os/rt/src/chregistry.c" path="os/rt/src/chregistry.c" type="1"/>
     <File name="os/hal/src/i2c.c" path="os/hal/src/i2c.c" type="1"/>
     <File name="os" path="" type="2"/>
     <File name="cmsis_boot/system_stm32f0xx.h" path="cmsis_boot/system_stm32f0xx.h" type="1"/>
-    <File name="core/core.h" path="core/core.h" type="1"/>
     <File name="os/hal/src/pwm.c" path="os/hal/src/pwm.c" type="1"/>
     <File name="os/rt/src/chthreads.c" path="os/rt/src/chthreads.c" type="1"/>
     <File name="os/hal/include/st.h" path="os/hal/include/st.h" type="1"/>
