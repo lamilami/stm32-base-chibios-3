@@ -35,6 +35,7 @@ void DS18B20_Init(void *arg)
 	Core_DS18B20.next = NULL;
 	Core_DS18B20.description = "4 Floor Temp Sensors DS18B20";
 	Core_DS18B20.current_value = 0xffff;
+	Core_DS18B20.set_value = 0x68; //Initial Floor Temp value 0x68 = 26 deg. Celsius
 	Core_DS18B20.inner_values = &Inner_Val;
 	Core_DS18B20.ival_size = sizeof(Inner_Val);
 	/*	chSysLock();

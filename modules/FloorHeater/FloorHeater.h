@@ -4,7 +4,7 @@
 #include "DS18B20.h"
 
 // Желаемая температура в градусах Цельсия
-#define Set_TEMP	27
+//#define Set_TEMP	27
 
 void FloorHeater_Start(uint8_t id);
 
