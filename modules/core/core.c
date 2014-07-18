@@ -52,6 +52,29 @@ uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
 	return ((*current).ival_size + 4);
 }
 
+uint16_t Core_SetDataById(const uint8_t id, uint16_t value)
+{
+	static core_base_struct_t *current;
+	current = Core_BasePtr;
+	while (((*current).id != id) && ((*current).next != NULL))
+	{
+		current = (*current).next;
+	}
+
+	if ((*current).id != id)
+	{
+		return 0xffff;
+	}
+	else
+	{
+		chSysLock();
+		(*current).set_value = value;
+		chSysUnlock();
+	}
+
+	return ((*current).set_value);
+}
+
 //HAL_FAILED
 
 void Core_Init(void *arg)
