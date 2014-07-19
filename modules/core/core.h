@@ -2,18 +2,18 @@
 #define _CORE_H_
 
 #define MY_ADDR				0x10
-#define RADIO_PRESENT		TRUE
+#define RADIO_PRESENT		FALSE
 #define DS18B20_PRESENT		TRUE
-#define FloorHeater_PRESENT TRUE
-#define LCD1602_PRESENT 	FALSE
-#define WATCHDOG_PRESENT	TRUE
+#define FloorHeater_PRESENT FALSE
+#define LCD1602_PRESENT 	TRUE
+#define WATCHDOG_PRESENT	FALSE
 
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
 #error "Can't use FloorHeater without DS18B20 temp sensor!"
 #endif
 
 #if (LCD1602_PRESENT && (DS18B20_PRESENT || FloorHeater_PRESENT))
-#error "LCD1602 conflicts with DS18B20 and FloorHeater!"
+//#error "LCD1602 conflicts with DS18B20 and FloorHeater!"
 #endif
 
 typedef enum

@@ -28,6 +28,7 @@
 #include "DS18B20.h"
 #include "FloorHeater.h"
 #include "WatchDog.h"
+#include "lcd.h"
 
 //#include "test.h"
 
@@ -195,12 +196,13 @@ int main(void)
 	while (TRUE)
 	{
 #if LCD1602_PRESENT
-		data[0]=2;
+//		data[0]=2;
 		int16_t tmp;
-		Radio_Send_Command(10, RF_GET, 1, data);
-		data[0]=3;
-		Radio_Send_Command(10, RF_GET, 1, data);
-		chThdSleepSeconds(3);
+		uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
+//		Radio_Send_Command(10, RF_GET, 1, data);
+//		data[0]=3;
+//		Radio_Send_Command(10, RF_GET, 1, data);
+		chThdSleepSeconds(1);
 		Cursor(0,0); //Установка курсора
 		PrintStr("T=");//Написание текста
 		/*	    PutData[2][0]=1;
@@ -208,19 +210,21 @@ int main(void)
 		 PutData[2][2]=3;
 		 PutData[2][3]=4;
 		 PutData[2][4]=5;*/
-		tmp = PutData[2][3]*256+PutData[2][4];
+//		tmp = PutData[2][3]*256+PutData[2][4];
+		Core_GetDataById(2, (uint16_t*) data);
+		tmp = *(uint16_t*) &data[4];
 		LCD_PutSignedInt(tmp>>2);
 		PrintStr(".");
 		LCD_PutUnsignedInt((tmp&3)*25);
 		PrintStr("              ");
 		Cursor(1,0);
 		PrintStr("PWR="); //Написание текста
-		tmp = PutData[3][3]*256+PutData[3][4];
+//		tmp = PutData[3][3]*256+PutData[3][4];
 //	    LCD_PutSignedInt(tmp>>2);
 //	    PrintStr(".");
 		LCD_PutUnsignedInt(tmp);
 		PrintStr("              ");
 #endif
-		chThdSleepSeconds(180);
+		chThdSleepSeconds(2);
 	}
 }

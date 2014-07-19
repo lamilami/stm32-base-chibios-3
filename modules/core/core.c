@@ -45,7 +45,7 @@ uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
 	{
 		data[0] = (*current).set_value;
 		data[1] = (*current).current_value;
-		ByteArrayCopy((uint8_t*) (*current).inner_values, (uint8_t*) (data + 4),
+		ByteArrayCopy((uint8_t*) (*current).inner_values, (uint8_t*) &data[2],
 				(*current).ival_size);
 	}
 
