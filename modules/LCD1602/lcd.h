@@ -10,5 +10,12 @@
 #define     LCM_PIN_D5            GPIO_Pin_1          // PB5
 #define     LCM_PIN_D4            GPIO_Pin_0          // PB4
 void LCD1602_Start(void *arg);
+void InitializeLCD(void);
+void ClearLCDScreen(void);
+void PrintStr(char *Text);
+void LCD_PutSignedInt(int32_t n);
+void LCD_PutUnsignedInt(uint32_t n);
+void Cursor(char Row, char Col);
+
 
 #endif
