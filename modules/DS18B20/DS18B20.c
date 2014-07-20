@@ -54,6 +54,20 @@ THD_FUNCTION(DS18B20,arg)
 
 	DS18B20_Init(arg);
 
+#ifdef Home_Tests
+	//Test routine
+	register uint16_t cnt;
+	cnt = 252;
+	while (TRUE)
+		{
+			chSysLock();
+			Inner_Val.temp[0]=cnt;
+			Core_DS18B20.current_value = cnt+5;
+			chSysUnlock();
+			chThdSleepSeconds(3);
+			cnt++;
+		}
+#endif
 	/*	volatile core_base_struct_t Core_DS18B20 =
 	 { 2,Temp,chThdGetSelfX(),RW,0,0,&Inner_Val,sizeof(Inner_Val),"4 Floor Temp Sensors DS18B20",NULL
 	 };*/
