@@ -133,6 +133,7 @@ SECTIONS
 PROVIDE(end = .);
 _end            = .;
 
-
+/*
 __heap_base__   = _end;
 __heap_end__    = __ram_end__;
+*/

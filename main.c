@@ -28,8 +28,6 @@
 #include "DS18B20.h"
 #include "FloorHeater.h"
 #include "WatchDog.h"
-#include "gfx.h"
-#include "board_ILI9341_spi.h"
 
 //#include "test.h"
 
