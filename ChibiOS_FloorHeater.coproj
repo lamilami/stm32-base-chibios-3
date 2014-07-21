@@ -139,8 +139,8 @@
     <File name="board/STM32F050F" path="" type="2"/>
     <File name="os/hal/src/sdc.c" path="os/hal/src/sdc.c" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
-    <File name="stm32_lib/src/stm32f0xx_exti.c" path="stm32_lib/src/stm32f0xx_exti.c" type="1"/>
     <File name="modules/LCD1602/lcd.c" path="modules/LCD1602/lcd.c" type="1"/>
+    <File name="stm32_lib/src/stm32f0xx_exti.c" path="stm32_lib/src/stm32f0xx_exti.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.c" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.c" type="1"/>
     <File name="os/rt/include/chmtx.h" path="os/rt/include/chmtx.h" type="1"/>
     <File name="cmsis_boot/system_stm32f0xx_temp.c" path="cmsis_boot/system_stm32f0xx_temp.c" type="1"/>
@@ -149,10 +149,10 @@
     <File name="os/hal/include/serial_usb.h" path="os/hal/include/serial_usb.h" type="1"/>
     <File name="modules/core/core.h" path="modules/core/core.h" type="1"/>
     <File name="cmsis_core" path="" type="2"/>
-    <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F0xx/hal_lld.h" path="os/hal/ports/STM32/STM32F0xx/hal_lld.h" type="1"/>
     <File name="pal.h" path="pal.h" type="1"/>
+    <File name="os/rt/ports/ARMCMx" path="" type="2"/>
+    <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
     <File name="os/rt/src/chvt.c" path="os/rt/src/chvt.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2" path="" type="2"/>
     <File name="os/rt/src/chstats.c" path="os/rt/src/chstats.c" type="1"/>

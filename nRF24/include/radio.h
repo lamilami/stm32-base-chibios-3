@@ -37,6 +37,9 @@ typedef enum
 	RF_PONG,
 	RF_GET,
 	RF_PUT,
+	RF_SET,
+	RF_OK,
+	RF_FAIL,
 	RF_END = 0xFF
 } RF_commands_t;
 

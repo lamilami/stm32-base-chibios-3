@@ -428,6 +428,10 @@ THD_FUNCTION(Radio_Processor,arg)
 					(*rx_buffer).size);
 			chSysUnlock();
 			break;
+		case RF_SET:
+			Core_SetDataById((*rx_buffer).data[0],(uint16_t) ((*rx_buffer).data[1]+256*(*rx_buffer).data[2]));
+			Radio_Send_Command((*rx_buffer).src_addr, RF_OK, 0, NULL); // load message into radio
+			break;
 		default:
 //		nRF24_hw_ce_high();
 			break;
