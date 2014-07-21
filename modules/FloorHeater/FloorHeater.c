@@ -129,14 +129,16 @@ THD_FUNCTION(FloorHeater,arg)
 	Floor_PID.iMax = 25;
 	Floor_PID.iMin = -2;
 
-	uint16_t Desired_Temp = Set_TEMP << 2;
+	uint16_t Desired_Temp; // = Set_TEMP << 2;
 
 	systime_t time = chVTGetSystemTime();
 //	pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 9000));   // 10% duty cycle
 	while (TRUE)
 	{
+
 		volatile int16_t ipwr;
 		msg = chMsgSend(DS18B20_Thread, msg);
+		Desired_Temp = (*Tmp_Base).set_value;
 		volatile int32_t pwr = UpdatePID(&Floor_PID,
 				(float) (Desired_Temp - msg));
 		if (pwr > 100)

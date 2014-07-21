@@ -54,6 +54,7 @@ extern volatile core_base_struct_t* Core_BasePtr;
 
 void Core_Module_Register(core_base_struct_t* Base_Struct);
 uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
+uint16_t Core_SetDataById(const uint8_t id, uint16_t value);
 
 void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
