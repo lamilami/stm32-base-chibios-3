@@ -3,10 +3,11 @@
 
 #define MY_ADDR				0x10
 #define RADIO_PRESENT		TRUE
-#define DS18B20_PRESENT		TRUE
-#define FloorHeater_PRESENT TRUE
+#define DS18B20_PRESENT		FALSE
+#define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	TRUE
+#define RGBW_PRESENT		TRUE
 
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
 #error "Can't use FloorHeater without DS18B20 temp sensor!"
@@ -23,7 +24,9 @@ typedef enum
 	Humidity, /**< Data is sent */
 	Light, /**< Data recieved */
 	Vent, /**< Ack payload recieved */
-	Heater, Other /**< Radio is busy */
+	Heater,
+	RGBW,
+	Other /**< Radio is busy */
 } core_types_t;
 
 typedef enum

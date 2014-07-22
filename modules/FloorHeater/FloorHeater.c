@@ -78,7 +78,7 @@ void FloorHeater_Init(void *arg)
 	Core_Module_Register(&Core_FloorHeater);
 }
 
-void PWM_Init()
+void static PWM_Init()
 {
 	GPIO_InitTypeDef GPIO_InitStruct;
 
