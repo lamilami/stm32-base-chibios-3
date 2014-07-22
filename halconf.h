@@ -80,7 +80,7 @@ void LEDBlinkI(uint8_t cnt);
  * @brief   Enables the EXT subsystem.
  */
 #if !defined(HAL_USE_EXT) || defined(__DOXYGEN__)
-#define HAL_USE_EXT                 FALSE
+#define HAL_USE_EXT                 TRUE
 #endif
 
 /**

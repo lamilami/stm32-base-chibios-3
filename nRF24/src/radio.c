@@ -157,6 +157,8 @@ void radio_init(void)
 	radio_set_status(RF_IDLE); // Radio now ready
 }
 
+#if RADIO_PRESENT
+
 CH_IRQ_HANDLER(EXTI0_1_IRQHandler)
 {
 	CH_IRQ_PROLOGUE();
@@ -174,6 +176,8 @@ CH_IRQ_HANDLER(EXTI0_1_IRQHandler)
 	CH_IRQ_EPILOGUE()
 	;
 }
+
+#endif
 
 //static WORKING_AREA(waRadio, 128);
 //__attribute__((noreturn))
