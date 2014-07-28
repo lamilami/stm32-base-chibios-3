@@ -3720,7 +3720,7 @@ void can_lld_receive(CANDriver *canp,
   uint32_t mbid = 0, index = 0;
 
   if(mailbox != CAN_ANY_MAILBOX) {
-    mbid = mailbox;
+    mbid = mailbox - 1;
   }
   else {
     for (index = 0; index < CAN_RX_MAILBOXES; index++) {
