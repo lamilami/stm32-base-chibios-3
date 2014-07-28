@@ -32,7 +32,7 @@
 
 #include "pal.h"
 
-#define MAX(x,y) ((x)>(y))?(x):(y) // максимум двух чисел
+#define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел
 //#define DEBUG_Discovery
 
 #ifdef DEBUG_Discovery

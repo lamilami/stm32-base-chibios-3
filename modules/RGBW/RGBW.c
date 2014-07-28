@@ -4,8 +4,8 @@
 #include "core.h"
 
 static PWMConfig pwmcfg =
-{ 3000000, /* 3Mhz PWM clock frequency */
-1000, /* PWM frequency 30 kHz*/
+{ 12000000, /* 12Mhz PWM clock frequency */
+10000, /* PWM frequency 1.2 kHz*/
 NULL, /* No callback */
 /* Only channel 4 enabled */
 {
@@ -94,12 +94,12 @@ THD_FUNCTION(RGBW_Controller,arg)
 
 	uint32_t Timeval_Current, R_set, B_set;
 
-	R_set = 1000;
-	B_set = 500;
+	R_set = 10000;
+	B_set = 5000;
 
 	const uint8_t Sunrise_Duration_min = 30;
 	const uint8_t Sunset_Duration_min = 30;
-	const uint8_t Daylight_Duration_hours = 12;
+	const uint8_t Daylight_Duration_hours = 13;
 
 	bool_t Sunrise = TRUE;
 
@@ -111,13 +111,13 @@ THD_FUNCTION(RGBW_Controller,arg)
 	{
 
 		pwmEnableChannel(&PWMD3, 0,
-				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Red * 10)); // 10% duty cycle
+				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Red)); // 10% duty cycle
 		pwmEnableChannel(&PWMD3, 1,
-				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Blue * 10)); // 10% duty cycle
+				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Blue)); // 10% duty cycle
 		pwmEnableChannel(&PWMD3, 3,
-				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Green * 100)); // 10% duty cycle
+				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Green)); // 10% duty cycle
 
-		if ((B_inc = 0) && (R_inc = 0))
+		if ((B_inc == 0) && (R_inc == 0))
 		{
 			if (Sunrise)
 			{
