@@ -81,44 +81,82 @@ THD_FUNCTION(RGBW_Controller,arg)
 	PWM_Init();
 
 	systime_t time = chVTGetSystemTime();
+	systime_t time_day = time;
+	systime_t time_night = time;
 
 	Inner_Val_RGBW.Blue = 0;
 	Inner_Val_RGBW.Red = 0;
 	Inner_Val_RGBW.Green = 0;
 
-
-
 	int8_t R_inc, B_inc;
 	B_inc = 1;
 	R_inc = 1;
 
-	uint32_t Sunrise_Timeval,R_set,B_set;
+	uint32_t Timeval_Current, R_set, B_set;
 
-	R_set = 750;
-	B_set = 750;
+	R_set = 1000;
+	B_set = 500;
 
-	const uint8_t Sunrise_Duration_min=30;
+	const uint8_t Sunrise_Duration_min = 30;
+	const uint8_t Sunset_Duration_min = 30;
+	const uint8_t Daylight_Duration_hours = 12;
 
-	Sunrise_Timeval = Sunrise_Duration_min*60*1000/((R_set+B_set)/2);
+	bool_t Sunrise = TRUE;
+
+//	Sunrise_Timeval = Sunrise_Duration_min * 60 * 1000 / ((R_set + B_set) / 2);
+
+	Timeval_Current = Sunrise_Duration_min * 60 * 1000 / MAX(R_set, B_set);
 
 	while (TRUE)
 	{
+
 		pwmEnableChannel(&PWMD3, 0,
 				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Red * 10)); // 10% duty cycle
 		pwmEnableChannel(&PWMD3, 1,
 				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Blue * 10)); // 10% duty cycle
 		pwmEnableChannel(&PWMD3, 3,
 				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Green * 100)); // 10% duty cycle
-		sleepUntil(&time, MS2ST(Sunrise_Timeval));
 
-		Inner_Val_RGBW.Blue += B_inc;
-		Inner_Val_RGBW.Red += R_inc;
+		if ((B_inc = 0) && (R_inc = 0))
+		{
+			if (Sunrise)
+			{
+				time_day = chVTGetSystemTime();
+				Timeval_Current = Daylight_Duration_hours * 3600;
+				sleepUntil(&time_day, S2ST(Timeval_Current));
+				Sunrise = FALSE;
+				Timeval_Current = Sunset_Duration_min * 60 * 1000
+						/ MAX(R_set, B_set);
+				B_inc = -1;
+				R_inc = -1;
+			}
+			else
+			{
+				Timeval_Current = 24 * 3600;
+				sleepUntil(&time_night, S2ST(Timeval_Current));
+				Sunrise = TRUE;
+				Timeval_Current = Sunrise_Duration_min * 60 * 1000
+						/ MAX(R_set, B_set);
+				B_inc = 1;
+				R_inc = 1;
+			}
+			time = chVTGetSystemTime();
+		}
+		else
+		{
+			sleepUntil(&time, MS2ST(Timeval_Current));
+			Inner_Val_RGBW.Blue += B_inc;
+			Inner_Val_RGBW.Red += R_inc;
+			if ((Inner_Val_RGBW.Blue >= B_set) || (Inner_Val_RGBW.Blue <= 0))
+			{
+				B_inc = 0;
+			}
 
-		if (Inner_Val_RGBW.Blue>B_set) B_inc=0;
-//		if (Inner_Val_RGBW.Blue<1) B=1;
-
-		if (Inner_Val_RGBW.Red>R_set) R_inc=0;
-//		if (Inner_Val_RGBW.Red<1) R=1;
+			if ((Inner_Val_RGBW.Red >= R_set) || (Inner_Val_RGBW.Red <= 0))
+			{
+				R_inc = 0;
+			}
+		}
 	}
 }
 
