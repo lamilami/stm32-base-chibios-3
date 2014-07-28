@@ -28,6 +28,7 @@
 #include "DS18B20.h"
 #include "FloorHeater.h"
 #include "WatchDog.h"
+#include "RGBW.h"
 
 //#include "test.h"
 
@@ -181,6 +182,7 @@ int main(void)
 	Radio_Start(1);
 	DS18B20_Start(2);
 	FloorHeater_Start(3);
+	RGBW_Start(4);
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 
