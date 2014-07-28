@@ -4,9 +4,9 @@
     <Device manufacturerId="9" manufacturerName="ST" chipId="449" chipName="STM32F050F4" boardId="" boardName=""/>
     <BuildOption>
       <Compile>
-        <Option name="OptimizationLevel" value="0"/>
+        <Option name="OptimizationLevel" value="2"/>
         <Option name="UseFPU" value="0"/>
-        <Option name="UserEditCompiler" value="-Og"/>
+        <Option name="UserEditCompiler" value=""/>
         <Option name="SupportCPlusplus" value="0"/>
         <Includepaths>
           <Includepath path="."/>
@@ -84,10 +84,10 @@
     <Component id="437" name="USART" path="" type="2"/>
   </Components>
   <Files>
-    <File name="os/hal/include/hal.h" path="os/hal/include/hal.h" type="1"/>
     <File name="os/rt/src/chdynamic.c" path="os/rt/src/chdynamic.c" type="1"/>
-    <File name="modules/Watchdog/iwdg.h" path="modules/Watchdog/iwdg.h" type="1"/>
+    <File name="os/hal/include/hal.h" path="os/hal/include/hal.h" type="1"/>
     <File name="os/rt/src/chsem.c" path="os/rt/src/chsem.c" type="1"/>
+    <File name="modules/Watchdog/iwdg.h" path="modules/Watchdog/iwdg.h" type="1"/>
     <File name="os/rt/include/chmempools.h" path="os/rt/include/chmempools.h" type="1"/>
     <File name="modules/Watchdog" path="" type="2"/>
     <File name="modules/FloorHeater/FloorHeater.h" path="modules/FloorHeater/FloorHeater.h" type="1"/>
@@ -99,8 +99,8 @@
     <File name="os/hal/src/usb.c" path="os/hal/src/usb.c" type="1"/>
     <File name="os/rt/include/chdebug.h" path="os/rt/include/chdebug.h" type="1"/>
     <File name="os/rt/ports/ARMCMx/compilers" path="" type="2"/>
-    <File name="stm32_lib/inc/stm32f0xx_usart.h" path="stm32_lib/inc/stm32f0xx_usart.h" type="1"/>
     <File name="os/hal/osal/rt/osal.h" path="os/hal/osal/rt/osal.h" type="1"/>
+    <File name="stm32_lib/inc/stm32f0xx_usart.h" path="stm32_lib/inc/stm32f0xx_usart.h" type="1"/>
     <File name="modules/RGBW" path="" type="2"/>
     <File name="cmsis_core/core_cm0.h" path="cmsis_core/core_cm0.h" type="1"/>
     <File name="modules/DS18B20/onewire.h" path="modules/DS18B20/onewire.h" type="1"/>
@@ -113,15 +113,15 @@
     <File name="os/rt/ports/ARMCMx/chcore.c" path="os/rt/ports/ARMCMx/chcore.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx" path="" type="2"/>
     <File name="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s" path="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s" type="1"/>
-    <File name="os/hal/include/can.h" path="os/hal/include/can.h" type="1"/>
     <File name="os/hal/include/hal_ioblock.h" path="os/hal/include/hal_ioblock.h" type="1"/>
+    <File name="os/hal/include/can.h" path="os/hal/include/can.h" type="1"/>
     <File name="os/common/ports/ARMCMx" path="" type="2"/>
     <File name="os/hal/include/dac.h" path="os/hal/include/dac.h" type="1"/>
     <File name="os/rt/include/chheap.h" path="os/rt/include/chheap.h" type="1"/>
     <File name="os/hal/src" path="" type="2"/>
-    <File name="os/rt/include/chschd.h" path="os/rt/include/chschd.h" type="1"/>
-    <File name="modules/RGBW/RGBW.c" path="modules/RGBW/RGBW.c" type="1"/>
     <File name="stm32_lib/src/stm32f0xx_syscfg.c" path="stm32_lib/src/stm32f0xx_syscfg.c" type="1"/>
+    <File name="modules/RGBW/RGBW.c" path="modules/RGBW/RGBW.c" type="1"/>
+    <File name="os/rt/include/chschd.h" path="os/rt/include/chschd.h" type="1"/>
     <File name="stm32_lib/inc" path="" type="2"/>
     <File name="modules/FloorHeater/FloorHeater.c" path="modules/FloorHeater/FloorHeater.c" type="1"/>
     <File name="modules/core/core.c" path="modules/core/core.c" type="1"/>
@@ -141,39 +141,39 @@
     <File name="os/hal/src/sdc.c" path="os/hal/src/sdc.c" type="1"/>
     <File name="board/STM32F050F" path="" type="2"/>
     <File name="main.c" path="main.c" type="1"/>
-    <File name="stm32_lib/src/stm32f0xx_exti.c" path="stm32_lib/src/stm32f0xx_exti.c" type="1"/>
     <File name="modules/LCD1602/lcd.c" path="modules/LCD1602/lcd.c" type="1"/>
+    <File name="stm32_lib/src/stm32f0xx_exti.c" path="stm32_lib/src/stm32f0xx_exti.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.c" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.c" type="1"/>
     <File name="os/rt/include/chmtx.h" path="os/rt/include/chmtx.h" type="1"/>
     <File name="cmsis_boot/system_stm32f0xx_temp.c" path="cmsis_boot/system_stm32f0xx_temp.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD" path="" type="2"/>
     <File name="cmsis_boot" path="" type="2"/>
-    <File name="modules/core/core.h" path="modules/core/core.h" type="1"/>
     <File name="os/hal/include/serial_usb.h" path="os/hal/include/serial_usb.h" type="1"/>
+    <File name="modules/core/core.h" path="modules/core/core.h" type="1"/>
     <File name="cmsis_core" path="" type="2"/>
-    <File name="pal.h" path="pal.h" type="1"/>
+    <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/hal_lld.h" path="os/hal/ports/STM32/STM32F0xx/hal_lld.h" type="1"/>
     <File name="os/rt/ports/ARMCMx" path="" type="2"/>
-    <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
+    <File name="pal.h" path="pal.h" type="1"/>
     <File name="os/rt/src/chvt.c" path="os/rt/src/chvt.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2" path="" type="2"/>
     <File name="os/rt/src/chstats.c" path="os/rt/src/chstats.c" type="1"/>
     <File name="board" path="" type="2"/>
     <File name="modules/RGBW/RGBW.h" path="modules/RGBW/RGBW.h" type="1"/>
-    <File name="os/rt/include/chvt.h" path="os/rt/include/chvt.h" type="1"/>
     <File name="stm32_lib/src/stm32f0xx_dma.c" path="stm32_lib/src/stm32f0xx_dma.c" type="1"/>
+    <File name="os/rt/include/chvt.h" path="os/rt/include/chvt.h" type="1"/>
     <File name="modules/nRF24/include/nRF24_HAL.h" path="nRF24/include/nRF24_HAL.h" type="1"/>
     <File name="os/hal/src/hal_mmcsd.c" path="os/hal/src/hal_mmcsd.c" type="1"/>
-    <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" type="1"/>
+    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
+    <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
     <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" path="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" type="1"/>
     <File name="os/hal/src/adc.c" path="os/hal/src/adc.c" type="1"/>
     <File name="os/hal/include" path="" type="2"/>
-    <File name="os/hal/include/ext.h" path="os/hal/include/ext.h" type="1"/>
     <File name="os/rt/src/chmempools.c" path="os/rt/src/chmempools.c" type="1"/>
+    <File name="os/hal/include/ext.h" path="os/hal/include/ext.h" type="1"/>
     <File name="os/hal/ports" path="" type="2"/>
     <File name="stm32_lib/inc/stm32f0xx_misc.h" path="stm32_lib/inc/stm32f0xx_misc.h" type="1"/>
     <File name="os/hal/ports/common" path="" type="2"/>
@@ -183,8 +183,8 @@
     <File name="os/rt/src/chdebug.c" path="os/rt/src/chdebug.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/hal_lld.c" path="os/hal/ports/STM32/STM32F0xx/hal_lld.c" type="1"/>
     <File name="os/rt/include/chdynamic.h" path="os/rt/include/chdynamic.h" type="1"/>
-    <File name="modules/Watchdog/iwdg_lld.c" path="modules/Watchdog/iwdg_lld.c" type="1"/>
     <File name="os/rt/include/chbsem.h" path="os/rt/include/chbsem.h" type="1"/>
+    <File name="modules/Watchdog/iwdg_lld.c" path="modules/Watchdog/iwdg_lld.c" type="1"/>
     <File name="modules/DS18B20" path="" type="2"/>
     <File name="os/hal/src/spi.c" path="os/hal/src/spi.c" type="1"/>
     <File name="os/hal/src/st.c" path="os/hal/src/st.c" type="1"/>
@@ -198,8 +198,8 @@
     <File name="modules/nRF24/include" path="" type="2"/>
     <File name="modules/DS18B20/DS18B20.c" path="modules/DS18B20/DS18B20.c" type="1"/>
     <File name="board/STM32F050F/board.h" path="board/STM32F050F/board.h" type="1"/>
-    <File name="os/hal/include/usb.h" path="os/hal/include/usb.h" type="1"/>
     <File name="os/hal/src/can.c" path="os/hal/src/can.c" type="1"/>
+    <File name="os/hal/include/usb.h" path="os/hal/include/usb.h" type="1"/>
     <File name="modules/Watchdog/iwdg_lld.h" path="modules/Watchdog/iwdg_lld.h" type="1"/>
     <File name="os/hal/src/hal_queues.c" path="os/hal/src/hal_queues.c" type="1"/>
     <File name="modules/Watchdog/WatchDog.h" path="modules/Watchdog/WatchDog.h" type="1"/>
@@ -232,13 +232,13 @@
     <File name="modules/nRF24/src/radio.c" path="nRF24/src/radio.c" type="1"/>
     <File name="cmsis_boot/startup/startup_stm32f0xx.s" path="cmsis_boot/startup/startup_stm32f0xx.s" type="1"/>
     <File name="os/rt/ports/ARMCMx/compilers/GCC/chtypes.h" path="os/rt/ports/ARMCMx/compilers/GCC/chtypes.h" type="1"/>
-    <File name="os/rt/include/ch.h" path="os/rt/include/ch.h" type="1"/>
     <File name="cmsis_core/core_cmFunc.h" path="cmsis_core/core_cmFunc.h" type="1"/>
+    <File name="os/rt/include/ch.h" path="os/rt/include/ch.h" type="1"/>
     <File name="os/hal/osal" path="" type="2"/>
-    <File name="stm32_lib/inc/stm32f0xx_syscfg.h" path="stm32_lib/inc/stm32f0xx_syscfg.h" type="1"/>
     <File name="os/rt/ports/ARMCMx/chcore_v6m.h" path="os/rt/ports/ARMCMx/chcore_v6m.h" type="1"/>
-    <File name="os/hal/include/hal_mmcsd.h" path="os/hal/include/hal_mmcsd.h" type="1"/>
+    <File name="stm32_lib/inc/stm32f0xx_syscfg.h" path="stm32_lib/inc/stm32f0xx_syscfg.h" type="1"/>
     <File name="os/rt/include/chmboxes.h" path="os/rt/include/chmboxes.h" type="1"/>
+    <File name="os/hal/include/hal_mmcsd.h" path="os/hal/include/hal_mmcsd.h" type="1"/>
     <File name="modules/FloorHeater" path="" type="2"/>
     <File name="stm32_lib/inc/stm32f0xx_rcc.h" path="stm32_lib/inc/stm32f0xx_rcc.h" type="1"/>
     <File name="os/common/ports/ARMCMx/compilers/GCC/vectors.c" path="os/common/ports/ARMCMx/compilers/GCC/vectors.c" type="1"/>
@@ -250,8 +250,8 @@
     <File name="os/hal/src/i2s.c" path="os/hal/src/i2s.c" type="1"/>
     <File name="halconf.h" path="halconf.h" type="1"/>
     <File name="os/rt/src/chtm.c" path="os/rt/src/chtm.c" type="1"/>
-    <File name="cmsis_core/core_cmInstr.h" path="cmsis_core/core_cmInstr.h" type="1"/>
     <File name="os/hal/src/pal.c" path="os/hal/src/pal.c" type="1"/>
+    <File name="cmsis_core/core_cmInstr.h" path="cmsis_core/core_cmInstr.h" type="1"/>
     <File name="os/rt/src/chmtx.c" path="os/rt/src/chmtx.c" type="1"/>
     <File name="os/common/ports/ARMCMx/compilers" path="" type="2"/>
     <File name="modules/nRF24/src/nRF24.c" path="nRF24/src/nRF24.c" type="1"/>
@@ -268,17 +268,17 @@
     <File name="os/hal/include/gpt.h" path="os/hal/include/gpt.h" type="1"/>
     <File name="os/hal/osal/rt" path="" type="2"/>
     <File name="os/rt/src/chmsg.c" path="os/rt/src/chmsg.c" type="1"/>
-    <File name="chconf.h" path="chconf.h" type="1"/>
-    <File name="modules/nRF24" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F0xx/stm32_dma.c" path="os/hal/ports/STM32/STM32F0xx/stm32_dma.c" type="1"/>
+    <File name="modules/nRF24" path="" type="2"/>
+    <File name="chconf.h" path="chconf.h" type="1"/>
     <File name="os/rt/src/chsys.c" path="os/rt/src/chsys.c" type="1"/>
     <File name="os/hal/include/mmc_spi.h" path="os/hal/include/mmc_spi.h" type="1"/>
     <File name="os/hal/include/adc.h" path="os/hal/include/adc.h" type="1"/>
     <File name="os/hal/src/ext.c" path="os/hal/src/ext.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/stm32_isr.h" path="os/hal/ports/STM32/STM32F0xx/stm32_isr.h" type="1"/>
     <File name="stm32_lib/src/stm32f0xx_usart.c" path="stm32_lib/src/stm32f0xx_usart.c" type="1"/>
-    <File name="board/STM32F050F/mcuconf.h" path="board/STM32F050F/mcuconf.h" type="1"/>
     <File name="os/rt/include/chstreams.h" path="os/rt/include/chstreams.h" type="1"/>
+    <File name="board/STM32F050F/mcuconf.h" path="board/STM32F050F/mcuconf.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" type="1"/>
     <File name="cmsis_boot/stm32f0xx_conf.h" path="cmsis_boot/stm32f0xx_conf.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" type="1"/>
@@ -286,8 +286,8 @@
     <File name="os/hal/include/icu.h" path="os/hal/include/icu.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2/spi_lld.h" path="os/hal/ports/STM32/LLD/SPIv2/spi_lld.h" type="1"/>
     <File name="stm32_lib" path="" type="2"/>
-    <File name="os/rt/include/chqueues.h" path="os/rt/include/chqueues.h" type="1"/>
     <File name="os/hal/src/mmc_spi.c" path="os/hal/src/mmc_spi.c" type="1"/>
+    <File name="os/rt/include/chqueues.h" path="os/rt/include/chqueues.h" type="1"/>
     <File name="os/rt/src/chevents.c" path="os/rt/src/chevents.c" type="1"/>
     <File name="modules/nRF24/include/radio.h" path="nRF24/include/radio.h" type="1"/>
     <File name="stm32_lib/inc/stm32f0xx_exti.h" path="stm32_lib/inc/stm32f0xx_exti.h" type="1"/>
