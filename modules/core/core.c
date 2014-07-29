@@ -146,3 +146,33 @@ void ByteArrayCopy(uint8_t* src, uint8_t* dst, const uint8_t cnt)
 		dst[i] = src[i];
 	}
 }
+
+/**
+  * @brief  Converts a 2 digit decimal to BCD format.
+  * @param  Value: Byte to be converted.
+  * @retval Converted byte
+  */
+uint8_t RTC_ByteToBcd2(uint8_t Value)
+{
+  uint8_t bcdhigh = 0;
+
+  while (Value >= 10)
+  {
+    bcdhigh++;
+    Value -= 10;
+  }
+
+  return  ((uint8_t)(bcdhigh << 4) | Value);
+}
+
+/**
+  * @brief  Convert from 2 digit BCD to Binary.
+  * @param  Value: BCD value to be converted.
+  * @retval Converted word
+  */
+uint8_t RTC_Bcd2ToByte(uint8_t Value)
+{
+  uint8_t tmp = 0;
+  tmp = ((uint8_t)(Value & (uint8_t)0xF0) >> (uint8_t)0x4) * 10;
+  return (tmp + (Value & (uint8_t)0x0F));
+}

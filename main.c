@@ -29,6 +29,7 @@
 #include "FloorHeater.h"
 #include "WatchDog.h"
 #include "RGBW.h"
+#include "rtc.h"
 
 //#include "test.h"
 
@@ -40,7 +41,6 @@ static thread_t *Blinker_Thread = NULL;
 /*
  * LED blinker thread, times are in milliseconds.
  */
-
 
 static THD_WORKING_AREA(waLedBlinker, 128);
 __attribute__((noreturn))
@@ -65,15 +65,14 @@ static THD_FUNCTION(LedBlinker,arg)
 //				for (cnt = 0; cnt < 65535; cnt++)
 //		 {
 //		 msg++;
-		 //			nop();
-		 //			LEDSwap();
-		 //			chThdSleepMilliseconds(100);
-		 //			LEDSwap();
-		 //			chThdSleepMilliseconds(100);
+		//			nop();
+		//			LEDSwap();
+		//			chThdSleepMilliseconds(100);
+		//			LEDSwap();
+		//			chThdSleepMilliseconds(100);
 //		 }
 	}
 }
-
 
 void ll_ledblink(uint8_t cnt)
 {
@@ -105,31 +104,31 @@ void LEDBlinkI(uint8_t cnt)
  * Green LED blinker thread, times are in milliseconds.
  */
 /*
-static THD_WORKING_AREA(waTransmit, 128);
-//__attribute__((noreturn))
-static THD_FUNCTION (Transmit,arg)
-{
+ static THD_WORKING_AREA(waTransmit, 128);
+ //__attribute__((noreturn))
+ static THD_FUNCTION (Transmit,arg)
+ {
 
-	(void) arg;
-//	chRegSetThreadName("Transmitter");
-	rf_sended_debug = FALSE;
-	chThdSleepSeconds(3);
-	while (TRUE)
-	{
-//	LEDSwap();
-		if (!rf_sended_debug)
-		{
-			while (!rf_sended_debug)
-			{
-//				Radio_Send_Command(3, RF_PING);
-				chThdSleepSeconds(5);
-			}
-		}
-		rf_sended_debug = FALSE;
-		chThdSleepSeconds(15);
-	}
-}
-*/
+ (void) arg;
+ //	chRegSetThreadName("Transmitter");
+ rf_sended_debug = FALSE;
+ chThdSleepSeconds(3);
+ while (TRUE)
+ {
+ //	LEDSwap();
+ if (!rf_sended_debug)
+ {
+ while (!rf_sended_debug)
+ {
+ //				Radio_Send_Command(3, RF_PING);
+ chThdSleepSeconds(5);
+ }
+ }
+ rf_sended_debug = FALSE;
+ chThdSleepSeconds(15);
+ }
+ }
+ */
 /*
  * Application entry point.
  */
@@ -176,6 +175,48 @@ int main(void)
 	 * driver 1.
 	 */
 //	LEDB1Swap();
+	RTCTime timespec;
+	RTC_TimeTypeDef RTC_TimeStructure;
+
+	/* Set Time hh:mm:ss */
+	RTC_TimeStructure.RTC_H12 = 0x00;
+	RTC_TimeStructure.RTC_Hours = 0x06;
+	RTC_TimeStructure.RTC_Minutes = 0x30;
+	RTC_TimeStructure.RTC_Seconds = 0x00;
+//	RTC_SetTime(RTC_Format_BCD, &RTC_TimeStructure);
+
+	timespec.tv_time = (uint32_t)(
+			((uint32_t) RTC_ByteToBcd2(RTC_TimeStructure.RTC_Hours) << 16)
+					| ((uint32_t) RTC_ByteToBcd2(RTC_TimeStructure.RTC_Minutes)
+							<< 8)
+					| ((uint32_t) RTC_ByteToBcd2(RTC_TimeStructure.RTC_Seconds))
+					| (((uint32_t) RTC_TimeStructure.RTC_H12) << 16));
+
+	rtcSetTime(&RTCD1, &timespec);
+
+	rtcGetTime(&RTCD1, &timespec);
+
+	/* Fill the structure fields with the read parameters */
+	RTC_TimeStructure.RTC_Hours = (uint8_t)(
+			(timespec & (RTC_TR_HT | RTC_TR_HU)) >> 16);
+	RTC_TimeStructure.RTC_Minutes = (uint8_t)(
+			(timespec & (RTC_TR_MNT | RTC_TR_MNU)) >> 8);
+	RTC_TimeStructure.RTC_Seconds = (uint8_t)(timespec & (RTC_TR_ST | RTC_TR_SU));
+	RTC_TimeStructure.RTC_H12 = (uint8_t)((timespec & (RTC_TR_PM)) >> 16);
+
+	/* Check the input parameters format */
+	if (0)
+	{
+		/* Convert the structure parameters to Binary format */
+		RTC_TimeStructure.RTC_Hours = (uint8_t) RTC_Bcd2ToByte(
+				RTC_TimeStruct->RTC_Hours);
+		RTC_TimeStructure.RTC_Minutes = (uint8_t) RTC_Bcd2ToByte(
+				RTC_TimeStruct->RTC_Minutes);
+		RTC_TimeStructure.RTC_Seconds = (uint8_t) RTC_Bcd2ToByte(
+				RTC_TimeStruct->RTC_Seconds);
+	}
+
+//	RTC_GetTimeStamp()
 
 	WatchDog_Start(-1);
 	Core_Start(0);

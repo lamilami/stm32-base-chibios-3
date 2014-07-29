@@ -65,4 +65,18 @@ void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
 
 void Core_Start(uint8_t id);
 
+/**
+  * @brief  Converts a 2 digit decimal to BCD format.
+  * @param  Value: Byte to be converted.
+  * @retval Converted byte
+  */
+uint8_t RTC_ByteToBcd2(uint8_t Value);
+
+/**
+  * @brief  Convert from 2 digit BCD to Binary.
+  * @param  Value: BCD value to be converted.
+  * @retval Converted word
+  */
+uint8_t RTC_Bcd2ToByte(uint8_t Value);
+
 #endif

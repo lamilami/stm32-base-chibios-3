@@ -136,7 +136,7 @@ void LEDBlinkI(uint8_t cnt);
  * @brief   Enables the RTC subsystem.
  */
 #if !defined(HAL_USE_RTC) || defined(__DOXYGEN__)
-#define HAL_USE_RTC                 FALSE
+#define HAL_USE_RTC                 TRUE
 #endif
 
 /**
@@ -337,6 +337,12 @@ void LEDBlinkI(uint8_t cnt);
  */
 #if !defined(HAL_USE_IWDG) || defined(__DOXYGEN__)
 #define HAL_USE_IWDG    TRUE
+#endif
+
+#if HAL_USE_RTC
+#ifndef _RTC_LLD_H_
+	void rtcInit(void);
+#endif
 #endif
 
 #endif /* _HALCONF_H_ */
