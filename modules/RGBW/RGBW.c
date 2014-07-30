@@ -58,7 +58,7 @@ void static PWM_Init() {
 static void timer_handler(void *arg) {
 	timer_str_t* timer_s = (timer_str_t*) arg;
 //	(timer_str*) arg;
-	timer_s->curr_power += timer_s->inc;
+	*timer_s->curr_power += timer_s->inc;
 	if ((*timer_s->curr_power >= timer_s->max_power)
 			|| (*timer_s->curr_power <= 0)) {
 		timer_s->inc = 0;
@@ -101,6 +101,8 @@ THD_FUNCTION(RGBW_Controller,arg) {
 	RGBW_Init(arg);
 
 	PWM_Init();
+
+	RGBW_Thread = chThdGetSelfX();
 
 	timer_str_t R_Tim, G_Tim, B_Tim;
 
@@ -147,7 +149,7 @@ THD_FUNCTION(RGBW_Controller,arg) {
 	B_Tim.inc = 1;
 	B_Tim.max_power = 5000;
 	B_Tim.rise_time = MS2ST(Sunrise_Duration_min * 60 * 1000 / B_Tim.max_power);
-	B_Tim.vt = &vt_r;
+	B_Tim.vt = &vt_b;
 
 	while (TRUE) {
 
