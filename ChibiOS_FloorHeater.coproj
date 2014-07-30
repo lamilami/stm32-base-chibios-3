@@ -119,8 +119,8 @@
     <File name="os/hal/include/dac.h" path="os/hal/include/dac.h" type="1"/>
     <File name="os/rt/include/chheap.h" path="os/rt/include/chheap.h" type="1"/>
     <File name="os/hal/src" path="" type="2"/>
-    <File name="stm32_lib/src/stm32f0xx_syscfg.c" path="stm32_lib/src/stm32f0xx_syscfg.c" type="1"/>
     <File name="modules/RGBW/RGBW.c" path="modules/RGBW/RGBW.c" type="1"/>
+    <File name="stm32_lib/src/stm32f0xx_syscfg.c" path="stm32_lib/src/stm32f0xx_syscfg.c" type="1"/>
     <File name="os/rt/include/chschd.h" path="os/rt/include/chschd.h" type="1"/>
     <File name="stm32_lib/inc" path="" type="2"/>
     <File name="modules/FloorHeater/FloorHeater.c" path="modules/FloorHeater/FloorHeater.c" type="1"/>
