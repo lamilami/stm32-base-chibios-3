@@ -63,7 +63,7 @@ static void CLI_GPIO_Init(void)
 	GPIO_InitTypeDef GPIO_InitStruct;
 
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9|GPIO_Pin_10;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
@@ -80,29 +80,24 @@ THD_FUNCTION(CLI,arg)
 {
 	(void) arg;
 
-	thread_t *shelltp = NULL;
+	static event_listener_t EvtListenerShell;
 
 	CLI_GPIO_Init();
 
 	sdStart(&SD1, NULL);
-	sdWrite(&SD1,(uint8_t*) "ChibiOS/RT Started!\n\r", 32);
 
 	/*
 	 * Shell manager initialization.
 	 */
 	shellInit();
 
-	shelltp = shellCreateStatic(&shell_cfg1, waShell, sizeof(waShell),
-			NORMALPRIO);
+	chEvtRegisterMask(&shell_terminated, &EvtListenerShell, EVENT_MASK(0));
+
 	while (TRUE)
 	{
-		if (!shelltp)
-		shelltp = shellCreateStatic(&shell_cfg1, waShell, sizeof(waShell), NORMALPRIO);
-		else if (chThdTerminatedX(shelltp))
-		{
-//			chThdRelease(shelltp); /* Recovers memory of the previous shell.   */
-			shelltp = NULL; /* Triggers spawning of a new shell.        */
-		}
+		shellCreateStatic(&shell_cfg1, waShell, sizeof(waShell),
+				NORMALPRIO);
+		chEvtWaitAny(EVENT_MASK(0));
 	}
 }
 
