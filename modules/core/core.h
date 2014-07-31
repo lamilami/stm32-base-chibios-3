@@ -21,19 +21,20 @@
 
 typedef enum
 {
-	Base, /**< Radio is idle */
-	Temp, /**< Maximum number of retries have occured */
-	Humidity, /**< Data is sent */
-	Light, /**< Data recieved */
-	Vent, /**< Ack payload recieved */
+	Base,     		//**< Radio is idle */
+	Temp,     		//**< Maximum number of retries have occured */
+	Humidity,     	//**< Data is sent */
+	Light,     		//**< Data recieved */
+	Vent,     		//**< Ack payload recieved */
 	Heater,
 	RGBW,
-	Other /**< Radio is busy */
+	Other     		//**< Radio is busy */
 } core_types_t;
 
 typedef enum
 {
-	None, RO, /**< Radio is idle */
+	None,
+	RO,     		//**< Radio is idle */
 	RW
 } core_direction_t;
 
