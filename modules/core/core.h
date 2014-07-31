@@ -9,7 +9,7 @@
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
 #define RGBW_PRESENT		TRUE
-#define CLI_PRESENT			TRUE
+#define CLI_PRESENT			FALSE
 
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
 #error "Can't use FloorHeater without DS18B20 temp sensor!"

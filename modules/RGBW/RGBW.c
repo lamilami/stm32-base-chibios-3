@@ -22,7 +22,7 @@ typedef struct timer_str
 	volatile uint16_t * curr_power;
 	volatile systime_t rise_time;
 	volatile uint16_t max_power;
-	volatile uint8_t inc;
+	volatile int8_t inc;
 	virtual_timer_t* vt;
 } timer_str_t;
 
@@ -122,9 +122,9 @@ THD_FUNCTION(RGBW_Controller,arg)
 
 	uint32_t Timeval_Current;
 
-	const uint8_t Sunrise_Duration_min = 30;
-	const uint8_t Sunset_Duration_min = 30;
-	const uint8_t Daylight_Duration_hours = 13;
+	const uint8_t Sunrise_Duration_min = 60;
+	const uint8_t Sunset_Duration_min = 60;
+	const uint8_t Daylight_Duration_hours = 12;
 
 	bool_t Sunrise = TRUE;
 
