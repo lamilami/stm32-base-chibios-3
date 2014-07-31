@@ -74,7 +74,7 @@ static void CLI_GPIO_Init(void)
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_1);
 }
 
-THD_WORKING_AREA(waCLI, 256);
+THD_WORKING_AREA(waCLI, 128);
 //__attribute__((noreturn))
 THD_FUNCTION(CLI,arg)
 {
@@ -95,8 +95,7 @@ THD_FUNCTION(CLI,arg)
 
 	while (TRUE)
 	{
-		shellCreateStatic(&shell_cfg1, waShell, sizeof(waShell),
-				NORMALPRIO);
+		shellCreateStatic(&shell_cfg1, waShell, sizeof(waShell), NORMALPRIO);
 		chEvtWaitAny(EVENT_MASK(0));
 	}
 }
@@ -104,7 +103,6 @@ THD_FUNCTION(CLI,arg)
 void CLI_Start(uint8_t id)
 {
 #if CLI_PRESENT
-	chThdCreateStatic(waCLI, sizeof(waCLI), HIGHPRIO, CLI,
-			(void*) (uint32_t) id);
+	chThdCreateStatic(waCLI, sizeof(waCLI), LOWPRIO, CLI, (void*) (uint32_t) id);
 #endif
 }
