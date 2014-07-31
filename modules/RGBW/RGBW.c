@@ -3,19 +3,31 @@
 #include "RGBW.h"
 #include "core.h"
 
-static PWMConfig pwmcfg =
-{ 12000000, /* 12Mhz PWM clock frequency */
+#define EVENTMASK_UPDATE 0x01
+static thread_t *RGBW_Thread = NULL;
+
+static PWMConfig pwmcfg = { 12000000, /* 12Mhz PWM clock frequency */
 10000, /* PWM frequency 1.2 kHz*/
 NULL, /* No callback */
 /* Only channel 4 enabled */
-{
-{ PWM_OUTPUT_ACTIVE_HIGH, NULL },
-{ PWM_OUTPUT_ACTIVE_HIGH, NULL },
-{ PWM_OUTPUT_DISABLED, NULL },
-{ PWM_OUTPUT_ACTIVE_HIGH, NULL }, }, 0 };
+{ { PWM_OUTPUT_ACTIVE_HIGH, NULL }, { PWM_OUTPUT_ACTIVE_HIGH, NULL }, {
+		PWM_OUTPUT_DISABLED, NULL }, { PWM_OUTPUT_ACTIVE_HIGH, NULL }, }, 0 };
 
-void static PWM_Init()
-{
+typedef enum {
+	RED, BLUE, GREEN, WHITE
+} RGBW_enum_t;
+
+typedef struct timer_str {
+	volatile uint16_t * curr_power;
+	volatile systime_t rise_time;
+	volatile uint16_t max_power;
+	volatile uint8_t inc;
+	virtual_timer_t* vt;
+} timer_str_t;
+
+static virtual_timer_t vt_r, vt_g, vt_b;
+
+void static PWM_Init() {
 	GPIO_InitTypeDef GPIO_InitStruct;
 
 #ifdef STM32F100C8
@@ -43,14 +55,25 @@ void static PWM_Init()
 	pwmStart(&PWMD3, &pwmcfg);
 }
 
+static void timer_handler(void *arg) {
+	timer_str_t* timer_s = (timer_str_t*) arg;
+//	(timer_str*) arg;
+	*timer_s->curr_power += timer_s->inc;
+	if ((*timer_s->curr_power >= timer_s->max_power)
+			|| (*timer_s->curr_power <= 0)) {
+		timer_s->inc = 0;
+	} else {
+		chVTSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
+	}
+	chEvtSignalI(RGBW_Thread, (eventmask_t) EVENTMASK_UPDATE);
+}
+
 volatile static core_base_struct_t Core_RGBW;
-volatile static struct
-{
+volatile static struct {
 	volatile uint16_t Red, Green, Blue, White;
 } Inner_Val_RGBW;
 
-void RGBW_Init(void *arg)
-{
+void RGBW_Init(void *arg) {
 	Core_RGBW.id = (uint32_t) arg;
 	Core_RGBW.type = RGBW;
 	Core_RGBW.thread = chThdGetSelfX();
@@ -70,8 +93,7 @@ void RGBW_Init(void *arg)
 
 THD_WORKING_AREA(waRGBW_Controller, 256);
 //__attribute__((noreturn))
-THD_FUNCTION(RGBW_Controller,arg)
-{
+THD_FUNCTION(RGBW_Controller,arg) {
 	(void) arg;
 //	thread_t *answer_thread;
 	//	chRegSetThreadName("DS18B20");
@@ -79,6 +101,10 @@ THD_FUNCTION(RGBW_Controller,arg)
 	RGBW_Init(arg);
 
 	PWM_Init();
+
+	RGBW_Thread = chThdGetSelfX();
+
+	timer_str_t R_Tim, G_Tim, B_Tim;
 
 	systime_t time = chVTGetSystemTime();
 	systime_t time_day = time;
@@ -88,14 +114,15 @@ THD_FUNCTION(RGBW_Controller,arg)
 	Inner_Val_RGBW.Red = 0;
 	Inner_Val_RGBW.Green = 0;
 
-	int8_t R_inc, B_inc;
-	B_inc = 1;
-	R_inc = 1;
+//	int8_t R_inc, B_inc;
+//	B_inc = 1;
+//	R_inc = 1;
 
-	uint32_t Timeval_Current, R_set, B_set;
+	uint32_t Timeval_Current;
+//	uint16_t R_set, B_set;
 
-	R_set = 10000;
-	B_set = 5000;
+//	R_set = 10000;
+//	B_set = 5000;
 
 	const uint8_t Sunrise_Duration_min = 30;
 	const uint8_t Sunset_Duration_min = 30;
@@ -105,10 +132,26 @@ THD_FUNCTION(RGBW_Controller,arg)
 
 //	Sunrise_Timeval = Sunrise_Duration_min * 60 * 1000 / ((R_set + B_set) / 2);
 
-	Timeval_Current = Sunrise_Duration_min * 60 * 1000 / MAX(R_set, B_set);
+//	R_Timeval = Sunrise_Duration_min * 60 * 1000 / R_set;
+//	B_Timeval = Sunrise_Duration_min * 60 * 1000 / B_set;
 
-	while (TRUE)
-	{
+	R_Tim.curr_power = &Inner_Val_RGBW.Red;
+	R_Tim.inc = 1;
+	R_Tim.max_power = 10000;
+	R_Tim.rise_time = MS2ST(Sunrise_Duration_min * 60 * 1000 / R_Tim.max_power);
+	R_Tim.vt = &vt_r;
+	G_Tim.curr_power = &Inner_Val_RGBW.Green;
+	G_Tim.inc = 0;
+	G_Tim.max_power = 0;
+	G_Tim.rise_time = 0;
+	G_Tim.vt = &vt_g;
+	B_Tim.curr_power = &Inner_Val_RGBW.Blue;
+	B_Tim.inc = 1;
+	B_Tim.max_power = 5000;
+	B_Tim.rise_time = MS2ST(Sunrise_Duration_min * 60 * 1000 / B_Tim.max_power);
+	B_Tim.vt = &vt_b;
+
+	while (TRUE) {
 
 		pwmEnableChannel(&PWMD3, 0,
 				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Red)); // 10% duty cycle
@@ -117,51 +160,54 @@ THD_FUNCTION(RGBW_Controller,arg)
 		pwmEnableChannel(&PWMD3, 3,
 				PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Green)); // 10% duty cycle
 
-		if ((B_inc == 0) && (R_inc == 0))
-		{
-			if (Sunrise)
-			{
+		if ((R_Tim.inc == 0) && (B_Tim.inc == 0)) {
+			if (Sunrise) {
 				time_day = chVTGetSystemTime();
 				Timeval_Current = Daylight_Duration_hours * 3600;
 				sleepUntil(&time_day, S2ST(Timeval_Current));
 				Sunrise = FALSE;
-				Timeval_Current = Sunset_Duration_min * 60 * 1000
-						/ MAX(R_set, B_set);
-				B_inc = -1;
-				R_inc = -1;
-			}
-			else
-			{
+//				Timeval_Current = Sunset_Duration_min * 60
+//						* 1000/ MAX(R_set, B_set);
+				R_Tim.rise_time =
+						MS2ST(Sunset_Duration_min * 60 * 1000 / R_Tim.max_power);
+				B_Tim.rise_time =
+						MS2ST(Sunset_Duration_min * 60 * 1000 / B_Tim.max_power);
+				R_Tim.inc = -1;
+				B_Tim.inc = -1;
+			} else {
 				Timeval_Current = 24 * 3600;
 				sleepUntil(&time_night, S2ST(Timeval_Current));
 				Sunrise = TRUE;
-				Timeval_Current = Sunrise_Duration_min * 60 * 1000
-						/ MAX(R_set, B_set);
-				B_inc = 1;
-				R_inc = 1;
+//				Timeval_Current = Sunrise_Duration_min * 60
+//						* 1000/ MAX(R_set, B_set);
+				R_Tim.rise_time =
+						MS2ST(Sunrise_Duration_min * 60 * 1000 / R_Tim.max_power);
+				B_Tim.rise_time =
+						MS2ST(Sunrise_Duration_min * 60 * 1000 / B_Tim.max_power);
+				R_Tim.inc = 1;
+				B_Tim.inc = 1;
 			}
-			time = chVTGetSystemTime();
-		}
-		else
-		{
-			sleepUntil(&time, MS2ST(Timeval_Current));
-			Inner_Val_RGBW.Blue += B_inc;
-			Inner_Val_RGBW.Red += R_inc;
-			if ((Inner_Val_RGBW.Blue >= B_set) || (Inner_Val_RGBW.Blue <= 0))
+//			time = chVTGetSystemTime();
+		} else {
+//			sleepUntil(&time, MS2ST(Timeval_Current));
+//			Inner_Val_RGBW.Blue += B_inc;
+//			Inner_Val_RGBW.Red += R_inc;
+			chSysLock();
+			if (!chVTIsArmedI(R_Tim.vt))
 			{
-				B_inc = 0;
+				chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
 			}
-
-			if ((Inner_Val_RGBW.Red >= R_set) || (Inner_Val_RGBW.Red <= 0))
+			if (!chVTIsArmedI(B_Tim.vt))
 			{
-				R_inc = 0;
+				chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
 			}
+			chSysUnlock();
+			chEvtWaitAll( (eventmask_t) EVENTMASK_UPDATE);
 		}
 	}
 }
 
-void RGBW_Start(uint8_t id)
-{
+void RGBW_Start(uint8_t id) {
 #if RGBW_PRESENT
 	chThdCreateStatic(waRGBW_Controller, sizeof(waRGBW_Controller), NORMALPRIO,
 			RGBW_Controller, (void*) (uint32_t) id);
