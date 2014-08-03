@@ -147,8 +147,8 @@ int main(void)
 //  Init_GPIOs();
 	chSysInit();
 
-	dht11_t DHTD1;
-	int8_t *humidity;
+	static dht11_t DHTD1;
+	static int8_t humidity;
 	static EXTConfig extcfg = {
 	  {
 		{EXT_CH_MODE_DISABLED, NULL},
@@ -186,6 +186,7 @@ int main(void)
 	DHTD1.ext_port = GPIOA;
 	DHTD1.ext_drv = &EXTD1;
 	DHTD1.ext_mode = EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA;
+	DHTD1.refresh_period = 1000;
 /*	  {
 	    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA, extcb1},
 	    {EXT_CH_MODE_DISABLED, NULL},
@@ -215,7 +216,7 @@ int main(void)
 	dht11Init(&DHTD1);
 
 	dht11Update(&DHTD1,NULL);
-	dht11GetHumidity(&DHTD1,humidity);
+	dht11GetHumidity(&DHTD1,&humidity);
 
 	/*
 	 * Creates the blinker threads.
@@ -292,6 +293,8 @@ int main(void)
 		LCD_PutUnsignedInt(tmp);
 		PrintStr("              ");
 #endif
-		chThdSleepSeconds(180);
+		chThdSleepSeconds(5);
+		dht11Update(&DHTD1,NULL);
+		dht11GetHumidity(&DHTD1,&humidity);
 	}
 }
