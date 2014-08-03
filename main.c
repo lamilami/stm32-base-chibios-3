@@ -28,6 +28,7 @@
 #include "DS18B20.h"
 #include "FloorHeater.h"
 #include "WatchDog.h"
+#include "DHT11.h"
 
 //#include "test.h"
 
@@ -145,6 +146,76 @@ int main(void)
 	halInit();
 //  Init_GPIOs();
 	chSysInit();
+
+	dht11_t DHTD1;
+	int8_t *humidity;
+	static EXTConfig extcfg = {
+	  {
+		{EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL}
+	  }
+	};
+
+	  /*
+	   * Activates the EXT driver 1.
+	   */
+	  extStart(&EXTD1, &extcfg);
+
+	DHTD1.ext_pin = 0;
+	DHTD1.ext_port = GPIOA;
+	DHTD1.ext_drv = &EXTD1;
+	DHTD1.ext_mode = EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA;
+/*	  {
+	    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA, extcb1},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL},
+	    {EXT_CH_MODE_DISABLED, NULL}
+	  }
+	};*/
+	dht11Init(&DHTD1);
+
+	dht11Update(&DHTD1,NULL);
+	dht11GetHumidity(&DHTD1,humidity);
 
 	/*
 	 * Creates the blinker threads.

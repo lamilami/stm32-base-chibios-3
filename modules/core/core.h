@@ -3,8 +3,8 @@
 
 #define MY_ADDR				0x10
 #define RADIO_PRESENT		FALSE
-#define DS18B20_PRESENT		TRUE
-#define FloorHeater_PRESENT TRUE
+#define DS18B20_PRESENT		FALSE
+#define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	TRUE
 
