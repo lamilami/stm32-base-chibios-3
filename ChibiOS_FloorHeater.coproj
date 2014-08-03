@@ -142,8 +142,8 @@
     <File name="os/hal/src/sdc.c" path="os/hal/src/sdc.c" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
     <File name="stm32_lib/src/stm32f0xx_exti.c" path="stm32_lib/src/stm32f0xx_exti.c" type="1"/>
-    <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.c" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.c" type="1"/>
     <File name="modules/LCD1602/lcd.c" path="modules/LCD1602/lcd.c" type="1"/>
+    <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.c" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/ext_lld.c" path="os/hal/ports/STM32/LLD/ext_lld.c" type="1"/>
     <File name="os/rt/include/chmtx.h" path="os/rt/include/chmtx.h" type="1"/>
     <File name="cmsis_boot/system_stm32f0xx_temp.c" path="cmsis_boot/system_stm32f0xx_temp.c" type="1"/>
@@ -152,10 +152,10 @@
     <File name="modules/core/core.h" path="modules/core/core.h" type="1"/>
     <File name="os/hal/include/serial_usb.h" path="os/hal/include/serial_usb.h" type="1"/>
     <File name="cmsis_core" path="" type="2"/>
-    <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
     <File name="pal.h" path="pal.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F0xx/hal_lld.h" path="os/hal/ports/STM32/STM32F0xx/hal_lld.h" type="1"/>
+    <File name="os/rt/ports/ARMCMx" path="" type="2"/>
+    <File name="stm32_lib/inc/stm32f0xx_gpio.h" path="stm32_lib/inc/stm32f0xx_gpio.h" type="1"/>
     <File name="os/rt/src/chvt.c" path="os/rt/src/chvt.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2" path="" type="2"/>
     <File name="os/rt/src/chstats.c" path="os/rt/src/chstats.c" type="1"/>
@@ -164,10 +164,10 @@
     <File name="stm32_lib/src/stm32f0xx_dma.c" path="stm32_lib/src/stm32f0xx_dma.c" type="1"/>
     <File name="modules/nRF24/include/nRF24_HAL.h" path="nRF24/include/nRF24_HAL.h" type="1"/>
     <File name="os/hal/src/hal_mmcsd.c" path="os/hal/src/hal_mmcsd.c" type="1"/>
-    <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
     <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" type="1"/>
+    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
+    <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" path="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" type="1"/>
     <File name="os/hal/include" path="" type="2"/>
