@@ -113,13 +113,46 @@
 /** @} */
 
 /**
- * @name    FMPLL_CR register bits definitions
+ * @name    FMPLL registers bits definitions
  * @{
  */
+#define SPC5_FMPLL_IDF_MASK         (15U << 26)
+#define SPC5_FMPLL_IDF(n)           (((n) - 1) << 26)
+#define SPC5_FMPLL_ODF_MASK         (3U << 24)
 #define SPC5_FMPLL_ODF_DIV2         (0U << 24)
 #define SPC5_FMPLL_ODF_DIV4         (1U << 24)
 #define SPC5_FMPLL_ODF_DIV8         (2U << 24)
 #define SPC5_FMPLL_ODF_DIV16        (3U << 24)
+#define SPC5_FMPLL_NDIV_MASK        (127U << 16)
+#define SPC5_FMPLL_NDIV(n)          ((n) << 16)
+#define SPC5_FMPLL_EN_PLL_SW        (1U << 8)
+#define SPC5_FMPLL_PLL_FAIL_MASK    (1U << 2)
+
+#define SPC5_FMPLL_STRB_BYPASS      (1U << 31)
+#define SPC5_FMPLL_SPRD_SEL         (1U << 29)
+#define SPC5_FMPLL_MOD_PERIOD_MASK  (0x1FFFU << 16)
+#define SPC5_FMPLL_MOD_PERIOD(n)    ((n) << 16)
+#define SPC5_FMPLL_FM_EN            (1U << 15)
+#define SPC5_FMPLL_INC_STEP_MASK    (0x7FFFU << 0)
+#define SPC5_FMPLL_INC_STEP(n)      ((n) << 0)
+/** @} */
+
+/**
+ * @name    CMU registers bits definitions
+ * @{
+ */
+#define SPC5_CMU_CSR_SFM            (1U << 23)
+#define SPC5_CMU_CSR_RCDIV_MASK     (3U << 1)
+#define SPC5_CMU_CSR_RCDIV(n)       ((n) << 1)
+#define SPC5_CMU_CSR_RCDIV_NODIV    (0U << 1)
+#define SPC5_CMU_CSR_RCDIV_DIV2     (1U << 1)
+#define SPC5_CMU_CSR_RCDIV_DIV4     (1U << 1)
+#define SPC5_CMU_CSR_RCDIV_DIV8     (1U << 1)
+#define SPC5_CMU_CSR_CME            (1U << 0)
+#define SPC5_CMU_ISR_FLCI           (1U << 3)
+#define SPC5_CMU_ISR_FHHI           (1U << 2)
+#define SPC5_CMU_ISR_FLLI           (1U << 1)
+#define SPC5_CMU_ISR_OLRI           (1U << 0)
 /** @} */
 
 /**
@@ -282,6 +315,20 @@
 #endif
 
 /**
+ * @brief   FMPLL0 CR register extra options.
+ */
+#if !defined(SPC5_FMPLL0_OPTIONS) || defined(__DOXYGEN__)
+#define SPC5_FMPLL0_OPTIONS                 0
+#endif
+
+/**
+ * @brief   FMPLL0 MR register initialization.
+ */
+#if !defined(SPC5_FMPLL0_MR_INIT) || defined(__DOXYGEN__)
+#define SPC5_FMPLL0_MR_INIT                 0
+#endif
+
+/**
  * @brief   FMPLL1 IDF divider value.
  * @note    The default value is calculated for XOSC=40MHz and PHI=120MHz.
  */
@@ -303,6 +350,20 @@
  */
 #if !defined(SPC5_FMPLL1_ODF) || defined(__DOXYGEN__)
 #define SPC5_FMPLL1_ODF                     SPC5_FMPLL_ODF_DIV4
+#endif
+
+/**
+ * @brief   FMPLL1 CR register extra options.
+ */
+#if !defined(SPC5_FMPLL1_OPTIONS) || defined(__DOXYGEN__)
+#define SPC5_FMPLL1_OPTIONS                 0
+#endif
+
+/**
+ * @brief   FMPLL1 MR register initialization.
+ */
+#if !defined(SPC5_FMPLL1_MR_INIT) || defined(__DOXYGEN__)
+#define SPC5_FMPLL1_MR_INIT                 0
 #endif
 
 /**
@@ -364,6 +425,55 @@
  */
 #if !defined(SPC5_FR_CLK_DIVIDER_VALUE) || defined(__DOXYGEN__)
 #define SPC5_FR_CLK_DIVIDER_VALUE           2
+#endif
+
+/**
+ * @brief   CMU0 CSR register initialization.
+ */
+#if !defined(SPC5_CMU0_CSR_INIT) || defined(__DOXYGEN__)
+#define SPC5_CMU0_CSR_INIT                  0
+#endif
+
+/**
+ * @brief   CMU0 HFREF register initialization.
+ */
+#if !defined(SPC5_CMU0_HFREFR_INIT) || defined(__DOXYGEN__)
+#define SPC5_CMU0_HFREFR_INIT               4095
+#endif
+
+/**
+ * @brief   CMU0 LFREF register initialization.
+ */
+#if !defined(SPC5_CMU0_LFREFR_INIT) || defined(__DOXYGEN__)
+#define SPC5_CMU0_LFREFR_INIT               0
+#endif
+
+/**
+ * @brief   CMU0 MDR register initialization.
+ */
+#if !defined(SPC5_CMU0_MDR_INIT) || defined(__DOXYGEN__)
+#define SPC5_CMU0_MDR_INIT                  0
+#endif
+
+/**
+ * @brief   CMU1 CSR register initialization.
+ */
+#if !defined(SPC5_CMU1_CSR_INIT) || defined(__DOXYGEN__)
+#define SPC5_CMU1_CSR_INIT                  0
+#endif
+
+/**
+ * @brief   CMU1 HFREF register initialization.
+ */
+#if !defined(SPC5_CMU1_HFREFR_INIT) || defined(__DOXYGEN__)
+#define SPC5_CMU1_HFREFR_INIT               4095
+#endif
+
+/**
+ * @brief   CMU1 LFREF register initialization.
+ */
+#if !defined(SPC5_CMU1_LFREFR_INIT) || defined(__DOXYGEN__)
+#define SPC5_CMU1_LFREFR_INIT               0
 #endif
 
 /**

@@ -8,6 +8,8 @@
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
+#define RGBW_PRESENT		TRUE
+#define CLI_PRESENT			FALSE
 
 
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
@@ -20,17 +22,20 @@
 
 typedef enum
 {
-	Base, /**< Radio is idle */
-	Temp, /**< Maximum number of retries have occured */
-	Humidity, /**< Data is sent */
-	Light, /**< Data recieved */
-	Vent, /**< Ack payload recieved */
-	Heater, Other /**< Radio is busy */
+	Base,     		//**< Radio is idle */
+	Temp,     		//**< Maximum number of retries have occured */
+	Humidity,     	//**< Data is sent */
+	Light,     		//**< Data recieved */
+	Vent,     		//**< Ack payload recieved */
+	Heater,
+	RGBW,
+	Other     		//**< Radio is busy */
 } core_types_t;
 
 typedef enum
 {
-	None, RO, /**< Radio is idle */
+	None,
+	RO,     		//**< Radio is idle */
 	RW
 } core_direction_t;
 

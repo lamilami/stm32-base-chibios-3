@@ -29,8 +29,8 @@
 #include "FloorHeater.h"
 #include "WatchDog.h"
 #include "DHT11.h"
-
-//#include "test.h"
+#include "RGBW.h"
+#include "cli.h"
 
 #ifdef DEBUG_Discovery
 
@@ -40,7 +40,6 @@ static thread_t *Blinker_Thread = NULL;
 /*
  * LED blinker thread, times are in milliseconds.
  */
-
 
 static THD_WORKING_AREA(waLedBlinker, 128);
 __attribute__((noreturn))
@@ -74,7 +73,6 @@ static THD_FUNCTION(LedBlinker,arg)
 	}
 }
 
-
 void ll_ledblink(uint8_t cnt)
 {
 	if (Blinker_Thread != NULL)
@@ -105,37 +103,36 @@ void LEDBlinkI(uint8_t cnt)
  * Green LED blinker thread, times are in milliseconds.
  */
 /*
-static THD_WORKING_AREA(waTransmit, 128);
-//__attribute__((noreturn))
-static THD_FUNCTION (Transmit,arg)
-{
+ static THD_WORKING_AREA(waTransmit, 128);
+ //__attribute__((noreturn))
+ static THD_FUNCTION (Transmit,arg)
+ {
 
-	(void) arg;
-//	chRegSetThreadName("Transmitter");
-	rf_sended_debug = FALSE;
-	chThdSleepSeconds(3);
-	while (TRUE)
-	{
-//	LEDSwap();
-		if (!rf_sended_debug)
-		{
-			while (!rf_sended_debug)
-			{
-//				Radio_Send_Command(3, RF_PING);
-				chThdSleepSeconds(5);
-			}
-		}
-		rf_sended_debug = FALSE;
-		chThdSleepSeconds(15);
-	}
-}
-*/
+ (void) arg;
+ //	chRegSetThreadName("Transmitter");
+ rf_sended_debug = FALSE;
+ chThdSleepSeconds(3);
+ while (TRUE)
+ {
+ //	LEDSwap();
+ if (!rf_sended_debug)
+ {
+ while (!rf_sended_debug)
+ {
+ //				Radio_Send_Command(3, RF_PING);
+ chThdSleepSeconds(5);
+ }
+ }
+ rf_sended_debug = FALSE;
+ chThdSleepSeconds(15);
+ }
+ }
+ */
 /*
  * Application entry point.
  */
 int main(void)
 {
-
 	/*
 	 * System initializations.
 	 * - HAL initialization, this also initializes the configured device drivers
@@ -144,7 +141,6 @@ int main(void)
 	 *   RTOS is active.
 	 */
 	halInit();
-//  Init_GPIOs();
 	chSysInit();
 
 	/*
@@ -177,15 +173,16 @@ int main(void)
 	 */
 //	LEDB1Swap();
 
+	CLI_Start(-1);
 	WatchDog_Start(-1);
 	Core_Start(0);
 	Radio_Start(1);
 	DS18B20_Start(2);
 	FloorHeater_Start(3);
+	RGBW_Start(4);
 	DHT11_Start(4);
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
-
 #if LCD1602_PRESENT
 	InitializeLCD(); //Инициализация дисплея
 	ClearLCDScreen();//Очистка дисплея от мусора
