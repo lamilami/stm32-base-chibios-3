@@ -67,6 +67,8 @@
 #define SPC5_HAS_AC1                        FALSE
 #define SPC5_HAS_AC2                        FALSE
 #define SPC5_HAS_AC3                        FALSE
+#define SPC5_HAS_CMU0                       TRUE
+#define SPC5_HAS_CMU1                       FALSE
 
 #elif defined(_SPC560PXX_MEDIUM_)
 #define SPC5_HAS_FMPLL1                     TRUE
@@ -75,6 +77,8 @@
 #define SPC5_HAS_AC1                        TRUE
 #define SPC5_HAS_AC2                        TRUE
 #define SPC5_HAS_AC3                        TRUE
+#define SPC5_HAS_CMU0                       TRUE
+#define SPC5_HAS_CMU1                       TRUE
 
 #else /* defined(_SPC560PXX_LARGE_) */
 #define SPC5_HAS_FMPLL1                     FALSE
@@ -83,6 +87,8 @@
 #define SPC5_HAS_AC1                        FALSE
 #define SPC5_HAS_AC2                        FALSE
 #define SPC5_HAS_AC3                        TRUE
+#define SPC5_HAS_CMU0                       TRUE
+#define SPC5_HAS_CMU1                       TRUE
 #endif
 
 /* DSPI attribures.*/

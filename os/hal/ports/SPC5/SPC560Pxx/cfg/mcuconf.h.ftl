@@ -1,4 +1,99 @@
 [#ftl]
+
+<#--
+  -- Decodes a ME_xxx_MC register description node.
+  -->
+[#function decode_mc node]
+  [#assign s = "" /]
+  [#if node.pdo.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_MC_PDO" /]
+  [/#if]
+  [#if node.mvron.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_MC_MVRON" /]
+  [/#if]
+  [#assign n = node.dflaon.@index[0]?trim?number /]
+  [#if n == 0]
+    [#assign s = s + " | SPC5_ME_MC_DFLAON_NORMAL" /]
+  [#elseif n == 1]
+    [#assign s = s + " | SPC5_ME_MC_DFLAON_LP" /]
+  [#else]
+    [#assign s = s + " | SPC5_ME_MC_DFLAON_PD" /]
+  [/#if]
+  [#assign n = node.cflaon.@index[0]?trim?number /]
+  [#if n == 0]
+    [#assign s = s + " | SPC5_ME_MC_CFLAON_NORMAL" /]
+  [#elseif n == 1]
+    [#assign s = s + " | SPC5_ME_MC_CFLAON_LP" /]
+  [#else]
+    [#assign s = s + " | SPC5_ME_MC_CFLAON_PD" /]
+  [/#if]
+  [#if node.pll1on.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_MC_PLL1ON" /]
+  [/#if]
+  [#if node.pll0on.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_MC_PLL0ON" /]
+  [/#if]
+  [#if node.xosc0on.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_MC_XOSC0ON" /]
+  [/#if]
+  [#if node.ircon.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_MC_IRCON" /]
+  [/#if]
+  [#assign n = node.sysclk.@index[0]?trim?number /]
+  [#if n == 0]
+    [#assign s = s + " | SPC5_ME_MC_SYSCLK_IRC" /]
+  [#elseif n == 1]
+    [#assign s = s + " | SPC5_ME_MC_SYSCLK_XOSC" /]
+  [#elseif n == 2]
+    [#assign s = s + " | SPC5_ME_MC_SYSCLK_FMPLL0" /]
+  [#elseif n == 3]
+    [#assign s = s + " | SPC5_ME_MC_SYSCLK_FMPLL1" /]
+  [#else]
+    [#assign s = s + " | SPC5_ME_MC_SYSCLK_DISABLED" /]
+  [/#if]
+  [#return s]
+[/#function]
+
+<#--
+  -- Decodes a ME_RUN_PCx register description node.
+  -->
+[#function decode_runpc node]
+  [#assign s = "" /]
+  [#if node.safe.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_RUN_PC_SAFE" /]
+  [/#if]
+  [#if node.drun.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_RUN_PC_DRUN" /]
+  [/#if]
+  [#if node.run0.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_RUN_PC_RUN0" /]
+  [/#if]
+  [#if node.run1.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_RUN_PC_RUN1" /]
+  [/#if]
+  [#if node.run2.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_RUN_PC_RUN2" /]
+  [/#if]
+  [#if node.run3.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_RUN_PC_RUN3" /]
+  [/#if]
+  [#return s]
+[/#function]
+
+<#--
+  -- Decodes a ME_LP_PCx register description node.
+  -->
+[#function decode_lppc node]
+  [#assign s = "" /]
+  [#if node.halt0.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_LP_PC_HALT0" /]
+  [/#if]
+  [#if node.stop0.value[0]?lower_case == "true"]
+    [#assign s = s + " | SPC5_ME_LP_PC_STOP0" /]
+  [/#if]
+  [#return s]
+[/#function]
+
 [@pp.dropOutputFile /]
 [@pp.changeOutputFile name="mcuconf.h" /]
 /*
@@ -41,9 +136,45 @@
 #define SPC5_FMPLL0_IDF_VALUE               ${conf.instance.initialization_settings.fmpll0_settings.idf_value.value[0]}
 #define SPC5_FMPLL0_NDIV_VALUE              ${conf.instance.initialization_settings.fmpll0_settings.ndiv_value.value[0]}
 #define SPC5_FMPLL0_ODF                     ${conf.instance.initialization_settings.fmpll0_settings.odf_value.value[0]}
+[#assign options = "" /]
+[#if conf.instance.initialization_settings.fmpll0_settings.progressive_clock_switching.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_FMPLL_EN_PLL_SW" /]
+[/#if]
+[#if conf.instance.initialization_settings.fmpll0_settings.mask_fail_output.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_FMPLL_PLL_FAIL_MASK" /]
+[/#if]
+#define SPC5_FMPLL0_OPTIONS                 (0${options})
+[#assign options = "" /]
+[#if conf.instance.initialization_settings.fmpll0_settings.fm_enable.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_FMPLL_FM_EN" /]
+  [#if conf.instance.initialization_settings.fmpll0_settings.spread_type.@index[0]?trim?number != 0]
+    [#assign options = options + " | SPC5_FMPLL_SPRD_SEL" /]
+  [/#if]
+  [#assign options = options + " | SPC5_FMPLL_MOD_PERIOD(" + conf.instance.initialization_settings.fmpll0_settings.modulation_period.value[0]?trim + ")" /]
+  [#assign options = options + " | SPC5_FMPLL_INC_STEP(" + conf.instance.initialization_settings.fmpll0_settings.increment_step.value[0]?trim + ")" /]
+[/#if]
+#define SPC5_FMPLL0_MR_INIT                 (0${options})
 #define SPC5_FMPLL1_IDF_VALUE               ${conf.instance.initialization_settings.fmpll1_settings.idf_value.value[0]}
 #define SPC5_FMPLL1_NDIV_VALUE              ${conf.instance.initialization_settings.fmpll1_settings.ndiv_value.value[0]}
 #define SPC5_FMPLL1_ODF                     ${conf.instance.initialization_settings.fmpll1_settings.odf_value.value[0]}
+[#assign options = "" /]
+[#if conf.instance.initialization_settings.fmpll1_settings.progressive_clock_switching.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_FMPLL_EN_PLL_SW" /]
+[/#if]
+[#if conf.instance.initialization_settings.fmpll1_settings.mask_fail_output[0].value?lower_case == "true"]
+  [#assign options = options + " | SPC5_FMPLL_PLL_FAIL_MASK" /]
+[/#if]
+#define SPC5_FMPLL1_OPTIONS                 (0${options})
+[#assign options = "" /]
+[#if conf.instance.initialization_settings.fmpll1_settings.fm_enable.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_FMPLL_FM_EN" /]
+  [#if conf.instance.initialization_settings.fmpll1_settings.spread_type.@index[0]?trim?number != 0]
+    [#assign options = options + " | SPC5_FMPLL_SPRD_SEL" /]
+  [/#if]
+  [#assign options = options + " | SPC5_FMPLL_MOD_PERIOD(" + conf.instance.initialization_settings.fmpll1_settings.modulation_period.value[0]?trim + ")" /]
+  [#assign options = options + " | SPC5_FMPLL_INC_STEP(" + conf.instance.initialization_settings.fmpll1_settings.increment_step.value[0]?trim + ")" /]
+[/#if]
+#define SPC5_FMPLL1_MR_INIT                 (0${options})
 #define SPC5_AUX0CLK_SRC                    SPC5_CGM_SS_${conf.instance.initialization_settings.clocks.aux0_clock_source.value[0]}
 #define SPC5_MCONTROL_DIVIDER_VALUE         ${conf.instance.initialization_settings.clocks.motor_control_clock_divider.value[0]}
 #define SPC5_FMPLL1_CLK_DIVIDER_VALUE       ${conf.instance.initialization_settings.clocks.fmpll1_div_clock_divider.value[0]}
@@ -51,6 +182,70 @@
 #define SPC5_SP_CLK_DIVIDER_VALUE           ${conf.instance.initialization_settings.clocks.sp_clock_divider.value[0]}
 #define SPC5_AUX3CLK_SRC                    SPC5_CGM_SS_${conf.instance.initialization_settings.clocks.aux3_clock_source.value[0]}
 #define SPC5_FR_CLK_DIVIDER_VALUE           ${conf.instance.initialization_settings.clocks.fr_clock_divider.value[0]}
+[#assign options = "SPC5_CMU_CSR_RCDIV(" + conf.instance.initialization_settings.cmu0_settings.rcdiv.@index[0]?trim + ")" /]
+[#if conf.instance.initialization_settings.cmu0_settings.cme0.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_CMU_CSR_CME" /]
+[/#if]
+#define SPC5_CMU0_CSR_INIT                  (${options})
+#define SPC5_CMU0_HFREFR_INIT               ${conf.instance.initialization_settings.cmu0_settings.hfref.value[0]?trim}
+#define SPC5_CMU0_LFREFR_INIT               ${conf.instance.initialization_settings.cmu0_settings.lfref.value[0]?trim}
+#define SPC5_CMU0_MDR_INIT                  ${conf.instance.initialization_settings.cmu0_settings.md.value[0]?trim}
+[#assign options = "" /]
+[#if conf.instance.initialization_settings.cmu1_settings.cme1.value[0]?lower_case == "true"]
+  [#assign options = options + "SPC5_CMU_CSR_CME" /]
+[#else]
+  [#assign options = "0" /]
+[/#if]
+#define SPC5_CMU1_CSR_INIT                  (${options})
+#define SPC5_CMU1_HFREFR_INIT               ${conf.instance.initialization_settings.cmu1_settings.hfref.value[0]?trim}
+#define SPC5_CMU1_LFREFR_INIT               ${conf.instance.initialization_settings.cmu1_settings.lfref.value[0]?trim}
+[#assign options = "" /]
+[#if conf.instance.initialization_settings.module_entry.run_modes.reset.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_ME_ME_RESET" /]
+[/#if]
+[#if conf.instance.initialization_settings.module_entry.run_modes.safe.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_ME_ME_SAFE" /]
+[/#if]
+[#if conf.instance.initialization_settings.module_entry.run_modes.drun.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_ME_ME_DRUN" /]
+[/#if]
+[#if conf.instance.initialization_settings.module_entry.run_modes.run0.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_ME_ME_RUN0" /]
+[/#if]
+[#if conf.instance.initialization_settings.module_entry.run_modes.run1.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_ME_ME_RUN1" /]
+[/#if]
+[#if conf.instance.initialization_settings.module_entry.run_modes.run2.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_ME_ME_RUN2" /]
+[/#if]
+[#if conf.instance.initialization_settings.module_entry.run_modes.run3.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_ME_ME_RUN3" /]
+[/#if]
+[#if conf.instance.initialization_settings.module_entry.run_modes.halt0.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_ME_ME_HALT0" /]
+[/#if]
+[#if conf.instance.initialization_settings.module_entry.run_modes.stop0.value[0]?lower_case == "true"]
+  [#assign options = options + " | SPC5_ME_ME_STOP0" /]
+[/#if]
+#define SPC5_ME_ME_BITS                     (0${options})
+#define SPC5_ME_SAFE_MC_BITS                (0${decode_mc(conf.instance.initialization_settings.module_entry.run_modes.safe_state_settings)})
+#define SPC5_ME_DRUN_MC_BITS                (0${decode_mc(conf.instance.initialization_settings.module_entry.run_modes.drun_state_settings)})
+#define SPC5_ME_RUN0_MC_BITS                (0${decode_mc(conf.instance.initialization_settings.module_entry.run_modes.run0_state_settings)})
+#define SPC5_ME_RUN1_MC_BITS                (0${decode_mc(conf.instance.initialization_settings.module_entry.run_modes.run1_state_settings)})
+#define SPC5_ME_RUN2_MC_BITS                (0${decode_mc(conf.instance.initialization_settings.module_entry.run_modes.run2_state_settings)})
+#define SPC5_ME_RUN3_MC_BITS                (0${decode_mc(conf.instance.initialization_settings.module_entry.run_modes.run3_state_settings)})
+#define SPC5_ME_HALT0_MC_BITS               (0${decode_mc(conf.instance.initialization_settings.module_entry.run_modes.halt0_state_settings)})
+#define SPC5_ME_STOP0_MC_BITS               (0${decode_mc(conf.instance.initialization_settings.module_entry.run_modes.stop0_state_settings)})
+#define SPC5_ME_RUN_PC2_BITS                (0${decode_runpc(conf.instance.initialization_settings.module_entry.peripherals_control__run_.pc2)})
+#define SPC5_ME_RUN_PC3_BITS                (0${decode_runpc(conf.instance.initialization_settings.module_entry.peripherals_control__run_.pc3)})
+#define SPC5_ME_RUN_PC4_BITS                (0${decode_runpc(conf.instance.initialization_settings.module_entry.peripherals_control__run_.pc4)})
+#define SPC5_ME_RUN_PC5_BITS                (0${decode_runpc(conf.instance.initialization_settings.module_entry.peripherals_control__run_.pc5)})
+#define SPC5_ME_RUN_PC6_BITS                (0${decode_runpc(conf.instance.initialization_settings.module_entry.peripherals_control__run_.pc6)})
+#define SPC5_ME_RUN_PC7_BITS                (0${decode_runpc(conf.instance.initialization_settings.module_entry.peripherals_control__run_.pc7)})
+#define SPC5_ME_LP_PC4_BITS                 (0${decode_lppc(conf.instance.initialization_settings.module_entry.peripherals_control__low_power_.pc4)})
+#define SPC5_ME_LP_PC5_BITS                 (0${decode_lppc(conf.instance.initialization_settings.module_entry.peripherals_control__low_power_.pc5)})
+#define SPC5_ME_LP_PC6_BITS                 (0${decode_lppc(conf.instance.initialization_settings.module_entry.peripherals_control__low_power_.pc6)})
+#define SPC5_ME_LP_PC7_BITS                 (0${decode_lppc(conf.instance.initialization_settings.module_entry.peripherals_control__low_power_.pc7)})
 #define SPC5_CLOCK_FAILURE_HOOK()           ${conf.instance.initialization_settings.clocks.clock_failure_hook.value[0]}
 
 /*

@@ -57,7 +57,7 @@ static const unsigned system_pins[] = {SPC5_SIUL_SYSTEM_PINS};
 /**
  * @brief   SPC5xx I/O ports configuration.
  *
- * @param[in] config    the STM32 ports configuration
+ * @param[in] config    the SPC5xx ports configuration
  *
  * @notapi
  */

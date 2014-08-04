@@ -15,8 +15,8 @@
 */
 
 /**
- * @file    SPC5xx/SIU_v1/pal_lld.c
- * @brief   SPC5xx SIU low level driver code.
+ * @file    SPC5xx/SIUL2_v1/pal_lld.c
+ * @brief   SPC5xx SIUL2 low level driver code.
  *
  * @addtogroup PAL
  * @{
@@ -38,8 +38,8 @@
 /* Driver local variables and types.                                         */
 /*===========================================================================*/
 
-#if defined(SPC5_SIU_SYSTEM_PINS)
-static const unsigned system_pins[] = {SPC5_SIU_SYSTEM_PINS};
+#if defined(SPC5_SIUL_SYSTEM_PINS)
+static const unsigned system_pins[] = {SPC5_SIUL_SYSTEM_PINS};
 #endif
 
 /*===========================================================================*/
@@ -64,11 +64,24 @@ static const unsigned system_pins[] = {SPC5_SIU_SYSTEM_PINS};
 void _pal_lld_init(const PALConfig *config) {
   unsigned i;
 
-  /* Initialize PCR registers for defined pads.*/
+#if defined(SPC5_SIUL2_PCTL)
+  /* SIUL clock gating if present.*/
+  halSPCSetPeripheralClockMode(SPC5_SIUL2_PCTL,
+                               SPC5_ME_PCTL_RUN(2) | SPC5_ME_PCTL_LP(2));
+#endif
+
+  /* Initialize MSCR_MUX registers.*/
   i = 0;
-  while (config->inits[i].pcr_index != -1) {
-    SIU.GPDO[config->inits[i].pcr_index].R = config->inits[i].gpdo_value;
-    SIU.PCR[config->inits[i].pcr_index].R  = config->inits[i].pcr_value;
+  while (config->mscr_mux[i].mscr_index != -1) {
+    SIUL2.MSCR_MUX[config->mscr_mux[i].mscr_index].R = config->mscr_mux[i].mscr_value;
+    i++;
+  }
+
+  /* Initialize MSCR_IO registers for defined pads.*/
+  i = 0;
+  while (config->mscr_io[i].mscr_index != -1) {
+    SIUL2.GPDO[config->mscr_io[i].mscr_index].R = config->mscr_io[i].gpdo_value;
+    SIUL2.MSCR_IO[config->mscr_io[i].mscr_index].R = config->mscr_io[i].mscr_value;
     i++;
   }
 }
@@ -133,7 +146,7 @@ void _pal_lld_setgroupmode(ioportid_t port,
   ioportmask_t m1 = 0x8000;
   while (m1) {
     if (mask & m1)
-      SIU.PCR[pcr_index].R = mode;
+      SIUL2.MSCR_IO[pcr_index].R = mode;
     m1 >>= 1;
     ++pcr_index;
   }

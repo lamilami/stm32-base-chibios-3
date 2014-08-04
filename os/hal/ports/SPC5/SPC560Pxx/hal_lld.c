@@ -110,6 +110,17 @@ void spc_clock_init(void) {
 
 #if !SPC5_NO_INIT
 
+  /* CMUs initialization.*/
+  CGM.CMU_0_HFREFR_A.R = SPC5_CMU0_HFREFR_INIT;
+  CGM.CMU_0_LFREFR_A.R = SPC5_CMU0_LFREFR_INIT;
+  CGM.CMU_0_MDR.R      = SPC5_CMU0_MDR_INIT;
+  CGM.CMU_0_CSR.R      = SPC5_CMU0_CSR_INIT;
+#if SPC5_HAS_CMU1
+  CGM.CMU_1_HFREFR_A.R = SPC5_CMU1_HFREFR_INIT;
+  CGM.CMU_1_LFREFR_A.R = SPC5_CMU1_LFREFR_INIT;
+  CGM.CMU_1_CSR.R      = SPC5_CMU1_CSR_INIT;
+#endif
+
 #if SPC5_DISABLE_WATCHDOG
   /* SWT disabled.*/
   SWT.SR.R = 0xC520;
@@ -166,14 +177,16 @@ void spc_clock_init(void) {
 
   /* Initialization of the FMPLLs settings.*/
   CGM.FMPLL[0].CR.R = SPC5_FMPLL0_ODF |
-                      ((SPC5_FMPLL0_IDF_VALUE - 1) << 26) |
-                      (SPC5_FMPLL0_NDIV_VALUE << 16);
-  CGM.FMPLL[0].MR.R = 0;                        /* TODO: Add a setting.     */
+                      SPC5_FMPLL_IDF(SPC5_FMPLL0_IDF_VALUE) |
+                      SPC5_FMPLL_NDIV(SPC5_FMPLL0_NDIV_VALUE) |
+                      SPC5_FMPLL0_OPTIONS;
+  CGM.FMPLL[0].MR.R = SPC5_FMPLL0_MR_INIT;
 #if SPC5_HAS_FMPLL1
   CGM.FMPLL[1].CR.R = SPC5_FMPLL1_ODF |
-                      ((SPC5_FMPLL1_IDF_VALUE - 1) << 26) |
-                      (SPC5_FMPLL1_NDIV_VALUE << 16);
-  CGM.FMPLL[1].MR.R = 0;                        /* TODO: Add a setting.     */
+                      SPC5_FMPLL_IDF(SPC5_FMPLL1_IDF_VALUE) |
+                      SPC5_FMPLL_NDIV(SPC5_FMPLL1_NDIV_VALUE) |
+                      SPC5_FMPLL1_OPTIONS;
+  CGM.FMPLL[1].MR.R = SPC5_FMPLL1_MR_INIT;
 #endif
 
   /* Run modes initialization.*/
