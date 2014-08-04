@@ -180,7 +180,7 @@ int main(void)
 	DS18B20_Start(2);
 	FloorHeater_Start(3);
 	RGBW_Start(4);
-	DHT11_Start(4);
+	DHT11_Start(5);
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 #if LCD1602_PRESENT
