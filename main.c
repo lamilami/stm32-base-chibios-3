@@ -147,77 +147,6 @@ int main(void)
 //  Init_GPIOs();
 	chSysInit();
 
-	static dht11_t DHTD1;
-	static int8_t humidity;
-	static EXTConfig extcfg = {
-	  {
-		{EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL}
-	  }
-	};
-
-	  /*
-	   * Activates the EXT driver 1.
-	   */
-	  extStart(&EXTD1, &extcfg);
-
-	DHTD1.ext_pin = 0;
-	DHTD1.ext_port = GPIOA;
-	DHTD1.ext_drv = &EXTD1;
-	DHTD1.ext_mode = EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA;
-	DHTD1.refresh_period = 1000;
-/*	  {
-	    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA, extcb1},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL},
-	    {EXT_CH_MODE_DISABLED, NULL}
-	  }
-	};*/
-	dht11Init(&DHTD1);
-
-	dht11Update(&DHTD1,NULL);
-	dht11GetHumidity(&DHTD1,&humidity);
-
 	/*
 	 * Creates the blinker threads.
 	 */
@@ -253,6 +182,7 @@ int main(void)
 	Radio_Start(1);
 	DS18B20_Start(2);
 	FloorHeater_Start(3);
+	DHT11_Start(4);
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 
@@ -294,7 +224,5 @@ int main(void)
 		PrintStr("              ");
 #endif
 		chThdSleepSeconds(5);
-		dht11Update(&DHTD1,NULL);
-		dht11GetHumidity(&DHTD1,&humidity);
 	}
 }
