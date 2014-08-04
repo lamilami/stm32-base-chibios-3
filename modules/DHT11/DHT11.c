@@ -10,8 +10,8 @@
 volatile static core_base_struct_t Core_DHT11;
 volatile static struct
 {
-	volatile uint8_t temp;
-	volatile uint8_t humidity;
+	volatile uint16_t temp;
+	volatile uint16_t humidity;
 	volatile uint16_t cont_errors;
 	union
 	{
@@ -64,7 +64,7 @@ THD_FUNCTION(DHT11,arg)
 	static ucnt_t global_errors = 0;
 	static ucnt_t critical_errors = 0;
 	static uint16_t cont_errors = 0;
-	static uint16_t old_temp = 0xffff;
+//	static uint16_t old_temp = 0xffff;
 
 	{
 		//Waiting DHT11 to initialize
