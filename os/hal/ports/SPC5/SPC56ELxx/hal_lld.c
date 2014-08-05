@@ -244,7 +244,7 @@ void spc_clock_init(void) {
  * @retval OSAL_SUCCESS   if the switch operation has been completed.
  * @retval OSAL_FAILED    if the switch operation failed.
  */
-bool_t halSPCSetRunMode(spc5_runmode_t mode) {
+bool halSPCSetRunMode(spc5_runmode_t mode) {
 
   /* Clearing status register bits I_IMODE(4) and I_IMTC(1).*/
   ME.IS.R = 5;

@@ -2,7 +2,7 @@
     ChibiOS/HAL - Copyright (C) 2006,2007,2008,2009,2010,
                   2011,2012,2013,2014 Giovanni Di Sirio.
 
-    This file is part of ChibiOS/HAL 
+    This file is part of ChibiOS/HAL
 
     ChibiOS/HAL is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,71 +17,27 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/*
+   Concepts and parts of this file have been contributed by Uladzimir Pylinsky
+   aka barthess.
+ */
 
 /**
- * @file    hal.h
- * @brief   HAL subsystem header.
+ * @file    emc.h
+ * @brief   EMC Driver macros and structures.
  *
- * @addtogroup HAL
+ * @addtogroup EMC
  * @{
  */
 
-#ifndef _HAL_H_
-#define _HAL_H_
+#ifndef _EMC_H_
+#define _EMC_H_
 
-#include "osal.h"
-#include "board.h"
-#include "halconf.h"
-
-#include "hal_lld.h"
-
-/* Abstract interfaces.*/
-#include "hal_streams.h"
-#include "hal_channels.h"
-#include "hal_ioblock.h"
-#include "hal_mmcsd.h"
-
-/* Shared headers.*/
-#include "hal_queues.h"
-
-/* Normal drivers.*/
-#include "pal.h"
-#include "adc.h"
-#include "can.h"
-#include "dac.h"
-#include "ext.h"
-#include "gpt.h"
-#include "i2c.h"
-#include "i2s.h"
-#include "icu.h"
-#include "mac.h"
-#include "mii.h"
-#include "pwm.h"
-#include "rtc.h"
-#include "serial.h"
-#include "sdc.h"
-#include "spi.h"
-#include "st.h"
-#include "uart.h"
-#include "usb.h"
-#include "emc.h"
-#include "emcnand.h"
-
-/* Complex drivers.*/
-#include "mmc_spi.h"
-#include "serial_usb.h"
+#if HAL_USE_EMC || defined(__DOXYGEN__)
 
 /*===========================================================================*/
 /* Driver constants.                                                         */
 /*===========================================================================*/
-
-/**
- * @name    Return codes
- * @{
- */
-#define HAL_SUCCESS                         false
-#define HAL_FAILED                          true
-/** @} */
 
 /*===========================================================================*/
 /* Driver pre-compile time settings.                                         */
@@ -95,6 +51,22 @@
 /* Driver data structures and types.                                         */
 /*===========================================================================*/
 
+/**
+ * @brief   Driver state machine possible states.
+ */
+typedef enum {
+  EMC_UNINIT = 0,                   /**< Not initialized.                   */
+  EMC_STOP = 1,                     /**< Stopped.                           */
+  EMC_READY = 2,                    /**< Ready.                             */
+} emcstate_t;
+
+/**
+ * @brief   Type of a structure representing a EMC driver.
+ */
+typedef struct EMCDriver EMCDriver;
+
+#include "emc_lld.h"
+
 /*===========================================================================*/
 /* Driver macros.                                                            */
 /*===========================================================================*/
@@ -106,11 +78,16 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-  void halInit(void);
+  void emcInit(void);
+  void emcObjectInit(EMCDriver *emcp);
+  void emcStart(EMCDriver *emcp, const EMCConfig *config);
+  void emcStop(EMCDriver *emcp);
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _HAL_H_ */
+#endif /* HAL_USE_EMC */
+
+#endif /* _EMC_H_ */
 
 /** @} */
