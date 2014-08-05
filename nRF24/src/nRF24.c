@@ -17,9 +17,6 @@
  *
  */
 
-#include <stdint.h>
-#include <stdbool.h>
-
 //#include "nordic_common.h"
 #include "nRF24.h"
 

@@ -182,6 +182,8 @@ THD_FUNCTION(Radio,arg)
 	(void) arg;
 //	chRegSetThreadName("Radio");
 
+	nRF24_Init();
+
 	Radio_Thread = chThdGetSelfX();
 
 	static payload_t payload[RF_MAX_IO_BUFFERS];
