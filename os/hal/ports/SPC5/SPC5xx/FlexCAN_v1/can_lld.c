@@ -125,7 +125,7 @@ static void can_lld_tx_handler(CANDriver *canp) {
 #endif
 
   osalSysLockFromISR();
-  osalQueueWakeupAllI(&canp->txqueue, MSG_OK);
+  osalThreadDequeueAllI(&canp->txqueue, MSG_OK);
 
 #if SPC5_CAN_USE_FLEXCAN0 && (SPC5_FLEXCAN0_MB == 32)
   if(&CAND1 == canp) {
@@ -198,7 +198,7 @@ static void can_lld_rx_handler(CANDriver *canp) {
   iflag1 = canp->flexcan->IFRL.R;
   if ((iflag1 & 0x000000FF) != 0) {
     osalSysLockFromISR();
-    osalQueueWakeupAllI(&canp->rxqueue, MSG_OK);
+    osalThreadDequeueAllI(&canp->rxqueue, MSG_OK);
     osalEventBroadcastFlagsI(&canp->rxfull_event, iflag1 & 0x000000FF);
     osalSysUnlockFromISR();
 
@@ -3484,7 +3484,7 @@ void can_lld_stop(CANDriver *canp) {
  *
  * @notapi
  */
-bool_t can_lld_is_tx_empty(CANDriver *canp, canmbx_t mailbox) {
+bool can_lld_is_tx_empty(CANDriver *canp, canmbx_t mailbox) {
 
   uint8_t mbid = 0;
 
@@ -3670,10 +3670,10 @@ void can_lld_transmit(CANDriver *canp,
  * @notapi
  */
 
-bool_t can_lld_is_rx_nonempty(CANDriver *canp, canmbx_t mailbox) {
+bool can_lld_is_rx_nonempty(CANDriver *canp, canmbx_t mailbox) {
 
   uint8_t mbid = 0;
-  bool_t mb_status = FALSE;
+  bool mb_status = FALSE;
 
   switch (mailbox) {
   case CAN_ANY_MAILBOX:

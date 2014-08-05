@@ -236,7 +236,7 @@ static void spc5xx_serve_err_interrupt(SerialDriver *sdp) {
 }
 
 #if SPC5_SERIAL_USE_LINFLEX0 || defined(__DOXYGEN__)
-static void notify1(GenericQueue *qp) {
+static void notify1(io_queue_t *qp) {
 
   (void)qp;
   if (!SD1.linflexp->UARTCR.B.TXEN) {
@@ -250,7 +250,7 @@ static void notify1(GenericQueue *qp) {
 #endif
 
 #if SPC5_SERIAL_USE_LINFLEX1 || defined(__DOXYGEN__)
-static void notify2(GenericQueue *qp) {
+static void notify2(io_queue_t *qp) {
 
   (void)qp;
   if (!SD2.linflexp->UARTCR.B.TXEN) {
@@ -264,7 +264,7 @@ static void notify2(GenericQueue *qp) {
 #endif
 
 #if SPC5_SERIAL_USE_LINFLEX2 || defined(__DOXYGEN__)
-static void notify3(GenericQueue *qp) {
+static void notify3(io_queue_t *qp) {
 
   (void)qp;
   if (!SD3.linflexp->UARTCR.B.TXEN) {
@@ -278,7 +278,7 @@ static void notify3(GenericQueue *qp) {
 #endif
 
 #if SPC5_SERIAL_USE_LINFLEX3 || defined(__DOXYGEN__)
-static void notify4(GenericQueue *qp) {
+static void notify4(io_queue_t *qp) {
 
   (void)qp;
   if (!SD4.linflexp->UARTCR.B.TXEN) {
@@ -292,7 +292,7 @@ static void notify4(GenericQueue *qp) {
 #endif
 
 #if SPC5_SERIAL_USE_LINFLEX4 || defined(__DOXYGEN__)
-static void notify5(GenericQueue *qp) {
+static void notify5(io_queue_t *qp) {
 
   (void)qp;
   if (!SD5.linflexp->UARTCR.B.TXEN) {
@@ -306,7 +306,7 @@ static void notify5(GenericQueue *qp) {
 #endif
 
 #if SPC5_SERIAL_USE_LINFLEX5 || defined(__DOXYGEN__)
-static void notify6(GenericQueue *qp) {
+static void notify6(io_queue_t *qp) {
 
   (void)qp;
   if (!SD6.linflexp->UARTCR.B.TXEN) {
@@ -320,7 +320,7 @@ static void notify6(GenericQueue *qp) {
 #endif
 
 #if SPC5_SERIAL_USE_LINFLEX6 || defined(__DOXYGEN__)
-static void notify7(GenericQueue *qp) {
+static void notify7(io_queue_t *qp) {
 
   (void)qp;
   if (!SD7.linflexp->UARTCR.B.TXEN) {
@@ -334,7 +334,7 @@ static void notify7(GenericQueue *qp) {
 #endif
 
 #if SPC5_SERIAL_USE_LINFLEX7 || defined(__DOXYGEN__)
-static void notify8(GenericQueue *qp) {
+static void notify8(io_queue_t *qp) {
 
   (void)qp;
   if (!SD8.linflexp->UARTCR.B.TXEN) {
@@ -348,7 +348,7 @@ static void notify8(GenericQueue *qp) {
 #endif
 
 #if SPC5_SERIAL_USE_LINFLEX8 || defined(__DOXYGEN__)
-static void notify9(GenericQueue *qp) {
+static void notify9(io_queue_t *qp) {
 
   (void)qp;
   if (!SD9.linflexp->UARTCR.B.TXEN) {
@@ -362,7 +362,7 @@ static void notify9(GenericQueue *qp) {
 #endif
 
 #if SPC5_SERIAL_USE_LINFLEX9 || defined(__DOXYGEN__)
-static void notify10(GenericQueue *qp) {
+static void notify10(io_queue_t *qp) {
 
   (void)qp;
   if (!SD10.linflexp->UARTCR.B.TXEN) {

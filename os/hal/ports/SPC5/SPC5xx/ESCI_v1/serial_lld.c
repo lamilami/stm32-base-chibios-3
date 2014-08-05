@@ -170,7 +170,7 @@ static void serve_interrupt(SerialDriver *sdp) {
 }
 
 #if SPC5_USE_ESCIA || defined(__DOXYGEN__)
-static void notify1(GenericQueue *qp) {
+static void notify1(io_queue_t *qp) {
 
   (void)qp;
   if (ESCI_A.SR.B.TDRE) {
@@ -185,7 +185,7 @@ static void notify1(GenericQueue *qp) {
 #endif
 
 #if SPC5_USE_ESCIB || defined(__DOXYGEN__)
-static void notify2(GenericQueue *qp) {
+static void notify2(io_queue_t *qp) {
 
   (void)qp;
   if (ESCI_B.SR.B.TDRE) {
@@ -200,7 +200,7 @@ static void notify2(GenericQueue *qp) {
 #endif
 
 #if SPC5_USE_ESCIC || defined(__DOXYGEN__)
-static void notify3(GenericQueue *qp) {
+static void notify3(io_queue_t *qp) {
 
   (void)qp;
   if (ESCI_B.SR.B.TDRE) {
