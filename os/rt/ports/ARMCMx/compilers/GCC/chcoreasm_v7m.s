@@ -1,6 +1,6 @@
 /*
     ChibiOS/RT - Copyright (C) 2006,2007,2008,2009,2010,
-                 2011,2012,2013 Giovanni Di Sirio.
+                 2011,2012,2013,2014 Giovanni Di Sirio.
 
     This file is part of ChibiOS/RT.
 
@@ -46,11 +46,11 @@
 
                 .syntax unified
                 .cpu    cortex-m4
-/* #if CORTEX_USE_FPU
+#if CORTEX_USE_FPU
                 .fpu    fpv4-sp-d16
-#else */
+#else
                 .fpu    softvfp
-/* #endif */
+#endif
 
                 .thumb
                 .text
@@ -62,14 +62,14 @@
                 .globl  _port_switch
 _port_switch:
                 push    {r4, r5, r6, r7, r8, r9, r10, r11, lr}
-/* #if CORTEX_USE_FPU
+#if CORTEX_USE_FPU
                 vpush   {s16-s31}
-#endif */
+#endif
                 str     sp, [r1, #CONTEXT_OFFSET]
                 ldr     sp, [r0, #CONTEXT_OFFSET]
-/* #if CORTEX_USE_FPU
+#if CORTEX_USE_FPU
                 vpop    {s16-s31}
-#endif */
+#endif
                 pop     {r4, r5, r6, r7, r8, r9, r10, r11, pc}
 
 /*--------------------------------------------------------------------------*
@@ -83,17 +83,17 @@ _port_switch:
                 .thumb_func
                 .globl  _port_thread_start
 _port_thread_start:
-/* #if CH_DBG_SYSTEM_STATE_CHECK
+#if CH_DBG_SYSTEM_STATE_CHECK
                 bl      _dbg_check_unlock
 #endif
 #if CH_DBG_STATISTICS
                 bl      _stats_stop_measure_crit_thd
 #endif
-#if !CORTEX_SIMPLIFIED_PRIORITY */
+#if !CORTEX_SIMPLIFIED_PRIORITY
                 movs    r3, #0
                 msr     BASEPRI, r3
-/* #else /* CORTEX_SIMPLIFIED_PRIORITY */
-/*                 cpsie   i
+#else /* CORTEX_SIMPLIFIED_PRIORITY */
+                cpsie   i
 #endif /* CORTEX_SIMPLIFIED_PRIORITY */
                 mov     r0, r5
                 blx     r4
@@ -107,7 +107,7 @@ _port_thread_start:
                 .thumb_func
                 .globl  _port_switch_from_isr
 _port_switch_from_isr:
-/* #if CH_DBG_STATISTICS
+#if CH_DBG_STATISTICS
                 bl      _stats_start_measure_crit_thd
 #endif
 #if CH_DBG_SYSTEM_STATE_CHECK
@@ -119,18 +119,18 @@ _port_switch_from_isr:
 #endif
 #if CH_DBG_STATISTICS
                 bl      _stats_stop_measure_crit_thd
-#endif */
+#endif
                 .globl  _port_exit_from_isr
 _port_exit_from_isr:
-/* #if CORTEX_SIMPLIFIED_PRIORITY
+#if CORTEX_SIMPLIFIED_PRIORITY
                 movw    r3, #:lower16:SCB_ICSR
                 movt    r3, #:upper16:SCB_ICSR
                 mov     r2, ICSR_PENDSVSET
                 str     r2, [r3, #0]
                 cpsie   i
-#else */ /* !CORTEX_SIMPLIFIED_PRIORITY */
+#else /* !CORTEX_SIMPLIFIED_PRIORITY */
                 svc     #0
-/* #endif /* !CORTEX_SIMPLIFIED_PRIORITY */
+#endif /* !CORTEX_SIMPLIFIED_PRIORITY */
 .L1:            b       .L1
 
 #endif /* !defined(__DOXYGEN__) */

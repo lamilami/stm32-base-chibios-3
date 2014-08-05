@@ -1,14 +1,14 @@
 /*
-    Nil RTOS - Copyright (C) 2012 Giovanni Di Sirio.
+    ChibiOS/NIL - Copyright (C) 2013,2014 Giovanni Di Sirio.
 
-    This file is part of Nil RTOS.
+    This file is part of ChibiOS/NIL.
 
-    Nil RTOS is free software; you can redistribute it and/or modify
+    ChibiOS/NIL is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
 
-    Nil RTOS is distributed in the hope that it will be useful,
+    ChibiOS/NIL is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -182,11 +182,52 @@ typedef struct nil_thread thread_t;
 #endif
 
 /**
+ * @brief   System initialization hook.
+ */
+#if !defined(NIL_CFG_SYSTEM_INIT_HOOK) || defined(__DOXYGEN__)
+#define NIL_CFG_SYSTEM_INIT_HOOK() {}
+#endif
+
+/**
  * @brief   Threads descriptor structure extension.
  * @details User fields added to the end of the @p thread_t structure.
  */
 #if !defined(NIL_CFG_THREAD_EXT_FIELDS) || defined(__DOXYGEN__)
 #define NIL_CFG_THREAD_EXT_FIELDS
+#endif
+
+/**
+ * @brief   Threads initialization hook.
+ */
+#if !defined(NIL_CFG_THREAD_EXT_INIT_HOOK) || defined(__DOXYGEN__)
+#define NIL_CFG_THREAD_EXT_INIT_HOOK(tr) {}
+#endif
+
+/**
+ * @brief   Idle thread enter hook.
+ * @note    This hook is invoked within a critical zone, no OS functions
+ *          should be invoked from here.
+ * @note    This macro can be used to activate a power saving mode.
+ */
+#if !defined(NIL_CFG_IDLE_ENTER_HOOK) || defined(__DOXYGEN__)
+#define NIL_CFG_IDLE_ENTER_HOOK() {}
+#endif
+
+/**
+ * @brief   Idle thread leave hook.
+ * @note    This hook is invoked within a critical zone, no OS functions
+ *          should be invoked from here.
+ * @note    This macro can be used to deactivate a power saving mode.
+ */
+#if !defined(NIL_CFG_IDLE_LEAVE_HOOK) || defined(__DOXYGEN__)
+#define NIL_CFG_IDLE_LEAVE_HOOK() {}
+#endif
+
+/**
+ * @brief   System halt hook.
+ */
+#if !defined(NIL_CFG_SYSTEM_HALT_HOOK) || defined(__DOXYGEN__)
+#define NIL_CFG_SYSTEM_HALT_HOOK(reason) {}
 #endif
 
 /*===========================================================================*/
@@ -373,7 +414,8 @@ typedef struct {
  * @brief   Entry of user threads table
  */
 #define THD_TABLE_ENTRY(wap, name, funcp, arg)                              \
-  {wap, (wap) + sizeof (wap), name, funcp, arg},
+  {wap, ((stkalign_t *)(wap)) + (sizeof (wap) / sizeof(stkalign_t)),        \
+   name, funcp, arg},
 
 /**
  * @brief   End of user threads table.
@@ -407,7 +449,7 @@ typedef struct {
  * @api
  */
 #define THD_WORKING_AREA_SIZE(n)                                            \
-  THD_ALIGN_STACK_SIZE(sizeof(thread_t) + PORT_WA_SIZE(n))
+  THD_ALIGN_STACK_SIZE(PORT_WA_SIZE(n))
 
 /**
  * @brief   Static working area allocation.
@@ -735,7 +777,7 @@ typedef struct {
  * @xclass
  */
 #define chVTTimeElapsedSinceX(start)                                        \
-  ((systime_t)(chVTGetSystemTimeX() - start))
+  ((systime_t)(chVTGetSystemTimeX() - (start)))
 
 /**
  * @brief   Checks if the specified time is within the specified time window.
@@ -752,7 +794,7 @@ typedef struct {
  * @xclass
  */
 #define chVTIsTimeWithinX(time, start, end)                                 \
-  ((bool)((time) - (start) < (end) - (start)))
+  ((bool)((systime_t)((time) - (start)) < (systime_t)((end) - (start))))
 
 /**
  * @brief   Condition assertion.

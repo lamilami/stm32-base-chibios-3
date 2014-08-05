@@ -32,6 +32,9 @@
 /* Driver local variables and types.                                         */
 /*===========================================================================*/
 
+#define HSM2HTF             (*(vuint32_t *)0xFFF30000)
+#define HT2HSMF             (*(vuint32_t *)0xFFF30008)
+
 /*===========================================================================*/
 /* Driver local functions.                                                   */
 /*===========================================================================*/
@@ -77,6 +80,9 @@ void hal_lld_init(void) {
     SPC5_CLOCK_FAILURE_HOOK();
   }
 
+  /* Notifies the HSM full clock initialization.*/
+  HT2HSMF |= 2;
+
   /* PIT_0 clock initialization.*/
   halSPCSetPeripheralClockMode(30, SPC5_ME_PCTL_RUN(2) | SPC5_ME_PCTL_LP(2));
 
@@ -113,6 +119,15 @@ void spc_clock_init(void) {
   /* Waiting for IRC stabilization before attempting anything else.*/
   while (!MC_ME.GS.B.S_IRC)
     ;
+
+#if SPC5_WAIT_HSM_INIT
+  /* Waits until the HSM notifies it is ready to accept a clock change.*/
+  while (HSM2HTF != 1)
+    ;
+#endif /* SPC5_WAIT_HSM_INIT */
+
+  /* Notifies the HSM an acknowledge.*/
+  HT2HSMF |= 1;
 
 #if !SPC5_NO_INIT
 

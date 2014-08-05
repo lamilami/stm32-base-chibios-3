@@ -38,6 +38,7 @@
 #define SPC5_NO_INIT                        ${conf.instance.initialization_settings.do_not_init.value[0]?upper_case}
 #define SPC5_ALLOW_OVERCLOCK                ${conf.instance.initialization_settings.allow_overclocking.value[0]?upper_case}
 #define SPC5_DISABLE_WATCHDOG               ${conf.instance.initialization_settings.disable_watchdog.value[0]?upper_case}
+#define SPC5_WAIT_HSM_INIT                  ${conf.instance.initialization_settings.wait_for_hsm_initialization.value[0]?upper_case}
 #define SPC5_CLOCK_FAILURE_HOOK()           ${conf.instance.initialization_settings.clock_failure_hook.value[0]}
 #define SPC5_PLL0_PREDIV_VALUE              ${conf.instance.initialization_settings.pll0_settings.prediv_value.value[0]}
 #define SPC5_PLL0_MFD_VALUE                 ${conf.instance.initialization_settings.pll0_settings.mfd_value.value[0]}

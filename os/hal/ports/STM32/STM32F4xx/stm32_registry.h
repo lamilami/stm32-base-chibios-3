@@ -1,5 +1,5 @@
 /*
-    ChibiOS/RT - Copyright (C) 2006-2013 Giovanni Di Sirio
+    ChibiOS/HAL - Copyright (C) 2006-2014 Giovanni Di Sirio
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -125,7 +125,9 @@
 #else
 #define STM32_RTC_HAS_SUBSECONDS            FALSE
 #endif
-#define STM32_RTC_IS_CALENDAR               TRUE
+#define STM32_RTC_HAS_PERIODIC_WAKEUPS      TRUE
+#define STM32_RTC_NUM_ALARMS                2
+#define STM32_RTC_HAS_INTERRUPTS            FALSE
 
 /* SDIO attributes.*/
 #define STM32_HAS_SDIO                      TRUE

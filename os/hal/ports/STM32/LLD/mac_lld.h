@@ -1,5 +1,5 @@
 /*
-    ChibiOS/RT - Copyright (C) 2006-2013 Giovanni Di Sirio
+    ChibiOS/HAL - Copyright (C) 2006-2014 Giovanni Di Sirio
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -245,16 +245,16 @@ struct MACDriver {
   /**
    * @brief Transmit semaphore.
    */
-  Semaphore             tdsem;
+  semaphore_t           tdsem;
   /**
    * @brief Receive semaphore.
    */
-  Semaphore             rdsem;
+  semaphore_t           rdsem;
 #if MAC_USE_EVENTS || defined(__DOXYGEN__)
   /**
    * @brief Receive event.
    */
-  EventSource           rdevent;
+  event_source_t        rdevent;
 #endif
   /* End of the mandatory fields.*/
   /**

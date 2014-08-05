@@ -1,5 +1,5 @@
 /*
-    ChibiOS/RT - Copyright (C) 2006-2013 Giovanni Di Sirio
+    ChibiOS/HAL - Copyright (C) 2006-2014 Giovanni Di Sirio
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -50,18 +50,22 @@
  */
 #if defined(STM32F0XX_MD) || defined(__DOXYGEN__)
 #define PLATFORM_NAME           "STM32F051xx/F061xx Entry Level Medium Density devices"
-#define STM32F0XX
 
 #elif defined(STM32F0XX_LD)
 #define PLATFORM_NAME           "STM32F050xx/F060xx Entry Level Low Density devices"
-#define STM32F0XX
 
 #elif defined(STM32F030)
-#define PLATFORM_NAME           "STM32F050xx/F060xx Entry Level Value Line devices"
-#define STM32F0XX
+#define PLATFORM_NAME           "STM32F030xx Entry Level Value Line devices"
 
 #else
 #error "STM32F0xx device not specified"
+#endif
+
+/**
+ * @brief   Sub-family identifier.
+ */
+#if !defined(STM32F0XX) || defined(__DOXYGEN__)
+#define STM32F0XX
 #endif
 /** @} */
 

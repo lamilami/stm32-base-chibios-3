@@ -1,6 +1,6 @@
 /*
     ChibiOS/RT - Copyright (C) 2006,2007,2008,2009,2010,
-                 2011,2012,2013 Giovanni Di Sirio.
+                 2011,2012,2013,2014 Giovanni Di Sirio.
 
     This file is part of ChibiOS/RT.
 
@@ -64,7 +64,7 @@ void SVC_Handler(void) {
 
 #if CORTEX_USE_FPU
   /* Enforcing unstacking of the FP part of the context.*/
-  SCB_FPCCR &= ~FPCCR_LSPACT;
+  FPU->FPCCR &= ~FPU_FPCCR_LSPACT_Msk;
 #endif
 
   /* The port_extctx structure is pointed by the PSP register.*/
@@ -94,7 +94,7 @@ void PendSV_Handler(void) {
 
 #if CORTEX_USE_FPU
   /* Enforcing unstacking of the FP part of the context.*/
-  SCB_FPCCR &= ~FPCCR_LSPACT;
+  FPU->FPCCR &= ~FPU_FPCCR_LSPACT_Msk;
 #endif
 
   /* The port_extctx structure is pointed by the PSP register.*/

@@ -1,10 +1,10 @@
 /*
-    ChibiOS/RT - Copyright (C) 2006,2007,2008,2009,2010,
-                 2011,2012,2013 Giovanni Di Sirio.
+    ChibiOS/HAL - Copyright (C) 2006,2007,2008,2009,2010,
+                  2011,2012,2013,2014 Giovanni Di Sirio.
 
-    This file is part of ChibiOS/RT.
+    This file is part of ChibiOS/HAL 
 
-    ChibiOS/RT is free software; you can redistribute it and/or modify
+    ChibiOS/HAL is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
@@ -47,7 +47,7 @@
 /**
  * @brief   Type of a generic I/O queue structure.
  */
-typedef struct io_queue_t io_queue_t;
+typedef struct io_queue io_queue_t;
 
 /** @brief Queue notification callback type.*/
 typedef void (*qnotify_t)(io_queue_t *qp);
@@ -61,7 +61,7 @@ typedef void (*qnotify_t)(io_queue_t *qp);
  *          lock zone (see <b>I-Locked</b> and <b>S-Locked</b> states in
  *          @ref system_states) and is non-blocking.
  */
-struct io_queue_t {
+struct io_queue {
   threads_queue_t       q_waiting;  /**< @brief Waiting thread.             */
   size_t                q_counter;  /**< @brief Resources counter.          */
   uint8_t               *q_buffer;  /**< @brief Pointer to the queue buffer.*/
@@ -365,6 +365,10 @@ extern "C" {
 }
 #endif
 
+/* Types provided for backward compatibility, deprecated use.*/
+typedef io_queue_t GenericQueue;
+typedef input_queue_t InputQueue;
+typedef output_queue_t OutputQueue;
 
 #else /* defined(_CHIBIOS_RT_) && CH_USE_QUEUES */
 

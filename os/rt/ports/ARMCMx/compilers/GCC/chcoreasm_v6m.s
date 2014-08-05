@@ -1,6 +1,6 @@
 /*
     ChibiOS/RT - Copyright (C) 2006,2007,2008,2009,2010,
-                 2011,2012,2013 Giovanni Di Sirio.
+                 2011,2012,2013,2014 Giovanni Di Sirio.
 
     This file is part of ChibiOS/RT.
 
@@ -85,12 +85,12 @@ _port_switch:
                 .thumb_func
                 .globl  _port_thread_start
 _port_thread_start:
-/*#if CH_DBG_SYSTEM_STATE_CHECK
+#if CH_DBG_SYSTEM_STATE_CHECK
                 bl      _dbg_check_unlock
 #endif
 #if CH_DBG_STATISTICS
                 bl      _stats_stop_measure_crit_thd
-#endif*/
+#endif
                 cpsie   i
                 mov     r0, r5
                 blx     r4
@@ -104,36 +104,36 @@ _port_thread_start:
                 .thumb_func
                 .globl  _port_switch_from_isr
 _port_switch_from_isr:
-/*#if CH_DBG_STATISTICS
+#if CH_DBG_STATISTICS
                 bl      _stats_start_measure_crit_thd
 #endif
 #if CH_DBG_SYSTEM_STATE_CHECK
                 bl      _dbg_check_lock
-#endif */
+#endif
                 bl      chSchDoReschedule
-/*#if CH_DBG_SYSTEM_STATE_CHECK
+#if CH_DBG_SYSTEM_STATE_CHECK
                 bl      _dbg_check_unlock
 #endif
 #if CH_DBG_STATISTICS
                 bl      _stats_stop_measure_crit_thd
-#endif*/
+#endif
                 .globl  _port_exit_from_isr
 _port_exit_from_isr:
                 ldr     r2, .L2
                 ldr     r3, .L3
                 str     r3, [r2, #0]
-/*#if CORTEX_ALTERNATE_SWITCH
+#if CORTEX_ALTERNATE_SWITCH
                 cpsie   i
-#endif*/
+#endif
 .L1:            b       .L1
 
                 .align  2
 .L2:            .word   SCB_ICSR
-/*#if CORTEX_ALTERNATE_SWITCH
+#if CORTEX_ALTERNATE_SWITCH
 .L3:            .word   ICSR_PENDSVSET
-#else*/
+#else
 .L3:            .word   ICSR_NMIPENDSET
-/*#endif*/
+#endif
 
 #endif /* !defined(__DOXYGEN__) */
 
