@@ -87,7 +87,7 @@ SECTIONS
     PROVIDE(__exidx_start = .);
     *(.ARM.exidx* .gnu.linkonce.armexidx.*)
     PROVIDE(__exidx_end = .);
-   } > flash
+  } > flash
 
   .eh_frame_hdr :
   {

@@ -80,14 +80,14 @@ typedef enum IRQn
  */
 
 /**
- * @brief STM32F0xx Interrupt Number Definition, according to the selected device
+ * @brief KL2x Interrupt Number Definition, according to the selected device
  *        in @ref Library_configuration_section
  */
-#define __MPU_PRESENT             0 /*!< STM32F0xx do not provide MPU                  */
-#define __NVIC_PRIO_BITS          2 /*!< STM32F0xx uses 2 Bits for the Priority Levels */
-#define __Vendor_SysTickConfig    0 /*!< Set to 1 if different SysTick Config is used  */
+#define __MPU_PRESENT             0
+#define __NVIC_PRIO_BITS          2
+#define __Vendor_SysTickConfig    0
 
-#include "core_cm0plus.h"           /* Cortex-M0+ processor and core peripherals       */
+#include "core_cm0plus.h"        /* Cortex-M0+ processor and core peripherals */
 
 typedef struct
 {
