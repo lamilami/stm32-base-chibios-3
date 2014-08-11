@@ -67,37 +67,37 @@ void nRF24_GPIO_init(void)
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_InitStructure.GPIO_Pin = NRF_CE_Pin;
-	GPIO_Init(GPIOF, &GPIO_InitStructure);
+	GPIO_Init(((GPIO_TypeDef *) GPIOF_BASE), &GPIO_InitStructure);
 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
 	GPIO_InitStructure.GPIO_Pin = NRF_IRQ_Pin;
-	GPIO_Init(GPIOF, &GPIO_InitStructure);
+	GPIO_Init(((GPIO_TypeDef *) GPIOF_BASE), &GPIO_InitStructure);
 
 	// Тактирование модуля SPI1 и порта А
 //	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
 
 	// Настраиваем ноги SPI1 для работы в режиме альтернативной функции
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_0);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_0);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_0);
+	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource7, GPIO_AF_0);
+	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource5, GPIO_AF_0);
+	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource6, GPIO_AF_0);
 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_6 | GPIO_Pin_5;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);
 
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);
 
 #endif
 

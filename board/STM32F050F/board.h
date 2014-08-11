@@ -178,7 +178,7 @@
  * PA14 - SWCLK                     (alternate 0).
  * PA15 - PIN15                     (input pullup).
  */
-#define VAL_GPIOA_MODER             (PIN_MODE_ANALOG(GPIOA_PIN0) |         \
+#define VAL_GPIOA_MODER             (PIN_MODE_OUTPUT(GPIOA_PIN0) |         \
                                      PIN_MODE_ANALOG(GPIOA_PIN1) |           \
                                      PIN_MODE_ANALOG(GPIOA_PIN2) |           \
                                      PIN_MODE_ANALOG(GPIOA_PIN3) |           \
@@ -210,7 +210,7 @@
                                      PIN_OTYPE_PUSHPULL(GPIOA_SWDAT) |      \
                                      PIN_OTYPE_PUSHPULL(GPIOA_SWCLK) |      \
                                      PIN_OTYPE_PUSHPULL(GPIOA_PIN15))
-#define VAL_GPIOA_OSPEEDR           (PIN_OSPEED_2M(GPIOA_PIN0) |          \
+#define VAL_GPIOA_OSPEEDR           (PIN_OSPEED_40M(GPIOA_PIN0) |          \
                                      PIN_OSPEED_2M(GPIOA_PIN1) |            \
                                      PIN_OSPEED_2M(GPIOA_PIN2) |            \
                                      PIN_OSPEED_2M(GPIOA_PIN3) |            \
@@ -226,7 +226,7 @@
                                      PIN_OSPEED_40M(GPIOA_SWDAT) |          \
                                      PIN_OSPEED_40M(GPIOA_SWCLK) |          \
                                      PIN_OSPEED_2M(GPIOA_PIN15))
-#define VAL_GPIOA_PUPDR             (PIN_PUPDR_FLOATING(GPIOA_PIN0) |     \
+#define VAL_GPIOA_PUPDR             (PIN_PUPDR_PULLUP(GPIOA_PIN0) |     \
                                      PIN_PUPDR_FLOATING(GPIOA_PIN1) |         \
                                      PIN_PUPDR_FLOATING(GPIOA_PIN2) |         \
                                      PIN_PUPDR_FLOATING(GPIOA_PIN3) |         \

@@ -64,7 +64,7 @@ typedef enum
 #define NRF_CE_Pin GPIO_Pin_0
 #define NRF_IRQ_Pin GPIO_Pin_1
 
-#define NRF_CE_IRQ_Port		GPIOF
+#define NRF_CE_IRQ_Port		((GPIO_TypeDef *) GPIOF_BASE)
 #define nRF24_IRQ_EXTI_PortSource		EXTI_PortSourceGPIOF
 #define nRF24_IRQ_EXTI_PinSource		EXTI_PinSource1
 #define nRF24_IRQ_EXTI_Line				EXTI_Line1
@@ -75,7 +75,7 @@ typedef enum
 #define NRF_SPI_MISO_Pin GPIO_Pin_6
 #define NRF_SPI_MOSI_Pin GPIO_Pin_7
 
-#define NRF_SPI_Port		GPIOA
+#define NRF_SPI_Port		((GPIO_TypeDef *) GPIOA_BASE)
 #endif
 
 void nRF24_Init(void);

@@ -4,7 +4,7 @@
 #include "chconf.h"
 #include <DHT11_hal.h>
 
-#define ST2US_mod(n) ((((n) - 1UL) * (1000000UL / CH_CFG_ST_FREQUENCY)) + 1UL)
+//#define ST2US_mod(n) ((((n) - 1UL) * (1000000UL / CH_CFG_ST_FREQUENCY)) + 1UL)
 
 /*===========================================================================*/
 /* Driver local definitions.                                                 */
@@ -125,8 +125,9 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			}
 			else
 			{
-				sensor->time_measurment -= chVTGetSystemTime();
-				if (ST2US_mod(sensor->time_measurment) > 50)
+				volatile systime_t tmp_time = chVTGetSystemTime();
+				sensor->time_measurment = tmp_time - sensor->time_measurment;
+				if (ST2US(sensor->time_measurment) > 50)
 				{
 					sensor->data += 1;
 				}
@@ -149,7 +150,7 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			else
 			{
 				sensor->time_measurment -= chVTGetSystemTime();
-				if (ST2US_mod(sensor->time_measurment) > 40)
+				if (ST2US(sensor->time_measurment) > 40)
 				{
 					sensor->crc += 1;
 				}

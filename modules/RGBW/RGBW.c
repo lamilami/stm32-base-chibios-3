@@ -43,14 +43,14 @@ void static PWM_Init()
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(GPIOA, &GPIO_InitStruct);
+	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
 
 	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1;
-	GPIO_Init(GPIOB, &GPIO_InitStruct);
+	GPIO_Init(((GPIO_TypeDef *) GPIOB_BASE), &GPIO_InitStruct);
 
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_1);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_1);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource1, GPIO_AF_1);
+	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource6, GPIO_AF_1);
+	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource7, GPIO_AF_1);
+	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOB_BASE), GPIO_PinSource1, GPIO_AF_1);
 #endif
 
 	pwmStart(&PWMD3, &pwmcfg);
