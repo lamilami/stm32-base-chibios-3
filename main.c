@@ -28,6 +28,7 @@
 #include "DS18B20.h"
 #include "FloorHeater.h"
 #include "WatchDog.h"
+#include "DHT11.h"
 #include "RGBW.h"
 #include "cli.h"
 
@@ -63,11 +64,11 @@ static THD_FUNCTION(LedBlinker,arg)
 //				for (cnt = 0; cnt < 65535; cnt++)
 //		 {
 //		 msg++;
-		//			nop();
-		//			LEDSwap();
-		//			chThdSleepMilliseconds(100);
-		//			LEDSwap();
-		//			chThdSleepMilliseconds(100);
+		 //			nop();
+		 //			LEDSwap();
+		 //			chThdSleepMilliseconds(100);
+		 //			LEDSwap();
+		 //			chThdSleepMilliseconds(100);
 //		 }
 	}
 }
@@ -179,6 +180,7 @@ int main(void)
 	DS18B20_Start(2);
 	FloorHeater_Start(3);
 	RGBW_Start(4);
+	DHT11_Start(5);
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 #if LCD1602_PRESENT
@@ -218,6 +220,6 @@ int main(void)
 		LCD_PutUnsignedInt(tmp);
 		PrintStr("              ");
 #endif
-		chThdSleepSeconds(180);
+		chThdSleepSeconds(5);
 	}
 }
