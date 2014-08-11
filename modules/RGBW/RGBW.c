@@ -126,7 +126,7 @@ THD_FUNCTION(RGBW_Controller,arg)
 	const uint8_t Sunset_Duration_min = 60;
 	const uint8_t Daylight_Duration_hours = 12;
 
-	bool_t Sunrise = TRUE;
+	bool Sunrise = TRUE;
 
 	R_Tim.curr_power = &Inner_Val_RGBW.Red;
 	R_Tim.inc = 1;
