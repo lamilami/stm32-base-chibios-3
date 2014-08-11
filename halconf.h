@@ -30,8 +30,6 @@
 
 #include "mcuconf.h"
 
-#include "pal.h"
-
 #define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел
 //#define DEBUG_Discovery
 
@@ -59,7 +57,7 @@ void LEDBlinkI(uint8_t cnt);
  * @brief   Enables the PAL subsystem.
  */
 #if !defined(HAL_USE_PAL) || defined(__DOXYGEN__)
-#define HAL_USE_PAL                 FALSE
+#define HAL_USE_PAL                 TRUE
 #endif
 
 /**
