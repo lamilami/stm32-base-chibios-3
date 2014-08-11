@@ -2,14 +2,15 @@
 #define _CORE_H_
 
 #define MY_ADDR				0x10
-
 #define RADIO_PRESENT		FALSE
 #define DS18B20_PRESENT		FALSE
+#define DHT11_PRESENT		TRUE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
-#define RGBW_PRESENT		TRUE
+#define RGBW_PRESENT		FALSE
 #define CLI_PRESENT			FALSE
+
 
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
 #error "Can't use FloorHeater without DS18B20 temp sensor!"
