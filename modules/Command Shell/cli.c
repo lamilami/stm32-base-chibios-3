@@ -58,7 +58,7 @@ static const ShellCommand commands[] =
 static const ShellConfig shell_cfg1 =
 { (BaseSequentialStream *) &SD1, commands };
 
-static void CLI_GPIO_Init(void)
+/*static void CLI_GPIO_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStruct;
 
@@ -72,7 +72,12 @@ static void CLI_GPIO_Init(void)
 
 	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource9, GPIO_AF_1);
 	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource10, GPIO_AF_1);
-}
+
+	palSetPadMode(GPIOA, GPIOA_PIN9,
+			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN10,
+			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
+}*/
 
 THD_WORKING_AREA(waCLI, 128);
 //__attribute__((noreturn))
@@ -82,7 +87,12 @@ THD_FUNCTION(CLI,arg)
 
 	static event_listener_t EvtListenerShell;
 
-	CLI_GPIO_Init();
+//	CLI_GPIO_Init();
+
+	palSetPadMode(GPIOA, GPIOA_PIN9,
+			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN10,
+			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
 
 	sdStart(&SD1, NULL);
 
