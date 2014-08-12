@@ -28,6 +28,7 @@ typedef struct timer_str
 
 static virtual_timer_t vt_r, vt_b;
 
+/*
 void static PWM_Init()
 {
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -54,7 +55,7 @@ void static PWM_Init()
 #endif
 
 	pwmStart(&PWMD3, &pwmcfg);
-}
+}*/
 
 static void timer_handler(void *arg)
 {
@@ -107,7 +108,15 @@ THD_FUNCTION(RGBW_Controller,arg)
 
 	RGBW_Init(arg);
 
-	PWM_Init();
+//	PWM_Init();
+
+	palSetPadMode(GPIOA, GPIOA_PIN6,
+			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN7,
+			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOB, GPIOB_PIN1,
+			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+	pwmStart(&PWMD3, &pwmcfg);
 
 	RGBW_Thread = chThdGetSelfX();
 
