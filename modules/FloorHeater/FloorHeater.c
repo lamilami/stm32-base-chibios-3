@@ -93,9 +93,9 @@ void static PWM_Init()
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(GPIOA, &GPIO_InitStruct);
+	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
 
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_2);
+	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource10, GPIO_AF_2);
 #endif
 
 	pwmStart(&PWMD1, &pwmcfg);

@@ -90,7 +90,7 @@ void InitializeLCD(void)
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
+    GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);
     LCM_OUT &= ~(LCM_PIN_MASK);
     chThdSleepMilliseconds(15);
     LCM_OUT &= ~LCM_PIN_RS;

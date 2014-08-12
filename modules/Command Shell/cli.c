@@ -68,10 +68,10 @@ static void CLI_GPIO_Init(void)
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_Init(GPIOA, &GPIO_InitStruct);
+	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
 
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_1);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_1);
+	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource9, GPIO_AF_1);
+	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource10, GPIO_AF_1);
 }
 
 THD_WORKING_AREA(waCLI, 128);
