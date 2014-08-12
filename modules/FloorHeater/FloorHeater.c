@@ -78,9 +78,10 @@ void FloorHeater_Init(void *arg)
 	Core_Module_Register(&Core_FloorHeater);
 }
 
-void static PWM_Init()
-{
-	GPIO_InitTypeDef GPIO_InitStruct;
+
+//void static PWM_Init()
+//{
+/*	GPIO_InitTypeDef GPIO_InitStruct;
 
 #ifdef STM32F100C8
 
@@ -96,10 +97,12 @@ void static PWM_Init()
 	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
 
 	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource10, GPIO_AF_2);
-#endif
 
-	pwmStart(&PWMD1, &pwmcfg);
-}
+
+#endif*/
+
+
+//}
 
 THD_WORKING_AREA(waFloorHeater, 256);
 //__attribute__((noreturn))
@@ -110,7 +113,13 @@ THD_FUNCTION(FloorHeater,arg)
 
 	FloorHeater_Init(arg);
 
-	PWM_Init();
+//	PWM_Init();
+
+	rccEnableTIM1(TRUE);
+	palSetPadMode(GPIOA, GPIOA_PIN10,
+			PAL_MODE_ALTERNATE(2) | PAL_STM32_OSPEED_LOWEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+
+	pwmStart(&PWMD1, &pwmcfg);
 
 	core_base_struct_t *Tmp_Base;
 	Tmp_Base = Core_BasePtr;
