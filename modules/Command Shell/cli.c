@@ -11,20 +11,60 @@
 //#define SHELL_WA_SIZE   THD_WA_SIZE(512)
 THD_WORKING_AREA(waShell, 256);
 
-static void cmd_mem(BaseSequentialStream *chp, int argc, char *argv[])
+static core_base_struct_t* core_struct;
+
+static void cmd_dht11(BaseSequentialStream *chp, int argc, char *argv[])
 {
 //  size_t n, size;
 
 	(void) argv;
 	if (argc > 0)
 	{
-		chprintf(chp, "Usage: mem\r\n");
+		chprintf(chp, "Usage: dht11\r\n");
 		return;
 	}
+
+	core_struct = Core_GetStructAddrByType(DHT11);
+	DHT11_Inner_Val* dht11_ival = (DHT11_Inner_Val*) core_struct->inner_values;
+
+	while (TRUE)
+	{
+		chprintf(chp, "Temp: %u deg.C, Humid: %u%%", dht11_ival->temp >> 2, dht11_ival->humidity);
+	    if (shellGetLine(chp, NULL, 0)) {
+	      break;
+	    }
 //  n = chHeapStatus(NULL, &size);
 //  chprintf(chp, "core free memory : %u bytes\r\n", chCoreStatus());
 //  chprintf(chp, "heap fragments   : %u\r\n", n);
 //  chprintf(chp, "heap free total  : %u bytes\r\n", size);
+	}
+}
+
+static void cmd_rgbw(BaseSequentialStream *chp, int argc, char *argv[])
+{
+//  size_t n, size;
+
+	(void) argv;
+	if (argc > 0)
+	{
+		chprintf(chp, "Usage: rgbw\r\n");
+		return;
+	}
+
+	core_struct = Core_GetStructAddrByType(RGBW);
+	RGBW_Inner_Val* rgbw_ival = (RGBW_Inner_Val*) core_struct->inner_values;
+
+	while (TRUE)
+	{
+		chprintf(chp, "R: %u , G: %u , B: %u , W: %u", rgbw_ival->Red, rgbw_ival->Green, rgbw_ival->Blue, rgbw_ival->White);
+	    if (shellGetLine(chp, NULL, 0)) {
+	      break;
+	    }
+//  n = chHeapStatus(NULL, &size);
+//  chprintf(chp, "core free memory : %u bytes\r\n", chCoreStatus());
+//  chprintf(chp, "heap fragments   : %u\r\n", n);
+//  chprintf(chp, "heap free total  : %u bytes\r\n", size);
+	}
 }
 
 static void cmd_threads(BaseSequentialStream *chp, int argc, char *argv[])
@@ -51,33 +91,38 @@ static void cmd_threads(BaseSequentialStream *chp, int argc, char *argv[])
 
 static const ShellCommand commands[] =
 {
-{ "mem", cmd_mem },
-{ "threads", cmd_threads },
-{ NULL, NULL } };
+#if RGBW_PRESENT
+		{ "rgbw", cmd_rgbw },
+#endif
+#if DHT11_PRESENT
+		{ "dht11", cmd_dht11 },
+#endif
+		{ "threads", cmd_threads },
+		{ NULL, NULL } };
 
 static const ShellConfig shell_cfg1 =
 { (BaseSequentialStream *) &SD1, commands };
 
 /*static void CLI_GPIO_Init(void)
-{
-	GPIO_InitTypeDef GPIO_InitStruct;
+ {
+ GPIO_InitTypeDef GPIO_InitStruct;
 
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
+ RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+ GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;
+ GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
+ GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+ GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
+ GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+ GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
 
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource9, GPIO_AF_1);
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource10, GPIO_AF_1);
+ GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource9, GPIO_AF_1);
+ GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource10, GPIO_AF_1);
 
-	palSetPadMode(GPIOA, GPIOA_PIN9,
-			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
-	palSetPadMode(GPIOA, GPIOA_PIN10,
-			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
-}*/
+ palSetPadMode(GPIOA, GPIOA_PIN9,
+ PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
+ palSetPadMode(GPIOA, GPIOA_PIN10,
+ PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
+ }*/
 
 THD_WORKING_AREA(waCLI, 128);
 //__attribute__((noreturn))
@@ -89,10 +134,8 @@ THD_FUNCTION(CLI,arg)
 
 //	CLI_GPIO_Init();
 
-	palSetPadMode(GPIOA, GPIOA_PIN9,
-			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
-	palSetPadMode(GPIOA, GPIOA_PIN10,
-			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN9, PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN10, PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_PUSHPULL);
 
 	sdStart(&SD1, NULL);
 

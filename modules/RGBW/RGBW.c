@@ -73,10 +73,7 @@ static void timer_handler(void *arg)
 }
 
 volatile static core_base_struct_t Core_RGBW;
-volatile static struct
-{
-	volatile uint16_t Red, Green, Blue, White;
-} Inner_Val_RGBW;
+volatile static RGBW_Inner_Val Inner_Val_RGBW;
 
 void RGBW_Init(void *arg)
 {

@@ -52,6 +52,23 @@ uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
 	return ((*current).ival_size + 4);
 }
 
+core_base_struct_t* Core_GetStructAddrByType(const core_types_t type)
+{
+	static core_base_struct_t *current;
+	current = Core_BasePtr;
+	while (((*current).type != type) && ((*current).next != NULL))
+	{
+		current = (*current).next;
+	}
+
+	if ((*current).type != type)
+	{
+		return 0;
+	}
+
+	return current;
+}
+
 uint16_t Core_SetDataById(const uint8_t id, uint16_t value)
 {
 	static core_base_struct_t *current;

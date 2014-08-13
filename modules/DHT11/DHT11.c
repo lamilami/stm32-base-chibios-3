@@ -8,27 +8,12 @@
 
 //volatile uint16_t out_temp[4];
 volatile static core_base_struct_t Core_DHT11;
-volatile static struct
-{
-	volatile uint16_t temp;
-	volatile uint16_t humidity;
-	volatile uint16_t cont_errors;
-	union
-	{
-		volatile uint16_t global_errors[2];
-		volatile uint32_t global_errors_32;
-	};
-	union
-	{
-		volatile uint16_t critical_errors[2];
-		volatile uint32_t critical_errors_32;
-	};
-} Inner_Val;
+volatile static DHT11_Inner_Val Inner_Val;
 
 void DHT11_Init(void *arg)
 {
 	Core_DHT11.id = (uint32_t) arg;
-	Core_DHT11.type = Humidity;
+	Core_DHT11.type = DHT11;
 //	Core_Base.addr = MY_ADDR;
 //	Core_Base.mbox = &core_mb;
 	Core_DHT11.thread = chThdGetSelfX();
@@ -46,9 +31,9 @@ void DHT11_Init(void *arg)
 	Core_Module_Register(&Core_DHT11);
 }
 
-THD_WORKING_AREA(waDHT11, 256);
+THD_WORKING_AREA(waDHT11_thread, 256);
 //__attribute__((noreturn))
-THD_FUNCTION(DHT11,arg)
+THD_FUNCTION(DHT11_thread,arg)
 {
 	(void) arg;
 //	thread_t *answer_thread;
@@ -135,6 +120,6 @@ THD_FUNCTION(DHT11,arg)
 void DHT11_Start(uint8_t id)
 {
 #if DHT11_PRESENT
-	chThdCreateStatic(waDHT11, sizeof(waDHT11), HIGHPRIO, DHT11, (void*) (uint32_t) id);
+	chThdCreateStatic(waDHT11_thread, sizeof(waDHT11_thread), HIGHPRIO, DHT11_thread, (void*) (uint32_t) id);
 #endif
 }
