@@ -29,6 +29,7 @@ typedef enum
 	Vent,     		//**< Ack payload recieved */
 	Heater,
 	RGBW,
+	DHT11,
 	Other     		//**< Radio is busy */
 } core_types_t;
 
@@ -63,10 +64,15 @@ void Core_Module_Register(core_base_struct_t* Base_Struct);
 uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
 uint16_t Core_SetDataById(const uint8_t id, uint16_t value);
 
+core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
+
 void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
 //#define ABS(a) (((a) < 0) ? -(a) : (a))
 
 void Core_Start(uint8_t id);
+
+#include "DHT11.h"
+#include "RGBW.h"
 
 #endif
