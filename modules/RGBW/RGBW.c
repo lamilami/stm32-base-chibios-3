@@ -128,8 +128,8 @@ THD_FUNCTION(RGBW_Controller,arg)
 
 	uint32_t Timeval_Current;
 
-	const uint8_t Sunrise_Duration_min = 60;
-	const uint8_t Sunset_Duration_min = 60;
+	const uint8_t Sunrise_Duration_min = 5;
+	const uint8_t Sunset_Duration_min = 5;
 	const uint8_t Daylight_Duration_hours = 12;
 
 	bool Sunrise = TRUE;
