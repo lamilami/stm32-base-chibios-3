@@ -115,7 +115,7 @@
     <File name="os/rt/ports/ARMCMx/chcore.c" path="os/rt/ports/ARMCMx/chcore.c" type="1"/>
     <File name="os/hal/ports/common/ARMCMx" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F0xx" path="" type="2"/>
-    <File name="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s" path="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s" type="1"/>
+    <File name="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s" path="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.S" type="1"/>
     <File name="os/hal/include/hal_ioblock.h" path="os/hal/include/hal_ioblock.h" type="1"/>
     <File name="os/hal/include/can.h" path="os/hal/include/can.h" type="1"/>
     <File name="os/common/ports/ARMCMx" path="" type="2"/>
@@ -171,10 +171,10 @@
     <File name="stm32_lib/src/stm32f0xx_dma.c" path="stm32_lib/src/stm32f0xx_dma.c" type="1"/>
     <File name="modules/nRF24/include/nRF24_HAL.h" path="nRF24/include/nRF24_HAL.h" type="1"/>
     <File name="os/hal/src/hal_mmcsd.c" path="os/hal/src/hal_mmcsd.c" type="1"/>
-    <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
     <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" type="1"/>
+    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
+    <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" path="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" type="1"/>
     <File name="os/hal/include" path="" type="2"/>
