@@ -171,10 +171,13 @@ int main(void)
 	 * pressed the test procedure is launched with output on the serial
 	 * driver 1.
 	 */
-//	LEDB1Swap();
+	LEDB1Swap();
 	CLI_Start(-1);
 	WatchDog_Start(-1);
 	Core_Start(0);
+
+	chThdYield();
+
 	Radio_Start(1);
 	DS18B20_Start(2);
 	FloorHeater_Start(3);
@@ -191,7 +194,7 @@ int main(void)
 //    LCD_PutSignedInt(istr);
 //    PrintStr("CXEM.NET");
 
-	chThdSleepSeconds(1);
+	chThdYield();
 
 //	core_base_struct_t* PIR_Core = Core_GetStructAddrByType(PIR);
 //	static event_listener_t EvtListenerPIR;
@@ -232,10 +235,11 @@ int main(void)
 		switch (evt)
 		{
 		case (EVENT_MASK(0)):
+			LEDB1Swap();
 			break;
 		default:
 			break;
 		}
-//		chThdSleepSeconds(5);
+//		chThdSleepSeconds(1);
 	}
 }

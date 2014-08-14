@@ -7,6 +7,7 @@ void RGBW_Start(uint8_t id);
 typedef struct
 {
 	volatile uint16_t Red, Green, Blue, White;
+	volatile systime_t Correction_24H;
 } RGBW_Inner_Val;;
 
 #endif
