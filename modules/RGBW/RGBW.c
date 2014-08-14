@@ -74,7 +74,7 @@ static void timer_handler(void *arg)
 	chSysUnlockFromISR();
 }
 
-volatile static core_base_struct_t Core_RGBW;
+static core_base_struct_t Core_RGBW;
 volatile static RGBW_Inner_Val Inner_Val_RGBW;
 
 void RGBW_Init(void *arg)
@@ -182,14 +182,8 @@ THD_FUNCTION(RGBW_Controller,arg)
 				B_Tim.inc = 1;
 			}
 			chSysLock();
-			if (!chVTIsArmedI(R_Tim.vt))
-			{
-				chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
-			}
-			if (!chVTIsArmedI(B_Tim.vt))
-			{
-				chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
-			}
+			chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
+			chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
 			chSysUnlock();
 		}
 		else

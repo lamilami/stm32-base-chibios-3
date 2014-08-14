@@ -64,11 +64,11 @@ static THD_FUNCTION(LedBlinker,arg)
 //				for (cnt = 0; cnt < 65535; cnt++)
 //		 {
 //		 msg++;
-		 //			nop();
-		 //			LEDSwap();
-		 //			chThdSleepMilliseconds(100);
-		 //			LEDSwap();
-		 //			chThdSleepMilliseconds(100);
+		//			nop();
+		//			LEDSwap();
+		//			chThdSleepMilliseconds(100);
+		//			LEDSwap();
+		//			chThdSleepMilliseconds(100);
 //		 }
 	}
 }
@@ -172,7 +172,6 @@ int main(void)
 	 * driver 1.
 	 */
 //	LEDB1Swap();
-
 	CLI_Start(-1);
 	WatchDog_Start(-1);
 	Core_Start(0);
@@ -181,15 +180,24 @@ int main(void)
 	FloorHeater_Start(3);
 	RGBW_Start(4);
 	DHT11_Start(5);
+	PIR_Start(6);
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 #if LCD1602_PRESENT
-	InitializeLCD(); //Инициализация дисплея
+	InitializeLCD();     //Инициализация дисплея
 	ClearLCDScreen();//Очистка дисплея от мусора
 #endif
 
 //    LCD_PutSignedInt(istr);
 //    PrintStr("CXEM.NET");
+
+	chThdSleepSeconds(1);
+
+//	core_base_struct_t* PIR_Core = Core_GetStructAddrByType(PIR);
+//	static event_listener_t EvtListenerPIR;
+//	chEvtRegisterMask(&PIR_Core->event_source, &EvtListenerPIR, EVENT_MASK(0));
+
+	Core_Events_Register(PIR, 0);
 
 	while (TRUE)
 	{
@@ -200,7 +208,7 @@ int main(void)
 		data[0]=3;
 		Radio_Send_Command(10, RF_GET, 1, data);
 		chThdSleepSeconds(3);
-		Cursor(0,0); //Установка курсора
+		Cursor(0,0);     //Установка курсора
 		PrintStr("T=");//Написание текста
 		/*	    PutData[2][0]=1;
 		 PutData[2][1]=2;
@@ -213,13 +221,21 @@ int main(void)
 		LCD_PutUnsignedInt((tmp&3)*25);
 		PrintStr("              ");
 		Cursor(1,0);
-		PrintStr("PWR="); //Написание текста
+		PrintStr("PWR=");     //Написание текста
 		tmp = PutData[3][3]*256+PutData[3][4];
 //	    LCD_PutSignedInt(tmp>>2);
 //	    PrintStr(".");
 		LCD_PutUnsignedInt(tmp);
 		PrintStr("              ");
 #endif
-		chThdSleepSeconds(5);
+		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
+		switch (evt)
+		{
+		case (EVENT_MASK(0)):
+			break;
+		default:
+			break;
+		}
+//		chThdSleepSeconds(5);
 	}
 }

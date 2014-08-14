@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 //volatile uint16_t out_temp[4];
-volatile static core_base_struct_t Core_DHT11;
+static core_base_struct_t Core_DHT11;
 volatile static DHT11_Inner_Val Inner_Val;
 
 void DHT11_Init(void *arg)
@@ -58,7 +58,7 @@ THD_FUNCTION(DHT11_thread,arg)
 
 	static dht11_t DHTD1;
 	static int8_t humidity, temperature;
-	static EXTConfig extcfg =
+/*	static EXTConfig extcfg =
 	{
 	{
 	{ EXT_CH_MODE_DISABLED, NULL },
@@ -83,12 +83,12 @@ THD_FUNCTION(DHT11_thread,arg)
 	{ EXT_CH_MODE_DISABLED, NULL },
 	{ EXT_CH_MODE_DISABLED, NULL },
 	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL } } };
+	{ EXT_CH_MODE_DISABLED, NULL } } };*/
 
 	/*
 	 * Activates the EXT driver 1.
 	 */
-	extStart(&EXTD1, &extcfg);
+/*	extStart(&EXTD1, &extcfg);*/
 
 	DHTD1.ext_pin = 0;
 	DHTD1.ext_port = GPIOA;

@@ -7,7 +7,7 @@
 #include <stdlib.h>
 
 //volatile uint16_t out_temp[4];
-volatile static core_base_struct_t Core_DS18B20;
+static core_base_struct_t Core_DS18B20;
 volatile static struct
 {
 	volatile uint16_t temp[4];
