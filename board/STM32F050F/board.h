@@ -122,6 +122,8 @@
 
 #define GPIOF_OSC_IN                0
 #define GPIOF_OSC_OUT               1
+#define GPIOF_PIN0                	0
+#define GPIOF_PIN1               	1
 #define GPIOF_PIN2                  2
 #define GPIOF_PIN3                  3
 #define GPIOF_PIN4                  4
