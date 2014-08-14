@@ -2,8 +2,8 @@
 #include "hal.h"
 #include "core.h"
 
-volatile static core_base_struct_t Core_Base;
-volatile core_base_struct_t* Core_BasePtr = NULL;
+static core_base_struct_t Core_Base;
+core_base_struct_t* Core_BasePtr = NULL;
 //static msg_t core_msg_b;
 
 void Core_Module_Register(core_base_struct_t* Base_Struct)
@@ -45,8 +45,7 @@ uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
 	{
 		data[0] = (*current).set_value;
 		data[1] = (*current).current_value;
-		ByteArrayCopy((uint8_t*) (*current).inner_values, (uint8_t*) (data + 4),
-				(*current).ival_size);
+		ByteArrayCopy((uint8_t*) (*current).inner_values, (uint8_t*) (data + 4), (*current).ival_size);
 	}
 
 	return ((*current).ival_size + 4);
@@ -119,6 +118,39 @@ THD_FUNCTION(Core,arg)
 //	chRegSetThreadName("Core");
 
 	Core_Init(arg);
+
+	EXTConfig extcfg =
+	{
+	{
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL } } };
+
+	/*
+	 * Activates the EXT driver 1.
+	 */
+	extStart(&EXTD1, &extcfg);
+
 //	core_base_struct_t *current;
 //	current = &Core_Base;
 //	chMBObjectInit(&core_mb, core_mb_b, 1);
@@ -145,10 +177,7 @@ void sleepUntil(systime_t *previous, systime_t period)
 	systime_t future = *previous + period;
 	chSysLock();
 	systime_t now = chVTGetSystemTime();
-	int mustDelay =
-			now < *previous ?
-					(now < future && future < *previous) :
-					(now < future || future < *previous);
+	int mustDelay = now < *previous ? (now < future && future < *previous) : (now < future || future < *previous);
 	if (mustDelay)
 		chThdSleepS(future - now);
 	chSysUnlock();
@@ -162,4 +191,11 @@ void ByteArrayCopy(uint8_t* src, uint8_t* dst, const uint8_t cnt)
 	{
 		dst[i] = src[i];
 	}
+}
+
+bool Core_Events_Register(const core_types_t type, uint8_t evt_mask)
+{
+	core_base_struct_t* current_Core = Core_GetStructAddrByType(type);
+	chEvtRegisterMask(&current_Core->event_source, &Core_EvtListener, EVENT_MASK(evt_mask));
+	return TRUE;
 }

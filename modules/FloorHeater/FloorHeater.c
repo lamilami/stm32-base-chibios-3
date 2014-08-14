@@ -3,7 +3,7 @@
 #include "FloorHeater.h"
 #include "core.h"
 
-volatile static core_base_struct_t Core_FloorHeater;
+static core_base_struct_t Core_FloorHeater;
 volatile static struct
 {
 	volatile uint16_t Power;

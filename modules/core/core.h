@@ -10,6 +10,7 @@
 #define WATCHDOG_PRESENT	FALSE
 #define RGBW_PRESENT		TRUE
 #define CLI_PRESENT			TRUE
+#define PIR_PRESENT			TRUE
 
 
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
@@ -30,6 +31,7 @@ typedef enum
 	Heater,
 	RGBW,
 	DHT11,
+	PIR,
 	Other     		//**< Radio is busy */
 } core_types_t;
 
@@ -40,31 +42,33 @@ typedef enum
 	RW
 } core_direction_t;
 
-typedef volatile struct core_base_struct core_base_struct_t;
+typedef struct core_base_struct core_base_struct_t;
 
 struct core_base_struct
 {
-	volatile uint8_t id;
-	volatile core_types_t type;
+	uint8_t id;
+	core_types_t type;
 //	uint8_t addr;
 //	mailbox_t *mbox;
-	volatile thread_t *thread;
-	volatile core_direction_t direction;
-	volatile uint16_t current_value;
+	thread_t *thread;
+	event_source_t event_source;
+	core_direction_t direction;
+	uint16_t current_value;
 	volatile uint16_t set_value;
 	volatile void* inner_values;
 	volatile uint8_t ival_size;
 	volatile const char* description;
-	volatile core_base_struct_t *next;
+	core_base_struct_t *next;
 };
 
-extern volatile core_base_struct_t* Core_BasePtr;
+extern core_base_struct_t* Core_BasePtr;
 
 void Core_Module_Register(core_base_struct_t* Base_Struct);
 uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
 uint16_t Core_SetDataById(const uint8_t id, uint16_t value);
 
 core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
+bool Core_Events_Register(const core_types_t type, uint8_t evt_mask);
 
 void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
@@ -72,7 +76,11 @@ void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
 
 void Core_Start(uint8_t id);
 
+EXTConfig extcfg;
+event_listener_t Core_EvtListener;
+
 #include "DHT11.h"
 #include "RGBW.h"
+#include "PIR.h"
 
 #endif
