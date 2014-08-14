@@ -30,9 +30,9 @@ static void pir_ext_handler(EXTDriver *extp, expchannel_t channel)
 	chSysUnlockFromISR();
 }
 
-void PIR_Init(void *arg)
+void PIR_Init(void)
 {
-	Core_PIR.id = (uint32_t) arg;
+//	Core_PIR.id = (uint32_t) arg;
 	Core_PIR.type = PIR;
 //	Core_Base.addr = MY_ADDR;
 //	Core_Base.mbox = &core_mb;
@@ -47,7 +47,7 @@ void PIR_Init(void *arg)
 	/*	chSysLock();
 	 Core_Base.next = &Core_DS18B20;
 	 chSysUnlock();*/
-	Inner_Val.Delay_Seconds = 180;
+	Inner_Val.Delay_Seconds = 5;
 
 	chEvtObjectInit(&Core_PIR.event_source);
 
@@ -58,12 +58,12 @@ void PIR_Start(uint8_t id)
 {
 #if PIR_PRESENT
 //	chThdCreateStatic(waPIR_thread, sizeof(waPIR_thread), NORMALPRIO, PIR_thread, (void*) (uint32_t) id);
-	PIR_Init((void*) (uint32_t) id);
+	PIR_Init();
 
 
 
 	palSetPad(GPIOF, GPIOF_PIN1);
-	palSetPadMode(GPIOF, GPIOF_PIN1, PAL_MODE_INPUT_PULLUP);
+	palSetPadMode(GPIOF, GPIOF_PIN1, PAL_MODE_INPUT);
 
 	EXTChannelConfig extcfg;
 	extcfg.mode = EXT_CH_MODE_RISING_EDGE | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOF;

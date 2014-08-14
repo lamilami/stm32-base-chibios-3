@@ -90,6 +90,8 @@ void RGBW_Init(void *arg)
 	Core_RGBW.inner_values = &Inner_Val_RGBW;
 	Core_RGBW.ival_size = sizeof(Inner_Val_RGBW);
 
+	Inner_Val_RGBW.Correction_24H = 117;
+
 	Core_Module_Register(&Core_RGBW);
 }
 
@@ -130,9 +132,9 @@ THD_FUNCTION(RGBW_Controller,arg)
 
 	uint32_t Timeval_Current;
 
-	const uint8_t Sunrise_Duration_min = 5;
-	const uint8_t Sunset_Duration_min = 5;
-	const uint8_t Daylight_Duration_hours = 12;
+	const uint8_t Sunrise_Duration_min = 60;
+	const uint8_t Sunset_Duration_min = 60;
+	const uint8_t Daylight_Duration_hours = 15;
 
 	bool Sunrise = TRUE;
 
@@ -151,6 +153,10 @@ THD_FUNCTION(RGBW_Controller,arg)
 	B_Tim.max_power = 5000;
 	B_Tim.rise_time = GetRiseTicksPeriod(Sunrise_Duration_min, B_Tim.max_power);
 	B_Tim.vt = &vt_b;
+	chSysLock();
+	chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
+	chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
+	chSysUnlock();
 
 	while (TRUE)
 	{
@@ -173,7 +179,7 @@ THD_FUNCTION(RGBW_Controller,arg)
 			}
 			else
 			{
-				Timeval_Current = 24 * 3600;
+				Timeval_Current = 24 * 3600 - Inner_Val_RGBW.Correction_24H;
 				sleepUntil(&time_night, S2ST(Timeval_Current));
 				Sunrise = TRUE;
 				R_Tim.rise_time = GetRiseTicksPeriod(Sunrise_Duration_min, R_Tim.max_power);

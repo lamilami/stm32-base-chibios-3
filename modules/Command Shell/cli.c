@@ -9,7 +9,7 @@
 /*===========================================================================*/
 
 //#define SHELL_WA_SIZE   THD_WA_SIZE(512)
-THD_WORKING_AREA(waShell, 256);
+THD_WORKING_AREA(waShell, 512);
 
 static core_base_struct_t* core_struct;
 static char nullchar;

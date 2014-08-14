@@ -120,12 +120,12 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			sensor->bit_count++;
 			if (sensor->bit_count % 2 == 1)
 			{
-				sensor->time_measurment = chVTGetSystemTime();
+				sensor->time_measurment = chVTGetSystemTimeX();
 				sensor->data <<= 1;
 			}
 			else
 			{
-				volatile systime_t tmp_time = chVTGetSystemTime();
+				volatile systime_t tmp_time = chVTGetSystemTimeX();
 				sensor->time_measurment = tmp_time - sensor->time_measurment;
 				if (ST2US(sensor->time_measurment) > 50)
 				{
@@ -144,12 +144,12 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			//sensor->crc = sensor->crc << 1;
 			if (sensor->bit_count % 2 == 1)
 			{
-				sensor->time_measurment = chVTGetSystemTime();
+				sensor->time_measurment = chVTGetSystemTimeX();
 				sensor->crc <<= 1;
 			}
 			else
 			{
-				sensor->time_measurment -= chVTGetSystemTime();
+				sensor->time_measurment -= chVTGetSystemTimeX();
 				if (ST2US(sensor->time_measurment) > 40)
 				{
 					sensor->crc += 1;

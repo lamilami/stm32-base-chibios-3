@@ -108,7 +108,7 @@ void Core_Init(void *arg)
 	Core_Module_Register(&Core_Base);
 }
 
-THD_WORKING_AREA(waCore, 128);
+THD_WORKING_AREA(waCore, 256);
 //__attribute__((noreturn))
 THD_FUNCTION(Core,arg)
 {
@@ -167,9 +167,9 @@ THD_FUNCTION(Core,arg)
 
 void Core_Start(uint8_t id)
 {
-	Core_Init((void*) (uint32_t) id);
-//	chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO,
-//			Core, arg);
+//	Core_Init((void*) (uint32_t) id);
+	chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO,
+			Core, (void*) (uint32_t) id);
 }
 
 void sleepUntil(systime_t *previous, systime_t period)
