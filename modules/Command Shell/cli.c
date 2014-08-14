@@ -68,6 +68,7 @@ static void cmd_rgbw(BaseSequentialStream *chp, int argc, char *argv[]) {
 	}
 }
 
+#ifdef CMD_THREADS
 static void cmd_threads(BaseSequentialStream *chp, int argc, char *argv[]) {
 //  static const char *states[] = {THD_STATE_NAMES};
 //  thread_t *tp;
@@ -87,6 +88,7 @@ static void cmd_threads(BaseSequentialStream *chp, int argc, char *argv[]) {
 	 tp = chRegNextThread(tp);
 	 } while (tp != NULL); */
 }
+#endif
 
 static const ShellCommand commands[] = {
 #if RGBW_PRESENT
@@ -95,7 +97,8 @@ static const ShellCommand commands[] = {
 #if DHT11_PRESENT
 		{ "dht11", cmd_dht11 },
 #endif
-		{ "threads", cmd_threads }, { NULL, NULL } };
+//		{ "threads", cmd_threads },
+		{ NULL, NULL } };
 
 static const ShellConfig shell_cfg1 =
 		{ (BaseSequentialStream *) &SD1, commands };

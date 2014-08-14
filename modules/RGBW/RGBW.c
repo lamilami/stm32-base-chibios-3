@@ -59,6 +59,7 @@ void static PWM_Init()
 
 static void timer_handler(void *arg)
 {
+	chSysLockFromISR();
 	timer_str_t* timer_s = (timer_str_t*) arg;
 	*timer_s->curr_power += timer_s->inc;
 	if ((*timer_s->curr_power >= timer_s->max_power) || (*timer_s->curr_power <= 0))
@@ -70,6 +71,7 @@ static void timer_handler(void *arg)
 		chVTSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
 	}
 	chEvtSignalI(RGBW_Thread, (eventmask_t) EVENTMASK_UPDATE);
+	chSysUnlockFromISR();
 }
 
 volatile static core_base_struct_t Core_RGBW;
@@ -179,9 +181,6 @@ THD_FUNCTION(RGBW_Controller,arg)
 				R_Tim.inc = 1;
 				B_Tim.inc = 1;
 			}
-		}
-		else
-		{
 			chSysLock();
 			if (!chVTIsArmedI(R_Tim.vt))
 			{
@@ -192,6 +191,9 @@ THD_FUNCTION(RGBW_Controller,arg)
 				chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
 			}
 			chSysUnlock();
+		}
+		else
+		{
 			chEvtWaitAll((eventmask_t) EVENTMASK_UPDATE);
 		}
 	}
