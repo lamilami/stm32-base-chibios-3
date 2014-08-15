@@ -180,7 +180,8 @@ THD_FUNCTION(RGBW_Controller,arg)
 			else
 			{
 				Timeval_Current = 24 * 3600 - Inner_Val_RGBW.Correction_24H;
-				sleepUntil(&time_night, S2ST(Timeval_Current));
+				time_night = chThdSleepUntilWindowed(time_night,time_night + S2ST(Timeval_Current));
+//				sleepUntil(&time_night, S2ST(Timeval_Current));
 				Sunrise = TRUE;
 				R_Tim.rise_time = GetRiseTicksPeriod(Sunrise_Duration_min, R_Tim.max_power);
 				B_Tim.rise_time = GetRiseTicksPeriod(Sunrise_Duration_min, B_Tim.max_power);
@@ -203,5 +204,6 @@ void RGBW_Start(uint8_t id)
 {
 #if RGBW_PRESENT
 	chThdCreateStatic(waRGBW_Controller, sizeof(waRGBW_Controller), NORMALPRIO, RGBW_Controller, (void*) (uint32_t) id);
+	chThdYield();
 #endif
 }

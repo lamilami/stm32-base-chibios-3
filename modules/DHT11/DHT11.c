@@ -121,5 +121,6 @@ void DHT11_Start(uint8_t id)
 {
 #if DHT11_PRESENT
 	chThdCreateStatic(waDHT11_thread, sizeof(waDHT11_thread), HIGHPRIO, DHT11_thread, (void*) (uint32_t) id);
+	chThdYield();
 #endif
 }

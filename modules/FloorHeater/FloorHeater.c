@@ -14,26 +14,26 @@ volatile static struct
 typedef struct
 {
 //  double dState;                  // Last position input
-	int32_t iState; // Integrator state
+	int32_t iState;     // Integrator state
 	int32_t iMax, iMin;
 	// Maximum and minimum allowable integrator state
-	int32_t iGain, // integral gain
-			pGain; // proportional gain
+	int32_t iGain,     // integral gain
+			pGain;     // proportional gain
 //             dGain;         // derivative gain
 } SPid;
 
-int32_t UpdatePID(SPid * pid, int32_t error) //, double position)
+int32_t UpdatePID(SPid * pid, int32_t error)     //, double position)
 {
 	float pTerm, /*dTerm,*/iTerm;
 
-	pTerm = error << pid->pGain; // calculate the proportional term
-	pid->iState += error; // calculate the integral state with appropriate limiting
+	pTerm = error << pid->pGain;     // calculate the proportional term
+	pid->iState += error;     // calculate the integral state with appropriate limiting
 
 	if (pid->iState > pid->iMax)
 		pid->iState = pid->iMax;
 	else if (pid->iState < pid->iMin)
 		pid->iState = pid->iMin;
-	iTerm = pid->iState << pid->iGain; // calculate the integral term
+	iTerm = pid->iState << pid->iGain;     // calculate the integral term
 //  dTerm = pid->dGain * (position - pid->dState);
 //  pid->dState = position;
 
@@ -42,7 +42,7 @@ int32_t UpdatePID(SPid * pid, int32_t error) //, double position)
 	Inner_Val.iPower = iTerm;
 	chSysUnlock();
 
-	return (pTerm + iTerm); // - dTerm);
+	return (pTerm + iTerm);     // - dTerm);
 }
 
 static PWMConfig pwmcfg =
@@ -78,32 +78,29 @@ void FloorHeater_Init(void *arg)
 	Core_Module_Register(&Core_FloorHeater);
 }
 
-
 //void static PWM_Init()
 //{
 /*	GPIO_InitTypeDef GPIO_InitStruct;
 
-#ifdef STM32F100C8
+ #ifdef STM32F100C8
 
-#else
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
-//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1,ENABLE);
+ #else
+ RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+ //	RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1,ENABLE);
 
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
+ GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10;
+ GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
+ GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+ GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
+ GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
+ GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
 
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource10, GPIO_AF_2);
+ GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource10, GPIO_AF_2);
 
 
-#endif*/
-
+ #endif*/
 
 //}
-
 THD_WORKING_AREA(waFloorHeater, 256);
 //__attribute__((noreturn))
 THD_FUNCTION(FloorHeater,arg)
@@ -116,12 +113,11 @@ THD_FUNCTION(FloorHeater,arg)
 //	PWM_Init();
 
 	rccEnableTIM1(TRUE);
-	palSetPadMode(GPIOA, GPIOA_PIN10,
-			PAL_MODE_ALTERNATE(2) | PAL_STM32_OSPEED_LOWEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN10, PAL_MODE_ALTERNATE(2) | PAL_STM32_OSPEED_LOWEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
 
 	pwmStart(&PWMD1, &pwmcfg);
 
-	core_base_struct_t *Tmp_Base;
+	volatile core_base_struct_t *Tmp_Base;
 	Tmp_Base = Core_BasePtr;
 	while ((*Tmp_Base).type != Temp)
 	{
@@ -138,7 +134,7 @@ THD_FUNCTION(FloorHeater,arg)
 	Floor_PID.iMax = 25;
 	Floor_PID.iMin = -2;
 
-	uint16_t Desired_Temp; // = Set_TEMP << 2;
+	uint16_t Desired_Temp;     // = Set_TEMP << 2;
 
 	systime_t time = chVTGetSystemTime();
 //	pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 9000));   // 10% duty cycle
@@ -148,8 +144,7 @@ THD_FUNCTION(FloorHeater,arg)
 		volatile int16_t ipwr;
 		msg = chMsgSend(DS18B20_Thread, msg);
 		Desired_Temp = (*Tmp_Base).set_value;
-		volatile int32_t pwr = UpdatePID(&Floor_PID,
-				(float) (Desired_Temp - msg));
+		volatile int32_t pwr = UpdatePID(&Floor_PID, (float) (Desired_Temp - msg));
 		if (pwr > 100)
 			pwr = 100;
 		if (pwr < 0)
@@ -166,8 +161,7 @@ THD_FUNCTION(FloorHeater,arg)
 		Inner_Val.Power = ipwr;
 		chSysUnlock();
 
-		pwmEnableChannel(&PWMD1, 2,
-				PWM_PERCENTAGE_TO_WIDTH(&PWMD1, ipwr * 100)); // 10% duty cycle
+		pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, ipwr * 100));     // 10% duty cycle
 
 //		time += S2ST(120);
 		sleepUntil(&time, S2ST(60));
@@ -177,8 +171,8 @@ THD_FUNCTION(FloorHeater,arg)
 void FloorHeater_Start(uint8_t id)
 {
 #if FloorHeater_PRESENT
-	chThdCreateStatic(waFloorHeater, sizeof(waFloorHeater), HIGHPRIO,
-			FloorHeater, (void*) (uint32_t) id);
+	chThdCreateStatic(waFloorHeater, sizeof(waFloorHeater), HIGHPRIO, FloorHeater, (void*) (uint32_t) id);
+	chThdYield();
 #endif
 }
 

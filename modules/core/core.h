@@ -7,9 +7,9 @@
 #define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
-#define WATCHDOG_PRESENT	FALSE
+#define WATCHDOG_PRESENT	TRUE
 #define RGBW_PRESENT		TRUE
-#define CLI_PRESENT			FALSE
+#define CLI_PRESENT			TRUE
 #define PIR_PRESENT			TRUE
 
 
@@ -61,14 +61,14 @@ struct core_base_struct
 	core_base_struct_t *next;
 };
 
-extern core_base_struct_t* Core_BasePtr;
+volatile extern core_base_struct_t* Core_BasePtr;
 
 void Core_Module_Register(core_base_struct_t* Base_Struct);
 uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
 uint16_t Core_SetDataById(const uint8_t id, uint16_t value);
 
 core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
-bool Core_Events_Register(const core_types_t type, uint8_t evt_mask);
+bool Core_Events_Register(const core_types_t type);
 
 void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
