@@ -450,5 +450,6 @@ void Radio_Start(uint8_t id)
 {
 #if RADIO_PRESENT
 	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO, Radio, NULL);
+	chThdYield();
 #endif
 }

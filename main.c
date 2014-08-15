@@ -172,18 +172,18 @@ int main(void)
 	 * driver 1.
 	 */
 	LEDB1Swap();
-	CLI_Start(-1);
 	WatchDog_Start(-1);
+	CLI_Start(-1);
 	Core_Start(0);
 
-	chThdYield();
+//	chThdYield();
 
 	Radio_Start(1);
 	DS18B20_Start(2);
 	FloorHeater_Start(3);
 	RGBW_Start(4);
 	DHT11_Start(5);
-	PIR_Start(6);
+	PIR_Start();
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 #if LCD1602_PRESENT
@@ -194,13 +194,11 @@ int main(void)
 //    LCD_PutSignedInt(istr);
 //    PrintStr("CXEM.NET");
 
-	chThdYield();
+//	chThdYield();
 
 //	core_base_struct_t* PIR_Core = Core_GetStructAddrByType(PIR);
 //	static event_listener_t EvtListenerPIR;
 //	chEvtRegisterMask(&PIR_Core->event_source, &EvtListenerPIR, EVENT_MASK(0));
-
-	Core_Events_Register(PIR, 0);
 
 	while (TRUE)
 	{
@@ -234,7 +232,7 @@ int main(void)
 		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
 		switch (evt)
 		{
-		case (EVENT_MASK(0)):
+		case (EVENT_MASK((uint8_t) PIR)):
 			LEDB1Swap();
 			break;
 		default:
