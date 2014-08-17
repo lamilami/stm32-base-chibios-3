@@ -7,9 +7,9 @@
 #define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
-#define WATCHDOG_PRESENT	TRUE
+#define WATCHDOG_PRESENT	FALSE
 #define RGBW_PRESENT		TRUE
-#define CLI_PRESENT			TRUE
+#define CLI_PRESENT			FALSE
 #define PIR_PRESENT			TRUE
 
 //#define StM() WatchDog_Start();
