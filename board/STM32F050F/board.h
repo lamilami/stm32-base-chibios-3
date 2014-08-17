@@ -27,6 +27,8 @@
 #define BOARD_ST_STM32F050F_BASE
 #define BOARD_NAME                  "ST STM32F050F-Base"
 
+#define STM32_PCLK1 STM32_PCLK
+
 /*
  * Board oscillators-related settings.
  * NOTE: LSE not fitted.
