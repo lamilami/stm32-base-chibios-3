@@ -56,7 +56,7 @@ void Core_Module_Register(core_base_struct_t* Base_Struct)
 	chSysUnlock();
 
 	chEvtObjectInit(&(*Base_Struct).event_source);
-	chEvtRegisterMask(&(*Base_Struct).event_source, &Core_EvtListener, EVENT_MASK((uint8_t) (*Base_Struct).type));
+	chEvtRegisterMask(&(*Base_Struct).event_source, &(*Base_Struct).event_listener, EVENT_MASK((uint8_t) (*Base_Struct).type));
 }
 /*
 uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)

@@ -135,7 +135,7 @@ THD_FUNCTION(RGBW_Controller,arg)
 		switch (evt)
 		{
 		case (EVENTMASK_UPDATE):
-			LEDB1Swap();
+//			LEDB1Swap();
 			break;
 		default:
 			break;
