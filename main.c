@@ -164,21 +164,13 @@ int main(void)
 	 * driver 1.
 	 */
 	LEDB1Swap();
+	Core_Start();
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 #if LCD1602_PRESENT
 	InitializeLCD();     //Инициализация дисплея
 	ClearLCDScreen();//Очистка дисплея от мусора
 #endif
-
-//    LCD_PutSignedInt(istr);
-//    PrintStr("CXEM.NET");
-
-//	chThdYield();
-
-//	core_base_struct_t* PIR_Core = Core_GetStructAddrByType(PIR);
-//	static event_listener_t EvtListenerPIR;
-//	chEvtRegisterMask(&PIR_Core->event_source, &EvtListenerPIR, EVENT_MASK(0));
 
 	while (TRUE)
 	{

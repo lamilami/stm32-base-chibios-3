@@ -2,6 +2,34 @@
 #include "hal.h"
 #include "core.h"
 
+static void Start_Modules(void)
+{
+#if WATCHDOG_PRESENT
+	WatchDog_Start();
+#endif
+#if CLI_PRESENT
+	CLI_Start();
+#endif
+#if RADIO_PRESENT
+	Radio_Start();
+#endif
+#if DS18B20_PRESENT
+	DS18B20_Start();
+#endif
+#if FloorHeater_PRESENT
+	FloorHeater_Start();
+#endif
+#if RGBW_PRESENT
+	RGBW_Start();
+#endif
+#if DHT11_PRESENT
+	DHT11_Start();
+#endif
+#if PIR_PRESENT
+	PIR_Start();
+#endif
+}
+
 static core_base_struct_t Core_Base;
 volatile core_base_struct_t* Core_BasePtr = NULL;
 //static msg_t core_msg_b;
@@ -26,6 +54,9 @@ void Core_Module_Register(core_base_struct_t* Base_Struct)
 	}
 	(*Base_Struct).next = NULL;
 	chSysUnlock();
+
+	chEvtObjectInit(&Base_Struct->event_source);
+	chEvtRegisterMask(&Base_Struct->event_source, &Core_EvtListener, EVENT_MASK((uint8_t) Base_Struct->type));
 }
 /*
 uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
@@ -94,12 +125,7 @@ uint16_t Core_SetDataById(const uint8_t id, uint16_t value)
 
 void Core_Init()
 {
-//	Core_Base.id = (uint32_t) arg;
 	Core_Base.type = Base;
-//	Core_Base.addr = MY_ADDR;
-//	Core_Base.mbox = &core_mb;
-//	Core_Base.thread = chThdGetSelfX();
-	Core_Base.direction = None;
 	Core_Base.ival_size = 0;
 	Core_Base.next = NULL;
 	Core_Base.description = "Test Board 1\0";
@@ -172,15 +198,7 @@ void Core_Start()
 	{
 		chThdYield();
 	}
-	WatchDog_Start();
-	CLI_Start();
-//	Core_Start();
-	Radio_Start();
-	DS18B20_Start();
-	FloorHeater_Start();
-	RGBW_Start();
-	DHT11_Start();
-	PIR_Start();
+	Start_Modules();
 }
 
 /*void sleepUntil(systime_t *previous, systime_t period)
@@ -204,6 +222,7 @@ void ByteArrayCopy(uint8_t* src, uint8_t* dst, const uint8_t cnt)
 	}
 }
 
+/*
 bool Core_Events_Register(const core_types_t type)
 {
 	core_base_struct_t* current_Core;
@@ -213,4 +232,4 @@ bool Core_Events_Register(const core_types_t type)
 	chEvtObjectInit(&current_Core->event_source);
 	chEvtRegisterMask(&current_Core->event_source, &Core_EvtListener, EVENT_MASK((uint8_t) type));
 	return TRUE;
-}
+}*/

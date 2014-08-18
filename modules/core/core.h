@@ -12,6 +12,16 @@
 #define CLI_PRESENT			TRUE
 #define PIR_PRESENT			TRUE
 
+//#define StM() WatchDog_Start();
+
+#include "radio.h"
+#include "DS18B20.h"
+#include "FloorHeater.h"
+#include "WatchDog.h"
+#include "DHT11.h"
+#include "RGBW.h"
+#include "cli.h"
+#include "PIR.h"
 
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
 #error "Can't use FloorHeater without DS18B20 temp sensor!"
@@ -35,20 +45,12 @@ typedef enum
 	Other     		//**< Radio is busy */
 } core_types_t;
 
-typedef enum
-{
-	None,
-	RO,     		//**< Radio is idle */
-	RW
-} core_direction_t;
-
 typedef struct core_base_struct core_base_struct_t;
 
 struct core_base_struct
 {
 	core_types_t type;
 	event_source_t event_source;
-	core_direction_t direction;
 	volatile void* inner_values;
 	volatile uint8_t ival_size;
 	volatile const char* description;
@@ -72,14 +74,5 @@ void Core_Start();
 
 EXTConfig extcfg;
 event_listener_t Core_EvtListener;
-
-#include "radio.h"
-#include "DS18B20.h"
-#include "FloorHeater.h"
-#include "WatchDog.h"
-#include "DHT11.h"
-#include "RGBW.h"
-#include "cli.h"
-#include "PIR.h"
 
 #endif

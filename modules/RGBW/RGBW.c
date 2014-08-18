@@ -28,35 +28,6 @@ typedef struct timer_str
 
 static virtual_timer_t vt_r, vt_b;
 
-/*
-void static PWM_Init()
-{
-	GPIO_InitTypeDef GPIO_InitStruct;
-
-#ifdef STM32F100C8
-
-#else
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
-
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
-
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1;
-	GPIO_Init(((GPIO_TypeDef *) GPIOB_BASE), &GPIO_InitStruct);
-
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource6, GPIO_AF_1);
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource7, GPIO_AF_1);
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOB_BASE), GPIO_PinSource1, GPIO_AF_1);
-#endif
-
-	pwmStart(&PWMD3, &pwmcfg);
-}*/
-
 static void timer_handler(void *arg)
 {
 	chSysLockFromISR();
@@ -79,14 +50,9 @@ volatile static RGBW_Inner_Val Inner_Val_RGBW;
 
 void RGBW_Init()
 {
-//	Core_RGBW.id = (uint32_t) arg;
 	Core_RGBW.type = RGBW;
-//	Core_RGBW.thread = chThdGetSelfX();
-	Core_RGBW.direction = RW;
 	Core_RGBW.next = NULL;
 	Core_RGBW.description = "RGBW Controller";
-//	Core_RGBW.current_value = 0xffff;
-//	Core_RGBW.set_value = 0x68;     //Initial Floor Temp value 0x68 = 26 deg. Celsius
 	Core_RGBW.inner_values = &Inner_Val_RGBW;
 	Core_RGBW.ival_size = sizeof(Inner_Val_RGBW);
 
@@ -105,11 +71,6 @@ THD_WORKING_AREA(waRGBW_Controller, 256);
 THD_FUNCTION(RGBW_Controller,arg)
 {
 	(void) arg;
-	//	chRegSetThreadName("DS18B20");
-
-	RGBW_Init();
-
-//	PWM_Init();
 
 	palSetPadMode(GPIOA, GPIOA_PIN6,
 			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
@@ -153,6 +114,7 @@ THD_FUNCTION(RGBW_Controller,arg)
 	B_Tim.max_power = 5000;
 	B_Tim.rise_time = GetRiseTicksPeriod(Sunrise_Duration_min, B_Tim.max_power);
 	B_Tim.vt = &vt_b;
+
 	chSysLock();
 	chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
 	chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
@@ -203,6 +165,7 @@ THD_FUNCTION(RGBW_Controller,arg)
 void RGBW_Start()
 {
 #if RGBW_PRESENT
+	RGBW_Init();
 	chThdCreateStatic(waRGBW_Controller, sizeof(waRGBW_Controller), NORMALPRIO, RGBW_Controller, NULL);
 	chThdYield();
 #endif

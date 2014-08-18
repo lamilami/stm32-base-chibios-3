@@ -12,21 +12,12 @@ volatile static DHT11_Inner_Val Inner_Val;
 
 void DHT11_Init()
 {
-//	Core_DHT11.id = (uint32_t) arg;
 	Core_DHT11.type = DHT11;
-//	Core_Base.addr = MY_ADDR;
-//	Core_Base.mbox = &core_mb;
-//	Core_DHT11.thread = chThdGetSelfX();
-	Core_DHT11.direction = RW;
+//	Core_DHT11.direction = RW;
 	Core_DHT11.next = NULL;
 	Core_DHT11.description = "4 Floor Temp Sensors DS18B20";
-//	Core_DHT11.current_value = 0xffff;
-//	Core_DHT11.set_value = 0x68;     //Initial Floor Temp value 0x68 = 26 deg. Celsius
 	Core_DHT11.inner_values = &Inner_Val;
 	Core_DHT11.ival_size = sizeof(Inner_Val);
-	/*	chSysLock();
-	 Core_Base.next = &Core_DS18B20;
-	 chSysUnlock();*/
 
 	Core_Module_Register(&Core_DHT11);
 }
@@ -39,13 +30,6 @@ THD_FUNCTION(DHT11_thread,arg)
 //	thread_t *answer_thread;
 	//	chRegSetThreadName("DS18B20");
 
-	DHT11_Init();
-
-	/*	volatile core_base_struct_t Core_DS18B20 =
-	 { 2,Temp,chThdGetSelfX(),RW,0,0,&Inner_Val,sizeof(Inner_Val),"4 Floor Temp Sensors DS18B20",NULL
-	 };*/
-
-//	Core_Module_Register (&Core_DS18B20);
 	static ucnt_t global_errors = 0;
 	static ucnt_t critical_errors = 0;
 	static uint16_t cont_errors = 0;
@@ -58,37 +42,6 @@ THD_FUNCTION(DHT11_thread,arg)
 
 	static dht11_t DHTD1;
 	static int8_t humidity, temperature;
-/*	static EXTConfig extcfg =
-	{
-	{
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL } } };*/
-
-	/*
-	 * Activates the EXT driver 1.
-	 */
-/*	extStart(&EXTD1, &extcfg);*/
 
 	DHTD1.ext_pin = 0;
 	DHTD1.ext_port = GPIOA;
@@ -120,6 +73,7 @@ THD_FUNCTION(DHT11_thread,arg)
 void DHT11_Start()
 {
 #if DHT11_PRESENT
+	DHT11_Init();
 	chThdCreateStatic(waDHT11_thread, sizeof(waDHT11_thread), HIGHPRIO, DHT11_thread, NULL);
 	chThdYield();
 #endif
