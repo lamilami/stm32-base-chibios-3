@@ -3,6 +3,6 @@
 
 #define NUMBER_OF_SENSORS	4
 
-void DS18B20_Start(uint8_t id);
+void DS18B20_Start();
 
 #endif

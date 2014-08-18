@@ -404,7 +404,7 @@ THD_FUNCTION(Radio_Processor,arg)
 	(void) arg;
 //	chRegSetThreadName("Radio_Processor");
 	payload_t * rx_buffer = 0;
-	uint8_t cnt;
+//	uint8_t cnt;
 	chThdSleepSeconds(1);
 	while (TRUE)
 	{
@@ -422,7 +422,7 @@ THD_FUNCTION(Radio_Processor,arg)
 			Radio_Send_Command((*rx_buffer).src_addr, RF_PING, 0, NULL);
 //			nRF24_hw_ce_high();
 			break;
-		case RF_GET:
+/*		case RF_GET:
 			cnt = Core_GetDataById((*rx_buffer).data[0],
 					(uint16_t*) &((*rx_buffer).data[1]));
 			Radio_Send_Command((*rx_buffer).src_addr, RF_PUT, cnt + 1,
@@ -437,7 +437,7 @@ THD_FUNCTION(Radio_Processor,arg)
 		case RF_SET:
 			Core_SetDataById((*rx_buffer).data[0],(uint16_t) ((*rx_buffer).data[1]+256*(*rx_buffer).data[2]));
 			Radio_Send_Command((*rx_buffer).src_addr, RF_OK, 0, NULL); // load message into radio
-			break;
+			break;*/
 		default:
 //		nRF24_hw_ce_high();
 			break;
@@ -446,7 +446,7 @@ THD_FUNCTION(Radio_Processor,arg)
 	}
 }
 
-void Radio_Start(uint8_t id)
+void Radio_Start()
 {
 #if RADIO_PRESENT
 	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO, Radio, NULL);

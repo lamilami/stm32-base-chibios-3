@@ -46,15 +46,9 @@ typedef struct core_base_struct core_base_struct_t;
 
 struct core_base_struct
 {
-	uint8_t id;
 	core_types_t type;
-//	uint8_t addr;
-//	mailbox_t *mbox;
-	thread_t *thread;
 	event_source_t event_source;
 	core_direction_t direction;
-	uint16_t current_value;
-	volatile uint16_t set_value;
 	volatile void* inner_values;
 	volatile uint8_t ival_size;
 	volatile const char* description;
@@ -64,8 +58,8 @@ struct core_base_struct
 volatile extern core_base_struct_t* Core_BasePtr;
 
 void Core_Module_Register(core_base_struct_t* Base_Struct);
-uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
-uint16_t Core_SetDataById(const uint8_t id, uint16_t value);
+//uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
+//uint16_t Core_SetDataById(const uint8_t id, uint16_t value);
 
 core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
 bool Core_Events_Register(const core_types_t type);
@@ -74,13 +68,18 @@ void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
 //#define ABS(a) (((a) < 0) ? -(a) : (a))
 
-void Core_Start(uint8_t id);
+void Core_Start();
 
 EXTConfig extcfg;
 event_listener_t Core_EvtListener;
 
+#include "radio.h"
+#include "DS18B20.h"
+#include "FloorHeater.h"
+#include "WatchDog.h"
 #include "DHT11.h"
 #include "RGBW.h"
+#include "cli.h"
 #include "PIR.h"
 
 #endif
