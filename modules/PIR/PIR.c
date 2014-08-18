@@ -62,7 +62,5 @@ void PIR_Start()
 	chSysUnlock();
 
 	PIR_Init();
-
-	Core_Events_Register(PIR);
 #endif
 }

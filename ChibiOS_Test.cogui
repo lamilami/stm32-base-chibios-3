@@ -17,43 +17,109 @@
 <part id="4"/>
 <part id="5"/>
 <part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
+<part id="15"/>
+<part id="16"/>
+<part id="17"/>
+<part id="18"/>
+<part id="19"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="767" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4916" selectionTopPixel="2728"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" partName="core.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core/core.c" title="core.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core/core.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/core/core.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2012" selectionTopPixel="1350"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="396" selectionTopPixel="75"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.c" partName="FloorHeater.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.c" title="FloorHeater.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="105" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4395" selectionTopPixel="2203"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" partName="DS18B20.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" title="DS18B20.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4763" selectionTopPixel="2593"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4646" selectionTopPixel="2563"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="RGBW.c" partName="RGBW.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/RGBW/RGBW.c" title="RGBW.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/RGBW/RGBW.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="RGBW.c" partName="RGBW.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/RGBW/RGBW.c" title="RGBW.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/RGBW/RGBW.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/RGBW/RGBW.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6005" selectionTopPixel="1363"/>
+<editorState selectionHorizontalPixel="0" selectionLength="10" selectionOffset="4775" selectionTopPixel="2085"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.c" partName="DHT11.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DHT11/DHT11.c" title="DHT11.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DHT11/DHT11.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DHT11/DHT11.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="584" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1741" selectionTopPixel="688"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" partName="core.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core/core.h" title="core.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core/core.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/core/core.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1092" selectionTopPixel="525"/>
+<editorState selectionHorizontalPixel="0" selectionLength="16" selectionOffset="1982" selectionTopPixel="673"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="halconf.h" partName="halconf.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/halconf.h" title="halconf.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/halconf.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/halconf.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="4633"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="chconf.h" partName="chconf.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/chconf.h" title="chconf.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/chconf.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/chconf.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="2" selectionOffset="14929" selectionTopPixel="6784"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="chtypes.h" partName="chtypes.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/os/rt/ports/ARMCMx/compilers/GCC/chtypes.h" title="chtypes.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/os/rt/ports/ARMCMx/compilers/GCC/chtypes.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/os/rt/ports/ARMCMx/compilers/GCC/chtypes.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="31" selectionOffset="1224" selectionTopPixel="480"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="PIR.h" partName="PIR.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/PIR/PIR.h" title="PIR.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/PIR/PIR.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/PIR/PIR.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="19" selectionOffset="53" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="PIR.c" partName="PIR.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/PIR/PIR.c" title="PIR.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/PIR/PIR.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/PIR/PIR.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="960" selectionTopPixel="448"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="RGBW.h" partName="RGBW.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/RGBW/RGBW.h" title="RGBW.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/RGBW/RGBW.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/RGBW/RGBW.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="chevents.c" partName="chevents.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/os/rt/src/chevents.c" title="chevents.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/os/rt/src/chevents.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/os/rt/src/chevents.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5268" selectionTopPixel="1365"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="chschd.h" partName="chschd.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/os/rt/include/chschd.h" title="chschd.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/os/rt/include/chschd.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/os/rt/include/chschd.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="5" selectionOffset="13341" selectionTopPixel="5475"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="cli.c" partName="cli.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Command Shell/cli.c" title="cli.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Command Shell/cli.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/Command Shell/cli.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="450" selectionTopPixel="1693"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.c" partName="WatchDog.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/WatchDog.c" title="WatchDog.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/WatchDog.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/Watchdog/WatchDog.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="14" selectionOffset="406" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" partName="radio.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/src/radio.c" title="radio.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/nRF24/src/radio.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/nRF24/src/radio.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="11803" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.h" partName="DS18B20.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.h" title="DS18B20.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="13" selectionOffset="78" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.h" partName="FloorHeater.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.h" title="FloorHeater.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/FloorHeater/FloorHeater.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="17" selectionOffset="148" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
 <viewState isPinned="false">
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+<view IMemento.internal.id="org.eclipse.search.text.FileSearchResultPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" org.eclipse.search.resultpage.limit="1000" org.eclipse.search.resultpage.sorting="2"/>
 </viewState>
 </view>
 <view id="org.eclipse.debug.ui.DebugView" partName="Debug">
@@ -143,6 +209,7 @@
 <view id="org.coocox.component.ui.Help"/>
 <view id="org.eclipse.ui.views.ContentOutline"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.search.ui.views.SearchView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -163,8 +230,10 @@
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@171be16" ratio="0.6995013" ratioLeft="561" ratioRight="241" relationship="4" relative="org.eclipse.ui.internal.ViewStack@a50a00">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
 </presentation>
 </folder>
 </info>
@@ -313,82 +382,172 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/core/core.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/RGBW/RGBW.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DHT11/DHT11.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/core/core.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/core/core.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/PIR/PIR.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/RGBW/RGBW.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/rt/include/chevents.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/rt/src/chevents.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/rt/include/chschd.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/Command Shell/cli.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/Watchdog/WatchDog.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/nRF24/src/radio.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DHT11/DHT11.c"/>
 </editors>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="767" y="0"/>
+<item historyLabel="PIR.c" index="2">
+<position info="not_deleted" x="1398" y="0"/>
 </item>
-<item historyLabel="core.c" index="1">
-<position info="not_deleted" x="2012" y="0"/>
+<item historyLabel="RGBW.c" index="3">
+<position info="not_deleted" x="1763" y="0"/>
 </item>
-<item historyLabel="FloorHeater.c" index="2">
-<position info="not_deleted" x="1765" y="0"/>
-</item>
-<item historyLabel="FloorHeater.c" index="2">
-<position info="not_deleted" x="3356" y="0"/>
-</item>
-<item historyLabel="DS18B20.c" index="3">
-<position info="not_deleted" x="671" y="0"/>
-</item>
-<item historyLabel="RGBW.c" index="4">
-<position info="not_deleted" x="2197" y="0"/>
-</item>
-<item historyLabel="DHT11.c" index="5">
-<position info="not_deleted" x="390" y="0"/>
-</item>
-<item historyLabel="FloorHeater.c" index="2">
-<position info="not_deleted" x="3356" y="62"/>
-</item>
-<item historyLabel="DHT11.c" index="5">
-<position info="not_deleted" x="388" y="41"/>
-</item>
-<item historyLabel="RGBW.c" index="4">
-<position info="not_deleted" x="2195" y="40"/>
-</item>
-<item historyLabel="FloorHeater.c" index="2">
-<position info="not_deleted" x="3356" y="62"/>
-</item>
-<item historyLabel="FloorHeater.c" index="2">
-<position info="not_deleted" x="4516" y="0"/>
-</item>
-<item historyLabel="FloorHeater.c" index="2">
-<position info="not_deleted" x="105" y="0"/>
-</item>
-<item historyLabel="core.c" index="1">
-<position info="not_deleted" x="2012" y="0"/>
-</item>
-<item historyLabel="core.h" index="6">
+<item historyLabel="PIR.c" index="2">
 <position/>
 </item>
-<item historyLabel="DS18B20.c" index="3">
-<position info="not_deleted" x="832" y="39"/>
+<item historyLabel="core.h" index="0">
+<position info="not_deleted" x="1257" y="0"/>
 </item>
-<item historyLabel="DS18B20.c" index="3">
-<position info="not_deleted" x="871" y="0"/>
+<item historyLabel="PIR.c" index="2">
+<position/>
 </item>
-<item historyLabel="DS18B20.c" index="3">
-<position info="not_deleted" x="832" y="0"/>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="4766" y="20"/>
 </item>
-<item historyLabel="DHT11.c" index="5">
+<item historyLabel="PIR.c" index="2">
+<position info="not_deleted" x="960" y="0"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="977" y="15"/>
+</item>
+<item historyLabel="chevents.h" index="4">
+<position info="not_deleted" x="7707" y="0"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="977" y="15"/>
+</item>
+<item historyLabel="chevents.h" index="4">
+<position info="not_deleted" x="7707" y="0"/>
+</item>
+<item historyLabel="chevents.c" index="5">
+<position info="not_deleted" x="4983" y="17"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="977" y="15"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="1127" y="0"/>
+</item>
+<item historyLabel="RGBW.c" index="3">
+<position info="not_deleted" x="4943" y="0"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="1080" y="0"/>
+</item>
+<item historyLabel="core.h" index="0">
+<position info="not_deleted" x="1982" y="16"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="1024" y="17"/>
+</item>
+<item historyLabel="chevents.h" index="4">
+<position info="not_deleted" x="7695" y="17"/>
+</item>
+<item historyLabel="chevents.h" index="4">
+<position info="not_deleted" x="7740" y="0"/>
+</item>
+<item historyLabel="chevents.h" index="4">
+<position info="not_deleted" x="7695" y="17"/>
+</item>
+<item historyLabel="chevents.c" index="5">
+<position info="not_deleted" x="5347" y="0"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="1024" y="17"/>
+</item>
+<item historyLabel="main.c" index="6">
+<position/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="1024" y="17"/>
+</item>
+<item historyLabel="chevents.c" index="5">
+<position info="not_deleted" x="5268" y="0"/>
+</item>
+<item historyLabel="chschd.h" index="7">
+<position info="not_deleted" x="13341" y="5"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="1024" y="17"/>
+</item>
+<item historyLabel="main.c" index="6">
+<position/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="1024" y="17"/>
+</item>
+<item historyLabel="RGBW.c" index="3">
+<position info="not_deleted" x="4949" y="0"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="165" y="0"/>
+</item>
+<item historyLabel="cli.c" index="8">
+<position info="not_deleted" x="450" y="11"/>
+</item>
+<item historyLabel="main.c" index="6">
+<position/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="125" y="0"/>
+</item>
+<item historyLabel="WatchDog.c" index="9">
+<position info="not_deleted" x="406" y="14"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="208" y="0"/>
+</item>
+<item historyLabel="radio.c" index="10">
+<position info="not_deleted" x="11803" y="11"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="253" y="0"/>
+</item>
+<item historyLabel="DS18B20.h" index="11">
+<position info="not_deleted" x="78" y="13"/>
+</item>
+<item historyLabel="DS18B20.c" index="12">
+<position info="not_deleted" x="4646" y="0"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="307" y="0"/>
+</item>
+<item historyLabel="FloorHeater.h" index="13">
+<position info="not_deleted" x="148" y="17"/>
+</item>
+<item historyLabel="FloorHeater.c" index="14">
+<position info="not_deleted" x="4395" y="0"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="352" y="0"/>
+</item>
+<item historyLabel="RGBW.c" index="3">
+<position info="not_deleted" x="4775" y="10"/>
+</item>
+<item historyLabel="core.c" index="1">
+<position info="not_deleted" x="352" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="15">
 <position info="not_deleted" x="584" y="0"/>
 </item>
-<item historyLabel="RGBW.c" index="4">
-<position info="not_deleted" x="6005" y="0"/>
+<item historyLabel="DHT11.c" index="15">
+<position info="not_deleted" x="1741" y="0"/>
 </item>
-<item historyLabel="DS18B20.c" index="3">
-<position info="not_deleted" x="4763" y="0"/>
-</item>
-<item historyLabel="core.h" index="6">
-<position info="not_deleted" x="1092" y="0"/>
-</item>
-<item active="true" historyLabel="RGBW.c" index="4">
-<position info="not_deleted" x="6005" y="0"/>
+<item active="true" historyLabel="main.c" index="6">
+<position/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -397,47 +556,50 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.h" tooltip="ChibiOS_Test/modules/FloorHeater/FloorHeater.h">
+<persistable path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.h" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.h">
+<persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" tooltip="ChibiOS_Test/modules/nRF24/src/radio.c">
+<persistable path="/ChibiOS_Test/modules/nRF24/src/radio.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.c" tooltip="ChibiOS_Test/modules/Watchdog/WatchDog.c">
+<persistable path="/ChibiOS_Test/modules/Watchdog/WatchDog.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="cli.c" tooltip="ChibiOS_Test/modules/Command Shell/cli.c">
+<persistable path="/ChibiOS_Test/modules/Command Shell/cli.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chschd.h" tooltip="ChibiOS_Test/os/rt/include/chschd.h">
+<persistable path="/ChibiOS_Test/os/rt/include/chschd.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chevents.h" tooltip="ChibiOS_Test/os/rt/include/chevents.h">
+<persistable path="/ChibiOS_Test/os/rt/include/chevents.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="RGBW.h" tooltip="ChibiOS_Test/modules/RGBW/RGBW.h">
+<persistable path="/ChibiOS_Test/modules/RGBW/RGBW.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PIR.c" tooltip="ChibiOS_Test/modules/PIR/PIR.c">
+<persistable path="/ChibiOS_Test/modules/PIR/PIR.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PIR.h" tooltip="ChibiOS_Test/modules/PIR/PIR.h">
+<persistable path="/ChibiOS_Test/modules/PIR/PIR.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chtypes.h" tooltip="ChibiOS_Test/os/rt/ports/ARMCMx/compilers/GCC/chtypes.h">
+<persistable path="/ChibiOS_Test/os/rt/ports/ARMCMx/compilers/GCC/chtypes.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chconf.h" tooltip="ChibiOS_Test/chconf.h">
+<persistable path="/ChibiOS_Test/chconf.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="halconf.h" tooltip="ChibiOS_Test/halconf.h">
+<persistable path="/ChibiOS_Test/halconf.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_Test/modules/core/core.h">
 <persistable path="/ChibiOS_Test/modules/core/core.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.c" tooltip="ChibiOS_Test/modules/DHT11/DHT11.c">
 <persistable path="/ChibiOS_Test/modules/DHT11/DHT11.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="RGBW.c" tooltip="ChibiOS_Test/modules/RGBW/RGBW.c">
-<persistable path="/ChibiOS_Test/modules/RGBW/RGBW.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.c">
-<persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.c" tooltip="ChibiOS_Test/modules/FloorHeater/FloorHeater.c">
-<persistable path="/ChibiOS_Test/modules/FloorHeater/FloorHeater.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="ChibiOS_Test/modules/core/core.c">
-<persistable path="/ChibiOS_Test/modules/core/core.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ChibiOS_Test/main.c">
-<persistable path="/ChibiOS_Test/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PIR.h" tooltip="ChibiOS_Test/modules/PIR/PIR.h">
-<persistable path="/ChibiOS_Test/modules/PIR/PIR.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PIR.c" tooltip="ChibiOS_Test/modules/PIR/PIR.c">
-<persistable path="/ChibiOS_Test/modules/PIR/PIR.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chthreads.h" tooltip="ChibiOS_Test/os/rt/include/chthreads.h">
-<persistable path="/ChibiOS_Test/os/rt/include/chthreads.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chthreads.c" tooltip="ChibiOS_Test/os/rt/src/chthreads.c">
-<persistable path="/ChibiOS_Test/os/rt/src/chthreads.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="cli.h" tooltip="ChibiOS_Test/modules/Command Shell/cli.h">
-<persistable path="/ChibiOS_Test/modules/Command Shell/cli.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="shell.c" tooltip="ChibiOS_Test/os/various/shell.c">
-<persistable path="/ChibiOS_Test/os/various/shell.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chsys.c" tooltip="ChibiOS_Test/os/rt/src/chsys.c">
-<persistable path="/ChibiOS_Test/os/rt/src/chsys.c"/>
 </file>
 </mruList>
 </workbench>

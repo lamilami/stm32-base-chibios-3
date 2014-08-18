@@ -54,8 +54,6 @@ THD_FUNCTION(DS18B20,arg)
 	thread_t *answer_thread;
 	//	chRegSetThreadName("DS18B20");
 
-	DS18B20_Init();
-
 	/*	volatile core_base_struct_t Core_DS18B20 =
 	 { 2,Temp,chThdGetSelfX(),RW,0,0,&Inner_Val,sizeof(Inner_Val),"4 Floor Temp Sensors DS18B20",NULL
 	 };*/
@@ -198,6 +196,7 @@ THD_FUNCTION(DS18B20,arg)
 void DS18B20_Start()
 {
 #if DS18B20_PRESENT
+	DS18B20_Init();
 	chThdCreateStatic(waDS18B20, sizeof(waDS18B20), HIGHPRIO, DS18B20, NULL);
 	chThdYield();
 #endif

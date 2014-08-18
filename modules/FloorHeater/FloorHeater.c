@@ -112,8 +112,6 @@ THD_FUNCTION(FloorHeater,arg)
 	(void) arg;
 //	chRegSetThreadName("FloorHeater");
 
-	FloorHeater_Init();
-
 //	PWM_Init();
 
 	rccEnableTIM1(TRUE);
@@ -174,7 +172,7 @@ THD_FUNCTION(FloorHeater,arg)
 
 void FloorHeater_Start()
 {
-
+	FloorHeater_Init();
 	chThdCreateStatic(waFloorHeater, sizeof(waFloorHeater), HIGHPRIO, FloorHeater, NULL);
 	chThdYield();
 }
