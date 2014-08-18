@@ -51,6 +51,7 @@ struct core_base_struct
 {
 	core_types_t type;
 	event_source_t event_source;
+	event_listener_t event_listener;
 	volatile void* inner_values;
 	volatile uint8_t ival_size;
 	volatile const char* description;
