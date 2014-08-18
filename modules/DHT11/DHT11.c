@@ -10,18 +10,18 @@
 static core_base_struct_t Core_DHT11;
 volatile static DHT11_Inner_Val Inner_Val;
 
-void DHT11_Init(void *arg)
+void DHT11_Init()
 {
-	Core_DHT11.id = (uint32_t) arg;
+//	Core_DHT11.id = (uint32_t) arg;
 	Core_DHT11.type = DHT11;
 //	Core_Base.addr = MY_ADDR;
 //	Core_Base.mbox = &core_mb;
-	Core_DHT11.thread = chThdGetSelfX();
+//	Core_DHT11.thread = chThdGetSelfX();
 	Core_DHT11.direction = RW;
 	Core_DHT11.next = NULL;
 	Core_DHT11.description = "4 Floor Temp Sensors DS18B20";
-	Core_DHT11.current_value = 0xffff;
-	Core_DHT11.set_value = 0x68;     //Initial Floor Temp value 0x68 = 26 deg. Celsius
+//	Core_DHT11.current_value = 0xffff;
+//	Core_DHT11.set_value = 0x68;     //Initial Floor Temp value 0x68 = 26 deg. Celsius
 	Core_DHT11.inner_values = &Inner_Val;
 	Core_DHT11.ival_size = sizeof(Inner_Val);
 	/*	chSysLock();
@@ -39,7 +39,7 @@ THD_FUNCTION(DHT11_thread,arg)
 //	thread_t *answer_thread;
 	//	chRegSetThreadName("DS18B20");
 
-	DHT11_Init(arg);
+	DHT11_Init();
 
 	/*	volatile core_base_struct_t Core_DS18B20 =
 	 { 2,Temp,chThdGetSelfX(),RW,0,0,&Inner_Val,sizeof(Inner_Val),"4 Floor Temp Sensors DS18B20",NULL
@@ -117,10 +117,10 @@ THD_FUNCTION(DHT11_thread,arg)
 	}
 }
 
-void DHT11_Start(uint8_t id)
+void DHT11_Start()
 {
 #if DHT11_PRESENT
-	chThdCreateStatic(waDHT11_thread, sizeof(waDHT11_thread), HIGHPRIO, DHT11_thread, (void*) (uint32_t) id);
+	chThdCreateStatic(waDHT11_thread, sizeof(waDHT11_thread), HIGHPRIO, DHT11_thread, NULL);
 	chThdYield();
 #endif
 }

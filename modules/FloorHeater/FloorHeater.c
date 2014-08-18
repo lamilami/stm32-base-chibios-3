@@ -3,6 +3,8 @@
 #include "FloorHeater.h"
 #include "core.h"
 
+#if FloorHeater_PRESENT
+
 static core_base_struct_t Core_FloorHeater;
 volatile static struct
 {
@@ -21,6 +23,8 @@ typedef struct
 			pGain;     // proportional gain
 //             dGain;         // derivative gain
 } SPid;
+
+
 
 int32_t UpdatePID(SPid * pid, int32_t error)     //, double position)
 {
@@ -56,14 +60,14 @@ NULL, /* No callback */
 { PWM_OUTPUT_ACTIVE_HIGH, NULL },
 { PWM_OUTPUT_DISABLED, NULL }, }, 0 };
 
-void FloorHeater_Init(void *arg)
+void FloorHeater_Init()
 {
 
-	Core_FloorHeater.id = (uint32_t) arg;
+//	Core_FloorHeater.id = (uint32_t) arg;
 	Core_FloorHeater.type = Heater;
 //	Core_Base.addr = MY_ADDR;
 //	Core_Base.mbox = &core_mb;
-	Core_FloorHeater.thread = chThdGetSelfX();
+//	Core_FloorHeater.thread = chThdGetSelfX();
 	Core_FloorHeater.direction = RO;
 	Core_FloorHeater.next = NULL;
 	Core_FloorHeater.description = "FloorHeater, 330 Watt PWM (PI)";
@@ -108,7 +112,7 @@ THD_FUNCTION(FloorHeater,arg)
 	(void) arg;
 //	chRegSetThreadName("FloorHeater");
 
-	FloorHeater_Init(arg);
+	FloorHeater_Init();
 
 //	PWM_Init();
 
@@ -168,11 +172,11 @@ THD_FUNCTION(FloorHeater,arg)
 	}
 }
 
-void FloorHeater_Start(uint8_t id)
+void FloorHeater_Start()
 {
-#if FloorHeater_PRESENT
-	chThdCreateStatic(waFloorHeater, sizeof(waFloorHeater), HIGHPRIO, FloorHeater, (void*) (uint32_t) id);
+
+	chThdCreateStatic(waFloorHeater, sizeof(waFloorHeater), HIGHPRIO, FloorHeater, NULL);
 	chThdYield();
-#endif
 }
 
+#endif

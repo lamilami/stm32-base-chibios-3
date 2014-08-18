@@ -27,7 +27,7 @@ void Core_Module_Register(core_base_struct_t* Base_Struct)
 	(*Base_Struct).next = NULL;
 	chSysUnlock();
 }
-
+/*
 uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
 {
 	volatile static core_base_struct_t *current;
@@ -50,7 +50,7 @@ uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
 
 	return ((*current).ival_size + 4);
 }
-
+*/
 core_base_struct_t* Core_GetStructAddrByType(const core_types_t type)
 {
 	volatile static core_base_struct_t *current;
@@ -67,7 +67,7 @@ core_base_struct_t* Core_GetStructAddrByType(const core_types_t type)
 
 	return (core_base_struct_t*) current;
 }
-
+/*
 uint16_t Core_SetDataById(const uint8_t id, uint16_t value)
 {
 	volatile static core_base_struct_t *current;
@@ -90,16 +90,15 @@ uint16_t Core_SetDataById(const uint8_t id, uint16_t value)
 
 	return ((*current).set_value);
 }
+*/
 
-//HAL_FAILED
-
-void Core_Init(void *arg)
+void Core_Init()
 {
-	Core_Base.id = (uint32_t) arg;
+//	Core_Base.id = (uint32_t) arg;
 	Core_Base.type = Base;
 //	Core_Base.addr = MY_ADDR;
 //	Core_Base.mbox = &core_mb;
-	Core_Base.thread = chThdGetSelfX();
+//	Core_Base.thread = chThdGetSelfX();
 	Core_Base.direction = None;
 	Core_Base.ival_size = 0;
 	Core_Base.next = NULL;
@@ -149,7 +148,7 @@ THD_FUNCTION(Core,arg)
 	 */
 	extStart(&EXTD1, &extcfg);
 
-	Core_Init(arg);
+	Core_Init();
 
 //	core_base_struct_t *current;
 //	current = &Core_Base;
@@ -165,14 +164,23 @@ THD_FUNCTION(Core,arg)
 	}
 }
 
-void Core_Start(uint8_t id)
+void Core_Start()
 {
 //	Core_Init((void*) (uint32_t) id);
-	chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO, Core, (void*) (uint32_t) id);
+	chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO, Core, NULL);
 	while (Core_BasePtr == NULL)
 	{
 		chThdYield();
 	}
+	WatchDog_Start();
+	CLI_Start();
+//	Core_Start();
+	Radio_Start();
+	DS18B20_Start();
+	FloorHeater_Start();
+	RGBW_Start();
+	DHT11_Start();
+	PIR_Start();
 }
 
 /*void sleepUntil(systime_t *previous, systime_t period)

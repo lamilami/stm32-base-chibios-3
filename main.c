@@ -18,19 +18,11 @@
 #else
 #include "stm32f0xx.h"
 #endif
-
 #include "ch.h"
 #include "hal.h"
-#include <nRF24.h>
-#include "radio.h"
 #include "core.h"
 #include "halconf.h"
-#include "DS18B20.h"
-#include "FloorHeater.h"
-#include "WatchDog.h"
-#include "DHT11.h"
-#include "RGBW.h"
-#include "cli.h"
+
 
 #ifdef DEBUG_Discovery
 
@@ -172,18 +164,6 @@ int main(void)
 	 * driver 1.
 	 */
 	LEDB1Swap();
-	WatchDog_Start(-1);
-	CLI_Start(-1);
-	Core_Start(0);
-
-//	chThdYield();
-
-	Radio_Start(1);
-	DS18B20_Start(2);
-	FloorHeater_Start(3);
-	RGBW_Start(4);
-	DHT11_Start(5);
-	PIR_Start();
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 #if LCD1602_PRESENT

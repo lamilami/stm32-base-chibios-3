@@ -77,16 +77,16 @@ static void timer_handler(void *arg)
 static core_base_struct_t Core_RGBW;
 volatile static RGBW_Inner_Val Inner_Val_RGBW;
 
-void RGBW_Init(void *arg)
+void RGBW_Init()
 {
-	Core_RGBW.id = (uint32_t) arg;
+//	Core_RGBW.id = (uint32_t) arg;
 	Core_RGBW.type = RGBW;
-	Core_RGBW.thread = chThdGetSelfX();
+//	Core_RGBW.thread = chThdGetSelfX();
 	Core_RGBW.direction = RW;
 	Core_RGBW.next = NULL;
 	Core_RGBW.description = "RGBW Controller";
-	Core_RGBW.current_value = 0xffff;
-	Core_RGBW.set_value = 0x68;     //Initial Floor Temp value 0x68 = 26 deg. Celsius
+//	Core_RGBW.current_value = 0xffff;
+//	Core_RGBW.set_value = 0x68;     //Initial Floor Temp value 0x68 = 26 deg. Celsius
 	Core_RGBW.inner_values = &Inner_Val_RGBW;
 	Core_RGBW.ival_size = sizeof(Inner_Val_RGBW);
 
@@ -107,7 +107,7 @@ THD_FUNCTION(RGBW_Controller,arg)
 	(void) arg;
 	//	chRegSetThreadName("DS18B20");
 
-	RGBW_Init(arg);
+	RGBW_Init();
 
 //	PWM_Init();
 
@@ -200,10 +200,10 @@ THD_FUNCTION(RGBW_Controller,arg)
 	}
 }
 
-void RGBW_Start(uint8_t id)
+void RGBW_Start()
 {
 #if RGBW_PRESENT
-	chThdCreateStatic(waRGBW_Controller, sizeof(waRGBW_Controller), NORMALPRIO, RGBW_Controller, (void*) (uint32_t) id);
+	chThdCreateStatic(waRGBW_Controller, sizeof(waRGBW_Controller), NORMALPRIO, RGBW_Controller, NULL);
 	chThdYield();
 #endif
 }
