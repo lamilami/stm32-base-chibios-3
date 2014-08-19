@@ -68,7 +68,7 @@ bool Core_Events_Register(const core_types_t type);
 
 void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
-//#define ABS(a) (((a) < 0) ? -(a) : (a))
+#define ABS(a) (((a) < 0) ? -(a) : (a))
 
 void Core_Start();
 
