@@ -11,6 +11,6 @@ typedef struct
 	volatile uint8_t	Rise_Time_Sec;
 	volatile uint8_t	Max_Delay_Sec;
 	volatile systime_t 	Correction_24H_Sec;
-} RGBW_Inner_Val;;
+} RGBW_Inner_Val;
 
 #endif
