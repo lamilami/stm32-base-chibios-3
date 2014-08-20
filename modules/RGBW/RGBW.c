@@ -181,7 +181,8 @@ void RGBW_Start()
 {
 #if RGBW_PRESENT
 	RGBW_Init();
-	chThdCreateStatic(waRGBW_Controller, sizeof(waRGBW_Controller), NORMALPRIO, RGBW_Controller, NULL);
+	thread_t* thd = chThdCreateStatic(waRGBW_Controller, sizeof(waRGBW_Controller), NORMALPRIO, RGBW_Controller, NULL);
+	Core_Register_Thread(RGBW, thd);
 	chThdYield();
 #endif
 }

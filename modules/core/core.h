@@ -33,16 +33,16 @@
 
 typedef enum
 {
-	Base,     		//**< Radio is idle */
-	Temp,     		//**< Maximum number of retries have occured */
-	Humidity,     	//**< Data is sent */
-	Light,     		//**< Data recieved */
-	Vent,     		//**< Ack payload recieved */
+	Base,
+	Temp,
+	Humidity,
+	Light,
+	Vent,
 	Heater,
 	RGBW,
 	DHT11,
 	PIR,
-	Other     		//**< Radio is busy */
+	Other
 } core_types_t;
 
 typedef struct core_base_struct core_base_struct_t;
@@ -58,6 +58,12 @@ struct core_base_struct
 	core_base_struct_t *next;
 };
 
+typedef struct
+{
+	core_base_struct_t* Base_Struct;
+	thread_t*			Base_Thread;
+} core_array_t;
+
 volatile extern core_base_struct_t* Core_BasePtr;
 
 void Core_Module_Register(core_base_struct_t* Base_Struct);
@@ -66,6 +72,7 @@ void Core_Module_Register(core_base_struct_t* Base_Struct);
 
 core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
 bool Core_Events_Register(const core_types_t type);
+inline void Core_Register_Thread(const core_types_t type, thread_t* thd);
 
 void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);

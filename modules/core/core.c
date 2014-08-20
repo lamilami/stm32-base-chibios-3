@@ -2,33 +2,7 @@
 #include "hal.h"
 #include "core.h"
 
-static void Start_Modules(void)
-{
-#if WATCHDOG_PRESENT
-	WatchDog_Start();
-#endif
-#if CLI_PRESENT
-	CLI_Start();
-#endif
-#if RADIO_PRESENT
-	Radio_Start();
-#endif
-#if DS18B20_PRESENT
-	DS18B20_Start();
-#endif
-#if FloorHeater_PRESENT
-	FloorHeater_Start();
-#endif
-#if RGBW_PRESENT
-	RGBW_Start();
-#endif
-#if DHT11_PRESENT
-	DHT11_Start();
-#endif
-#if PIR_PRESENT
-	PIR_Start();
-#endif
-}
+static volatile core_array_t Modules_Array[Other];
 
 static core_base_struct_t Core_Base;
 volatile core_base_struct_t* Core_BasePtr = NULL;
@@ -54,6 +28,8 @@ void Core_Module_Register(core_base_struct_t* Base_Struct)
 	}
 	(*Base_Struct).next = NULL;
 	chSysUnlock();
+
+	Modules_Array[(*Base_Struct).type].Base_Struct = Base_Struct;
 
 	chEvtObjectInit(&(*Base_Struct).event_source);
 	chEvtRegisterMask(&(*Base_Struct).event_source, &(*Base_Struct).event_listener, EVENT_MASK((uint8_t) (*Base_Struct).type));
@@ -174,8 +150,6 @@ THD_FUNCTION(Core,arg)
 	 */
 	extStart(&EXTD1, &extcfg);
 
-	Core_Init();
-
 //	core_base_struct_t *current;
 //	current = &Core_Base;
 //	chMBObjectInit(&core_mb, core_mb_b, 1);
@@ -190,10 +164,54 @@ THD_FUNCTION(Core,arg)
 	}
 }
 
+inline void Core_Register_Thread(const core_types_t type, thread_t* thd)
+{
+	Modules_Array[type].Base_Thread = thd;
+}
+
+static void Start_Modules(void)
+{
+#if WATCHDOG_PRESENT
+	WatchDog_Start();
+#endif
+#if CLI_PRESENT
+	CLI_Start();
+#endif
+#if RADIO_PRESENT
+	Radio_Start();
+#endif
+#if DS18B20_PRESENT
+	DS18B20_Start();
+#endif
+#if FloorHeater_PRESENT
+	FloorHeater_Start();
+#endif
+#if RGBW_PRESENT
+	RGBW_Start();
+#endif
+#if DHT11_PRESENT
+	DHT11_Start();
+#endif
+#if PIR_PRESENT
+	PIR_Start();
+#endif
+}
+
 void Core_Start()
 {
+	register int i;
+	for (i=0;i<=Other;i++)
+	{
+		Modules_Array[i].Base_Struct = NULL;
+		Modules_Array[i].Base_Thread = NULL;
+	}
+
+
+
 //	Core_Init((void*) (uint32_t) id);
-	chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO, Core, NULL);
+	Core_Init();
+	Modules_Array[Base].Base_Thread = chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO, Core, NULL);
+
 	while (Core_BasePtr == NULL)
 	{
 		chThdYield();
@@ -220,6 +238,18 @@ void ByteArrayCopy(uint8_t* src, uint8_t* dst, const uint8_t cnt)
 	{
 		dst[i] = src[i];
 	}
+}
+
+void Core_Module_Update(const core_types_t type, uint16_t timeout_micros, bool sync)
+{
+	EventListener el;
+
+	chEvtRegister(&evtTouchPush, &el, 1);
+
+	chEvtSignal(type, (eventmask_t) EVENTMASK_UPDATE);
+	chEvtWaitOneTimeout(EVENT_MASK(1),MS2ST(timeout_micros));
+
+	chEvtUnregister(&evtTouchPush, &el);
 }
 
 /*
