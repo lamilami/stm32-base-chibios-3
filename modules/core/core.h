@@ -31,6 +31,8 @@
 #error "LCD1602 conflicts with DS18B20 and FloorHeater!"
 #endif
 
+#define EVENTMASK_REREAD 0x01
+
 typedef enum
 {
 	Base,
@@ -45,11 +47,14 @@ typedef enum
 	Other
 } core_types_t;
 
+typedef msg_t (*mod_update_timeout_t)(msg_t msg, systime_t timeout);
+
 typedef struct core_base_struct core_base_struct_t;
 
 struct core_base_struct
 {
 	core_types_t type;
+	mod_update_timeout_t Mod_Update_Timeout;
 	event_source_t event_source;
 	event_listener_t event_listener;
 	volatile void* inner_values;
@@ -62,6 +67,7 @@ typedef struct
 {
 	core_base_struct_t* Base_Struct;
 	thread_t*			Base_Thread;
+	thread_reference_t* Base_Thread_Updater;
 } core_array_t;
 
 volatile extern core_base_struct_t* Core_BasePtr;
@@ -82,5 +88,9 @@ void Core_Start();
 
 EXTConfig extcfg;
 event_listener_t Core_EvtListener;
+
+#define _core_wait_s(thd, microseconds) osalThreadSuspendTimeoutS(thd, MS2ST(microseconds));
+
+#define _core_wakeup_i(thd, msg) osalThreadResumeI(thd, msg);
 
 #endif

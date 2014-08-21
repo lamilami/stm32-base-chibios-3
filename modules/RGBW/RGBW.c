@@ -3,8 +3,10 @@
 #include "RGBW.h"
 #include "core.h"
 
-#define EVENTMASK_UPDATE 0x01
+#define EVENTMASK_UPDATE 0x80
+
 static thread_t *RGBW_Thread = NULL;
+static thread_reference_t *Update_Thread;
 
 static PWMConfig pwmcfg =
 { 12000000, /* 12Mhz PWM clock frequency */
@@ -33,14 +35,14 @@ static void timer_handler(void *arg)
 	chSysLockFromISR();
 	timer_str_t* timer_s = (timer_str_t*) arg;
 	*timer_s->curr_power += timer_s->inc;
-/*	if ((*timer_s->curr_power >= timer_s->max_power) || (*timer_s->curr_power <= 0))
-	{
-		timer_s->inc = 0;
-	}
-	else
-	{
-		chVTSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
-	}*/
+	/*	if ((*timer_s->curr_power >= timer_s->max_power) || (*timer_s->curr_power <= 0))
+	 {
+	 timer_s->inc = 0;
+	 }
+	 else
+	 {
+	 chVTSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
+	 }*/
 	chEvtSignalI(RGBW_Thread, (eventmask_t) EVENTMASK_UPDATE);
 	chSysUnlockFromISR();
 }
@@ -57,7 +59,7 @@ void RGBW_Init()
 	Core_RGBW.ival_size = sizeof(Inner_Val_RGBW);
 
 	Inner_Val_RGBW.Correction_24H_Sec = 117;
-	Inner_Val_RGBW.Max_Delay_Sec=5;
+	Inner_Val_RGBW.Max_Delay_Sec = 5;
 	Inner_Val_RGBW.Red_Set = 10000;
 	Inner_Val_RGBW.Blue_Set = 5000;
 
@@ -75,12 +77,9 @@ THD_FUNCTION(RGBW_Controller,arg)
 {
 	(void) arg;
 
-	palSetPadMode(GPIOA, GPIOA_PIN6,
-			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
-	palSetPadMode(GPIOA, GPIOA_PIN7,
-			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
-	palSetPadMode(GPIOB, GPIOB_PIN1,
-			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN6, PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN7, PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOB, GPIOB_PIN1, PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
 	pwmStart(&PWMD3, &pwmcfg);
 
 	RGBW_Thread = chThdGetSelfX();
@@ -116,12 +115,12 @@ THD_FUNCTION(RGBW_Controller,arg)
 	B_Tim.rise_time = GetRiseTicksPeriod(Inner_Val_RGBW.Rise_Time_Sec, ABS(Inner_Val_RGBW.Blue_Set - Inner_Val_RGBW.Blue));
 	B_Tim.vt = &vt_b;
 
-/*
-	chSysLock();
-	chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
-	chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
-	chSysUnlock();
-*/
+	/*
+	 chSysLock();
+	 chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
+	 chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
+	 chSysUnlock();
+	 */
 
 	while (TRUE)
 	{
@@ -130,52 +129,71 @@ THD_FUNCTION(RGBW_Controller,arg)
 		pwmEnableChannel(&PWMD3, 1, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Blue));     // 10% duty cycle
 		pwmEnableChannel(&PWMD3, 3, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Green));     // 10% duty cycle
 
-		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS,S2ST(Inner_Val_RGBW.Max_Delay_Sec));
+		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_RGBW.Max_Delay_Sec));
 
 		switch (evt)
 		{
 		case (EVENTMASK_UPDATE):
 //			LEDB1Swap();
 			break;
+		case (EVENTMASK_REREAD):
+			chSysLock();
+			_core_wakeup_i(Update_Thread, MSG_OK);
+			chSysUnlock();
+			break;
 		default:
 			break;
 		}
-/*
-		if ((R_Tim.inc == 0) && (B_Tim.inc == 0))
-		{
-			if (Sunrise)
-			{
-				Timeval_Current = Daylight_Duration_hours * 3600;
-				chThdSleepSeconds(Timeval_Current);
-				Sunrise = FALSE;
-				R_Tim.rise_time = GetRiseTicksPeriod(Sunset_Duration_min, R_Tim.max_power);
-				B_Tim.rise_time = GetRiseTicksPeriod(Sunset_Duration_min, B_Tim.max_power);
-				R_Tim.inc = -1;
-				B_Tim.inc = -1;
-			}
-			else
-			{
-				Timeval_Current = 24 * 3600 - Inner_Val_RGBW.Correction_24H;
-				time_night = chThdSleepUntilWindowed(time_night,time_night + S2ST(Timeval_Current));
-//				sleepUntil(&time_night, S2ST(Timeval_Current));
-				Sunrise = TRUE;
-				R_Tim.rise_time = GetRiseTicksPeriod(Sunrise_Duration_min, R_Tim.max_power);
-				B_Tim.rise_time = GetRiseTicksPeriod(Sunrise_Duration_min, B_Tim.max_power);
-				R_Tim.inc = 1;
-				B_Tim.inc = 1;
-			}
-			chSysLock();
-			chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
-			chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
-			chSysUnlock();
-		}
-		else
-		{
-			chEvtWaitAllTimeout((eventmask_t) EVENTMASK_UPDATE,S2ST(5));
-		}
-*/
+		/*
+		 if ((R_Tim.inc == 0) && (B_Tim.inc == 0))
+		 {
+		 if (Sunrise)
+		 {
+		 Timeval_Current = Daylight_Duration_hours * 3600;
+		 chThdSleepSeconds(Timeval_Current);
+		 Sunrise = FALSE;
+		 R_Tim.rise_time = GetRiseTicksPeriod(Sunset_Duration_min, R_Tim.max_power);
+		 B_Tim.rise_time = GetRiseTicksPeriod(Sunset_Duration_min, B_Tim.max_power);
+		 R_Tim.inc = -1;
+		 B_Tim.inc = -1;
+		 }
+		 else
+		 {
+		 Timeval_Current = 24 * 3600 - Inner_Val_RGBW.Correction_24H;
+		 time_night = chThdSleepUntilWindowed(time_night,time_night + S2ST(Timeval_Current));
+		 //				sleepUntil(&time_night, S2ST(Timeval_Current));
+		 Sunrise = TRUE;
+		 R_Tim.rise_time = GetRiseTicksPeriod(Sunrise_Duration_min, R_Tim.max_power);
+		 B_Tim.rise_time = GetRiseTicksPeriod(Sunrise_Duration_min, B_Tim.max_power);
+		 R_Tim.inc = 1;
+		 B_Tim.inc = 1;
+		 }
+		 chSysLock();
+		 chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
+		 chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
+		 chSysUnlock();
+		 }
+		 else
+		 {
+		 chEvtWaitAllTimeout((eventmask_t) EVENTMASK_UPDATE,S2ST(5));
+		 }
+		 */
 	}
 }
+
+/*
+msg_t RGBW_Update(systime_t microseconds)
+{
+	chSysLock();
+	while (Modules_Array[RGBW].Base_Thread_Updater != NULL)
+	{
+		chSchDoYieldS();
+	}
+	chEvtSignalI(RGBW_Thread, EVENTMASK_REREAD);
+	msg_t msg = _core_wait_s(Modules_Array[RGBW].Base_Thread_Updater, microseconds);
+	chSysUnlock();
+	return msg;
+}*/
 
 void RGBW_Start()
 {
