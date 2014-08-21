@@ -204,13 +204,14 @@ void Core_Start()
 	{
 		Modules_Array[i].Base_Struct = NULL;
 		Modules_Array[i].Base_Thread = NULL;
+		Modules_Array[i].Base_Thread_Updater = NULL;
 	}
 
 
 
 //	Core_Init((void*) (uint32_t) id);
 	Core_Init();
-	Modules_Array[Base].Base_Thread = chThdCreateStatic(waCore, sizeof(waCore), NORMALPRIO, Core, NULL);
+	Modules_Array[Base].Base_Thread = chThdCreateStatic(waCore, sizeof(waCore), LOWPRIO, Core, NULL);
 
 	while (Core_BasePtr == NULL)
 	{
@@ -240,16 +241,21 @@ void ByteArrayCopy(uint8_t* src, uint8_t* dst, const uint8_t cnt)
 	}
 }
 
-void Core_Module_Update(const core_types_t type, uint16_t timeout_micros, bool sync)
+msg_t Core_Module_Update(const core_types_t type, systime_t timeout_microseconds)
 {
-	EventListener el;
-
-	chEvtRegister(&evtTouchPush, &el, 1);
-
-	chEvtSignal(type, (eventmask_t) EVENTMASK_UPDATE);
-	chEvtWaitOneTimeout(EVENT_MASK(1),MS2ST(timeout_micros));
-
-	chEvtUnregister(&evtTouchPush, &el);
+	if (Modules_Array[type].Base_Thread !=0)
+	{
+	chSysLock();
+	while (Modules_Array[type].Base_Thread_Updater != NULL)
+	{
+		chSchDoYieldS();
+	}
+	chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
+	msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_microseconds);
+	chSysUnlock();
+	return msg;
+	}
+	return MSG_TIMEOUT;
 }
 
 /*

@@ -134,7 +134,7 @@ int main(void)
 	 */
 	halInit();
 	chSysInit();
-
+	chThdSetPriority (LOWPRIO);
 	/*
 	 * Creates the blinker threads.
 	 */
