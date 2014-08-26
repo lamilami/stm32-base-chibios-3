@@ -18,14 +18,16 @@
 #define _BOARD_H_
 
 /*
- * Setup for Freescale Freedom K20D50M board.
+ * Setup for MCHCL K20 board with MX20DX128 processor.
  */
 
 /*
  * Board identifier.
  */
-#define BOARD_FREESCALE_FREEDOM_K20D50M
-#define BOARD_NAME                  "Freescale Freedom K20D50M"
+#define BOARD_MCHCK_K20_MX20DX128
+#define BOARD_NAME                  "MCHCK K20 MX20DX128"
+
+#define GPIOB_LED   16
 
 #if !defined(_FROM_ASM_)
 #ifdef __cplusplus
