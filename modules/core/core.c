@@ -32,32 +32,32 @@ void Core_Module_Register(core_base_struct_t* Base_Struct)
 	Modules_Array[(*Base_Struct).type].Base_Struct = Base_Struct;
 
 	chEvtObjectInit(&(*Base_Struct).event_source);
-	chEvtRegisterMask(&(*Base_Struct).event_source, &(*Base_Struct).event_listener, EVENT_MASK((uint8_t) (*Base_Struct).type));
+	chEvtRegisterMask(&(*Base_Struct).event_source, &(*Base_Struct).event_listener, EVENT_MASK((uint8_t)(*Base_Struct).type));
 }
 /*
-uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
-{
-	volatile static core_base_struct_t *current;
-	current = Core_BasePtr;
-	while (((*current).id != id) && ((*current).next != NULL))
-	{
-		current = (*current).next;
-	}
+ uint8_t Core_GetDataById(const uint8_t id, uint16_t* data)
+ {
+ volatile static core_base_struct_t *current;
+ current = Core_BasePtr;
+ while (((*current).id != id) && ((*current).next != NULL))
+ {
+ current = (*current).next;
+ }
 
-	if ((*current).id != id)
-	{
-		return 0;
-	}
-	else
-	{
-		data[0] = (*current).set_value;
-		data[1] = (*current).current_value;
-		ByteArrayCopy((uint8_t*) (*current).inner_values, (uint8_t*) (data + 4), (*current).ival_size);
-	}
+ if ((*current).id != id)
+ {
+ return 0;
+ }
+ else
+ {
+ data[0] = (*current).set_value;
+ data[1] = (*current).current_value;
+ ByteArrayCopy((uint8_t*) (*current).inner_values, (uint8_t*) (data + 4), (*current).ival_size);
+ }
 
-	return ((*current).ival_size + 4);
-}
-*/
+ return ((*current).ival_size + 4);
+ }
+ */
 core_base_struct_t* Core_GetStructAddrByType(const core_types_t type)
 {
 	volatile static core_base_struct_t *current;
@@ -74,30 +74,38 @@ core_base_struct_t* Core_GetStructAddrByType(const core_types_t type)
 
 	return (core_base_struct_t*) current;
 }
-/*
-uint16_t Core_SetDataById(const uint8_t id, uint16_t value)
+
+void* Core_GetIvalAddrByType(const core_types_t type)
 {
-	volatile static core_base_struct_t *current;
-	current = Core_BasePtr;
-	while (((*current).id != id) && ((*current).next != NULL))
-	{
-		current = (*current).next;
-	}
-
-	if ((*current).id != id)
-	{
-		return 0xffff;
-	}
-	else
-	{
-		chSysLock();
-		(*current).set_value = value;
-		chSysUnlock();
-	}
-
-	return ((*current).set_value);
+//	core_base_struct_t *current;
+//	current = Core_GetStructAddrByType(type)->inner_values;
+	return (void *) Core_GetStructAddrByType(type)->inner_values;
 }
-*/
+
+/*
+ uint16_t Core_SetDataById(const uint8_t id, uint16_t value)
+ {
+ volatile static core_base_struct_t *current;
+ current = Core_BasePtr;
+ while (((*current).id != id) && ((*current).next != NULL))
+ {
+ current = (*current).next;
+ }
+
+ if ((*current).id != id)
+ {
+ return 0xffff;
+ }
+ else
+ {
+ chSysLock();
+ (*current).set_value = value;
+ chSysUnlock();
+ }
+
+ return ((*current).set_value);
+ }
+ */
 
 void Core_Init()
 {
@@ -200,14 +208,12 @@ static void Start_Modules(void)
 void Core_Start()
 {
 	register int i;
-	for (i=0;i<=Other;i++)
+	for (i = 0; i <= Other; i++)
 	{
 		Modules_Array[i].Base_Struct = NULL;
 		Modules_Array[i].Base_Thread = NULL;
 		Modules_Array[i].Base_Thread_Updater = NULL;
 	}
-
-
 
 //	Core_Init((void*) (uint32_t) id);
 	Core_Init();
@@ -221,16 +227,16 @@ void Core_Start()
 }
 
 /*void sleepUntil(systime_t *previous, systime_t period)
-{
-	systime_t future = *previous + period;
-	chSysLock();
-	systime_t now = chVTGetSystemTime();
-	int mustDelay = now < *previous ? (now < future && future < *previous) : (now < future || future < *previous);
-	if (mustDelay)
-		chThdSleepS(future - now);
-	chSysUnlock();
-	*previous = future;
-}*/
+ {
+ systime_t future = *previous + period;
+ chSysLock();
+ systime_t now = chVTGetSystemTime();
+ int mustDelay = now < *previous ? (now < future && future < *previous) : (now < future || future < *previous);
+ if (mustDelay)
+ chThdSleepS(future - now);
+ chSysUnlock();
+ *previous = future;
+ }*/
 
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, const uint8_t cnt)
 {
@@ -241,31 +247,31 @@ void ByteArrayCopy(uint8_t* src, uint8_t* dst, const uint8_t cnt)
 	}
 }
 
-msg_t Core_Module_Update(const core_types_t type, systime_t timeout_microseconds)
+msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds)
 {
-	if (Modules_Array[type].Base_Thread !=0)
+	if (Modules_Array[type].Base_Thread != 0)
 	{
-	chSysLock();
-	while (Modules_Array[type].Base_Thread_Updater != NULL)
-	{
-		chSchDoYieldS();
+		chSysLock();
+		while (Modules_Array[type].Base_Thread_Updater != NULL)
+		{
+			chSchDoYieldS();
+		}
+		chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
+		msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
+		chSysUnlock();
+		return msg;
 	}
-	chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
-	msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_microseconds);
-	chSysUnlock();
-	return msg;
-	}
-	return MSG_TIMEOUT;
+	return MSG_ERROR;
 }
 
 /*
-bool Core_Events_Register(const core_types_t type)
-{
-	core_base_struct_t* current_Core;
-	do {
-		current_Core = Core_GetStructAddrByType(type);
-	} while (current_Core == NULL);
-	chEvtObjectInit(&current_Core->event_source);
-	chEvtRegisterMask(&current_Core->event_source, &Core_EvtListener, EVENT_MASK((uint8_t) type));
-	return TRUE;
-}*/
+ bool Core_Events_Register(const core_types_t type)
+ {
+ core_base_struct_t* current_Core;
+ do {
+ current_Core = Core_GetStructAddrByType(type);
+ } while (current_Core == NULL);
+ chEvtObjectInit(&current_Core->event_source);
+ chEvtRegisterMask(&current_Core->event_source, &Core_EvtListener, EVENT_MASK((uint8_t) type));
+ return TRUE;
+ }*/

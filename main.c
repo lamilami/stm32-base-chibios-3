@@ -172,6 +172,14 @@ int main(void)
 	ClearLCDScreen();//Очистка дисплея от мусора
 #endif
 
+//	RGBW_IW;
+
+	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
+	RGBW_IV->Red_Set = 10000;
+	RGBW_IV->Blue_Set = 5000;
+	RGBW_IV->Rise_Time_Sec = 90;
+	Core_Module_Update(RGBW,3000);
+
 	while (TRUE)
 	{
 #if LCD1602_PRESENT

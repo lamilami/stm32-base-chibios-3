@@ -33,6 +33,8 @@
 
 #define EVENTMASK_REREAD 0x01
 
+#define MSG_ERROR	-3
+
 typedef enum
 {
 	Base,
@@ -77,6 +79,8 @@ void Core_Module_Register(core_base_struct_t* Base_Struct);
 //uint16_t Core_SetDataById(const uint8_t id, uint16_t value);
 
 core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
+void* Core_GetIvalAddrByType(const core_types_t type);
+msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds);
 bool Core_Events_Register(const core_types_t type);
 inline void Core_Register_Thread(const core_types_t type, thread_t* thd);
 
@@ -89,7 +93,7 @@ void Core_Start();
 EXTConfig extcfg;
 event_listener_t Core_EvtListener;
 
-#define _core_wait_s(thd, microseconds) osalThreadSuspendTimeoutS(thd, MS2ST(microseconds));
+#define _core_wait_s(thd, milliseconds) osalThreadSuspendTimeoutS(thd, MS2ST(milliseconds));
 
 #define _core_wakeup_i(thd, msg) osalThreadResumeI(thd, msg);
 
