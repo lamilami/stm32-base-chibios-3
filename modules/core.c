@@ -2,7 +2,7 @@
 #include "hal.h"
 #include "core.h"
 
-static volatile core_array_t Modules_Array[Other];
+static core_array_t Modules_Array[Other];
 
 static core_base_struct_t Core_Base;
 volatile core_base_struct_t* Core_BasePtr = NULL;
@@ -257,7 +257,7 @@ msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds
 			chSchDoYieldS();
 		}
 		chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
-		msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
+		msg_t msg = _core_wait_s(&Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
 		chSysUnlock();
 		return msg;
 	}

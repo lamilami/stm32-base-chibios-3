@@ -69,7 +69,7 @@ typedef struct
 {
 	core_base_struct_t* Base_Struct;
 	thread_t*			Base_Thread;
-	thread_reference_t* Base_Thread_Updater;
+	thread_reference_t  Base_Thread_Updater;
 } core_array_t;
 
 volatile extern core_base_struct_t* Core_BasePtr;

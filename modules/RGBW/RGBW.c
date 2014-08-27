@@ -60,7 +60,7 @@ void RGBW_Init()
 	Core_RGBW.ival_size = sizeof(Inner_Val_RGBW);
 
 	Inner_Val_RGBW.Correction_24H_Sec = 117;
-	Inner_Val_RGBW.Max_Delay_Sec = 0;
+	Inner_Val_RGBW.Max_Delay_Sec = TIME_INFINITE;
 	Inner_Val_RGBW.Red_Set = 0;
 	Inner_Val_RGBW.Blue_Set = 0;
 
