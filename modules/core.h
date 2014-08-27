@@ -10,7 +10,7 @@
 #define WATCHDOG_PRESENT	FALSE
 #define RGBW_PRESENT		TRUE
 #define CLI_PRESENT			FALSE
-#define PIR_PRESENT			TRUE
+#define PIR_PRESENT			FALSE
 
 //#define StM() WatchDog_Start();
 
@@ -69,7 +69,7 @@ typedef struct
 {
 	core_base_struct_t* Base_Struct;
 	thread_t*			Base_Thread;
-	thread_reference_t  Base_Thread_Updater;
+	thread_reference_t*  Base_Thread_Updater;
 } core_array_t;
 
 volatile extern core_base_struct_t* Core_BasePtr;
@@ -82,7 +82,7 @@ core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
 void* Core_GetIvalAddrByType(const core_types_t type);
 msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds);
 bool Core_Events_Register(const core_types_t type);
-inline void Core_Register_Thread(const core_types_t type, thread_t* thd);
+inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
 
 void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
