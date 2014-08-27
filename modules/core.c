@@ -172,9 +172,11 @@ THD_FUNCTION(Core,arg)
 	}
 }
 
-inline void Core_Register_Thread(const core_types_t type, thread_t* thd)
+inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd)
 {
 	Modules_Array[type].Base_Thread = thd;
+	Modules_Array[type].Base_Thread_Updater = upd_thd;
+	*Modules_Array[type].Base_Thread_Updater = NULL;
 }
 
 static void Start_Modules(void)
@@ -212,7 +214,7 @@ void Core_Start()
 	{
 		Modules_Array[i].Base_Struct = NULL;
 		Modules_Array[i].Base_Thread = NULL;
-		Modules_Array[i].Base_Thread_Updater = NULL;
+//		*Modules_Array[i].Base_Thread_Updater = NULL;
 	}
 
 //	Core_Init((void*) (uint32_t) id);
@@ -252,12 +254,12 @@ msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds
 	if (Modules_Array[type].Base_Thread != 0)
 	{
 		chSysLock();
-		while (Modules_Array[type].Base_Thread_Updater != NULL)
+		while (*Modules_Array[type].Base_Thread_Updater != NULL)
 		{
 			chSchDoYieldS();
 		}
 		chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
-		msg_t msg = _core_wait_s(&Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
+		msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
 		chSysUnlock();
 		return msg;
 	}

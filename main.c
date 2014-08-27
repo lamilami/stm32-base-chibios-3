@@ -177,8 +177,16 @@ int main(void)
 	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
 	RGBW_IV->Red_Set = 10000;
 	RGBW_IV->Blue_Set = 5000;
-	RGBW_IV->Rise_Time_Sec = 90;
+	RGBW_IV->Rise_Time_Sec = 3;
 	Core_Module_Update(RGBW,3000);
+
+	chThdSleepSeconds (5);
+
+	RGBW_IV->Red_Set = 0;
+	RGBW_IV->Blue_Set = 0;
+	RGBW_IV->Rise_Time_Sec = 3600;
+	Core_Module_Update(RGBW,3000);
+
 
 	while (TRUE)
 	{

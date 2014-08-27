@@ -6,7 +6,7 @@
 #define EVENTMASK_UPDATE 0x80
 
 static thread_t *RGBW_Thread = NULL;
-static thread_reference_t *Update_Thread;
+static thread_reference_t Update_Thread;
 
 static PWMConfig pwmcfg =
 { 12000000, /* 12Mhz PWM clock frequency */
@@ -21,9 +21,9 @@ NULL, /* No callback */
 
 typedef struct timer_str
 {
-	volatile uint16_t * curr_power;
+	volatile int32_t * curr_power;
 	volatile systime_t rise_time;
-	volatile uint16_t max_power;
+	volatile int32_t max_power;
 	volatile int8_t inc;
 	virtual_timer_t* vt;
 } timer_str_t;
@@ -43,6 +43,7 @@ static void timer_handler(void *arg)
 	 {
 	 chVTSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
 	 }*/
+	if (!chVTIsArmedI(timer_s->vt))
 	chVTDoSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
 	chEvtSignalI(RGBW_Thread, (eventmask_t) EVENTMASK_UPDATE);
 	chSysUnlockFromISR();
@@ -60,16 +61,16 @@ void RGBW_Init()
 	Core_RGBW.ival_size = sizeof(Inner_Val_RGBW);
 
 	Inner_Val_RGBW.Correction_24H_Sec = 117;
-	Inner_Val_RGBW.Max_Delay_Sec = TIME_INFINITE;
+	Inner_Val_RGBW.Max_Delay_Sec = 255;
 	Inner_Val_RGBW.Red_Set = 0;
 	Inner_Val_RGBW.Blue_Set = 0;
 
 	Core_Module_Register(&Core_RGBW);
 }
 
-inline systime_t GetRiseTicksPeriod(uint16_t duration_min, uint16_t max_pow)
+inline systime_t GetRiseTicksPeriod(uint16_t duration_sec, uint16_t max_pow)
 {
-	return (MS2ST((uint32_t)duration_min * 60 * 1000 / max_pow));
+	return (S2ST((uint32_t)duration_sec) / max_pow);
 }
 
 void ComputeRiseVals_S(const uint16_t current_val, const uint16_t set_val, timer_str_t *tim_struct)
@@ -192,7 +193,7 @@ THD_FUNCTION(RGBW_Controller,arg)
 			ComputeRiseVals_S(Inner_Val_RGBW.Blue, Inner_Val_RGBW.Blue_Set, &B_Tim);
 			ComputeRiseVals_S(Inner_Val_RGBW.Green, Inner_Val_RGBW.Green_Set, &G_Tim);
 
-			_core_wakeup_i(Update_Thread, MSG_OK);
+			_core_wakeup_i(&Update_Thread, MSG_OK);
 
 //			break;
 		case (EVENTMASK_UPDATE):
@@ -230,7 +231,7 @@ void RGBW_Start()
 #if RGBW_PRESENT
 	RGBW_Init();
 	thread_t* thd = chThdCreateStatic(waRGBW_Controller, sizeof(waRGBW_Controller), NORMALPRIO, RGBW_Controller, NULL);
-	Core_Register_Thread(RGBW, thd);
+	Core_Register_Thread(RGBW, thd, &Update_Thread);
 	chThdYield();
 #endif
 }
