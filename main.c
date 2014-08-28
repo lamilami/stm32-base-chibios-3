@@ -23,7 +23,6 @@
 #include "core.h"
 #include "halconf.h"
 
-
 #ifdef DEBUG_Discovery
 
 #ifdef comment
@@ -134,7 +133,7 @@ int main(void)
 	 */
 	halInit();
 	chSysInit();
-	chThdSetPriority (LOWPRIO);
+	chThdSetPriority(LOWPRIO);
 	/*
 	 * Creates the blinker threads.
 	 */
@@ -174,19 +173,66 @@ int main(void)
 
 //	RGBW_IW;
 
+	RTCDateTime DateTime;
+
+	DateTime.year = 33;
+	DateTime.month = 8;
+	DateTime.dstflag = 0;
+	DateTime.dayofweek = 4;
+	DateTime.day = 28;
+	DateTime.millisecond = 0;
+
+	rtcSetTime(&RTCD1, &DateTime);
+
+	chThdSleepSeconds(100);
+
+	rtcGetTime(&RTCD1, &DateTime);
+
+#ifdef tralala
+	/* Disable write protection. */
+	RTCD1.rtc->WPR = 0xCA;
+	RTCD1.rtc->WPR = 0x53;
+
+//if (!(RTCD1.rtc->ISR & RTC_ISR_INITS))
+	{
+#endif
+
+		rtc_lld_enter_init();
+//		RTCD1.rtc->CR = 0;
+//		RTCD1.rtc->ISR = 0;
+//		RTCD1.rtc->PRER = RTC_PRER(125, 320);
+//		RTCD1.rtc->PRER = RTC_PRER(125, 320);
+		RTCD1.rtc->CAL |= RTC_CAL_CALP|RTC_CAL_CALM_1|RTC_CAL_CALM_3|RTC_CAL_CALM_5|RTC_CAL_CALM_6|RTC_CAL_CALM_7;
+		rtc_lld_exit_init();
+//	}
+//	RTCD1.rtc->WPR = 0xFF;
+//#endif
+
+	DateTime.year = 33;
+	DateTime.month = 8;
+	DateTime.dstflag = 0;
+	DateTime.dayofweek = 4;
+	DateTime.day = 28;
+	DateTime.millisecond = 0;
+
+	rtcSetTime(&RTCD1, &DateTime);
+
+	chThdSleepSeconds(100);
+
+	rtcGetTime(&RTCD1, &DateTime);
+
 	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
 	RGBW_IV->Red_Set = 10000;
 	RGBW_IV->Blue_Set = 5000;
 	RGBW_IV->Rise_Time_Sec = 3;
-	Core_Module_Update(RGBW,3000);
+	Core_Module_Update(RGBW, 3000);
 
-	chThdSleepSeconds (5);
+	chThdSleepSeconds(5);
 
 	RGBW_IV->Red_Set = 0;
 	RGBW_IV->Blue_Set = 0;
 	RGBW_IV->Rise_Time_Sec = 3600;
-	Core_Module_Update(RGBW,3000);
-
+	Core_Module_Update(RGBW, 3000);
 
 	while (TRUE)
 	{
