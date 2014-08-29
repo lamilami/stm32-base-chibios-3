@@ -184,7 +184,7 @@ int main(void)
 
 	rtcSetTime(&RTCD1, &DateTime);
 
-	chThdSleepSeconds(100);
+	chThdSleepSeconds(1000);
 
 	rtcGetTime(&RTCD1, &DateTime);
 
@@ -197,13 +197,13 @@ int main(void)
 	{
 #endif
 
-		rtc_lld_enter_init();
+//		rtc_lld_enter_init();
 //		RTCD1.rtc->CR = 0;
 //		RTCD1.rtc->ISR = 0;
 //		RTCD1.rtc->PRER = RTC_PRER(125, 320);
 //		RTCD1.rtc->PRER = RTC_PRER(125, 320);
-		RTCD1.rtc->CAL |= RTC_CAL_CALP|RTC_CAL_CALM_1|RTC_CAL_CALM_3|RTC_CAL_CALM_5|RTC_CAL_CALM_6|RTC_CAL_CALM_7;
-		rtc_lld_exit_init();
+//		RTCD1.rtc->CAL |= RTC_CAL_CALP|RTC_CAL_CALM_1|RTC_CAL_CALM_3|RTC_CAL_CALM_5|RTC_CAL_CALM_6|RTC_CAL_CALM_7;
+//		rtc_lld_exit_init();
 //	}
 //	RTCD1.rtc->WPR = 0xFF;
 //#endif
@@ -217,7 +217,7 @@ int main(void)
 
 	rtcSetTime(&RTCD1, &DateTime);
 
-	chThdSleepSeconds(100);
+	chThdSleepSeconds(1000);
 
 	rtcGetTime(&RTCD1, &DateTime);
 
