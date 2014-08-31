@@ -2,7 +2,7 @@
 <breakpoints>
 <breakpoint enabled="true" persistant="true" registered="true">
 <resource path="/ChibiOS_Test/main.c" type="1"/>
-<marker lineNumber="224" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<marker lineNumber="231" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
 <attrib name="enabled" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
@@ -16,13 +16,13 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/ChibiOS_Test/main.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Work\CoIDE\ChibiOS_3.0_Test\main.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
 <resource path="/ChibiOS_Test/main.c" type="1"/>
-<marker lineNumber="211" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
+<marker lineNumber="214" type="org.eclipse.cdt.debug.core.cLineBreakpointMarker">
 <attrib name="enabled" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.condition" value=""/>
 <attrib name="org.eclipse.debug.core.id" value="org.eclipse.cdt.debug.core"/>
@@ -36,8 +36,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/ChibiOS_Test/main.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Work\CoIDE\ChibiOS_3.0_Test\main.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 </marker>
 </breakpoint>
 </breakpoints>
