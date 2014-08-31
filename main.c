@@ -134,6 +134,7 @@ int main(void)
 	halInit();
 	chSysInit();
 	chThdSetPriority(LOWPRIO);
+	systime_t time_start = chVTGetSystemTime();
 	/*
 	 * Creates the blinker threads.
 	 */
@@ -172,6 +173,8 @@ int main(void)
 #endif
 
 //	RGBW_IW;
+
+#ifdef RGBW_Test
 
 	RTCDateTime DateTime;
 
@@ -221,18 +224,9 @@ int main(void)
 
 	rtcGetTime(&RTCD1, &DateTime);
 
+#endif
+
 	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
-	RGBW_IV->Red_Set = 10000;
-	RGBW_IV->Blue_Set = 5000;
-	RGBW_IV->Rise_Time_Sec = 3;
-	Core_Module_Update(RGBW, 3000);
-
-	chThdSleepSeconds(5);
-
-	RGBW_IV->Red_Set = 0;
-	RGBW_IV->Blue_Set = 0;
-	RGBW_IV->Rise_Time_Sec = 3600;
-	Core_Module_Update(RGBW, 3000);
 
 	while (TRUE)
 	{
@@ -263,6 +257,26 @@ int main(void)
 		LCD_PutUnsignedInt(tmp);
 		PrintStr("              ");
 #endif
+
+		RGBW_IV->Red_Set = 10000;
+		RGBW_IV->Blue_Set = 5000;
+		RGBW_IV->Green_Set = 7500;
+		RGBW_IV->Rise_Time_Sec = 3600;
+		Core_Module_Update(RGBW, 3000);
+
+		chThdSleepSeconds(14*60*60);
+
+		RGBW_IV->Red_Set = 0;
+		RGBW_IV->Blue_Set = 0;
+		RGBW_IV->Green_Set = 7500;
+		RGBW_IV->Rise_Time_Sec = 3600;
+		Core_Module_Update(RGBW, 3000);
+
+
+//		Timeval_Current = 24 * 3600 - Inner_Val_RGBW.Correction_24H;
+		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(24 * 60*60 - 117));
+
+#ifdef WaitEvents
 		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
 		switch (evt)
 		{
@@ -272,6 +286,7 @@ int main(void)
 		default:
 			break;
 		}
+#endif
 //		chThdSleepSeconds(1);
 	}
 }
