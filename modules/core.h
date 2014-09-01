@@ -56,10 +56,11 @@ typedef struct core_base_struct core_base_struct_t;
 struct core_base_struct
 {
 	core_types_t type;
-	mod_update_timeout_t Mod_Update_Timeout;
+//	mod_update_timeout_t Mod_Update_Timeout;
 	event_source_t event_source;
 	event_listener_t event_listener;
 	volatile void* inner_values;
+	volatile uint8_t ival_rw_size;
 	volatile uint8_t ival_size;
 	volatile const char* description;
 	core_base_struct_t *next;
@@ -72,18 +73,18 @@ typedef struct
 	thread_reference_t*  Base_Thread_Updater;
 } core_array_t;
 
-volatile extern core_base_struct_t* Core_BasePtr;
+//volatile extern core_base_struct_t* Core_BasePtr;
 
 void Core_Module_Register(core_base_struct_t* Base_Struct);
 //uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
 //uint16_t Core_SetDataById(const uint8_t id, uint16_t value);
 
-core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
-void* Core_GetIvalAddrByType(const core_types_t type);
-msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds);
+//core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
+//void* Core_GetIvalAddrByType(const core_types_t type);
+//msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds);
+msg_t Core_Module_Update(const core_types_t type, void * inval, systime_t timeout_milliseconds);
 bool Core_Events_Register(const core_types_t type);
 inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
-
 void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
 #define ABS(a) (((a) < 0) ? -(a) : (a))

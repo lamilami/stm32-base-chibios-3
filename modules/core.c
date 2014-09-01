@@ -60,7 +60,7 @@ void Core_Module_Register(core_base_struct_t* Base_Struct)
  */
 core_base_struct_t* Core_GetStructAddrByType(const core_types_t type)
 {
-	volatile static core_base_struct_t *current;
+/*	volatile static core_base_struct_t *current;
 	current = Core_BasePtr;
 	while (((*current).type != type) && ((*current).next != NULL))
 	{
@@ -72,14 +72,18 @@ core_base_struct_t* Core_GetStructAddrByType(const core_types_t type)
 		return NULL;
 	}
 
-	return (core_base_struct_t*) current;
+	return (core_base_struct_t*) current;*/
+
+	return Modules_Array[type].Base_Struct;
 }
 
 void* Core_GetIvalAddrByType(const core_types_t type)
 {
 //	core_base_struct_t *current;
 //	current = Core_GetStructAddrByType(type)->inner_values;
-	return (void *) Core_GetStructAddrByType(type)->inner_values;
+
+//	return (void *) Core_GetStructAddrByType(type)->inner_values;
+	return (void *) Modules_Array[type].Base_Struct->inner_values;
 }
 
 /*
@@ -115,8 +119,42 @@ void Core_Init()
 	Core_Base.description = "Test Board 1\0";
 
 	Core_Module_Register(&Core_Base);
+
+	EXTConfig extcfg =
+	{
+	{
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL },
+	{ EXT_CH_MODE_DISABLED, NULL } } };
+
+	/*
+	 * Activates the EXT driver 1.
+	 */
+	extStart(&EXTD1, &extcfg);
 }
 
+
+#ifdef Core_Thread
 THD_WORKING_AREA(waCore, 256);
 //__attribute__((noreturn))
 THD_FUNCTION(Core,arg)
@@ -171,6 +209,7 @@ THD_FUNCTION(Core,arg)
 		chThdSleepSeconds(50);
 	}
 }
+#endif
 
 inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd)
 {
@@ -219,7 +258,7 @@ void Core_Start()
 
 //	Core_Init((void*) (uint32_t) id);
 	Core_Init();
-	Modules_Array[Base].Base_Thread = chThdCreateStatic(waCore, sizeof(waCore), LOWPRIO, Core, NULL);
+//	Modules_Array[Base].Base_Thread = chThdCreateStatic(waCore, sizeof(waCore), LOWPRIO, Core, NULL);
 
 	while (Core_BasePtr == NULL)
 	{
@@ -249,8 +288,12 @@ void ByteArrayCopy(uint8_t* src, uint8_t* dst, const uint8_t cnt)
 	}
 }
 
-msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds)
+msg_t Core_Module_Update(const core_types_t type, void * inval, systime_t timeout_milliseconds)
 {
+	chSysLock();
+	core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
+	ByteArrayCopy (inval, (uint8_t*) base_struct->inner_values, base_struct->ival_rw_size);
+	chSysUnlock();
 	if (Modules_Array[type].Base_Thread != 0)
 	{
 		chSysLock();

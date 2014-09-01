@@ -35,14 +35,6 @@ static void timer_handler(void *arg)
 	chSysLockFromISR();
 	timer_str_t* timer_s = (timer_str_t*) arg;
 	*timer_s->curr_power += timer_s->inc;
-	/*	if ((*timer_s->curr_power >= timer_s->max_power) || (*timer_s->curr_power <= 0))
-	 {
-	 timer_s->inc = 0;
-	 }
-	 else
-	 {
-	 chVTSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
-	 }*/
 	if (!chVTIsArmedI(timer_s->vt))
 	chVTDoSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
 	chEvtSignalI(RGBW_Thread, (eventmask_t) EVENTMASK_UPDATE);
@@ -58,12 +50,13 @@ void RGBW_Init()
 	Core_RGBW.next = NULL;
 	Core_RGBW.description = "RGBW Controller";
 	Core_RGBW.inner_values = &Inner_Val_RGBW;
-	Core_RGBW.ival_size = sizeof(Inner_Val_RGBW);
+	Core_RGBW.ival_size = sizeof(RGBW_Inner_Val);
+	Core_RGBW.ival_rw_size = sizeof(RGBW_Inner_Val_RW);
 
-	Inner_Val_RGBW.Correction_24H_Sec = 117;
-	Inner_Val_RGBW.Max_Delay_Sec = 255;
-	Inner_Val_RGBW.Red_Set = 0;
-	Inner_Val_RGBW.Blue_Set = 0;
+	Inner_Val_RGBW.RW.Max_Delay_Sec = 255;
+	Inner_Val_RGBW.RW.Red_Set = 0;
+	Inner_Val_RGBW.RW.Blue_Set = 0;
+	Inner_Val_RGBW.RW.Green_Set = 0;
 
 	Core_Module_Register(&Core_RGBW);
 }
@@ -79,7 +72,7 @@ void ComputeRiseVals_S(const uint16_t current_val, const uint16_t set_val, timer
 	chVTResetI((*tim_struct).vt);
 	if (current_val != set_val)
 	{
-		(*tim_struct).rise_time = GetRiseTicksPeriod(Inner_Val_RGBW.Rise_Time_Sec, ABS((int16_t)(set_val - current_val)));
+		(*tim_struct).rise_time = GetRiseTicksPeriod(Inner_Val_RGBW.RW.Rise_Time_Sec, ABS((int16_t)(set_val - current_val)));
 		uint8_t coeff = (MS2ST(1) / (*tim_struct).rise_time) + 1;
 		(*tim_struct).rise_time *= coeff;
 		if (set_val > current_val)
@@ -130,24 +123,11 @@ THD_FUNCTION(RGBW_Controller,arg)
 
 	timer_str_t R_Tim, B_Tim, G_Tim;
 
-//	systime_t time_day = chVTGetSystemTime();
-//	systime_t time_night = chVTGetSystemTime();
-
-	Inner_Val_RGBW.Blue = 0;
-	Inner_Val_RGBW.Red = 0;
-	Inner_Val_RGBW.Green = 0;
-
-//	uint32_t Timeval_Current;
-
-//	const uint8_t Sunrise_Duration_min = 60;
-//	const uint8_t Sunset_Duration_min = 60;
-//	const uint8_t Daylight_Duration_hours = 15;
-
-//	bool Sunrise = TRUE;
+	Inner_Val_RGBW.Blue = 10;
+	Inner_Val_RGBW.Red = 10;
+	Inner_Val_RGBW.Green = 10;
 
 	R_Tim.curr_power = &Inner_Val_RGBW.Red;
-//	R_Tim.inc = 1;
-//	R_Tim.rise_time = GetRiseTicksPeriod(Inner_Val_RGBW.Rise_Time_Sec, ABS(Inner_Val_RGBW.Red_Set - Inner_Val_RGBW.Red));
 	R_Tim.inc = 0;
 	R_Tim.rise_time = 0;
 	R_Tim.max_power = *R_Tim.curr_power;
@@ -160,19 +140,10 @@ THD_FUNCTION(RGBW_Controller,arg)
 	G_Tim.vt = &vt_g;
 
 	B_Tim.curr_power = &Inner_Val_RGBW.Blue;
-//	B_Tim.inc = 1;
-//	B_Tim.rise_time = GetRiseTicksPeriod(Inner_Val_RGBW.Rise_Time_Sec, ABS(Inner_Val_RGBW.Blue_Set - Inner_Val_RGBW.Blue));
 	B_Tim.inc = 0;
 	B_Tim.rise_time = 0;
 	B_Tim.max_power = *B_Tim.curr_power;
 	B_Tim.vt = &vt_b;
-
-	/*
-	 chSysLock();
-	 chVTSetI(R_Tim.vt, R_Tim.rise_time, timer_handler, &R_Tim);
-	 chVTSetI(B_Tim.vt, B_Tim.rise_time, timer_handler, &B_Tim);
-	 chSysUnlock();
-	 */
 
 	while (TRUE)
 	{
@@ -181,7 +152,7 @@ THD_FUNCTION(RGBW_Controller,arg)
 		pwmEnableChannel(&PWMD3, 1, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Blue));     // 10% duty cycle
 		pwmEnableChannel(&PWMD3, 3, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Green));     // 10% duty cycle
 
-		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_RGBW.Max_Delay_Sec));
+		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_RGBW.RW.Max_Delay_Sec));
 
 		chSysLock();
 
@@ -189,9 +160,9 @@ THD_FUNCTION(RGBW_Controller,arg)
 		{
 		case (EVENTMASK_REREAD):
 
-			ComputeRiseVals_S(Inner_Val_RGBW.Red, Inner_Val_RGBW.Red_Set, &R_Tim);
-			ComputeRiseVals_S(Inner_Val_RGBW.Blue, Inner_Val_RGBW.Blue_Set, &B_Tim);
-			ComputeRiseVals_S(Inner_Val_RGBW.Green, Inner_Val_RGBW.Green_Set, &G_Tim);
+			ComputeRiseVals_S(Inner_Val_RGBW.Red, Inner_Val_RGBW.RW.Red_Set, &R_Tim);
+			ComputeRiseVals_S(Inner_Val_RGBW.Blue, Inner_Val_RGBW.RW.Blue_Set, &B_Tim);
+			ComputeRiseVals_S(Inner_Val_RGBW.Green, Inner_Val_RGBW.RW.Green_Set, &G_Tim);
 
 			_core_wakeup_i(&Update_Thread, MSG_OK);
 
@@ -211,20 +182,6 @@ THD_FUNCTION(RGBW_Controller,arg)
 		chSysUnlock();
 	}
 }
-
-/*
- msg_t RGBW_Update(systime_t microseconds)
- {
- chSysLock();
- while (Modules_Array[RGBW].Base_Thread_Updater != NULL)
- {
- chSchDoYieldS();
- }
- chEvtSignalI(RGBW_Thread, EVENTMASK_REREAD);
- msg_t msg = _core_wait_s(Modules_Array[RGBW].Base_Thread_Updater, microseconds);
- chSysUnlock();
- return msg;
- }*/
 
 void RGBW_Start()
 {
