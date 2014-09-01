@@ -85,7 +85,6 @@ void Core_Module_Register(core_base_struct_t* Base_Struct);
 msg_t Core_Module_Update(const core_types_t type, void * inval, systime_t timeout_milliseconds);
 bool Core_Events_Register(const core_types_t type);
 inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
-void sleepUntil(systime_t *previous, systime_t period);
 void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
 #define ABS(a) (((a) < 0) ? -(a) : (a))
 
