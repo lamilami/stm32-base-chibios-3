@@ -226,7 +226,18 @@ int main(void)
 
 #endif
 
-	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
+//	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
+	RGBW_Inner_Val_RW RGBW_Day, RGBW_Night;
+
+	RGBW_Day.Red_Set = 10000;
+	RGBW_Day.Blue_Set = 5000;
+	RGBW_Day.Green_Set = 7500;
+	RGBW_Day.Rise_Time_Sec = 10;
+
+	RGBW_Night.Red_Set = 0;
+	RGBW_Night.Blue_Set = 0;
+	RGBW_Night.Green_Set = 0;
+	RGBW_Night.Rise_Time_Sec = 10;
 
 	while (TRUE)
 	{
@@ -258,23 +269,17 @@ int main(void)
 		PrintStr("              ");
 #endif
 
-		RGBW_IV->Red_Set = 10000;
-		RGBW_IV->Blue_Set = 5000;
-		RGBW_IV->Green_Set = 7500;
-		RGBW_IV->Rise_Time_Sec = 3600;
-		Core_Module_Update(RGBW, 3000);
+		Core_Module_Update(RGBW, (void*) &RGBW_Day, 3000);
 
-		chThdSleepSeconds(14*60*60);
+		chThdSleepSeconds(15);
 
-		RGBW_IV->Red_Set = 0;
-		RGBW_IV->Blue_Set = 0;
-		RGBW_IV->Green_Set = 7500;
-		RGBW_IV->Rise_Time_Sec = 3600;
-		Core_Module_Update(RGBW, 3000);
+		Core_Module_Update(RGBW, (void*) &RGBW_Night, 3000);
 
 
 //		Timeval_Current = 24 * 3600 - Inner_Val_RGBW.Correction_24H;
-		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(24 * 60*60 - 117));
+//		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(24 * 60*60 - 117));
+
+		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(30));
 
 #ifdef WaitEvents
 		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
