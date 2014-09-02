@@ -2,6 +2,8 @@
 #include "hal.h"
 #include "core.h"
 
+#include "string.h"
+
 static core_array_t Modules_Array[Other];
 
 static core_base_struct_t Core_Base;
@@ -60,19 +62,19 @@ void Core_Module_Register(core_base_struct_t* Base_Struct)
  */
 core_base_struct_t* Core_GetStructAddrByType(const core_types_t type)
 {
-/*	volatile static core_base_struct_t *current;
-	current = Core_BasePtr;
-	while (((*current).type != type) && ((*current).next != NULL))
-	{
-		current = (*current).next;
-	}
+	/*	volatile static core_base_struct_t *current;
+	 current = Core_BasePtr;
+	 while (((*current).type != type) && ((*current).next != NULL))
+	 {
+	 current = (*current).next;
+	 }
 
-	if ((*current).type != type)
-	{
-		return NULL;
-	}
+	 if ((*current).type != type)
+	 {
+	 return NULL;
+	 }
 
-	return (core_base_struct_t*) current;*/
+	 return (core_base_struct_t*) current;*/
 
 	return Modules_Array[type].Base_Struct;
 }
@@ -153,7 +155,6 @@ void Core_Init()
 	extStart(&EXTD1, &extcfg);
 }
 
-
 #ifdef Core_Thread
 THD_WORKING_AREA(waCore, 256);
 //__attribute__((noreturn))
@@ -166,30 +167,30 @@ THD_FUNCTION(Core,arg)
 
 	EXTConfig extcfg =
 	{
-	{
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL } } };
+		{
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL},
+			{	EXT_CH_MODE_DISABLED, NULL}}};
 
 	/*
 	 * Activates the EXT driver 1.
@@ -211,7 +212,7 @@ THD_FUNCTION(Core,arg)
 }
 #endif
 
-inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd)
+inline void Core_Register_Thread(core_types_t type, thread_t* thd, thread_reference_t* upd_thd)
 {
 	Modules_Array[type].Base_Thread = thd;
 	Modules_Array[type].Base_Thread_Updater = upd_thd;
@@ -278,21 +279,22 @@ void Core_Start()
  chSysUnlock();
  *previous = future;
  }*/
-
-void ByteArrayCopy(uint8_t* src, uint8_t* dst, const uint8_t cnt)
+/*
+void ByteArrayCopy(const volatile char* __restrict src, volatile char* __restrict dst, const uint8_t cnt)
 {
 	int i;
 	for (i = 0; i < cnt; i++)
 	{
 		dst[i] = src[i];
 	}
-}
+}*/
 
-msg_t Core_Module_Update(const core_types_t type, void * inval, systime_t timeout_milliseconds)
+msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds)
 {
-	chSysLock();
 	core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
-	ByteArrayCopy (inval, (uint8_t*) base_struct->inner_values, base_struct->ival_rw_size);
+	chSysLock();
+	memcpy((void *) base_struct->inner_values, inval, base_struct->ival_rw_size);
+//	ByteArrayCopy(inval, (char*) base_struct->inner_values, base_struct->ival_rw_size);
 	chSysUnlock();
 	if (Modules_Array[type].Base_Thread != 0)
 	{
@@ -307,6 +309,18 @@ msg_t Core_Module_Update(const core_types_t type, void * inval, systime_t timeou
 		return msg;
 	}
 	return MSG_ERROR;
+}
+
+uint8_t Core_Module_Read(const core_types_t type, char * inval)
+{
+	core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
+	if (base_struct == NULL)
+		return 0;
+	chSysLock();
+	memcpy(inval, (void *) base_struct->inner_values, base_struct->ival_size);
+//	ByteArrayCopy((char*) base_struct->inner_values, inval, base_struct->ival_size);
+	chSysUnlock();
+	return base_struct->ival_size;
 }
 
 /*

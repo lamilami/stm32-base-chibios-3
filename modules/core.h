@@ -9,7 +9,7 @@
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
 #define RGBW_PRESENT		TRUE
-#define CLI_PRESENT			FALSE
+#define CLI_PRESENT			TRUE
 #define PIR_PRESENT			FALSE
 
 //#define StM() WatchDog_Start();
@@ -69,8 +69,8 @@ struct core_base_struct
 typedef struct
 {
 	core_base_struct_t* Base_Struct;
-	thread_t*			Base_Thread;
-	thread_reference_t*  Base_Thread_Updater;
+	thread_t* Base_Thread;
+	thread_reference_t* Base_Thread_Updater;
 } core_array_t;
 
 //volatile extern core_base_struct_t* Core_BasePtr;
@@ -82,10 +82,11 @@ void Core_Module_Register(core_base_struct_t* Base_Struct);
 //core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
 //void* Core_GetIvalAddrByType(const core_types_t type);
 //msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds);
-msg_t Core_Module_Update(const core_types_t type, void * inval, systime_t timeout_milliseconds);
+msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds);
+uint8_t Core_Module_Read(const core_types_t type, char * inval);
 bool Core_Events_Register(const core_types_t type);
 inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
-void ByteArrayCopy(uint8_t* src, uint8_t* dst, uint8_t cnt);
+//void ByteArrayCopy(const volatile char* src, volatile char* dst, const uint8_t cnt);
 #define ABS(a) (((a) < 0) ? -(a) : (a))
 
 void Core_Start();
