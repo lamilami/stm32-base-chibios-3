@@ -36,7 +36,7 @@ static void timer_handler(void *arg)
 	timer_str_t* timer_s = (timer_str_t*) arg;
 	*timer_s->curr_power += timer_s->inc;
 	if (!chVTIsArmedI(timer_s->vt))
-	chVTDoSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
+		chVTDoSetI(timer_s->vt, timer_s->rise_time, timer_handler, (void*) arg);
 	chEvtSignalI(RGBW_Thread, (eventmask_t) EVENTMASK_UPDATE);
 	chSysUnlockFromISR();
 }
@@ -53,7 +53,7 @@ void RGBW_Init()
 	Core_RGBW.ival_size = sizeof(RGBW_Inner_Val);
 	Core_RGBW.ival_rw_size = sizeof(RGBW_Inner_Val_RW);
 
-	Inner_Val_RGBW.RW.Max_Delay_Sec = 255;
+	Inner_Val_RGBW.RW.Max_Delay_Sec = 100;
 	Inner_Val_RGBW.RW.Red_Set = 0;
 	Inner_Val_RGBW.RW.Blue_Set = 0;
 	Inner_Val_RGBW.RW.Green_Set = 0;
