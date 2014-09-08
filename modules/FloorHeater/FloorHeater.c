@@ -5,14 +5,13 @@
 
 #if FloorHeater_PRESENT
 
-static core_base_struct_t Core_FloorHeater;
-volatile static struct
-{
-	volatile uint16_t Power;
-	volatile uint16_t pPower;
-	volatile uint16_t iPower;
-} Inner_Val;
+static thread_reference_t Update_Thread;
 
+static core_base_struct_t Core_FloorHeater;
+volatile static FloorHeater_Inner_Val Inner_Val_FH = {};
+//volatile static FloorHeater_Inner_Val_RW Floor_PID;
+
+/*
 typedef struct
 {
 //  double dState;                  // Last position input
@@ -22,31 +21,32 @@ typedef struct
 	int32_t iGain,     // integral gain
 			pGain;     // proportional gain
 //             dGain;         // derivative gain
+	uint16_t Desired_Temp;
 } SPid;
 
+volatile static SPid Floor_PID = { };*/
 
-
-int32_t UpdatePID(SPid * pid, int32_t error)     //, double position)
+int32_t UpdatePID_S(volatile FloorHeater_Inner_Val * pid, int32_t error)     //, double position)
 {
-	float pTerm, /*dTerm,*/iTerm;
+//	int32_t pTerm, /*dTerm,*/iTerm;
 
-	pTerm = error << pid->pGain;     // calculate the proportional term
-	pid->iState += error;     // calculate the integral state with appropriate limiting
+	pid->pPower = error << pid->RW.pGain;     // calculate the proportional term
+	pid->RW.iState += error;     // calculate the integral state with appropriate limiting
 
-	if (pid->iState > pid->iMax)
-		pid->iState = pid->iMax;
-	else if (pid->iState < pid->iMin)
-		pid->iState = pid->iMin;
-	iTerm = pid->iState << pid->iGain;     // calculate the integral term
+	if (pid->RW.iState > pid->RW.iMax)
+		pid->RW.iState = pid->RW.iMax;
+	else if (pid->RW.iState < pid->RW.iMin)
+		pid->RW.iState = pid->RW.iMin;
+	pid->iPower = pid->RW.iState << pid->RW.iGain;     // calculate the integral term
 //  dTerm = pid->dGain * (position - pid->dState);
 //  pid->dState = position;
 
-	chSysLock();
-	Inner_Val.pPower = pTerm;
-	Inner_Val.iPower = iTerm;
-	chSysUnlock();
+//	chSysLock();
+//	Inner_Val_FH.pPower = pTerm;
+//	Inner_Val_FH.iPower = iTerm;
+//	chSysUnlock();
 
-	return (pTerm + iTerm);     // - dTerm);
+	return (pid->pPower + pid->iPower);     // - dTerm);
 }
 
 static PWMConfig pwmcfg =
@@ -68,16 +68,26 @@ void FloorHeater_Init()
 //	Core_Base.addr = MY_ADDR;
 //	Core_Base.mbox = &core_mb;
 //	Core_FloorHeater.thread = chThdGetSelfX();
-	Core_FloorHeater.direction = RO;
+//	Core_FloorHeater.direction = RO;
 	Core_FloorHeater.next = NULL;
 	Core_FloorHeater.description = "FloorHeater, 330 Watt PWM (PI)";
-	Core_FloorHeater.current_value = 0xffff;
-	Core_FloorHeater.inner_values = &Inner_Val;
-	Core_FloorHeater.ival_size = sizeof(Inner_Val);
+//	Core_FloorHeater.current_value = 0xffff;
+	Core_FloorHeater.inner_values = &Inner_Val_FH;
+	Core_FloorHeater.ival_size = sizeof(FloorHeater_Inner_Val);
+	Core_FloorHeater.ival_rw_size = sizeof(FloorHeater_Inner_Val_RW);
 
 	/*	chSysLock();
 	 Core_Base.next = &Core_DS18B20;
 	 chSysUnlock();*/
+
+	Inner_Val_FH.RW.iGain = 2;
+	Inner_Val_FH.RW.pGain = 4;
+	Inner_Val_FH.RW.iState = 0;
+	Inner_Val_FH.RW.iMax = 25;
+	Inner_Val_FH.RW.iMin = -2;
+	Inner_Val_FH.RW.Desired_Temp = 0;
+	Inner_Val_FH.RW.Auto_Update_Sec = 180;
+	Inner_Val_FH.RW.Get_Temp_Callback = NULL;
 
 	Core_Module_Register(&Core_FloorHeater);
 }
@@ -105,6 +115,12 @@ void FloorHeater_Init()
  #endif*/
 
 //}
+/*
+inline static void Copy_PID_Vals_S()
+{
+	Floor_PID = Inner_Val_FH.RW;
+}*/
+
 THD_WORKING_AREA(waFloorHeater, 256);
 //__attribute__((noreturn))
 THD_FUNCTION(FloorHeater,arg)
@@ -119,39 +135,58 @@ THD_FUNCTION(FloorHeater,arg)
 
 	pwmStart(&PWMD1, &pwmcfg);
 
-	volatile core_base_struct_t *Tmp_Base;
-	Tmp_Base = Core_BasePtr;
-	while ((*Tmp_Base).type != Temp)
-	{
-		Tmp_Base = (*Tmp_Base).next;
-	}
+//	volatile core_base_struct_t *Tmp_Base;
+//	Tmp_Base = Core_BasePtr;
+	/*	while ((*Tmp_Base).type != Temp)
+	 {
+	 Tmp_Base = (*Tmp_Base).next;
+	 }
 
-	thread_t *DS18B20_Thread = (thread_t *) (*Tmp_Base).thread;
-	volatile uint16_t msg;
+	 thread_t *DS18B20_Thread = (thread_t *) (*Tmp_Base).thread;
+	 volatile uint16_t msg;*/
+/*
+	osalSysLock();
+	Copy_PID_Vals_S();
+	osalSysUnlock();
+*/
+//	uint16_t Desired_Temp;     // = Set_TEMP << 2;
 
-	SPid Floor_PID;
-	Floor_PID.pGain = 4;
-	Floor_PID.iGain = 2;
-	Floor_PID.iState = 0;
-	Floor_PID.iMax = 25;
-	Floor_PID.iMin = -2;
-
-	uint16_t Desired_Temp;     // = Set_TEMP << 2;
-
-	systime_t time = chVTGetSystemTime();
+//	systime_t time = chVTGetSystemTime();
 //	pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, 9000));   // 10% duty cycle
 	while (TRUE)
 	{
 
-		volatile int16_t ipwr;
-		msg = chMsgSend(DS18B20_Thread, msg);
-		Desired_Temp = (*Tmp_Base).set_value;
-		volatile int32_t pwr = UpdatePID(&Floor_PID, (float) (Desired_Temp - msg));
-		if (pwr > 100)
-			pwr = 100;
-		if (pwr < 0)
-			pwr = 0;
-		ipwr = (int16_t) pwr;
+		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_FH.RW.Auto_Update_Sec));
+
+		if (evt == EVENTMASK_REREAD)
+		{
+			osalSysLock();
+//			Copy_PID_Vals_S();
+			_core_wakeup_i(&Update_Thread, MSG_OK);
+			osalSysUnlock();
+		}
+
+		volatile int16_t ipwr, Current_Temp;
+//		msg = chMsgSend(DS18B20_Thread, msg);
+//		Desired_Temp = (*Tmp_Base).set_value;
+		osalSysLock();
+		if (Inner_Val_FH.RW.Get_Temp_Callback!=NULL)
+		{
+			osalSysUnlock();
+			Current_Temp = Inner_Val_FH.RW.Get_Temp_Callback();
+			osalSysLock();
+			volatile int32_t pwr = UpdatePID_S(&Inner_Val_FH, (Inner_Val_FH.RW.Desired_Temp - Current_Temp));
+			if (pwr > 100)
+				pwr = 100;
+			if (pwr < 0)
+				pwr = 0;
+			ipwr = (int16_t) pwr;
+		}
+		else {
+			Current_Temp = 0xFFF0;
+			ipwr = 0;
+		};
+		osalSysUnlock();
 
 		/*		if (msg>Desired_Temp)
 		 {
@@ -160,20 +195,21 @@ THD_FUNCTION(FloorHeater,arg)
 		 else ipwr = 90;*/
 
 		chSysLock();
-		Inner_Val.Power = ipwr;
+		Inner_Val_FH.Power = ipwr;
 		chSysUnlock();
 
 		pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, ipwr * 100));     // 10% duty cycle
 
 //		time += S2ST(120);
-		sleepUntil(&time, S2ST(60));
+//		sleepUntil(&time, S2ST(60));
 	}
 }
 
 void FloorHeater_Start()
 {
 	FloorHeater_Init();
-	chThdCreateStatic(waFloorHeater, sizeof(waFloorHeater), HIGHPRIO, FloorHeater, NULL);
+	thread_t* thd = chThdCreateStatic(waFloorHeater, sizeof(waFloorHeater), HIGHPRIO, FloorHeater, NULL);
+	Core_Register_Thread(Heater, thd, &Update_Thread);
 	chThdYield();
 }
 

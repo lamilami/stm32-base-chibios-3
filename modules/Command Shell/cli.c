@@ -4,6 +4,8 @@
 #include "chprintf.h"
 #include "core.h"
 
+
+#if CLI_PRESENT
 /*===========================================================================*/
 /* Command line related.                                                     */
 /*===========================================================================*/
@@ -149,3 +151,4 @@ void CLI_Start()
 	chThdCreateStatic(waCLI, sizeof(waCLI), LOWPRIO, CLI, NULL);
 #endif
 }
+#endif

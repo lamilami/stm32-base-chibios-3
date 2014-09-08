@@ -280,22 +280,25 @@ void Core_Start()
  *previous = future;
  }*/
 /*
-void ByteArrayCopy(const volatile char* __restrict src, volatile char* __restrict dst, const uint8_t cnt)
-{
-	int i;
-	for (i = 0; i < cnt; i++)
-	{
-		dst[i] = src[i];
-	}
-}*/
+ void ByteArrayCopy(const volatile char* __restrict src, volatile char* __restrict dst, const uint8_t cnt)
+ {
+ int i;
+ for (i = 0; i < cnt; i++)
+ {
+ dst[i] = src[i];
+ }
+ }*/
 
 msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds)
 {
-	core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
-	chSysLock();
-	memcpy((void *) base_struct->inner_values, inval, base_struct->ival_rw_size);
+	if (inval != NULL)
+	{
+		core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
+		chSysLock();
+		memcpy((void *) base_struct->inner_values, inval, base_struct->ival_rw_size);
 //	ByteArrayCopy(inval, (char*) base_struct->inner_values, base_struct->ival_rw_size);
-	chSysUnlock();
+		chSysUnlock();
+	}
 	if (Modules_Array[type].Base_Thread != 0)
 	{
 		chSysLock();

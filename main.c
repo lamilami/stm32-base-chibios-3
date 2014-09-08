@@ -119,6 +119,16 @@ void LEDBlinkI(uint8_t cnt)
  }
  }
  */
+
+uint16_t FloorHeater_cb()
+{
+	static DS18B20_Inner_Val Temp_Vals;
+	Core_Module_Update(Temp, NULL, 1000);
+	Core_Module_Read(Temp,(char*) &Temp_Vals);
+	return Temp_Vals.temp[0];
+}
+
+
 /*
  * Application entry point.
  */
@@ -134,7 +144,6 @@ int main(void)
 	halInit();
 	chSysInit();
 	chThdSetPriority(LOWPRIO);
-	systime_t time_start = chVTGetSystemTime();
 	/*
 	 * Creates the blinker threads.
 	 */
@@ -175,6 +184,7 @@ int main(void)
 //	RGBW_IW;
 
 #ifdef RGBW_Test
+	systime_t time_start = chVTGetSystemTime();
 
 	RTCDateTime DateTime;
 
@@ -226,6 +236,7 @@ int main(void)
 
 #endif
 
+#if RGBW_PRESENT
 //	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
 	RGBW_Inner_Val RGBW_Day = {}, RGBW_Night = {};
 //	RGBW_Inner_Val RGBW_Current;
@@ -241,8 +252,24 @@ int main(void)
 	RGBW_Night.RW.Green_Set = 0;
 	RGBW_Night.RW.Rise_Time_Sec = 1;
 	RGBW_Night.RW.Max_Delay_Sec = 600;
-
+#endif
 //	Core_Module_Read(RGBW, (void *) &RGBW_Current);
+
+#if FloorHeater_PRESENT
+
+	FloorHeater_Inner_Val_RW FH_IV;
+	FH_IV.Desired_Temp = 26;
+	FH_IV.Auto_Update_Sec = 60;
+	FH_IV.Get_Temp_Callback = FloorHeater_cb;
+	FH_IV.iGain = 2;
+	FH_IV.pGain = 4;
+	FH_IV.iState = 0;
+	FH_IV.iMax = 25;
+	FH_IV.iMin = -2;
+
+	Core_Module_Update(Heater,(void *) &FH_IV, 1000);
+
+#endif
 
 	while (TRUE)
 	{
@@ -274,6 +301,8 @@ int main(void)
 		PrintStr("              ");
 #endif
 
+#if RGBW_PRESENT
+
 		Core_Module_Update(RGBW, (void *) &RGBW_Day, 3000);
 
 //		chThdSleepSeconds(14*60*60);
@@ -288,6 +317,7 @@ int main(void)
 //		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(24 * 60*60 - 117));
 
 		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(4));
+#endif
 
 #ifdef WaitEvents
 		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
@@ -300,6 +330,6 @@ int main(void)
 			break;
 		}
 #endif
-//		chThdSleepSeconds(1);
+		chThdSleepSeconds(300);
 	}
 }
