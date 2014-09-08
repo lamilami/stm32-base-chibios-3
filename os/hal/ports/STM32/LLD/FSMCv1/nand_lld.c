@@ -20,7 +20,7 @@
 
 /**
  * @file    nand_lld.c
- * @brief   NAND Driver subsystem low level driver source template.
+ * @brief   NAND Driver subsystem low level driver source.
  *
  * @addtogroup NAND
  * @{
@@ -87,7 +87,6 @@ static void wakeup_isr(NANDDriver *nandp){
  */
 static void nand_lld_suspend_thread(NANDDriver *nandp) {
 
-  //nandp->thread = chThdGetSelfX();
   osalThreadSuspendS(&nandp->thread);
 }
 
@@ -114,86 +113,60 @@ static uint32_t calc_eccps(NANDDriver *nandp){
 /* Driver interrupt handlers.                                                */
 /*===========================================================================*/
 
-#if STM32_NAND_USE_FSMC_INT
 /**
- * @brief   Enable interrupts from FSMC
+ * @brief   Enable interrupts from NAND
  *
  * @param[in] nandp    pointer to the @p NANDDriver object
  *
  * @notapi
  */
 static void nand_ready_isr_enable(NANDDriver *nandp) {
+#if STM32_NAND_USE_EXT_INT
+  nandp->config->ext_nand_isr_enable();
+#else
+  nandp->nand->SR &= ~(FSMC_SR_IRS | FSMC_SR_ILS | FSMC_SR_IFS |
+                                          FSMC_SR_ILEN | FSMC_SR_IFEN);
   nandp->nand->SR |= FSMC_SR_IREN;
-  osalSysHalt("Function untested");
+#endif
 }
 
 /**
- * @brief   Disable interrupts from FSMC
+ * @brief   Disable interrupts from NAND
  *
  * @param[in] nandp    pointer to the @p NANDDriver object
  *
  * @notapi
  */
 static void nand_ready_isr_disable(NANDDriver *nandp) {
+#if STM32_NAND_USE_EXT_INT
+  nandp->config->ext_nand_isr_disable();
+#else
   nandp->nand->SR &= ~FSMC_SR_IREN;
-  osalSysHalt("Function untested");
+#endif
 }
 
 /**
  * @brief   Ready interrupt handler
  *
  * @param[in] nandp    pointer to the @p NANDDriver object
- * @param[in] flags       flags passed from FSMC intrrupt handler
  *
  * @notapi
  */
-static void nand_isr_handler (NANDDriver *nandp,
-                                                nandflags_t flags){
-  (void)nandp;
-  (void)flags;
-
-  osalSysHalt("Unrealized");
-}
-#else /* STM32_NAND_USE_FSMC_INT */
-/**
- * @brief   Disable interrupts from EXTI
- *
- * @param[in] nandp    pointer to the @p NANDDriver object
- *
- * @notapi
- */
-static void nand_ready_isr_enable(NANDDriver *nandp) {
-  nandp->config->ext_isr_enable();
-}
-
-/**
- * @brief   Enable interrupts from EXTI
- *
- * @param[in] nandp    pointer to the @p NANDDriver object
- *
- * @notapi
- */
-static void nand_ready_isr_disable(NANDDriver *nandp) {
-  nandp->config->ext_isr_disable();
-}
-
-/**
- * @brief   Ready pin interrupt handler.
- *
- * @param[in] nandp    pointer to the @p NANDDriver object
- *
- * @notapi
- */
-static void nand_isr_handler(NANDDriver *nandp){
+static void nand_isr_handler (NANDDriver *nandp){
 
   osalSysLockFromISR();
+
+#if !STM32_NAND_USE_EXT_INT
+  osalDbgCheck(nandp->nand->SR & FSMC_SR_IRS); /* spurious interrupt happened */
+  nandp->nand->SR &= ~FSMC_SR_IRS;
+#endif
 
   switch (nandp->state){
   case NAND_READ:
     nandp->state = NAND_DMA_RX;
     dmaStartMemCopy(nandp->dma, nandp->dmamode,
                     nandp->map_data, nandp->rxdata, nandp->datalen);
-    /* thread will be woked up from DMA ISR */
+    /* thread will be waked up from DMA ISR */
     break;
 
   case NAND_ERASE:
@@ -212,21 +185,18 @@ static void nand_isr_handler(NANDDriver *nandp){
     osalSysHalt("Unhandled case");
     break;
   }
-
   osalSysUnlockFromISR();
 }
-#endif /* STM32_NAND_USE_FSMC_INT */
 
 /**
  * @brief   DMA RX end IRQ handler.
  *
  * @param[in] nandp    pointer to the @p NANDDriver object
- * @param[in] flags       pre-shifted content of the ISR register
+ * @param[in] flags    pre-shifted content of the ISR register
  *
  * @notapi
  */
-static void nand_lld_serve_transfer_end_irq(NANDDriver *nandp,
-                                               uint32_t flags) {
+static void nand_lld_serve_transfer_end_irq(NANDDriver *nandp, uint32_t flags) {
   /* DMA errors handling.*/
 #if defined(STM32_NAND_DMA_ERROR_HOOK)
   if ((flags & (STM32_DMA_ISR_TEIF | STM32_DMA_ISR_DMEIF)) != 0) {
@@ -282,7 +252,7 @@ void nand_lld_init(void) {
   NANDD1.datalen  = 0;
   NANDD1.thread   = NULL;
   NANDD1.dma      = STM32_DMA_STREAM(STM32_NAND_DMA_STREAM);
-  NANDD1.nand     = (FSMC_NAND_TypeDef *)FSMC_Bank2_R_BASE;
+  NANDD1.nand     = FSMCD1.nand1;
   NANDD1.map_data = (uint8_t*)FSMC_Bank2_MAP_COMMON_DATA;
   NANDD1.map_cmd  = (uint8_t*)FSMC_Bank2_MAP_COMMON_CMD;
   NANDD1.map_addr = (uint8_t*)FSMC_Bank2_MAP_COMMON_ADDR;
@@ -295,7 +265,7 @@ void nand_lld_init(void) {
   NANDD2.datalen  = 0;
   NANDD2.thread   = NULL;
   NANDD2.dma      = STM32_DMA_STREAM(STM32_NAND_DMA_STREAM);
-  NANDD2.nand     = (FSMC_NAND_TypeDef *)FSMC_Bank3_R_BASE;
+  NANDD2.nand     = FSMCD1.nand2;
   NANDD2.map_data = (uint8_t*)FSMC_Bank3_MAP_COMMON_DATA;
   NANDD2.map_cmd  = (uint8_t*)FSMC_Bank3_MAP_COMMON_CMD;
   NANDD2.map_addr = (uint8_t*)FSMC_Bank3_MAP_COMMON_ADDR;
@@ -433,8 +403,7 @@ uint8_t nand_lld_write_data(NANDDriver *nandp, const uint8_t *data,
     nandp->nand->PCR |= FSMC_PCR_ECCEN;
   }
 
-  dmaStartMemCopy(nandp->dma, nandp->dmamode,
-                           data, nandp->map_data, datalen);
+  dmaStartMemCopy(nandp->dma, nandp->dmamode, data, nandp->map_data, datalen);
 
   nand_lld_suspend_thread(nandp);
   osalSysUnlock();
@@ -460,8 +429,7 @@ uint8_t nand_lld_write_data(NANDDriver *nandp, const uint8_t *data,
  *
  * @notapi
  */
-uint8_t nand_lld_erase(NANDDriver *nandp,
-                                        uint8_t *addr, size_t addrlen){
+uint8_t nand_lld_erase(NANDDriver *nandp, uint8_t *addr, size_t addrlen){
 
   nandp->state = NAND_ERASE;
 
@@ -487,8 +455,7 @@ uint8_t nand_lld_erase(NANDDriver *nandp,
  *
  * @notapi
  */
-void nand_lld_polled_read_data(NANDDriver *nandp,
-                                                  uint8_t *data, size_t len){
+void nand_lld_polled_read_data(NANDDriver *nandp, uint8_t *data, size_t len){
   size_t i = 0;
 
   for (i=0; i<len; i++)
@@ -504,8 +471,7 @@ void nand_lld_polled_read_data(NANDDriver *nandp,
  *
  * @notapi
  */
-void nand_lld_write_addr(NANDDriver *nandp,
-                                            const uint8_t *addr, size_t len){
+void nand_lld_write_addr(NANDDriver *nandp, const uint8_t *addr, size_t len){
   size_t i = 0;
 
   for (i=0; i<len; i++)

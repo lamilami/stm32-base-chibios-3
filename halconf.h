@@ -43,7 +43,7 @@
 #define LEDSwap() GPIOA->ODR ^= GPIO_Pin_3
 #define LEDB1On() GPIOB->BSRR = GPIO_Pin_1
 #define LEDB1Off() GPIOB->BRR = GPIO_Pin_1
-#define LEDB1Swap() GPIOB->ODR ^= GPIO_Pin_1
+#define LEDB1Swap() GPIOA->ODR ^= GPIO_Pin_2
 #endif
 
 void LEDBlinkS(uint8_t cnt);
@@ -134,7 +134,7 @@ void LEDBlinkI(uint8_t cnt);
  * @brief   Enables the RTC subsystem.
  */
 #if !defined(HAL_USE_RTC) || defined(__DOXYGEN__)
-#define HAL_USE_RTC                 FALSE
+#define HAL_USE_RTC                 TRUE
 #endif
 
 /**

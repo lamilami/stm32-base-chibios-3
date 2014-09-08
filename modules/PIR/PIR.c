@@ -1,3 +1,4 @@
+#if PIR_PRESENT
 #include "ch.h"
 #include "hal.h"
 #include "PIR.h"
@@ -47,7 +48,7 @@ static void PIR_Init(void)
 
 void PIR_Start()
 {
-#if PIR_PRESENT
+
 
 	palSetPad(GPIOF, GPIOF_PIN1);
 	palSetPadMode(GPIOF, GPIOF_PIN1, PAL_MODE_INPUT);
@@ -63,6 +64,5 @@ void PIR_Start()
 
 	PIR_Init();
 
-	Core_Events_Register(PIR);
-#endif
 }
+#endif

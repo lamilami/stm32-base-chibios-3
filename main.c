@@ -18,19 +18,10 @@
 #else
 #include "stm32f0xx.h"
 #endif
-
 #include "ch.h"
 #include "hal.h"
-#include <nRF24.h>
-#include "radio.h"
 #include "core.h"
 #include "halconf.h"
-#include "DS18B20.h"
-#include "FloorHeater.h"
-#include "WatchDog.h"
-#include "DHT11.h"
-#include "RGBW.h"
-#include "cli.h"
 
 #ifdef DEBUG_Discovery
 
@@ -142,7 +133,8 @@ int main(void)
 	 */
 	halInit();
 	chSysInit();
-
+	chThdSetPriority(LOWPRIO);
+	systime_t time_start = chVTGetSystemTime();
 	/*
 	 * Creates the blinker threads.
 	 */
@@ -171,19 +163,8 @@ int main(void)
 	 * pressed the test procedure is launched with output on the serial
 	 * driver 1.
 	 */
-	LEDB1Swap();
-	WatchDog_Start(-1);
-	CLI_Start(-1);
-	Core_Start(0);
-
-//	chThdYield();
-
-	Radio_Start(1);
-	DS18B20_Start(2);
-	FloorHeater_Start(3);
-	RGBW_Start(4);
-	DHT11_Start(5);
-	PIR_Start();
+//	LEDB1Swap();
+	Core_Start();
 
 //	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 #if LCD1602_PRESENT
@@ -191,14 +172,77 @@ int main(void)
 	ClearLCDScreen();//Очистка дисплея от мусора
 #endif
 
-//    LCD_PutSignedInt(istr);
-//    PrintStr("CXEM.NET");
+//	RGBW_IW;
 
-//	chThdYield();
+#ifdef RGBW_Test
 
-//	core_base_struct_t* PIR_Core = Core_GetStructAddrByType(PIR);
-//	static event_listener_t EvtListenerPIR;
-//	chEvtRegisterMask(&PIR_Core->event_source, &EvtListenerPIR, EVENT_MASK(0));
+	RTCDateTime DateTime;
+
+	DateTime.year = 33;
+	DateTime.month = 8;
+	DateTime.dstflag = 0;
+	DateTime.dayofweek = 4;
+	DateTime.day = 28;
+	DateTime.millisecond = 0;
+
+	rtcSetTime(&RTCD1, &DateTime);
+
+	chThdSleepSeconds(1000);
+
+	rtcGetTime(&RTCD1, &DateTime);
+
+#ifdef tralala
+	/* Disable write protection. */
+	RTCD1.rtc->WPR = 0xCA;
+	RTCD1.rtc->WPR = 0x53;
+
+//if (!(RTCD1.rtc->ISR & RTC_ISR_INITS))
+	{
+#endif
+
+//		rtc_lld_enter_init();
+//		RTCD1.rtc->CR = 0;
+//		RTCD1.rtc->ISR = 0;
+//		RTCD1.rtc->PRER = RTC_PRER(125, 320);
+//		RTCD1.rtc->PRER = RTC_PRER(125, 320);
+//		RTCD1.rtc->CAL |= RTC_CAL_CALP|RTC_CAL_CALM_1|RTC_CAL_CALM_3|RTC_CAL_CALM_5|RTC_CAL_CALM_6|RTC_CAL_CALM_7;
+//		rtc_lld_exit_init();
+//	}
+//	RTCD1.rtc->WPR = 0xFF;
+//#endif
+
+		DateTime.year = 33;
+		DateTime.month = 8;
+		DateTime.dstflag = 0;
+		DateTime.dayofweek = 4;
+		DateTime.day = 28;
+		DateTime.millisecond = 0;
+
+		rtcSetTime(&RTCD1, &DateTime);
+
+		chThdSleepSeconds(1000);
+
+		rtcGetTime(&RTCD1, &DateTime);
+
+#endif
+
+//	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
+	RGBW_Inner_Val RGBW_Day = {}, RGBW_Night = {};
+//	RGBW_Inner_Val RGBW_Current;
+
+	RGBW_Day.RW.Red_Set = 10000;
+	RGBW_Day.RW.Blue_Set = 10000;
+	RGBW_Day.RW.Green_Set = 10000;
+	RGBW_Day.RW.Rise_Time_Sec = 1;
+	RGBW_Day.RW.Max_Delay_Sec = 600;
+
+	RGBW_Night.RW.Red_Set = 0;
+	RGBW_Night.RW.Blue_Set = 0;
+	RGBW_Night.RW.Green_Set = 0;
+	RGBW_Night.RW.Rise_Time_Sec = 1;
+	RGBW_Night.RW.Max_Delay_Sec = 600;
+
+//	Core_Module_Read(RGBW, (void *) &RGBW_Current);
 
 	while (TRUE)
 	{
@@ -229,15 +273,33 @@ int main(void)
 		LCD_PutUnsignedInt(tmp);
 		PrintStr("              ");
 #endif
+
+		Core_Module_Update(RGBW, (void *) &RGBW_Day, 3000);
+
+//		chThdSleepSeconds(14*60*60);
+/*		chThdSleepMilliseconds(500);
+		Core_Module_Read(RGBW, (void *) &RGBW_Current);
+		chThdSleepMilliseconds(1500);*/
+		chThdSleepMilliseconds(500);
+
+		Core_Module_Update(RGBW, (void *) &RGBW_Night, 3000);
+
+//		Timeval_Current = 24 * 3600 - Inner_Val_RGBW.Correction_24H;
+//		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(24 * 60*60 - 117));
+
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(4));
+
+#ifdef WaitEvents
 		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
 		switch (evt)
 		{
-		case (EVENT_MASK((uint8_t) PIR)):
+			case (EVENT_MASK((uint8_t) PIR)):
 			LEDB1Swap();
 			break;
-		default:
+			default:
 			break;
 		}
+#endif
 //		chThdSleepSeconds(1);
 	}
 }

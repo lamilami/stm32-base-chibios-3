@@ -22,10 +22,10 @@ THD_FUNCTION(WatchDog,arg)
 	}
 }
 
-void WatchDog_Start(uint8_t id)
+void WatchDog_Start()
 {
 #if WATCHDOG_PRESENT
-	chThdCreateStatic(waWatchDog, sizeof(waWatchDog), HIGHPRIO, WatchDog, (void*) (uint32_t) id);
+	chThdCreateStatic(waWatchDog, sizeof(waWatchDog), HIGHPRIO, WatchDog, NULL);
 	chThdYield();
 #endif
 }

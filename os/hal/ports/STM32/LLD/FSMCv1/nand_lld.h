@@ -20,7 +20,7 @@
 
 /**
  * @file    nand_lld.h
- * @brief   NAND Driver subsystem low level driver header template.
+ * @brief   NAND Driver subsystem low level driver header.
  *
  * @addtogroup NAND
  * @{
@@ -38,7 +38,6 @@
 /*===========================================================================*/
 #define NAND_MIN_PAGE_SIZE       256
 #define NAND_MAX_PAGE_SIZE       8192
-#define NAND_BAD_MAP_END_MARK    ((uint16_t)0xFFFF)
 
 /*===========================================================================*/
 /* Driver pre-compile time settings.                                         */
@@ -49,10 +48,10 @@
  * @{
  */
 /**
- * @brief   EMD FSMC1 interrupt priority level setting.
+ * @brief   FSMC1 interrupt priority level setting.
  */
 #if !defined(STM32_EMC_FSMC1_IRQ_PRIORITY) || defined(__DOXYGEN__)
-#define STM32_EMC_FSMC1_IRQ_PRIORITY                10
+#define STM32_EMC_FSMC1_IRQ_PRIORITY      10
 #endif
 
 /**
@@ -60,7 +59,7 @@
  * @details If set to @p TRUE the support for NAND1 is included.
  */
 #if !defined(STM32_NAND_USE_NAND1) || defined(__DOXYGEN__)
-#define STM32_NAND_USE_NAND1                  FALSE
+#define STM32_NAND_USE_NAND1              FALSE
 #endif
 
 /**
@@ -68,7 +67,7 @@
  * @details If set to @p TRUE the support for NAND2 is included.
  */
 #if !defined(STM32_NAND_USE_NAND2) || defined(__DOXYGEN__)
-#define STM32_NAND_USE_NAND2                  FALSE
+#define STM32_NAND_USE_NAND2              FALSE
 #endif
 
 /**
@@ -77,7 +76,7 @@
  *          error can only happen because programming errors.
  */
 #if !defined(STM32_NAND_DMA_ERROR_HOOK) || defined(__DOXYGEN__)
-#define STM32_NAND_DMA_ERROR_HOOK(nandp)      osalSysHalt("DMA failure")
+#define STM32_NAND_DMA_ERROR_HOOK(nandp)  osalSysHalt("DMA failure")
 #endif
 
 /**
@@ -85,29 +84,29 @@
  * @details If set to @p TRUE the support for internal FSMC interrupt included.
  */
 #if !defined(STM32_NAND_USE_INT) || defined(__DOXYGEN__)
-#define STM32_NAND_USE_INT                       FALSE
+#define STM32_NAND_USE_INT                FALSE
 #endif
 
 /**
 * @brief   NAND1 DMA priority (0..3|lowest..highest).
 */
 #if !defined(STM32_NAND_NAND1_DMA_PRIORITY) || defined(__DOXYGEN__)
-#define STM32_NAND_NAND1_DMA_PRIORITY         0
+#define STM32_NAND_NAND1_DMA_PRIORITY     0
 #endif
 
 /**
 * @brief   NAND2 DMA priority (0..3|lowest..highest).
 */
 #if !defined(STM32_NAND_NAND2_DMA_PRIORITY) || defined(__DOXYGEN__)
-#define STM32_NAND_NAND2_DMA_PRIORITY         0
+#define STM32_NAND_NAND2_DMA_PRIORITY     0
 #endif
 
 /**
- * @brief   DMA stream used for NAND1 operations.
+ * @brief   DMA stream used for NAND operations.
  * @note    This option is only available on platforms with enhanced DMA.
  */
 #if !defined(STM32_NAND_DMA_STREAM) || defined(__DOXYGEN__)
-#define STM32_NAND_DMA_STREAM     STM32_DMA_STREAM_ID(2, 6)
+#define STM32_NAND_DMA_STREAM             STM32_DMA_STREAM_ID(2, 6)
 #endif
 
 /** @} */
@@ -120,15 +119,11 @@
 #error "NAND driver activated but no NAND peripheral assigned"
 #endif
 
-#if STM32_NAND_USE_FSMC_NAND1 && !STM32_HAS_FSMC
+#if (STM32_NAND_USE_FSMC_NAND2 || STM32_NAND_USE_FSMC_NAND1) && !STM32_HAS_FSMC
 #error "FSMC not present in the selected device"
 #endif
 
-#if STM32_NAND_USE_FSMC_NAND2 && !STM32_HAS_FSMC
-#error "FSMC not present in the selected device"
-#endif
-
-#if !STM32_NAND_USE_FSMC_INT && !HAL_USE_EXT
+#if STM32_NAND_USE_EXT_INT && !HAL_USE_EXT
 #error "External interrupt controller must be enabled to use this feature"
 #endif
 
@@ -156,23 +151,17 @@ typedef uint32_t nandflags_t;
  */
 typedef struct NANDDriver NANDDriver;
 
-#if STM32_NAND_USE_FSMC_INT
-/**
- * @brief   Type of interrupt handler function
- */
-typedef void (*nandisrhandler_t)
-                      (NANDDriver *nandp, nandflags_t flags);
-#else
 /**
  * @brief   Type of interrupt handler function
  */
 typedef void (*nandisrhandler_t)(NANDDriver *nandp);
 
+#if STM32_NAND_USE_EXT_INT
 /**
  * @brief   Type of function switching external interrupts on and off.
  */
 typedef void (*nandisrswitch_t)(void);
-#endif /* STM32_NAND_USE_FSMC_INT */
+#endif /* STM32_NAND_USE_EXT_INT */
 
 /**
  * @brief   Driver configuration structure.
@@ -224,16 +213,16 @@ typedef struct {
    *          from STMicroelectronics.
    */
   uint32_t                  pmem;
-#if !STM32_NAND_USE_FSMC_INT
+#if STM32_NAND_USE_EXT_INT
   /**
    * @brief   Function enabling interrupts from EXTI
    */
-  nandisrswitch_t        ext_isr_enable;
+  nandisrswitch_t           ext_nand_isr_enable;
   /**
    * @brief   Function disabling interrupts from EXTI
    */
-  nandisrswitch_t        ext_isr_disable;
-#endif /* !STM32_NAND_USE_FSMC_INT */
+  nandisrswitch_t           ext_nand_isr_disable;
+#endif /* STM32_NAND_USE_EXT_INT */
 } NANDConfig;
 
 /**
@@ -330,12 +319,9 @@ extern "C" {
           size_t datalen, uint8_t *addr, size_t addrlen, uint32_t *ecc);
   void nand_lld_read_data(NANDDriver *nandp, uint8_t *data,
           size_t datalen, uint8_t *addr, size_t addrlen, uint32_t *ecc);
-  void nand_lld_polled_read_data(NANDDriver *nandp, uint8_t *data,
-          size_t len);
-  uint8_t nand_lld_erase(NANDDriver *nandp, uint8_t *addr,
-          size_t addrlen);
-  void nand_lld_write_addr(NANDDriver *nandp,
-          const uint8_t *addr, size_t len);
+  void nand_lld_polled_read_data(NANDDriver *nandp, uint8_t *data, size_t len);
+  uint8_t nand_lld_erase(NANDDriver *nandp, uint8_t *addr, size_t addrlen);
+  void nand_lld_write_addr(NANDDriver *nandp, const uint8_t *addr, size_t len);
   void nand_lld_write_cmd(NANDDriver *nandp, uint8_t cmd);
   uint8_t nand_lld_read_status(NANDDriver *nandp);
 #ifdef __cplusplus

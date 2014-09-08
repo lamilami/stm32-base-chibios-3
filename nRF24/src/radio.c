@@ -29,6 +29,7 @@
 #include "radio.h"
 //#include <EERTOS.h>
 //#include "target_includes.h"
+#include "string.h"
 
 void MAX_RT(void);
 void TX_DS(void);
@@ -79,8 +80,8 @@ THD_FUNCTION(Radio_Processor, arg);
 
 void radio_send_packet(uint8_t *packet, uint8_t length)
 {
-	radio_set_status(RF_BUSY); // trans. in progress; RF_BUSY
-	nRF24_write_tx_payload(packet, length); // load message into radio
+	radio_set_status(RF_BUSY);     // trans. in progress; RF_BUSY
+	nRF24_write_tx_payload(packet, length);     // load message into radio
 //  nRF24_hw_ce_pulse_10us();                                 // send packet
 }
 
@@ -109,52 +110,52 @@ void radio_init(void)
 	full_rx_addr[0] = RF_BROADBAND_1ST_BYTE;
 	full_rx_addr[1] = RF_BROADBAND_2ND_BYTE;
 	full_rx_addr[2] = RF_3RD_BYTE;
-	nRF24_close_pipe(nRF24_ALL); // First close all radio pipes
-								 // Pipe 0 and 1 open by default
-	nRF24_open_pipe(nRF24_PIPE0, true); // Then open pipe0, w/autoack
-										// Changed from sb/radio_sb.c
-	nRF24_open_pipe(nRF24_PIPE1, true); // Then open pipe0, w/autoack
-										// Changed from sb/radio_sb.c
-	nRF24_open_pipe(nRF24_PIPE2, true); // Then open pipe0, w/autoack
-										// Changed from sb/radio_sb.c
+	nRF24_close_pipe(nRF24_ALL);     // First close all radio pipes
+									 // Pipe 0 and 1 open by default
+	nRF24_open_pipe(nRF24_PIPE0, true);     // Then open pipe0, w/autoack
+											// Changed from sb/radio_sb.c
+	nRF24_open_pipe(nRF24_PIPE1, true);     // Then open pipe0, w/autoack
+											// Changed from sb/radio_sb.c
+	nRF24_open_pipe(nRF24_PIPE2, true);     // Then open pipe0, w/autoack
+											// Changed from sb/radio_sb.c
 
-	nRF24_set_crc_mode(nRF24_CRC_16BIT); // Operates in 16bits CRC mode
+	nRF24_set_crc_mode(nRF24_CRC_16BIT);     // Operates in 16bits CRC mode
 	nRF24_set_auto_retr(RF_RETRANSMITS, RF_RETRANS_DELAY);
 	// Enables auto retransmit.
 	// 3 retrans with 250ms delay
 	// Changed from sb/radio_sb.c
 
-	nRF24_set_address_width(nRF24_AW_3BYTES); // 3 bytes address width
+	nRF24_set_address_width(nRF24_AW_3BYTES);     // 3 bytes address width
 //	nRF24_set_address(nRF24_TX, full_rx_addr); // Set device's addresses
 //	nRF24_set_address(nRF24_PIPE0, full_rx_addr); // Sets recieving address on
 			// pipe0
 	full_tx_addr[1] = MY_ADDR;
 	full_tx_addr[0] = RF_WORK_PIPE_BYTE;
 
-	nRF24_set_address(nRF24_PIPE1, full_tx_addr); // Sets recieving address on
+	nRF24_set_address(nRF24_PIPE1, full_tx_addr);     // Sets recieving address on
 	// pipe1
 
 	full_tx_addr[0] = RF_FW_PIPE_BYTE;
-	nRF24_set_address(nRF24_PIPE2, full_tx_addr); // Sets recieving address on
+	nRF24_set_address(nRF24_PIPE2, full_tx_addr);     // Sets recieving address on
 	// pipe2
 //	nRF24_set_operation_mode(nRF24_PRX); // Enter RX mode
 
 	nRF24_set_output_power(RF_OUT_POWER);
 
-	nRF24_write_reg(nRF24_DYNPD, (BIT_0 | BIT_1 | BIT_2)); // Enable DynPD on Pipe0-2
-	nRF24_write_reg(nRF24_FEATURE, (BIT_0 | BIT_1 | BIT_2)); // Enable EN_DPL, EN_ACK_PAY, EN_DYN_ACK
+	nRF24_write_reg(nRF24_DYNPD, (BIT_0 | BIT_1 | BIT_2));     // Enable DynPD on Pipe0-2
+	nRF24_write_reg(nRF24_FEATURE, (BIT_0 | BIT_1 | BIT_2));     // Enable EN_DPL, EN_ACK_PAY, EN_DYN_ACK
 
-	nRF24_set_rf_channel(RF_CHANNEL); // Operating on static channel
-									  // Defined in radio.h.
-									  // Frequenzy =
-									  //        2400 + RF_CHANNEL
+	nRF24_set_rf_channel(RF_CHANNEL);     // Operating on static channel
+										  // Defined in radio.h.
+										  // Frequenzy =
+										  //        2400 + RF_CHANNEL
 	radio_set_mode(nRF24_PRX, full_rx_addr);
 
-	nRF24_set_power_mode(nRF24_PWR_UP); // Power up device
+	nRF24_set_power_mode(nRF24_PWR_UP);     // Power up device
 
 	chThdSleepMilliseconds(RF_POWER_UP_DELAY);
 
-	radio_set_status(RF_IDLE); // Radio now ready
+	radio_set_status(RF_IDLE);     // Radio now ready
 }
 
 #if RADIO_PRESENT
@@ -202,22 +203,20 @@ THD_FUNCTION(Radio,arg)
 
 	radio_init();
 
-	chThdCreateStatic(waRadio_Processor, sizeof(waRadio_Processor), NORMALPRIO,
-			Radio_Processor, NULL);
+	chThdCreateStatic(waRadio_Processor, sizeof(waRadio_Processor), NORMALPRIO, Radio_Processor, NULL);
 
 //	nRF24_hw_ce_high();
 
 	while (TRUE)
 	{
 		/* Checks if an IRQ happened else wait.*/
-		eventmask_t t = chEvtWaitOne(
-				(eventmask_t) EVENTMASK_IRQ | EVENTMASK_SEND);
+		eventmask_t t = chEvtWaitOne((eventmask_t) EVENTMASK_IRQ | EVENTMASK_SEND);
 		if (t == EVENTMASK_IRQ)
 		{
 			/* Perform processing here.*/
 			switch (nRF24_get_clear_irq_flags())
 			{
-			case (1 << nRF24_IRQ_RX_DR): // Packet received
+			case (1 << nRF24_IRQ_RX_DR):     // Packet received
 				LEDB1Swap();
 				rf_sended_debug = TRUE;
 				RX_DR();
@@ -249,26 +248,25 @@ THD_FUNCTION(Radio,arg)
 			}
 
 			radio_set_mode(nRF24_PTX, full_tx_addr);
-			radio_set_status(RF_BUSY); // trans. in progress; RF_BUSY
+			radio_set_status(RF_BUSY);     // trans. in progress; RF_BUSY
 			bool sended = TRUE;
 			do
 			{
-				nRF24_write_tx_payload((*tx_buffer).pload, (*tx_buffer).size); // load message into radio
+				nRF24_write_tx_payload((*tx_buffer).pload, (*tx_buffer).size);     // load message into radio
 				t = chEvtWaitOne((eventmask_t) EVENTMASK_IRQ);
 //				spiUnselect(&SPID1);                /* Slave Select de-assertion.       */
 				switch (nRF24_get_clear_irq_flags())
 				{
-				case (1 << nRF24_IRQ_MAX_RT): // Max retries reached
+				case (1 << nRF24_IRQ_MAX_RT):     // Max retries reached
 #ifdef SPI_DMA
 //					__asm("BKPT #0\n");
 #endif
 					rf_sended_debug = FALSE;
 //					TX_DS();
 					break;
-				case (1 << nRF24_IRQ_TX_DS): // Packet sent
+				case (1 << nRF24_IRQ_TX_DS):     // Packet sent
 					TX_DS();
-					chMBPost(&rf_mb[RF_MB_FREE], (msg_t) tx_buffer,
-							TIME_INFINITE);
+					chMBPost(&rf_mb[RF_MB_FREE], (msg_t) tx_buffer, TIME_INFINITE);
 					break;
 				default:
 					sended = FALSE;
@@ -287,7 +285,7 @@ THD_FUNCTION(Radio,arg)
 
 void MAX_RT(void)
 {
-	nRF24_flush_tx(); // flush tx fifo, avoid fifo jam
+	nRF24_flush_tx();     // flush tx fifo, avoid fifo jam
 	radio_set_status(RF_MAX_RT);
 }
 
@@ -305,8 +303,7 @@ void RX_DR(void)
 	chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *) &rx_buffer, TIME_INFINITE);
 	while (!nRF24_rx_fifo_empty())
 	{
-		(*rx_buffer).whole_size_pipenum = nRF24_read_rx_payload(
-				(*rx_buffer).pload);
+		(*rx_buffer).whole_size_pipenum = nRF24_read_rx_payload((*rx_buffer).pload);
 	}
 //	pload_rx.size=datasrc.byte.size;
 //	while (DMA1_SPI_get_status()!=DMA1_SPI_IDLE);
@@ -352,8 +349,8 @@ void radio_set_mode(nRF24_operation_mode_t rmode, uint8_t full_address[3])
 	nRF24_hw_ce_low();
 	radio_flush();
 	nRF24_set_operation_mode(rmode);
-	nRF24_set_address(nRF24_TX, full_address); // Set device's addresses
-	nRF24_set_address(nRF24_PIPE0, full_address); // Sets recieving address on
+	nRF24_set_address(nRF24_TX, full_address);     // Set device's addresses
+	nRF24_set_address(nRF24_PIPE0, full_address);     // Sets recieving address on
 //	nRF24_get_address(nRF24_PIPE0, full_tx_addr);
 	nRF24_hw_ce_high();
 }
@@ -364,8 +361,7 @@ void radio_set_mode(nRF24_operation_mode_t rmode, uint8_t full_address[3])
  chEvtSignal(Radio_Thread, (eventmask_t) EVENTMASK_SEND);
  }
  */
-void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command,
-		uint8_t data_size, uint8_t *data)
+void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t data_size, void *data)
 {
 	payload_t * tx_buffer = 0;
 	chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *) &tx_buffer, TIME_INFINITE);
@@ -374,7 +370,8 @@ void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command,
 	(*tx_buffer).cmd = command;
 	(*tx_buffer).pipenum = 1;
 	(*tx_buffer).size = 3 + data_size;
-	ByteArrayCopy(data, (*tx_buffer).data, data_size);
+	memcpy((void *) (*tx_buffer).data, data, data_size);
+//	ByteArrayCopy(data, (char *) (*tx_buffer).data, data_size);
 
 	/*	full_tx_addr[0] = RF_WORK_PIPE_BYTE;
 	 full_tx_addr[1] = rcv_addr;
@@ -404,7 +401,7 @@ THD_FUNCTION(Radio_Processor,arg)
 	(void) arg;
 //	chRegSetThreadName("Radio_Processor");
 	payload_t * rx_buffer = 0;
-	uint8_t cnt;
+//	uint8_t cnt;
 	chThdSleepSeconds(1);
 	while (TRUE)
 	{
@@ -415,29 +412,29 @@ THD_FUNCTION(Radio_Processor,arg)
 		{
 		case RF_PING:
 //			LEDB1Swap();
-			Radio_Send_Command((*rx_buffer).src_addr, RF_PONG, 0, NULL); // load message into radio
+			Radio_Send_Command((*rx_buffer).src_addr, RF_PONG, 0, NULL);     // load message into radio
 			break;
 		case RF_PONG:
 //			LEDB1Swap();
 			Radio_Send_Command((*rx_buffer).src_addr, RF_PING, 0, NULL);
 //			nRF24_hw_ce_high();
 			break;
-		case RF_GET:
-			cnt = Core_GetDataById((*rx_buffer).data[0],
-					(uint16_t*) &((*rx_buffer).data[1]));
-			Radio_Send_Command((*rx_buffer).src_addr, RF_PUT, cnt + 1,
-					(*rx_buffer).data);
-			break;
-		case RF_PUT:
-			chSysLock();
-			ByteArrayCopy((*rx_buffer).data, PutData[(*rx_buffer).data[0]],
-					(*rx_buffer).size);
-			chSysUnlock();
-			break;
-		case RF_SET:
-			Core_SetDataById((*rx_buffer).data[0],(uint16_t) ((*rx_buffer).data[1]+256*(*rx_buffer).data[2]));
-			Radio_Send_Command((*rx_buffer).src_addr, RF_OK, 0, NULL); // load message into radio
-			break;
+			/*		case RF_GET:
+			 cnt = Core_GetDataById((*rx_buffer).data[0],
+			 (uint16_t*) &((*rx_buffer).data[1]));
+			 Radio_Send_Command((*rx_buffer).src_addr, RF_PUT, cnt + 1,
+			 (*rx_buffer).data);
+			 break;
+			 case RF_PUT:
+			 chSysLock();
+			 ByteArrayCopy((*rx_buffer).data, PutData[(*rx_buffer).data[0]],
+			 (*rx_buffer).size);
+			 chSysUnlock();
+			 break;
+			 case RF_SET:
+			 Core_SetDataById((*rx_buffer).data[0],(uint16_t) ((*rx_buffer).data[1]+256*(*rx_buffer).data[2]));
+			 Radio_Send_Command((*rx_buffer).src_addr, RF_OK, 0, NULL); // load message into radio
+			 break;*/
 		default:
 //		nRF24_hw_ce_high();
 			break;
@@ -446,7 +443,7 @@ THD_FUNCTION(Radio_Processor,arg)
 	}
 }
 
-void Radio_Start(uint8_t id)
+void Radio_Start()
 {
 #if RADIO_PRESENT
 	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO, Radio, NULL);

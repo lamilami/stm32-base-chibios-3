@@ -37,6 +37,27 @@
 /* Driver local variables and types.                                         */
 /*===========================================================================*/
 
+__attribute__ ((section(".cfmconfig")))
+const uint8_t _cfm[0x10] = {
+  0xFF,  /* NV_BACKKEY3: KEY=0xFF */
+  0xFF,  /* NV_BACKKEY2: KEY=0xFF */
+  0xFF,  /* NV_BACKKEY1: KEY=0xFF */
+  0xFF,  /* NV_BACKKEY0: KEY=0xFF */
+  0xFF,  /* NV_BACKKEY7: KEY=0xFF */
+  0xFF,  /* NV_BACKKEY6: KEY=0xFF */
+  0xFF,  /* NV_BACKKEY5: KEY=0xFF */
+  0xFF,  /* NV_BACKKEY4: KEY=0xFF */
+  0xFF,  /* NV_FPROT3: PROT=0xFF */
+  0xFF,  /* NV_FPROT2: PROT=0xFF */
+  0xFF,  /* NV_FPROT1: PROT=0xFF */
+  0xFF,  /* NV_FPROT0: PROT=0xFF */
+  0x7E,  /* NV_FSEC: KEYEN=1,MEEN=3,FSLACC=3,SEC=2 */
+  0xFF,  /* NV_FOPT: ??=1,??=1,FAST_INIT=1,LPBOOT1=1,RESET_PIN_CFG=1,
+                      NMI_DIS=1,EZPORT_DIS=1,LPBOOT0=1 */
+  0xFF,
+  0xFF
+};
+
 /*===========================================================================*/
 /* Driver local functions.                                                   */
 /*===========================================================================*/
@@ -70,11 +91,14 @@ void hal_lld_init(void) {
  * @special
  */
 void mk20d50_clock_init(void) {
+#if !KINETIS_NO_INIT
 
+#if KINETIS_MCG_MODE == KINETIS_MCG_MODE_PEE
   uint32_t ratio, frdiv;
   uint32_t ratios[] = { 32, 64, 128, 256, 512, 1024, 1280, 1536 };
   int ratio_quantity = sizeof(ratios) / sizeof(ratios[0]);
   int i;
+#endif /* KINETIS_MCG_MODE == KINETIS_MCG_MODE_PEE */
 
   /* Disable the watchdog */
   WDOG->UNLOCK = 0xC520;
@@ -86,6 +110,16 @@ void mk20d50_clock_init(void) {
                 SIM_SCGC5_PORTC |
                 SIM_SCGC5_PORTD |
                 SIM_SCGC5_PORTE;
+
+#if KINETIS_MCG_MODE == KINETIS_MCG_MODE_FEI
+
+  /* Configure FEI mode */
+  MCG->C4 = MCG_C4_DRST_DRS(KINETIS_MCG_FLL_DRS) |
+            (KINETIS_MCG_FLL_DMX32 ? MCG_C4_DMX32 : 0);
+
+#endif /* KINETIS_MCG_MODE == KINETIS_MCG_MODE_FEI */
+
+#if KINETIS_MCG_MODE == KINETIS_MCG_MODE_PEE
 
   /* EXTAL0 and XTAL0 */
   PORTA->PCR[18] = 0;
@@ -102,7 +136,6 @@ void mk20d50_clock_init(void) {
    *       divisors which may not be available depending on the XTAL
    *       frequency, which would required other registers to be modified.
    */
-
   /* Enable OSC, low power mode */
   MCG->C2 = MCG_C2_LOCRE0 | MCG_C2_EREFS0;
   if (KINETIS_XTAL_FREQUENCY > 8000000)
@@ -160,6 +193,9 @@ void mk20d50_clock_init(void) {
   /*
    * Now in PEE mode
    */
+#endif /* KINETIS_MCG_MODE == KINETIS_MCG_MODE_PEE */
+
+#endif /* !KINETIS_NO_INIT */
 }
 
 /** @} */

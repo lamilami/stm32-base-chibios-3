@@ -6,6 +6,7 @@
 
 #include <stdlib.h>
 
+#if DS18B20_PRESENT
 //volatile uint16_t out_temp[4];
 static core_base_struct_t Core_DS18B20;
 volatile static struct
@@ -24,13 +25,13 @@ volatile static struct
 	};
 } Inner_Val;
 
-void DS18B20_Init(void *arg)
+void DS18B20_Init()
 {
-	Core_DS18B20.id = (uint32_t) arg;
+//	Core_DS18B20.id = (uint32_t) arg;
 	Core_DS18B20.type = Temp;
 //	Core_Base.addr = MY_ADDR;
 //	Core_Base.mbox = &core_mb;
-	Core_DS18B20.thread = chThdGetSelfX();
+//	Core_DS18B20.thread = chThdGetSelfX();
 	Core_DS18B20.direction = RW;
 	Core_DS18B20.next = NULL;
 	Core_DS18B20.description = "4 Floor Temp Sensors DS18B20";
@@ -52,8 +53,6 @@ THD_FUNCTION(DS18B20,arg)
 	(void) arg;
 	thread_t *answer_thread;
 	//	chRegSetThreadName("DS18B20");
-
-	DS18B20_Init(arg);
 
 	/*	volatile core_base_struct_t Core_DS18B20 =
 	 { 2,Temp,chThdGetSelfX(),RW,0,0,&Inner_Val,sizeof(Inner_Val),"4 Floor Temp Sensors DS18B20",NULL
@@ -194,11 +193,13 @@ THD_FUNCTION(DS18B20,arg)
 	}
 }
 
-void DS18B20_Start(uint8_t id)
+void DS18B20_Start()
 {
 #if DS18B20_PRESENT
-	chThdCreateStatic(waDS18B20, sizeof(waDS18B20), HIGHPRIO, DS18B20, (void*) (uint32_t) id);
+	DS18B20_Init();
+	chThdCreateStatic(waDS18B20, sizeof(waDS18B20), HIGHPRIO, DS18B20, NULL);
 	chThdYield();
 #endif
 }
 
+#endif
