@@ -7,23 +7,15 @@
 #include <stdlib.h>
 
 #if DS18B20_PRESENT
+
+static thread_reference_t Update_Thread;
+
 //volatile uint16_t out_temp[4];
 static core_base_struct_t Core_DS18B20;
-volatile static struct
-{
-	volatile uint16_t temp[4];
-	volatile uint16_t cont_errors;
-	union
-	{
-		volatile uint16_t global_errors[2];
-		volatile uint32_t global_errors_32;
-	};
-	union
-	{
-		volatile uint16_t critical_errors[2];
-		volatile uint32_t critical_errors_32;
-	};
-} Inner_Val;
+volatile static DS18B20_Inner_Val Inner_Val_DS18B20={};
+
+const char* sens_addr[DS18B20_NUMBER_OF_SENSORS] =
+{ DS18B20_SENSOR_1, DS18B20_SENSOR_2, DS18B20_SENSOR_3, DS18B20_SENSOR_4 };
 
 void DS18B20_Init()
 {
@@ -32,16 +24,23 @@ void DS18B20_Init()
 //	Core_Base.addr = MY_ADDR;
 //	Core_Base.mbox = &core_mb;
 //	Core_DS18B20.thread = chThdGetSelfX();
-	Core_DS18B20.direction = RW;
+//	Core_DS18B20.direction = RW;
 	Core_DS18B20.next = NULL;
 	Core_DS18B20.description = "4 Floor Temp Sensors DS18B20";
-	Core_DS18B20.current_value = 0xffff;
-	Core_DS18B20.set_value = 0x68;     //Initial Floor Temp value 0x68 = 26 deg. Celsius
-	Core_DS18B20.inner_values = &Inner_Val;
-	Core_DS18B20.ival_size = sizeof(Inner_Val);
+//	Core_DS18B20.current_value = 0xffff;
+//	Core_DS18B20.set_value = 0x68;     //Initial Floor Temp value 0x68 = 26 deg. Celsius
+	Core_DS18B20.inner_values = &Inner_Val_DS18B20;
+	Core_DS18B20.ival_size = sizeof(DS18B20_Inner_Val);
+	Core_DS18B20.ival_rw_size = sizeof(DS18B20_Inner_Val_RW);
 	/*	chSysLock();
 	 Core_Base.next = &Core_DS18B20;
 	 chSysUnlock();*/
+	Inner_Val_DS18B20.RW.Auto_Update_Sec = 180;
+	register int i;
+	for (i = 0; i < DS18B20_NUMBER_OF_SENSORS; i++)
+	{
+		Inner_Val_DS18B20.temp[i] = 0xFFFF;
+	}
 
 	Core_Module_Register(&Core_DS18B20);
 }
@@ -51,18 +50,11 @@ THD_WORKING_AREA(waDS18B20, 256);
 THD_FUNCTION(DS18B20,arg)
 {
 	(void) arg;
-	thread_t *answer_thread;
-	//	chRegSetThreadName("DS18B20");
+//	thread_t *answer_thread;
 
-	/*	volatile core_base_struct_t Core_DS18B20 =
-	 { 2,Temp,chThdGetSelfX(),RW,0,0,&Inner_Val,sizeof(Inner_Val),"4 Floor Temp Sensors DS18B20",NULL
-	 };*/
-
-//	Core_Module_Register (&Core_DS18B20);
 	static ucnt_t global_errors = 0;
-	static ucnt_t critical_errors = 0;
 	static uint16_t cont_errors = 0;
-	static uint16_t old_temp = 0xffff;
+//	static uint16_t old_temp = 0xffff;
 
 	OW_Init();
 //	uint8_t buf[32];
@@ -70,7 +62,7 @@ THD_FUNCTION(DS18B20,arg)
 
 //	DS18B20_Init (arg,Core_DS18B20);
 
-	while (OW_Send(OW_SEND_RESET, (uint8_t *) "\xcc\x4e\x00\x00\x3f", 5, NULL, 0, OW_NO_READ) == OW_ERROR)
+	while (OW_Send(OW_SEND_RESET, (uint8_t *) "\xcc\x4e\x00\x00\x3f", 5, NULL, 0, OW_NO_READ) != OW_OK)
 	{
 		//Waiting DS18B20 to initialize
 		chThdSleepSeconds(1);
@@ -78,16 +70,16 @@ THD_FUNCTION(DS18B20,arg)
 
 	while (TRUE)
 	{
-		answer_thread = chMsgWait();
-		chMsgGet(answer_thread);
 
-		while (OW_Send(OW_SEND_RESET, (uint8_t *) "\xcc\x44", 2, NULL, 0, OW_NO_READ) == OW_ERROR)
+		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_DS18B20.RW.Auto_Update_Sec));
+
+
+		while (OW_Send(OW_SEND_RESET, (uint8_t *) "\xcc\x44", 2, NULL, 0, OW_NO_READ) != OW_OK)
 		{
 			//Waiting DS18B20 to initialize
 			chThdSleepMilliseconds(1);
 			global_errors++;
 		}
-//    for (i=0; i<1000000; i++);
 
 		chThdSleepMilliseconds(200);
 
@@ -97,99 +89,51 @@ THD_FUNCTION(DS18B20,arg)
 			uint16_t temp;
 		} DS_OUT[4];
 
-//		volatile uint16_t temp_fract;
 
-//		OW_Send(OW_SEND_RESET, "\xcc\xbe\xff\xff", 4, DS_OUT.buf, 2, 2);
-
-		uint8_t cntr;
-		cntr = 0;
-
-		if (OW_Send(OW_SEND_RESET, (uint8_t *) "\x55\x28\x08\x38\xbf\x03\x00\x00\xea\xbe\xff\xff", 12, DS_OUT[0].buf, 2, 10) == OW_OK)
+		register int i;
+		for (i = 0; i < DS18B20_NUMBER_OF_SENSORS; i++)
 		{
-			cntr++;
-			DS_OUT[0].temp = DS_OUT[0].temp >> 2;
-		}
-		else
-		{
-			DS_OUT[0].temp = 0;
-		}
 
-		if (OW_Send(OW_SEND_RESET, (uint8_t *) "\x55\x28\xd8\x2a\xbf\x03\x00\x00\xd1\xbe\xff\xff", 12, DS_OUT[1].buf, 2, 10) == OW_OK)
-		{
-			cntr++;
-			DS_OUT[1].temp = DS_OUT[1].temp >> 2;
-		}
-		else
-		{
-			DS_OUT[1].temp = 0;
-		}
-
-		if (OW_Send(OW_SEND_RESET, (uint8_t *) "\x55\x28\x0b\x51\xbf\x03\x00\x00\x51\xbe\xff\xff", 12, DS_OUT[2].buf, 2, 10) == OW_OK)
-		{
-			cntr++;
-			DS_OUT[2].temp = DS_OUT[2].temp >> 2;
-		}
-		else
-		{
-			DS_OUT[2].temp = 0;
-		}
-
-		if (OW_Send(OW_SEND_RESET, (uint8_t *) "\x55\x28\x97\xbb\xd5\x03\x00\x00\x71\xbe\xff\xff", 12, DS_OUT[3].buf, 2, 10) == OW_OK)
-		{
-			cntr++;
-			DS_OUT[3].temp = DS_OUT[3].temp >> 2;
-		}
-		else
-		{
-			DS_OUT[3].temp = 0;
-		}
-
-		global_errors += 4 - cntr;
-
-		chSysLock();
-		Inner_Val.temp[0] = DS_OUT[0].temp;
-		Inner_Val.temp[1] = DS_OUT[1].temp;
-		Inner_Val.temp[2] = DS_OUT[2].temp;
-		Inner_Val.temp[3] = DS_OUT[3].temp;
-		chSysUnlock();
-
-		old_temp = Core_DS18B20.current_value;
-
-		if (cntr > 2)
-		{
-			chSysLock();
-			Core_DS18B20.current_value = (DS_OUT[0].temp + DS_OUT[1].temp + DS_OUT[2].temp + DS_OUT[3].temp) / cntr;
-			chSysUnlock();
-			if ((old_temp != 0xffff) && (abs(Core_DS18B20.current_value - old_temp) > (10 << 2)))
+			if (OW_Send(OW_SEND_RESET, (uint8_t *) sens_addr[i], 12, DS_OUT[i].buf, 2, 10) == OW_OK)
 			{
+				//			cntr++;
+				DS_OUT[i].temp = DS_OUT[i].temp >> 2;
 				chSysLock();
-				Core_DS18B20.current_value = old_temp;
+				if ((Inner_Val_DS18B20.temp[i] != 0xffff) && (abs(DS_OUT[i].temp - Inner_Val_DS18B20.temp[i]) > (10 << 2)))
+				{
+					global_errors++;
+					cont_errors++;
+				}
+				else
+				{
+					cont_errors = 0;
+					Inner_Val_DS18B20.temp[i] = DS_OUT[i].temp;
+				}
 				chSysUnlock();
-				critical_errors++;
-				cont_errors++;
+
 			}
 			else
 			{
-				cont_errors = 0;
+//				DS_OUT[0].temp = 0xFFFF;
+				global_errors++;
+				cont_errors++;
 			}
-		}
-		else
-		{
-			critical_errors++;
-			cont_errors++;
 		}
 
 		chSysLock();
-		Inner_Val.cont_errors = MAX(Inner_Val.cont_errors,cont_errors);
-		Inner_Val.global_errors_32 = global_errors;
-		Inner_Val.critical_errors_32 = critical_errors;
+
+		Inner_Val_DS18B20.cont_errors = MAX(Inner_Val_DS18B20.cont_errors, cont_errors);
+		Inner_Val_DS18B20.global_errors_32 = global_errors;
+//		Inner_Val_DS18B20.critical_errors_32 = critical_errors;
+
+
+		if (evt == EVENTMASK_REREAD)
+		{
+			_core_wakeup_i(&Update_Thread, MSG_OK);
+		}
+
 		chSysUnlock();
 
-//    	msg_t OutTemp =
-
-		LEDSwap();
-//      	chThdSleepSeconds(3);
-		chMsgRelease(answer_thread, (msg_t) Core_DS18B20.current_value);
 	}
 }
 
@@ -197,7 +141,8 @@ void DS18B20_Start()
 {
 #if DS18B20_PRESENT
 	DS18B20_Init();
-	chThdCreateStatic(waDS18B20, sizeof(waDS18B20), HIGHPRIO, DS18B20, NULL);
+	thread_t* thd = chThdCreateStatic(waDS18B20, sizeof(waDS18B20), HIGHPRIO, DS18B20, NULL);
+	Core_Register_Thread(RGBW, thd, &Update_Thread);
 	chThdYield();
 #endif
 }

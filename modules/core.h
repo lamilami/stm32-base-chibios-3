@@ -3,13 +3,13 @@
 
 #define MY_ADDR				0x10
 #define RADIO_PRESENT		FALSE
-#define DS18B20_PRESENT		FALSE
+#define DS18B20_PRESENT		TRUE
 #define DHT11_PRESENT		FALSE
-#define FloorHeater_PRESENT FALSE
+#define FloorHeater_PRESENT TRUE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
-#define RGBW_PRESENT		TRUE
-#define CLI_PRESENT			TRUE
+#define RGBW_PRESENT		FALSE
+#define CLI_PRESENT			FALSE
 #define PIR_PRESENT			FALSE
 
 //#define StM() WatchDog_Start();

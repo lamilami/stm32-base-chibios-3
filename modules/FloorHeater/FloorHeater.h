@@ -8,4 +8,34 @@
 
 void FloorHeater_Start();
 
+//Function pointer called CallbackType that takes a float
+//and returns an int
+typedef uint16_t (*FloorHeater_Callback_Type)();
+
+typedef struct
+{
+
+	volatile systime_t Auto_Update_Sec;
+	volatile uint16_t Desired_Temp;
+	FloorHeater_Callback_Type Get_Temp_Callback;
+
+	int32_t iState;     // Integrator state
+	int32_t iMax, iMin;
+	// Maximum and minimum allowable integrator state
+	int32_t iGain,     // integral gain
+			pGain;     // proportional gain
+
+} FloorHeater_Inner_Val_RW;
+
+typedef struct
+{
+
+	FloorHeater_Inner_Val_RW RW;
+
+	volatile uint16_t Power;
+	volatile uint16_t pPower;
+	volatile uint16_t iPower;
+
+} FloorHeater_Inner_Val;
+
 #endif
