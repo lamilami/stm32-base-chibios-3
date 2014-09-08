@@ -11,7 +11,7 @@
 //#define SHELL_WA_SIZE   THD_WA_SIZE(512)
 THD_WORKING_AREA(waShell, 512);
 
-static core_base_struct_t* core_struct;
+//static core_base_struct_t* core_struct;
 static char nullchar;
 
 #if DHT11_PRESENT
@@ -53,19 +53,24 @@ static void cmd_rgbw(BaseSequentialStream *chp, int argc, char *argv[])
 		return;
 	}
 
-	core_struct = Core_GetStructAddrByType(RGBW);
-	RGBW_Inner_Val* rgbw_ival = (RGBW_Inner_Val*) core_struct->inner_values;
+//	core_struct = Core_GetStructAddrByType(RGBW);
+//	RGBW_Inner_Val* rgbw_ival = (RGBW_Inner_Val*) core_struct->inner_values;
+
+	RGBW_Inner_Val rgbw_ival;
 
 	while (TRUE)
 	{
-		chprintf(chp, "R:%3u.%02u%%, ", rgbw_ival->Red / 100, rgbw_ival->Red % 100);
-		chprintf(chp, "G:%3u.%02u%%, ", rgbw_ival->Green / 100, rgbw_ival->Green % 100);
-		chprintf(chp, "B:%3u.%02u%%, ", rgbw_ival->Blue / 100, rgbw_ival->Blue % 100);
-		chprintf(chp, "W:%3u%%", rgbw_ival->White);
-		if (shellGetLine(chp, &nullchar, 1))
+		if (Core_Module_Read(RGBW, (void *) &rgbw_ival) != 0)
 		{
-			chprintf(chp, "\r\n");
-			break;
+			chprintf(chp, "R:%3u.%02u%%, ", rgbw_ival.Red / 100, rgbw_ival.Red % 100);
+			chprintf(chp, "G:%3u.%02u%%, ", rgbw_ival.Green / 100, rgbw_ival.Green % 100);
+			chprintf(chp, "B:%3u.%02u%%, ", rgbw_ival.Blue / 100, rgbw_ival.Blue % 100);
+			chprintf(chp, "W:%3u%%", rgbw_ival.White);
+			if (shellGetLine(chp, &nullchar, 1))
+			{
+				chprintf(chp, "\r\n");
+				break;
+			}
 		}
 	}
 }
