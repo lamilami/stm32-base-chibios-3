@@ -15,7 +15,8 @@ static core_base_struct_t Core_DS18B20;
 volatile static DS18B20_Inner_Val Inner_Val_DS18B20={};
 
 const char* sens_addr[DS18B20_NUMBER_OF_SENSORS] =
-{ DS18B20_SENSOR_1, DS18B20_SENSOR_2, DS18B20_SENSOR_3, DS18B20_SENSOR_4 };
+//{ DS18B20_SENSOR_1, DS18B20_SENSOR_2, DS18B20_SENSOR_3, DS18B20_SENSOR_4 };
+{ DS18B20_SENSOR_1 };
 
 void DS18B20_Init()
 {
@@ -57,8 +58,8 @@ THD_FUNCTION(DS18B20,arg)
 //	static uint16_t old_temp = 0xffff;
 
 	OW_Init();
-//	uint8_t buf[32];
-//	OW_Scan(buf,4);
+	uint8_t buf[DS18B20_NUMBER_OF_SENSORS*8];
+	OW_Scan(buf,DS18B20_NUMBER_OF_SENSORS);
 
 //	DS18B20_Init (arg,Core_DS18B20);
 
@@ -86,9 +87,10 @@ THD_FUNCTION(DS18B20,arg)
 		union
 		{
 			uint8_t buf[2];
-			uint16_t temp;
-		} DS_OUT[4];
+			int16_t temp;
+		} DS_OUT[DS18B20_NUMBER_OF_SENSORS];
 
+//		sens_addr[0] = "\x55";
 
 		register int i;
 		for (i = 0; i < DS18B20_NUMBER_OF_SENSORS; i++)
@@ -142,7 +144,7 @@ void DS18B20_Start()
 #if DS18B20_PRESENT
 	DS18B20_Init();
 	thread_t* thd = chThdCreateStatic(waDS18B20, sizeof(waDS18B20), HIGHPRIO, DS18B20, NULL);
-	Core_Register_Thread(RGBW, thd, &Update_Thread);
+	Core_Register_Thread(Temp, thd, &Update_Thread);
 	chThdYield();
 #endif
 }

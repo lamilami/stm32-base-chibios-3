@@ -218,7 +218,7 @@ uint8_t OW_Reset()
 	uint16_t cntr;
 	cntr = 0;
 
-	while ((cntr < 0xFFF0) && (USART_GetFlagStatus(OW_USART, USART_FLAG_TC) == RESET))
+	while ((cntr < 5) && (USART_GetFlagStatus(OW_USART, USART_FLAG_TC) == RESET))
 	{
 		cntr++;
 //		chThdYield();
@@ -237,7 +237,7 @@ uint8_t OW_Reset()
 	USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
 	USART_Init(OW_USART, &USART_InitStructure);
 
-	if (cntr == 0xFFF0)
+	if (cntr == 5)
 	{
 		return OW_ERROR;
 	}
