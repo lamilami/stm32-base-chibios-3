@@ -32,9 +32,9 @@ typedef struct
 
 	FloorHeater_Inner_Val_RW RW;
 
-	volatile uint16_t Power;
-	volatile uint16_t pPower;
-	volatile uint16_t iPower;
+	volatile int16_t Power;
+	volatile int16_t pPower;
+	volatile int16_t iPower;
 
 } FloorHeater_Inner_Val;
 

@@ -120,13 +120,36 @@ void LEDBlinkI(uint8_t cnt)
  }
  */
 
+#if FloorHeater_PRESENT
+
 uint16_t FloorHeater_cb()
 {
 	static DS18B20_Inner_Val Temp_Vals;
 	Core_Module_Update(Temp, NULL, 1000);
 	Core_Module_Read(Temp,(char*) &Temp_Vals);
+
+#if DS18B20_NUMBER_OF_SENSORS == 1
 	return Temp_Vals.temp[0];
+#else
+	register uint16_t i,Cur_Temp;
+	Cur_Temp=0;
+	for (i=0;i<DS18B20_NUMBER_OF_SENSORS;i++)
+	{
+		Cur_Temp += Temp_Vals.temp[i];
+	}
+#if DS18B20_NUMBER_OF_SENSORS == 2
+	Cur_Temp = Cur_Temp >> 1;
+#elif DS18B20_NUMBER_OF_SENSORS == 4
+	Cur_Temp = Cur_Temp >> 2;
+#else
+	Cur_Temp = Cur_Temp / DS18B20_NUMBER_OF_SENSORS;
+#endif
+	return Cur_Temp;
+#endif
+
 }
+
+#endif
 
 
 /*
@@ -258,8 +281,8 @@ int main(void)
 #if FloorHeater_PRESENT
 
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 26;
-	FH_IV.Auto_Update_Sec = 60;
+	FH_IV.Desired_Temp = 25<<2;
+	FH_IV.Auto_Update_Sec = 3;
 	FH_IV.Get_Temp_Callback = FloorHeater_cb;
 	FH_IV.iGain = 2;
 	FH_IV.pGain = 4;
