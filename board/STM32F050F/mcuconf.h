@@ -80,9 +80,47 @@
 #define STM32_GPT_USE_TIM1                  FALSE
 #define STM32_GPT_USE_TIM2                  FALSE
 #define STM32_GPT_USE_TIM3                  FALSE
+#define STM32_GPT_USE_TIM14                 TRUE
 #define STM32_GPT_TIM1_IRQ_PRIORITY         2
 #define STM32_GPT_TIM2_IRQ_PRIORITY         2
 #define STM32_GPT_TIM3_IRQ_PRIORITY         2
+#define STM32_GPT_TIM14_IRQ_PRIORITY        2
+
+/*
+ * TIM units.
+ */
+#define STM32_TIM14_HANDLER         Vector8C
+
+#define STM32_TIM14_NUMBER          19
+
+/**
+ * @brief   Enables the TIM3 peripheral clock.
+ * @note    The @p lp parameter is ignored in this family.
+ *
+ * @param[in] lp        low power enable flag
+ *
+ * @api
+ */
+#define rccEnableTIM14(lp) rccEnableAPB1(RCC_APB1ENR_TIM14EN, lp)
+
+/**
+ * @brief   Disables the TIM3 peripheral clock.
+ * @note    The @p lp parameter is ignored in this family.
+ *
+ * @param[in] lp        low power enable flag
+ *
+ * @api
+ */
+#define rccDisableTIM14(lp) rccDisableAPB1(RCC_APB1ENR_TIM14EN, lp)
+
+/**
+ * @brief   Resets the TIM3 peripheral.
+ *
+ * @api
+ */
+#define rccResetTIM14() rccResetAPB1(RCC_APB1RSTR_TIM14RST)
+/** @} */
+
 
 /*
  * I2C driver system settings.

@@ -67,7 +67,7 @@ typedef struct
 	uint8_t crc;
 	lld_lock_t lock;
 	virtual_timer_t timer;
-	systime_t time_measurment;
+	gptcnt_t time_measurment;
 } dht11_t;
 
 /*===========================================================================*/

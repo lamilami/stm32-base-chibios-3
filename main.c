@@ -124,6 +124,9 @@ void LEDBlinkI(uint8_t cnt)
 
 uint16_t FloorHeater_cb()
 {
+
+#if DS18B20_PRESENT
+
 	static DS18B20_Inner_Val Temp_Vals;
 	Core_Module_Update(Temp, NULL, 1000);
 	Core_Module_Read(Temp,(char*) &Temp_Vals);
@@ -145,6 +148,16 @@ uint16_t FloorHeater_cb()
 	Cur_Temp = Cur_Temp / DS18B20_NUMBER_OF_SENSORS;
 #endif
 	return Cur_Temp;
+
+#endif
+#elif DHT11_PRESENT
+
+	static DHT11_Inner_Val Temp_Vals;
+//	Core_Module_Update(DHT11, NULL, 1000);
+//	Core_Module_Read(DHT11,(char*) &Temp_Vals);
+
+	return Temp_Vals.temp;
+
 #endif
 
 }
@@ -157,16 +170,6 @@ uint16_t FloorHeater_cb()
  */
 int main(void)
 {
-	/*
-	 * System initializations.
-	 * - HAL initialization, this also initializes the configured device drivers
-	 *   and performs the board-specific initializations.
-	 * - Kernel initialization, the main() function becomes a thread and the
-	 *   RTOS is active.
-	 */
-	halInit();
-	chSysInit();
-	chThdSetPriority(LOWPRIO);
 	/*
 	 * Creates the blinker threads.
 	 */
