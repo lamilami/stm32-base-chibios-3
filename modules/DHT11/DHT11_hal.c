@@ -4,8 +4,6 @@
 #include "chconf.h"
 #include <DHT11_hal.h>
 
-//#define ST2US_mod(n) ((((n) - 1UL) * (1000000UL / CH_CFG_ST_FREQUENCY)) + 1UL)
-
 /*===========================================================================*/
 /* Driver local definitions.                                                 */
 /*===========================================================================*/
@@ -13,6 +11,48 @@
 /*===========================================================================*/
 /* Driver exported variables.                                                */
 /*===========================================================================*/
+
+GPTDriver GPTD17;
+
+#define Timer_Clock 100000
+
+#define T172US(n) ((((n) - 1UL) * (1000000UL / Timer_Clock)) + 1UL)
+
+/*
+ * GPT2 configuration.
+ */
+static const GPTConfig gpt17cfg =
+{ Timer_Clock, /* 100kHz timer clock.*/
+NULL, /* Timer callback.*/
+0, 0 };
+
+/**
+ * @brief   Enables the TIM3 peripheral clock.
+ * @note    The @p lp parameter is ignored in this family.
+ *
+ * @param[in] lp        low power enable flag
+ *
+ * @api
+ */
+#define rccEnableTIM17(lp) rccEnableAPB2(RCC_APB2ENR_TIM17EN, lp)
+
+/**
+ * @brief   Disables the TIM3 peripheral clock.
+ * @note    The @p lp parameter is ignored in this family.
+ *
+ * @param[in] lp        low power enable flag
+ *
+ * @api
+ */
+#define rccDisableTIM17(lp) rccDisableAPB2(RCC_APB2ENR_TIM17EN, lp)
+
+/**
+ * @brief   Resets the TIM3 peripheral.
+ *
+ * @api
+ */
+#define rccResetTIM17() rccResetAPB2(RCC_APB2RSTR_TIM17RST)
+/** @} */
 
 /*===========================================================================*/
 /* Driver local variables and types.                                         */
@@ -120,14 +160,14 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			sensor->bit_count++;
 			if (sensor->bit_count % 2 == 1)
 			{
-				sensor->time_measurment = chVTGetSystemTimeX();
+				sensor->time_measurment = gptGetCounterX(&GPTD17);
 				sensor->data <<= 1;
 			}
 			else
 			{
-				volatile systime_t tmp_time = chVTGetSystemTimeX();
+				volatile systime_t tmp_time = gptGetCounterX(&GPTD17);
 				sensor->time_measurment = tmp_time - sensor->time_measurment;
-				if (ST2US(sensor->time_measurment) > 50)
+				if (T172US(sensor->time_measurment) > 50)
 				{
 					sensor->data += 1;
 				}
@@ -144,13 +184,13 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			//sensor->crc = sensor->crc << 1;
 			if (sensor->bit_count % 2 == 1)
 			{
-				sensor->time_measurment = chVTGetSystemTimeX();
+				sensor->time_measurment = gptGetCounterX(&GPTD17);
 				sensor->crc <<= 1;
 			}
 			else
 			{
-				sensor->time_measurment -= chVTGetSystemTimeX();
-				if (ST2US(sensor->time_measurment) > 40)
+				sensor->time_measurment -= gptGetCounterX(&GPTD17);
+				if (T172US(sensor->time_measurment) > 40)
 				{
 					sensor->crc += 1;
 				}
@@ -199,8 +239,7 @@ void dht11_timer_handler(void *p)
 			extChannelEnableI(sensor->ext_drv, sensor->ext_pin);
 			chSysUnlockFromISR();
 			palSetPad(sensor->ext_port, sensor->ext_pin);
-			palSetPadMode(sensor->ext_port, sensor->ext_pin,
-					PAL_MODE_INPUT_PULLUP);
+			palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_INPUT_PULLUP);
 			sensor->bit_count = 0;
 			sensor->state = DHT11_WAIT_RESPONSE;
 			break;
@@ -214,13 +253,13 @@ void dht11_timer_handler(void *p)
 		case DHT11_ERROR:
 			chSysLockFromISR();
 			extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
-			palSetPadMode(sensor->ext_port, sensor->ext_pin,
-					PAL_MODE_OUTPUT_PUSHPULL);
+			palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
 			palSetPad(sensor->ext_port, sensor->ext_pin);
 			if (chVTIsArmedI(&sensor->timer) == true)
 			{
 				chVTResetI(&sensor->timer);
 			}
+			gptStopTimerI(&GPTD17);
 			chSysUnlockFromISR();
 			sensor->state = DHT11_ERROR;
 //                SerialConsole::debug("dht11Update timer error\r\n");
@@ -239,6 +278,28 @@ void dht11_timer_handler(void *p)
  */
 dht11_state_t dht11Init(dht11_t *sensor)
 {
+	GPTD17.tim = STM32_TIM17;
+	gptObjectInit(&GPTD17);
+
+	rccEnableTIM17(FALSE);
+	rccResetTIM17();
+//	nvicEnableVector(STM32_TIM14_NUMBER, STM32_GPT_TIM14_IRQ_PRIORITY);
+	GPTD17.clock = STM32_TIMCLK1;
+
+	gptStart(&GPTD17, &gpt17cfg);
+/*
+	gptStartContinuous(&GPTD17, 50000);
+	volatile gptcnt_t counter = gptGetCounterX(&GPTD17);
+	counter++;
+	osalThreadSleepMilliseconds(100);
+	counter = gptGetCounterX(&GPTD17);
+
+	gptStopTimer(&GPTD17);
+	gptStartContinuous(&GPTD17, 50000);
+	counter = gptGetCounterX(&GPTD17);
+	osalThreadSleepMilliseconds(100);
+	counter = gptGetCounterX(&GPTD17);
+*/
 	dht11_state_t state;
 	if (lldLock(&sensor->lock) == true)
 	{
@@ -248,8 +309,7 @@ dht11_state_t dht11Init(dht11_t *sensor)
 		sensor_handlers[sensor->ext_pin] = sensor;
 //		tmObjectInit(&sensor->time_measurment);
 		// configure ext channel used by radio
-		palSetPadMode(sensor->ext_port, sensor->ext_pin,
-				PAL_MODE_OUTPUT_PUSHPULL);
+		palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
 		sensor->ext_cfg.mode = EXT_CH_MODE_BOTH_EDGES | sensor->ext_mode;
 		sensor->ext_cfg.cb = dht11_lld_ext_handler;
 		chSysLock();
@@ -286,9 +346,16 @@ bool dht11Update(dht11_t *sensor, varg_t unused)
 			// low pulse
 			sensor->bit_count = 0;
 			state = sensor->state = DHT11_READ_REQUEST;
-			palSetPadMode(sensor->ext_port, sensor->ext_pin,
-					PAL_MODE_OUTPUT_PUSHPULL);
+			palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
 			palClearPad(sensor->ext_port, sensor->ext_pin);
+
+			osalSysLock();
+			GPTD17.state = GPT_READY;
+			gpt_lld_stop_timer(&GPTD17);
+			osalSysUnlock();
+
+			gptStartContinuous(&GPTD17, 50000);
+
 			// timer callback started
 			chVTSet(&sensor->timer, MS2ST(25), dht11_timer_handler, sensor);
 			lldUnlock(&sensor->lock);

@@ -6,18 +6,27 @@
 
 #include <stdlib.h>
 
+static thread_reference_t Update_Thread;
+
 //volatile uint16_t out_temp[4];
 static core_base_struct_t Core_DHT11;
-volatile static DHT11_Inner_Val Inner_Val;
+volatile static DHT11_Inner_Val Inner_Val_DHT11;
 
 void DHT11_Init()
 {
 	Core_DHT11.type = DHT11;
 //	Core_DHT11.direction = RW;
 	Core_DHT11.next = NULL;
-	Core_DHT11.description = "4 Floor Temp Sensors DS18B20";
-	Core_DHT11.inner_values = &Inner_Val;
-	Core_DHT11.ival_size = sizeof(Inner_Val);
+	Core_DHT11.description = "DHT11 Hum&Temp Sensor";
+	Core_DHT11.inner_values = &Inner_Val_DHT11;
+	Core_DHT11.ival_size = sizeof(DHT11_Inner_Val);
+	Core_DHT11.ival_rw_size = sizeof(DHT11_Inner_Val_RW);
+
+	Inner_Val_DHT11.RW.Auto_Update_Sec = 180;
+	Inner_Val_DHT11.cont_errors = 0;
+	Inner_Val_DHT11.global_errors_32 = 0;
+	Inner_Val_DHT11.humidity = 0xFFFF;
+	Inner_Val_DHT11.temp = 0xFFFF;
 
 	Core_Module_Register(&Core_DHT11);
 }
@@ -30,8 +39,7 @@ THD_FUNCTION(DHT11_thread,arg)
 //	thread_t *answer_thread;
 	//	chRegSetThreadName("DS18B20");
 
-	static ucnt_t global_errors = 0;
-	static ucnt_t critical_errors = 0;
+	static uint32_t global_errors = 0;
 	static uint16_t cont_errors = 0;
 //	static uint16_t old_temp = 0xffff;
 
@@ -52,20 +60,36 @@ THD_FUNCTION(DHT11_thread,arg)
 
 	dht11Update(&DHTD1, NULL);
 
+	chEvtGetAndClearEvents(ALL_EVENTS);
+
 	while (TRUE)
 	{
-		chThdSleepSeconds(3);
+		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_DHT11.RW.Auto_Update_Sec));
 
 		dht11GetHumidity(&DHTD1, &humidity);
 		dht11GetTemperature(&DHTD1, &temperature);
-		dht11Update(&DHTD1, NULL);
+		if (DHT11_BUSY == dht11Update(&DHTD1, NULL))
+		{
+			global_errors++;
+			cont_errors++;
+		}
+		else
+		{
+			cont_errors = 0;
+		}
 
 		chSysLock();
-		Inner_Val.temp = temperature<<2;
-		Inner_Val.humidity = humidity;
-		Inner_Val.cont_errors = MAX(Inner_Val.cont_errors,cont_errors);
-		Inner_Val.global_errors_32 = global_errors;
-		Inner_Val.critical_errors_32 = critical_errors;
+
+		Inner_Val_DHT11.temp = temperature << 2;
+		Inner_Val_DHT11.humidity = humidity;
+		Inner_Val_DHT11.cont_errors = MAX(Inner_Val_DHT11.cont_errors,cont_errors);
+		Inner_Val_DHT11.global_errors_32 = global_errors;
+
+		if (evt == EVENTMASK_REREAD)
+		{
+			_core_wakeup_i(&Update_Thread, MSG_OK);
+		}
+
 		chSysUnlock();
 	}
 }
@@ -74,7 +98,8 @@ void DHT11_Start()
 {
 #if DHT11_PRESENT
 	DHT11_Init();
-	chThdCreateStatic(waDHT11_thread, sizeof(waDHT11_thread), HIGHPRIO, DHT11_thread, NULL);
+	thread_t* thd = chThdCreateStatic(waDHT11_thread, sizeof(waDHT11_thread), HIGHPRIO, DHT11_thread, NULL);
+	Core_Register_Thread(DHT11, thd, &Update_Thread);
 	chThdYield();
 #endif
 }

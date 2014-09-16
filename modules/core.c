@@ -233,14 +233,14 @@ static void Start_Modules(void)
 #if DS18B20_PRESENT
 	DS18B20_Start();
 #endif
+#if DHT11_PRESENT
+	DHT11_Start();
+#endif
 #if FloorHeater_PRESENT
 	FloorHeater_Start();
 #endif
 #if RGBW_PRESENT
 	RGBW_Start();
-#endif
-#if DHT11_PRESENT
-	DHT11_Start();
 #endif
 #if PIR_PRESENT
 	PIR_Start();
@@ -249,6 +249,17 @@ static void Start_Modules(void)
 
 void Core_Start()
 {
+	/*
+	 * System initializations.
+	 * - HAL initialization, this also initializes the configured device drivers
+	 *   and performs the board-specific initializations.
+	 * - Kernel initialization, the main() function becomes a thread and the
+	 *   RTOS is active.
+	 */
+	halInit();
+	chSysInit();
+
+	chThdSetPriority(LOWPRIO);
 	register int i;
 	for (i = 0; i <= Other; i++)
 	{
