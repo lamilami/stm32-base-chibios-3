@@ -315,10 +315,13 @@ msg_t Core_Module_Update(const core_types_t type, const char * inval, const syst
 		chSysLock();
 		while (*Modules_Array[type].Base_Thread_Updater != NULL)
 		{
-			chSchDoYieldS();
+			  chSysUnlock();
+			  chSysLock();
+			  chSchDoYieldS();
 		}
 		chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
 		msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
+		*Modules_Array[type].Base_Thread_Updater = NULL;
 		chSysUnlock();
 		return msg;
 	}

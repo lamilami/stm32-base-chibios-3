@@ -64,19 +64,10 @@ THD_FUNCTION(DHT11_thread,arg)
 
 	while (TRUE)
 	{
-		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_DHT11.RW.Auto_Update_Sec));
-
+		eventmask_t evt = 0;
+		chThdSleepSeconds(1);
 		dht11GetHumidity(&DHTD1, &humidity);
 		dht11GetTemperature(&DHTD1, &temperature);
-		if (DHT11_BUSY == dht11Update(&DHTD1, NULL))
-		{
-			global_errors++;
-			cont_errors++;
-		}
-		else
-		{
-			cont_errors = 0;
-		}
 
 		chSysLock();
 
@@ -91,6 +82,18 @@ THD_FUNCTION(DHT11_thread,arg)
 		}
 
 		chSysUnlock();
+
+		evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_DHT11.RW.Auto_Update_Sec-1));
+
+		if (DHT11_BUSY == dht11Update(&DHTD1, NULL))
+		{
+			global_errors++;
+			cont_errors++;
+		}
+		else
+		{
+			cont_errors = 0;
+		}
 	}
 }
 
