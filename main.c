@@ -90,40 +90,10 @@ void LEDBlinkI(uint8_t cnt)
 
 #endif
 #endif
-/*
- * Green LED blinker thread, times are in milliseconds.
- */
-/*
- static THD_WORKING_AREA(waTransmit, 128);
- //__attribute__((noreturn))
- static THD_FUNCTION (Transmit,arg)
- {
-
- (void) arg;
- //	chRegSetThreadName("Transmitter");
- rf_sended_debug = FALSE;
- chThdSleepSeconds(3);
- while (TRUE)
- {
- //	LEDSwap();
- if (!rf_sended_debug)
- {
- while (!rf_sended_debug)
- {
- //				Radio_Send_Command(3, RF_PING);
- chThdSleepSeconds(5);
- }
- }
- rf_sended_debug = FALSE;
- chThdSleepSeconds(15);
- }
- }
- */
 
 #if FloorHeater_PRESENT
 
-uint16_t FloorHeater_cb()
-{
+uint16_t FloorHeater_cb() {
 
 #if DS18B20_PRESENT
 
@@ -154,7 +124,7 @@ uint16_t FloorHeater_cb()
 
 	static DHT11_Inner_Val Temp_Vals;
 	Core_Module_Update(DHT11, NULL, 3000);
-	Core_Module_Read(DHT11,(char*) &Temp_Vals);
+	Core_Module_Read(DHT11, (char*) &Temp_Vals);
 
 	return Temp_Vals.temp;
 
@@ -164,48 +134,17 @@ uint16_t FloorHeater_cb()
 
 }
 
-#endif
-
+#endif //FloorHeater_PRESENT
 
 /*
  * Application entry point.
  */
-int main(void)
-{
-	/*
-	 * Creates the blinker threads.
-	 */
-//  chThdCreateStatic(waThread1, sizeof(waThread1), NORMALPRIO, Thread1, NULL);
-	/*	chThdCreateStatic(waTransmit, sizeof(waTransmit), NORMALPRIO, Transmit,
-	 NULL);
-	 */
-	/*
-	 #ifdef DEBUG_Discovery
-	 chThdCreateStatic(waLedBlinker, sizeof(waLedBlinker), NORMALPRIO,
-	 LedBlinker, NULL);
-	 #endif
-	 */
-	/*	chThdCreateStatic(waRadio, sizeof(waRadio), NORMALPRIO, Radio, NULL);
-	 chThdCreateStatic(waRadio_Processor, sizeof(waRadio_Processor), NORMALPRIO,
-	 Radio_Processor, NULL);
-	 */
+int main(void) {
 
-//  chThdSleepSeconds(2);
-//  Radio_Send_Command (3, RF_PING);
-//  nRF24_hw_ce_low();
-//  radio_init();
-	/*
-	 * Normal main() thread activity, in this demo it does nothing except
-	 * sleeping in a loop and check the button state, when the button is
-	 * pressed the test procedure is launched with output on the serial
-	 * driver 1.
-	 */
-//	LEDB1Swap();
 	Core_Start();
 
-//	uint8_t data[RF_MAX_PAYLOAD_LENGTH-1];
 #if LCD1602_PRESENT
-	InitializeLCD();     //Инициализация дисплея
+	InitializeLCD(); //Инициализация дисплея
 	ClearLCDScreen();//Очистка дисплея от мусора
 #endif
 
@@ -286,7 +225,7 @@ int main(void)
 #if FloorHeater_PRESENT
 
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 25<<2;
+	FH_IV.Desired_Temp = 25 << 2;
 	FH_IV.Auto_Update_Sec = 5;
 	FH_IV.Get_Temp_Callback = FloorHeater_cb;
 	FH_IV.iGain = 2;
@@ -295,12 +234,11 @@ int main(void)
 	FH_IV.iMax = 25;
 	FH_IV.iMin = -2;
 
-	Core_Module_Update(Heater,(void *) &FH_IV, 1000);
+	Core_Module_Update(Heater, (void *) &FH_IV, 1000);
 
 #endif
 
-	while (TRUE)
-	{
+	while (TRUE) {
 #if LCD1602_PRESENT
 		data[0]=2;
 		int16_t tmp;
@@ -308,7 +246,7 @@ int main(void)
 		data[0]=3;
 		Radio_Send_Command(10, RF_GET, 1, data);
 		chThdSleepSeconds(3);
-		Cursor(0,0);     //Установка курсора
+		Cursor(0,0); //Установка курсора
 		PrintStr("T=");//Написание текста
 		/*	    PutData[2][0]=1;
 		 PutData[2][1]=2;
@@ -321,7 +259,7 @@ int main(void)
 		LCD_PutUnsignedInt((tmp&3)*25);
 		PrintStr("              ");
 		Cursor(1,0);
-		PrintStr("PWR=");     //Написание текста
+		PrintStr("PWR="); //Написание текста
 		tmp = PutData[3][3]*256+PutData[3][4];
 //	    LCD_PutSignedInt(tmp>>2);
 //	    PrintStr(".");
@@ -334,9 +272,9 @@ int main(void)
 		Core_Module_Update(RGBW, (void *) &RGBW_Day, 3000);
 
 //		chThdSleepSeconds(14*60*60);
-/*		chThdSleepMilliseconds(500);
-		Core_Module_Read(RGBW, (void *) &RGBW_Current);
-		chThdSleepMilliseconds(1500);*/
+		/*		chThdSleepMilliseconds(500);
+		 Core_Module_Read(RGBW, (void *) &RGBW_Current);
+		 chThdSleepMilliseconds(1500);*/
 		chThdSleepMilliseconds(500);
 
 		Core_Module_Update(RGBW, (void *) &RGBW_Night, 3000);
@@ -347,17 +285,6 @@ int main(void)
 		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(4));
 #endif
 
-#ifdef WaitEvents
-		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
-		switch (evt)
-		{
-			case (EVENT_MASK((uint8_t) PIR)):
-			LEDB1Swap();
-			break;
-			default:
-			break;
-		}
-#endif
 		chThdSleepSeconds(300);
 	}
 }
