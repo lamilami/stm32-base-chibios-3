@@ -1,7 +1,6 @@
 #include "ch.h"
 #include "hal.h"
 #include "onewire.h"
-#include "DS18B20.h"
 #include "core.h"
 
 #include <stdlib.h>
