@@ -1,3 +1,5 @@
+#if RADIO_PRESENT
+
 #include <nRF24_HAL.h>
 //#include <HAL.h>
 //#include <EERTOS.h>
@@ -154,3 +156,4 @@ void nRF24_hw_ce_high(void)
 	NRF_CE_IRQ_Port->BSRR = NRF_CE_Pin;
 }
 
+#endif

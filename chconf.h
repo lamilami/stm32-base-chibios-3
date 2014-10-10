@@ -453,8 +453,9 @@
  * @note    This macro can be used to activate a power saving mode.
  */
 #define CH_CFG_IDLE_ENTER_HOOK() {                                         \
-	  GPIOF->BRR = GPIO_Pin_0;                                             \
 }
+
+//	palClearPad(GPIOF,0);
 
 /**
  * @brief   Idle thread leave hook.
@@ -463,8 +464,9 @@
  * @note    This macro can be used to deactivate a power saving mode.
  */
 #define CH_CFG_IDLE_LEAVE_HOOK() {                                         	\
-	GPIOF->BSRR = GPIO_Pin_0;                                          		\
 }
+
+//	palSetPad(GPIOF,0);
 
 /**
  * @brief   Idle Loop hook.

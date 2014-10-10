@@ -1,3 +1,5 @@
+#if LCD1602_PRESENT
+
 #include "ch.h"
 #include "hal.h"
 #include "lcd.h"
@@ -181,3 +183,6 @@ void LCD_PutUnsignedInt(uint32_t n)
 		LCD_SendByte(c1[i],1);
 	}
 }
+
+
+#endif

@@ -16,7 +16,7 @@
 #ifdef STM32F100C8
 #include "stm32f10x.h"
 #else
-#include "stm32f0xx.h"
+//#include "stm32f0xx.h"
 #endif
 #include "ch.h"
 #include "hal.h"
@@ -225,7 +225,7 @@ int main(void) {
 #if FloorHeater_PRESENT
 
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 25 << 2;
+	FH_IV.Desired_Temp = 28 << 2;
 	FH_IV.Auto_Update_Sec = 5;
 	FH_IV.Get_Temp_Callback = FloorHeater_cb;
 	FH_IV.iGain = 2;

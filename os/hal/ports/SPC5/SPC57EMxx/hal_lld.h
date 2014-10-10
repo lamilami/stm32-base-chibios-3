@@ -379,13 +379,6 @@
 #endif
 
 /**
- * @brief   Wait for the HSM initialization before proceeding.
- */
-#if !defined(SPC5_WAIT_HSM_INIT) || defined(__DOXYGEN__)
-#define SPC5_WAIT_HSM_INIT                  TRUE
-#endif
-
-/**
  * @brief   PLL0 PREDIV divider value.
  * @note    The default value is calculated for XOSC=40MHz and PLL0PHI=400MHz.
  */

@@ -1,3 +1,5 @@
+#if RADIO_PRESENT
+
 /* Copyright (c) 2007 Nordic Semiconductor. All Rights Reserved.
  *
  * The information contained herein is property of Nordic Semiconductor ASA.
@@ -450,3 +452,5 @@ void Radio_Start()
 	chThdYield();
 #endif
 }
+
+#endif
