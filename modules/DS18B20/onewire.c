@@ -1,3 +1,5 @@
+#if DS18B20_PRESENT
+
 /*
  * onewire.c
  *
@@ -512,3 +514,5 @@ unsigned char crc8(unsigned char data, unsigned char crc)
 	} while (bit_counter > 0);
 	return crc;
 }
+
+#endif

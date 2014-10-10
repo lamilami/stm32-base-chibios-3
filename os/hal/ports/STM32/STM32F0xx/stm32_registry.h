@@ -25,6 +25,26 @@
 #ifndef _STM32_REGISTRY_H_
 #define _STM32_REGISTRY_H_
 
+#if defined(STM32F051x8) || defined(STM32F058xx) ||                         \
+    defined(STM32F071xB) || defined(STM32F072xB) ||                         \
+    defined(STM32F078xx)
+#define STM32F0XX_MD
+
+#elif defined(STM32F031x6) || defined(STM32F038xx) ||                       \
+      defined(STM32F042x6) || defined(STM32F048xx)
+#define STM32F0XX_LD
+
+#elif defined(STM32F030x6) || defined(STM32F030x8)
+#define STM32F030
+
+#else
+#error "STM32F0xx device not specified"
+#endif
+
+#if !defined(STM32F0XX) || defined(__DOXYGEN__)
+#define STM32F0XX
+#endif
+
 /*===========================================================================*/
 /* Platform capabilities.                                                    */
 /*===========================================================================*/
@@ -69,6 +89,11 @@
 #define STM32_HAS_GPIOG                     FALSE
 #define STM32_HAS_GPIOH                     FALSE
 #define STM32_HAS_GPIOI                     FALSE
+#define STM32_GPIO_EN_MASK                  (RCC_AHBENR_GPIOAEN |           \
+                                             RCC_AHBENR_GPIOBEN |           \
+                                             RCC_AHBENR_GPIOCEN |           \
+                                             RCC_AHBENR_GPIODEN |           \
+                                             RCC_AHBENR_GPIOFEN)
 
 /* I2C attributes.*/
 #define STM32_HAS_I2C1                      TRUE
@@ -207,6 +232,10 @@
 #define STM32_HAS_GPIOG                     FALSE
 #define STM32_HAS_GPIOH                     FALSE
 #define STM32_HAS_GPIOI                     FALSE
+#define STM32_GPIO_EN_MASK                  (RCC_AHBENR_GPIOAEN |           \
+                                             RCC_AHBENR_GPIOBEN |           \
+                                             RCC_AHBENR_GPIOCEN |           \
+                                             RCC_AHBENR_GPIOFEN)
 
 /* I2C attributes.*/
 #define STM32_HAS_I2C1                      TRUE
@@ -330,6 +359,11 @@
 #define STM32_HAS_GPIOG                     FALSE
 #define STM32_HAS_GPIOH                     FALSE
 #define STM32_HAS_GPIOI                     FALSE
+#define STM32_GPIO_EN_MASK                  (RCC_AHBENR_GPIOAEN |           \
+                                             RCC_AHBENR_GPIOBEN |           \
+                                             RCC_AHBENR_GPIOCEN |           \
+                                             RCC_AHBENR_GPIODEN |           \
+                                             RCC_AHBENR_GPIOFEN)
 
 /* I2C attributes.*/
 #define STM32_HAS_I2C1                      TRUE

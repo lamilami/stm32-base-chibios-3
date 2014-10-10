@@ -168,7 +168,7 @@ typedef msg_t (*tfunc_t)(void *);
  *
  * @param[in] name      the name of the threads queue variable
  */
-#define _threads_queue_t_DATA(name) {(thread_t *)&name, (thread_t *)&name}
+#define _THREADS_QUEUE_DATA(name) {(thread_t *)&name, (thread_t *)&name}
 
 /**
  * @brief   Static threads queue object initializer.
@@ -177,8 +177,8 @@ typedef msg_t (*tfunc_t)(void *);
  *
  * @param[in] name      the name of the threads queue variable
  */
-#define threads_queue_t_DECL(name)                                          \
-  threads_queue_t name = _threads_queue_t_DATA(name)
+#define _THREADS_QUEUE_DECL(name)                                           \
+  threads_queue_t name = _THREADS_QUEUE_DATA(name)
 /** @} */
 
 /**
@@ -374,6 +374,48 @@ static inline void chThdSleepS(systime_t time) {
 static inline void chThdQueueObjectInit(threads_queue_t *tqp) {
 
   queue_init(tqp);
+}
+
+/**
+ * @brief   Evaluates to @p true if the specified queue is empty.
+ *
+ * @param[out] tqp      pointer to the threads queue object
+ * @return              The queue status.
+ * @retval false        if the queue is not empty.
+ * @retval true         if the queue is empty.
+ *
+ * @iclass
+ */
+static inline bool chThdQueueIsEmptyI(threads_queue_t *tqp) {
+
+  chDbgCheckClassI();
+
+  return queue_isempty(tqp);
+}
+
+
+/**
+ * @brief   Dequeues and wakes up one thread from the threads queue object.
+ * @details Dequeues one thread from the queue without checking if the queue
+ *          is empty.
+ * @pre     The queue must contain at least an object.
+ *
+ * @param[in] tqp       pointer to the threads queue object
+ * @param[in] msg       the message code
+ *
+ * @iclass
+ */
+static inline void chThdDoDequeueNextI(threads_queue_t *tqp, msg_t msg) {
+  thread_t *tp;
+
+  chDbgAssert(queue_notempty(tqp), "empty queue");
+
+  tp = queue_fifo_remove(tqp);
+
+  chDbgAssert(tp->p_state == CH_STATE_QUEUED, "invalid state");
+
+  tp->p_u.rdymsg = msg;
+  chSchReadyI(tp);
 }
 
 #endif /* _CHTHREADS_H_ */
