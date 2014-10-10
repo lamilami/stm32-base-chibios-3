@@ -1,5 +1,3 @@
-#if DS18B20_PRESENT
-
 /*
  * onewire.c
  *
@@ -9,6 +7,9 @@
 #include "ch.h"
 #include "hal.h"
 #include "onewire.h"
+#include "core.h"
+
+#if DS18B20_PRESENT
 
 #ifdef OW_USART1
 
@@ -92,8 +93,8 @@ uint8_t OW_toByte(uint8_t *ow_bits)
 //-----------------------------------------------------------------------------
 uint8_t OW_Init()
 {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	USART_InitTypeDef USART_InitStructure;
+//	GPIO_InitTypeDef GPIO_InitStruct;
+//	USART_InitTypeDef USART_InitStructure;
 
 #ifdef STM32F100C8
 
@@ -144,24 +145,32 @@ uint8_t OW_Init()
 	}
 #else
 
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+//	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+//	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+
+	rccEnableAHB(RCC_AHBENR_GPIOAEN, TRUE);
+	rccEnableUSART1(TRUE);
+	rccEnableDMA1(TRUE);
+	rccEnableAPB2(RCC_APB2ENR_SYSCFGCOMPEN, TRUE);
 
 //		GPIO_PinAFConfig(GPIOA,GPIO_PinSource9,GPIO_AF_1);
 //		GPIO_PinAFConfig(GPIOA,GPIO_PinSource10,GPIO_AF_1);
 
 // USART TX
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
+/*	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_2MHz;
 	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
 
-	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource9, GPIO_AF_1);
+	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);*/
+
+	palSetPadMode(GPIOA, GPIOA_PIN9, PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_MID | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_OPENDRAIN);
+
+//	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource9, GPIO_AF_1);
 
 	/*
 	 // USART RX
@@ -175,8 +184,12 @@ uint8_t OW_Init()
 
 	 GPIO_Init(GPIOA, &GPIO_InitStruct);
 	 */
-	SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Rx, ENABLE);
-	SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Tx, ENABLE);
+//	SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Rx, ENABLE);
+//	SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Tx, ENABLE);
+
+	SYSCFG->CFGR1 |= (uint32_t)SYSCFG_CFGR1_USART1RX_DMA_RMP;
+	SYSCFG->CFGR1 |= (uint32_t)SYSCFG_CFGR1_USART1TX_DMA_RMP;
+
 #endif
 
 	USART_InitStructure.USART_BaudRate = 100000;
@@ -188,6 +201,10 @@ uint8_t OW_Init()
 	USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
 
 	USART_Init(OW_USART, &USART_InitStructure);
+
+
+
+
 	// Здесь вставим разрешение работы USART в полудуплексном режиме
 	USART_HalfDuplexCmd(OW_USART, ENABLE);
 	USART_Cmd(OW_USART, ENABLE);
