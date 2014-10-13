@@ -284,7 +284,6 @@ int main(void) {
 
 		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(4));
 #endif
-
 		chThdSleepSeconds(300);
 	}
 }
