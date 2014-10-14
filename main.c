@@ -225,8 +225,8 @@ int main(void) {
 #if FloorHeater_PRESENT
 
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 27 << 2;
-	FH_IV.Auto_Update_Sec = 5;
+	FH_IV.Desired_Temp = 25 << 2;
+	FH_IV.Auto_Update_Sec = 3;
 	FH_IV.Get_Temp_Callback = FloorHeater_cb;
 	FH_IV.iGain = 2;
 	FH_IV.pGain = 4;
