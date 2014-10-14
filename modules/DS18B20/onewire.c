@@ -21,6 +21,7 @@
 #define OW_DMA_CH_RX 	DMA1_Channel5
 #define OW_DMA_CH_TX 	DMA1_Channel4
 #define OW_DMA_FLAG		DMA_ISR_TCIF5
+#define OW_USART_CLK	STM32_USART1CLK
 
 #endif
 
@@ -160,7 +161,8 @@ uint8_t OW_Init() {
 	 GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);*/
 
 	palSetPadMode(GPIOA, GPIOA_PIN9,
-			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_MID | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_OPENDRAIN);
+			PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_MID | PAL_STM32_PUDR_PULLUP
+					| PAL_STM32_OTYPE_OPENDRAIN);
 
 //	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource9, GPIO_AF_1);
 
@@ -178,8 +180,9 @@ uint8_t OW_Init() {
 	 */
 //	SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Rx, ENABLE);
 //	SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Tx, ENABLE);
-	SYSCFG->CFGR1 |= (uint32_t) SYSCFG_CFGR1_USART1RX_DMA_RMP;
-	SYSCFG->CFGR1 |= (uint32_t) SYSCFG_CFGR1_USART1TX_DMA_RMP;
+	SYSCFG->CFGR1 |= (uint32_t) SYSCFG_CFGR1_USART1RX_DMA_RMP
+			| SYSCFG_CFGR1_USART1TX_DMA_RMP;
+//	SYSCFG->CFGR1 |= (uint32_t) SYSCFG_CFGR1_USART1TX_DMA_RMP;
 
 #endif
 
@@ -196,10 +199,10 @@ uint8_t OW_Init() {
 
 	uint32_t tmpreg = 0;
 
-	USART1->CR1 &= (uint32_t) ~((uint32_t) USART_CR1_UE);
+	OW_USART->CR1 &= (uint32_t) ~((uint32_t) USART_CR1_UE);
 
 	/*---------------------------- USART CR2 Configuration -----------------------*/
-	tmpreg = USART1->CR2;
+	tmpreg = OW_USART->CR2;
 	/* Clear STOP[13:12] bits */
 	tmpreg &= (uint32_t) ~((uint32_t) USART_CR2_STOP);
 
@@ -207,15 +210,13 @@ uint8_t OW_Init() {
 	/* Set STOP[13:12] bits according to USART_StopBits value */
 	tmpreg |= (uint32_t) USART_CR2_STOP_1;
 
-	/* Write to USART CR2 */
-	USART1->CR2 = tmpreg;
+	/* Write to USART CR2 */OW_USART->CR2 = tmpreg;
 
 	/*---------------------------- USART CR1 Configuration -----------------------*/
-	tmpreg = USART1->CR1;
+	tmpreg = OW_USART->CR1;
 	/* Clear M, PCE, PS, TE and RE bits */
 	tmpreg &= (uint32_t) ~((uint32_t)(
-			USART_CR1_M | USART_CR1_PCE | USART_CR1_PS | USART_CR1_TE
-					| USART_CR1_RE));
+			USART_CR1_M | USART_CR1_PCE | USART_CR1_PS));
 
 	/* Configure the USART Word Length, Parity and mode ----------------------- */
 	/* Set the M bits according to USART_WordLength value */
@@ -224,10 +225,10 @@ uint8_t OW_Init() {
 	tmpreg |= (uint32_t) USART_CR1_RE | USART_CR1_TE;
 
 	/* Write to USART CR1 */
-	USART1->CR1 = tmpreg;
+	OW_USART->CR1 = tmpreg;
 
 	/*---------------------------- USART CR3 Configuration -----------------------*/
-	tmpreg = USART1->CR3;
+	tmpreg = OW_USART->CR3;
 	/* Clear CTSE and RTSE bits */
 	tmpreg &= (uint32_t) ~((uint32_t)(USART_CR3_RTSE | USART_CR3_CTSE));
 
@@ -235,20 +236,20 @@ uint8_t OW_Init() {
 	/* Set CTSE and RTSE bits according to USART_HardwareFlowControl value */
 //	tmpreg |= USART_InitStruct->USART_HardwareFlowControl;
 	/* Write to USART CR3 */
-	USART1->CR3 = tmpreg;
+	OW_USART->CR3 = tmpreg;
 
-	USART1->BRR = STM32_USART1CLK / 100000; //24000000
+	OW_USART->BRR = OW_USART_CLK / 100000; //24000000
 
 	// Здесь вставим разрешение работы USART в полудуплексном режиме
 //	USART_HalfDuplexCmd(OW_USART, ENABLE);
 
 	/* Enable the Half-Duplex mode by setting the HDSEL bit in the CR3 register */
-	USART1->CR3 |= USART_CR3_HDSEL;
+	OW_USART->CR3 |= USART_CR3_HDSEL;
 
 //	USART_Cmd(OW_USART, ENABLE);
 
 	/* Enable the selected USART by setting the UE bit in the CR1 register */
-	USART1->CR1 |= USART_CR1_UE;
+	OW_USART->CR1 |= USART_CR1_UE;
 
 	return OW_OK;
 }
@@ -274,34 +275,34 @@ uint8_t OW_Reset() {
 	 */
 
 	/* Disable USART */
-	USART1->CR1 &= (uint32_t) ~((uint32_t) USART_CR1_UE);
+	OW_USART->CR1 &= (uint32_t) ~((uint32_t) USART_CR1_UE);
 
-	USART1->BRR = STM32_USART1CLK / 9600;
+	OW_USART->BRR = OW_USART_CLK / 9600;
 
 	/* Enable the selected USART by setting the UE bit in the CR1 register */
-	USART1->CR1 |= USART_CR1_UE;
+	OW_USART->CR1 |= USART_CR1_UE;
 
 	// отправляем 0xf0 на скорости 9600
 //	USART_ClearFlag(OW_USART, USART_FLAG_TC);
 
-	USART1->ICR = USART_ISR_TC;
+	OW_USART->ICR = USART_ISR_TC;
 
 //	USART_SendData(OW_USART, 0xf0);
 
 	/* Transmit Data */
-	USART1->TDR = (0xf0 & (uint16_t) 0x01FF);
+	OW_USART->TDR = (0xf0 & (uint16_t) 0x01FF);
 
 	uint16_t cntr;
 	cntr = 0;
 
-	while ((cntr < 5) && ((USART1->ISR & USART_ISR_TC) == RESET)) {
+	while ((cntr < 5) && ((OW_USART->ISR & USART_ISR_TC) == RESET)) {
 		cntr++;
 //		chThdYield();
 		osalThreadSleepMilliseconds(1);
 //		chThdSleepMilliseconds(10);
 	}
 
-	ow_presence = (uint16_t)(USART1->RDR & (uint16_t) 0x01FF);
+	ow_presence = (uint16_t)(OW_USART->RDR & (uint16_t) 0x01FF);
 
 	/*	USART_InitStructure.USART_BaudRate = 100000;
 	 USART_InitStructure.USART_WordLength = USART_WordLength_8b;
@@ -314,9 +315,9 @@ uint8_t OW_Reset() {
 	 */
 
 	/* Disable USART */
-	USART1->CR1 &= (uint32_t) ~((uint32_t) USART_CR1_UE);
+	OW_USART->CR1 &= (uint32_t) ~((uint32_t) USART_CR1_UE);
 
-	USART1->BRR = STM32_USART1CLK / 100000;
+	OW_USART->BRR = OW_USART_CLK / 100000;
 
 	if (cntr == 5) {
 		return OW_ERROR;
@@ -381,59 +382,28 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 		 */
 
 		/* Disable the selected DMAy Channelx */
-		DMA1_Channel5->CCR &= (uint16_t)(~DMA_CCR_EN);
-
-		/* Reset DMAy Channelx control register */
-		DMA1_Channel5->CCR = 0;
-
-		/* Reset DMAy Channelx remaining bytes register */
-		DMA1_Channel5->CNDTR = 0;
-
-		/* Reset DMAy Channelx peripheral address register */
-		DMA1_Channel5->CPAR = 0;
-
-		/* Reset DMAy Channelx memory address register */
-		DMA1_Channel5->CMAR = 0;
+		OW_DMA_CH_RX->CCR &= (uint16_t)(~DMA_CCR_EN);
 
 		/* Reset interrupt pending bits for DMA1 Channel5 */
 		DMA1->IFCR |= ((uint32_t)(
 				DMA_ISR_GIF5 | DMA_ISR_TCIF5 | DMA_ISR_HTIF5 | DMA_ISR_TEIF5));
 
-		uint32_t tmpreg = 0;
-
 		/*--------------------------- DMAy Channelx CCR Configuration ----------------*/
-		/* Get the DMAy_Channelx CCR value */
-		tmpreg = DMA1_Channel5->CCR;
-
-		/* Clear MEM2MEM, PL, MSIZE, PSIZE, MINC, PINC, CIRC and DIR bits */
-		tmpreg &=
-				((uint32_t) 0xFFFF800F) /* DMA Channel config registers Masks */;
-
-		/* Configure DMAy Channelx: data transfer, data size, priority level and mode */
-		/* Set DIR bit according to DMA_DIR value */
-		/* Set CIRC bit according to DMA_Mode value */
-		/* Set PINC bit according to DMA_PeripheralInc value */
-		/* Set MINC bit according to DMA_MemoryInc value */
-		/* Set PSIZE bits according to DMA_PeripheralDataSize value */
-		/* Set MSIZE bits according to DMA_MemoryDataSize value */
-		/* Set PL bits according to DMA_Priority value */
-		/* Set the MEM2MEM bit according to DMA_M2M value */
-		tmpreg |= DMA_CCR_MINC;
 
 		/* Write to DMAy Channelx CCR */
-		DMA1_Channel5->CCR = tmpreg;
+		OW_DMA_CH_RX->CCR = DMA_CCR_MINC;
 
 		/*--------------------------- DMAy Channelx CNDTR Configuration --------------*/
 		/* Write to DMAy Channelx CNDTR */
-		DMA1_Channel5->CNDTR = 8;
+		OW_DMA_CH_RX->CNDTR = 8;
 
 		/*--------------------------- DMAy Channelx CPAR Configuration ---------------*/
 		/* Write to DMAy Channelx CPAR */
-		DMA1_Channel5->CPAR = (uint32_t) & (OW_USART->RDR);
+		OW_DMA_CH_RX->CPAR = (uint32_t) & (OW_USART->RDR);
 
 		/*--------------------------- DMAy Channelx CMAR Configuration ---------------*/
 		/* Write to DMAy Channelx CMAR */
-		DMA1_Channel5->CMAR = (uint32_t) ow_buf;
+		OW_DMA_CH_RX->CMAR = (uint32_t) ow_buf;
 
 		/*
 		 // DMA на запись
@@ -453,56 +423,26 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 		 */
 
 		/* Disable the selected DMAy Channelx */
-		DMA1_Channel4->CCR &= (uint16_t)(~DMA_CCR_EN);
-
-		/* Reset DMAy Channelx control register */
-		DMA1_Channel4->CCR = 0;
-
-		/* Reset DMAy Channelx remaining bytes register */
-		DMA1_Channel4->CNDTR = 0;
-
-		/* Reset DMAy Channelx peripheral address register */
-		DMA1_Channel4->CPAR = 0;
-
-		/* Reset DMAy Channelx memory address register */
-		DMA1_Channel4->CMAR = 0;
+		OW_DMA_CH_TX->CCR &= (uint16_t)(~DMA_CCR_EN);
 
 		/* Reset interrupt pending bits for DMA1 Channel5 */
 		DMA1->IFCR |= ((uint32_t)(
 				DMA_ISR_GIF4 | DMA_ISR_TCIF4 | DMA_ISR_HTIF4 | DMA_ISR_TEIF4));
 
-		/* Get the DMAy_Channelx CCR value */
-		tmpreg = DMA1_Channel4->CCR;
-
-		/* Clear MEM2MEM, PL, MSIZE, PSIZE, MINC, PINC, CIRC and DIR bits */
-		tmpreg &=
-				((uint32_t) 0xFFFF800F) /* DMA Channel config registers Masks */;
-
 		/* Configure DMAy Channelx: data transfer, data size, priority level and mode */
-		/* Set DIR bit according to DMA_DIR value */
-		/* Set CIRC bit according to DMA_Mode value */
-		/* Set PINC bit according to DMA_PeripheralInc value */
-		/* Set MINC bit according to DMA_MemoryInc value */
-		/* Set PSIZE bits according to DMA_PeripheralDataSize value */
-		/* Set MSIZE bits according to DMA_MemoryDataSize value */
-		/* Set PL bits according to DMA_Priority value */
-		/* Set the MEM2MEM bit according to DMA_M2M value */
-		tmpreg |= DMA_CCR_DIR | DMA_CCR_MINC;
-
-		/* Write to DMAy Channelx CCR */
-		DMA1_Channel4->CCR = tmpreg;
+		OW_DMA_CH_TX->CCR = DMA_CCR_DIR | DMA_CCR_MINC;
 
 		/*--------------------------- DMAy Channelx CNDTR Configuration --------------*/
 		/* Write to DMAy Channelx CNDTR */
-		DMA1_Channel4->CNDTR = 8;
+		OW_DMA_CH_TX->CNDTR = 8;
 
 		/*--------------------------- DMAy Channelx CPAR Configuration ---------------*/
 		/* Write to DMAy Channelx CPAR */
-		DMA1_Channel4->CPAR = (uint32_t) & (OW_USART->TDR);
+		OW_DMA_CH_TX->CPAR = (uint32_t) & (OW_USART->TDR);
 
 		/*--------------------------- DMAy Channelx CMAR Configuration ---------------*/
 		/* Write to DMAy Channelx CMAR */
-		DMA1_Channel4->CMAR = (uint32_t) ow_buf;
+		OW_DMA_CH_TX->CMAR = (uint32_t) ow_buf;
 
 		// старт цикла отправки
 //		USART_ClearFlag(OW_USART,
@@ -518,8 +458,8 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 //		DMA_Cmd(OW_DMA_CH_TX, ENABLE);
 		OW_DMA_CH_TX->CCR |= DMA_CCR_EN;
 //		USART_Cmd(OW_USART, ENABLE);
-		/* Enable the selected USART by setting the UE bit in the CR1 register */
-		OW_USART->CR1 |= USART_CR1_UE;
+		/* Enable the selected USART by setting the UE bit in the CR1 register */OW_USART->CR1 |=
+				USART_CR1_UE;
 
 		uint8_t cntr;
 		cntr = 0;
@@ -534,13 +474,13 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
 
 		// отключаем DMA
 //		DMA_Cmd(OW_DMA_CH_TX, DISABLE);
-	    /* Disable the selected DMAy Channelx */
-		OW_DMA_CH_TX->CCR &= (uint16_t)(~DMA_CCR_EN);
+		/* Disable the selected DMAy Channelx */OW_DMA_CH_TX->CCR &= (uint16_t)(
+				~DMA_CCR_EN);
 //		DMA_Cmd(OW_DMA_CH_RX, DISABLE);
 		OW_DMA_CH_RX->CCR &= (uint16_t)(~DMA_CCR_EN);
 
 //		USART_DMACmd(OW_USART, USART_DMAReq_Tx | USART_DMAReq_Rx, DISABLE);
-		OW_USART->CR3 &= (uint32_t)~(USART_CR3_DMAT | USART_CR3_DMAR);
+		OW_USART->CR3 &= (uint32_t) ~(USART_CR3_DMAT | USART_CR3_DMAR);
 
 		if (cntr == 5) {
 			return OW_ERROR;
