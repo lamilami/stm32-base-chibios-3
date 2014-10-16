@@ -16,7 +16,7 @@
 #ifdef STM32F100C8
 #include "stm32f10x.h"
 #else
-#include "stm32f0xx.h"
+//#include "stm32f0xx.h"
 #endif
 #include "ch.h"
 #include "hal.h"
@@ -91,6 +91,14 @@ void LEDBlinkI(uint8_t cnt)
 #endif
 #endif
 
+#if PIR_PRESENT
+
+uint16_t PIR_cb() {
+	LEDB1Swap();
+	return 0;
+}
+#endif
+
 #if FloorHeater_PRESENT
 
 uint16_t FloorHeater_cb() {
@@ -99,7 +107,7 @@ uint16_t FloorHeater_cb() {
 
 	static DS18B20_Inner_Val Temp_Vals;
 	Core_Module_Update(Temp, NULL, 1000);
-	Core_Module_Read(Temp,(char*) &Temp_Vals);
+	Core_Module_Read(Temp, (char*) &Temp_Vals);
 
 #if DS18B20_NUMBER_OF_SENSORS == 1
 	return Temp_Vals.temp[0];
@@ -135,7 +143,6 @@ uint16_t FloorHeater_cb() {
 }
 
 #endif //FloorHeater_PRESENT
-
 /*
  * Application entry point.
  */
@@ -151,7 +158,6 @@ int main(void) {
 //	RGBW_IW;
 
 #ifdef RGBW_Test
-	systime_t time_start = chVTGetSystemTime();
 
 	RTCDateTime DateTime;
 
@@ -167,7 +173,6 @@ int main(void) {
 	chThdSleepSeconds(1000);
 
 	rtcGetTime(&RTCD1, &DateTime);
-
 #ifdef tralala
 	/* Disable write protection. */
 	RTCD1.rtc->WPR = 0xCA;
@@ -203,21 +208,29 @@ int main(void) {
 
 #endif
 
+#if PIR_PRESENT
+	PIR_Inner_Val_RW PIR_IV;
+	PIR_IV.Delay_Seconds=5;
+	PIR_IV.PIR_Callback=PIR_cb;
+	Core_Module_Update(PIR, (void *) &PIR_IV,1000);
+#endif
+
 #if RGBW_PRESENT
-//	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
-	RGBW_Inner_Val RGBW_Day = {}, RGBW_Night = {};
+	systime_t time_start = chVTGetSystemTime();
+	//	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
+	RGBW_Inner_Val RGBW_Day = { }, RGBW_Night = { };
 //	RGBW_Inner_Val RGBW_Current;
 
-	RGBW_Day.RW.Red_Set = 10000;
-	RGBW_Day.RW.Blue_Set = 10000;
-	RGBW_Day.RW.Green_Set = 10000;
-	RGBW_Day.RW.Rise_Time_Sec = 1;
+	RGBW_Day.RW.Red_Set = 7000;
+	RGBW_Day.RW.Blue_Set = 3000;
+	RGBW_Day.RW.Green_Set = 1000;
+	RGBW_Day.RW.Rise_Time_Sec = 3;
 	RGBW_Day.RW.Max_Delay_Sec = 600;
 
 	RGBW_Night.RW.Red_Set = 0;
 	RGBW_Night.RW.Blue_Set = 0;
 	RGBW_Night.RW.Green_Set = 0;
-	RGBW_Night.RW.Rise_Time_Sec = 1;
+	RGBW_Night.RW.Rise_Time_Sec = 3;
 	RGBW_Night.RW.Max_Delay_Sec = 600;
 #endif
 //	Core_Module_Read(RGBW, (void *) &RGBW_Current);
@@ -225,8 +238,8 @@ int main(void) {
 #if FloorHeater_PRESENT
 
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 25 << 2;
-	FH_IV.Auto_Update_Sec = 5;
+	FH_IV.Desired_Temp = 27 << 2;
+	FH_IV.Auto_Update_Sec = 3;
 	FH_IV.Get_Temp_Callback = FloorHeater_cb;
 	FH_IV.iGain = 2;
 	FH_IV.pGain = 4;
@@ -237,6 +250,7 @@ int main(void) {
 	Core_Module_Update(Heater, (void *) &FH_IV, 1000);
 
 #endif
+
 
 	while (TRUE) {
 #if LCD1602_PRESENT
@@ -275,16 +289,24 @@ int main(void) {
 		/*		chThdSleepMilliseconds(500);
 		 Core_Module_Read(RGBW, (void *) &RGBW_Current);
 		 chThdSleepMilliseconds(1500);*/
-		chThdSleepMilliseconds(500);
+		chThdSleepSeconds(5);
 
 		Core_Module_Update(RGBW, (void *) &RGBW_Night, 3000);
 
 //		Timeval_Current = 24 * 3600 - Inner_Val_RGBW.Correction_24H;
 //		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(24 * 60*60 - 117));
 
-		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(4));
+/*		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
+		switch (evt)
+		{
+		case (EVENT_MASK((uint8_t) PIR)):
+			LEDB1Swap();
+			break;
+		default:
+			break;
+		}*/
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(10));
 #endif
-
-		chThdSleepSeconds(300);
+//		chThdSleepSeconds(300);
 	}
 }

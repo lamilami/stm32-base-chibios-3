@@ -8,9 +8,9 @@
 #define FloorHeater_PRESENT TRUE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
-#define RGBW_PRESENT		FALSE
+#define RGBW_PRESENT		TRUE
 #define CLI_PRESENT			FALSE
-#define PIR_PRESENT			FALSE
+#define PIR_PRESENT			TRUE
 
 //#define StM() WatchDog_Start();
 
@@ -33,7 +33,7 @@
 #error "LCD1602 conflicts with DS18B20 and FloorHeater!"
 #endif
 
-#define EVENTMASK_REREAD 0x03
+#define EVENTMASK_REREAD 0x04
 
 #define MSG_ERROR	-3
 
@@ -59,8 +59,8 @@ struct core_base_struct
 {
 	core_types_t type;
 //	mod_update_timeout_t Mod_Update_Timeout;
-	event_source_t event_source;
-	event_listener_t event_listener;
+//	event_source_t event_source;
+//	event_listener_t event_listener;
 	volatile void* inner_values;
 	volatile uint8_t ival_rw_size;
 	volatile uint8_t ival_size;

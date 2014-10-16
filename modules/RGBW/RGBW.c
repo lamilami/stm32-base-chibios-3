@@ -168,7 +168,7 @@ THD_FUNCTION(RGBW_Controller,arg)
 
 //			break;
 		case (EVENTMASK_UPDATE):
-		case ((eventmask_t) 0):
+		case ((eventmask_t) NULL):
 
 			CheckVT_S(&R_Tim);
 			CheckVT_S(&G_Tim);
