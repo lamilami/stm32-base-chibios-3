@@ -43,7 +43,7 @@
 #define LEDSwap() GPIOA->ODR ^= GPIO_Pin_3
 #define LEDB1On() GPIOB->BSRR = GPIO_Pin_1
 #define LEDB1Off() GPIOB->BRR = GPIO_Pin_1
-#define LEDB1Swap() GPIOA->ODR ^= GPIO_Pin_2
+#define LEDB1Swap() GPIOA->ODR ^= GPIOA_PIN1
 #endif
 
 void LEDBlinkS(uint8_t cnt);
