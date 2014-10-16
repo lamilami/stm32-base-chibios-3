@@ -110,6 +110,7 @@ extern "C" {
 #endif
   void chMBObjectInit(mailbox_t *mbp, msg_t *buf, cnt_t n);
   void chMBReset(mailbox_t *mbp);
+  void chMBResetI(mailbox_t *mbp);
   msg_t chMBPost(mailbox_t *mbp, msg_t msg, systime_t timeout);
   msg_t chMBPostS(mailbox_t *mbp, msg_t msg, systime_t timeout);
   msg_t chMBPostI(mailbox_t *mbp, msg_t msg);
@@ -134,7 +135,7 @@ extern "C" {
  *
  * @iclass
  */
-static inline size_t chMBSizeI(mailbox_t *mbp) {
+static inline size_t chMBGetSizeI(mailbox_t *mbp) {
 
   return (size_t)(mbp->mb_top - mbp->mb_buffer);
 }

@@ -170,7 +170,7 @@ OSAL_IRQ_HANDLER(STM32_TIM1_UP_HANDLER) {
  * @isr
  */
 OSAL_IRQ_HANDLER(STM32_TIM1_CC_HANDLER) {
-  uint16_t sr;
+  uint32_t sr;
 
   OSAL_IRQ_PROLOGUE();
 
@@ -307,7 +307,7 @@ OSAL_IRQ_HANDLER(STM32_TIM8_UP_HANDLER) {
  * @isr
  */
 OSAL_IRQ_HANDLER(STM32_TIM8_CC_HANDLER) {
-  uint16_t sr;
+  uint32_t sr;
 
   OSAL_IRQ_PROLOGUE();
 
@@ -424,7 +424,7 @@ void pwm_lld_init(void) {
  */
 void pwm_lld_start(PWMDriver *pwmp) {
   uint32_t psc;
-  uint16_t ccer;
+  uint32_t ccer;
 
   if (pwmp->state == PWM_STOP) {
     /* Clock activation and timer reset.*/
@@ -510,9 +510,6 @@ void pwm_lld_start(PWMDriver *pwmp) {
   else {
     /* Driver re-configuration scenario, it must be stopped first.*/
     pwmp->tim->CR1    = 0;                  /* Timer disabled.              */
-    pwmp->tim->DIER   = pwmp->config->dier &/* DMA-related DIER settings.   */
-                        ~STM32_TIM_DIER_IRQ_MASK;
-    pwmp->tim->SR     = 0;                  /* Clear eventual pending IRQs. */
     pwmp->tim->CCR[0] = 0;                  /* Comparator 1 disabled.       */
     pwmp->tim->CCR[1] = 0;                  /* Comparator 2 disabled.       */
     pwmp->tim->CCR[2] = 0;                  /* Comparator 3 disabled.       */
@@ -531,8 +528,8 @@ void pwm_lld_start(PWMDriver *pwmp) {
   osalDbgAssert((psc <= 0xFFFF) &&
                 ((psc + 1) * pwmp->config->frequency) == pwmp->clock,
                 "invalid frequency");
-  pwmp->tim->PSC  = (uint16_t)psc;
-  pwmp->tim->ARR  = (uint16_t)(pwmp->period - 1);
+  pwmp->tim->PSC  = psc;
+  pwmp->tim->ARR  = pwmp->period - 1;
   pwmp->tim->CR2  = pwmp->config->cr2;
 
   /* Output enables and polarities setup.*/
@@ -609,6 +606,8 @@ void pwm_lld_start(PWMDriver *pwmp) {
   pwmp->tim->CCER  = ccer;
   pwmp->tim->EGR   = STM32_TIM_EGR_UG;      /* Update event.                */
   pwmp->tim->SR    = 0;                     /* Clear pending IRQs.          */
+  pwmp->tim->DIER  = pwmp->config->dier &   /* DMA-related DIER settings.   */
+                     ~STM32_TIM_DIER_IRQ_MASK;
 #if STM32_PWM_USE_TIM1 || STM32_PWM_USE_TIM8
 #if STM32_PWM_USE_ADVANCED
   pwmp->tim->BDTR  = pwmp->config->bdtr | STM32_TIM_BDTR_MOE;

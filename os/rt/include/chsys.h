@@ -362,30 +362,49 @@ static inline void chSysUnlockFromISR(void) {
 }
 
 /**
- * @brief   Conditionally enters the kernel lock state.
+ * @brief   Unconditionally enters the kernel lock state.
  * @note    Can be called without previous knowledge of the current lock state.
  *          The final state is "s-locked".
  *
  * @special
  */
-static inline void chSysConditionalLock(void) {
+static inline void chSysUnconditionalLock(void) {
 
   if (port_irq_enabled(port_get_irq_status()))
     chSysLock();
 }
 
 /**
- * @brief   Conditionally leaves the kernel lock state.
+ * @brief   Unconditionally leaves the kernel lock state.
  * @note    Can be called without previous knowledge of the current lock state.
  *          The final state is "normal".
  *
  * @special
  */
-static inline void chSysConditionalUnlock(void) {
+static inline void chSysUnconditionalUnlock(void) {
 
   if (!port_irq_enabled(port_get_irq_status()))
     chSysUnlock();
 }
+
+#if !CH_CFG_NO_IDLE_THREAD || defined(__DOXYGEN__)
+/**
+ * @brief   Returns a pointer to the idle thread.
+ * @pre     In order to use this function the option @p CH_CFG_NO_IDLE_THREAD
+ *          must be disabled.
+ * @note    The reference counter of the idle thread is not incremented but
+ *          it is not strictly required being the idle thread a static
+ *          object.
+ *
+ * @return              Pointer to the idle thread.
+ *
+ * @xclass
+ */
+static inline thread_t *chSysGetIdleThreadX(void) {
+
+  return ch.rlist.r_queue.p_prev;
+}
+#endif /* !CH_CFG_NO_IDLE_THREAD */
 
 #endif /* _CHSYS_H_ */
 
