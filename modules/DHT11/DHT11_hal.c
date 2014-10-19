@@ -2,6 +2,9 @@
 #include "hal.h"
 #include "ext.h"
 #include "chconf.h"
+
+#if DHT11_PRESENT
+
 #include <DHT11_hal.h>
 
 /*===========================================================================*/
@@ -395,3 +398,5 @@ bool dht11GetHumidity(dht11_t *sensor, int8_t *humidity)
 	*humidity = sensor->humidity;
 	return true;
 }
+
+#endif

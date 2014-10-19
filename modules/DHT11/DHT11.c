@@ -1,8 +1,11 @@
 #include "ch.h"
 #include "hal.h"
+#include "core.h"
+
+#if DHT11_PRESENT
+
 #include "DHT11_hal.h"
 #include "DHT11.h"
-#include "core.h"
 
 #include <stdlib.h>
 
@@ -106,3 +109,4 @@ void DHT11_Start()
 	chThdYield();
 #endif
 }
+#endif

@@ -1,5 +1,8 @@
 #include "ch.h"
 #include "hal.h"
+
+#if WATCHDOG_PRESENT
+
 #include "WatchDog.h"
 #include "iwdg.h"
 
@@ -30,3 +33,4 @@ void WatchDog_Start()
 #endif
 }
 
+#endif
