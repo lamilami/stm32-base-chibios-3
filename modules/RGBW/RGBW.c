@@ -3,6 +3,8 @@
 #include "RGBW.h"
 #include "core.h"
 
+#if RGBW_PRESENT
+
 #define EVENTMASK_UPDATE 0x80
 
 static thread_t *RGBW_Thread = NULL;
@@ -192,3 +194,5 @@ void RGBW_Start()
 	chThdYield();
 #endif
 }
+
+#endif
