@@ -450,7 +450,7 @@
  * @note    This macro can be used to activate a power saving mode.
  */
 #define CH_CFG_IDLE_ENTER_HOOK() {                                         \
-	GPIOD->BRR = 1;														 	\
+	GPIOC->BRR = 0x2000;														 	\
 }
 
 /**
@@ -460,7 +460,7 @@
  * @note    This macro can be used to deactivate a power saving mode.
  */
 #define CH_CFG_IDLE_LEAVE_HOOK() {                                         \
-	GPIOD->BSRR = 1;														\
+	GPIOC->BSRR = 0x2000;														\
 }
 
 /**

@@ -82,8 +82,8 @@
  * PA10 - Normal input      (USART1 RX).
  */
 #define VAL_GPIOACRL            0xB4B34B84      /*  PA7...PA0 */
-#define VAL_GPIOACRH            0x888884B8      /* PA15...PA8 */
-#define VAL_GPIOAODR            0xFFFFFFFF
+#define VAL_GPIOACRH            0x88844444      /* PA15...PA8 */
+#define VAL_GPIOAODR            0x0000a000
 
 /*
  * Port B setup.
@@ -95,7 +95,7 @@
  */
 #define VAL_GPIOBCRL            0x88888888      /*  PB7...PB0 */
 #define VAL_GPIOBCRH            0xB4B38888      /* PB15...PB8 */
-#define VAL_GPIOBODR            0xFFFFFFFF
+#define VAL_GPIOBODR            0x0000FFFF
 
 /*
  * Port C setup.
@@ -124,7 +124,7 @@
  */
 #define VAL_GPIOECRL            0x88888888      /*  PE7...PE0 */
 #define VAL_GPIOECRH            0x88888888      /* PE15...PE8 */
-#define VAL_GPIOEODR            0xFFFFFFFF
+#define VAL_GPIOEODR            0x0000FFFF
 
 #if !defined(_FROM_ASM_)
 #ifdef __cplusplus

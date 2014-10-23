@@ -307,9 +307,14 @@ int main(void) {
 		}*/
 		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(10));
 #endif
-		GPIOC->BRR = 0x2000;
+//		GPIOD->BRR = 0x2;
+//		chThdSleepMilliseconds(100);
+//		GPIOD->BSRR = 0x2;
+/*		GPIOC->BRR = 0x2000;
+		GPIOD->BRR = 0x2;
 		chThdSleepMicroseconds(100);
-		GPIOC->BSRR = 0x2000;
+		GPIOD->BSRR = 0x2;
+		GPIOC->BSRR = 0x2000;*/
 		chThdSleepSeconds(1);
 	}
 }
