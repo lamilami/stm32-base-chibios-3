@@ -1,5 +1,3 @@
-#if RADIO_PRESENT
-
 #include <nRF24_HAL.h>
 //#include <HAL.h>
 //#include <EERTOS.h>
@@ -13,9 +11,8 @@ static volatile DMA1_SPI_status_t dma_status;
 void nRF24_dma_spi_start(uint8_t *rxbuf, uint8_t *txbuf, uint8_t length,
 		DMA1_SPI_direction_t direction);
 
-void nRF24_GPIO_init(void)
-{
-	GPIO_InitTypeDef GPIO_InitStructure;
+void nRF24_GPIO_init(void) {
+//	GPIO_InitTypeDef GPIO_InitStructure;
 //	SPI_InitTypeDef SPI_InitStructure;
 
 #ifdef STM32F100C8
@@ -62,52 +59,77 @@ void nRF24_GPIO_init(void)
 
 #else
 
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOF, ENABLE);
+//	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOF, ENABLE);
+	rccEnableAHB(RCC_AHBENR_GPIOFEN, TRUE);
 
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStructure.GPIO_Pin = NRF_CE_Pin;
-	GPIO_Init(((GPIO_TypeDef *) GPIOF_BASE), &GPIO_InitStructure);
+	/*
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+	 GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	 GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	 GPIO_InitStructure.GPIO_Pin = NRF_CE_Pin;
+	 GPIO_Init(((GPIO_TypeDef *) GPIOF_BASE), &GPIO_InitStructure);
+	 */
+	palSetPadMode(GPIOF, NRF_CE_Pin,
+			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_LOWEST
+					| PAL_STM32_PUDR_FLOATING);
 
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStructure.GPIO_Pin = NRF_IRQ_Pin;
-	GPIO_Init(((GPIO_TypeDef *) GPIOF_BASE), &GPIO_InitStructure);
+	/*
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+	 GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	 GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	 GPIO_InitStructure.GPIO_Pin = NRF_IRQ_Pin;
+	 GPIO_Init(((GPIO_TypeDef *) GPIOF_BASE), &GPIO_InitStructure);
+	 */
+	palSetPadMode(GPIOF, NRF_IRQ_Pin,
+			PAL_MODE_INPUT_PULLUP | PAL_STM32_OSPEED_LOWEST);
 
 	// Тактирование модуля SPI1 и порта А
 //	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
-	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+//	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+	rccEnableAHB(RCC_AHBENR_GPIOAEN, TRUE);
 
 	// Настраиваем ноги SPI1 для работы в режиме альтернативной функции
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource7, GPIO_AF_0);
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource5, GPIO_AF_0);
-	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource6, GPIO_AF_0);
+	/*	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource7, GPIO_AF_0);
+	 GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource5, GPIO_AF_0);
+	 GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource6, GPIO_AF_0);
 
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_6 | GPIO_Pin_5;
-	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	 GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	 GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_6 | GPIO_Pin_5;
+	 GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);*/
 
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
-	GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);
+	palSetPadMode(GPIOA, GPIOA_PIN5,
+			PAL_MODE_ALTERNATE(0) | PAL_STM32_OSPEED_HIGHEST
+					| PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN6,
+			PAL_MODE_ALTERNATE(0) | PAL_STM32_OSPEED_HIGHEST
+					| PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+	palSetPadMode(GPIOA, GPIOA_PIN7,
+			PAL_MODE_ALTERNATE(0) | PAL_STM32_OSPEED_HIGHEST
+					| PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+
+	/*
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	 GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	 GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
+	 GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);
+	 */
+	palSetPadMode(GPIOA, GPIOA_PIN4,
+			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST
+					| PAL_STM32_PUDR_FLOATING);
 
 #endif
 
 	nRF24_hw_ce_low();
 }
 
-void nRF24_IRQ_Init(void)
-{
+void nRF24_IRQ_Init(void) {
 
 	NVIC_InitTypeDef NVIC_InitStructure;
 	EXTI_InitTypeDef EXTI_InitStructure; //структура инициализации внешнего прерывания
@@ -133,8 +155,7 @@ void nRF24_IRQ_Init(void)
 	NVIC_EnableIRQ(nRF24_IRQ_Channel);
 }
 
-void nRF24_Init(void)
-{
+void nRF24_Init(void) {
 	nRF24_GPIO_init();
 //    nRF24_set_power_mode(nRF24_PWR_DOWN);
 //    nRF24_flush_rx();
@@ -144,16 +165,13 @@ void nRF24_Init(void)
 	spiStart(&SPID1, &hs_spicfg); /* Setup transfer parameters.       */
 }
 
-void nRF24_hw_ce_low(void)
-{
+void nRF24_hw_ce_low(void) {
 //    GPIO_ResetBits(NRF_CE_IRQ_Port, NRF_CE_Pin);
 	NRF_CE_IRQ_Port->BRR = NRF_CE_Pin;
 }
 
-void nRF24_hw_ce_high(void)
-{
+void nRF24_hw_ce_high(void) {
 //    GPIO_SetBits(NRF_CE_IRQ_Port, NRF_CE_Pin);
 	NRF_CE_IRQ_Port->BSRR = NRF_CE_Pin;
 }
 
-#endif

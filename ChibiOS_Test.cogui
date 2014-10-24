@@ -15,63 +15,55 @@
 <part id="2"/>
 <part id="3"/>
 <part id="4"/>
-<part id="5"/>
-<part id="6"/>
-<part id="7"/>
-<part id="8"/>
-<part id="9"/>
-<part id="10"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5516" selectionTopPixel="3663"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5516" selectionTopPixel="4428"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" partName="core.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.h" title="core.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/core.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="16" selectionOffset="230" selectionTopPixel="0"/>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="nRF24_HAL.c" partName="nRF24_HAL.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/nRF24/src/nRF24_HAL.c" title="nRF24_HAL.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/nRF24/src/nRF24_HAL.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/nRF24/src/nRF24_HAL.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="39" selectionOffset="4834" selectionTopPixel="1935"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" partName="core.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.c" title="core.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/core.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6059" selectionTopPixel="3780"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.c" partName="onewire.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/onewire.c" title="onewire.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/onewire.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/onewire.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="142" selectionOffset="4256" selectionTopPixel="1980"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.h" partName="WatchDog.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/WatchDog.h" title="WatchDog.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/WatchDog.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/Watchdog/WatchDog.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="89" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="nRF24_HAL.h" partName="nRF24_HAL.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/nRF24/include/nRF24_HAL.h" title="nRF24_HAL.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/nRF24/include/nRF24_HAL.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/nRF24/include/nRF24_HAL.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1634" selectionTopPixel="780"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.c" partName="WatchDog.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/WatchDog.c" title="WatchDog.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/WatchDog.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/Watchdog/WatchDog.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="168" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="RGBW.c" partName="RGBW.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/RGBW/RGBW.c" title="RGBW.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/RGBW/RGBW.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/RGBW/RGBW.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="17" selectionOffset="54" selectionTopPixel="2463"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="pal.h" partName="pal.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/os/hal/include/pal.h" title="pal.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/os/hal/include/pal.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/os/hal/include/pal.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="20" selectionOffset="16243" selectionTopPixel="6885"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="board.c" partName="board.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F050F/board.c" title="board.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F050F/board.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/board/STM32F050F/board.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="89" selectionOffset="2755" selectionTopPixel="1083"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="iwdg_lld.c" partName="iwdg_lld.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/iwdg_lld.c" title="iwdg_lld.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/iwdg_lld.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/Watchdog/iwdg_lld.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3708" selectionTopPixel="558"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="iwdg.c" partName="iwdg.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/iwdg.c" title="iwdg.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/Watchdog/iwdg.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/Watchdog/iwdg.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="27" selectionOffset="3327" selectionTopPixel="1095"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="hal_lld.h" partName="hal_lld.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/os/hal/ports/STM32/STM32F0xx/hal_lld.h" title="hal_lld.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/os/hal/ports/STM32/STM32F0xx/hal_lld.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/os/hal/ports/STM32/STM32F0xx/hal_lld.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="12" selectionOffset="4701" selectionTopPixel="3000"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="pal_lld.h" partName="pal_lld.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/os/hal/ports/STM32/LLD/GPIOv2/pal_lld.h" title="pal_lld.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/os/hal/ports/STM32/LLD/GPIOv2/pal_lld.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/os/hal/ports/STM32/LLD/GPIOv2/pal_lld.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="24" selectionOffset="2169" selectionTopPixel="675"/>
 </editor>
 </editors>
 <views>
+<view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
+<viewState>
+<ExpressionKeySet ExpKeys="Modules_Array[DHT11],Inner_Val_DHT11,&amp;(Inner_Val_DHT11).temp,&amp;Temp_Vals.temp,"/>
+</viewState>
+</view>
 <view id="org.eclipse.ui.views.ProgressView" partName="Progress">
+<viewState/>
+</view>
+<view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
+<expanded>
+<element path="/ChibiOS_Test"/>
+<element path="/ChibiOS_Test/board"/>
+<element path="/ChibiOS_Test/modules"/>
+<element path="/ChibiOS_Test/modules/DS18B20"/>
+<element path="/ChibiOS_Test/os"/>
+</expanded>
+<selection>
+<element path="/ChibiOS_Test/modules/core.h"/>
+</selection>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.RegisterView" partName="Registers">
 <viewState/>
 </view>
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
@@ -80,11 +72,12 @@
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
 </viewState>
 </view>
-<view id="org.coocox.codebugger.trace.ui.traceview" partName="Semihosting"/>
 <view id="org.eclipse.debug.ui.DebugView" partName="Debug">
 <viewState/>
 </view>
-<view id="org.eclipse.cdt.ui.typeHierarchy" partName="Type Hierarchy"/>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
 <view id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" partName="Memory Browser">
 <viewState>
 <MemoryBroser ComboItemsValue="0x20000DF0;0x20000B40;0x800307c;" FocuseTabIndex="0" TabsValue="" TextValue="0x800307c" horizontalPosition="0" verticalPosition="0"/>
@@ -92,43 +85,12 @@
 </view>
 <view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
 <viewState horizontalPosition="0" verticalPosition="7">
-<selection>
-<element name="USART1"/>
+<selection>&#x0A;<element name="USART1"/>
 </selection>
 <registerValues baseAddress="Base Address: 0x40013800" description="Description:  Universal synchronous asynchronous receiver&#x0A;      transmitter"/>
 </viewState>
 </view>
 <view id="org.eclipse.debug.ui.VariableView" partName="Variables">
-<viewState/>
-</view>
-<view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
-<viewState>
-<ExpressionKeySet ExpKeys="Modules_Array[DHT11],Inner_Val_DHT11,&amp;(Inner_Val_DHT11).temp,&amp;Temp_Vals.temp,"/>
-</viewState>
-</view>
-<view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="36">
-<expanded>
-<element path="/ChibiOS_Test"/>
-<element path="/ChibiOS_Test/board"/>
-<element path="/ChibiOS_Test/board/STM32F050F"/>
-<element path="/ChibiOS_Test/modules"/>
-<element path="/ChibiOS_Test/modules/RGBW"/>
-<element path="/ChibiOS_Test/modules/Watchdog"/>
-<element path="/ChibiOS_Test/os"/>
-<element path="/ChibiOS_Test/os/hal"/>
-<element path="/ChibiOS_Test/os/hal/include"/>
-</expanded>
-<selection>
-<element path="/ChibiOS_Test/board/STM32F050F/halconf.h"/>
-</selection>
-</viewState>
-</view>
-<view id="org.eclipse.debug.ui.RegisterView" partName="Registers">
-<viewState/>
-</view>
-<view id="org.eclipse.cdt.ui.callHierarchy" partName="Call Hierarchy"/>
-<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
 <view id="org.eclipse.cdt.dsf.debug.ui.disassembly.view" partName="Disassembly">
@@ -273,60 +235,42 @@
 <view id="org.eclipse.debug.ui.ExpressionView"/>
 <view id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser"/>
 <view id="org.coocox.coassistant.view.CoAssistantView_debug"/>
-<fastViewBars>
-<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1480f75" orientation="512" selectedTabId="org.eclipse.debug.ui.MemoryView" style="0">
-<fastViews>
-<view id="org.coocox.codebugger.trace.ui.traceview" ratio="0.3"/>
+<fastViewBars>&#x0A;<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1480f75" orientation="512" selectedTabId="org.eclipse.debug.ui.MemoryView" style="0">&#x0A;<fastViews>&#x0A;<view id="org.coocox.codebugger.trace.ui.traceview" ratio="0.3"/>
 <view id="org.eclipse.cdt.ui.typeHierarchy" ratio="0.3"/>
 <view id="org.eclipse.cdt.ui.callHierarchy" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
 <viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
-<layout>
-<mainWindow>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@15f252b">
-<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
-<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@15f252b">&#x0A;<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="954" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="954" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1c27ebe" ratio="0.55172414" ratioLeft="336" ratioRight="273" relationship="4" relative="org.eclipse.ui.internal.ViewStack@15f252b">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1c27ebe" ratio="0.55172414" ratioLeft="336" ratioRight="273" relationship="4" relative="org.eclipse.ui.internal.ViewStack@15f252b">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@eff50" ratio="0.5634358" ratioLeft="715" ratioRight="554" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c27ebe">
-<folder appearance="2" expanded="2">
-<page content="org.coocox.component.ui.ComponentView" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@eff50" ratio="0.5634358" ratioLeft="715" ratioRight="554" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c27ebe">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.coocox.component.ui.ComponentView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@56cdf" ratio="0.49959838" ratioLeft="622" ratioRight="623" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c27ebe">
-<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
-<page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="Disassembly"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@56cdf" ratio="0.49959838" ratioLeft="622" ratioRight="623" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c27ebe">&#x0A;<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="Disassembly"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="Registers"/>
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
 <page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="Memory Browser"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="4"/>
 <part id="1"/>
 <part id="2"/>
@@ -334,27 +278,20 @@
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@9bdf44" ratio="0.7568438" ratioLeft="940" ratioRight="302" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@9bdf44" ratio="0.7568438" ratioLeft="940" ratioRight="302" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.29979035" ratioLeft="286" ratioRight="668" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1480f75" ratio="0.749354" ratioLeft="580" ratioRight="194" relationship="2" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="0">
-<page content="org.coocox.codebugger.trace.ui.traceview" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1480f75" ratio="0.749354" ratioLeft="580" ratioRight="194" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder appearance="2" expanded="0">&#x0A;<page content="org.coocox.codebugger.trace.ui.traceview" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.ui.typeHierarchy" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.ui.callHierarchy" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.MemoryView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@c85316" ratio="0.74980456" ratioLeft="959" ratioRight="320" relationship="2" relative="org.eclipse.ui.editorss">
-<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">
-<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@c85316" ratio="0.74980456" ratioLeft="959" ratioRight="320" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">&#x0A;<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
@@ -365,167 +302,161 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/Watchdog/WatchDog.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/Watchdog/iwdg.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/Watchdog/iwdg_lld.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/Watchdog/WatchDog.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/Watchdog/iwdg_lld.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/board/STM32F050F/mcuconf.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/board/STM32F050F/chconf.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/nRF24/src/nRF24_HAL.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/onewire.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/nRF24/include/nRF24_HAL.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/board/STM32F050F/board.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/board/STM32F050F/halconf.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/hal/ports/STM32/STM32F0xx/hal_lld.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/hal/ports/STM32/LLD/GPIOv2/pal_lld.h"/>
 </editors>
-<item historyLabel="iwdg.c" index="2">
-<position info="not_deleted" x="3141" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2142" y="0"/>
 </item>
-<item historyLabel="iwdg.c" index="2">
-<position info="not_deleted" x="3158" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2593" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="462" y="0"/>
+<item historyLabel="onewire.c" index="1">
+<position info="not_deleted" x="4256" y="142"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="5377" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2390" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="7440" y="0"/>
+<item historyLabel="nRF24_HAL.h" index="2">
+<position info="not_deleted" x="1581" y="10"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="7222" y="0"/>
+<item historyLabel="onewire.c" index="1">
+<position info="not_deleted" x="4278" y="10"/>
 </item>
-<item historyLabel="WatchDog.h" index="4">
-<position info="not_deleted" x="125" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2493" y="10"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="462" y="0"/>
+<item historyLabel="onewire.c" index="1">
+<position info="not_deleted" x="4278" y="10"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="170" y="3"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2493" y="10"/>
 </item>
-<item historyLabel="WatchDog.h" index="4">
-<position info="not_deleted" x="63" y="40"/>
+<item historyLabel="nRF24_HAL.h" index="2">
+<position info="not_deleted" x="1602" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="151" y="16"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2503" y="0"/>
 </item>
-<item historyLabel="WatchDog.h" index="4">
-<position info="not_deleted" x="99" y="0"/>
+<item historyLabel="nRF24_HAL.h" index="2">
+<position info="not_deleted" x="1602" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="5516" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2503" y="0"/>
 </item>
-<item historyLabel="WatchDog.h" index="4">
-<position info="not_deleted" x="99" y="0"/>
+<item historyLabel="nRF24_HAL.h" index="2">
+<position info="not_deleted" x="1596" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="234" y="10"/>
+<item historyLabel="board.h" index="3">
+<position info="not_deleted" x="3950" y="10"/>
 </item>
-<item historyLabel="iwdg_lld.h" index="5">
-<position info="not_deleted" x="2842" y="0"/>
+<item historyLabel="nRF24_HAL.h" index="2">
+<position info="not_deleted" x="1596" y="0"/>
 </item>
-<item historyLabel="iwdg_lld.c" index="3">
-<position info="not_deleted" x="3708" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2503" y="0"/>
 </item>
-<item historyLabel="WatchDog.h" index="4">
-<position info="not_deleted" x="99" y="0"/>
+<item historyLabel="nRF24_HAL.h" index="2">
+<position info="not_deleted" x="1596" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="246" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2536" y="23"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="5516" y="0"/>
+<item historyLabel="pal_lld.h" index="4">
+<position info="not_deleted" x="1886" y="23"/>
 </item>
-<item historyLabel="WatchDog.h" index="4">
-<position info="not_deleted" x="99" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2591" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="390" y="0"/>
+<item historyLabel="pal_lld.h" index="4">
+<position info="not_deleted" x="2271" y="23"/>
 </item>
-<item historyLabel="mcuconf.h" index="6">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2591" y="0"/>
 </item>
-<item historyLabel="chconf.h" index="7">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="pal_lld.h" index="4">
+<position info="not_deleted" x="3781" y="24"/>
 </item>
-<item historyLabel="mcuconf.h" index="6">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2591" y="0"/>
 </item>
-<item historyLabel="chconf.h" index="7">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2951" y="0"/>
 </item>
-<item historyLabel="board.h" index="8">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="onewire.c" index="1">
+<position info="not_deleted" x="4278" y="10"/>
 </item>
-<item historyLabel="chconf.h" index="7">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="nRF24_HAL.h" index="2">
+<position info="not_deleted" x="1634" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="390" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2951" y="0"/>
 </item>
-<item historyLabel="halconf.h" index="9">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="pal_lld.h" index="4">
+<position info="not_deleted" x="3781" y="24"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2798" y="0"/>
 </item>
-<item historyLabel="hal_lld.h" index="10">
-<position info="not_deleted" x="4701" y="12"/>
+<item historyLabel="pal_lld.h" index="4">
+<position info="not_deleted" x="3272" y="21"/>
 </item>
-<item historyLabel="WatchDog.h" index="4">
-<position info="not_deleted" x="99" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2978" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="422" y="0"/>
+<item historyLabel="pal_lld.h" index="4">
+<position info="not_deleted" x="3272" y="21"/>
 </item>
-<item historyLabel="hal_lld.h" index="10">
-<position info="not_deleted" x="4701" y="12"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="2978" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="422" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="3004" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="397" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="3193" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="460" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="3280" y="79"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="5516" y="0"/>
+<item historyLabel="onewire.c" index="1">
+<position info="not_deleted" x="4256" y="142"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="388" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="3897" y="0"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="5516" y="0"/>
+<item historyLabel="onewire.c" index="1">
+<position info="not_deleted" x="4256" y="142"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="388" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="3984" y="0"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="388" y="0"/>
+<item historyLabel="pal_lld.h" index="4">
+<position info="not_deleted" x="1734" y="24"/>
 </item>
-<item historyLabel="hal_lld.h" index="10">
-<position info="not_deleted" x="4701" y="12"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="3984" y="0"/>
 </item>
-<item historyLabel="iwdg_lld.c" index="3">
-<position info="not_deleted" x="3708" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="4736" y="0"/>
 </item>
-<item historyLabel="iwdg.c" index="2">
-<position info="not_deleted" x="3327" y="27"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="3900" y="53"/>
 </item>
-<item historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="157" y="0"/>
+<item historyLabel="pal_lld.h" index="4">
+<position info="not_deleted" x="2169" y="24"/>
 </item>
-<item historyLabel="WatchDog.h" index="4">
-<position info="not_deleted" x="89" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="3900" y="53"/>
 </item>
-<item historyLabel="main.c" index="1">
-<position info="not_deleted" x="5516" y="0"/>
+<item historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="4729" y="0"/>
 </item>
-<item active="true" historyLabel="WatchDog.c" index="0">
-<position info="not_deleted" x="157" y="0"/>
+<item active="true" historyLabel="nRF24_HAL.c" index="0">
+<position info="not_deleted" x="4834" y="39"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -534,11 +465,35 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="halconf.h" tooltip="ChibiOS_Test/board/STM32F050F/halconf.h">
-<persistable path="/ChibiOS_Test/board/STM32F050F/halconf.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pal_lld.h" tooltip="ChibiOS_Test/os/hal/ports/STM32/LLD/GPIOv2/pal_lld.h">
+<persistable path="/ChibiOS_Test/os/hal/ports/STM32/LLD/GPIOv2/pal_lld.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="board.h" tooltip="ChibiOS_Test/board/STM32F050F/board.h">
 <persistable path="/ChibiOS_Test/board/STM32F050F/board.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="nRF24_HAL.h" tooltip="ChibiOS_Test/modules/nRF24/include/nRF24_HAL.h">
+<persistable path="/ChibiOS_Test/modules/nRF24/include/nRF24_HAL.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_Test/modules/core.h">
+<persistable path="/ChibiOS_Test/modules/core.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.c" tooltip="ChibiOS_Test/modules/DS18B20/onewire.c">
+<persistable path="/ChibiOS_Test/modules/DS18B20/onewire.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="nRF24_HAL.c" tooltip="ChibiOS_Test/modules/nRF24/src/nRF24_HAL.c">
+<persistable path="/ChibiOS_Test/modules/nRF24/src/nRF24_HAL.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" tooltip="ChibiOS_Test/modules/nRF24/src/radio.c">
+<persistable path="/ChibiOS_Test/modules/nRF24/src/radio.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.h" tooltip="ChibiOS_Test/modules/nRF24/include/radio.h">
+<persistable path="/ChibiOS_Test/modules/nRF24/include/radio.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="ChibiOS_Test/modules/core.c">
+<persistable path="/ChibiOS_Test/modules/core.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="halconf.h" tooltip="ChibiOS_Test/board/STM32F050F/halconf.h">
+<persistable path="/ChibiOS_Test/board/STM32F050F/halconf.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mcuconf.h" tooltip="ChibiOS_Test/board/STM32F050F/mcuconf.h">
 <persistable path="/ChibiOS_Test/board/STM32F050F/mcuconf.h"/>
@@ -554,27 +509,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="board.c" tooltip="ChibiOS_Test/board/STM32F050F/board.c">
 <persistable path="/ChibiOS_Test/board/STM32F050F/board.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pal.h" tooltip="ChibiOS_Test/os/hal/include/pal.h">
-<persistable path="/ChibiOS_Test/os/hal/include/pal.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="RGBW.c" tooltip="ChibiOS_Test/modules/RGBW/RGBW.c">
-<persistable path="/ChibiOS_Test/modules/RGBW/RGBW.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.c" tooltip="ChibiOS_Test/modules/Watchdog/WatchDog.c">
-<persistable path="/ChibiOS_Test/modules/Watchdog/WatchDog.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.h" tooltip="ChibiOS_Test/modules/Watchdog/WatchDog.h">
-<persistable path="/ChibiOS_Test/modules/Watchdog/WatchDog.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="ChibiOS_Test/modules/core.c">
-<persistable path="/ChibiOS_Test/modules/core.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_Test/modules/core.h">
-<persistable path="/ChibiOS_Test/modules/core.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chconf.h" tooltip="ChibiOS_Test/board/STM32F050F/chconf.h">
-<persistable path="/ChibiOS_Test/board/STM32F050F/chconf.h"/>
 </file>
 </mruList>
 </workbench>
