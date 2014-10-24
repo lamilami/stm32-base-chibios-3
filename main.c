@@ -251,6 +251,9 @@ int main(void) {
 
 #endif
 
+	palSetPadMode(GPIOA, GPIOA_PIN1, PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST);
+	palSetPad(GPIOA, GPIOA_PIN1);
+	WatchDog_Start(10);
 
 	while (TRUE) {
 #if LCD1602_PRESENT
@@ -315,6 +318,12 @@ int main(void) {
 		chThdSleepMicroseconds(100);
 		GPIOD->BSRR = 0x2;
 		GPIOC->BSRR = 0x2000;*/
-		chThdSleepSeconds(1);
+//		WatchDog_Reset();
+		chThdSleepMilliseconds(800);
+		palClearPad(GPIOA, GPIOA_PIN1);
+		chThdSleepMilliseconds(100);
+		palSetPad(GPIOA, GPIOA_PIN1);
+		chThdSleepMilliseconds(100);
+		palClearPad(GPIOA, GPIOA_PIN1);
 	}
 }
