@@ -512,6 +512,22 @@
 #endif
 
 /**
+ * @brief   CGM_AC6_DC0 clock divider value.
+ * @note    Range 1..512, zero means disabled clock.
+ */
+#if !defined(SPC5_CGM_AC6_DC0_DIV_VALUE) || defined(__DOXYGEN__)
+#define SPC5_CGM_AC6_DC0_DIV_VALUE          8
+#endif
+
+/**
+ * @brief   CGM_AC7_DC0 clock divider value.
+ * @note    Range 1..512, zero means disabled clock.
+ */
+#if !defined(SPC5_CGM_AC7_DC0_DIV_VALUE) || defined(__DOXYGEN__)
+#define SPC5_CGM_AC7_DC0_DIV_VALUE          8
+#endif
+
+/**
  * @brief   CGM_AC3_SC clock source.
  */
 #if !defined(SPC5_CGM_AC3_SC_BITS) || defined(__DOXYGEN__)
@@ -523,6 +539,20 @@
  */
 #if !defined(SPC5_CGM_AC4_SC_BITS) || defined(__DOXYGEN__)
 #define SPC5_CGM_AC4_SC_BITS                SPC5_CGM_SC_XOSC
+#endif
+
+/**
+ * @brief   CGM_AC6_SC clock source.
+ */
+#if !defined(SPC5_CGM_AC6_SC_BITS) || defined(__DOXYGEN__)
+#define SPC5_CGM_AC6_SC_BITS                SPC5_CGM_SC_XOSC
+#endif
+
+/**
+ * @brief   CGM_AC7_SC clock source.
+ */
+#if !defined(SPC5_CGM_AC7_SC_BITS) || defined(__DOXYGEN__)
+#define SPC5_CGM_AC7_SC_BITS                SPC5_CGM_SC_XOSC
 #endif
 
 /**
@@ -1020,6 +1050,26 @@
 #error "invalid SPC5_CGM_AC0_DC4_DIV_VALUE value specified"
 #endif
 
+/* Check on the AUX6 divider 0 settings.*/
+#if SPC5_CGM_AC6_DC0_DIV_VALUE == 0
+#define SPC5_CGM_AC6_DC0_BITS               0
+#elif (SPC5_CGM_AC6_DC0_DIV_VALUE >= 1) && (SPC5_CGM_AC6_DC0_DIV_VALUE <= 512)
+#define SPC5_CGM_AC6_DC0_BITS               (0x80000000U |                 \
+                                             ((SPC5_CGM_AC6_DC0_DIV_VALUE - 1) << 16))
+#else
+#error "invalid SPC5_CGM_AC6_DC0_DIV_VALUE value specified"
+#endif
+
+/* Check on the AUX7 divider 0 settings.*/
+#if SPC5_CGM_AC7_DC0_DIV_VALUE == 0
+#define SPC5_CGM_AC7_DC0_BITS               0
+#elif (SPC5_CGM_AC7_DC0_DIV_VALUE >= 1) && (SPC5_CGM_AC7_DC0_DIV_VALUE <= 512)
+#define SPC5_CGM_AC7_DC0_BITS               (0x80000000U |                 \
+                                             ((SPC5_CGM_AC7_DC0_DIV_VALUE - 1) << 16))
+#else
+#error "invalid SPC5_CGM_AC7_DC0_DIV_VALUE value specified"
+#endif
+
 /*-----------------------------------------*
  * Clock points calculation and check.     *
  *-----------------------------------------*/
@@ -1074,9 +1124,10 @@
 
 /**
  * @brief   SPC5_PLL1_PHI_CLK clock point.
+ * @note    The calculation is still wrong in the rev.5 RM.
  */
 #define SPC5_PLL1_PHI_CLK                                                   \
-  (SPC5_PLL1_VCO_CLK / SPC5_PLL1_RFDPHI_VALUE)
+  ((SPC5_PLL1_VCO_CLK / SPC5_PLL1_RFDPHI_VALUE) / 2)
 
 /* Check on SPC5_PLL1_PHI_CLK.*/
 #if ((SPC5_PLL1_PHI_CLK > SPC5_PLL1_CLK_MAX) ||                             \

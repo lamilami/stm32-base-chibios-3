@@ -275,14 +275,14 @@ struct context {
  * @details This macro must be inserted at the end of all IRQ handlers
  *          enabled to invoke system APIs.
  */
-#define PORT_IRQ_EPILOGUE()
+#define PORT_IRQ_EPILOGUE() return chSchIsPreemptionRequired()
 
 /**
  * @brief   IRQ handler function declaration.
  * @note    @p id can be a function name or a vector number depending on the
  *          port implementation.
  */
-#define PORT_IRQ_HANDLER(id) void id(void)
+#define PORT_IRQ_HANDLER(id) bool id(void)
 
 /**
  * @brief   Fast IRQ handler function declaration.
@@ -307,7 +307,7 @@ struct context {
 
 #if CH_DBG_ENABLE_STACK_CHECK
 #define port_switch(ntp, otp) {                                             \
-  register struct intctx *r13 asm ("r13");                                  \
+  register struct port_intctx *r13 asm ("r13");                             \
   if ((stkalign_t *)(r13 - 1) < otp->p_stklimit)                            \
     chSysHalt("stack overflow");                                            \
   _port_switch_thumb(ntp, otp);                                             \
@@ -320,7 +320,7 @@ struct context {
 
 #if CH_DBG_ENABLE_STACK_CHECK
 #define port_switch(ntp, otp) {                                             \
-  register struct intctx *r13 asm ("r13");                                  \
+  register struct port_intctx *r13 asm ("r13");                             \
   if ((stkalign_t *)(r13 - 1) < otp->p_stklimit)                            \
   chSysHalt("stack overflow");                                              \
   _port_switch_arm(ntp, otp);                                               \

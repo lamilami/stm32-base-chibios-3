@@ -7,3 +7,5 @@ logs/*
 *.old
 a.out
 *.orig
+info.txt
+error.txt

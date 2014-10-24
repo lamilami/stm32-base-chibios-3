@@ -105,7 +105,7 @@
     <File name="os/rt/ports/ARMCMx/chcore.c" path="os/rt/ports/ARMCMx/chcore.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx" path="" type="2"/>
     <File name="os/ext/CMSIS/include/arm_const_structs.h" path="os/ext/CMSIS/include/arm_const_structs.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s" path="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.S" type="1"/>
+    <File name="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s" path="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s" type="1"/>
     <File name="os/hal/include/can.h" path="os/hal/include/can.h" type="1"/>
     <File name="os/hal/include/hal_ioblock.h" path="os/hal/include/hal_ioblock.h" type="1"/>
     <File name="os/common/ports/ARMCMx" path="" type="2"/>
@@ -157,10 +157,10 @@
     <File name="modules/nRF24/include/nRF24_HAL.h" path="modules/nRF24/include/nRF24_HAL.h" type="1"/>
     <File name="os/hal/src/hal_mmcsd.c" path="os/hal/src/hal_mmcsd.c" type="1"/>
     <File name="modules/core.c" path="modules/core.c" type="1"/>
-    <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
     <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
+    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
+    <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" path="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" type="1"/>
     <File name="os/hal/include" path="" type="2"/>
@@ -175,8 +175,8 @@
     <File name="os/hal/ports/STM32/LLD/USARTv2" path="" type="2"/>
     <File name="modules/DS18B20/onewire.c" path="modules/DS18B20/onewire.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c" type="1"/>
-    <File name="os/rt/src/chdebug.c" path="os/rt/src/chdebug.c" type="1"/>
     <File name="os/ext/CMSIS/ST/stm32f0xx.h" path="os/ext/CMSIS/ST/stm32f0xx.h" type="1"/>
+    <File name="os/rt/src/chdebug.c" path="os/rt/src/chdebug.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/hal_lld.c" path="os/hal/ports/STM32/STM32F0xx/hal_lld.c" type="1"/>
     <File name="os/rt/include/chdynamic.h" path="os/rt/include/chdynamic.h" type="1"/>
     <File name="modules/Watchdog/iwdg_lld.c" path="modules/Watchdog/iwdg_lld.c" type="1"/>

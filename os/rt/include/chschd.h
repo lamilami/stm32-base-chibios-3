@@ -245,6 +245,9 @@ struct thread {
   void                  *p_mpool;
 #endif
 #if CH_DBG_STATISTICS || defined(__DOXYGEN__)
+  /**
+   * @brief Thread statistics.
+   */
   time_measurement_t    p_stats;
 #endif
 #if defined(CH_CFG_THREAD_EXTRA_FIELDS)
@@ -565,7 +568,7 @@ static inline bool chSchIsRescRequiredI(void) {
  */
 static inline bool chSchCanYieldS(void) {
 
-  chDbgCheckClassI();
+  chDbgCheckClassS();
 
   return firstprio(&ch.rlist.r_queue) >= currp->p_prio;
 }
