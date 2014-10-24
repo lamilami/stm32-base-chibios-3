@@ -1,5 +1,3 @@
-#if RADIO_PRESENT
-
 /* Copyright (c) 2007 Nordic Semiconductor. All Rights Reserved.
  *
  * The information contained herein is property of Nordic Semiconductor ASA.
@@ -26,6 +24,9 @@
 #include "ch.h"
 #include "hal.h"
 #include "core.h"
+
+#if RADIO_PRESENT
+
 #include <nRF24.h>
 //#include "system.h"
 #include "radio.h"

@@ -61,8 +61,8 @@ typedef enum
 #else
 #define GPIO_EXTILineConfig SYSCFG_EXTILineConfig
 
-#define NRF_CE_Pin GPIO_Pin_0
-#define NRF_IRQ_Pin GPIO_Pin_1
+#define NRF_CE_Pin GPIOF_PIN0
+#define NRF_IRQ_Pin GPIOF_PIN1
 
 #define NRF_CE_IRQ_Port		((GPIO_TypeDef *) GPIOF_BASE)
 #define nRF24_IRQ_EXTI_PortSource		EXTI_PortSourceGPIOF
