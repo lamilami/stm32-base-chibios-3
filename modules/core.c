@@ -223,9 +223,11 @@ inline void Core_Register_Thread(core_types_t type, thread_t* thd, thread_refere
 
 static void Start_Modules(void)
 {
+/*
 #if WATCHDOG_PRESENT
 	WatchDog_Start();
 #endif
+*/
 #if CLI_PRESENT
 	CLI_Start();
 #endif

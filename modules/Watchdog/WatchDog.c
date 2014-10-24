@@ -1,36 +1,29 @@
 #include "ch.h"
 #include "hal.h"
+#include "core.h"
 
 #if WATCHDOG_PRESENT
 
 #include "WatchDog.h"
 #include "iwdg.h"
 
-THD_WORKING_AREA(waWatchDog, 128);
-//__attribute__((noreturn))
-THD_FUNCTION(WatchDog,arg)
+inline void WatchDog_Start(uint16_t seconds)
 {
-	(void) arg;
-
+	iwdgInit();
 	IWDGConfig watchdog_cfg;
-	watchdog_cfg.counter = 0x0C35;
-	watchdog_cfg.div = IWDG_DIV_128;
+	watchdog_cfg.div = IWDG_DIV_256;
+//	watchdog_cfg.counter = 0x0C35;
+	if (seconds == 0) seconds = 10;
+	seconds = (STM32_LSICLK*seconds)/256;
+	chDbgCheck(seconds <= 0xFFF);
+	watchdog_cfg.counter = seconds;
 
 	iwdgStart(&IWDGD, &watchdog_cfg);
-
-	while (TRUE)
-	{
-		chThdSleepSeconds(5);
-		iwdgReset(&IWDGD);
-	}
 }
 
-void WatchDog_Start()
+inline void WatchDog_Reset()
 {
-#if WATCHDOG_PRESENT
-	chThdCreateStatic(waWatchDog, sizeof(waWatchDog), HIGHPRIO, WatchDog, NULL);
-	chThdYield();
-#endif
+	iwdgReset(&IWDGD);
 }
 
 #endif
