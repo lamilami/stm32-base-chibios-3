@@ -38,7 +38,7 @@
 #define SPC5_NO_INIT                        ${conf.instance.initialization_settings.do_not_init.value[0]?upper_case}
 #define SPC5_ALLOW_OVERCLOCK                ${conf.instance.initialization_settings.allow_overclocking.value[0]?upper_case}
 #define SPC5_DISABLE_WATCHDOG               ${conf.instance.initialization_settings.disable_watchdog.value[0]?upper_case}
-#define SPC5_WAIT_HSM_INIT                  ${conf.instance.initialization_settings.wait_for_hsm_initialization.value[0]?upper_case}
+#define SPC5_HSM_HANDSHAKE                  ${conf.instance.initialization_settings.hsm_handshake.@index[0]?trim}
 #define SPC5_CLOCK_FAILURE_HOOK()           ${conf.instance.initialization_settings.clock_failure_hook.value[0]}
 #define SPC5_PLL0_PREDIV_VALUE              ${conf.instance.initialization_settings.pll0_settings.prediv_value.value[0]}
 #define SPC5_PLL0_MFD_VALUE                 ${conf.instance.initialization_settings.pll0_settings.mfd_value.value[0]}
@@ -58,6 +58,10 @@
 #define SPC5_CGM_AC0_DC4_DIV_VALUE          ${conf.instance.initialization_settings.cgm_settings.ac0_dc4_divider.value[0]}
 #define SPC5_CGM_AC3_SC_BITS                SPC5_CGM_SC_${conf.instance.initialization_settings.cgm_settings.ac3_clock_source.value[0]}
 #define SPC5_CGM_AC4_SC_BITS                SPC5_CGM_SC_${conf.instance.initialization_settings.cgm_settings.ac4_clock_source.value[0]}
+#define SPC5_CGM_AC6_SC_BITS                SPC5_CGM_SC_${conf.instance.initialization_settings.cgm_settings.ac6_clock_source.value[0]}
+#define SPC5_CGM_AC6_DC0_DIV_VALUE          ${conf.instance.initialization_settings.cgm_settings.ac6_dc0_divider.value[0]}
+#define SPC5_CGM_AC7_SC_BITS                SPC5_CGM_SC_${conf.instance.initialization_settings.cgm_settings.ac7_clock_source.value[0]}
+#define SPC5_CGM_AC7_DC0_DIV_VALUE          ${conf.instance.initialization_settings.cgm_settings.ac7_dc0_divider.value[0]}
 #define SPC5_ME_ME_BITS                     (SPC5_ME_ME_RUN1 |              \
                                              SPC5_ME_ME_RUN2 |              \
                                              SPC5_ME_ME_RUN3 |              \

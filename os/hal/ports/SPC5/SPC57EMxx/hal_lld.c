@@ -32,6 +32,15 @@
 /* Driver local variables and types.                                         */
 /*===========================================================================*/
 
+#if SPC5_HSM_HANDSHAKE == 2
+#define WF_GO                               0x4
+#define CLK_CHG_RDY                         0x2
+#define WF_CC_DONE                          0x1
+#endif
+
+#define HSM2HTF                             (*(vuint32_t *)0xFFF30000)
+#define HT2HSMF                             (*(vuint32_t *)0xFFF30008)
+
 /*===========================================================================*/
 /* Driver local functions.                                                   */
 /*===========================================================================*/
@@ -77,6 +86,20 @@ void hal_lld_init(void) {
     SPC5_CLOCK_FAILURE_HOOK();
   }
 
+#if SPC5_HSM_HANDSHAKE == 1
+  /* Notifies the HSM full clock initialization.*/
+  HT2HSMF = 2;
+#endif
+
+#if SPC5_HSM_HANDSHAKE == 2
+  /* Notifies the HSM full clock initialization by clearing WF_CC_DONE bit
+   * Note that clearing a bit in HSM2HTF mailbox is done by writing 1 in the bit
+   *
+   * We also clear the CLK_CHG_RDY bit, no longer used
+   */
+  HSM2HTF = WF_CC_DONE | CLK_CHG_RDY;
+#endif
+
   /* PIT_0 clock initialization.*/
   halSPCSetPeripheralClockMode(30, SPC5_ME_PCTL_RUN(2) | SPC5_ME_PCTL_LP(2));
 
@@ -115,6 +138,44 @@ void spc_clock_init(void) {
     ;
 
 #if !SPC5_NO_INIT
+
+#if SPC5_HSM_HANDSHAKE == 1
+  /* Waits until the HSM notifies it is ready to accept a clock change.*/
+  while (HSM2HTF != 1)
+    ;
+
+  /* Notifies the HSM an acknowledge.*/
+  HT2HSMF = 1;
+#endif
+
+#if SPC5_HSM_HANDSHAKE == 2
+  /* This protocol does not ensure the Z4 will wait for HSM prescaler will be
+   * set before changing clock settings --> We may overclock the HSM.
+   *
+   * But there are waiting loops that ensure that HSM will have time to
+   * set it on time. The rationale is that with this protocol, priority
+   * is given to application core. If the HSM did not start, the goal is
+   * to not lock the full platfrom.
+   */
+  {
+    uint32_t counter = 0;
+
+    /* If set, clear bit telling that HSML started, may speed up
+       the HSM startup process.*/
+    if ((HSM2HTF & WF_GO) == WF_GO)
+      HSM2HTF = WF_GO;
+
+    /* Wait for HSM notification that it changed its prescaler divider and
+       we can change PLL settings, but for a limited time (4000 loops).*/
+    counter = 0;
+    do {
+      if ((HSM2HTF & CLK_CHG_RDY) == CLK_CHG_RDY)
+        break;
+      counter ++;
+    }
+    while (counter < 4000);
+  }
+#endif
 
 #if SPC5_DISABLE_WATCHDOG
   /* SWTs disabled.*/
@@ -167,11 +228,15 @@ void spc_clock_init(void) {
   MC_CGM.AC0_DC2.R  = SPC5_CGM_AC0_DC2_BITS;
   MC_CGM.AC0_DC3.R  = SPC5_CGM_AC0_DC3_BITS;
   MC_CGM.AC0_DC4.R  = SPC5_CGM_AC0_DC4_BITS;
+  MC_CGM.AC6_DC0.R  = SPC5_CGM_AC6_DC0_BITS;
+  MC_CGM.AC7_DC0.R  = SPC5_CGM_AC7_DC0_BITS;
 
   /* Setting the clock selectors to their final sources.*/
   MC_CGM.AC0_SC.R   = SPC5_CGM_AC0_SC_BITS;
   MC_CGM.AC3_SC.R   = SPC5_CGM_AC3_SC_BITS;
   MC_CGM.AC4_SC.R   = SPC5_CGM_AC4_SC_BITS;
+  MC_CGM.AC6_SC.R   = SPC5_CGM_AC6_SC_BITS;
+  MC_CGM.AC7_SC.R   = SPC5_CGM_AC7_SC_BITS;
 
   /* Enables the XOSC in order to check its functionality before proceeding
      with the initialization.*/

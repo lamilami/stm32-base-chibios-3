@@ -93,18 +93,6 @@ typedef void (*icucallback_t)(ICUDriver *icup);
 } while (0)
 
 /**
- * @brief   Waits for a completed capture.
- *
- * @param[in] icup      pointer to the @p ICUDriver object
- *
- * @iclass
- */
-#define icuWaitCaptureI(icup) do {                                          \
-  icu_lld_wait_capture(icup);                                               \
-  icup->state = ICU_ACTIVE;                                                 \
-} while (0)
-
-/**
  * @brief   Stops the input capture.
  *
  * @param[in] icup      pointer to the @p ICUDriver object
@@ -125,7 +113,7 @@ typedef void (*icucallback_t)(ICUDriver *icup);
  *
  * @iclass
  */
-#define icuEnableNotificationsI(icup) icu_enable_notifications(icup)
+#define icuEnableNotificationsI(icup) icu_lld_enable_notifications(icup)
 
 /**
  * @brief   Disables notifications.
@@ -136,7 +124,20 @@ typedef void (*icucallback_t)(ICUDriver *icup);
  *
  * @iclass
  */
-#define icuDisableNotificationsI(icup) icu_disable_notifications(icup)
+#define icuDisableNotificationsI(icup) icu_lld_disable_notifications(icup)
+
+/**
+ * @brief   Check on notifications status.
+ *
+ * @param[in] icup      pointer to the @p ICUDriver object
+ * @return              The notifications status.
+ * @retval false        if notifications are not enabled.
+ * @retval true         if notifications are enabled.
+ *
+ * @notapi
+ */
+#define icuAreNotificationsEnabledX(icup)                                   \
+  icu_lld_are_notifications_enabled(icup)
 
 /**
  * @brief   Returns the width of the latest pulse.
@@ -180,12 +181,13 @@ typedef void (*icucallback_t)(ICUDriver *icup);
  */
 #define _icu_isr_invoke_width_cb(icup) do {                                 \
   if (((icup)->state == ICU_ACTIVE) &&                                      \
-      ((icup)->config->period_cb != NULL))                                  \
+      ((icup)->config->width_cb != NULL))                                   \
     (icup)->config->width_cb(icup);                                         \
 } while (0)
 
 /**
  * @brief   Common ISR code, ICU period event.
+ * @note    A period event brings the driver into the @p ICU_ACTIVE state.
  *
  * @param[in] icup      pointer to the @p ICUDriver object
  *
@@ -200,6 +202,8 @@ typedef void (*icucallback_t)(ICUDriver *icup);
 
 /**
  * @brief   Common ISR code, ICU timer overflow event.
+ * @note    An overflow always brings the driver back to the @p ICU_WAITING
+ *          state.
  *
  * @param[in] icup      pointer to the @p ICUDriver object
  *
@@ -207,6 +211,7 @@ typedef void (*icucallback_t)(ICUDriver *icup);
  */
 #define _icu_isr_invoke_overflow_cb(icup) do {                              \
   (icup)->config->overflow_cb(icup);                                        \
+  (icup)->state = ICU_WAITING;                                              \
 } while (0)
 /** @} */
 
@@ -222,7 +227,7 @@ extern "C" {
   void icuStart(ICUDriver *icup, const ICUConfig *config);
   void icuStop(ICUDriver *icup);
   void icuStartCapture(ICUDriver *icup);
-  void icuWaitCapture(ICUDriver *icup);
+  bool icuWaitCapture(ICUDriver *icup);
   void icuStopCapture(ICUDriver *icup);
   void icuEnableNotifications(ICUDriver *icup);
   void icuDisableNotifications(ICUDriver *icup);

@@ -15,23 +15,43 @@
 */
 
 /**
- * @file    memstreams.h
- * @brief   Memory streams structures and macros.
- 
- * @addtogroup memory_streams
+ * @file    LPC214x/hal_lld.h
+ * @brief   LPC214x HAL subsystem low level driver header.
+ *
+ * @addtogroup HAL
  * @{
  */
 
-#ifndef _MEMSTREAMS_H_
-#define _MEMSTREAMS_H_
+#ifndef _HAL_LLD_H_
+#define _HAL_LLD_H_
+
+#include "lpc214x.h"
+#include "vic.h"
 
 /*===========================================================================*/
 /* Driver constants.                                                         */
 /*===========================================================================*/
 
+/**
+ * @brief   Defines the support for realtime counters in the HAL.
+ */
+#define HAL_IMPLEMENTS_COUNTERS FALSE
+
+/**
+ * @brief   Platform name.
+ */
+#define PLATFORM_NAME   "LPC214x"
+
 /*===========================================================================*/
 /* Driver pre-compile time settings.                                         */
 /*===========================================================================*/
+
+/**
+ * @brief   Default action for the non vectored IRQ handler, nothing.
+ */
+#if !defined(LPC214x_NON_VECTORED_IRQ_HOOK) || defined(__DOXYGEN__)
+#define LPC214x_NON_VECTORED_IRQ_HOOK()
+#endif
 
 /*===========================================================================*/
 /* Derived constants and error checks.                                       */
@@ -40,38 +60,6 @@
 /*===========================================================================*/
 /* Driver data structures and types.                                         */
 /*===========================================================================*/
-
-/**
- * @brief   @p MemStream specific data.
- */
-#define _memory_stream_data                                                 \
-  _base_sequential_stream_data                                              \
-  /* Pointer to the stream buffer.*/                                        \
-  uint8_t               *buffer;                                            \
-  /* Size of the stream.*/                                                  \
-  size_t                size;                                               \
-  /* Current end of stream.*/                                               \
-  size_t                eos;                                                \
-  /* Current read offset.*/                                                 \
-  size_t                offset;
-
-/**
- * @brief   @p MemStream virtual methods table.
- */
-struct MemStreamVMT {
-  _base_sequential_stream_methods
-};
-
-/**
- * @extends BaseSequentialStream
- *
- * @brief Memory stream object.
- */
-typedef struct {
-  /** @brief Virtual Methods Table.*/
-  const struct MemStreamVMT *vmt;
-  _memory_stream_data
-} MemoryStream;
 
 /*===========================================================================*/
 /* Driver macros.                                                            */
@@ -84,12 +72,12 @@ typedef struct {
 #ifdef __cplusplus
 extern "C" {
 #endif
-  void msObjectInit(MemoryStream *msp, uint8_t *buffer,
-                    size_t size, size_t eos);
+  void hal_lld_init(void);
+  void lpc214x_clock_init(void);
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _MEMSTREAMS_H_ */
+#endif /* _HAL_LLD_H_ */
 
 /** @} */
