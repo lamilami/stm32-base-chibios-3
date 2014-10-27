@@ -17,10 +17,9 @@
  *
  */
 
-#if RADIO_PRESENT
-
 //#include "nordic_common.h"
 #include "nRF24.h"
+
 
 #ifdef __cplusplus
 extern "C"
@@ -652,4 +651,3 @@ void nRF24_write_multibyte_reg(uint8_t reg, const uint8_t *pbuf, uint8_t length)
 } // extern "C"
 #endif
 
-#endif
