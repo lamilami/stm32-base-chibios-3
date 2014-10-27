@@ -163,22 +163,26 @@ void radio_init(void)
 
 #if RADIO_PRESENT
 
-CH_IRQ_HANDLER(EXTI0_1_IRQHandler)
+//CH_IRQ_HANDLER(EXTI0_1_IRQHandler)
+//{
+//	CH_IRQ_PROLOGUE();
+void nRF24_irq_ext_handler(EXTDriver *extp, expchannel_t channel)
 {
-	CH_IRQ_PROLOGUE();
+	//
+	(void) extp;
 //	nRF24_hw_ce_low();
 #ifdef DEBUG_Discovery
 //	LEDB1On();
 #endif
-	EXTI_ClearITPendingBit(EXTI_Line1);
+//	EXTI_ClearITPendingBit(EXTI_Line1);
 
 	/* Wakes up the thread.*/
 	osalSysLockFromISR();
 	chEvtSignalI(Radio_Thread, (eventmask_t) EVENTMASK_IRQ);
 	osalSysUnlockFromISR();
 
-	CH_IRQ_EPILOGUE()
-	;
+//	CH_IRQ_EPILOGUE()
+//	;
 }
 
 #endif

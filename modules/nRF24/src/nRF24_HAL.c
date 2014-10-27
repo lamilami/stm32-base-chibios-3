@@ -7,6 +7,9 @@
  GPIOA_RCC =  { RCC_AHBPeriphClockCmd, RCC_AHBPeriph_GPIOA },
  SPI1_RCC =   { RCC_APB2PeriphClockCmd, RCC_APB2Periph_SPI1 };
  */
+
+extern void nRF24_irq_ext_handler(EXTDriver *extp, expchannel_t channel);
+
 static volatile DMA1_SPI_status_t dma_status;
 void nRF24_dma_spi_start(uint8_t *rxbuf, uint8_t *txbuf, uint8_t length,
 		DMA1_SPI_direction_t direction);
@@ -71,8 +74,7 @@ void nRF24_GPIO_init(void) {
 	 GPIO_Init(((GPIO_TypeDef *) GPIOF_BASE), &GPIO_InitStructure);
 	 */
 	palSetPadMode(GPIOF, NRF_CE_Pin,
-			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_LOWEST
-					| PAL_STM32_PUDR_FLOATING);
+			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_LOWEST | PAL_STM32_PUDR_FLOATING);
 
 	/*
 	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
@@ -82,10 +84,11 @@ void nRF24_GPIO_init(void) {
 	 GPIO_InitStructure.GPIO_Pin = NRF_IRQ_Pin;
 	 GPIO_Init(((GPIO_TypeDef *) GPIOF_BASE), &GPIO_InitStructure);
 	 */
-	palSetPadMode(GPIOF, NRF_IRQ_Pin,
-			PAL_MODE_INPUT_PULLUP | PAL_STM32_OSPEED_LOWEST);
 
-	// Тактирование модуля SPI1 и порта А
+//Moved to nRF24_IRQ_Init
+//	palSetPadMode(GPIOF, NRF_IRQ_Pin,
+//			PAL_MODE_INPUT_PULLUP | PAL_STM32_OSPEED_LOWEST);
+// Тактирование модуля SPI1 и порта А
 //	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 //	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
 	rccEnableAHB(RCC_AHBENR_GPIOAEN, TRUE);
@@ -103,14 +106,11 @@ void nRF24_GPIO_init(void) {
 	 GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);*/
 
 	palSetPadMode(GPIOA, GPIOA_PIN5,
-			PAL_MODE_ALTERNATE(0) | PAL_STM32_OSPEED_HIGHEST
-					| PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+			PAL_MODE_ALTERNATE(0) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
 	palSetPadMode(GPIOA, GPIOA_PIN6,
-			PAL_MODE_ALTERNATE(0) | PAL_STM32_OSPEED_HIGHEST
-					| PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+			PAL_MODE_ALTERNATE(0) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
 	palSetPadMode(GPIOA, GPIOA_PIN7,
-			PAL_MODE_ALTERNATE(0) | PAL_STM32_OSPEED_HIGHEST
-					| PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
+			PAL_MODE_ALTERNATE(0) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING | PAL_STM32_OTYPE_PUSHPULL);
 
 	/*
 	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
@@ -121,8 +121,7 @@ void nRF24_GPIO_init(void) {
 	 GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);
 	 */
 	palSetPadMode(GPIOA, GPIOA_PIN4,
-			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST
-					| PAL_STM32_PUDR_FLOATING);
+			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_FLOATING);
 
 #endif
 
@@ -130,7 +129,7 @@ void nRF24_GPIO_init(void) {
 }
 
 void nRF24_IRQ_Init(void) {
-
+#ifdef STDLib
 	NVIC_InitTypeDef NVIC_InitStructure;
 	EXTI_InitTypeDef EXTI_InitStructure; //структура инициализации внешнего прерывания
 
@@ -153,6 +152,21 @@ void nRF24_IRQ_Init(void) {
 
 //	EXTI_GenerateSWInterrupt(EXTI_Line0);
 	NVIC_EnableIRQ(nRF24_IRQ_Channel);
+#endif
+//	palSetPad(GPIOF, GPIOF_PIN1);
+//	palSetPadMode(GPIOF, GPIOF_PIN1, PAL_MODE_INPUT);
+	palSetPadMode(GPIOF, NRF_IRQ_Pin,
+			PAL_MODE_INPUT_PULLUP | PAL_STM32_OSPEED_LOWEST);
+
+	EXTChannelConfig extcfg;
+	extcfg.mode = EXT_CH_MODE_FALLING_EDGE | EXT_CH_MODE_AUTOSTART
+			| EXT_MODE_GPIOF;
+	extcfg.cb = nRF24_irq_ext_handler;
+
+	chSysLock();
+	extSetChannelModeI(&EXTD1, NRF_IRQ_Pin, &extcfg);
+	extChannelEnableI(&EXTD1, NRF_IRQ_Pin);
+	chSysUnlock();
 }
 
 void nRF24_Init(void) {
@@ -172,6 +186,6 @@ void nRF24_hw_ce_low(void) {
 
 void nRF24_hw_ce_high(void) {
 //    GPIO_SetBits(NRF_CE_IRQ_Port, NRF_CE_Pin);
-	NRF_CE_IRQ_Port->BSRR = NRF_CE_Pin;
+	NRF_CE_IRQ_Port->BSRRL = NRF_CE_Pin;
 }
 
