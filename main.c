@@ -221,16 +221,16 @@ int main(void) {
 	RGBW_Inner_Val RGBW_Day = { }, RGBW_Night = { };
 //	RGBW_Inner_Val RGBW_Current;
 
-	RGBW_Day.RW.Red_Set = 7000;
-	RGBW_Day.RW.Blue_Set = 3000;
-	RGBW_Day.RW.Green_Set = 1000;
-	RGBW_Day.RW.Rise_Time_Sec = 3;
+	RGBW_Day.RW.Red_Set = 5000;
+	RGBW_Day.RW.Blue_Set = 2500;
+	RGBW_Day.RW.Green_Set = 5000;
+	RGBW_Day.RW.Rise_Time_Sec = 13;
 	RGBW_Day.RW.Max_Delay_Sec = 600;
 
 	RGBW_Night.RW.Red_Set = 0;
 	RGBW_Night.RW.Blue_Set = 0;
 	RGBW_Night.RW.Green_Set = 0;
-	RGBW_Night.RW.Rise_Time_Sec = 3;
+	RGBW_Night.RW.Rise_Time_Sec = 13;
 	RGBW_Night.RW.Max_Delay_Sec = 600;
 #endif
 //	Core_Module_Read(RGBW, (void *) &RGBW_Current);
@@ -250,11 +250,11 @@ int main(void) {
 	Core_Module_Update(Heater, (void *) &FH_IV, 1000);
 
 #endif
-
+/*
 	palSetPadMode(GPIOA, GPIOA_PIN1, PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST);
-	palSetPad(GPIOA, GPIOA_PIN1);
+	palSetPad(GPIOA, 1);
 	WatchDog_Start(10);
-
+*/
 	while (TRUE) {
 #if LCD1602_PRESENT
 		data[0]=2;
@@ -292,7 +292,7 @@ int main(void) {
 		/*		chThdSleepMilliseconds(500);
 		 Core_Module_Read(RGBW, (void *) &RGBW_Current);
 		 chThdSleepMilliseconds(1500);*/
-		chThdSleepSeconds(5);
+		chThdSleepSeconds(15);
 
 		Core_Module_Update(RGBW, (void *) &RGBW_Night, 3000);
 
@@ -308,7 +308,7 @@ int main(void) {
 		default:
 			break;
 		}*/
-		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(10));
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(30));
 #endif
 //		GPIOD->BRR = 0x2;
 //		chThdSleepMilliseconds(100);
@@ -319,11 +319,11 @@ int main(void) {
 		GPIOD->BSRR = 0x2;
 		GPIOC->BSRR = 0x2000;*/
 //		WatchDog_Reset();
-		chThdSleepMilliseconds(800);
-		palClearPad(GPIOA, GPIOA_PIN1);
+/*		chThdSleepMilliseconds(800);
+		palClearPad(GPIOA, 1);
 		chThdSleepMilliseconds(100);
-		palSetPad(GPIOA, GPIOA_PIN1);
+		palSetPad(GPIOA, 1);
 		chThdSleepMilliseconds(100);
-		palClearPad(GPIOA, GPIOA_PIN1);
+		palClearPad(GPIOA, 1);*/
 	}
 }
