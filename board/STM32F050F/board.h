@@ -187,7 +187,7 @@
                                      PIN_MODE_ANALOG(GPIOA_PIN2) |           \
                                      PIN_MODE_ANALOG(GPIOA_PIN3) |           \
                                      PIN_MODE_ANALOG(GPIOA_PIN4) |           \
-                                     PIN_MODE_ANALOG(GPIOA_PIN5) |           \
+                                     PIN_MODE_OUTPUT(GPIOA_PIN5) |           \
                                      PIN_MODE_ANALOG(GPIOA_PIN6) |           \
                                      PIN_MODE_ANALOG(GPIOA_PIN7) |           \
                                      PIN_MODE_ANALOG(GPIOA_PIN8) |           \
@@ -235,7 +235,7 @@
                                      PIN_PUPDR_FLOATING(GPIOA_PIN2) |         \
                                      PIN_PUPDR_FLOATING(GPIOA_PIN3) |         \
                                      PIN_PUPDR_FLOATING(GPIOA_PIN4) |         \
-                                     PIN_PUPDR_FLOATING(GPIOA_PIN5) |         \
+                                     PIN_PUPDR_PULLDOWN(GPIOA_PIN5) |         \
                                      PIN_PUPDR_FLOATING(GPIOA_PIN6) |         \
                                      PIN_PUPDR_FLOATING(GPIOA_PIN7) |         \
                                      PIN_PUPDR_FLOATING(GPIOA_PIN8) |         \
@@ -251,7 +251,7 @@
                                      PIN_ODR_HIGH(GPIOA_PIN2) |             \
                                      PIN_ODR_HIGH(GPIOA_PIN3) |             \
                                      PIN_ODR_HIGH(GPIOA_PIN4) |             \
-                                     PIN_ODR_HIGH(GPIOA_PIN5) |             \
+                                     PIN_ODR_LOW(GPIOA_PIN5) |             \
                                      PIN_ODR_HIGH(GPIOA_PIN6) |             \
                                      PIN_ODR_HIGH(GPIOA_PIN7) |             \
                                      PIN_ODR_HIGH(GPIOA_PIN8) |             \
