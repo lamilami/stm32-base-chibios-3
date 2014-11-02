@@ -88,6 +88,7 @@ void FloorHeater_Init()
 	Inner_Val_FH.RW.Desired_Temp = 0;
 	Inner_Val_FH.RW.Auto_Update_Sec = 180;
 	Inner_Val_FH.RW.Get_Temp_Callback = NULL;
+	Inner_Val_FH.RW.MaxPower = 100;
 
 	Core_Module_Register(&Core_FloorHeater);
 }
@@ -176,8 +177,8 @@ THD_FUNCTION(FloorHeater,arg)
 			Current_Temp = Inner_Val_FH.RW.Get_Temp_Callback();
 			osalSysLock();
 			volatile int32_t pwr = UpdatePID_S(&Inner_Val_FH, (Inner_Val_FH.RW.Desired_Temp - Current_Temp));
-			if (pwr > 100)
-				pwr = 100;
+			if (pwr > Inner_Val_FH.RW.MaxPower)
+				pwr = Inner_Val_FH.RW.MaxPower;
 			if (pwr < 0)
 				pwr = 0;
 			ipwr = (int16_t) pwr;
