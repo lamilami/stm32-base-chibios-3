@@ -1,13 +1,12 @@
-#if LCD1602_PRESENT
-
 #include "ch.h"
 #include "hal.h"
 #include "lcd.h"
 #include "core.h"
 
+#if LCD1602_PRESENT
 
 #define     LCM_PIN_MASK  ((LCM_PIN_RS | LCM_PIN_EN | LCM_PIN_D7 | LCM_PIN_D6 | LCM_PIN_D5 | LCM_PIN_D4))
-GPIO_InitTypeDef  GPIO_InitStructure;
+//GPIO_InitTypeDef  GPIO_InitStructure;
 
 /*
 //---Функция задержки---//
@@ -86,13 +85,19 @@ void ClearLCDScreen()
 //---Инициализация дисплея---//
 void InitializeLCD(void)
 {
-    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+//    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+	rccEnableAHB(RCC_AHBENR_GPIOAEN, TRUE);
+	/*
     GPIO_InitStructure.GPIO_Pin = LCM_PIN_RS | LCM_PIN_EN | LCM_PIN_D7 | LCM_PIN_D6 | LCM_PIN_D5 | LCM_PIN_D4;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
     GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
     GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);
+    */
+	palSetPadMode(GPIOA, LCM_PIN_RS | LCM_PIN_EN | LCM_PIN_D7 | LCM_PIN_D6 | LCM_PIN_D5 | LCM_PIN_D4,
+			PAL_MODE_OUTPUT_PUSHPULL);
+
     LCM_OUT &= ~(LCM_PIN_MASK);
     chThdSleepMilliseconds(15);
     LCM_OUT &= ~LCM_PIN_RS;
