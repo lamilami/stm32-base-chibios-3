@@ -101,6 +101,8 @@ uint16_t PIR_cb() {
 
 #if FloorHeater_PRESENT
 
+volatile uint16_t bt136_temp = 0;
+
 uint16_t FloorHeater_cb() {
 
 #if DS18B20_PRESENT
@@ -112,15 +114,17 @@ uint16_t FloorHeater_cb() {
 #if DS18B20_NUMBER_OF_SENSORS == 1
 	return Temp_Vals.temp[0];
 #else
-	register uint16_t i,Cur_Temp;
-	Cur_Temp=0;
-	for (i=0;i<DS18B20_NUMBER_OF_SENSORS;i++)
-	{
+	register uint16_t i, Cur_Temp;
+	Cur_Temp = 0;
+	for (i = 0; i < DS18B20_NUMBER_OF_SENSORS - 1; i++) {
 		Cur_Temp += Temp_Vals.temp[i];
 	}
-#if DS18B20_NUMBER_OF_SENSORS == 2
+	osalSysLock();
+	bt136_temp = Temp_Vals.temp[4];
+	osalSysUnlock();
+#if DS18B20_NUMBER_OF_SENSORS == 3
 	Cur_Temp = Cur_Temp >> 1;
-#elif DS18B20_NUMBER_OF_SENSORS == 4
+#elif DS18B20_NUMBER_OF_SENSORS == 5
 	Cur_Temp = Cur_Temp >> 2;
 #else
 	Cur_Temp = Cur_Temp / DS18B20_NUMBER_OF_SENSORS;
@@ -218,7 +222,7 @@ int main(void) {
 #if RGBW_PRESENT
 	systime_t time_start = chVTGetSystemTime();
 	//	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
-	RGBW_Inner_Val RGBW_Day = { }, RGBW_Night = { };
+	RGBW_Inner_Val RGBW_Day = {}, RGBW_Night = {};
 //	RGBW_Inner_Val RGBW_Current;
 
 	RGBW_Day.RW.Red_Set = 10000;
@@ -238,23 +242,24 @@ int main(void) {
 #if FloorHeater_PRESENT
 
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 27 << 2;
-	FH_IV.Auto_Update_Sec = 3;
+	FH_IV.Desired_Temp = 28 << 2;
+	FH_IV.Auto_Update_Sec = 10;
 	FH_IV.Get_Temp_Callback = FloorHeater_cb;
 	FH_IV.iGain = 2;
 	FH_IV.pGain = 4;
 	FH_IV.iState = 0;
 	FH_IV.iMax = 25;
 	FH_IV.iMin = -2;
+	FH_IV.MaxPower = 100;
 
 	Core_Module_Update(Heater, (void *) &FH_IV, 1000);
 
 #endif
-/*
-	palSetPadMode(GPIOA, GPIOA_PIN1, PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST);
-	palSetPad(GPIOA, 1);
-	WatchDog_Start(10);
-*/
+	/*
+	 palSetPadMode(GPIOA, GPIOA_PIN1, PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST);
+	 palSetPad(GPIOA, 1);
+	 WatchDog_Start(10);
+	 */
 	while (TRUE) {
 #if LCD1602_PRESENT
 		data[0]=2;
@@ -299,31 +304,64 @@ int main(void) {
 //		Timeval_Current = 24 * 3600 - Inner_Val_RGBW.Correction_24H;
 		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(24 * 60*60 - 117));
 
-/*		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
-		switch (evt)
-		{
-		case (EVENT_MASK((uint8_t) PIR)):
-			LEDB1Swap();
-			break;
-		default:
-			break;
-		}*/
+		/*		eventmask_t evt = chEvtWaitOne(ALL_EVENTS);
+		 switch (evt)
+		 {
+		 case (EVENT_MASK((uint8_t) PIR)):
+		 LEDB1Swap();
+		 break;
+		 default:
+		 break;
+		 }*/
 //		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(30));
 #endif
 //		GPIOD->BRR = 0x2;
 //		chThdSleepMilliseconds(100);
 //		GPIOD->BSRR = 0x2;
-/*		GPIOC->BRR = 0x2000;
-		GPIOD->BRR = 0x2;
-		chThdSleepMicroseconds(100);
-		GPIOD->BSRR = 0x2;
-		GPIOC->BSRR = 0x2000;*/
+		/*		GPIOC->BRR = 0x2000;
+		 GPIOD->BRR = 0x2;
+		 chThdSleepMicroseconds(100);
+		 GPIOD->BSRR = 0x2;
+		 GPIOC->BSRR = 0x2000;*/
 //		WatchDog_Reset();
-/*		chThdSleepMilliseconds(800);
-		palClearPad(GPIOA, 1);
-		chThdSleepMilliseconds(100);
-		palSetPad(GPIOA, 1);
-		chThdSleepMilliseconds(100);
-		palClearPad(GPIOA, 1);*/
+		/*		chThdSleepMilliseconds(800);
+		 palClearPad(GPIOA, 1);
+		 chThdSleepMilliseconds(100);
+		 palSetPad(GPIOA, 1);
+		 chThdSleepMilliseconds(100);
+		 palClearPad(GPIOA, 1);*/
+
+		chThdSleepSeconds(10);
+		osalSysLock();
+		uint16_t tmp_temp = bt136_temp >> 2;
+		osalSysUnlock();
+#define Half_Load	50
+#define Low_Load	1
+#define Mid_Temp_Max	65
+#define Mid_Temp_Min	55
+#define High_Temp_Max	85
+#define High_Temp_Min	75
+		if (FH_IV.MaxPower >= 100) {
+			if (tmp_temp >= High_Temp_Max) {
+				FH_IV.MaxPower = Low_Load;
+				Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+			} else if (tmp_temp >= Mid_Temp_Max) {
+				FH_IV.MaxPower = Half_Load;
+				Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+			}
+		} else if (FH_IV.MaxPower >= Half_Load) {
+			if (tmp_temp >= High_Temp_Max) {
+				FH_IV.MaxPower = Low_Load;
+				Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+			} else if (tmp_temp <= Mid_Temp_Min) {
+				FH_IV.MaxPower = 100;
+				Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+			}
+		} else {
+			if (tmp_temp <= High_Temp_Min) {
+				FH_IV.MaxPower = Half_Load;
+				Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+			}
+		}
 	}
 }

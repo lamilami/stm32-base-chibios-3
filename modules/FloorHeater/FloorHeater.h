@@ -24,6 +24,7 @@ typedef struct
 	// Maximum and minimum allowable integrator state
 	int32_t iGain,     // integral gain
 			pGain;     // proportional gain
+	uint8_t	MaxPower;
 
 } FloorHeater_Inner_Val_RW;
 
