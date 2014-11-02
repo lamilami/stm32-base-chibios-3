@@ -2,6 +2,7 @@
 #include "hal.h"
 #include "ext.h"
 #include "chconf.h"
+#include "core.h"
 
 #if DHT11_PRESENT
 

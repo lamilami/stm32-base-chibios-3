@@ -23,6 +23,10 @@
 #include "core.h"
 #include "halconf.h"
 
+#if LCD1602_PRESENT
+#include "lcd.h"
+#endif
+
 #ifdef DEBUG_Discovery
 
 #ifdef comment
@@ -262,12 +266,25 @@ int main(void) {
 	 */
 	while (TRUE) {
 #if LCD1602_PRESENT
-		data[0]=2;
+
+#if DHT11_PRESENT
+
+	static DHT11_Inner_Val Temp_Vals;
+	Core_Module_Update(DHT11, NULL, 3000);
+	Core_Module_Read(DHT11, (char*) &Temp_Vals);
+
+//	return Temp_Vals.temp;
+
+//	return 25;
+
+#endif
+
+/*		data[0]=2;
 		int16_t tmp;
 		Radio_Send_Command(10, RF_GET, 1, data);
 		data[0]=3;
 		Radio_Send_Command(10, RF_GET, 1, data);
-		chThdSleepSeconds(3);
+		chThdSleepSeconds(3);*/
 		Cursor(0,0); //Установка курсора
 		PrintStr("T=");//Написание текста
 		/*	    PutData[2][0]=1;
@@ -275,14 +292,16 @@ int main(void) {
 		 PutData[2][2]=3;
 		 PutData[2][3]=4;
 		 PutData[2][4]=5;*/
-		tmp = PutData[2][3]*256+PutData[2][4];
+		volatile int16_t tmp=0;
+		tmp = Temp_Vals.temp;
+//		tmp = PutData[2][3]*256+PutData[2][4];
 		LCD_PutSignedInt(tmp>>2);
 		PrintStr(".");
 		LCD_PutUnsignedInt((tmp&3)*25);
 		PrintStr("              ");
 		Cursor(1,0);
 		PrintStr("PWR="); //Написание текста
-		tmp = PutData[3][3]*256+PutData[3][4];
+//		tmp = PutData[3][3]*256+PutData[3][4];
 //	    LCD_PutSignedInt(tmp>>2);
 //	    PrintStr(".");
 		LCD_PutUnsignedInt(tmp);
@@ -331,6 +350,8 @@ int main(void) {
 		 chThdSleepMilliseconds(100);
 		 palClearPad(GPIOA, 1);*/
 
+#if FloorHeater_PRESENT
+
 		chThdSleepSeconds(10);
 		osalSysLock();
 		uint16_t tmp_temp = bt136_temp >> 2;
@@ -363,5 +384,6 @@ int main(void) {
 				Core_Module_Update(Heater, (void *) &FH_IV, 1000);
 			}
 		}
+#endif
 	}
 }
