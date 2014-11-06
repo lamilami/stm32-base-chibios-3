@@ -265,7 +265,6 @@ int main(void) {
 	 WatchDog_Start(10);
 	 */
 	while (TRUE) {
-#if LCD1602_PRESENT
 
 #if DHT11_PRESENT
 
@@ -273,11 +272,16 @@ int main(void) {
 	Core_Module_Update(DHT11, NULL, 3000);
 	Core_Module_Read(DHT11, (char*) &Temp_Vals);
 
+	volatile static uint32_t	time_cnt=0;
+	time_cnt++;
 //	return Temp_Vals.temp;
 
 //	return 25;
 
 #endif
+
+#if LCD1602_PRESENT
+
 
 /*		data[0]=2;
 		int16_t tmp;
@@ -385,5 +389,7 @@ int main(void) {
 			}
 		}
 #endif
+
+		chThdSleepSeconds(10);
 	}
 }
