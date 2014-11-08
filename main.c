@@ -246,8 +246,8 @@ int main(void) {
 #if FloorHeater_PRESENT
 
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 28 << 2;
-	FH_IV.Auto_Update_Sec = 10;
+	FH_IV.Desired_Temp = 30 << 2;
+	FH_IV.Auto_Update_Sec = 180;
 	FH_IV.Get_Temp_Callback = FloorHeater_cb;
 	FH_IV.iGain = 2;
 	FH_IV.pGain = 4;
@@ -257,6 +257,7 @@ int main(void) {
 	FH_IV.MaxPower = 100;
 
 	Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+	chThdSleepSeconds(1);
 
 #endif
 	/*
@@ -356,7 +357,7 @@ int main(void) {
 
 #if FloorHeater_PRESENT
 
-		chThdSleepSeconds(10);
+		chThdSleepSeconds(180);
 		osalSysLock();
 		uint16_t tmp_temp = bt136_temp >> 2;
 		osalSysUnlock();
