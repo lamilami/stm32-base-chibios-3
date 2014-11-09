@@ -228,6 +228,10 @@ static void Start_Modules(void)
 	WatchDog_Start();
 #endif
 */
+#if LCD1602_PRESENT
+	InitializeLCD(); //Инициализация дисплея
+	ClearLCDScreen();//Очистка дисплея от мусора
+#endif
 #if CLI_PRESENT
 	CLI_Start();
 #endif

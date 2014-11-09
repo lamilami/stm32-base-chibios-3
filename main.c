@@ -158,10 +158,7 @@ int main(void) {
 
 	Core_Start();
 
-#if LCD1602_PRESENT
-	InitializeLCD(); //Инициализация дисплея
-	ClearLCDScreen();//Очистка дисплея от мусора
-#endif
+	systime_t time_start = chVTGetSystemTime();
 
 //	RGBW_IW;
 
@@ -224,7 +221,6 @@ int main(void) {
 #endif
 
 #if RGBW_PRESENT
-	systime_t time_start = chVTGetSystemTime();
 	//	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
 	RGBW_Inner_Val RGBW_Day = {}, RGBW_Night = {};
 //	RGBW_Inner_Val RGBW_Current;
@@ -266,7 +262,7 @@ int main(void) {
 	 WatchDog_Start(10);
 	 */
 	while (TRUE) {
-
+/*
 #if DHT11_PRESENT
 
 	static DHT11_Inner_Val Temp_Vals;
@@ -280,9 +276,33 @@ int main(void) {
 //	return 25;
 
 #endif
+*/
 
 #if LCD1602_PRESENT
 
+#if DS18B20_PRESENT
+
+	static DS18B20_Inner_Val DS_Temp_Vals;
+	Core_Module_Update(Temp, NULL, 1000);
+	Core_Module_Read(Temp, (char*) &DS_Temp_Vals);
+
+#endif
+
+//	osalThreadSleepSeconds(1);
+
+#if DHT11_PRESENT
+
+	static DHT11_Inner_Val DHT_Temp_Vals;
+	Core_Module_Update(DHT11, NULL, 3000);
+	Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
+
+	volatile static uint32_t	time_cnt=0;
+	time_cnt++;
+//	return Temp_Vals.temp;
+
+//	return 25;
+
+#endif
 
 /*		data[0]=2;
 		int16_t tmp;
@@ -291,26 +311,29 @@ int main(void) {
 		Radio_Send_Command(10, RF_GET, 1, data);
 		chThdSleepSeconds(3);*/
 		Cursor(0,0); //Установка курсора
-		PrintStr("T=");//Написание текста
+		PrintStr("Outer temp=");//Написание текста
 		/*	    PutData[2][0]=1;
 		 PutData[2][1]=2;
 		 PutData[2][2]=3;
 		 PutData[2][3]=4;
 		 PutData[2][4]=5;*/
 		volatile int16_t tmp=0;
-		tmp = Temp_Vals.temp;
+		tmp = DS_Temp_Vals.temp[0];
 //		tmp = PutData[2][3]*256+PutData[2][4];
 		LCD_PutSignedInt(tmp>>2);
 		PrintStr(".");
 		LCD_PutUnsignedInt((tmp&3)*25);
 		PrintStr("              ");
 		Cursor(1,0);
-		PrintStr("PWR="); //Написание текста
-//		tmp = PutData[3][3]*256+PutData[3][4];
-//	    LCD_PutSignedInt(tmp>>2);
+		PrintStr(" Temp="); //Написание текста
+//		tmp = DHT_Temp_Vals.temp;
+	    LCD_PutUnsignedInt(DHT_Temp_Vals.temp>>2);
+		PrintStr(" Hum="); //Написание текста
+//		tmp = DHT_Temp_Vals.temp;
+	    LCD_PutUnsignedInt(DHT_Temp_Vals.humidity);
 //	    PrintStr(".");
-		LCD_PutUnsignedInt(tmp);
-		PrintStr("              ");
+//		LCD_PutUnsignedInt(tmp);
+		PrintStr("    ");
 #endif
 
 #if RGBW_PRESENT
@@ -391,6 +414,7 @@ int main(void) {
 		}
 #endif
 
-		chThdSleepSeconds(10);
+//		chThdSleepSeconds(10);
+		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(10));
 	}
 }

@@ -1,6 +1,8 @@
 #ifndef DHT11_H_
 #define DHT11_H_
 
+#define DHT11_PIN	GPIOA_PIN10
+
 void DHT11_Start();
 
 typedef struct
