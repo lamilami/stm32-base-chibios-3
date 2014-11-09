@@ -29,32 +29,32 @@ void delay(int a)
 //---Нужная функция для работы с дисплее, по сути дергаем ножкой EN---//
 void PulseLCD()
 {
-    LCM_OUT &= ~LCM_PIN_EN;
+    LCM_OUT &= ~(LCM_PIN_EN);
     delay(1);
-    LCM_OUT |= LCM_PIN_EN;
+    LCM_OUT |= (LCM_PIN_EN);
     delay(1);
-    LCM_OUT &= (~LCM_PIN_EN);
+    LCM_OUT &= (~(LCM_PIN_EN));
     delay(1);
 }
 
 //---Отсылка байта в дисплей---//
 void LCD_SendByte(char ByteToSend, int IsData)
 {
-    LCM_OUT &= (~LCM_PIN_MASK);
+    LCM_OUT &= (~(LCM_PIN_MASK));
     LCM_OUT |= ((ByteToSend & 0xF0) >> 4);
 
     if (IsData == 1)
-        LCM_OUT |= LCM_PIN_RS;
+        LCM_OUT |= (LCM_PIN_RS);
     else
-        LCM_OUT &= ~LCM_PIN_RS;
+        LCM_OUT &= ~(LCM_PIN_RS);
     PulseLCD();
-    LCM_OUT &= (~LCM_PIN_MASK);
+    LCM_OUT &= (~(LCM_PIN_MASK));
     LCM_OUT |= (ByteToSend & 0x0F);
 
     if (IsData == 1)
-        LCM_OUT |= LCM_PIN_RS;
+        LCM_OUT |= (LCM_PIN_RS);
     else
-        LCM_OUT &= ~LCM_PIN_RS;
+        LCM_OUT &= ~(LCM_PIN_RS);
 
     PulseLCD();
 }
@@ -95,13 +95,19 @@ void InitializeLCD(void)
     GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
     GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStructure);
     */
-	palSetPadMode(GPIOA, LCM_PIN_RS | LCM_PIN_EN | LCM_PIN_D7 | LCM_PIN_D6 | LCM_PIN_D5 | LCM_PIN_D4,
-			PAL_MODE_OUTPUT_PUSHPULL);
+	palSetGroupMode(GPIOA, LCM_PIN_RS | LCM_PIN_EN | LCM_PIN_D7 | LCM_PIN_D6 | LCM_PIN_D5 | LCM_PIN_D4,
+			0, PAL_MODE_OUTPUT_PUSHPULL);
+//	palSetPadMode(GPIOA, LCM_PIN_RS,PAL_MODE_OUTPUT_PUSHPULL);
+//	palSetPadMode(GPIOA, LCM_PIN_EN,PAL_MODE_OUTPUT_PUSHPULL);
+//	palSetPadMode(GPIOA, LCM_PIN_D7,PAL_MODE_OUTPUT_PUSHPULL);
+//	palSetPadMode(GPIOA, LCM_PIN_D6,PAL_MODE_OUTPUT_PUSHPULL);
+//	palSetPadMode(GPIOA, LCM_PIN_D5,PAL_MODE_OUTPUT_PUSHPULL);
+//	palSetPadMode(GPIOA, LCM_PIN_D4,PAL_MODE_OUTPUT_PUSHPULL);
 
-    LCM_OUT &= ~(LCM_PIN_MASK);
+    LCM_OUT &= ~((LCM_PIN_MASK));
     chThdSleepMilliseconds(15);
-    LCM_OUT &= ~LCM_PIN_RS;
-    LCM_OUT &= ~LCM_PIN_EN;
+    LCM_OUT &= ~(LCM_PIN_RS);
+    LCM_OUT &= ~(LCM_PIN_EN);
     LCM_OUT = 0x03;
     PulseLCD();
     chThdSleepMilliseconds(5);

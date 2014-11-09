@@ -3,10 +3,10 @@
 
 #define MY_ADDR				0x10
 #define RADIO_PRESENT		FALSE
-#define DS18B20_PRESENT		FALSE
+#define DS18B20_PRESENT		TRUE
 #define DHT11_PRESENT		TRUE
 #define FloorHeater_PRESENT FALSE
-#define LCD1602_PRESENT 	FALSE
+#define LCD1602_PRESENT 	TRUE
 #define WATCHDOG_PRESENT	FALSE
 #define RGBW_PRESENT		FALSE
 #define CLI_PRESENT			FALSE
@@ -22,17 +22,18 @@
 #include "RGBW.h"
 #include "cli.h"
 #include "PIR.h"
+#include "lcd.h"
 
 /*
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
 #error "Can't use FloorHeater without DS18B20 temp sensor!"
 #endif
 */
-
+/*
 #if (LCD1602_PRESENT && (DS18B20_PRESENT || FloorHeater_PRESENT))
 #error "LCD1602 conflicts with DS18B20 and FloorHeater!"
 #endif
-
+*/
 #define EVENTMASK_REREAD 0x04
 
 #define MSG_ERROR	-3

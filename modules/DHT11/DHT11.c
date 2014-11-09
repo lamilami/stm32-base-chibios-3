@@ -54,7 +54,7 @@ THD_FUNCTION(DHT11_thread,arg)
 	static dht11_t DHTD1;
 	static int8_t humidity, temperature;
 
-	DHTD1.ext_pin = 0;
+	DHTD1.ext_pin = DHT11_PIN;
 	DHTD1.ext_port = GPIOA;
 	DHTD1.ext_drv = &EXTD1;
 	DHTD1.ext_mode = EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA;
@@ -72,6 +72,18 @@ THD_FUNCTION(DHT11_thread,arg)
 		dht11GetHumidity(&DHTD1, &humidity);
 		dht11GetTemperature(&DHTD1, &temperature);
 
+		if (DHTD1.state != DHT11_READ_OK)
+		{
+			global_errors++;
+			cont_errors++;
+			humidity = 0;
+			temperature = 0;
+		}
+		else
+		{
+			cont_errors = 0;
+		}
+
 		chSysLock();
 
 		Inner_Val_DHT11.temp = temperature << 2;
@@ -88,15 +100,17 @@ THD_FUNCTION(DHT11_thread,arg)
 
 		evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_DHT11.RW.Auto_Update_Sec-1));
 
-		if (DHT11_BUSY == dht11Update(&DHTD1, NULL))
-		{
-			global_errors++;
-			cont_errors++;
-		}
-		else
-		{
-			cont_errors = 0;
-		}
+		dht11Update(&DHTD1, NULL);
+
+//		if (DHT11_READ_REQUEST != dht11Update(&DHTD1, NULL))
+//		{
+//			global_errors++;
+//			cont_errors++;
+//		}
+//		else
+//		{
+//			cont_errors = 0;
+//		}
 	}
 }
 
