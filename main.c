@@ -22,6 +22,8 @@
 #include "hal.h"
 #include "core.h"
 #include "halconf.h"
+#include "gfx.h"
+#include "board_ILI9341_spi.h"
 
 #if LCD1602_PRESENT
 #include "lcd.h"
