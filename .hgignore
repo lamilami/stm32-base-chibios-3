@@ -1,6 +1,7 @@
 syntax: glob
 
 ChibiOS_Test/*
+STM32F030F/*
 logs/*
 */.svn/*
 */*.bak
@@ -9,3 +10,4 @@ a.out
 *.orig
 info.txt
 error.txt
+

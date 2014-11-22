@@ -1,0 +1,670 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dependencies>
+   <includePath signature="/I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\osal /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\ext\CMSIS\ST /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\DS18B20 /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\Command Shell /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\STM32\LLD /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\board /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\common /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\ext /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\rt\include /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\nRF24\include /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\common\ARMCMx /I..\..\..\..\..\Work\CoIDE /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\FloorHeater /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\STM32\STM32F0xx /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\include /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\DHT11 /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\STM32\LLD\USARTv2 /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\osal\rt /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\various /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\PIR /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\rt\ports\ARMCMx\compilers\GCC /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\RGBW /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\STM32 /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\ext\CMSIS\include /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\STM32\LLD\SPIv2 /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\rt\ports\ARMCMx /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\board\STM32F030F /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\rt\ports /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\rt /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\rt\ports\ARMCMx\compilers /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\nRF24 /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\Watchdog /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\common\ports\ARMCMx\devices /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\common\ports\ARMCMx\devices\STM32F0xx /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\common\ports\ARMCMx /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\STM32\LLD\GPIOv2 /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\STM32\LLD\TIMv1 /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\ext\CMSIS /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\modules\LCD1602 /I..\..\..\..\..\Work\CoIDE\ChibiOS_3.0_Test\os\hal\ports\STM32\LLD\RTCv2">
+      <source file="..\..\..\os\rt\src\chcond.c" lastModified="147c608070e">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chsys.h" lastModified="14917d2702a">
+      </source>
+      <source file="..\..\..\os\rt\src\chmsg.c" lastModified="147c608077e">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chevents.c" lastModified="147eaee1f36">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\STM32F0xx\adc_lld.c" lastModified="14813b09782">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\pwm_lld.c" lastModified="14917d26e0d">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\system_stm32f10x.h" lastModified="147c15f104f">
+      </source>
+      <source file="..\..\..\modules\RGBW\RGBW.h" lastModified="1485b14b053">
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chmtx.h" lastModified="14917d27000">
+      </source>
+      <source file="..\..\..\os\hal\include\hal_channels.h" lastModified="147c607f384">
+      </source>
+      <source file="..\..\..\modules\RGBW\RGBW.c" lastModified="1491831f7fd">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\RGBW\RGBW.h"/>
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\modules\nRF24\include\nRF24_HAL.h" lastModified="1495c99f0e5">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\nRF24\include\nRF24_reg.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f10x.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\common\ports\ARMCMx\compilers\GCC\crt0.c" lastModified="147c607ec71">
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\STM32F0xx\stm32_dma.c" lastModified="147c607fcca">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\USARTv2\uart_lld.c" lastModified="14917d26e3c">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\i2c.h" lastModified="147c607f7a4">
+      </source>
+      <source file="..\..\..\os\hal\include\sdc.h" lastModified="147c607f443">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\sdc_lld.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\rtc.c" lastModified="147c6080156">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\include\core_cm3.h" lastModified="147c15f12b2">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cmInstr.h"/>
+         <include file="..\..\..\os\ext\CMSIS\include\core_cmFunc.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\RTCv2\rtc_lld.c" lastModified="14917d26dbd">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\mac.h" lastModified="14917d26cae">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\mac_lld.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chthreads.h" lastModified="14917d27036">
+      </source>
+      <source file="..\..\..\os\rt\include\chcond.h" lastModified="14917d26fe9">
+      </source>
+      <source file="..\..\..\os\various\shell.h" lastModified="147c60809ad">
+      </source>
+      <source file="..\..\..\os\hal\include\adc.h" lastModified="147c607f333">
+         <include file="..\..\..\os\hal\ports\STM32\STM32F0xx\adc_lld.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chheap.c" lastModified="147c608074e">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\modules\Watchdog\WatchDog.h" lastModified="1495c99f0c3">
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\os\various\shell.c" lastModified="147c6080d82">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\os\various\shell.h"/>
+         <include file="..\..\..\os\various\chprintf.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\i2s.c" lastModified="147c6080105">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\modules\Watchdog\WatchDog.c" lastModified="1495c99f0c3">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\core.h"/>
+         <include file="..\..\..\modules\Watchdog\WatchDog.h"/>
+         <include file="..\..\..\modules\Watchdog\iwdg.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chschd.c" lastModified="147c60807bf">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f030x8.h" lastModified="14917d26bf9">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\hal.c" lastModified="1495c99f260">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chsem.c" lastModified="147c60807cc">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\pwm.c" lastModified="14917d26faf">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\STM32F0xx\hal_lld.h" lastModified="14917d26e7c">
+         <include file="..\..\..\os\hal\ports\STM32\STM32F0xx\stm32_registry.h"/>
+         <include file="..\..\..\os\hal\ports\common\ARMCMx\nvic.h"/>
+         <include file="..\..\..\os\hal\ports\STM32\STM32F0xx\stm32_isr.h"/>
+         <include file="..\..\..\os\hal\ports\STM32\STM32F0xx\stm32_dma.h"/>
+         <include file="..\..\..\os\hal\ports\STM32\STM32F0xx\stm32_rcc.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\hal_ioblock.h" lastModified="147c607f390">
+      </source>
+      <source file="..\..\..\os\rt\include\chbsem.h" lastModified="14917d26fdc">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f030x6.h" lastModified="14917d26be8">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\STM32F0xx\hal_lld.c" lastModified="148321f7591">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\board\STM32F030F\halconf.h" lastModified="1495c99ef1e">
+         <include file="..\..\..\board\STM32F030F\mcuconf.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chevents.h" lastModified="147eaee1f28">
+      </source>
+      <source file="..\..\..\os\rt\ports\ARMCMx\chcore_timer.h" lastModified="147c60804ee">
+         <include file="..\..\..\os\hal\include\st.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chstats.c" lastModified="147c60807d7">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chmempools.h" lastModified="147c60803ec">
+      </source>
+      <source file="..\..\..\os\hal\include\usb.h" lastModified="147c607f87f">
+      </source>
+      <source file="..\..\..\board\STM32F030F\mcuconf.h" lastModified="149d7417246">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f072xb.h" lastModified="14917d26c8b">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\modules\Command Shell\cli.c" lastModified="1490a906261">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\os\various\shell.h"/>
+         <include file="..\..\..\os\various\chprintf.h"/>
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\modules\nRF24\src\nRF24.c" lastModified="1495c99f0f4">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\core.h"/>
+         <include file="..\..\..\modules\nRF24\include\nRF24.h"/>
+      </source>
+      <source file="..\..\..\os\rt\ports\ARMCMx\chcore.h" lastModified="147c60808ca">
+         <include file="..\..\..\os\common\ports\ARMCMx\devices\STM32F0xx\cmparams.h"/>
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0plus.h"/>
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm3.h"/>
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm4.h"/>
+         <include file="..\..\..\os\rt\ports\ARMCMx\chcore_v6m.h"/>
+         <include file="..\..\..\os\rt\ports\ARMCMx\chcore_v7m.h"/>
+         <include file="..\..\..\os\rt\ports\ARMCMx\chcore_timer.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chmemcore.c" lastModified="147c6080767">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\rt\ports\ARMCMx\chcore.c" lastModified="147c60804d5">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\i2c.c" lastModified="147c60800fb">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chheap.h" lastModified="147c60803c8">
+      </source>
+      <source file="..\..\..\board\STM32F030F\board.h" lastModified="1495d165456">
+      </source>
+      <source file="..\..\..\os\rt\ports\ARMCMx\chcore_v6m.h" lastModified="147c60805cd">
+      </source>
+      <source file="..\..\..\os\rt\include\chstreams.h" lastModified="147c6080452">
+      </source>
+      <source file="..\..\..\os\hal\src\sdc.c" lastModified="147eaee1f1b">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\board\STM32F030F\board.c" lastModified="147eb179129">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\ports\ARMCMx\chcore_v6m.c" lastModified="147c60805c1">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\can.h" lastModified="147c607f33e">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\can_lld.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chschd.h" lastModified="1495c99f270">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f038xx.h" lastModified="14917d26c18">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\GPIOv2\pal_lld.c" lastModified="1495c99f212">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\include\core_cmFunc.h" lastModified="147c15f1752">
+      </source>
+      <source file="..\..\..\os\rt\src\chregistry.c" lastModified="147c60807ae">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\modules\DHT11\DHT11.h" lastModified="149d6fe3c1f">
+      </source>
+      <source file="..\..\..\os\rt\src\chmboxes.c" lastModified="14917d27099">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f078xx.h" lastModified="14917d26c9c">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\st.h" lastModified="147c607f480">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\st_lld.h"/>
+      </source>
+      <source file="..\..\..\modules\DHT11\DHT11.c" lastModified="149d7034d5a">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\core.h"/>
+         <include file="..\..\..\modules\DHT11\DHT11_hal.h"/>
+         <include file="..\..\..\modules\DHT11\DHT11.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chdebug.h" lastModified="147c60803a1">
+      </source>
+      <source file="..\..\..\os\hal\include\gpt.h" lastModified="147c607f365">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\gpt_lld.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\adc.c" lastModified="147c6080095">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chvt.c" lastModified="147c608080d">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\various\chprintf.c" lastModified="14917d270bf">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\various\chprintf.h"/>
+         <include file="..\..\..\os\various\memstreams.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f051x8.h" lastModified="14917d26c53">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chqueues.c" lastModified="147c608079c">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\main.c" lastModified="149d7034907">
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f10x.h"/>
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\core.h"/>
+         <include file="..\..\..\board\STM32F030F\halconf.h"/>
+         <include file="..\..\..\modules\LCD1602\lcd.h"/>
+      </source>
+      <source file="..\..\..\modules\nRF24\src\radio.c" lastModified="1495c99f4fc">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\core.h"/>
+         <include file="..\..\..\modules\nRF24\include\nRF24.h"/>
+         <include file="..\..\..\modules\nRF24\include\radio.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\SPIv2\spi_lld.c" lastModified="147c607faa9">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\modules\nRF24\src\nRF24_HAL.c" lastModified="1495c99f104">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\core.h"/>
+         <include file="..\..\..\modules\nRF24\include\nRF24_HAL.h"/>
+         <include file="..\..\..\modules\nRF24\include\nRF24.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chmsg.h" lastModified="147c60803f7">
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\USARTv2\serial_lld.c" lastModified="14917d26e2d">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\hal_queues.c" lastModified="147c60800ef">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chsys.c" lastModified="147c60807e1">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\common\ports\ARMCMx\devices\STM32F0xx\cmparams.h" lastModified="14917d267a7">
+         <include file="..\..\..\board\STM32F030F\board.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chdynamic.c" lastModified="14917d2708d">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f0xx.h" lastModified="14917d26cc2">
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f030x6.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f030x8.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f031x6.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f038xx.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f042x6.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f048xx.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f051x8.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f058xx.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f071xb.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f072xb.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f078xx.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\serial_usb.c" lastModified="147c608017d">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\modules\DS18B20\DS18B20.c" lastModified="149d7034dcf">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\DS18B20\onewire.h"/>
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\icu.h" lastModified="1495c99f162">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\icu_lld.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\usb.c" lastModified="147c608059f">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\icu_lld.c" lastModified="1495c99f222">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\ports\ARMCMx\chcore_v7m.h" lastModified="147c60805eb">
+      </source>
+      <source file="..\..\..\modules\Watchdog\iwdg_lld.c" lastModified="147769a7294">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\Watchdog\iwdg.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\st.c" lastModified="147c60801a0">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chmtx.c" lastModified="14917d270a6">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chmboxes.h" lastModified="14917d26ff5">
+      </source>
+      <source file="..\..\..\os\rt\src\chtm.c" lastModified="147c6080803">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\mmc_spi.c" lastModified="147c6080517">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\modules\DS18B20\onewire.h" lastModified="1490a9062bb">
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f10x.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\uart.c" lastModified="147c60801ab">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f071xb.h" lastModified="14917d26c77">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\modules\DS18B20\onewire.c" lastModified="149719bfba9">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\DS18B20\onewire.h"/>
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\modules\DHT11\DHT11_hal.h" lastModified="14995aaed3e">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\include\core_cm4_simd.h" lastModified="147c15f160f">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\include\core_cm4.h" lastModified="147c15f1311">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cmInstr.h"/>
+         <include file="..\..\..\os\ext\CMSIS\include\core_cmFunc.h"/>
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm4_simd.h"/>
+      </source>
+      <source file="..\..\..\modules\DHT11\DHT11_hal.c" lastModified="1497a99cc60">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\os\hal\include\ext.h"/>
+         <include file="..\..\..\board\STM32F030F\chconf.h"/>
+         <include file="..\..\..\modules\core.h"/>
+         <include file="..\..\..\modules\DHT11\DHT11_hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chmempools.c" lastModified="147c6080772">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chqueues.h" lastModified="14917d27011">
+      </source>
+      <source file="..\..\..\os\hal\src\can.c" lastModified="147c60800a0">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\ports\ARMCMx\compilers\GCC\chcoreasm_v6m.S" lastModified="147d00f9765">
+         <include file="..\..\..\board\STM32F030F\chconf.h"/>
+         <include file="..\..\..\os\rt\ports\ARMCMx\chcore.h"/>
+      </source>
+      <source file="..\..\..\os\common\ports\ARMCMx\compilers\GCC\vectors.c" lastModified="147c607f199">
+         <include file="..\..\..\os\common\ports\ARMCMx\devices\STM32F0xx\cmparams.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f048xx.h" lastModified="14917d26c40">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\include\core_cm0.h" lastModified="147c15f1204">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cmInstr.h"/>
+         <include file="..\..\..\os\ext\CMSIS\include\core_cmFunc.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\spi.h" lastModified="147c607f475">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\SPIv2\spi_lld.h"/>
+      </source>
+      <source file="..\..\..\modules\core.h" lastModified="14990dad263">
+         <include file="..\..\..\modules\nRF24\include\radio.h"/>
+         <include file="..\..\..\modules\DS18B20\DS18B20.h"/>
+         <include file="..\..\..\modules\FloorHeater\FloorHeater.h"/>
+         <include file="..\..\..\modules\Watchdog\WatchDog.h"/>
+         <include file="..\..\..\modules\DHT11\DHT11.h"/>
+         <include file="..\..\..\modules\RGBW\RGBW.h"/>
+         <include file="..\..\..\modules\Command Shell\cli.h"/>
+         <include file="..\..\..\modules\PIR\PIR.h"/>
+         <include file="..\..\..\modules\LCD1602\lcd.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\mmc_spi.h" lastModified="147c607f402">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\include\core_cm0plus.h" lastModified="147c15f12d3">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cmInstr.h"/>
+         <include file="..\..\..\os\ext\CMSIS\include\core_cmFunc.h"/>
+      </source>
+      <source file="..\..\..\modules\LCD1602\lcd.h" lastModified="14990bbf9e1">
+      </source>
+      <source file="..\..\..\modules\core.c" lastModified="14990b61f3d">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\os\hal\osal\rt\osal.h" lastModified="147c6080084">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chthreads.c" lastModified="14917d270b4">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\stm32_tim.h" lastModified="148321f7582">
+      </source>
+      <source file="..\..\..\modules\LCD1602\lcd.c" lastModified="14990b285d4">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\LCD1602\lcd.h"/>
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\STM32F0xx\ext_lld_isr.h" lastModified="147c607fca2">
+      </source>
+      <source file="..\..\..\os\hal\osal\rt\osal.c" lastModified="147c607f4b9">
+         <include file="..\..\..\os\hal\osal\rt\osal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\dac.h" lastModified="147c607f733">
+      </source>
+      <source file="..\..\..\os\hal\src\gpt.c" lastModified="147c60800cd">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\various\memstreams.h" lastModified="1495c99f2be">
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\STM32F0xx\ext_lld_isr.c" lastModified="147c607fc96">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\os\hal\ports\STM32\STM32F0xx\ext_lld_isr.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\serial.c" lastModified="147c6080171">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\modules\nRF24\include\nRF24.h" lastModified="14917d26ed5">
+         <include file="..\..\..\modules\nRF24\include\nRF24_reg.h"/>
+         <include file="..\..\..\modules\nRF24\include\nRF24_HAL.h"/>
+      </source>
+      <source file="..\..\..\os\rt\ports\ARMCMx\compilers\GCC\chtypes.h" lastModified="147c60811d8">
+      </source>
+      <source file="..\..\..\os\rt\include\chsem.h" lastModified="14917d2701f">
+      </source>
+      <source file="..\..\..\os\hal\include\pal.h" lastModified="147c607f41e">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\GPIOv2\pal_lld.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chmemcore.h" lastModified="147c60803e1">
+      </source>
+      <source file="..\..\..\os\hal\include\ext.h" lastModified="147c607f356">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\ext_lld.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\hal_mmcsd.h" lastModified="147c607f39b">
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\ext_lld.c" lastModified="147c607fc23">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\os\hal\ports\STM32\STM32F0xx\ext_lld_isr.h"/>
+      </source>
+      <source file="..\..\..\os\rt\src\chdebug.c" lastModified="1495c99f2ae">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\hal_mmcsd.c" lastModified="147c60800e3">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\icu.c" lastModified="1495c99f260">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\modules\FloorHeater\FloorHeater.h" lastModified="14971ba73bf">
+         <include file="..\..\..\modules\DS18B20\DS18B20.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\mii.h" lastModified="147c607f3f1">
+      </source>
+      <source file="..\..\..\modules\PIR\PIR.h" lastModified="14917d266db">
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\gpt_lld.c" lastModified="14917d26ddb">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\modules\FloorHeater\FloorHeater.c" lastModified="14971bca1a0">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\FloorHeater\FloorHeater.h"/>
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\modules\PIR\PIR.c" lastModified="14917d26ab9">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\PIR\PIR.h"/>
+         <include file="..\..\..\modules\core.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\serial.h" lastModified="147c607f44f">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\USARTv2\serial_lld.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\rtc.h" lastModified="14917d26cc6">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\RTCv2\rtc_lld.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chvt.h" lastModified="14917d27043">
+      </source>
+      <source file="..\..\..\modules\nRF24\include\radio.h" lastModified="14917d26728">
+      </source>
+      <source file="..\..\..\os\hal\include\hal_streams.h" lastModified="147c607f3b1">
+      </source>
+      <source file="..\..\..\os\rt\include\ch.h" lastModified="147c6080377">
+         <include file="..\..\..\os\rt\ports\ARMCMx\compilers\GCC\chtypes.h"/>
+         <include file="..\..\..\board\STM32F030F\chconf.h"/>
+         <include file="..\..\..\os\rt\ports\ARMCMx\chcore.h"/>
+         <include file="..\..\..\os\rt\include\chdebug.h"/>
+         <include file="..\..\..\os\rt\include\chtm.h"/>
+         <include file="..\..\..\os\rt\include\chstats.h"/>
+         <include file="..\..\..\os\rt\include\chschd.h"/>
+         <include file="..\..\..\os\rt\include\chsys.h"/>
+         <include file="..\..\..\os\rt\include\chvt.h"/>
+         <include file="..\..\..\os\rt\include\chthreads.h"/>
+         <include file="..\..\..\os\rt\include\chregistry.h"/>
+         <include file="..\..\..\os\rt\include\chsem.h"/>
+         <include file="..\..\..\os\rt\include\chbsem.h"/>
+         <include file="..\..\..\os\rt\include\chmtx.h"/>
+         <include file="..\..\..\os\rt\include\chcond.h"/>
+         <include file="..\..\..\os\rt\include\chevents.h"/>
+         <include file="..\..\..\os\rt\include\chmsg.h"/>
+         <include file="..\..\..\os\rt\include\chmboxes.h"/>
+         <include file="..\..\..\os\rt\include\chmemcore.h"/>
+         <include file="..\..\..\os\rt\include\chheap.h"/>
+         <include file="..\..\..\os\rt\include\chmempools.h"/>
+         <include file="..\..\..\os\rt\include\chdynamic.h"/>
+         <include file="..\..\..\os\rt\include\chqueues.h"/>
+         <include file="..\..\..\os\rt\include\chstreams.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\hal_queues.h" lastModified="147c607f3a6">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f058xx.h" lastModified="14917d26c66">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\spi.c" lastModified="147c6080189">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\common\ARMCMx\nvic.c" lastModified="147c608007f">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\st_lld.h" lastModified="147c607fb4b">
+         <include file="..\..\..\board\STM32F030F\mcuconf.h"/>
+         <include file="..\..\..\os\hal\ports\STM32\STM32F0xx\stm32_registry.h"/>
+         <include file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\stm32_tim.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chdynamic.h" lastModified="147c60803b3">
+      </source>
+      <source file="..\..\..\os\hal\include\serial_usb.h" lastModified="147c607f45b">
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\st_lld.c" lastModified="147e648c78d">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\include\core_cmInstr.h" lastModified="147c15f162d">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h" lastModified="14917d26b97">
+      </source>
+      <source file="..\..\..\os\rt\include\chstats.h" lastModified="147c6080447">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f042x6.h" lastModified="14917d26c2b">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\dac.c" lastModified="147c60800ad">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\i2s.h" lastModified="147c607f7b0">
+      </source>
+      <source file="..\..\..\os\hal\ports\STM32\STM32F0xx\stm32_registry.h" lastModified="14917d26e8a">
+      </source>
+      <source file="..\..\..\os\ext\CMSIS\ST\stm32f031x6.h" lastModified="14917d26c09">
+         <include file="..\..\..\os\ext\CMSIS\include\core_cm0.h"/>
+         <include file="..\..\..\os\ext\CMSIS\ST\system_stm32f0xx.h"/>
+      </source>
+      <source file="..\..\..\modules\Watchdog\iwdg.h" lastModified="147769a728a">
+         <include file="..\..\..\modules\Watchdog\iwdg_lld.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\uart.h" lastModified="147c607f48a">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\USARTv2\uart_lld.h"/>
+      </source>
+      <source file="..\..\..\board\STM32F030F\chconf.h" lastModified="149d73d64a9">
+      </source>
+      <source file="..\..\..\os\hal\include\hal.h" lastModified="1495c99f152">
+         <include file="..\..\..\os\hal\osal\rt\osal.h"/>
+         <include file="..\..\..\board\STM32F030F\board.h"/>
+         <include file="..\..\..\board\STM32F030F\halconf.h"/>
+         <include file="..\..\..\os\hal\ports\STM32\STM32F0xx\hal_lld.h"/>
+         <include file="..\..\..\os\hal\include\hal_streams.h"/>
+         <include file="..\..\..\os\hal\include\hal_channels.h"/>
+         <include file="..\..\..\os\hal\include\hal_ioblock.h"/>
+         <include file="..\..\..\os\hal\include\hal_mmcsd.h"/>
+         <include file="..\..\..\os\hal\include\hal_queues.h"/>
+         <include file="..\..\..\os\hal\include\pal.h"/>
+         <include file="..\..\..\os\hal\include\adc.h"/>
+         <include file="..\..\..\os\hal\include\can.h"/>
+         <include file="..\..\..\os\hal\include\dac.h"/>
+         <include file="..\..\..\os\hal\include\ext.h"/>
+         <include file="..\..\..\os\hal\include\gpt.h"/>
+         <include file="..\..\..\os\hal\include\i2c.h"/>
+         <include file="..\..\..\os\hal\include\i2s.h"/>
+         <include file="..\..\..\os\hal\include\icu.h"/>
+         <include file="..\..\..\os\hal\include\mac.h"/>
+         <include file="..\..\..\os\hal\include\mii.h"/>
+         <include file="..\..\..\os\hal\include\pwm.h"/>
+         <include file="..\..\..\os\hal\include\rtc.h"/>
+         <include file="..\..\..\os\hal\include\serial.h"/>
+         <include file="..\..\..\os\hal\include\sdc.h"/>
+         <include file="..\..\..\os\hal\include\spi.h"/>
+         <include file="..\..\..\os\hal\include\st.h"/>
+         <include file="..\..\..\os\hal\include\uart.h"/>
+         <include file="..\..\..\os\hal\include\usb.h"/>
+         <include file="..\..\..\os\hal\include\mmc_spi.h"/>
+         <include file="..\..\..\os\hal\include\serial_usb.h"/>
+      </source>
+      <source file="..\..\..\os\hal\src\pal.c" lastModified="147c6080142">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\hal\include\pwm.h" lastModified="14917d26cbb">
+         <include file="..\..\..\os\hal\ports\STM32\LLD\TIMv1\pwm_lld.h"/>
+      </source>
+      <source file="..\..\..\modules\Watchdog\iwdg.c" lastModified="147769a727f">
+         <include file="..\..\..\os\rt\include\ch.h"/>
+         <include file="..\..\..\os\hal\include\hal.h"/>
+         <include file="..\..\..\modules\Watchdog\iwdg.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chregistry.h" lastModified="147c608041e">
+      </source>
+      <source file="..\..\..\os\hal\src\ext.c" lastModified="147c60800c2">
+         <include file="..\..\..\os\hal\include\hal.h"/>
+      </source>
+      <source file="..\..\..\os\rt\include\chtm.h" lastModified="147c6080476">
+      </source>
+   </includePath>
+</dependencies>
