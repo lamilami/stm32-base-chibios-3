@@ -19,6 +19,12 @@
 <part id="6"/>
 <part id="7"/>
 <part id="8"/>
+<part id="9"/>
+<part id="10"/>
+<part id="11"/>
+<part id="12"/>
+<part id="13"/>
+<part id="14"/>
 </presentation>
 </folder>
 </info>
@@ -55,9 +61,33 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3490" selectionTopPixel="1764"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" partName="DS18B20.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" title="DS18B20.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" partName="DS18B20.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" title="DS18B20.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/modules/DS18B20/DS18B20.c"/>
 <editorState selectionHorizontalPixel="75" selectionLength="0" selectionOffset="0" selectionTopPixel="1765"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="gfxconf.h" partName="gfxconf.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/ILI9341/gfxconf.h" title="gfxconf.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/ILI9341/gfxconf.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/modules/ILI9341/gfxconf.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="4179"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="sys_defs.h" partName="sys_defs.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gdisp/sys_defs.h" title="sys_defs.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gdisp/sys_defs.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/ugfx/src/gdisp/sys_defs.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="16" selectionOffset="4963" selectionTopPixel="2304"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="sys_defs.h" partName="sys_defs.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gos/sys_defs.h" title="sys_defs.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gos/sys_defs.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/ugfx/src/gos/sys_defs.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1134"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="gfx.h" partName="gfx.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/gfx.h" title="gfx.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/gfx.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/ugfx/gfx.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="2868"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="gfx.c" partName="gfx.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gfx.c" title="gfx.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gfx.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/ugfx/src/gfx.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="2136"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="label.h" partName="label.h" title="label.h" tooltip="C:\Work\CoIDE\ChibiOS_3.0_Test\ugfx\src\gwin\label.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" uri="file:/C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gwin/label.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="53" selectionOffset="1909" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -67,16 +97,20 @@
 </viewState>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="8">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="18">
 <expanded>
 <element path="/STM32F030F"/>
-<element path="/STM32F030F/board"/>
-<element path="/STM32F030F/board/STM32F030F"/>
 <element path="/STM32F030F/modules"/>
-<element path="/STM32F030F/modules/DS18B20"/>
+<element path="/STM32F030F/modules/ILI9341"/>
+<element path="/STM32F030F/ugfx"/>
+<element path="/STM32F030F/ugfx/drivers"/>
+<element path="/STM32F030F/ugfx/drivers/gdisp"/>
+<element path="/STM32F030F/ugfx/src"/>
+<element path="/STM32F030F/ugfx/src/gdisp"/>
+<element path="/STM32F030F/ugfx/src/gos"/>
 </expanded>
 <selection>
-<element path="/STM32F030F/modules/DS18B20/DS18B20.c"/>
+<element path="/STM32F030F/ugfx/src/gfx.c"/>
 </selection>
 </viewState>
 </view>
@@ -327,6 +361,12 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/board/STM32F030F/chconf.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/DS18B20/DS18B20.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/ILI9341/gfxconf.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/ugfx/src/gdisp/sys_defs.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/ugfx/src/gos/sys_defs.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/ugfx/gfx.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/ugfx/src/gfx.c"/>
+<editor factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" uri="file:/C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gwin/label.h"/>
 </editors>
 <item historyLabel="welcome" index="0"/>
 <item historyLabel="main.c" index="1">
@@ -383,8 +423,26 @@
 <item historyLabel="main.c" index="1">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="DS18B20.c" index="10">
+<item historyLabel="DS18B20.c" index="10">
 <position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="gfxconf.h" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="sys_defs.h" index="12">
+<position info="not_deleted" x="4963" y="16"/>
+</item>
+<item historyLabel="sys_defs.h" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="gfx.h" index="14">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="gfx.c" index="15">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="label.h" index="16">
+<position info="not_deleted" x="1909" y="53"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -393,6 +451,24 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="label.h" tooltip="C:\Work\CoIDE\ChibiOS_3.0_Test\ugfx\src\gwin\label.h">
+<persistable uri="file:/C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gwin/label.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gfx.c" tooltip="STM32F030F/ugfx/src/gfx.c">
+<persistable path="/STM32F030F/ugfx/src/gfx.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gfx.h" tooltip="STM32F030F/ugfx/gfx.h">
+<persistable path="/STM32F030F/ugfx/gfx.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sys_defs.h" tooltip="STM32F030F/ugfx/src/gos/sys_defs.h">
+<persistable path="/STM32F030F/ugfx/src/gos/sys_defs.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sys_defs.h" tooltip="STM32F030F/ugfx/src/gdisp/sys_defs.h">
+<persistable path="/STM32F030F/ugfx/src/gdisp/sys_defs.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gfxconf.h" tooltip="STM32F030F/modules/ILI9341/gfxconf.h">
+<persistable path="/STM32F030F/modules/ILI9341/gfxconf.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.c">
 <persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
 </file>
@@ -419,24 +495,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mcuconf.h" tooltip="STM32F030F/board/STM32F050F/mcuconf.h">
 <persistable path="/STM32F030F/board/STM32F050F/mcuconf.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="st_lld.h" tooltip="STM32F030F/os/hal/ports/STM32/LLD/TIMv1/st_lld.h">
-<persistable path="/STM32F030F/os/hal/ports/STM32/LLD/TIMv1/st_lld.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="STM32F030F/main.c">
-<persistable path="/STM32F030F/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.h" tooltip="ChibiOS_Test/modules/DHT11/DHT11.h">
-<persistable path="/ChibiOS_Test/modules/DHT11/DHT11.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.h" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.h">
-<persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11_hal.c" tooltip="ChibiOS_Test/modules/DHT11/DHT11_hal.c">
-<persistable path="/ChibiOS_Test/modules/DHT11/DHT11_hal.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11_hal.c" tooltip="ChibiOS_Test/modules/DHT11/DHT11_hal.c">
-<persistable path="/ChibiOS_Test/modules/DHT11/DHT11_hal.c"/>
 </file>
 </mruList>
 </workbench>
