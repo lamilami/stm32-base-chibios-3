@@ -284,6 +284,7 @@ int main(void) {
 
 	static DS18B20_Inner_Val DS_Temp_Vals;
 	Core_Module_Update(Temp, NULL, 1000);
+	DS_Temp_Vals.temp[0] = -77;
 	Core_Module_Read(Temp, (char*) &DS_Temp_Vals);
 
 #endif
@@ -294,6 +295,8 @@ int main(void) {
 
 	static DHT11_Inner_Val DHT_Temp_Vals;
 	Core_Module_Update(DHT11, NULL, 3000);
+	DHT_Temp_Vals.temp = -77;
+	DHT_Temp_Vals.humidity = 0;
 	Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
 
 	volatile static uint32_t	time_cnt=0;

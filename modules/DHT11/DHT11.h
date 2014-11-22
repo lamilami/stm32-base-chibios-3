@@ -15,7 +15,7 @@ typedef struct
 
 	DHT11_Inner_Val_RW RW;
 
-	volatile uint16_t temp;
+	volatile int16_t temp;
 	volatile uint16_t humidity;
 	volatile uint16_t cont_errors;
 	union

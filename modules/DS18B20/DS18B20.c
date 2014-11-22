@@ -105,6 +105,7 @@ THD_FUNCTION(DS18B20,arg)
 				{
 					global_errors++;
 					cont_errors++;
+					Inner_Val_DS18B20.temp[i] = -99<<2;
 				}
 				else
 				{
