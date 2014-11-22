@@ -28,7 +28,7 @@ typedef struct
 
 	DS18B20_Inner_Val_RW RW;
 
-	volatile uint16_t temp[DS18B20_NUMBER_OF_SENSORS];
+	volatile int16_t temp[DS18B20_NUMBER_OF_SENSORS];
 //	const uint8_t* sens_addr;// = {DS18B20_SENSOR_1,DS18B20_SENSOR_2,DS18B20_SENSOR_3,DS18B20_SENSOR_4};
 	volatile uint16_t cont_errors;
 	union

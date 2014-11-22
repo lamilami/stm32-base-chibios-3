@@ -77,7 +77,7 @@ THD_FUNCTION(DHT11_thread,arg)
 			global_errors++;
 			cont_errors++;
 			humidity = 0;
-			temperature = 0;
+			temperature = -99;
 		}
 		else
 		{
