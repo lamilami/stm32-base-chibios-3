@@ -242,7 +242,7 @@ int main(void) {
 #if FloorHeater_PRESENT
 
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 33 << 2;
+	FH_IV.Desired_Temp = 31 << 2;
 	FH_IV.Auto_Update_Sec = 180;
 	FH_IV.Get_Temp_Callback = FloorHeater_cb;
 	FH_IV.iGain = 2;
@@ -284,8 +284,9 @@ int main(void) {
 
 	static DS18B20_Inner_Val DS_Temp_Vals;
 	Core_Module_Update(Temp, NULL, 1000);
-	DS_Temp_Vals.temp[0] = -77;
+	DS_Temp_Vals.temp[0] = -77<<2;
 	Core_Module_Read(Temp, (char*) &DS_Temp_Vals);
+	if (DS_Temp_Vals.cont_errors>0) DS_Temp_Vals.temp[0] = -99<<2;
 
 #endif
 
@@ -295,7 +296,7 @@ int main(void) {
 
 	static DHT11_Inner_Val DHT_Temp_Vals;
 	Core_Module_Update(DHT11, NULL, 3000);
-	DHT_Temp_Vals.temp = -77;
+	DHT_Temp_Vals.temp = 77<<2;
 	DHT_Temp_Vals.humidity = 0;
 	Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
 
@@ -418,6 +419,6 @@ int main(void) {
 #endif
 
 //		chThdSleepSeconds(10);
-//		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(10));
+		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(10));
 	}
 }

@@ -11,53 +11,75 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
+<part id="6"/>
+<part id="7"/>
+<part id="8"/>
+<part id="9"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.coocox.builder.ui.editors.ConfigEditor" name="" partName="Configuration" title="Configuration" tooltip="" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="2" verticalPosition="0"/>
-</input>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3211" selectionTopPixel="2764"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" partName="core.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.h" title="core.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/modules/core.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="217" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.h" partName="lcd.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/LCD1602/lcd.h" title="lcd.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/LCD1602/lcd.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/modules/LCD1602/lcd.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.c" partName="onewire.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/onewire.c" title="onewire.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/onewire.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/modules/DS18B20/onewire.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="12337"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="mcuconf.h" partName="mcuconf.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F030F/mcuconf.h" title="mcuconf.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F030F/mcuconf.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/board/STM32F030F/mcuconf.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="3097"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="halconf.h" partName="halconf.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F030F/halconf.h" title="halconf.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F030F/halconf.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/board/STM32F030F/halconf.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="2606"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="chconf.h" partName="chconf.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F030F/chconf.h" title="chconf.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/board/STM32F030F/chconf.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/board/STM32F030F/chconf.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1636" selectionTopPixel="791"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.c" partName="DHT11.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DHT11/DHT11.c" title="DHT11.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DHT11/DHT11.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/modules/DHT11/DHT11.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1841" selectionTopPixel="1278"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core_cmInstr.h" partName="core_cmInstr.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/os/ext/CMSIS/include/core_cmInstr.h" title="core_cmInstr.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/os/ext/CMSIS/include/core_cmInstr.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/os/ext/CMSIS/include/core_cmInstr.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10529" selectionTopPixel="6012"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11_hal.c" partName="DHT11_hal.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DHT11/DHT11_hal.c" title="DHT11_hal.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DHT11/DHT11_hal.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/STM32F030F/modules/DHT11/DHT11_hal.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="5" selectionOffset="5727" selectionTopPixel="2919"/>
 </editor>
 </editors>
 <views>
-<view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
-<viewState>
-<ExpressionKeySet ExpKeys="&amp;(DHT_Temp_Vals.humidity),&amp;time_cnt,&amp;(DHT_Temp_Vals.temp),"/>
-</viewState>
-</view>
-<view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
-<expanded>
-<element path="/STM32F030F"/>
-</expanded>
-<selection>
-<element path="/STM32F030F"/>
-</selection>
-</viewState>
-</view>
-<view id="org.eclipse.debug.ui.RegisterView" partName="Registers">
-<viewState/>
-</view>
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
 <viewState isPinned="false">
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
 </viewState>
 </view>
+<view id="org.coocox.codebugger.trace.ui.traceview" partName="Semihosting"/>
 <view id="org.eclipse.debug.ui.DebugView" partName="Debug">
 <viewState/>
 </view>
-<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
-<viewState/>
-</view>
+<view id="org.eclipse.cdt.ui.typeHierarchy" partName="Type Hierarchy"/>
 <view id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" partName="Memory Browser">
 <viewState>
 <MemoryBroser ComboItemsValue="0x20000DF0;0x20000B40;0x800307c;" FocuseTabIndex="0" TabsValue="" TextValue="0x800307c" horizontalPosition="0" verticalPosition="0"/>
 </viewState>
-</view>
-<view id="org.eclipse.cdt.dsf.debug.ui.disassembly.view" partName="Disassembly">
-<viewState disassembly.syncActiveContext="true" disassembly.trackExpression="false"/>
 </view>
 <view id="org.eclipse.debug.ui.VariableView" partName="Variables">
 <viewState/>
@@ -65,11 +87,39 @@
 <view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
 <viewState/>
 </view>
+<view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
+<viewState>
+<ExpressionKeySet ExpKeys="&amp;(DHT_Temp_Vals.humidity),&amp;time_cnt,&amp;(DHT_Temp_Vals.temp),&amp;(DS_Temp_Vals.temp),&amp;(Temp_Vals.temp[3]),&amp;(Inner_Val_FH.Power),&amp;(Inner_Val_DS18B20.temp[1]),Inner_Val_DS18B20.temp[0],"/>
+</viewState>
+</view>
+<view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="9">
+<expanded>
+<element path="/STM32F030F"/>
+<element path="/STM32F030F/board"/>
+<element path="/STM32F030F/board/STM32F030F"/>
+<element path="/STM32F030F/modules"/>
+<element path="/STM32F030F/modules/DHT11"/>
+<element path="/STM32F030F/modules/DS18B20"/>
+<element path="/STM32F030F/modules/LCD1602"/>
+</expanded>
+<selection>
+<element path="/STM32F030F/modules/DHT11/DHT11_hal.c"/>
+</selection>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.RegisterView" partName="Registers">
+<viewState/>
+</view>
+<view id="org.eclipse.cdt.ui.callHierarchy" partName="Call Hierarchy"/>
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
+<viewState/>
+</view>
 <view id="org.coocox.component.ui.Help" partName="Help">
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.coocox.builder.ui.editors.ConfigEditor" activePerspective="org.coocox.builder.perspective.CoBuilder">
+<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.coocox.builder.perspective.CoBuilder">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.coocox.builder.ui.PerspectiveCoBuilder" id="org.coocox.builder.perspective.CoBuilder" label="CooCox CoBuilder"/>
 <alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
@@ -207,63 +257,85 @@
 <view id="org.eclipse.debug.ui.VariableView"/>
 <view id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser"/>
 <view id="org.eclipse.debug.ui.ExpressionView"/>
-<view id="org.eclipse.cdt.dsf.debug.ui.disassembly.view"/>
-<fastViewBars>&#x0A;<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1480f75" orientation="512" selectedTabId="org.eclipse.debug.ui.MemoryView" style="0">&#x0A;<fastViews>&#x0A;<view id="org.coocox.codebugger.trace.ui.traceview" ratio="0.3"/>
+<fastViewBars>
+<fastViewBar fastViewLocation="131072" id="org.eclipse.ui.internal.ViewStack@1480f75" orientation="512" selectedTabId="org.eclipse.debug.ui.MemoryView" style="0">
+<fastViews>
+<view id="org.coocox.codebugger.trace.ui.traceview" ratio="0.3"/>
 <view id="org.eclipse.cdt.ui.typeHierarchy" ratio="0.3"/>
 <view id="org.eclipse.cdt.ui.callHierarchy" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
 <viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
-<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@15f252b">&#x0A;<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@15f252b">
+<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
+<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="954" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="954" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1c27ebe" ratio="0.5472371" ratioLeft="307" ratioRight="254" relationship="4" relative="org.eclipse.ui.internal.ViewStack@15f252b">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1c27ebe" ratio="0.45454547" ratioLeft="255" ratioRight="306" relationship="4" relative="org.eclipse.ui.internal.ViewStack@15f252b">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@eff50" ratio="0.5634358" ratioLeft="715" ratioRight="554" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c27ebe">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.coocox.component.ui.ComponentView" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@eff50" ratio="0.5634358" ratioLeft="715" ratioRight="554" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c27ebe">
+<folder appearance="2" expanded="2">
+<page content="org.coocox.component.ui.ComponentView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@56cdf" ratio="0.49959838" ratioLeft="622" ratioRight="623" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c27ebe">&#x0A;<folder activePageID="org.eclipse.cdt.dsf.debug.ui.disassembly.view" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.RegisterView" label="Registers"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@56cdf" ratio="0.49959838" ratioLeft="622" ratioRight="623" relationship="2" relative="org.eclipse.ui.internal.ViewStack@1c27ebe">
+<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.RegisterView" label="Registers"/>
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="Memory Browser"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
-<page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="Disassembly"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="2"/>
+<page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="2"/>
 <part id="0"/>
 <part id="1"/>
 <part id="3"/>
-<part id="4"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@9bdf44" ratio="0.7568438" ratioLeft="940" ratioRight="302" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@9bdf44" ratio="0.7568438" ratioLeft="940" ratioRight="302" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.29979035" ratioLeft="286" ratioRight="668" relationship="2" relative="org.eclipse.ui.internal.ViewStack@15f252b"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1480f75" ratio="0.749354" ratioLeft="580" ratioRight="194" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder appearance="2" expanded="0">&#x0A;<page content="org.coocox.codebugger.trace.ui.traceview" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1480f75" ratio="0.749354" ratioLeft="580" ratioRight="194" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="0">
+<page content="org.coocox.codebugger.trace.ui.traceview" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.ui.typeHierarchy" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.ui.callHierarchy" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.MemoryView" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@c85316" ratio="0.74980456" ratioLeft="959" ratioRight="320" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@c85316" ratio="0.74980456" ratioLeft="959" ratioRight="320" relationship="2" relative="org.eclipse.ui.editorss">
+<folder appearance="2" expanded="2">
+<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="LabelNotFound"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
 </folder>
 </info>
@@ -274,105 +346,174 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage">
-<org.coocox.welcome.ui.WelcomePage/>
-</editor>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/os/hal/ports/STM32/LLD/TIMv1/st_lld.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/board/STM32F050F/mcuconf.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/board/STM32F030F/mcuconf.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/os/rt/src/chsem.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/os/hal/ports/STM32/LLD/TIMv1/st_lld.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/os/hal/osal/rt/osal.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/board/STM32F030F/chconf.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/DS18B20/DS18B20.c"/>
-<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="2" verticalPosition="0"/>
-</editor>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/DHT11/DHT11.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/LCD1602/lcd.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/DHT11/DHT11.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/DS18B20/onewire.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/core.h"/>
-<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="2" verticalPosition="0"/>
-</editor>
-<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="2" verticalPosition="0"/>
-</editor>
-<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="2" verticalPosition="0"/>
-</editor>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/DS18B20/DS18B20.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/DHT11/DHT11_hal.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/DHT11/DHT11.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/board/STM32F030F/mcuconf.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/board/STM32F030F/halconf.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/board/STM32F030F/chconf.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/os/hal/ports/STM32/LLD/TIMv1/st_lld.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/os/ext/CMSIS/include/core_cmInstr.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/STM32F030F/modules/DHT11/DHT11_hal.c"/>
 </editors>
-<item historyLabel="welcome" index="0"/>
-<item historyLabel="main.c" index="1">
+<item historyLabel="DS18B20.c" index="1">
+<position info="not_deleted" x="530" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="2">
+<position info="not_deleted" x="1837" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3211" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="2">
+<position info="not_deleted" x="1837" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="1">
+<position info="not_deleted" x="530" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3211" y="0"/>
+</item>
+<item historyLabel="lcd.h" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="st_lld.h" index="2">
-<position info="not_deleted" x="2285" y="18"/>
+<item historyLabel="DHT11.c" index="2">
+<position info="not_deleted" x="1837" y="0"/>
 </item>
-<item historyLabel="mcuconf.h" index="3">
-<position info="not_deleted" x="6054" y="18"/>
+<item historyLabel="DHT11.h" index="4">
+<position info="not_deleted" x="66" y="0"/>
 </item>
-<item historyLabel="st_lld.h" index="2">
-<position info="not_deleted" x="2285" y="18"/>
+<item historyLabel="DHT11.c" index="2">
+<position info="not_deleted" x="1837" y="0"/>
 </item>
-<item historyLabel="mcuconf.h" index="4">
-<position info="not_deleted" x="6092" y="0"/>
+<item historyLabel="DHT11.c" index="2">
+<position info="not_deleted" x="2589" y="0"/>
 </item>
-<item historyLabel="chsem.c" index="5">
-<position info="not_deleted" x="2739" y="17"/>
+<item historyLabel="DHT11.c" index="2">
+<position info="not_deleted" x="320" y="10"/>
 </item>
-<item historyLabel="st_lld.h" index="2">
-<position info="not_deleted" x="2890" y="60"/>
+<item historyLabel="DHT11.h" index="4">
+<position info="not_deleted" x="66" y="0"/>
 </item>
-<item historyLabel="mcuconf.h" index="4">
-<position info="not_deleted" x="6092" y="0"/>
+<item historyLabel="DS18B20.c" index="1">
+<position info="not_deleted" x="530" y="0"/>
 </item>
-<item historyLabel="st_lld.h" index="2">
-<position info="not_deleted" x="2890" y="60"/>
-</item>
-<item historyLabel="mcuconf.h" index="4">
-<position info="not_deleted" x="6092" y="0"/>
-</item>
-<item historyLabel="st_lld.c" index="6">
-<position info="not_deleted" x="1743" y="0"/>
-</item>
-<item historyLabel="osal.h" index="7">
-<position info="not_deleted" x="2455" y="20"/>
-</item>
-<item historyLabel="chconf.h" index="8">
-<position info="not_deleted" x="2040" y="0"/>
-</item>
-<item historyLabel="st_lld.c" index="6">
-<position info="not_deleted" x="1743" y="0"/>
-</item>
-<item historyLabel="pwm_lld.c" index="9">
-<position info="not_deleted" x="3490" y="0"/>
-</item>
-<item historyLabel="chconf.h" index="8">
-<position info="not_deleted" x="2040" y="0"/>
-</item>
-<item historyLabel="mcuconf.h" index="4">
-<position info="not_deleted" x="5170" y="0"/>
-</item>
-<item historyLabel="main.c" index="1">
+<item historyLabel="onewire.c" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DS18B20.c" index="10">
+<item historyLabel="DS18B20.c" index="1">
+<position info="not_deleted" x="530" y="0"/>
+</item>
+<item historyLabel="core.h" index="6">
+<position info="not_deleted" x="217" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="1">
+<position info="not_deleted" x="530" y="0"/>
+</item>
+<item historyLabel="DS18B20.h" index="7">
+<position info="not_deleted" x="587" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="6345" y="0"/>
+</item>
+<item historyLabel="DHT11_hal.c" index="9">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Configuration" index="11"/>
-<item historyLabel="DS18B20.c" index="10">
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="2369" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="6345" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="5983" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="1">
+<position info="not_deleted" x="435" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="5983" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="2369" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="9764" y="0"/>
+</item>
+<item historyLabel="mcuconf.h" index="11">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="main.c" index="12">
-<position info="not_deleted" x="7367" y="0"/>
-</item>
-<item historyLabel="core.h" index="13">
+<item historyLabel="halconf.h" index="12">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="Configuration" index="14"/>
-<item historyLabel="Configuration" index="15"/>
-<item active="true" historyLabel="Configuration" index="16"/>
+<item historyLabel="chconf.h" index="13">
+<position info="not_deleted" x="1636" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="9764" y="0"/>
+</item>
+<item historyLabel="chconf.h" index="13">
+<position info="not_deleted" x="1636" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="3245" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="2011" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="3211" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="1737" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="1737" y="0"/>
+</item>
+<item historyLabel="st_lld.c" index="14">
+<position info="not_deleted" x="5519" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="1737" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="2011" y="0"/>
+</item>
+<item historyLabel="core_cmInstr.h" index="15">
+<position info="not_deleted" x="10529" y="0"/>
+</item>
+<item historyLabel="main.c" index="8">
+<position info="not_deleted" x="3211" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="1737" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="2011" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="1737" y="0"/>
+</item>
+<item historyLabel="core_cmInstr.h" index="15">
+<position info="not_deleted" x="10529" y="0"/>
+</item>
+<item historyLabel="DHT11.c" index="10">
+<position info="not_deleted" x="1841" y="0"/>
+</item>
+<item active="true" historyLabel="DHT11_hal.c" index="16">
+<position info="not_deleted" x="0" y="0"/>
+</item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -380,53 +521,47 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
-<persistable>
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="2" verticalPosition="0"/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11_hal.c" tooltip="STM32F030F/modules/DHT11/DHT11_hal.c">
+<persistable path="/STM32F030F/modules/DHT11/DHT11_hal.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="STM32F030_Test/example/main.c">
-<persistable path="/STM32F030_Test/example/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core_cmInstr.h" tooltip="STM32F030F/os/ext/CMSIS/include/core_cmInstr.h">
+<persistable path="/STM32F030F/os/ext/CMSIS/include/core_cmInstr.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="STM32F030_Test/main.c">
-<persistable path="/STM32F030_Test/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="st_lld.c" tooltip="STM32F030F/os/hal/ports/STM32/LLD/TIMv1/st_lld.c">
+<persistable path="/STM32F030F/os/hal/ports/STM32/LLD/TIMv1/st_lld.c"/>
 </file>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>&#x0A;<subPage/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.c" tooltip="STM32F030F/modules/DHT11/DHT11.c">
+<persistable path="/STM32F030F/modules/DHT11/DHT11.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chconf.h" tooltip="STM32F030F/board/STM32F030F/chconf.h">
+<persistable path="/STM32F030F/board/STM32F030F/chconf.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="halconf.h" tooltip="STM32F030F/board/STM32F030F/halconf.h">
+<persistable path="/STM32F030F/board/STM32F030F/halconf.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mcuconf.h" tooltip="STM32F030F/board/STM32F030F/mcuconf.h">
+<persistable path="/STM32F030F/board/STM32F030F/mcuconf.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.h" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.h">
+<persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_Test/modules/core.h">
+<persistable path="/ChibiOS_Test/modules/core.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.c" tooltip="STM32F030F/modules/DS18B20/onewire.c">
+<persistable path="/STM32F030F/modules/DS18B20/onewire.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.h" tooltip="STM32F030F/modules/DHT11/DHT11.h">
+<persistable path="/STM32F030F/modules/DHT11/DHT11.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.h" tooltip="STM32F030F/modules/LCD1602/lcd.h">
+<persistable path="/STM32F030F/modules/LCD1602/lcd.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="STM32F030F/modules/core.h">
 <persistable path="/STM32F030F/modules/core.h"/>
-</file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="label.h" tooltip="C:\Work\CoIDE\ChibiOS_3.0_Test\ugfx\src\gwin\label.h">
-<persistable uri="file:/C:/Work/CoIDE/ChibiOS_3.0_Test/ugfx/src/gwin/label.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gfx.c" tooltip="STM32F030F/ugfx/src/gfx.c">
-<persistable path="/STM32F030F/ugfx/src/gfx.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gfx.h" tooltip="STM32F030F/ugfx/gfx.h">
-<persistable path="/STM32F030F/ugfx/gfx.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sys_defs.h" tooltip="STM32F030F/ugfx/src/gos/sys_defs.h">
-<persistable path="/STM32F030F/ugfx/src/gos/sys_defs.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sys_defs.h" tooltip="STM32F030F/ugfx/src/gdisp/sys_defs.h">
-<persistable path="/STM32F030F/ugfx/src/gdisp/sys_defs.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gfxconf.h" tooltip="STM32F030F/modules/ILI9341/gfxconf.h">
-<persistable path="/STM32F030F/modules/ILI9341/gfxconf.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.c">
-<persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" tooltip="STM32F030F/modules/DS18B20/DS18B20.c">
 <persistable path="/STM32F030F/modules/DS18B20/DS18B20.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="pwm_lld.c" tooltip="STM32F030F/os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c">
-<persistable path="/STM32F030F/os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="STM32F030F/modules/core.h">
-<persistable path="/STM32F030F/modules/core.h"/>
 </file>
 </mruList>
 </workbench>
