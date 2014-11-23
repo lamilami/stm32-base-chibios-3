@@ -4,9 +4,9 @@
     <Device manufacturerId="9" manufacturerName="ST" chipId="449" chipName="STM32F050F4" boardId="" boardName=""/>
     <BuildOption>
       <Compile>
-        <Option name="OptimizationLevel" value="2"/>
+        <Option name="OptimizationLevel" value="0"/>
         <Option name="UseFPU" value="0"/>
-        <Option name="UserEditCompiler" value=""/>
+        <Option name="UserEditCompiler" value="-Og"/>
         <Option name="SupportCPlusplus" value="0"/>
         <Includepaths>
           <Includepath path="."/>
@@ -22,7 +22,7 @@
         <Option name="UserEditLinkder" value=""/>
         <Option name="UseMemoryLayout" value="0"/>
         <Option name="nostartfiles" value="1"/>
-        <Option name="LTO" value="1"/>
+        <Option name="LTO" value="0"/>
         <Option name="IsNewStartupCode" value="1"/>
         <Option name="Library" value="Not use C Library"/>
         <Option name="DiscardUnusedSections" value="1"/>
@@ -157,10 +157,10 @@
     <File name="modules/nRF24/include/nRF24_HAL.h" path="modules/nRF24/include/nRF24_HAL.h" type="1"/>
     <File name="os/hal/src/hal_mmcsd.c" path="os/hal/src/hal_mmcsd.c" type="1"/>
     <File name="modules/core.c" path="modules/core.c" type="1"/>
-    <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
     <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" type="1"/>
+    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
+    <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" path="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" type="1"/>
     <File name="os/hal/include" path="" type="2"/>
@@ -176,8 +176,8 @@
     <File name="modules/DS18B20/onewire.c" path="modules/DS18B20/onewire.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/hal_lld.c" path="os/hal/ports/STM32/STM32F0xx/hal_lld.c" type="1"/>
-    <File name="os/rt/src/chdebug.c" path="os/rt/src/chdebug.c" type="1"/>
     <File name="os/ext/CMSIS/ST/stm32f0xx.h" path="os/ext/CMSIS/ST/stm32f0xx.h" type="1"/>
+    <File name="os/rt/src/chdebug.c" path="os/rt/src/chdebug.c" type="1"/>
     <File name="os/rt/include/chdynamic.h" path="os/rt/include/chdynamic.h" type="1"/>
     <File name="modules/Watchdog/iwdg_lld.c" path="modules/Watchdog/iwdg_lld.c" type="1"/>
     <File name="os/rt/include/chbsem.h" path="os/rt/include/chbsem.h" type="1"/>

@@ -15,8 +15,8 @@ volatile static DS18B20_Inner_Val Inner_Val_DS18B20={};
 
 const char* sens_addr[DS18B20_NUMBER_OF_SENSORS] =
 //{ DS18B20_SENSOR_1, DS18B20_SENSOR_2, DS18B20_SENSOR_3, DS18B20_SENSOR_4 };
-//{ DS18B20_SENSOR_1, DS18B20_SENSOR_2, DS18B20_SENSOR_3, DS18B20_SENSOR_4, DS18B20_SENSOR_5 };
-{ DS18B20_SENSOR_1 };
+{ DS18B20_SENSOR_1, DS18B20_SENSOR_2, DS18B20_SENSOR_3, DS18B20_SENSOR_4, DS18B20_SENSOR_5 };
+//{ DS18B20_SENSOR_1 };
 
 void DS18B20_Init()
 {
@@ -101,11 +101,11 @@ THD_FUNCTION(DS18B20,arg)
 				//			cntr++;
 				DS_OUT[i].temp = DS_OUT[i].temp >> 2;
 				chSysLock();
-				if ((Inner_Val_DS18B20.temp[i] != 0xffff) && (abs(DS_OUT[i].temp - Inner_Val_DS18B20.temp[i]) > (10 << 2)))
+				if ((Inner_Val_DS18B20.temp[i] != -1) && (abs(DS_OUT[i].temp - Inner_Val_DS18B20.temp[i]) > (10 << 2)))
 				{
 					global_errors++;
 					cont_errors++;
-					Inner_Val_DS18B20.temp[i] = -99<<2;
+//					Inner_Val_DS18B20.temp[i] = -99<<2;
 				}
 				else
 				{
