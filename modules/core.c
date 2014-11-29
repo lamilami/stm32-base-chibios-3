@@ -122,7 +122,7 @@ void Core_Init()
 
 	Core_Module_Register(&Core_Base);
 
-	EXTConfig extcfg =
+	EXTConfig static extcfg =
 	{
 	{
 	{ EXT_CH_MODE_DISABLED, NULL },
