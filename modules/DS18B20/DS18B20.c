@@ -5,6 +5,8 @@
 
 #include <stdlib.h>
 
+#include "string.h"
+
 #if DS18B20_PRESENT
 
 static thread_reference_t Update_Thread;
@@ -13,7 +15,7 @@ static thread_reference_t Update_Thread;
 static core_base_struct_t Core_DS18B20;
 volatile static DS18B20_Inner_Val Inner_Val_DS18B20={};
 
-const char* sens_addr[DS18B20_NUMBER_OF_SENSORS] =
+char sens_addr[DS18B20_NUMBER_OF_SENSORS][12] =
 //{ DS18B20_SENSOR_1, DS18B20_SENSOR_2, DS18B20_SENSOR_3, DS18B20_SENSOR_4 };
 //{ DS18B20_SENSOR_1, DS18B20_SENSOR_2, DS18B20_SENSOR_3, DS18B20_SENSOR_4, DS18B20_SENSOR_5 };
 { DS18B20_SENSOR_1 };
@@ -58,8 +60,21 @@ THD_FUNCTION(DS18B20,arg)
 //	static uint16_t old_temp = 0xffff;
 
 	OW_Init();
-//	uint8_t buf[DS18B20_NUMBER_OF_SENSORS*8];
-//	OW_Scan(buf,DS18B20_NUMBER_OF_SENSORS);
+
+	char buf[DS18B20_NUMBER_OF_SENSORS][8];
+	OW_Scan((uint8_t *) buf,DS18B20_NUMBER_OF_SENSORS);
+
+	register int i;
+	for (i = 0; i < DS18B20_NUMBER_OF_SENSORS; i++)
+	{
+		sens_addr[0][0] = 0x55;
+		memcpy(((uint8_t *) sens_addr)+1, (uint8_t *) buf, 8);
+		sens_addr[0][9]  = 0xbe;
+		sens_addr[0][10] = 0xff;
+		sens_addr[0][11] = 0xff;
+	}
+
+
 
 //	DS18B20_Init (arg,Core_DS18B20);
 
