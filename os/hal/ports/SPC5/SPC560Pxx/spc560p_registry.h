@@ -41,10 +41,10 @@
 #elif defined(_SPC560P50L3_) || defined(_SPC560P50L5_)
 #define _SPC560P50_
 #define _SPC560PXX_MEDIUM_
-#elif defined(_SPC560P54L5_) || defined(_SPC56AP54L3_) || defined(_SPC56AP54L5_)
+#elif defined(_SPC560P54L3_) || (_SPC560P54L5_) || defined(_SPC56AP54L3_) || defined(_SPC56AP54L5_)
 #define _SPC560P54_
 #define _SPC560PXX_LARGE_
-#elif defined(_SPC560P60L5_) || defined(_SPC56AP60L3_) || defined(_SPC56AP60L5_)
+#elif defined(_SPC560P60L3_) ||(_SPC560P60L5_) || defined(_SPC56AP60L3_) || defined(_SPC56AP60L5_)
 #define _SPC560P60_
 #define _SPC560PXX_LARGE_
 #else

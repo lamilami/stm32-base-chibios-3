@@ -19,7 +19,7 @@
 */
 
 /**
- * @defgroup kernel Kernel
+ * @defgroup kernel RT Kernel
  * @details The kernel is the portable part of ChibiOS/RT, this section
  *          documents the various kernel subsystems.
  */
@@ -35,9 +35,7 @@
  */
 
 /**
- * @defgroup types Types
- * @details The system types are defined into the port layer, please refer to
- * the core port implementation section.
+ * @defgroup types Kernel Types
  * @ingroup kernel
  */
 
@@ -167,7 +165,17 @@
  */
 
 /**
- * @defgroup internals Internals
+ * @defgroup time_measurement Time Measurement
+ * @ingroup kernel
+ */
+
+/**
+ * @defgroup statistics Statistics
+ * @ingroup kernel
+ */
+
+/**
+ * @defgroup core Port Layer
  * @ingroup kernel
  */
  
