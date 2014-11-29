@@ -34,6 +34,16 @@
 #define SPC5_NUM_LINFLEX                    10
 #define SPC5_NUM_GPIO                       147
 
+#elif defined(_SPC564B70L7_)
+#define SPC5_NUM_DSPI                       8
+#define SPC5_NUM_LINFLEX                    10
+#define SPC5_NUM_GPIO                       147
+
+#elif defined(_SPC564B74L7_)
+#define SPC5_NUM_DSPI                       8
+#define SPC5_NUM_LINFLEX                    10
+#define SPC5_NUM_GPIO                       147
+
 #elif defined(_SPC564B64L8_)
 #define SPC5_NUM_DSPI                       8
 #define SPC5_NUM_LINFLEX                    10

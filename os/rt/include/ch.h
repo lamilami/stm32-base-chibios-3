@@ -62,13 +62,11 @@
 #define CH_KERNEL_PATCH         0
 /** @} */
 
-/* Required forward declaration, knowledge of this type is required by all
-   modules.*/
-typedef struct thread thread_t;
-
 /* Core headers.*/
 #include "chtypes.h"
 #include "chconf.h"
+#include "chlicense.h"
+#include "chsystypes.h"
 #include "chcore.h"
 #include "chdebug.h"
 #include "chtm.h"

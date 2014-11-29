@@ -38,6 +38,7 @@
 /* Abstract interfaces.*/
 #include "hal_streams.h"
 #include "hal_channels.h"
+#include "hal_files.h"
 #include "hal_ioblock.h"
 #include "hal_mmcsd.h"
 
@@ -61,13 +62,25 @@
 #include "serial.h"
 #include "sdc.h"
 #include "spi.h"
-#include "st.h"
 #include "uart.h"
 #include "usb.h"
+
+/*
+ *  The ST driver is a special case, it is only included if the OSAL is
+ *  configured to require it.
+ */
+#if OSAL_ST_MODE != OSAL_ST_MODE_NONE
+#include "st.h"
+#endif
 
 /* Complex drivers.*/
 #include "mmc_spi.h"
 #include "serial_usb.h"
+
+/* Community drivers.*/
+#if HAL_USE_COMMUNITY
+#include "hal_community.h"
+#endif
 
 /*===========================================================================*/
 /* Driver constants.                                                         */
