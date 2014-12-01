@@ -321,12 +321,12 @@ int main(void) {
 		 PutData[2][2]=3;
 		 PutData[2][3]=4;
 		 PutData[2][4]=5;*/
-		volatile int16_t tmp=0;
+/*		volatile int16_t tmp=0;
 		tmp = DS_Temp_Vals.temp[0];
-//		tmp = PutData[2][3]*256+PutData[2][4];
 		LCD_PutSignedInt(tmp>>2);
 		PrintStr(".");
-		LCD_PutUnsignedInt((tmp&3)*25);
+		LCD_PutUnsignedInt((tmp&3)*25);*/
+		LCD_PutSignedQ2(DS_Temp_Vals.temp[0]);
 		PrintStr("              ");
 		Cursor(1,0);
 		PrintStr(" Temp="); //Написание текста
