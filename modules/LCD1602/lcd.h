@@ -17,6 +17,7 @@ void ClearLCDScreen(void);
 void PrintStr(char *Text);
 void LCD_PutSignedInt(int32_t n);
 void LCD_PutUnsignedInt(uint32_t n);
+void LCD_PutSignedQ2(int32_t n);
 void Cursor(char Row, char Col);
 
 
