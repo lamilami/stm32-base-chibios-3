@@ -13,17 +13,31 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
+<part id="3"/>
+<part id="4"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.c" partName="lcd.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/LCD1602/lcd.c" title="lcd.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/LCD1602/lcd.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/LCD1602/lcd.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4534" selectionTopPixel="3165"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.c" partName="lcd.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/LCD1602/lcd.c" title="lcd.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/LCD1602/lcd.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/LCD1602/lcd.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4534" selectionTopPixel="3087"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" partName="DS18B20.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" title="DS18B20.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1532" selectionTopPixel="645"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.h" partName="DS18B20.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.h" title="DS18B20.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/DS18B20/DS18B20.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="151" selectionTopPixel="0"/>
+</editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/main.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3211" selectionTopPixel="2190"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.c" partName="lcd.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/LCD1602/lcd.c" title="lcd.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/LCD1602/lcd.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_Test/modules/LCD1602/lcd.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4534" selectionTopPixel="3087"/>
 </editor>
 </editors>
 <views>
@@ -40,10 +54,11 @@
 <expanded>
 <element path="/ChibiOS_Test"/>
 <element path="/ChibiOS_Test/modules"/>
+<element path="/ChibiOS_Test/modules/DS18B20"/>
 <element path="/ChibiOS_Test/modules/LCD1602"/>
 </expanded>
 <selection>
-<element path="/ChibiOS_Test/modules/LCD1602/lcd.c"/>
+<element path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
 </selection>
 </viewState>
 </view>
@@ -301,6 +316,13 @@
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/LCD1602/lcd.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_Test/modules/LCD1602/lcd.c"/>
 </editors>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="8292" y="0"/>
@@ -356,8 +378,101 @@
 <item historyLabel="lcd.c" index="1">
 <position info="not_deleted" x="4659" y="0"/>
 </item>
-<item active="true" historyLabel="lcd.c" index="1">
+<item historyLabel="lcd.c" index="1">
 <position info="not_deleted" x="4534" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position/>
+</item>
+<item historyLabel="DS18B20.h" index="3">
+<position info="not_deleted" x="1099" y="16"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="556" y="0"/>
+</item>
+<item historyLabel="crt0.c" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="5">
+<position info="not_deleted" x="3211" y="0"/>
+</item>
+<item historyLabel="lcd.c" index="1">
+<position info="not_deleted" x="4534" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position/>
+</item>
+<item historyLabel="DS18B20.h" index="3">
+<position info="not_deleted" x="1170" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="391" y="0"/>
+</item>
+<item historyLabel="DS18B20.h" index="3">
+<position info="not_deleted" x="1170" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position/>
+</item>
+<item historyLabel="DS18B20.h" index="3">
+<position/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="391" y="0"/>
+</item>
+<item historyLabel="DS18B20.h" index="3">
+<position info="not_deleted" x="77" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="391" y="0"/>
+</item>
+<item historyLabel="DS18B20.h" index="6">
+<position info="not_deleted" x="125" y="15"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="1750" y="0"/>
+</item>
+<item historyLabel="DS18B20.h" index="6">
+<position info="not_deleted" x="144" y="7"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="1750" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="1563" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="1928" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="1570" y="0"/>
+</item>
+<item historyLabel="main.c" index="7">
+<position info="not_deleted" x="3211" y="0"/>
+</item>
+<item historyLabel="main.c" index="7">
+<position info="not_deleted" x="3211" y="0"/>
+</item>
+<item historyLabel="lcd.c" index="8">
+<position info="not_deleted" x="4534" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="1532" y="0"/>
+</item>
+<item historyLabel="DS18B20.h" index="6">
+<position info="not_deleted" x="144" y="7"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="1532" y="0"/>
+</item>
+<item historyLabel="lcd.c" index="8">
+<position info="not_deleted" x="4534" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="2">
+<position info="not_deleted" x="1532" y="0"/>
+</item>
+<item active="true" historyLabel="DS18B20.h" index="6">
+<position info="not_deleted" x="144" y="7"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -366,6 +481,15 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="crt0.c" tooltip="ChibiOS_Test/os/common/ports/ARMCMx/compilers/GCC/crt0.c">
+<persistable path="/ChibiOS_Test/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.h" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.h">
+<persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" tooltip="ChibiOS_Test/modules/DS18B20/DS18B20.c">
+<persistable path="/ChibiOS_Test/modules/DS18B20/DS18B20.c"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.c" tooltip="ChibiOS_Test/modules/LCD1602/lcd.c">
 <persistable path="/ChibiOS_Test/modules/LCD1602/lcd.c"/>
 </file>
@@ -398,15 +522,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chconf.h" tooltip="STM32F030F/board/STM32F030F/chconf.h">
 <persistable path="/STM32F030F/board/STM32F030F/chconf.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="crt0.c" tooltip="STM32F030F/os/common/ports/ARMCMx/compilers/GCC/crt0.c">
-<persistable path="/STM32F030F/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
-</file>
-<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="stm32f050f.ld" tooltip="C:\Work\CoIDE\ChibiOS_3.0_Test\stm32f050f.ld">
-<persistable uri="file:/C:/Work/CoIDE/ChibiOS_3.0_Test/stm32f050f.ld"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="STM32F030F/modules/core.h">
-<persistable path="/STM32F030F/modules/core.h"/>
 </file>
 </mruList>
 </workbench>
