@@ -115,6 +115,7 @@ void* Core_GetIvalAddrByType(const core_types_t type)
 
 void Core_Init()
 {
+#ifndef STM32F100C8
 	Core_Base.type = Base;
 	Core_Base.ival_size = 0;
 	Core_Base.next = NULL;
@@ -155,6 +156,7 @@ void Core_Init()
 	 * Activates the EXT driver 1.
 	 */
 	extStart(&EXTD1, &extcfg);
+#endif
 }
 
 #ifdef Core_Thread

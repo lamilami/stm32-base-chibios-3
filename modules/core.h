@@ -3,10 +3,10 @@
 
 #define MY_ADDR				0x10
 #define RADIO_PRESENT		FALSE
-#define DS18B20_PRESENT		TRUE
-#define DHT11_PRESENT		TRUE
+#define DS18B20_PRESENT		FALSE
+#define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
-#define LCD1602_PRESENT 	TRUE
+#define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
 #define RGBW_PRESENT		FALSE
 #define CLI_PRESENT			FALSE
@@ -91,10 +91,14 @@ bool Core_Events_Register(const core_types_t type);
 inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
 //void ByteArrayCopy(const volatile char* src, volatile char* dst, const uint8_t cnt);
 #define ABS(a) (((a) < 0) ? -(a) : (a))
+#define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел
 
 void Core_Start();
 
+#ifndef STM32F100C8
 EXTConfig extcfg;
+#endif
+
 event_listener_t Core_EvtListener;
 
 #define _core_wait_s(thd, milliseconds) osalThreadSuspendTimeoutS(thd, MS2ST(milliseconds));
