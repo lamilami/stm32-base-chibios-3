@@ -156,7 +156,9 @@ uint16_t FloorHeater_cb() {
  */
 int main(void) {
 
-	Core_Start();
+//	Core_Start();
+	halInit();
+	chSysInit();
 
 	systime_t time_start = chVTGetSystemTime();
 
@@ -262,31 +264,31 @@ int main(void) {
 	 WatchDog_Start(10);
 	 */
 	while (TRUE) {
-/*
-#if DHT11_PRESENT
+		/*
+		 #if DHT11_PRESENT
 
-	static DHT11_Inner_Val Temp_Vals;
-	Core_Module_Update(DHT11, NULL, 3000);
-	Core_Module_Read(DHT11, (char*) &Temp_Vals);
+		 static DHT11_Inner_Val Temp_Vals;
+		 Core_Module_Update(DHT11, NULL, 3000);
+		 Core_Module_Read(DHT11, (char*) &Temp_Vals);
 
-	volatile static uint32_t	time_cnt=0;
-	time_cnt++;
-//	return Temp_Vals.temp;
+		 volatile static uint32_t	time_cnt=0;
+		 time_cnt++;
+		 //	return Temp_Vals.temp;
 
-//	return 25;
+		 //	return 25;
 
-#endif
-*/
+		 #endif
+		 */
 
 #if LCD1602_PRESENT
 
 #if DS18B20_PRESENT
 
-	static DS18B20_Inner_Val DS_Temp_Vals;
-	Core_Module_Update(Temp, NULL, 1000);
-	DS_Temp_Vals.temp[0] = -77<<2;
-	Core_Module_Read(Temp, (char*) &DS_Temp_Vals);
-	if (DS_Temp_Vals.cont_errors>0) DS_Temp_Vals.temp[0] = -99<<2;
+		static DS18B20_Inner_Val DS_Temp_Vals;
+		Core_Module_Update(Temp, NULL, 1000);
+		DS_Temp_Vals.temp[0] = -77<<2;
+		Core_Module_Read(Temp, (char*) &DS_Temp_Vals);
+		if (DS_Temp_Vals.cont_errors>0) DS_Temp_Vals.temp[0] = -99<<2;
 
 #endif
 
@@ -294,26 +296,26 @@ int main(void) {
 
 #if DHT11_PRESENT
 
-	static DHT11_Inner_Val DHT_Temp_Vals;
-	Core_Module_Update(DHT11, NULL, 3000);
-	DHT_Temp_Vals.temp = 77<<2;
-	DHT_Temp_Vals.humidity = 0;
-	Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
+		static DHT11_Inner_Val DHT_Temp_Vals;
+		Core_Module_Update(DHT11, NULL, 3000);
+		DHT_Temp_Vals.temp = 77<<2;
+		DHT_Temp_Vals.humidity = 0;
+		Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
 
-	volatile static uint32_t	time_cnt=0;
-	time_cnt++;
+		volatile static uint32_t time_cnt=0;
+		time_cnt++;
 //	return Temp_Vals.temp;
 
 //	return 25;
 
 #endif
 
-/*		data[0]=2;
-		int16_t tmp;
-		Radio_Send_Command(10, RF_GET, 1, data);
-		data[0]=3;
-		Radio_Send_Command(10, RF_GET, 1, data);
-		chThdSleepSeconds(3);*/
+		/*		data[0]=2;
+		 int16_t tmp;
+		 Radio_Send_Command(10, RF_GET, 1, data);
+		 data[0]=3;
+		 Radio_Send_Command(10, RF_GET, 1, data);
+		 chThdSleepSeconds(3);*/
 		Cursor(0,0); //Установка курсора
 		PrintStr("Outer temp=");//Написание текста
 		/*	    PutData[2][0]=1;
@@ -321,20 +323,20 @@ int main(void) {
 		 PutData[2][2]=3;
 		 PutData[2][3]=4;
 		 PutData[2][4]=5;*/
-/*		volatile int16_t tmp=0;
-		tmp = DS_Temp_Vals.temp[0];
-		LCD_PutSignedInt(tmp>>2);
-		PrintStr(".");
-		LCD_PutUnsignedInt((tmp&3)*25);*/
+		/*		volatile int16_t tmp=0;
+		 tmp = DS_Temp_Vals.temp[0];
+		 LCD_PutSignedInt(tmp>>2);
+		 PrintStr(".");
+		 LCD_PutUnsignedInt((tmp&3)*25);*/
 		LCD_PutSignedQ2(DS_Temp_Vals.temp[0]);
 		PrintStr("              ");
 		Cursor(1,0);
 		PrintStr(" Temp="); //Написание текста
 //		tmp = DHT_Temp_Vals.temp;
-	    LCD_PutUnsignedInt(DHT_Temp_Vals.temp>>2);
-		PrintStr(" Hum="); //Написание текста
+		LCD_PutUnsignedInt(DHT_Temp_Vals.temp>>2);
+		PrintStr(" Hum=");//Написание текста
 //		tmp = DHT_Temp_Vals.temp;
-	    LCD_PutUnsignedInt(DHT_Temp_Vals.humidity);
+		LCD_PutUnsignedInt(DHT_Temp_Vals.humidity);
 //	    PrintStr(".");
 //		LCD_PutUnsignedInt(tmp);
 		PrintStr("    ");
@@ -418,7 +420,32 @@ int main(void) {
 		}
 #endif
 
-//		chThdSleepSeconds(10);
-		time_start = chThdSleepUntilWindowed(time_start,time_start + S2ST(10));
+		//		GPIOD->BRR = 0x2;
+		//		chThdSleepMilliseconds(100);
+		//		GPIOD->BSRR = 0x2;
+//		GPIOC->BRR = 0x2000;
+//		 GPIOD->BRR = 0x2;
+		palClearPad(GPIOC, GPIOC_PIN13);
+		palSetPad(GPIOD, GPIOD_PIN1);
+        /* delay */
+//		int i;
+//        for(i=0;i<0x50000;i++);
+		chThdSleepSeconds(1);
+		palSetPad(GPIOC, GPIOC_PIN13);
+		palClearPad(GPIOD, GPIOD_PIN1);
+//		 GPIOD->BSRR = 0x2;
+//		 GPIOC->BSRR = 0x2000;
+		//		WatchDog_Reset();
+		/*		chThdSleepMilliseconds(800);
+		 palClearPad(GPIOA, 1);
+		 chThdSleepMilliseconds(100);
+		 palSetPad(GPIOA, 1);
+		 chThdSleepMilliseconds(100);
+		 palClearPad(GPIOA, 1);*/
+
+		chThdSleepSeconds(1);
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(4));
+	        /* delay */
+//	        for(i=0;i<0x50000;i++);
 	}
 }

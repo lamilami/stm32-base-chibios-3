@@ -46,7 +46,7 @@
  * @details Frequency of the system timer that drives the system ticks. This
  *          setting also defines the system tick time unit.
  */
-#define CH_CFG_ST_FREQUENCY                 10000
+#define CH_CFG_ST_FREQUENCY                 1000
 
 /**
  * @brief   Time delta constant for the tick-less mode.
@@ -56,7 +56,7 @@
  *          The value one is not valid, timeouts are rounded up to
  *          this value.
  */
-#define CH_CFG_ST_TIMEDELTA                 2
+#define CH_CFG_ST_TIMEDELTA                 0
 
 /** @} */
 
@@ -79,7 +79,7 @@
  * @note    The round robin preemption is not supported in tickless mode and
  *          must be set to zero in that case.
  */
-#define CH_CFG_TIME_QUANTUM                 0
+#define CH_CFG_TIME_QUANTUM                 20
 
 /**
  * @brief   Managed RAM size.
@@ -450,8 +450,9 @@
  * @note    This macro can be used to activate a power saving mode.
  */
 #define CH_CFG_IDLE_ENTER_HOOK() {                                         \
-	GPIOC->BRR = 0x2000;														 	\
 }
+
+//	GPIOB->BRR = 0x2000;
 
 /**
  * @brief   Idle thread leave hook.
@@ -460,8 +461,10 @@
  * @note    This macro can be used to deactivate a power saving mode.
  */
 #define CH_CFG_IDLE_LEAVE_HOOK() {                                         \
-	GPIOC->BSRR = 0x2000;														\
 }
+
+//	GPIOB->BSRR = 0x2000;
+
 
 /**
  * @brief   Idle Loop hook.
@@ -496,6 +499,7 @@
 /*===========================================================================*/
 
 #define CORTEX_ENABLE_WFI_IDLE		TRUE
+//#define CORTEX_ENABLE_WFI_IDLE		FALSE
 #endif  /* _CHCONF_H_ */
 
 /** @} */

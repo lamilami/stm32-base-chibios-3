@@ -17,10 +17,13 @@
 /*
  * ST32F100xB memory setup.
  */
- 
+
+
 __main_stack_size__     = 0x0100;
 __process_stack_size__  = 0x0100;
  
+
+
 MEMORY
 {
     flash : org = 0x08000000, len = 64k
