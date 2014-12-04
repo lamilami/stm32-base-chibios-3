@@ -7,7 +7,7 @@
 #define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
-#define WATCHDOG_PRESENT	FALSE
+#define WATCHDOG_PRESENT	TRUE
 #define RGBW_PRESENT		FALSE
 #define CLI_PRESENT			FALSE
 #define PIR_PRESENT			FALSE
@@ -95,9 +95,7 @@ inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_
 
 void Core_Start();
 
-#ifndef STM32F100C8
 EXTConfig extcfg;
-#endif
 
 event_listener_t Core_EvtListener;
 

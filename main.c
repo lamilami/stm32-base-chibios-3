@@ -156,7 +156,7 @@ uint16_t FloorHeater_cb() {
  */
 int main(void) {
 
-//	Core_Start();
+	Core_Start();
 	halInit();
 	chSysInit();
 
@@ -263,6 +263,7 @@ int main(void) {
 	 palSetPad(GPIOA, 1);
 	 WatchDog_Start(10);
 	 */
+//	 WatchDog_Start(10);
 	while (TRUE) {
 		/*
 		 #if DHT11_PRESENT
@@ -426,13 +427,13 @@ int main(void) {
 //		GPIOC->BRR = 0x2000;
 //		 GPIOD->BRR = 0x2;
 		palClearPad(GPIOC, GPIOC_PIN13);
-		palSetPad(GPIOD, GPIOD_PIN1);
+//		palSetPad(GPIOD, GPIOD_PIN1);
         /* delay */
 //		int i;
 //        for(i=0;i<0x50000;i++);
 		chThdSleepSeconds(1);
 		palSetPad(GPIOC, GPIOC_PIN13);
-		palClearPad(GPIOD, GPIOD_PIN1);
+//		palClearPad(GPIOD, GPIOD_PIN1);
 //		 GPIOD->BSRR = 0x2;
 //		 GPIOC->BSRR = 0x2000;
 		//		WatchDog_Reset();
@@ -444,6 +445,9 @@ int main(void) {
 		 palClearPad(GPIOA, 1);*/
 
 		chThdSleepSeconds(1);
+
+//		WatchDog_Reset();
+
 		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(4));
 	        /* delay */
 //	        for(i=0;i<0x50000;i++);

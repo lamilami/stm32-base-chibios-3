@@ -449,10 +449,12 @@
  *          should be invoked from here.
  * @note    This macro can be used to activate a power saving mode.
  */
-#define CH_CFG_IDLE_ENTER_HOOK() {                                         \
+#define CH_CFG_IDLE_ENTER_HOOK() {                                         	\
+		GPIOD->BRR = 0x2;											   		\
 }
 
-//	GPIOB->BRR = 0x2000;
+//	GPIOD->BRR = 0x2;
+
 
 /**
  * @brief   Idle thread leave hook.
@@ -460,10 +462,11 @@
  *          should be invoked from here.
  * @note    This macro can be used to deactivate a power saving mode.
  */
-#define CH_CFG_IDLE_LEAVE_HOOK() {                                         \
+#define CH_CFG_IDLE_LEAVE_HOOK() {                                       	\
+	GPIOD->BSRR = 0x2;														\
 }
 
-//	GPIOB->BSRR = 0x2000;
+//	GPIOD->BSRR = 0x2;
 
 
 /**
