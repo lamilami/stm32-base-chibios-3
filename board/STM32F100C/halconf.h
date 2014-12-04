@@ -55,7 +55,7 @@
  * @brief   Enables the EXT subsystem.
  */
 #if !defined(HAL_USE_EXT) || defined(__DOXYGEN__)
-#define HAL_USE_EXT                 FALSE
+#define HAL_USE_EXT                 TRUE
 #endif
 
 /**
@@ -305,6 +305,13 @@
  */
 #if !defined(SPI_USE_MUTUAL_EXCLUSION) || defined(__DOXYGEN__)
 #define SPI_USE_MUTUAL_EXCLUSION    TRUE
+#endif
+
+/**
+ * @brief   Enables the WATCHDOG subsystem.
+ */
+#if !defined(HAL_USE_IWDG) || defined(__DOXYGEN__)
+#define HAL_USE_IWDG    TRUE
 #endif
 
 #endif /* _HALCONF_H_ */
