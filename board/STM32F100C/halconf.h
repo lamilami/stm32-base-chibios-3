@@ -62,7 +62,7 @@
  * @brief   Enables the GPT subsystem.
  */
 #if !defined(HAL_USE_GPT) || defined(__DOXYGEN__)
-#define HAL_USE_GPT                 FALSE
+#define HAL_USE_GPT                 TRUE
 #endif
 
 /**
@@ -139,7 +139,7 @@
  * @brief   Enables the SPI subsystem.
  */
 #if !defined(HAL_USE_SPI) || defined(__DOXYGEN__)
-#define HAL_USE_SPI                 FALSE
+#define HAL_USE_SPI                 TRUE
 #endif
 
 /**
