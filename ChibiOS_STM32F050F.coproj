@@ -24,7 +24,7 @@
         <Option name="nostartfiles" value="1"/>
         <Option name="LTO" value="0"/>
         <Option name="IsNewStartupCode" value="1"/>
-        <Option name="Library" value="Not use C Library"/>
+        <Option name="Library" value="Semihosting"/>
         <Option name="DiscardUnusedSections" value="1"/>
         <Option name="UserEditLinker" value="--entry=main; "/>
         <LinkedLibraries/>
@@ -59,7 +59,7 @@
       <Option name="org.coocox.codebugger.gdbjtag.core.targetEndianess" value="0"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.jlinkResetMode" value="Type 0: Normal"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.resetMode" value="SYSRESETREQ"/>
-      <Option name="org.coocox.codebugger.gdbjtag.core.ifSemihost" value="0"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.ifSemihost" value="1"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.ifCacheRom" value="1"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.ipAddress" value="127.0.0.1"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.portNumber" value="2009"/>
@@ -71,7 +71,10 @@
     </DebugOption>
     <ExcludeFile/>
   </Target>
-  <Components path="./"/>
+  <Components path="./">
+    <Component id="31" name="Retarget printf" path="" type="2"/>
+    <Component id="33" name="Semihosting" path="" type="2"/>
+  </Components>
   <Files>
     <File name="os/hal/include/hal.h" path="os/hal/include/hal.h" type="1"/>
     <File name="os/rt/src/chdynamic.c" path="os/rt/src/chdynamic.c" type="1"/>
@@ -157,10 +160,10 @@
     <File name="modules/nRF24/include/nRF24_HAL.h" path="modules/nRF24/include/nRF24_HAL.h" type="1"/>
     <File name="os/hal/src/hal_mmcsd.c" path="os/hal/src/hal_mmcsd.c" type="1"/>
     <File name="modules/core.c" path="modules/core.c" type="1"/>
-    <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" type="1"/>
     <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
-    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
     <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
+    <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
+    <File name="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" path="os/hal/ports/STM32/STM32F0xx/ext_lld_isr.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" path="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" type="1"/>
     <File name="os/hal/include" path="" type="2"/>
@@ -175,9 +178,9 @@
     <File name="os/hal/ports/STM32/LLD/USARTv2" path="" type="2"/>
     <File name="modules/DS18B20/onewire.c" path="modules/DS18B20/onewire.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c" type="1"/>
-    <File name="os/ext/CMSIS/ST/stm32f0xx.h" path="os/ext/CMSIS/ST/stm32f0xx.h" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/hal_lld.c" path="os/hal/ports/STM32/STM32F0xx/hal_lld.c" type="1"/>
     <File name="os/rt/src/chdebug.c" path="os/rt/src/chdebug.c" type="1"/>
+    <File name="os/ext/CMSIS/ST/stm32f0xx.h" path="os/ext/CMSIS/ST/stm32f0xx.h" type="1"/>
     <File name="os/rt/include/chdynamic.h" path="os/rt/include/chdynamic.h" type="1"/>
     <File name="modules/Watchdog/iwdg_lld.c" path="modules/Watchdog/iwdg_lld.c" type="1"/>
     <File name="os/rt/include/chbsem.h" path="os/rt/include/chbsem.h" type="1"/>
@@ -257,10 +260,12 @@
     <File name="os/common/ports/ARMCMx/compilers" path="" type="2"/>
     <File name="modules/nRF24/src/nRF24.c" path="modules/nRF24/src/nRF24.c" type="1"/>
     <File name="modules/nRF24/include/nRF24.h" path="modules/nRF24/include/nRF24.h" type="1"/>
+    <File name="semihosting/sh_cmd.s" path="semihosting/sh_cmd.s" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/stm32_rcc.h" path="os/hal/ports/STM32/STM32F0xx/stm32_rcc.h" type="1"/>
     <File name="modules/DHT11" path="" type="2"/>
     <File name="modules/Command Shell" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2/spi_lld.c" path="os/hal/ports/STM32/LLD/SPIv2/spi_lld.c" type="1"/>
+    <File name="semihosting/semihosting.c" path="semihosting/semihosting.c" type="1"/>
     <File name="os/hal/ports/common/ARMCMx/nvic.c" path="os/hal/ports/common/ARMCMx/nvic.c" type="1"/>
     <File name="modules/nRF24/src/nRF24_HAL.c" path="modules/nRF24/src/nRF24_HAL.c" type="1"/>
     <File name="modules/DHT11/DHT11_hal.c" path="modules/DHT11/DHT11_hal.c" type="1"/>
@@ -270,42 +275,44 @@
     <File name="os/hal/include/gpt.h" path="os/hal/include/gpt.h" type="1"/>
     <File name="os/hal/osal/rt" path="" type="2"/>
     <File name="os/rt/src/chmsg.c" path="os/rt/src/chmsg.c" type="1"/>
-    <File name="os/hal/ports/STM32/STM32F0xx/stm32_dma.c" path="os/hal/ports/STM32/STM32F0xx/stm32_dma.c" type="1"/>
-    <File name="modules/nRF24" path="" type="2"/>
     <File name="os/rt/src/chsys.c" path="os/rt/src/chsys.c" type="1"/>
+    <File name="modules/nRF24" path="" type="2"/>
+    <File name="os/hal/ports/STM32/STM32F0xx/stm32_dma.c" path="os/hal/ports/STM32/STM32F0xx/stm32_dma.c" type="1"/>
     <File name="os/hal/include/rtc.h" path="os/hal/include/rtc.h" type="1"/>
     <File name="os/ext/CMSIS/ST" path="" type="2"/>
     <File name="modules/PIR/PIR.h" path="modules/PIR/PIR.h" type="1"/>
-    <File name="os/hal/ports/STM32/LLD/GPIOv2" path="" type="2"/>
     <File name="os/hal/include/mmc_spi.h" path="os/hal/include/mmc_spi.h" type="1"/>
+    <File name="os/hal/ports/STM32/LLD/GPIOv2" path="" type="2"/>
     <File name="os/hal/include/adc.h" path="os/hal/include/adc.h" type="1"/>
     <File name="os/hal/src/ext.c" path="os/hal/src/ext.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F0xx/stm32_isr.h" path="os/hal/ports/STM32/STM32F0xx/stm32_isr.h" type="1"/>
-    <File name="board/STM32F050F/mcuconf.h" path="board/STM32F050F/mcuconf.h" type="1"/>
     <File name="os/rt/include/chstreams.h" path="os/rt/include/chstreams.h" type="1"/>
+    <File name="board/STM32F050F/mcuconf.h" path="board/STM32F050F/mcuconf.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" type="1"/>
-    <File name="os/hal/include/icu.h" path="os/hal/include/icu.h" type="1"/>
     <File name="os/rt/include/chstats.h" path="os/rt/include/chstats.h" type="1"/>
-    <File name="os/ext/CMSIS/include/core_cmInstr.h" path="os/ext/CMSIS/include/core_cmInstr.h" type="1"/>
+    <File name="os/hal/include/icu.h" path="os/hal/include/icu.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2/spi_lld.h" path="os/hal/ports/STM32/LLD/SPIv2/spi_lld.h" type="1"/>
+    <File name="os/ext/CMSIS/include/core_cmInstr.h" path="os/ext/CMSIS/include/core_cmInstr.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/GPIOv2/pal_lld.c" path="os/hal/ports/STM32/LLD/GPIOv2/pal_lld.c" type="1"/>
-    <File name="os/hal/src/mmc_spi.c" path="os/hal/src/mmc_spi.c" type="1"/>
     <File name="os/rt/include/chqueues.h" path="os/rt/include/chqueues.h" type="1"/>
+    <File name="semihosting" path="" type="2"/>
+    <File name="os/hal/src/mmc_spi.c" path="os/hal/src/mmc_spi.c" type="1"/>
     <File name="os/rt/src/chevents.c" path="os/rt/src/chevents.c" type="1"/>
     <File name="modules/nRF24/include/radio.h" path="modules/nRF24/include/radio.h" type="1"/>
     <File name="os/hal/include/spi.h" path="os/hal/include/spi.h" type="1"/>
     <File name="os/rt/include/chmemcore.h" path="os/rt/include/chmemcore.h" type="1"/>
-    <File name="os/rt/src/chqueues.c" path="os/rt/src/chqueues.c" type="1"/>
     <File name="os/rt/include/chtm.h" path="os/rt/include/chtm.h" type="1"/>
+    <File name="os/rt/src/chqueues.c" path="os/rt/src/chqueues.c" type="1"/>
     <File name="os/rt/src/chregistry.c" path="os/rt/src/chregistry.c" type="1"/>
     <File name="modules/DHT11/DHT11_hal.h" path="modules/DHT11/DHT11_hal.h" type="1"/>
-    <File name="os/hal/src/i2c.c" path="os/hal/src/i2c.c" type="1"/>
     <File name="modules/PIR/PIR.c" path="modules/PIR/PIR.c" type="1"/>
+    <File name="os/hal/src/i2c.c" path="os/hal/src/i2c.c" type="1"/>
     <File name="os" path="" type="2"/>
     <File name="os/hal/src/pwm.c" path="os/hal/src/pwm.c" type="1"/>
     <File name="os/rt/src/chthreads.c" path="os/rt/src/chthreads.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/GPIOv2/pal_lld.h" path="os/hal/ports/STM32/LLD/GPIOv2/pal_lld.h" type="1"/>
+    <File name="semihosting/semihosting.h" path="semihosting/semihosting.h" type="1"/>
     <File name="os/hal/include/st.h" path="os/hal/include/st.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.c" path="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.c" type="1"/>
     <File name="os/hal/ports/STM32" path="" type="2"/>

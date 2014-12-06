@@ -126,10 +126,15 @@ THD_FUNCTION(DS18B20,arg) {
 			}
 		}
 
+		if (cont_errors > 3) {
+			OW_Send(OW_SEND_RESET, (uint8_t *) "\xcc\x4e\x00\x00\x3f", 5, NULL,
+					0, OW_NO_READ);
+		}
+
 		chSysLock();
 
-		Inner_Val_DS18B20.cont_errors =
-				MAX(Inner_Val_DS18B20.cont_errors, cont_errors);
+		Inner_Val_DS18B20.cont_errors = cont_errors;
+//				MAX(Inner_Val_DS18B20.cont_errors, cont_errors);
 		Inner_Val_DS18B20.global_errors_32 = global_errors;
 //		Inner_Val_DS18B20.critical_errors_32 = critical_errors;
 
