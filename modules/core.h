@@ -3,8 +3,8 @@
 
 #define MY_ADDR				0x10
 #define RADIO_PRESENT		FALSE
-#define DS18B20_PRESENT		FALSE
-#define DHT11_PRESENT		FALSE
+#define DS18B20_PRESENT		TRUE
+#define DHT11_PRESENT		TRUE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
@@ -24,7 +24,7 @@
 #include "cli.h"
 #include "PIR.h"
 #include "lcd.h"
-#include "LM75.h"
+//#include "LM75.h"
 
 /*
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
@@ -104,6 +104,6 @@ event_listener_t Core_EvtListener;
 
 #define _core_wait_s(thd, milliseconds) osalThreadSuspendTimeoutS(thd, MS2ST(milliseconds));
 
-#define _core_wakeup_i(thd, msg) osalThreadResumeI(thd, msg);
+#define _core_wakeup_i(thd, msg) if (*thd->p_state == CH_STATE_SUSPENDED) osalThreadResumeI(thd, msg);
 
 #endif

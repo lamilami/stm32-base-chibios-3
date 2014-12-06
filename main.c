@@ -22,6 +22,7 @@
 #include "hal.h"
 #include "core.h"
 #include "halconf.h"
+#include "semihosting.h"
 //#include "LM75_hal.h"
 extern void eeprom_cmd_test(BaseSequentialStream *chp, int argc, char *argv[]);
 
@@ -159,15 +160,15 @@ uint16_t FloorHeater_cb() {
 int main(void) {
 
 	Core_Start();
-	halInit();
-	chSysInit();
+//	halInit();
+//	chSysInit();
 
-	eeprom_cmd_test(NULL, 0, NULL);
+//	eeprom_cmd_test(NULL, 0, NULL);
 
 #if LM75_PRESENT
 	/* buffers depth */
-	#define TMP75_RX_DEPTH 2
-	#define TMP75_TX_DEPTH 2
+#define TMP75_RX_DEPTH 2
+#define TMP75_TX_DEPTH 2
 
 	/* input buffer */
 	static uint8_t tmp75_rx_data[TMP75_RX_DEPTH];
@@ -177,31 +178,31 @@ int main(void) {
 
 	static i2cflags_t errors = 0;
 
-	#define tmp75_addr 0b1001000
+#define tmp75_addr 0b1001000
 
 	i2cStart(&I2CD2,&lm75_i2ccfg);
 
-	  /* tune ports for I2C1*/
-	  palSetPadMode(GPIOB, 10, PAL_MODE_STM32_ALTERNATE_OPENDRAIN);
-	  palSetPadMode(GPIOB, 11, PAL_MODE_STM32_ALTERNATE_OPENDRAIN);
+	/* tune ports for I2C1*/
+	palSetPadMode(GPIOB, 10, PAL_MODE_STM32_ALTERNATE_OPENDRAIN);
+	palSetPadMode(GPIOB, 11, PAL_MODE_STM32_ALTERNATE_OPENDRAIN);
 
-	  chThdSleepMilliseconds(100);  /* Just to be safe. */
+	chThdSleepMilliseconds(100); /* Just to be safe. */
 
-	  int16_t t_int = 0, t_frac = 0;
-	  msg_t status = MSG_OK;
-	  systime_t tmo = MS2ST(4);
+	int16_t t_int = 0, t_frac = 0;
+	msg_t status = MSG_OK;
+	systime_t tmo = MS2ST(4);
 
-	  i2cAcquireBus(&I2CD2);
-	  status = i2cMasterReceiveTimeout(&I2CD2, tmp75_addr, tmp75_rx_data, 2, tmo);
-	  i2cReleaseBus(&I2CD2);
+	i2cAcquireBus(&I2CD2);
+	status = i2cMasterReceiveTimeout(&I2CD2, tmp75_addr, tmp75_rx_data, 2, tmo);
+	i2cReleaseBus(&I2CD2);
 
-	  if (status != MSG_OK){
-	    errors = i2cGetErrors(&I2CD2);
-	  }
+	if (status != MSG_OK) {
+		errors = i2cGetErrors(&I2CD2);
+	}
 
-	  t_int = tmp75_rx_data[0] * 100;
-	  t_frac = (tmp75_rx_data[1] * 100) >> 8;
-	  temperature = t_int + t_frac;
+	t_int = tmp75_rx_data[0] * 100;
+	t_frac = (tmp75_rx_data[1] * 100) >> 8;
+	temperature = t_int + t_frac;
 #endif
 
 	systime_t time_start = chVTGetSystemTime();
@@ -309,45 +310,41 @@ int main(void) {
 	 */
 //	 WatchDog_Start(10);
 	while (TRUE) {
-		/*
-		 #if DHT11_PRESENT
-
-		 static DHT11_Inner_Val Temp_Vals;
-		 Core_Module_Update(DHT11, NULL, 3000);
-		 Core_Module_Read(DHT11, (char*) &Temp_Vals);
-
-		 volatile static uint32_t	time_cnt=0;
-		 time_cnt++;
-		 //	return Temp_Vals.temp;
-
-		 //	return 25;
-
-		 #endif
-		 */
-
-#if LCD1602_PRESENT
 
 #if DS18B20_PRESENT
 
 		static DS18B20_Inner_Val DS_Temp_Vals;
-		Core_Module_Update(Temp, NULL, 1000);
-		DS_Temp_Vals.temp[0] = -77<<2;
+		msg_t msg;
+		msg = Core_Module_Update(Temp, NULL, 1000);
+		DS_Temp_Vals.temp[0] = -77 << 2;
 		Core_Module_Read(Temp, (char*) &DS_Temp_Vals);
-		if (DS_Temp_Vals.cont_errors>0) DS_Temp_Vals.temp[0] = -99<<2;
+		if ((DS_Temp_Vals.cont_errors > 0) || (msg != MSG_OK))
+			DS_Temp_Vals.temp[0] = -99 << 2;
+
+		SH_PrintStr("DS Temp="); //Написание текста
+		SH_PutSignedQ2(DS_Temp_Vals.temp[0]);
 
 #endif
 
 //	osalThreadSleepSeconds(1);
 
 #if DHT11_PRESENT
+		volatile static uint32_t time_cnt = 0;
 
 		static DHT11_Inner_Val DHT_Temp_Vals;
 		Core_Module_Update(DHT11, NULL, 3000);
-		DHT_Temp_Vals.temp = 77<<2;
+		DHT_Temp_Vals.temp = 77 << 2;
 		DHT_Temp_Vals.humidity = 0;
 		Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
 
-		volatile static uint32_t time_cnt=0;
+//		printf("DHT11 Temp: %d, Hum: %d,  Cnt: %d \r\n", (int) DHT_Temp_Vals.temp/4, (int) DHT_Temp_Vals.humidity, time_cnt);
+
+		SH_PrintStr("; DHT Temp="); //Написание текста
+		SH_PutSignedQ2(DHT_Temp_Vals.temp);
+		SH_PrintStr(", Hum="); //Написание текста
+		SH_PutUnsignedInt(DHT_Temp_Vals.humidity);
+		SH_PrintStr("\n");
+
 		time_cnt++;
 //	return Temp_Vals.temp;
 
@@ -355,14 +352,16 @@ int main(void) {
 
 #endif
 
+#if LCD1602_PRESENT
+
 		/*		data[0]=2;
 		 int16_t tmp;
 		 Radio_Send_Command(10, RF_GET, 1, data);
 		 data[0]=3;
 		 Radio_Send_Command(10, RF_GET, 1, data);
 		 chThdSleepSeconds(3);*/
-		Cursor(0,0); //Установка курсора
-		PrintStr("Outer temp=");//Написание текста
+		Cursor(0, 0); //Установка курсора
+		PrintStr("Outer temp="); //Написание текста
 		/*	    PutData[2][0]=1;
 		 PutData[2][1]=2;
 		 PutData[2][2]=3;
@@ -375,11 +374,11 @@ int main(void) {
 		 LCD_PutUnsignedInt((tmp&3)*25);*/
 		LCD_PutSignedQ2(DS_Temp_Vals.temp[0]);
 		PrintStr("              ");
-		Cursor(1,0);
+		Cursor(1, 0);
 		PrintStr(" Temp="); //Написание текста
 //		tmp = DHT_Temp_Vals.temp;
-		LCD_PutUnsignedInt(DHT_Temp_Vals.temp>>2);
-		PrintStr(" Hum=");//Написание текста
+		LCD_PutUnsignedInt(DHT_Temp_Vals.temp >> 2);
+		PrintStr(" Hum="); //Написание текста
 //		tmp = DHT_Temp_Vals.temp;
 		LCD_PutUnsignedInt(DHT_Temp_Vals.humidity);
 //	    PrintStr(".");
@@ -413,21 +412,6 @@ int main(void) {
 		 }*/
 //		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(30));
 #endif
-//		GPIOD->BRR = 0x2;
-//		chThdSleepMilliseconds(100);
-//		GPIOD->BSRR = 0x2;
-		/*		GPIOC->BRR = 0x2000;
-		 GPIOD->BRR = 0x2;
-		 chThdSleepMicroseconds(100);
-		 GPIOD->BSRR = 0x2;
-		 GPIOC->BSRR = 0x2000;*/
-//		WatchDog_Reset();
-		/*		chThdSleepMilliseconds(800);
-		 palClearPad(GPIOA, 1);
-		 chThdSleepMilliseconds(100);
-		 palSetPad(GPIOA, 1);
-		 chThdSleepMilliseconds(100);
-		 palClearPad(GPIOA, 1);*/
 
 #if FloorHeater_PRESENT
 
@@ -465,6 +449,8 @@ int main(void) {
 		}
 #endif
 
+#ifdef STM32F100C8
+
 		//		GPIOD->BRR = 0x2;
 		//		chThdSleepMilliseconds(100);
 		//		GPIOD->BSRR = 0x2;
@@ -472,7 +458,7 @@ int main(void) {
 //		 GPIOD->BRR = 0x2;
 		palClearPad(GPIOC, GPIOC_PIN13);
 //		palSetPad(GPIOD, GPIOD_PIN1);
-        /* delay */
+		/* delay */
 //		int i;
 //        for(i=0;i<0x50000;i++);
 		chThdSleepSeconds(1);
@@ -492,8 +478,10 @@ int main(void) {
 
 //		WatchDog_Reset();
 
-		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(4));
-	        /* delay */
+#endif
+
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(10));
+		/* delay */
 //	        for(i=0;i<0x50000;i++);
 	}
 }
