@@ -501,8 +501,8 @@
 /* Port-specific settings (override port settings defaulted in chcore.h).    */
 /*===========================================================================*/
 
-#define CORTEX_ENABLE_WFI_IDLE		TRUE
-//#define CORTEX_ENABLE_WFI_IDLE		FALSE
+//#define CORTEX_ENABLE_WFI_IDLE		TRUE
+#define CORTEX_ENABLE_WFI_IDLE		FALSE
 #endif  /* _CHCONF_H_ */
 
 /** @} */

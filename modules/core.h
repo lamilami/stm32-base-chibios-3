@@ -7,10 +7,11 @@
 #define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
-#define WATCHDOG_PRESENT	TRUE
+#define WATCHDOG_PRESENT	FALSE
 #define RGBW_PRESENT		FALSE
 #define CLI_PRESENT			FALSE
 #define PIR_PRESENT			FALSE
+#define LM75_PRESENT		FALSE
 
 //#define StM() WatchDog_Start();
 
@@ -23,6 +24,7 @@
 #include "cli.h"
 #include "PIR.h"
 #include "lcd.h"
+#include "LM75.h"
 
 /*
 #if (!DS18B20_PRESENT && FloorHeater_PRESENT)
@@ -49,6 +51,7 @@ typedef enum
 	RGBW,
 	DHT11,
 	PIR,
+	LM75,
 	Other
 } core_types_t;
 
