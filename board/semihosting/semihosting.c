@@ -13,10 +13,14 @@
 #include <sys/stat.h>
 #include "ch.h"
 #include "hal.h"
+#include "core.h"
+
+#if SEMIHOSTING
+
 #include "semihosting.h"
 
 static char g_buf[16];
-static char g_buf_len = 0;
+static uint8_t g_buf_len = 0;
 
 /**************************************************************************//**
  * @brief  Transmit a char on semihosting mode.
@@ -196,3 +200,4 @@ void SH_PutSignedQ2(int32_t n) {
 	SH_SendChar('.');
 	SH_PutUnsignedInt(fract);
 }
+#endif

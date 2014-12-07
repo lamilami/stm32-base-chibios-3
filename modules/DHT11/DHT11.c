@@ -9,8 +9,6 @@
 
 #include <stdlib.h>
 
-#include "semihosting.h"
-
 static thread_reference_t Update_Thread;
 
 //volatile uint16_t out_temp[4];

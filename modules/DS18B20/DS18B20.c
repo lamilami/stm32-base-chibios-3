@@ -83,10 +83,17 @@ THD_FUNCTION(DS18B20,arg) {
 		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS,
 				S2ST(Inner_Val_DS18B20.RW.Auto_Update_Sec));
 
-		while (OW_Send(OW_SEND_RESET, (uint8_t *) "\xcc\x44", 2, NULL, 0,
-				OW_NO_READ) != OW_OK) {
+		uint8_t cnt = 0;
+
+		while ((OW_Send(OW_SEND_RESET, (uint8_t *) "\xcc\x44", 2, NULL, 0,
+				OW_NO_READ) != OW_OK) && (cnt < 3)) {
 			//Waiting DS18B20 to initialize
 			chThdSleepMilliseconds(1);
+			cnt++;
+		}
+
+		if (cnt>=3) {
+			cont_errors++;
 			global_errors++;
 		}
 
