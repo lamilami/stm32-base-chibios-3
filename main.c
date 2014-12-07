@@ -273,7 +273,7 @@ int main(void) {
 //	RGBW_Inner_Val RGBW_Current;
 
 	RGBW_Day.RW.Red_Set = 10000;
-	RGBW_Day.RW.Blue_Set = 5000;
+	RGBW_Day.RW.Blue_Set = 10000;
 	RGBW_Day.RW.Green_Set = 10000;
 	RGBW_Day.RW.Rise_Time_Sec = 30*60;
 	RGBW_Day.RW.Max_Delay_Sec = 600;
@@ -289,7 +289,7 @@ int main(void) {
 #if FloorHeater_PRESENT
 
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 31 << 2;
+	FH_IV.Desired_Temp = 32 << 2;
 	FH_IV.Auto_Update_Sec = 180;
 	FH_IV.Get_Temp_Callback = FloorHeater_cb;
 	FH_IV.iGain = 2;
@@ -302,13 +302,15 @@ int main(void) {
 	Core_Module_Update(Heater, (void *) &FH_IV, 1000);
 	chThdSleepSeconds(1);
 
+#else
+//	WatchDog_Start(15);
 #endif
 	/*
 	 palSetPadMode(GPIOA, GPIOA_PIN1, PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST);
 	 palSetPad(GPIOA, 1);
 	 WatchDog_Start(10);
 	 */
-	WatchDog_Start(15);
+
 
 	while (TRUE) {
 
@@ -489,7 +491,9 @@ int main(void) {
 
 #endif
 
+#if !FloorHeater_PRESENT && !RGBW_PRESENT
 		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(7));
+#endif
 
 	}
 }
