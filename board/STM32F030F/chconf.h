@@ -28,8 +28,10 @@
 #ifndef _CHCONF_H_
 #define _CHCONF_H_
 
-#define EXTI0_1_IRQHandler Vector54
-#define EXTI9_5_IRQHandler Vector9C
+//#define EXTI0_1_IRQHandler Vector54
+//#define EXTI9_5_IRQHandler Vector9C
+
+#define CH_DEBUG		FALSE
 
 /*===========================================================================*/
 /**
@@ -336,7 +338,11 @@
  *
  * @note    The default is @p FALSE.
  */
+#if CH_DEBUG
 #define CH_DBG_SYSTEM_STATE_CHECK           TRUE
+#else
+#define CH_DBG_SYSTEM_STATE_CHECK           FALSE
+#endif
 
 /**
  * @brief   Debug option, parameters checks.
@@ -345,8 +351,11 @@
  *
  * @note    The default is @p FALSE.
  */
+#if CH_DEBUG
 #define CH_DBG_ENABLE_CHECKS                TRUE
-
+#else
+#define CH_DBG_ENABLE_CHECKS                FALSE
+#endif
 /**
  * @brief   Debug option, consistency checks.
  * @details If enabled then all the assertions in the kernel code are
@@ -355,7 +364,11 @@
  *
  * @note    The default is @p FALSE.
  */
+#if CH_DEBUG
 #define CH_DBG_ENABLE_ASSERTS               TRUE
+#else
+#define CH_DBG_ENABLE_ASSERTS               FALSE
+#endif
 
 /**
  * @brief   Debug option, trace buffer.
@@ -376,7 +389,11 @@
  * @note    The default failure mode is to halt the system with the global
  *          @p panic_msg variable set to @p NULL.
  */
+#if CH_DEBUG
 #define CH_DBG_ENABLE_STACK_CHECK           TRUE
+#else
+#define CH_DBG_ENABLE_STACK_CHECK           FALSE
+#endif
 
 /**
  * @brief   Debug option, stacks initialization.
@@ -386,7 +403,11 @@
  *
  * @note    The default is @p FALSE.
  */
+#if CH_DEBUG
 #define CH_DBG_FILL_THREADS                 TRUE
+#else
+#define CH_DBG_FILL_THREADS                 FALSE
+#endif
 
 /**
  * @brief   Debug option, threads profiling.

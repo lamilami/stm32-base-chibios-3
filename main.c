@@ -22,9 +22,11 @@
 #include "hal.h"
 #include "core.h"
 #include "halconf.h"
+#if SEMIHOSTING
 #include "semihosting.h"
+#endif
 //#include "LM75_hal.h"
-extern void eeprom_cmd_test(BaseSequentialStream *chp, int argc, char *argv[]);
+//extern void eeprom_cmd_test(BaseSequentialStream *chp, int argc, char *argv[]);
 
 #if LCD1602_PRESENT
 #include "lcd.h"
@@ -160,8 +162,6 @@ uint16_t FloorHeater_cb() {
 int main(void) {
 
 	Core_Start();
-//	halInit();
-//	chSysInit();
 
 //	eeprom_cmd_test(NULL, 0, NULL);
 
@@ -308,10 +308,11 @@ int main(void) {
 	 palSetPad(GPIOA, 1);
 	 WatchDog_Start(10);
 	 */
-//	 WatchDog_Start(10);
+	WatchDog_Start(15);
+
 	while (TRUE) {
 
-#if DS18B20_PRESENT
+#if DS18B20_PRESENT && !FloorHeater_PRESENT
 
 		static DS18B20_Inner_Val DS_Temp_Vals;
 		msg_t msg;
@@ -320,9 +321,6 @@ int main(void) {
 		Core_Module_Read(Temp, (char*) &DS_Temp_Vals);
 		if ((DS_Temp_Vals.cont_errors > 0) || (msg != MSG_OK))
 			DS_Temp_Vals.temp[0] = -99 << 2;
-
-		SH_PrintStr("DS Temp="); //Написание текста
-		SH_PutSignedQ2(DS_Temp_Vals.temp[0]);
 
 #endif
 
@@ -338,18 +336,29 @@ int main(void) {
 		Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
 
 //		printf("DHT11 Temp: %d, Hum: %d,  Cnt: %d \r\n", (int) DHT_Temp_Vals.temp/4, (int) DHT_Temp_Vals.humidity, time_cnt);
-
-		SH_PrintStr("; DHT Temp="); //Написание текста
-		SH_PutSignedQ2(DHT_Temp_Vals.temp);
-		SH_PrintStr(", Hum="); //Написание текста
-		SH_PutUnsignedInt(DHT_Temp_Vals.humidity);
-		SH_PrintStr("\n");
-
 		time_cnt++;
 //	return Temp_Vals.temp;
 
 //	return 25;
 
+		if (time_cnt < 2160)
+			WatchDog_Reset();
+
+#endif
+
+#if SEMIHOSTING
+#if DS18B20_PRESENT
+		SH_PrintStr("DS Temp="); //Написание текста
+		SH_PutSignedQ2(DS_Temp_Vals.temp[0]);
+#endif
+
+#if DHT11_PRESENT
+		SH_PrintStr("; DHT Temp="); //Написание текста
+		SH_PutSignedQ2(DHT_Temp_Vals.temp);
+		SH_PrintStr(", Hum=");//Написание текста
+		SH_PutUnsignedInt(DHT_Temp_Vals.humidity);
+#endif
+		SH_PrintStr("\n");
 #endif
 
 #if LCD1602_PRESENT
@@ -480,8 +489,7 @@ int main(void) {
 
 #endif
 
-		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(10));
-		/* delay */
-//	        for(i=0;i<0x50000;i++);
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(7));
+
 	}
 }
