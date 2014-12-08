@@ -156,7 +156,7 @@ typedef struct
 
 #define RF_MAX_IO_BUFFERS 3
 
-uint8_t PutData[5][RF_MAX_PAYLOAD_LENGTH - 1];
+//uint8_t PutData[5][RF_MAX_PAYLOAD_LENGTH - 1];
 
 bool rf_sended_debug;
 
