@@ -2,9 +2,9 @@
 #define _CORE_H_
 
 #define MY_ADDR				0x10
-#define RADIO_PRESENT		TRUE
+#define RADIO_PRESENT		FALSE
 #define DS18B20_PRESENT		TRUE
-#define DHT11_PRESENT		FALSE
+#define DHT11_PRESENT		TRUE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
@@ -13,7 +13,7 @@
 #define PIR_PRESENT			FALSE
 #define LM75_PRESENT		FALSE
 
-#define SEMIHOSTING			FALSE
+#define SEMIHOSTING			TRUE
 
 //#define StM() WatchDog_Start();
 

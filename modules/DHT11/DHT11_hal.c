@@ -17,8 +17,9 @@
 /*===========================================================================*/
 
 GPTDriver GPTD17;
+dht11_t DHTD1;
 
-#define Timer_Clock 100000
+#define Timer_Clock 1000000
 
 #define T172US(n) ((((n) - 1UL) * (1000000UL / Timer_Clock)) + 1UL)
 
@@ -193,7 +194,8 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			}
 			else
 			{
-				sensor->time_measurment -= gptGetCounterX(&GPTD17);
+				volatile systime_t tmp_time = gptGetCounterX(&GPTD17);
+				sensor->time_measurment = tmp_time - sensor->time_measurment;
 				if (T172US(sensor->time_measurment) > 40)
 				{
 					sensor->crc += 1;
@@ -203,13 +205,10 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			{
 				chSysLockFromISR();
 				extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
-				palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
-				palSetPad(sensor->ext_port, sensor->ext_pin);
 				if (chVTIsArmedI(&sensor->timer) == true)
 				{
 					chVTResetI(&sensor->timer);
 				}
-//				gptStopTimerI(&GPTD17);
 				chSysUnlockFromISR();
 				sensor->temp = (sensor->data & 0xFF00) >> 8;
 				sensor->humidity = (sensor->data & 0xFF000000) >> 24;
@@ -266,7 +265,7 @@ void dht11_timer_handler(void *p)
 			{
 				chVTResetI(&sensor->timer);
 			}
-//			gptStopTimerI(&GPTD17);
+			gptStopTimerI(&GPTD17);
 			chSysUnlockFromISR();
 			sensor->state = DHT11_ERROR;
 //                SerialConsole::debug("dht11Update timer error\r\n");
@@ -346,10 +345,10 @@ bool dht11Update(dht11_t *sensor, varg_t unused)
 	//SerialConsole::debug("dht11Update start\r\n");
 	if (lldLock(&sensor->lock) == true)
 	{
-//		if (sensor->refresh_time < chVTGetSystemTime())
-//		{
+		if (sensor->refresh_time < chVTGetSystemTime())
+		{
 
-//			sensor->refresh_time = chVTGetSystemTime() + MS2ST(sensor->refresh_period);
+			sensor->refresh_time = chVTGetSystemTime() + MS2ST(sensor->refresh_period);
 			// low pulse
 			sensor->bit_count = 0;
 			state = sensor->state = DHT11_READ_REQUEST;
@@ -361,20 +360,20 @@ bool dht11Update(dht11_t *sensor, varg_t unused)
 			gpt_lld_stop_timer(&GPTD17);
 			osalSysUnlock();
 
-			gptStartContinuous(&GPTD17, 10000);
+			gptStartContinuous(&GPTD17, 65000);
 
 			// timer callback started
 			chVTSet(&sensor->timer, MS2ST(25), dht11_timer_handler, sensor);
 			lldUnlock(&sensor->lock);
 			//
 			return state;
-//		}
-//		else
-//		{
-//			lldUnlock(&sensor->lock);
+		}
+		else
+		{
+			lldUnlock(&sensor->lock);
 			//SerialConsole::debug("dht11Update idle\r\n");
-//			return DHT11_IDLE;
-//		}
+			return DHT11_IDLE;
+		}
 	}
 	else
 	{

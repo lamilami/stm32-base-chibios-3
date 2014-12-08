@@ -90,4 +90,6 @@ bool dht11GetHumidity(dht11_t *sensor, int8_t *humidity);
 }
 #endif
 
+extern dht11_t DHTD1;
+
 #endif /* _DHT11_H_ */
