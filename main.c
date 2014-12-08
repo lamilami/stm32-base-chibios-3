@@ -165,6 +165,10 @@ int main(void) {
 
 //	eeprom_cmd_test(NULL, 0, NULL);
 
+#if WATCHDOG_PRESENT
+	WatchDog_Start(15);
+#endif
+
 #if LM75_PRESENT
 	/* buffers depth */
 #define TMP75_RX_DEPTH 2
@@ -302,9 +306,8 @@ int main(void) {
 	Core_Module_Update(Heater, (void *) &FH_IV, 1000);
 	chThdSleepSeconds(1);
 
-#else
-//	WatchDog_Start(15);
 #endif
+
 	/*
 	 palSetPadMode(GPIOA, GPIOA_PIN1, PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST);
 	 palSetPad(GPIOA, 1);
@@ -333,19 +336,21 @@ int main(void) {
 
 		static DHT11_Inner_Val DHT_Temp_Vals;
 		Core_Module_Update(DHT11, NULL, 3000);
+		chThdSleepSeconds(1);
 		DHT_Temp_Vals.temp = 77 << 2;
 		DHT_Temp_Vals.humidity = 0;
 		Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
+
 
 //		printf("DHT11 Temp: %d, Hum: %d,  Cnt: %d \r\n", (int) DHT_Temp_Vals.temp/4, (int) DHT_Temp_Vals.humidity, time_cnt);
 		time_cnt++;
 //	return Temp_Vals.temp;
 
 //	return 25;
-
+#if WATCHDOG_PRESENT
 		if (time_cnt < 2160)
 			WatchDog_Reset();
-
+#endif
 #endif
 
 #if SEMIHOSTING

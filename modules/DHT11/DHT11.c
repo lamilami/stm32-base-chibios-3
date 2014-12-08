@@ -51,7 +51,6 @@ THD_FUNCTION(DHT11_thread,arg)
 		chThdSleepSeconds(1);
 	}
 
-	static dht11_t DHTD1;
 	static int8_t humidity, temperature;
 
 	DHTD1.ext_pin = DHT11_PIN;
