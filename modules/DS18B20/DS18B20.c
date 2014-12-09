@@ -92,7 +92,7 @@ THD_FUNCTION(DS18B20,arg) {
 			cnt++;
 		}
 
-		if (cnt>=3) {
+		if (cnt >= 3) {
 			cont_errors++;
 			global_errors++;
 		}
@@ -121,8 +121,11 @@ THD_FUNCTION(DS18B20,arg) {
 					cont_errors++;
 //					Inner_Val_DS18B20.temp[i] = -99<<2;
 				} else {
-					cont_errors = 0;
-					Inner_Val_DS18B20.temp[i] = DS_OUT[i].temp;
+					if (DS_OUT[i].temp != -1) {
+						cont_errors = 0;
+						Inner_Val_DS18B20.temp[i] = DS_OUT[i].temp;
+					} else
+						cont_errors++;
 				}
 				chSysUnlock();
 
