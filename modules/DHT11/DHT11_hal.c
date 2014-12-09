@@ -19,7 +19,7 @@
 GPTDriver GPTD17;
 dht11_t DHTD1;
 
-#define Timer_Clock 1000000
+#define Timer_Clock 100000
 
 #define T172US(n) ((((n) - 1UL) * (1000000UL / Timer_Clock)) + 1UL)
 
@@ -205,10 +205,11 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			{
 				chSysLockFromISR();
 				extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
-				if (chVTIsArmedI(&sensor->timer) == true)
-				{
+//				if (chVTIsArmedI(&sensor->timer) == true)
+//				{
 					chVTResetI(&sensor->timer);
-				}
+//				}
+				gptStopTimerI(&GPTD17);
 				chSysUnlockFromISR();
 				sensor->temp = (sensor->data & 0xFF00) >> 8;
 				sensor->humidity = (sensor->data & 0xFF000000) >> 24;
@@ -261,10 +262,10 @@ void dht11_timer_handler(void *p)
 			extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
 			palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
 			palSetPad(sensor->ext_port, sensor->ext_pin);
-			if (chVTIsArmedI(&sensor->timer) == true)
-			{
+//			if (chVTIsArmedI(&sensor->timer) == true)
+//			{
 				chVTResetI(&sensor->timer);
-			}
+//			}
 			gptStopTimerI(&GPTD17);
 			chSysUnlockFromISR();
 			sensor->state = DHT11_ERROR;
@@ -293,19 +294,7 @@ dht11_state_t dht11Init(dht11_t *sensor)
 	GPTD17.clock = STM32_TIMCLK1;
 
 	gptStart(&GPTD17, &gpt17cfg);
-/*
-	gptStartContinuous(&GPTD17, 50000);
-	volatile gptcnt_t counter = gptGetCounterX(&GPTD17);
-	counter++;
-	osalThreadSleepMilliseconds(100);
-	counter = gptGetCounterX(&GPTD17);
 
-	gptStopTimer(&GPTD17);
-	gptStartContinuous(&GPTD17, 50000);
-	counter = gptGetCounterX(&GPTD17);
-	osalThreadSleepMilliseconds(100);
-	counter = gptGetCounterX(&GPTD17);
-*/
 	dht11_state_t state;
 	if (lldLock(&sensor->lock) == true)
 	{
@@ -313,8 +302,7 @@ dht11_state_t dht11Init(dht11_t *sensor)
 		sensor->temp = 0;
 		sensor->humidity = 0;
 		sensor_handlers[sensor->ext_pin] = sensor;
-//		tmObjectInit(&sensor->time_measurment);
-		// configure ext channel used by radio
+
 		palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
 		sensor->ext_cfg.mode = EXT_CH_MODE_BOTH_EDGES | sensor->ext_mode;
 		sensor->ext_cfg.cb = dht11_lld_ext_handler;
@@ -322,7 +310,7 @@ dht11_state_t dht11Init(dht11_t *sensor)
 		extSetChannelModeI(sensor->ext_drv, sensor->ext_pin, &sensor->ext_cfg);
 		extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
 		chSysUnlock();
-		//
+
 		state = sensor->state = DHT11_IDLE;
 		lldUnlock(&sensor->lock);
 		return state;
@@ -341,14 +329,10 @@ bool dht11Update(dht11_t *sensor, varg_t unused)
 	//
 	(void) unused;
 	dht11_state_t state;
-	//
-	//SerialConsole::debug("dht11Update start\r\n");
+
 	if (lldLock(&sensor->lock) == true)
 	{
-		if (sensor->refresh_time < chVTGetSystemTime())
-		{
 
-			sensor->refresh_time = chVTGetSystemTime() + MS2ST(sensor->refresh_period);
 			// low pulse
 			sensor->bit_count = 0;
 			state = sensor->state = DHT11_READ_REQUEST;
@@ -356,28 +340,20 @@ bool dht11Update(dht11_t *sensor, varg_t unused)
 			palClearPad(sensor->ext_port, sensor->ext_pin);
 
 			osalSysLock();
-			GPTD17.state = GPT_READY;
-			gpt_lld_stop_timer(&GPTD17);
+
+			gptStopTimerI(&GPTD17);
+			gptStartContinuousI(&GPTD17, 65000);
+
+			chVTSetI(&sensor->timer, MS2ST(25), dht11_timer_handler, sensor);
+
 			osalSysUnlock();
 
-			gptStartContinuous(&GPTD17, 65000);
-
-			// timer callback started
-			chVTSet(&sensor->timer, MS2ST(25), dht11_timer_handler, sensor);
 			lldUnlock(&sensor->lock);
 			//
 			return state;
-		}
-		else
-		{
-			lldUnlock(&sensor->lock);
-			//SerialConsole::debug("dht11Update idle\r\n");
-			return DHT11_IDLE;
-		}
 	}
 	else
 	{
-		//SerialConsole::debug("dht11Update lock failed\r\n");
 		return DHT11_BUSY;
 	}
 }

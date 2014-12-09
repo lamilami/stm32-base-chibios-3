@@ -13,7 +13,7 @@
 #define PIR_PRESENT			FALSE
 #define LM75_PRESENT		FALSE
 
-#define SEMIHOSTING			TRUE
+#define SEMIHOSTING			FALSE
 
 //#define StM() WatchDog_Start();
 

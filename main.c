@@ -497,7 +497,7 @@ int main(void) {
 #endif
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT
-		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(7));
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(3));
 #endif
 
 	}
