@@ -73,18 +73,29 @@ dht11_t *sensor_handlers[EXT_MAX_CHANNELS];
 /*===========================================================================*/
 
 /*
+inline void NanoSleep(uint16_t cnt)
+{
+	volatile uint16_t i;
+	if (cnt == 0) cnt = 30000;
+	for(i=0;i<cnt;i++);
+}
+*/
+
+/*
  * @brief
  */
 inline bool lldLock(lld_lock_t *lock)
 {
 	bool locked = false;
 	//
+//	NanoSleep(0);
 	chSysLock();
 	if (lock->flag == false)
 	{
 		lock->flag = true;
 		locked = true;
 	}
+//	NanoSleep(0);
 	chSysUnlock();
 	return locked;
 }
@@ -95,12 +106,14 @@ inline bool lldLock(lld_lock_t *lock)
 inline void lldUnlock(lld_lock_t *lock)
 {
 	//
+//	NanoSleep(0);
 	chSysLock();
 	if (lock->flag == true)
 	{
 		lock->flag = false;
 	}
 	chSysUnlock();
+//	NanoSleep(0);
 }
 
 /*
@@ -243,10 +256,10 @@ void dht11_timer_handler(void *p)
 		case DHT11_READ_REQUEST:
 			chSysLockFromISR();
 			chVTSetI(&sensor->timer, MS2ST(5), dht11_timer_handler, sensor);
-			extChannelEnableI(sensor->ext_drv, sensor->ext_pin);
-			chSysUnlockFromISR();
 			palSetPad(sensor->ext_port, sensor->ext_pin);
 			palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_INPUT_PULLUP);
+			extChannelEnableI(sensor->ext_drv, sensor->ext_pin);
+			chSysUnlockFromISR();
 			sensor->bit_count = 0;
 			sensor->state = DHT11_WAIT_RESPONSE;
 			break;
