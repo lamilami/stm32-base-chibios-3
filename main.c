@@ -163,7 +163,20 @@ int main(void) {
 
 	Core_Start();
 
+	LEDB1Swap();
+/*
+#define NRF_CE_IRQ_Port		GPIOF
+#define NRF_CE_Pin GPIOF_PIN0
+
+	palSetPadMode(GPIOF, NRF_CE_Pin,
+			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST); // | PAL_STM32_PUDR_FLOATING);
+	palSetPad(NRF_CE_IRQ_Port, NRF_CE_Pin);
+
+	chThdSleepSeconds(3);
+*/
 //	eeprom_cmd_test(NULL, 0, NULL);
+
+	chThdSleepSeconds(1);
 
 #if WATCHDOG_PRESENT
 	WatchDog_Start(15);
@@ -314,7 +327,6 @@ int main(void) {
 	 WatchDog_Start(10);
 	 */
 
-
 	while (TRUE) {
 
 #if DS18B20_PRESENT && !FloorHeater_PRESENT
@@ -325,7 +337,7 @@ int main(void) {
 		DS_Temp_Vals.temp[0] = -77 << 2;
 		Core_Module_Read(Temp, (char*) &DS_Temp_Vals);
 		if ((DS_Temp_Vals.cont_errors > 0) || (msg != MSG_OK))
-			DS_Temp_Vals.temp[0] = -99 << 2;
+		DS_Temp_Vals.temp[0] = -99 << 2;
 
 #endif
 
@@ -341,7 +353,6 @@ int main(void) {
 		DHT_Temp_Vals.humidity = 0;
 		Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
 
-
 //		printf("DHT11 Temp: %d, Hum: %d,  Cnt: %d \r\n", (int) DHT_Temp_Vals.temp/4, (int) DHT_Temp_Vals.humidity, time_cnt);
 		time_cnt++;
 //	return Temp_Vals.temp;
@@ -349,7 +360,7 @@ int main(void) {
 //	return 25;
 #if WATCHDOG_PRESENT
 		if (time_cnt < 2160)
-			WatchDog_Reset();
+		WatchDog_Reset();
 #endif
 #endif
 
@@ -377,7 +388,7 @@ int main(void) {
 		 Radio_Send_Command(10, RF_GET, 1, data);
 		 chThdSleepSeconds(3);*/
 		Cursor(0, 0); //Установка курсора
-		PrintStr("Outer temp="); //Написание текста
+		PrintStr("Outer temp=");//Написание текста
 		/*	    PutData[2][0]=1;
 		 PutData[2][1]=2;
 		 PutData[2][2]=3;
@@ -394,7 +405,7 @@ int main(void) {
 		PrintStr(" Temp="); //Написание текста
 //		tmp = DHT_Temp_Vals.temp;
 		LCD_PutUnsignedInt(DHT_Temp_Vals.temp >> 2);
-		PrintStr(" Hum="); //Написание текста
+		PrintStr(" Hum=");//Написание текста
 //		tmp = DHT_Temp_Vals.temp;
 		LCD_PutUnsignedInt(DHT_Temp_Vals.humidity);
 //	    PrintStr(".");
@@ -497,7 +508,9 @@ int main(void) {
 #endif
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT
-		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(3));
+		Radio_Send_Command(11, RF_PING, 0, NULL);
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(10));
+//		LEDB1Swap();
 #endif
 
 	}

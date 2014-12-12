@@ -64,36 +64,41 @@ typedef enum
 #define NRF_CE_Pin GPIOF_PIN0
 #define NRF_IRQ_Pin GPIOF_PIN1
 
-#define NRF_CE_IRQ_Port		((GPIO_TypeDef *) GPIOF_BASE)
-#define nRF24_IRQ_EXTI_PortSource		EXTI_PortSourceGPIOF
-#define nRF24_IRQ_EXTI_PinSource		EXTI_PinSource1
-#define nRF24_IRQ_EXTI_Line				EXTI_Line1
-#define nRF24_IRQ_Channel				EXTI0_1_IRQn
+//#define NRF_CE_IRQ_Port		((GPIO_TypeDef *) GPIOF_BASE)
+#define NRF_CE_IRQ_Port		GPIOF
 
-#define NRF_SPI_NSS_Pin GPIO_Pin_4
-#define NRF_SPI_SCK_Pin GPIO_Pin_5
-#define NRF_SPI_MISO_Pin GPIO_Pin_6
-#define NRF_SPI_MOSI_Pin GPIO_Pin_7
+//#define nRF24_IRQ_EXTI_PortSource		EXTI_PortSourceGPIOF
+//#define nRF24_IRQ_EXTI_PinSource		EXTI_PinSource1
+//#define nRF24_IRQ_EXTI_Line				EXTI_Line1
+//#define nRF24_IRQ_Channel				EXTI0_1_IRQn
 
-#define NRF_SPI_Port		((GPIO_TypeDef *) GPIOA_BASE)
+#define NRF_SPI_NSS_Pin GPIOA_PIN4
+#define NRF_SPI_SCK_Pin GPIOA_PIN5
+#define NRF_SPI_MISO_Pin GPIOA_PIN6
+#define NRF_SPI_MOSI_Pin GPIOA_PIN7
+
+//#define NRF_SPI_Port		((GPIO_TypeDef *) GPIOA_BASE)
+#define NRF_SPI_Port		GPIOA
 #endif
 
 void nRF24_Init(void);
 
 // Hardware-dependent functions
 
+/*
 typedef enum
 {
 	nRF24_SPI_SS_LOW = 0, nRF24_SPI_SS_HIGH = 1
 } nRF24_spi_ss_level_t;
+*/
 
 //uint8_t nRF24_hw_spi_rw(uint8_t value, bool first_rw);
 //void nRF24_hw_spi_multi_rw(uint8_t *pbuf, uint8_t length, DMA1_SPI_direction_t direction);
 DMA1_SPI_status_t DMA1_SPI_get_status(void);
 DMA1_SPI_status_t DMA1_SPI_set_status(DMA1_SPI_status_t status_val);
-void nRF24_hw_spi_ss(nRF24_spi_ss_level_t level);
-void nRF24_hw_csn_high(void);
-void nRF24_hw_csn_low(void);
+//void nRF24_hw_spi_ss(nRF24_spi_ss_level_t level);
+//void nRF24_hw_csn_high(void);
+//void nRF24_hw_csn_low(void);
 void nRF24_hw_ce_low(void);
 void nRF24_hw_ce_high(void);
 //void nRF24_hw_ce_pulse_10us(void);

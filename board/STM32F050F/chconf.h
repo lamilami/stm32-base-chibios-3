@@ -31,7 +31,7 @@
 //#define EXTI0_1_IRQHandler Vector54
 //#define EXTI9_5_IRQHandler Vector9C
 
-#define CH_DEBUG		FALSE
+#define CH_DEBUG		TRUE
 
 /*===========================================================================*/
 /**
@@ -124,7 +124,7 @@
  * @note    This is not related to the compiler optimization options.
  * @note    The default is @p TRUE.
  */
-#define CH_CFG_OPTIMIZE_SPEED               TRUE
+#define CH_CFG_OPTIMIZE_SPEED               FALSE
 
 /** @} */
 
@@ -474,7 +474,7 @@
  * @note    This macro can be used to activate a power saving mode.
  */
 #define CH_CFG_IDLE_ENTER_HOOK() {                                      	\
-	GPIOF->BRR = 1;														 	\
+	GPIOA->BRR = 2;														 	\
 }
 
 //	palClearPad(GPIOF,0);
@@ -486,7 +486,7 @@
  * @note    This macro can be used to deactivate a power saving mode.
  */
 #define CH_CFG_IDLE_LEAVE_HOOK() {                                         	\
-	GPIOF->BSRRL = 1;														\
+	GPIOA->BSRRL = 2;														\
 }
 
 //GPIOF->

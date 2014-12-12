@@ -27,7 +27,7 @@
 #include "nRF24_reg.h"
 #include "nRF24_HAL.h"
 
-#define SPI_DMA
+//#define SPI_DMA
 
 #ifdef __cplusplus
 extern "C"

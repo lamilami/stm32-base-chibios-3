@@ -35,15 +35,15 @@
 
 #ifdef DEBUG_Discovery
 #ifdef STM32F100C8
-#define LEDSwap() GPIOC->ODR ^= GPIO_Pin_13
+#define LEDSwap() GPIOA->ODR ^= 0x1
 #define LEDB1On() GPIOA->BSRR = GPIO_Pin_0
 #define LEDB1Off() GPIOA->BRR = GPIO_Pin_0
-#define LEDB1Swap() GPIOA->ODR ^= GPIO_Pin_0
+#define LEDB1Swap() GPIOA->ODR ^= 0x2
 #else
-#define LEDSwap() GPIOA->ODR ^= GPIOA_PIN3
+#define LEDSwap() GPIOA->ODR ^= 0x8
 //#define LEDB1On() GPIOB->BSRR = GPIO_Pin_1
 //#define LEDB1Off() GPIOB->BRR = GPIO_Pin_1
-#define LEDB1Swap() GPIOA->ODR ^= GPIOA_PIN1
+#define LEDB1Swap() GPIOA->ODR ^= 0x4
 #endif
 
 void LEDBlinkS(uint8_t cnt);

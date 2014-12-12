@@ -126,6 +126,7 @@ void radio_send_packet(uint8_t *packet, uint8_t length);
  */
 // void radio_irq (void);
 //void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t *data);
+void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t data_size, void *data);
 void Radio_Receive_Command(void);
 
 void Radio_Start();
