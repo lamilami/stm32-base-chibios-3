@@ -80,7 +80,7 @@ void nRF24_GPIO_init(void) {
 	 GPIO_Init(((GPIO_TypeDef *) GPIOF_BASE), &GPIO_InitStructure);
 	 */
 	palSetPadMode(GPIOF, NRF_CE_Pin,
-			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_LOWEST | PAL_STM32_PUDR_FLOATING);
+			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_LOWEST ); // | PAL_STM32_PUDR_FLOATING);
 
 	/*
 	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
@@ -187,12 +187,14 @@ void nRF24_Init(void) {
 
 void nRF24_hw_ce_low(void) {
 //    GPIO_ResetBits(NRF_CE_IRQ_Port, NRF_CE_Pin);
-	NRF_CE_IRQ_Port->BRR = NRF_CE_Pin;
+//	NRF_CE_IRQ_Port->BRR = NRF_CE_Pin;
+	palClearPad(NRF_CE_IRQ_Port, NRF_CE_Pin);
 }
 
 void nRF24_hw_ce_high(void) {
 //    GPIO_SetBits(NRF_CE_IRQ_Port, NRF_CE_Pin);
-	NRF_CE_IRQ_Port->BSRRL = NRF_CE_Pin;
+//	NRF_CE_IRQ_Port->BSRRL = NRF_CE_Pin;
+	palSetPad(NRF_CE_IRQ_Port, NRF_CE_Pin);
 }
 
 #endif

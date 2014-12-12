@@ -39,8 +39,8 @@ void TX_DS(void);
 void RX_DR(void);
 void TX_AP(void);
 void Radio_Flush(void);
-extern void Receive(void);
-extern void Transmit(void);
+//extern void Receive(void);
+//extern void Transmit(void);
 //extern void LEDSwap(void);
 
 #define EVENTMASK_IRQ 0x2
@@ -138,10 +138,15 @@ void radio_init(void)
 	nRF24_set_address(nRF24_PIPE1, full_tx_addr);     // Sets recieving address on
 	// pipe1
 
+	full_tx_addr[0] = 0x00;
+	full_tx_addr[1] = 0x00;
+	full_tx_addr[2] = 0x00;
+//	nRF24_set_operation_mode(nRF24_PRX); // Enter RX mode
+	nRF24_get_address(nRF24_PIPE1, full_tx_addr); //) et_address(nRF24_PIPE2, full_tx_addr);
+
 	full_tx_addr[0] = RF_FW_PIPE_BYTE;
 	nRF24_set_address(nRF24_PIPE2, full_tx_addr);     // Sets recieving address on
 	// pipe2
-//	nRF24_set_operation_mode(nRF24_PRX); // Enter RX mode
 
 	nRF24_set_output_power(RF_OUT_POWER);
 
@@ -270,6 +275,8 @@ THD_FUNCTION(Radio,arg)
 #endif
 					rf_sended_debug = FALSE;
 //					TX_DS();
+					TX_DS();
+					chMBPost(&rf_mb[RF_MB_FREE], (msg_t) tx_buffer, TIME_INFINITE);
 					break;
 				case (1 << nRF24_IRQ_TX_DS):     // Packet sent
 					TX_DS();
@@ -418,7 +425,7 @@ THD_FUNCTION(Radio_Processor,arg)
 		switch ((*rx_buffer).cmd)
 		{
 		case RF_PING:
-//			LEDB1Swap();
+			LEDB1Swap();
 			Radio_Send_Command((*rx_buffer).src_addr, RF_PONG, 0, NULL);     // load message into radio
 			break;
 		case RF_PONG:
