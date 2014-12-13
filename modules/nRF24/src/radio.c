@@ -142,7 +142,7 @@ void radio_init(void)
 	full_tx_addr[1] = 0x00;
 	full_tx_addr[2] = 0x00;
 //	nRF24_set_operation_mode(nRF24_PRX); // Enter RX mode
-	nRF24_get_address(nRF24_PIPE1, full_tx_addr); //) et_address(nRF24_PIPE2, full_tx_addr);
+	nRF24_get_address(nRF24_PIPE1, full_tx_addr);     //) et_address(nRF24_PIPE2, full_tx_addr);
 
 	full_tx_addr[0] = RF_FW_PIPE_BYTE;
 	nRF24_set_address(nRF24_PIPE2, full_tx_addr);     // Sets recieving address on
@@ -275,11 +275,14 @@ THD_FUNCTION(Radio,arg)
 #endif
 					rf_sended_debug = FALSE;
 //					TX_DS();
-					TX_DS();
+					radio_set_status(RF_MAX_RT);
+					radio_set_mode(nRF24_PRX, full_rx_addr);
 					chMBPost(&rf_mb[RF_MB_FREE], (msg_t) tx_buffer, TIME_INFINITE);
 					break;
 				case (1 << nRF24_IRQ_TX_DS):     // Packet sent
-					TX_DS();
+//					TX_DS();
+					radio_set_status(RF_TX_DS);
+					radio_set_mode(nRF24_PRX, full_rx_addr);
 					chMBPost(&rf_mb[RF_MB_FREE], (msg_t) tx_buffer, TIME_INFINITE);
 					break;
 				default:

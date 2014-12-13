@@ -1,7 +1,7 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
-#define MY_ADDR				0x10
+#define MY_ADDR				11
 #define RADIO_PRESENT		TRUE
 #define DS18B20_PRESENT		FALSE
 #define DHT11_PRESENT		FALSE
