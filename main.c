@@ -178,6 +178,10 @@ int main(void) {
 
 	chThdSleepSeconds(1);
 
+#if MY_ADDR==10
+	Radio_Send_Command(11, RF_PING, 0, NULL);
+#endif
+
 #if WATCHDOG_PRESENT
 	WatchDog_Start(15);
 #endif
@@ -508,7 +512,7 @@ int main(void) {
 #endif
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT
-		Radio_Send_Command(11, RF_PING, 0, NULL);
+//		Radio_Send_Command(11, RF_PING, 0, NULL);
 		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(10));
 //		LEDB1Swap();
 #endif
