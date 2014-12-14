@@ -144,12 +144,12 @@ void Core_Init()
 	{ EXT_CH_MODE_DISABLED, NULL },
 	{ EXT_CH_MODE_DISABLED, NULL },
 #ifndef STM32F10X_MD_VL
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
+			{ EXT_CH_MODE_DISABLED, NULL },
+			{ EXT_CH_MODE_DISABLED, NULL },
+			{ EXT_CH_MODE_DISABLED, NULL },
+			{ EXT_CH_MODE_DISABLED, NULL },
 #endif
-	{ EXT_CH_MODE_DISABLED, NULL } } };
+			{ EXT_CH_MODE_DISABLED, NULL } } };
 
 	/*
 	 * Activates the EXT driver 1.
@@ -223,13 +223,13 @@ inline void Core_Register_Thread(core_types_t type, thread_t* thd, thread_refere
 
 static void Start_Modules(void)
 {
-/*
-#if WATCHDOG_PRESENT
-	WatchDog_Start();
-#endif
-*/
+	/*
+	 #if WATCHDOG_PRESENT
+	 WatchDog_Start();
+	 #endif
+	 */
 #if LCD1602_PRESENT
-	InitializeLCD(); //Инициализация дисплея
+	InitializeLCD();     //Инициализация дисплея
 	ClearLCDScreen();//Очистка дисплея от мусора
 #endif
 #if CLI_PRESENT
@@ -323,9 +323,9 @@ msg_t Core_Module_Update(const core_types_t type, const char * inval, const syst
 		chSysLock();
 		while (*Modules_Array[type].Base_Thread_Updater != NULL)
 		{
-			  chSysUnlock();
-			  chSysLock();
-			  chSchDoYieldS();
+			chSysUnlock();
+			chSysLock();
+			chSchDoYieldS();
 		}
 		chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
 		msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
@@ -336,16 +336,24 @@ msg_t Core_Module_Update(const core_types_t type, const char * inval, const syst
 	return MSG_ERROR;
 }
 
-uint8_t Core_Module_Read(const core_types_t type, char * inval)
+uint8_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval)
 {
-	core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
-	if (base_struct == NULL)
-		return 0;
-	chSysLock();
-	memcpy(inval, (void *) base_struct->inner_values, base_struct->ival_size);
+	uint8_t ret_size = 0;
+	if ((addr == localhost) || (addr == MY_ADDR))
+	{
+		core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
+		if (base_struct == NULL)
+			return 0;
+		chSysLock();
+		memcpy(inval, (void *) base_struct->inner_values, base_struct->ival_size);
 //	ByteArrayCopy((char*) base_struct->inner_values, inval, base_struct->ival_size);
-	chSysUnlock();
-	return base_struct->ival_size;
+		chSysUnlock();
+		ret_size = base_struct->ival_size;
+	} else {
+		inval[0] = type;
+		ret_size = Radio_Send_Command(addr, RF_GET, 1, inval);
+	}
+	return ret_size;
 }
 
 /*

@@ -15,6 +15,8 @@
 
 #define SEMIHOSTING			FALSE
 
+#define localhost			0
+
 //#define StM() WatchDog_Start();
 
 #include "radio.h"
@@ -91,7 +93,7 @@ void Core_Module_Register(core_base_struct_t* Base_Struct);
 //void* Core_GetIvalAddrByType(const core_types_t type);
 //msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds);
 msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds);
-uint8_t Core_Module_Read(const core_types_t type, char * inval);
+uint8_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval);
 bool Core_Events_Register(const core_types_t type);
 inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
 //void ByteArrayCopy(const volatile char* src, volatile char* dst, const uint8_t cnt);

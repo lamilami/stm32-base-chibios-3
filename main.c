@@ -180,6 +180,8 @@ int main(void) {
 
 #if MY_ADDR==10
 	Radio_Send_Command(11, RF_PING, 0, NULL);
+#else
+//	Radio_Send_Command(10, RF_PING, 0, NULL);
 #endif
 
 #if WATCHDOG_PRESENT
@@ -339,7 +341,7 @@ int main(void) {
 		msg_t msg;
 		msg = Core_Module_Update(Temp, NULL, 1000);
 		DS_Temp_Vals.temp[0] = -77 << 2;
-		Core_Module_Read(Temp, (char*) &DS_Temp_Vals);
+		Core_Module_Read(localhost, Temp, (char*) &DS_Temp_Vals);
 		if ((DS_Temp_Vals.cont_errors > 0) || (msg != MSG_OK))
 		DS_Temp_Vals.temp[0] = -99 << 2;
 
@@ -509,6 +511,16 @@ int main(void) {
 
 //		WatchDog_Reset();
 
+#endif
+
+#if !DS18B20_PRESENT
+		static DS18B20_Inner_Val DS_Temp_Vals;
+		msg_t msg;
+//		msg = Core_Module_Update(Temp, NULL, 1000);
+		DS_Temp_Vals.temp[0] = -77 << 2;
+		Core_Module_Read(10, Temp, (char*) &DS_Temp_Vals);
+		if ((DS_Temp_Vals.cont_errors > 0)) // || (msg != MSG_OK))
+		DS_Temp_Vals.temp[0] = -99 << 2;
 #endif
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT
