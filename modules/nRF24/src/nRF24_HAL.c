@@ -25,21 +25,30 @@ void nRF24_GPIO_init(void) {
 //	SPI_InitTypeDef SPI_InitStructure;
 
 #ifdef STM32F100C8
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+	rccEnableAPB2(RCC_APB2ENR_IOPAEN, TRUE);
+	rccEnableAPB2(RCC_APB2ENR_IOPBEN, TRUE);
+	rccEnableAPB2(RCC_APB2ENR_AFIOEN, TRUE);
 
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-//	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-//	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStructure.GPIO_Pin = NRF_CE_Pin;
-	GPIO_Init(NRF_CE_IRQ_Port, &GPIO_InitStructure);
+	/*
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+	 //	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	 //	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	 GPIO_InitStructure.GPIO_Pin = NRF_CE_Pin;
+	 GPIO_Init(NRF_CE_IRQ_Port, &GPIO_InitStructure);
+	 */
+	palSetPadMode(NRF_CE_IRQ_Port, NRF_CE_Pin, PAL_MODE_OUTPUT_PUSHPULL);
 
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-//	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-//	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStructure.GPIO_Pin = NRF_IRQ_Pin;
-	GPIO_Init(NRF_CE_IRQ_Port, &GPIO_InitStructure);
+	/*
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+	 //	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	 //	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	 GPIO_InitStructure.GPIO_Pin = NRF_IRQ_Pin;
+	 GPIO_Init(NRF_CE_IRQ_Port, &GPIO_InitStructure);
+	 */
+//	palSetPadMode(NRF_CE_IRQ_Port, NRF_IRQ_Pin, PAL_MODE_INPUT_PULLUP);
 
 	/** SPI1 GPIO Configuration
 	 PA15   ------> SPI1_NSS
@@ -49,22 +58,33 @@ void nRF24_GPIO_init(void) {
 	 */
 
 	/*Enable or disable APB2 peripheral clock */
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO|RCC_APB2Periph_GPIOB, ENABLE);
-
+//	RCC_APB2PeriphClockCmd(
+//			RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO | RCC_APB2Periph_GPIOB,
+//			ENABLE);
 	/*Configure GPIO pin : PA */
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	/*
+	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_15;
+	 GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+	 GPIO_Init(GPIOA, &GPIO_InitStructure);
+	 */
+	palSetPadMode(NRF_SPI_NSS_Port, NRF_SPI_NSS_Pin, PAL_MODE_OUTPUT_PUSHPULL);
 
 	/*Configure GPIO pin : PB */
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3|GPIO_Pin_4|GPIO_Pin_5;
-//	  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
-	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	/*
+	 GPIO_InitStructure.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
+	 //	  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+	 GPIO_Init(GPIOB, &GPIO_InitStructure);
+	 */
+	palSetPadMode(NRF_SPI_Port, NRF_SPI_SCK_Pin, PAL_MODE_OUTPUT_PUSHPULL);
+	palSetPadMode(NRF_SPI_Port, NRF_SPI_MISO_Pin, PAL_MODE_OUTPUT_PUSHPULL);
+	palSetPadMode(NRF_SPI_Port, NRF_SPI_MOSI_Pin, PAL_MODE_OUTPUT_PUSHPULL);
 
 	/*Configure peripheral I/O remapping */
-	GPIO_PinRemapConfig(GPIO_Remap_SPI1, ENABLE);
+//	GPIO_PinRemapConfig(GPIO_Remap_SPI1, ENABLE);
+
+	AFIO->MAPR |= AFIO_MAPR_SPI1_REMAP;
 
 #else
 
@@ -161,12 +181,12 @@ void nRF24_IRQ_Init(void) {
 #endif
 //	palSetPad(GPIOF, GPIOF_PIN1);
 //	palSetPadMode(GPIOF, GPIOF_PIN1, PAL_MODE_INPUT);
-	palSetPadMode(GPIOF, NRF_IRQ_Pin,
-			PAL_MODE_INPUT_PULLUP | PAL_STM32_OSPEED_LOWEST);
+	palSetPadMode(NRF_CE_IRQ_Port, NRF_IRQ_Pin,
+			PAL_MODE_INPUT_PULLUP);
 
 	EXTChannelConfig extcfg;
 	extcfg.mode = EXT_CH_MODE_FALLING_EDGE | EXT_CH_MODE_AUTOSTART
-			| EXT_MODE_GPIOF;
+			| NRF_IRQ_EXT_Port;
 	extcfg.cb = nRF24_irq_ext_handler;
 
 	chSysLock();

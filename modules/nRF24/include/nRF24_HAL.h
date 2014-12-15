@@ -15,19 +15,17 @@
  */
 
 #ifdef STM32F100C8
-static const SPIConfig hs_spicfg =
-{	NULL, GPIOA, 4, SPI_CR1_BR_1, // | SPI_CR1_MSTR,
+static const SPIConfig hs_spicfg = { NULL, GPIOA, 4, SPI_CR1_BR_1, // | SPI_CR1_MSTR,
 //  SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0 // | SPI_CR2_FRXTH
-};
+		};
 #else
 static const SPIConfig hs_spicfg =
-{ NULL, GPIOA, 4, SPI_CR1_BR_1, // | SPI_CR1_MSTR,
-		SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0 // | SPI_CR2_FRXTH
+{	NULL, GPIOA, 4, SPI_CR1_BR_1, // | SPI_CR1_MSTR,
+	SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0// | SPI_CR2_FRXTH
 };
 #endif
 
-typedef enum
-{
+typedef enum {
 	DMA1_SPI_IDLE, /**< Channel3 is idle */
 	DMA1_SPI_END, /**< Transfer completed */
 	DMA1_SPI_BUSY, /**< Channel3 busy */
@@ -35,30 +33,34 @@ typedef enum
 	DMA1_SPI_ERROR, /**< Channel3 error */
 } DMA1_SPI_status_t;
 
-typedef enum
-{
+typedef enum {
 	DMA1_SPI_READ, /**< Channel3 is idle */
 	DMA1_SPI_WRITE /**< Transfer completed */
 } DMA1_SPI_direction_t;
 
 #ifdef STM32F100C8
-#define NRF_CE_Pin GPIO_Pin_6
-#define NRF_IRQ_Pin GPIO_Pin_7
+#define NRF_CE_Pin GPIOB_PIN6
+#define NRF_IRQ_Pin GPIOB_PIN7
 #define NRF_CE_IRQ_Port		GPIOB
 
-#define nRF24_IRQ_EXTI_PortSource		GPIO_PortSourceGPIOB
-#define nRF24_IRQ_EXTI_PinSource		GPIO_PinSource7
-#define nRF24_IRQ_EXTI_Line				EXTI_Line7
-#define nRF24_IRQ_Channel				EXTI9_5_IRQn
+//#define nRF24_IRQ_EXTI_PortSource		GPIO_PortSourceGPIOB
+//#define nRF24_IRQ_EXTI_PinSource		GPIO_PinSource7
+//#define nRF24_IRQ_EXTI_Line				EXTI_Line7
+//#define nRF24_IRQ_Channel				EXTI9_5_IRQn
 
-#define NRF_SPI_NSS_Pin GPIO_Pin_15
-#define NRF_SPI_SCK_Pin GPIO_Pin_3
-#define NRF_SPI_MISO_Pin GPIO_Pin_4
-#define NRF_SPI_MOSI_Pin GPIO_Pin_5
+#define NRF_SPI_NSS_Pin GPIOA_PIN15
+#define NRF_SPI_SCK_Pin GPIOB_PIN3
+#define NRF_SPI_MISO_Pin GPIOB_PIN4
+#define NRF_SPI_MOSI_Pin GPIOB_PIN5
 
 #define NRF_SPI_Port		GPIOB
 #define NRF_SPI_NSS_Port	GPIOA
+#define NRF_CE_IRQ_Port		GPIOB
+
+#define NRF_IRQ_EXT_Port	EXT_MODE_GPIOB
+
 #else
+
 #define GPIO_EXTILineConfig SYSCFG_EXTILineConfig
 
 #define NRF_CE_Pin GPIOF_PIN0
@@ -79,6 +81,8 @@ typedef enum
 
 //#define NRF_SPI_Port		((GPIO_TypeDef *) GPIOA_BASE)
 #define NRF_SPI_Port		GPIOA
+
+#define NRF_IRQ_EXT_Port	EXT_MODE_GPIOF
 #endif
 
 void nRF24_Init(void);
@@ -86,11 +90,11 @@ void nRF24_Init(void);
 // Hardware-dependent functions
 
 /*
-typedef enum
-{
-	nRF24_SPI_SS_LOW = 0, nRF24_SPI_SS_HIGH = 1
-} nRF24_spi_ss_level_t;
-*/
+ typedef enum
+ {
+ nRF24_SPI_SS_LOW = 0, nRF24_SPI_SS_HIGH = 1
+ } nRF24_spi_ss_level_t;
+ */
 
 //uint8_t nRF24_hw_spi_rw(uint8_t value, bool first_rw);
 //void nRF24_hw_spi_multi_rw(uint8_t *pbuf, uint8_t length, DMA1_SPI_direction_t direction);

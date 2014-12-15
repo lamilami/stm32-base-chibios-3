@@ -74,6 +74,7 @@ static SPIEepromFileConfig icfg = { 0, 0, EEPROM_SIZE, EEPROM_PAGE_SIZE,
 /**
  *
  */
+/*
 static void printfileinfo(BaseSequentialStream *chp, EepromFileStream *efsp) {
 	// chprintf(chp, "size = %u, position = %u, barrier_low = %u, barrier_hi = %u\r\n",
 //		   fileStreamGetSize(efsp),
@@ -82,7 +83,7 @@ static void printfileinfo(BaseSequentialStream *chp, EepromFileStream *efsp) {
 //           efsp->cfg->barrier_hi);
 //  chThdSleepMilliseconds(100);
 }
-
+*/
 /**
  * Fills eeprom area with pattern, than read it back and compare
  */
