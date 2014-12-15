@@ -46,22 +46,6 @@
   [#assign pseg1 = settings.timings.pseg1.value[0]?string?trim /]
   [#assign pseg2 = settings.timings.pseg2.value[0]?string?trim /]
   [#assign presdiv = settings.timings.presdiv.value[0]?string?trim /]
-  [#assign IDf0 = settings.mailbox_id_1.id_mode.value[0]?string?trim /]
-  [#assign maskf0 = settings.mailbox_id_1.id_mask.value[0]?string?trim /]
-  [#assign IDf1 = settings.mailbox_id_2.id_mode.value[0]?string?trim /]
-  [#assign maskf1 = settings.mailbox_id_2.id_mask.value[0]?string?trim /]
-  [#assign IDf2 = settings.mailbox_id_3.id_mode.value[0]?string?trim /]
-  [#assign maskf2 = settings.mailbox_id_3.id_mask.value[0]?string?trim /]
-  [#assign IDf3 = settings.mailbox_id_4.id_mode.value[0]?string?trim /]
-  [#assign maskf3 = settings.mailbox_id_4.id_mask.value[0]?string?trim /]
-  [#assign IDf4 = settings.mailbox_id_5.id_mode.value[0]?string?trim /]
-  [#assign maskf4 = settings.mailbox_id_5.id_mask.value[0]?string?trim /]
-  [#assign IDf5 = settings.mailbox_id_6.id_mode.value[0]?string?trim /]
-  [#assign maskf5 = settings.mailbox_id_6.id_mask.value[0]?string?trim /]
-  [#assign IDf6 = settings.mailbox_id_7.id_mode.value[0]?string?trim /]
-  [#assign maskf6 = settings.mailbox_id_7.id_mask.value[0]?string?trim /]
-  [#assign IDf7 = settings.mailbox_id_8.id_mode.value[0]?string?trim /]
-  [#assign maskf7 = settings.mailbox_id_8.id_mask.value[0]?string?trim /]
   [#if warnings == "TRUE"]
     [#assign warnings = "CAN_MCR_WRN_EN" /]
   [/#if]
@@ -74,78 +58,7 @@
   [#if loopback == "FALSE"]
     [#assign loopback = "" /]
   [/#if]
-  [#if IDf0 == "STANDARD"]
-    [#assign IDf0 = "0" /]
-  [/#if]
-  [#if IDf0 == "EXTENDED"]
-    [#assign IDf0 = "1" /]
-  [/#if]
-  [#if IDf1 == "STANDARD"]
-    [#assign IDf1 = "0" /]
-  [/#if]
-  [#if IDf1 == "EXTENDED"]
-    [#assign IDf1 = "1" /]
-  [/#if]
-  [#if IDf2 == "STANDARD"]
-    [#assign IDf2 = "0" /]
-  [/#if]
-  [#if IDf2 == "EXTENDED"]
-    [#assign IDf2 = "1" /]
-  [/#if]
-  [#if IDf3 == "STANDARD"]
-    [#assign IDf3 = "0" /]
-  [/#if]
-  [#if IDf3 == "EXTENDED"]
-    [#assign IDf3 = "1" /]
-  [/#if]
-  [#if IDf4 == "STANDARD"]
-    [#assign IDf4 = "0" /]
-  [/#if]
-  [#if IDf4 == "EXTENDED"]
-    [#assign IDf4 = "1" /]
-  [/#if]
-  [#if IDf5 == "STANDARD"]
-    [#assign IDf5 = "0" /]
-  [/#if]
-  [#if IDf5 == "EXTENDED"]
-    [#assign IDf5 = "1" /]
-  [/#if]
-  [#if IDf6 == "STANDARD"]
-    [#assign IDf6 = "0" /]
-  [/#if]
-  [#if IDf6 == "EXTENDED"]
-    [#assign IDf6 = "1" /]
-  [/#if]
-  [#if IDf7 == "STANDARD"]
-    [#assign IDf7 = "0" /]
-  [/#if]
-  [#if IDf7 == "EXTENDED"]
-    [#assign IDf7 = "1" /]
-  [/#if]
-  [#if maskf0 == ""]
-    [#assign maskf0 = "0" /]
-  [/#if]
-  [#if maskf1 == ""]
-    [#assign maskf1 = "0" /]
-  [/#if]
-  [#if maskf2 == ""]
-    [#assign maskf2 = "0" /]
-  [/#if]
-  [#if maskf3 == ""]
-    [#assign maskf3 = "0" /]
-  [/#if]
-  [#if maskf4 == ""]
-    [#assign maskf4 = "0" /]
-  [/#if]
-  [#if maskf5 == ""]
-    [#assign maskf5 = "0" /]
-  [/#if]
-  [#if maskf6 == ""]
-    [#assign maskf6 = "0" /]
-  [/#if]
-  [#if maskf7 == ""]
-    [#assign maskf7 = "0" /]
-  [/#if]
+
 /**
  * @brief   Structure defining the CAN configuration "${name}".
  */
@@ -153,18 +66,23 @@ const CANConfig can_config_${name} = {
 
   ${warnings},
   ${loopback}CAN_CTRL_PROPSEG(${propseg}) | CAN_CTRL_PSEG2(${pseg2}) |
-  CAN_CTRL_PSEG1(${pseg1}) | CAN_CTRL_PRESDIV(${presdiv})
+  CAN_CTRL_PSEG1(${pseg1}) | CAN_CTRL_PRESDIV(${presdiv}),
 #if SPC5_CAN_USE_FILTERS
-  ,
   {
-   {${IDf0}, ${maskf0}},
-   {${IDf1}, ${maskf1}},
-   {${IDf2}, ${maskf2}},
-   {${IDf3}, ${maskf3}},
-   {${IDf4}, ${maskf4}},
-   {${IDf5}, ${maskf5}},
-   {${IDf6}, ${maskf6}},
-   {${IDf7}, ${maskf7}}
+  [#list conf.instance.flexcan_settings.can_configurations.configs.can_configuration_settings.filters.filter as filters]
+  	[#assign IDf = filters.id_mode.value[0]?string?trim/]
+  	[#assign maskf = filters.id_mask.value[0]?string?trim/]
+  	[#if IDf == "STANDARD"]
+    	[#assign IDf = "0" /]
+  	[/#if]
+  	[#if IDf == "EXTENDED"]
+  		[#assign IDf = "1" /]
+ 	[/#if]
+  	[#if maskf == ""]
+    	[#assign maskf = "0" /]
+  	[/#if]	 
+   {${IDf}, ${maskf}},
+  [/#list]
   }
 #endif
 };

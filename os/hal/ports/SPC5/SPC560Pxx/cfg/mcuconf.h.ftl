@@ -277,15 +277,6 @@ ${channel.value[0]}
 #define SPC5_PWM_SMOD2_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm0_sm2.value[0]}
 #define SPC5_PWM_SMOD3_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm0_sm3.value[0]}
 
-#define SPC5_PWM_USE_SMOD4                  ${conf.instance.flexpwm_settings.flexpwm1_sm0.value[0]?upper_case}
-#define SPC5_PWM_USE_SMOD5                  ${conf.instance.flexpwm_settings.flexpwm1_sm1.value[0]?upper_case}
-#define SPC5_PWM_USE_SMOD6                  ${conf.instance.flexpwm_settings.flexpwm1_sm2.value[0]?upper_case}
-#define SPC5_PWM_USE_SMOD7                  ${conf.instance.flexpwm_settings.flexpwm1_sm3.value[0]?upper_case}
-#define SPC5_PWM_SMOD4_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm1_sm0.value[0]}
-#define SPC5_PWM_SMOD5_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm1_sm1.value[0]}
-#define SPC5_PWM_SMOD6_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm1_sm2.value[0]}
-#define SPC5_PWM_SMOD7_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm1_sm3.value[0]}
-
 /*
  * ICU driver system settings.
  */
@@ -390,6 +381,8 @@ ${channel.value[0]}
 #define SPC5_CAN_USE_FLEXCAN0               ${conf.instance.flexcan_settings.flexcan0.value[0]?upper_case}
 #define SPC5_CAN_FLEXCAN0_USE_EXT_CLK       ${conf.instance.flexcan_settings.flexcan0_use_external_clock.value[0]?upper_case}
 #define SPC5_CAN_FLEXCAN0_PRIORITY          ${conf.instance.irq_priority_settings.flexcan0.value[0]}
+#define SPC5_CAN_NUM_RX_MAILBOXES			${conf.instance.flexcan_settings.can_configurations.mailboxes_configuration.number_of_rx_mailboxes.value[0]}
+#define SPC5_CAN_NUM_TX_MAILBOXES			${conf.instance.flexcan_settings.can_configurations.mailboxes_configuration.number_of_tx_mailboxes.value[0]}
 #define SPC5_CAN_FLEXCAN0_START_PCTL        (SPC5_ME_PCTL_RUN(1) |          \
                                              SPC5_ME_PCTL_LP(2))
 #define SPC5_CAN_FLEXCAN0_STOP_PCTL         (SPC5_ME_PCTL_RUN(0) |          \

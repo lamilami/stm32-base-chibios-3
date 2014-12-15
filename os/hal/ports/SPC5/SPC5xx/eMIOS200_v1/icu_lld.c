@@ -38,113 +38,219 @@
 
 /**
  * @brief   ICUD1 driver identifier.
- * @note    The driver ICUD1 allocates the unified channel eMIOS_CH1
+ * @note    The driver ICUD1 allocates the unified channel eMIOS_CH0
  *          when enabled.
  */
-#if SPC5_ICU_USE_EMIOS_CH1 || defined(__DOXYGEN__)
+#if SPC5_ICU_USE_EMIOS_CH0 || defined(__DOXYGEN__)
 ICUDriver ICUD1;
 #endif
 
 /**
  * @brief   ICUD2 driver identifier.
- * @note    The driver ICUD2 allocates the unified channel eMIOS_CH2
+ * @note    The driver ICUD2 allocates the unified channel eMIOS_CH1
  *          when enabled.
  */
-#if SPC5_ICU_USE_EMIOS_CH2 || defined(__DOXYGEN__)
+#if SPC5_ICU_USE_EMIOS_CH1 || defined(__DOXYGEN__)
 ICUDriver ICUD2;
 #endif
 
 /**
  * @brief   ICUD3 driver identifier.
- * @note    The driver ICUD3 allocates the unified channel eMIOS_CH3
+ * @note    The driver ICUD3 allocates the unified channel eMIOS_CH2
  *          when enabled.
  */
-#if SPC5_ICU_USE_EMIOS_CH3 || defined(__DOXYGEN__)
+#if SPC5_ICU_USE_EMIOS_CH2 || defined(__DOXYGEN__)
 ICUDriver ICUD3;
 #endif
 
 
 /**
  * @brief   ICUD4 driver identifier.
- * @note    The driver ICUD4 allocates the unified channel eMIOS_CH4
+ * @note    The driver ICUD4 allocates the unified channel eMIOS_CH3
  *          when enabled.
  */
-#if SPC5_ICU_USE_EMIOS_CH4 || defined(__DOXYGEN__)
+#if SPC5_ICU_USE_EMIOS_CH3 || defined(__DOXYGEN__)
 ICUDriver ICUD4;
 #endif
 
 /**
  * @brief   ICUD5 driver identifier.
- * @note    The driver ICUD5 allocates the unified channel eMIOS_CH5
+ * @note    The driver ICUD5 allocates the unified channel eMIOS_CH4
  *          when enabled.
  */
-#if SPC5_ICU_USE_EMIOS_CH5 || defined(__DOXYGEN__)
+#if SPC5_ICU_USE_EMIOS_CH4 || defined(__DOXYGEN__)
 ICUDriver ICUD5;
 #endif
 
 /**
  * @brief   ICUD6 driver identifier.
- * @note    The driver ICUD6 allocates the unified channel eMIOS_CH6
+ * @note    The driver ICUD6 allocates the unified channel eMIOS_CH5
  *          when enabled.
  */
-#if SPC5_ICU_USE_EMIOS_CH6 || defined(__DOXYGEN__)
+#if SPC5_ICU_USE_EMIOS_CH5 || defined(__DOXYGEN__)
 ICUDriver ICUD6;
 #endif
 
 /**
  * @brief   ICUD7 driver identifier.
- * @note    The driver ICUD7 allocates the unified channel eMIOS_CH11
+ * @note    The driver ICUD7 allocates the unified channel eMIOS_CH6
  *          when enabled.
  */
-#if SPC5_ICU_USE_EMIOS_CH11 || defined(__DOXYGEN__)
+#if SPC5_ICU_USE_EMIOS_CH6 || defined(__DOXYGEN__)
 ICUDriver ICUD7;
 #endif
 
 /**
  * @brief   ICUD8 driver identifier.
- * @note    The driver ICUD8 allocates the unified channel eMIOS_CH13
- *          when enabled.
- */
-#if SPC5_ICU_USE_EMIOS_CH13 || defined(__DOXYGEN__)
-ICUDriver ICUD8;
-#endif
-
-#if SPC5_EMIOS_NUM_CHANNELS == 24
-/**
- * @brief   ICUD9 driver identifier.
- * @note    The driver ICUD9 allocates the unified channel eMIOS_CH7
+ * @note    The driver ICUD8 allocates the unified channel eMIOS_CH7
  *          when enabled.
  */
 #if SPC5_ICU_USE_EMIOS_CH7 || defined(__DOXYGEN__)
+ICUDriver ICUD8;
+#endif
+
+/**
+ * @brief   ICUD9 driver identifier.
+ * @note    The driver ICUD9 allocates the unified channel eMIOS_CH8
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH8 || defined(__DOXYGEN__)
 ICUDriver ICUD9;
 #endif
 
 /**
  * @brief   ICUD10 driver identifier.
- * @note    The driver ICUD10 allocates the unified channel eMIOS_CH16
+ * @note    The driver ICUD10 allocates the unified channel eMIOS_CH9
  *          when enabled.
  */
-#if SPC5_ICU_USE_EMIOS_CH16 || defined(__DOXYGEN__)
+#if SPC5_ICU_USE_EMIOS_CH9 || defined(__DOXYGEN__)
 ICUDriver ICUD10;
 #endif
 
 /**
  * @brief   ICUD11 driver identifier.
- * @note    The driver ICUD11 allocates the unified channel eMIOS_CH17
+ * @note    The driver ICUD11 allocates the unified channel eMIOS_CH10
  *          when enabled.
  */
-#if SPC5_ICU_USE_EMIOS_CH17 || defined(__DOXYGEN__)
+#if SPC5_ICU_USE_EMIOS_CH10 || defined(__DOXYGEN__)
 ICUDriver ICUD11;
 #endif
 
 /**
  * @brief   ICUD12 driver identifier.
- * @note    The driver ICUD12 allocates the unified channel eMIOS_CH18
+ * @note    The driver ICUD12 allocates the unified channel eMIOS_CH11
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH11 || defined(__DOXYGEN__)
+ICUDriver ICUD12;
+#endif
+
+/**
+ * @brief   ICUD13 driver identifier.
+ * @note    The driver ICUD13 allocates the unified channel eMIOS_CH12
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH12 || defined(__DOXYGEN__)
+ICUDriver ICUD13;
+#endif
+
+/**
+ * @brief   ICUD14 driver identifier.
+ * @note    The driver ICUD14 allocates the unified channel eMIOS_CH13
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH13 || defined(__DOXYGEN__)
+ICUDriver ICUD14;
+#endif
+
+/**
+ * @brief   ICUD15 driver identifier.
+ * @note    The driver ICUD15 allocates the unified channel eMIOS_CH14
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH14 || defined(__DOXYGEN__)
+ICUDriver ICUD15;
+#endif
+
+/**
+ * @brief   ICUD16 driver identifier.
+ * @note    The driver ICUD16 allocates the unified channel eMIOS_CH15
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH15 || defined(__DOXYGEN__)
+ICUDriver ICUD16;
+#endif
+
+/**
+ * @brief   ICUD17 driver identifier.
+ * @note    The driver ICUD17 allocates the unified channel eMIOS_CH16
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH16 || defined(__DOXYGEN__)
+ICUDriver ICUD17;
+#endif
+
+/**
+ * @brief   ICUD18 driver identifier.
+ * @note    The driver ICUD18 allocates the unified channel eMIOS_CH17
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH17 || defined(__DOXYGEN__)
+ICUDriver ICUD18;
+#endif
+
+/**
+ * @brief   ICUD19 driver identifier.
+ * @note    The driver ICUD19 allocates the unified channel eMIOS_CH18
  *          when enabled.
  */
 #if SPC5_ICU_USE_EMIOS_CH18 || defined(__DOXYGEN__)
-ICUDriver ICUD12;
+ICUDriver ICUD19;
 #endif
+
+/**
+ * @brief   ICUD20 driver identifier.
+ * @note    The driver ICUD20 allocates the unified channel eMIOS_CH19
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH19 || defined(__DOXYGEN__)
+ICUDriver ICUD20;
+#endif
+
+/**
+ * @brief   ICUD21 driver identifier.
+ * @note    The driver ICUD21 allocates the unified channel eMIOS_CH20
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH20 || defined(__DOXYGEN__)
+ICUDriver ICUD21;
+#endif
+
+/**
+ * @brief   ICUD22 driver identifier.
+ * @note    The driver ICUD22 allocates the unified channel eMIOS_CH21
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH21 || defined(__DOXYGEN__)
+ICUDriver ICUD22;
+#endif
+
+/**
+ * @brief   ICUD23 driver identifier.
+ * @note    The driver ICUD23 allocates the unified channel eMIOS_CH22
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH22 || defined(__DOXYGEN__)
+ICUDriver ICUD23;
+#endif
+
+/**
+ * @brief   ICUD24 driver identifier.
+ * @note    The driver ICUD24 allocates the unified channel eMIOS_CH23
+ *          when enabled.
+ */
+#if SPC5_ICU_USE_EMIOS_CH23 || defined(__DOXYGEN__)
+ICUDriver ICUD24;
 #endif
 
 /*===========================================================================*/
@@ -212,12 +318,33 @@ static void icu_lld_serve_interrupt(ICUDriver *icup) {
   if (sr && EMIOSS_OVR) {
     icup->emiosp->CH[icup->ch_number].CSR.R |= EMIOSS_OVRC;
   }
-
 }
 
 /*===========================================================================*/
 /* Driver interrupt handlers.                                                */
 /*===========================================================================*/
+
+#if SPC5_ICU_USE_EMIOS_CH0
+#if !defined(SPC5_EMIOS_FLAG_F0_HANDLER)
+#error "SPC5_EMIOS_FLAG_F0_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 0 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F0_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD1);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH0 */
 
 #if SPC5_ICU_USE_EMIOS_CH1
 #if !defined(SPC5_EMIOS_FLAG_F1_HANDLER)
@@ -235,7 +362,7 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F1_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD1);
+  icu_lld_serve_interrupt(&ICUD2);
 
   OSAL_IRQ_EPILOGUE();
 }
@@ -257,7 +384,7 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F2_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD2);
+  icu_lld_serve_interrupt(&ICUD3);
 
   OSAL_IRQ_EPILOGUE();
 }
@@ -279,7 +406,7 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F3_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD3);
+  icu_lld_serve_interrupt(&ICUD4);
 
   OSAL_IRQ_EPILOGUE();
 }
@@ -301,7 +428,7 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F4_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD4);
+  icu_lld_serve_interrupt(&ICUD5);
 
   OSAL_IRQ_EPILOGUE();
 }
@@ -323,7 +450,7 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F5_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD5);
+  icu_lld_serve_interrupt(&ICUD6);
 
   OSAL_IRQ_EPILOGUE();
 }
@@ -345,11 +472,99 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F6_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD6);
+  icu_lld_serve_interrupt(&ICUD7);
 
   OSAL_IRQ_EPILOGUE();
 }
 #endif /* SPC5_ICU_USE_EMIOS_CH6 */
+
+#if SPC5_ICU_USE_EMIOS_CH7
+#if !defined(SPC5_EMIOS_FLAG_F7_HANDLER)
+#error "SPC5_EMIOS_FLAG_F7_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 7 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F7_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD8);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH7 */
+
+#if SPC5_ICU_USE_EMIOS_CH8
+#if !defined(SPC5_EMIOS_FLAG_F8_HANDLER)
+#error "SPC5_EMIOS_FLAG_F8_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 8 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F8_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD9);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH8 */
+
+#if SPC5_ICU_USE_EMIOS_CH9
+#if !defined(SPC5_EMIOS_FLAG_F9_HANDLER)
+#error "SPC5_EMIOS_FLAG_F9_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 9 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F9_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD10);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH9 */
+
+#if SPC5_ICU_USE_EMIOS_CH10
+#if !defined(SPC5_EMIOS_FLAG_F10_HANDLER)
+#error "SPC5_EMIOS_FLAG_F10_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 10 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F10_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD11);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH10 */
 
 #if SPC5_ICU_USE_EMIOS_CH11
 #if !defined(SPC5_EMIOS_FLAG_F11_HANDLER)
@@ -367,11 +582,33 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F11_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD7);
+  icu_lld_serve_interrupt(&ICUD12);
 
   OSAL_IRQ_EPILOGUE();
 }
 #endif /* SPC5_ICU_USE_EMIOS_CH11 */
+
+#if SPC5_ICU_USE_EMIOS_CH12
+#if !defined(SPC5_EMIOS_FLAG_F12_HANDLER)
+#error "SPC5_EMIOS_FLAG_F12_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 12 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F12_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD13);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH12 */
 
 #if SPC5_ICU_USE_EMIOS_CH13
 #if !defined(SPC5_EMIOS_FLAG_F13_HANDLER)
@@ -389,34 +626,55 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F13_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD8);
+  icu_lld_serve_interrupt(&ICUD14);
 
   OSAL_IRQ_EPILOGUE();
 }
 #endif /* SPC5_ICU_USE_EMIOS_CH13 */
 
-#if SPC5_EMIOS_NUM_CHANNELS == 24
-#if SPC5_ICU_USE_EMIOS_CH7
-#if !defined(SPC5_EMIOS_FLAG_F7_HANDLER)
-#error "SPC5_EMIOS_FLAG_F7_HANDLER not defined"
+#if SPC5_ICU_USE_EMIOS_CH14
+#if !defined(SPC5_EMIOS_FLAG_F14_HANDLER)
+#error "SPC5_EMIOS_FLAG_F14_HANDLER not defined"
 #endif
 /**
- * @brief   eMIOS Channel 7 interrupt handler.
+ * @brief   eMIOS Channel 14 interrupt handler.
  * @note    It is assumed that the various sources are only activated if the
  *          associated callback pointer is not equal to @p NULL in order to not
  *          perform an extra check in a potentially critical interrupt handler.
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F7_HANDLER) {
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F14_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD9);
+  icu_lld_serve_interrupt(&ICUD15);
 
   OSAL_IRQ_EPILOGUE();
 }
-#endif /* SPC5_ICU_USE_EMIOS_CH7 */
+#endif /* SPC5_ICU_USE_EMIOS_CH14 */
+
+#if SPC5_ICU_USE_EMIOS_CH15
+#if !defined(SPC5_EMIOS_FLAG_F15_HANDLER)
+#error "SPC5_EMIOS_FLAG_F15_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 15 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F15_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD16);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH15 */
 
 #if SPC5_ICU_USE_EMIOS_CH16
 #if !defined(SPC5_EMIOS_FLAG_F16_HANDLER)
@@ -434,7 +692,7 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F16_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD10);
+  icu_lld_serve_interrupt(&ICUD17);
 
   OSAL_IRQ_EPILOGUE();
 }
@@ -456,7 +714,7 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F17_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD11);
+  icu_lld_serve_interrupt(&ICUD18);
 
   OSAL_IRQ_EPILOGUE();
 }
@@ -478,12 +736,121 @@ OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F18_HANDLER) {
 
   OSAL_IRQ_PROLOGUE();
 
-  icu_lld_serve_interrupt(&ICUD12);
+  icu_lld_serve_interrupt(&ICUD19);
 
   OSAL_IRQ_EPILOGUE();
 }
 #endif /* SPC5_ICU_USE_EMIOS_CH18 */
+
+#if SPC5_ICU_USE_EMIOS_CH19
+#if !defined(SPC5_EMIOS_FLAG_F19_HANDLER)
+#error "SPC5_EMIOS_FLAG_F19_HANDLER not defined"
 #endif
+/**
+ * @brief   eMIOS Channel 19 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F19_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD20);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH19 */
+
+#if SPC5_ICU_USE_EMIOS_CH20
+#if !defined(SPC5_EMIOS_FLAG_F20_HANDLER)
+#error "SPC5_EMIOS_FLAG_F20_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 20 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F20_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD21);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH20 */
+
+#if SPC5_ICU_USE_EMIOS_CH21
+#if !defined(SPC5_EMIOS_FLAG_F21_HANDLER)
+#error "SPC5_EMIOS_FLAG_F21_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 21 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F21_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD22);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH21 */
+
+#if SPC5_ICU_USE_EMIOS_CH22
+#if !defined(SPC5_EMIOS_FLAG_F22_HANDLER)
+#error "SPC5_EMIOS_FLAG_F22_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 22 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F22_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD23);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH22 */
+
+#if SPC5_ICU_USE_EMIOS_CH23
+#if !defined(SPC5_EMIOS_FLAG_F23_HANDLER)
+#error "SPC5_EMIOS_FLAG_F23_HANDLER not defined"
+#endif
+/**
+ * @brief   eMIOS Channel 23 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_EMIOS_FLAG_F23_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD24);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_EMIOS_CH23 */
 
 /*===========================================================================*/
 /* Driver exported functions.                                                */
@@ -504,131 +871,295 @@ void icu_lld_init(void) {
   /* eMIOSx channels initially all not in use.*/
   reset_emios_active_channels();
 
-#if SPC5_ICU_USE_EMIOS_CH1
+#if SPC5_ICU_USE_EMIOS_CH0
   /* Driver initialization.*/
   icuObjectInit(&ICUD1);
   ICUD1.emiosp = &EMIOS;
-  ICUD1.ch_number = 1U;
+  ICUD1.ch_number = 0U;
   ICUD1.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH0 */
+
+#if SPC5_ICU_USE_EMIOS_CH1
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD2);
+  ICUD2.emiosp = &EMIOS;
+  ICUD2.ch_number = 1U;
+  ICUD2.clock = SPC5_EMIOS_CLK;
 #endif /* SPC5_ICU_USE_EMIOS_CH1 */
 
 #if SPC5_ICU_USE_EMIOS_CH2
   /* Driver initialization.*/
-  icuObjectInit(&ICUD2);
-  ICUD2.emiosp = &EMIOS;
-  ICUD2.ch_number = 2U;
-  ICUD2.clock = SPC5_EMIOS_CLK;
+  icuObjectInit(&ICUD3);
+  ICUD3.emiosp = &EMIOS;
+  ICUD3.ch_number = 2U;
+  ICUD3.clock = SPC5_EMIOS_CLK;
 #endif /* SPC5_ICU_USE_EMIOS_CH2 */
 
 #if SPC5_ICU_USE_EMIOS_CH3
   /* Driver initialization.*/
-  icuObjectInit(&ICUD3);
-  ICUD3.emiosp = &EMIOS;
-  ICUD3.ch_number = 3U;
-  ICUD3.clock = SPC5_EMIOS_CLK;
+  icuObjectInit(&ICUD4);
+  ICUD4.emiosp = &EMIOS;
+  ICUD4.ch_number = 3U;
+  ICUD4.clock = SPC5_EMIOS_CLK;
 #endif /* SPC5_ICU_USE_EMIOS_CH3 */
 
 #if SPC5_ICU_USE_EMIOS_CH4
   /* Driver initialization.*/
-  icuObjectInit(&ICUD4);
-  ICUD4.emiosp = &EMIOS;
-  ICUD4.ch_number = 4U;
-  ICUD4.clock = SPC5_EMIOS_CLK;
+  icuObjectInit(&ICUD5);
+  ICUD5.emiosp = &EMIOS;
+  ICUD5.ch_number = 4U;
+  ICUD5.clock = SPC5_EMIOS_CLK;
 #endif /* SPC5_ICU_USE_EMIOS_CH4 */
 
 #if SPC5_ICU_USE_EMIOS_CH5
   /* Driver initialization.*/
-  icuObjectInit(&ICUD5);
-  ICUD5.emiosp = &EMIOS;
-  ICUD5.ch_number = 5U;
-  ICUD5.clock = SPC5_EMIOS_CLK;
+  icuObjectInit(&ICUD6);
+  ICUD6.emiosp = &EMIOS;
+  ICUD6.ch_number = 5U;
+  ICUD6.clock = SPC5_EMIOS_CLK;
 #endif /* SPC5_ICU_USE_EMIOS_CH5 */
 
 #if SPC5_ICU_USE_EMIOS_CH6
   /* Driver initialization.*/
-  icuObjectInit(&ICUD6);
-  ICUD6.emiosp = &EMIOS;
-  ICUD6.ch_number = 6U;
-  ICUD6.clock = SPC5_EMIOS_CLK;
-#endif /* SPC5_ICU_USE_EMIOS_CH6 */
-
-#if SPC5_ICU_USE_EMIOS_CH11
-  /* Driver initialization.*/
   icuObjectInit(&ICUD7);
   ICUD7.emiosp = &EMIOS;
-  ICUD7.ch_number = 11U;
+  ICUD7.ch_number = 6U;
   ICUD7.clock = SPC5_EMIOS_CLK;
-#endif /* SPC5_ICU_USE_EMIOS_CH11 */
+#endif /* SPC5_ICU_USE_EMIOS_CH6 */
 
-#if SPC5_ICU_USE_EMIOS_CH13
+#if SPC5_ICU_USE_EMIOS_CH7
   /* Driver initialization.*/
   icuObjectInit(&ICUD8);
   ICUD8.emiosp = &EMIOS;
-  ICUD8.ch_number = 13U;
+  ICUD8.ch_number = 7U;
   ICUD8.clock = SPC5_EMIOS_CLK;
-#endif /* SPC5_ICU_USE_EMIOS_CH13 */
+#endif /* SPC5_ICU_USE_EMIOS_CH7 */
 
-#if SPC5_EMIOS_NUM_CHANNELS == 24
-#if SPC5_ICU_USE_EMIOS_CH7
+#if SPC5_ICU_USE_EMIOS_CH8
   /* Driver initialization.*/
   icuObjectInit(&ICUD9);
   ICUD9.emiosp = &EMIOS;
-  ICUD9.ch_number = 7U;
+  ICUD9.ch_number = 8U;
   ICUD9.clock = SPC5_EMIOS_CLK;
-#endif /* SPC5_ICU_USE_EMIOS_CH7 */
+#endif /* SPC5_ICU_USE_EMIOS_CH8 */
 
-#if SPC5_ICU_USE_EMIOS_CH16
+#if SPC5_ICU_USE_EMIOS_CH9
   /* Driver initialization.*/
   icuObjectInit(&ICUD10);
   ICUD10.emiosp = &EMIOS;
-  ICUD10.ch_number = 16U;
+  ICUD10.ch_number = 9U;
   ICUD10.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH9 */
+
+#if SPC5_ICU_USE_EMIOS_CH10
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD11);
+  ICUD11.emiosp = &EMIOS;
+  ICUD11.ch_number = 10U;
+  ICUD11.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH10 */
+
+#if SPC5_ICU_USE_EMIOS_CH11
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD12);
+  ICUD12.emiosp = &EMIOS;
+  ICUD12.ch_number = 11U;
+  ICUD12.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH11 */
+
+#if SPC5_ICU_USE_EMIOS_CH12
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD13);
+  ICUD13.emiosp = &EMIOS;
+  ICUD13.ch_number = 12U;
+  ICUD13.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH12 */
+
+#if SPC5_ICU_USE_EMIOS_CH13
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD14);
+  ICUD14.emiosp = &EMIOS;
+  ICUD14.ch_number = 13U;
+  ICUD14.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH13 */
+
+#if SPC5_ICU_USE_EMIOS_CH14
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD15);
+  ICUD15.emiosp = &EMIOS;
+  ICUD15.ch_number = 14U;
+  ICUD15.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH14 */
+
+#if SPC5_ICU_USE_EMIOS_CH15
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD16);
+  ICUD16.emiosp = &EMIOS;
+  ICUD16.ch_number = 15U;
+  ICUD16.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH15 */
+
+#if SPC5_ICU_USE_EMIOS_CH16
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD17);
+  ICUD17.emiosp = &EMIOS;
+  ICUD17.ch_number = 16U;
+  ICUD17.clock = SPC5_EMIOS_CLK;
 #endif /* SPC5_ICU_USE_EMIOS_CH16 */
 
 #if SPC5_ICU_USE_EMIOS_CH17
   /* Driver initialization.*/
-  icuObjectInit(&ICUD11);
-  ICUD11.emiosp = &EMIOS;
-  ICUD11.ch_number = 17U;
-  ICUD11.clock = SPC5_EMIOS_CLK;
+  icuObjectInit(&ICUD18);
+  ICUD18.emiosp = &EMIOS;
+  ICUD18.ch_number = 17U;
+  ICUD18.clock = SPC5_EMIOS_CLK;
 #endif /* SPC5_ICU_USE_EMIOS_CH17 */
 
 #if SPC5_ICU_USE_EMIOS_CH18
   /* Driver initialization.*/
-  icuObjectInit(&ICUD12);
-  ICUD12.emiosp = &EMIOS;
-  ICUD12.ch_number = 18U;
-  ICUD12.clock = SPC5_EMIOS_CLK;
+  icuObjectInit(&ICUD19);
+  ICUD19.emiosp = &EMIOS;
+  ICUD19.ch_number = 18U;
+  ICUD19.clock = SPC5_EMIOS_CLK;
 #endif /* SPC5_ICU_USE_EMIOS_CH18 */
-#endif
+
+#if SPC5_ICU_USE_EMIOS_CH19
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD20);
+  ICUD20.emiosp = &EMIOS;
+  ICUD20.ch_number = 19U;
+  ICUD20.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH19 */
+
+#if SPC5_ICU_USE_EMIOS_CH20
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD21);
+  ICUD21.emiosp = &EMIOS;
+  ICUD21.ch_number = 20U;
+  ICUD21.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH20 */
+
+#if SPC5_ICU_USE_EMIOS_CH21
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD22);
+  ICUD22.emiosp = &EMIOS;
+  ICUD22.ch_number = 21U;
+  ICUD22.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH21 */
+
+#if SPC5_ICU_USE_EMIOS_CH22
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD23);
+  ICUD23.emiosp = &EMIOS;
+  ICUD23.ch_number = 22U;
+  ICUD23.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH22 */
+
+#if SPC5_ICU_USE_EMIOS_CH23
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD24);
+  ICUD24.emiosp = &EMIOS;
+  ICUD24.ch_number = 23U;
+  ICUD24.clock = SPC5_EMIOS_CLK;
+#endif /* SPC5_ICU_USE_EMIOS_CH23 */
 
 #if SPC5_ICU_USE_EMIOS
 
-#if SPC5_EMIOS_NUM_CHANNELS == 16
-    INTC.PSR[SPC5_EMIOS_FLAG_F1_NUMBER].R = SPC5_EMIOS_FLAG_F1_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F2_NUMBER].R = SPC5_EMIOS_FLAG_F2_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F3_NUMBER].R = SPC5_EMIOS_FLAG_F3_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F4_NUMBER].R = SPC5_EMIOS_FLAG_F4_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F5_NUMBER].R = SPC5_EMIOS_FLAG_F5_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F6_NUMBER].R = SPC5_EMIOS_FLAG_F6_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F11_NUMBER].R = SPC5_EMIOS_FLAG_F11_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F13_NUMBER].R = SPC5_EMIOS_FLAG_F13_PRIORITY;
-#endif
+#if SPC5_ICU_USE_EMIOS_CH0
+  INTC.PSR[SPC5_EMIOS_FLAG_F0_NUMBER].R = SPC5_EMIOS_FLAG_F0_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH0 */
 
-#if SPC5_EMIOS_NUM_CHANNELS == 24
-    INTC.PSR[SPC5_EMIOS_FLAG_F1_NUMBER].R = SPC5_EMIOS_FLAG_F1_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F2_NUMBER].R = SPC5_EMIOS_FLAG_F2_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F3_NUMBER].R = SPC5_EMIOS_FLAG_F3_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F4_NUMBER].R = SPC5_EMIOS_FLAG_F4_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F5_NUMBER].R = SPC5_EMIOS_FLAG_F5_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F6_NUMBER].R = SPC5_EMIOS_FLAG_F6_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F7_NUMBER].R = SPC5_EMIOS_FLAG_F7_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F11_NUMBER].R = SPC5_EMIOS_FLAG_F11_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F13_NUMBER].R = SPC5_EMIOS_FLAG_F13_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F16_NUMBER].R = SPC5_EMIOS_FLAG_F16_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F17_NUMBER].R = SPC5_EMIOS_FLAG_F17_PRIORITY;
-    INTC.PSR[SPC5_EMIOS_FLAG_F18_NUMBER].R = SPC5_EMIOS_FLAG_F18_PRIORITY;
-#endif
+#if SPC5_ICU_USE_EMIOS_CH1
+  INTC.PSR[SPC5_EMIOS_FLAG_F1_NUMBER].R = SPC5_EMIOS_FLAG_F1_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH1 */
+
+#if SPC5_ICU_USE_EMIOS_CH2
+  INTC.PSR[SPC5_EMIOS_FLAG_F2_NUMBER].R = SPC5_EMIOS_FLAG_F2_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH2 */
+
+#if SPC5_ICU_USE_EMIOS_CH3
+  INTC.PSR[SPC5_EMIOS_FLAG_F3_NUMBER].R = SPC5_EMIOS_FLAG_F3_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH3 */
+
+#if SPC5_ICU_USE_EMIOS_CH4
+  INTC.PSR[SPC5_EMIOS_FLAG_F4_NUMBER].R = SPC5_EMIOS_FLAG_F4_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH4 */
+
+#if SPC5_ICU_USE_EMIOS_CH5
+  INTC.PSR[SPC5_EMIOS_FLAG_F5_NUMBER].R = SPC5_EMIOS_FLAG_F5_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH5 */
+
+#if SPC5_ICU_USE_EMIOS_CH6
+  INTC.PSR[SPC5_EMIOS_FLAG_F6_NUMBER].R = SPC5_EMIOS_FLAG_F6_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH6 */
+
+#if SPC5_ICU_USE_EMIOS_CH7
+  INTC.PSR[SPC5_EMIOS_FLAG_F7_NUMBER].R = SPC5_EMIOS_FLAG_F7_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH7 */
+
+#if SPC5_ICU_USE_EMIOS_CH8
+  INTC.PSR[SPC5_EMIOS_FLAG_F8_NUMBER].R = SPC5_EMIOS_FLAG_F8_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH8 */
+
+#if SPC5_ICU_USE_EMIOS_CH9
+  INTC.PSR[SPC5_EMIOS_FLAG_F9_NUMBER].R = SPC5_EMIOS_FLAG_F9_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH9 */
+
+#if SPC5_ICU_USE_EMIOS_CH10
+  INTC.PSR[SPC5_EMIOS_FLAG_F10_NUMBER].R = SPC5_EMIOS_FLAG_F10_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH10 */
+
+#if SPC5_ICU_USE_EMIOS_CH11
+  INTC.PSR[SPC5_EMIOS_FLAG_F11_NUMBER].R = SPC5_EMIOS_FLAG_F11_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH11 */
+
+#if SPC5_ICU_USE_EMIOS_CH12
+  INTC.PSR[SPC5_EMIOS_FLAG_F12_NUMBER].R = SPC5_EMIOS_FLAG_F12_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH12 */
+
+#if SPC5_ICU_USE_EMIOS_CH13
+  INTC.PSR[SPC5_EMIOS_FLAG_F13_NUMBER].R = SPC5_EMIOS_FLAG_F13_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH13 */
+
+#if SPC5_ICU_USE_EMIOS_CH14
+  INTC.PSR[SPC5_EMIOS_FLAG_F14_NUMBER].R = SPC5_EMIOS_FLAG_F14_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH14 */
+
+#if SPC5_ICU_USE_EMIOS_CH15
+  INTC.PSR[SPC5_EMIOS_FLAG_F15_NUMBER].R = SPC5_EMIOS_FLAG_F15_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH15 */
+
+#if SPC5_ICU_USE_EMIOS_CH16
+  INTC.PSR[SPC5_EMIOS_FLAG_F16_NUMBER].R = SPC5_EMIOS_FLAG_F16_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH16 */
+
+#if SPC5_ICU_USE_EMIOS_CH17
+  INTC.PSR[SPC5_EMIOS_FLAG_F17_NUMBER].R = SPC5_EMIOS_FLAG_F17_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH17 */
+
+#if SPC5_ICU_USE_EMIOS_CH18
+  INTC.PSR[SPC5_EMIOS_FLAG_F18_NUMBER].R = SPC5_EMIOS_FLAG_F18_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH18 */
+
+#if SPC5_ICU_USE_EMIOS_CH19
+  INTC.PSR[SPC5_EMIOS_FLAG_F19_NUMBER].R = SPC5_EMIOS_FLAG_F19_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH19 */
+
+#if SPC5_ICU_USE_EMIOS_CH20
+  INTC.PSR[SPC5_EMIOS_FLAG_F20_NUMBER].R = SPC5_EMIOS_FLAG_F20_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH20 */
+
+#if SPC5_ICU_USE_EMIOS_CH21
+  INTC.PSR[SPC5_EMIOS_FLAG_F21_NUMBER].R = SPC5_EMIOS_FLAG_F21_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH21 */
+
+#if SPC5_ICU_USE_EMIOS_CH22
+  INTC.PSR[SPC5_EMIOS_FLAG_F22_NUMBER].R = SPC5_EMIOS_FLAG_F22_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH22 */
+
+#if SPC5_ICU_USE_EMIOS_CH23
+  INTC.PSR[SPC5_EMIOS_FLAG_F23_NUMBER].R = SPC5_EMIOS_FLAG_F23_PRIORITY;
+#endif /* SPC5_ICU_USE_EMIOS_CH23 */
 
 #endif
 }
@@ -647,63 +1178,130 @@ void icu_lld_start(ICUDriver *icup) {
 
   if (icup->state == ICU_STOP) {
     /* Enables the peripheral.*/
-#if SPC5_ICU_USE_EMIOS_CH1
+#if SPC5_ICU_USE_EMIOS_CH0
     if (&ICUD1 == icup)
       increase_emios_active_channels();
-#endif /* SPC5_ICU_USE_EMIOS_CH1 */
-#if SPC5_ICU_USE_EMIOS_CH2
+#endif /* SPC5_ICU_USE_EMIOS_CH0 */
+
+#if SPC5_ICU_USE_EMIOS_CH1
     if (&ICUD2 == icup)
       increase_emios_active_channels();
-#endif /* SPC5_ICU_USE_EMIOS_CH2 */
-#if SPC5_ICU_USE_EMIOS_CH3
+#endif /* SPC5_ICU_USE_EMIOS_CH1 */
+
+#if SPC5_ICU_USE_EMIOS_CH2
     if (&ICUD3 == icup)
       increase_emios_active_channels();
-#endif /* SPC5_ICU_USE_EMIOS_CH3 */
-#if SPC5_ICU_USE_EMIOS_CH4
+#endif /* SPC5_ICU_USE_EMIOS_CH2 */
+
+#if SPC5_ICU_USE_EMIOS_CH3
     if (&ICUD4 == icup)
       increase_emios_active_channels();
-#endif /* SPC5_ICU_USE_EMIOS_CH4 */
-#if SPC5_ICU_USE_EMIOS_CH5
+#endif /* SPC5_ICU_USE_EMIOS_CH3 */
+
+#if SPC5_ICU_USE_EMIOS_CH4
     if (&ICUD5 == icup)
       increase_emios_active_channels();
-#endif /* SPC5_ICU_USE_EMIOS_CH5 */
-#if SPC5_ICU_USE_EMIOS_CH6
+#endif /* SPC5_ICU_USE_EMIOS_CH4 */
+
+#if SPC5_ICU_USE_EMIOS_CH5
     if (&ICUD6 == icup)
       increase_emios_active_channels();
-#endif /* SPC5_ICU_USE_EMIOS_CH6 */
-#if SPC5_ICU_USE_EMIOS_CH11
+#endif /* SPC5_ICU_USE_EMIOS_CH5 */
+
+#if SPC5_ICU_USE_EMIOS_CH6
     if (&ICUD7 == icup)
       increase_emios_active_channels();
-#endif /* SPC5_ICU_USE_EMIOS_CH11 */
-#if SPC5_ICU_USE_EMIOS_CH13
+#endif /* SPC5_ICU_USE_EMIOS_CH6 */
+
+#if SPC5_ICU_USE_EMIOS_CH7
     if (&ICUD8 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH7 */
+
+#if SPC5_ICU_USE_EMIOS_CH8
+    if (&ICUD9 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH8 */
+
+#if SPC5_ICU_USE_EMIOS_CH9
+    if (&ICUD10 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH9 */
+
+#if SPC5_ICU_USE_EMIOS_CH10
+    if (&ICUD11 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH10 */
+
+#if SPC5_ICU_USE_EMIOS_CH11
+    if (&ICUD12 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH11 */
+
+#if SPC5_ICU_USE_EMIOS_CH12
+    if (&ICUD13 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH12 */
+
+#if SPC5_ICU_USE_EMIOS_CH13
+    if (&ICUD14 == icup)
       increase_emios_active_channels();
 #endif /* SPC5_ICU_USE_EMIOS_CH13 */
 
-#if SPC5_EMIOS_NUM_CHANNELS == 24
-#if SPC5_ICU_USE_EMIOS_CH7
-    if (&ICUD9 == icup)
+#if SPC5_ICU_USE_EMIOS_CH14
+    if (&ICUD15 == icup)
       increase_emios_active_channels();
-#endif /* SPC5_ICU_USE_EMIOS_CH7 */
+#endif /* SPC5_ICU_USE_EMIOS_CH14 */
+
+#if SPC5_ICU_USE_EMIOS_CH15
+    if (&ICUD16 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH15 */
+
 #if SPC5_ICU_USE_EMIOS_CH16
-    if (&ICUD10 == icup)
+    if (&ICUD17 == icup)
       increase_emios_active_channels();
 #endif /* SPC5_ICU_USE_EMIOS_CH16 */
+
 #if SPC5_ICU_USE_EMIOS_CH17
-    if (&ICUD11 == icup)
+    if (&ICUD18 == icup)
       increase_emios_active_channels();
 #endif /* SPC5_ICU_USE_EMIOS_CH17 */
+
 #if SPC5_ICU_USE_EMIOS_CH18
-    if (&ICUD12 == icup)
+    if (&ICUD19 == icup)
       increase_emios_active_channels();
 #endif /* SPC5_ICU_USE_EMIOS_CH18 */
-#endif
+
+#if SPC5_ICU_USE_EMIOS_CH19
+    if (&ICUD20 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH19 */
+
+#if SPC5_ICU_USE_EMIOS_CH20
+    if (&ICUD21 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH20 */
+
+#if SPC5_ICU_USE_EMIOS_CH21
+    if (&ICUD22 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH21 */
+
+#if SPC5_ICU_USE_EMIOS_CH22
+    if (&ICUD23 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH22 */
+
+#if SPC5_ICU_USE_EMIOS_CH23
+    if (&ICUD24 == icup)
+      increase_emios_active_channels();
+#endif /* SPC5_ICU_USE_EMIOS_CH23 */
 
     /* Set eMIOS Clock.*/
 #if SPC5_ICU_USE_EMIOS
     icu_active_emios_clock(icup);
 #endif
-
   }
   /* Configures the peripheral.*/
 
@@ -742,7 +1340,6 @@ void icu_lld_start(ICUDriver *icup) {
 
   /* Channel disables.*/
   icup->emiosp->UCDIS.R |= (1 << icup->ch_number);
-
 }
 
 /**
@@ -760,64 +1357,125 @@ void icu_lld_stop(ICUDriver *icup) {
   if (icup->state == ICU_READY) {
 
     /* Disables the peripheral.*/
-#if SPC5_ICU_USE_EMIOS_CH1
+#if SPC5_ICU_USE_EMIOS_CH0
     if (&ICUD1 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
-#endif /* SPC5_ICU_USE_EMIOS_CH1 */
-#if SPC5_ICU_USE_EMIOS_CH2
+#endif /* SPC5_ICU_USE_EMIOS_CH0 */
+
+#if SPC5_ICU_USE_EMIOS_CH1
     if (&ICUD2 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
-#endif /* SPC5_ICU_USE_EMIOS_CH2 */
-#if SPC5_ICU_USE_EMIOS_CH3
+#endif /* SPC5_ICU_USE_EMIOS_CH1 */
+
+#if SPC5_ICU_USE_EMIOS_CH2
     if (&ICUD3 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
-#endif /* SPC5_ICU_USE_EMIOS_CH3 */
-#if SPC5_ICU_USE_EMIOS_CH4
+#endif /* SPC5_ICU_USE_EMIOS_CH2 */
+
+#if SPC5_ICU_USE_EMIOS_CH3
     if (&ICUD4 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
-#endif /* SPC5_ICU_USE_EMIOS_CH4 */
-#if SPC5_ICU_USE_EMIOS_CH5
+#endif /* SPC5_ICU_USE_EMIOS_CH3 */
+
+#if SPC5_ICU_USE_EMIOS_CH4
     if (&ICUD5 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
-#endif /* SPC5_ICU_USE_EMIOS_CH5 */
-#if SPC5_ICU_USE_EMIOS_CH6
+#endif /* SPC5_ICU_USE_EMIOS_CH4 */
+
+#if SPC5_ICU_USE_EMIOS_CH5
     if (&ICUD6 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
-#endif /* SPC5_ICU_USE_EMIOS_CH6 */
-#if SPC5_ICU_USE_EMIOS_CH11
+#endif /* SPC5_ICU_USE_EMIOS_CH5 */
+
+#if SPC5_ICU_USE_EMIOS_CH6
     if (&ICUD7 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
-#endif /* SPC5_ICU_USE_EMIOS_CH11 */
-#if SPC5_ICU_USE_EMIOS_CH13
+#endif /* SPC5_ICU_USE_EMIOS_CH6 */
+
+#if SPC5_ICU_USE_EMIOS_CH7
     if (&ICUD8 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH7 */
+
+#if SPC5_ICU_USE_EMIOS_CH8
+    if (&ICUD9 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH8 */
+
+#if SPC5_ICU_USE_EMIOS_CH9
+    if (&ICUD10 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH9 */
+
+#if SPC5_ICU_USE_EMIOS_CH10
+    if (&ICUD11 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH10 */
+
+#if SPC5_ICU_USE_EMIOS_CH11
+    if (&ICUD12 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH11 */
+
+#if SPC5_ICU_USE_EMIOS_CH12
+    if (&ICUD13 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH12 */
+
+#if SPC5_ICU_USE_EMIOS_CH13
+    if (&ICUD14 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
@@ -825,46 +1483,100 @@ void icu_lld_stop(ICUDriver *icup) {
     }
 #endif /* SPC5_ICU_USE_EMIOS_CH13 */
 
-#if SPC5_EMIOS_NUM_CHANNELS == 24
-#if SPC5_ICU_USE_EMIOS_CH7
-    if (&ICUD9 == icup) {
+#if SPC5_ICU_USE_EMIOS_CH14
+    if (&ICUD15 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
-#endif /* SPC5_ICU_USE_EMIOS_CH7 */
+#endif /* SPC5_ICU_USE_EMIOS_CH14 */
+
+#if SPC5_ICU_USE_EMIOS_CH15
+    if (&ICUD16 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH15 */
+
 #if SPC5_ICU_USE_EMIOS_CH16
-    if (&ICUD10 == icup) {
+    if (&ICUD17 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
 #endif /* SPC5_ICU_USE_EMIOS_CH16 */
+
 #if SPC5_ICU_USE_EMIOS_CH17
-    if (&ICUD11 == icup) {
+    if (&ICUD18 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
 #endif /* SPC5_ICU_USE_EMIOS_CH17 */
+
 #if SPC5_ICU_USE_EMIOS_CH18
-    if (&ICUD12 == icup) {
+    if (&ICUD19 == icup) {
       /* Reset UC Control Register.*/
       icup->emiosp->CH[icup->ch_number].CCR.R = 0;
 
       decrease_emios_active_channels();
     }
 #endif /* SPC5_ICU_USE_EMIOS_CH18 */
-#endif
+
+#if SPC5_ICU_USE_EMIOS_CH19
+    if (&ICUD20 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH19 */
+
+#if SPC5_ICU_USE_EMIOS_CH20
+    if (&ICUD21 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH20 */
+
+#if SPC5_ICU_USE_EMIOS_CH21
+    if (&ICUD22 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH21 */
+
+#if SPC5_ICU_USE_EMIOS_CH22
+    if (&ICUD23 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH22 */
+
+#if SPC5_ICU_USE_EMIOS_CH23
+    if (&ICUD24 == icup) {
+      /* Reset UC Control Register.*/
+      icup->emiosp->CH[icup->ch_number].CCR.R = 0;
+
+      decrease_emios_active_channels();
+    }
+#endif /* SPC5_ICU_USE_EMIOS_CH23 */
 
     /* eMIOS clock deactivation.*/
 #if SPC5_ICU_USE_EMIOS
     deactive_emios_clock();
 #endif
-
   }
 }
 
@@ -889,7 +1601,6 @@ void icu_lld_enable(ICUDriver *icup) {
 
   /* Channel enables.*/
   icup->emiosp->UCDIS.R &= ~(1 << icup->ch_number);
-
 }
 
 /**
@@ -910,7 +1621,6 @@ void icu_lld_disable(ICUDriver *icup) {
 
   /* Channel disables.*/
   icup->emiosp->UCDIS.R |= (1 << icup->ch_number);
-
 }
 
 #endif /* HAL_USE_ICU */
