@@ -48,7 +48,7 @@
                                              BIUCR_IPFEN |                  \
                                              BIUCR_PFLIM_ON_MISS |          \
                                              BIUCR_BFEN)
-#define SPC5_EMIOS_GPRE_VALUE               ${conf.instance.initialization_settings.clocks.emios_global_prescaler.value[0]?number - 1}
+#define SPC5_EMIOS_GPRE_VALUE               ${conf.instance.initialization_settings.clocks.emios_global_prescaler.value[0]}
 
 /*
  * EDMA driver settings.
@@ -175,58 +175,86 @@ ${channel.value[0]}
 /*
  * ICU driver system settings.
  */
-#define SPC5_ICU_USE_EMIOS_CH1              ${conf.instance.emios200_settings.ch1.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH2              ${conf.instance.emios200_settings.ch2.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH3              ${conf.instance.emios200_settings.ch3.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH4              ${conf.instance.emios200_settings.ch4.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH5              ${conf.instance.emios200_settings.ch5.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH6              ${conf.instance.emios200_settings.ch6.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH11             ${conf.instance.emios200_settings.ch11.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH13             ${conf.instance.emios200_settings.ch13.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH7              ${conf.instance.emios200_settings.ch7.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH16             ${conf.instance.emios200_settings.ch16.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH17             ${conf.instance.emios200_settings.ch17.value[0]?upper_case}
-#define SPC5_ICU_USE_EMIOS_CH18             ${conf.instance.emios200_settings.ch18.value[0]?upper_case}
-#define SPC5_EMIOS_FLAG_F1_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc1.value[0]}
-#define SPC5_EMIOS_FLAG_F2_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc2.value[0]}
-#define SPC5_EMIOS_FLAG_F3_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc3.value[0]}
-#define SPC5_EMIOS_FLAG_F4_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc4.value[0]}
-#define SPC5_EMIOS_FLAG_F5_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc5.value[0]}
-#define SPC5_EMIOS_FLAG_F6_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc6.value[0]}
-#define SPC5_EMIOS_FLAG_F11_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc11.value[0]}
-#define SPC5_EMIOS_FLAG_F13_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc13.value[0]}
-#define SPC5_EMIOS_FLAG_F7_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc7.value[0]}
-#define SPC5_EMIOS_FLAG_F16_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc16.value[0]}
-#define SPC5_EMIOS_FLAG_F17_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc17.value[0]}
-#define SPC5_EMIOS_FLAG_F18_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc18.value[0]}
+#define SPC5_ICU_USE_EMIOS_CH0              ${(conf.instance.emios200_settings.emios_uc0.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH1              ${(conf.instance.emios200_settings.emios_uc1.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH2              ${(conf.instance.emios200_settings.emios_uc2.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH3              ${(conf.instance.emios200_settings.emios_uc3.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH4              ${(conf.instance.emios200_settings.emios_uc4.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH5              ${(conf.instance.emios200_settings.emios_uc5.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH6              ${(conf.instance.emios200_settings.emios_uc6.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH7              ${(conf.instance.emios200_settings.emios_uc7.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH8              ${(conf.instance.emios200_settings.emios_uc8.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH9              ${(conf.instance.emios200_settings.emios_uc9.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH10             ${(conf.instance.emios200_settings.emios_uc10.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH11             ${(conf.instance.emios200_settings.emios_uc11.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH12             ${(conf.instance.emios200_settings.emios_uc12.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH13             ${(conf.instance.emios200_settings.emios_uc13.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH14             ${(conf.instance.emios200_settings.emios_uc14.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH15             ${(conf.instance.emios200_settings.emios_uc15.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH16             ${(conf.instance.emios200_settings.emios_uc16.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH17             ${(conf.instance.emios200_settings.emios_uc17.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH18             ${(conf.instance.emios200_settings.emios_uc18.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH19             ${(conf.instance.emios200_settings.emios_uc19.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH20             ${(conf.instance.emios200_settings.emios_uc20.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH21             ${(conf.instance.emios200_settings.emios_uc21.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH22             ${(conf.instance.emios200_settings.emios_uc22.value[0] == "ICU")?string?upper_case}
+#define SPC5_ICU_USE_EMIOS_CH23             ${(conf.instance.emios200_settings.emios_uc23.value[0] == "ICU")?string?upper_case}
 
 /*
  * PWM driver system settings.
  */
-#define SPC5_PWM_USE_EMIOS_CH0              ${conf.instance.emios200_settings.ch0.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH8              ${conf.instance.emios200_settings.ch8.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH9              ${conf.instance.emios200_settings.ch9.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH10             ${conf.instance.emios200_settings.ch10.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH12             ${conf.instance.emios200_settings.ch12.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH14             ${conf.instance.emios200_settings.ch14.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH15             ${conf.instance.emios200_settings.ch15.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH23             ${conf.instance.emios200_settings.ch23.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH19             ${conf.instance.emios200_settings.ch19.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH20             ${conf.instance.emios200_settings.ch20.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH21             ${conf.instance.emios200_settings.ch21.value[0]?upper_case}
-#define SPC5_PWM_USE_EMIOS_CH22             ${conf.instance.emios200_settings.ch22.value[0]?upper_case}
-#define SPC5_EMIOS_FLAG_F0_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc0.value[0]}
-#define SPC5_EMIOS_FLAG_F8_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc8.value[0]}
-#define SPC5_EMIOS_FLAG_F9_PRIORITY         ${conf.instance.irq_priority_settings.emios200_uc9.value[0]}
-#define SPC5_EMIOS_FLAG_F10_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc10.value[0]}
-#define SPC5_EMIOS_FLAG_F12_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc12.value[0]}
-#define SPC5_EMIOS_FLAG_F14_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc14.value[0]}
-#define SPC5_EMIOS_FLAG_F15_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc15.value[0]}
-#define SPC5_EMIOS_FLAG_F23_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc23.value[0]}
-#define SPC5_EMIOS_FLAG_F19_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc19.value[0]}
-#define SPC5_EMIOS_FLAG_F20_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc20.value[0]}
-#define SPC5_EMIOS_FLAG_F21_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc21.value[0]}
-#define SPC5_EMIOS_FLAG_F22_PRIORITY        ${conf.instance.irq_priority_settings.emios200_uc22.value[0]}
+#define SPC5_PWM_USE_EMIOS_CH0              ${(conf.instance.emios200_settings.emios_uc0.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH1              ${(conf.instance.emios200_settings.emios_uc1.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH2              ${(conf.instance.emios200_settings.emios_uc2.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH3              ${(conf.instance.emios200_settings.emios_uc3.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH4              ${(conf.instance.emios200_settings.emios_uc4.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH5              ${(conf.instance.emios200_settings.emios_uc5.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH6              ${(conf.instance.emios200_settings.emios_uc6.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH7              ${(conf.instance.emios200_settings.emios_uc7.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH8              ${(conf.instance.emios200_settings.emios_uc8.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH9              ${(conf.instance.emios200_settings.emios_uc9.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH10             ${(conf.instance.emios200_settings.emios_uc10.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH11             ${(conf.instance.emios200_settings.emios_uc11.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH12             ${(conf.instance.emios200_settings.emios_uc12.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH13             ${(conf.instance.emios200_settings.emios_uc13.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH14             ${(conf.instance.emios200_settings.emios_uc14.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH15             ${(conf.instance.emios200_settings.emios_uc15.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH16             ${(conf.instance.emios200_settings.emios_uc16.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH17             ${(conf.instance.emios200_settings.emios_uc17.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH18             ${(conf.instance.emios200_settings.emios_uc18.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH19             ${(conf.instance.emios200_settings.emios_uc19.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH20             ${(conf.instance.emios200_settings.emios_uc20.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH21             ${(conf.instance.emios200_settings.emios_uc21.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH22             ${(conf.instance.emios200_settings.emios_uc22.value[0] == "PWM")?string?upper_case}
+#define SPC5_PWM_USE_EMIOS_CH23             ${(conf.instance.emios200_settings.emios_uc23.value[0] == "PWM")?string?upper_case}
+
+/*
+ * eMIOS channel priorities.
+ */
+#define SPC5_EMIOS_FLAG_F0_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc0.value[0]}
+#define SPC5_EMIOS_FLAG_F1_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc1.value[0]}
+#define SPC5_EMIOS_FLAG_F2_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc2.value[0]}
+#define SPC5_EMIOS_FLAG_F3_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc3.value[0]}
+#define SPC5_EMIOS_FLAG_F4_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc4.value[0]}
+#define SPC5_EMIOS_FLAG_F5_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc5.value[0]}
+#define SPC5_EMIOS_FLAG_F6_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc6.value[0]}
+#define SPC5_EMIOS_FLAG_F7_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc7.value[0]}
+#define SPC5_EMIOS_FLAG_F8_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc8.value[0]}
+#define SPC5_EMIOS_FLAG_F9_PRIORITY         ${conf.instance.irq_priority_settings.emios_uc9.value[0]}
+#define SPC5_EMIOS_FLAG_F10_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc10.value[0]}
+#define SPC5_EMIOS_FLAG_F11_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc11.value[0]}
+#define SPC5_EMIOS_FLAG_F12_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc12.value[0]}
+#define SPC5_EMIOS_FLAG_F13_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc13.value[0]}
+#define SPC5_EMIOS_FLAG_F14_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc14.value[0]}
+#define SPC5_EMIOS_FLAG_F15_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc15.value[0]}
+#define SPC5_EMIOS_FLAG_F16_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc16.value[0]}
+#define SPC5_EMIOS_FLAG_F17_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc17.value[0]}
+#define SPC5_EMIOS_FLAG_F18_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc18.value[0]}
+#define SPC5_EMIOS_FLAG_F19_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc19.value[0]}
+#define SPC5_EMIOS_FLAG_F20_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc20.value[0]}
+#define SPC5_EMIOS_FLAG_F21_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc21.value[0]}
+#define SPC5_EMIOS_FLAG_F22_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc22.value[0]}
+#define SPC5_EMIOS_FLAG_F23_PRIORITY        ${conf.instance.irq_priority_settings.emios_uc23.value[0]}
 
 /*
  * CAN driver system settings.
@@ -236,6 +264,8 @@ ${channel.value[0]}
 #define SPC5_CAN_USE_FLEXCAN0               ${conf.instance.flexcan_settings.flexcan0.value[0]?upper_case}
 #define SPC5_CAN_FLEXCAN0_USE_EXT_CLK       ${conf.instance.flexcan_settings.flexcan0_use_external_clock.value[0]?upper_case}
 #define SPC5_CAN_FLEXCAN0_IRQ_PRIORITY      ${conf.instance.irq_priority_settings.flexcan0.value[0]}
+#define SPC5_CAN_NUM_RX_MAILBOXES			${conf.instance.flexcan_settings.can_configurations.mailboxes_configuration.number_of_rx_mailboxes.value[0]}
+#define SPC5_CAN_NUM_TX_MAILBOXES			${conf.instance.flexcan_settings.can_configurations.mailboxes_configuration.number_of_tx_mailboxes.value[0]}
 
 #define SPC5_CAN_USE_FLEXCAN1               ${conf.instance.flexcan_settings.flexcan1.value[0]?upper_case}
 #define SPC5_CAN_FLEXCAN1_USE_EXT_CLK       ${conf.instance.flexcan_settings.flexcan1_use_external_clock.value[0]?upper_case}

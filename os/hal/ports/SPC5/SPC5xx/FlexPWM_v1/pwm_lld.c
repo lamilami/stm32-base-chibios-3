@@ -343,7 +343,7 @@ void pwm_lld_enable_submodule_channel(PWMDriver *pwmp,
     }
 
     /* Removes the channel mask if it is necessary.*/
-    if ((pwmp->flexpwmp->MASK.B.MASKA & (1U << sid)) == 1)
+    if ((pwmp->flexpwmp->MASK.B.MASKA & (1U << sid)) == (1U << sid))
       pwmp->flexpwmp->MASK.B.MASKA &= ~ (1U << sid);
 
     if ((pwmp->config->channels[0].mode & PWM_COMPLEMENTARY_OUTPUT_MASK) != 0) {
@@ -374,7 +374,7 @@ void pwm_lld_enable_submodule_channel(PWMDriver *pwmp,
     }
 
     /* Removes the channel mask if it is necessary.*/
-    if ((pwmp->flexpwmp->MASK.B.MASKB & (1U << sid)) == 1)
+    if ((pwmp->flexpwmp->MASK.B.MASKB & (1U << sid)) == (1U << sid))
       pwmp->flexpwmp->MASK.B.MASKB &= ~ (1U << sid);
 
     if ((pwmp->config->channels[1].mode & PWM_COMPLEMENTARY_OUTPUT_MASK) != 0) {

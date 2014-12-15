@@ -22,7 +22,7 @@
  * @file    hal_queues.h
  * @brief   I/O Queues macros and structures.
  *
- * @addtogroup io_queues
+ * @addtogroup HAL_QUEUES
  * @{
  */
 
@@ -49,7 +49,11 @@
  */
 typedef struct io_queue io_queue_t;
 
-/** @brief Queue notification callback type.*/
+/**
+ * @brief   Queue notification callback type.
+ *
+ * @param[in] qp        the queue pointer.
+ */
 typedef void (*qnotify_t)(io_queue_t *qp);
 
 /**

@@ -40,16 +40,6 @@
 #define CAN_SUPPORTS_SLEEP          FALSE
 
 /**
- * @brief   This implementation supports 24 transmit mailboxes.
- */
-#define CAN_TX_MAILBOXES            24
-
-/**
- * @brief   This implementation supports one FIFO receive mailbox.
- */
-#define CAN_RX_MAILBOXES            8
-
-/**
  * @brief   This implementation supports eight FIFO receive filters.
  */
 #define SPC5_CAN_MAX_FILTERS        8
@@ -180,6 +170,20 @@
  */
 #if !defined(SPC5_CAN_USE_FLEXCAN5) || defined(__DOXYGEN__)
 #define SPC5_CAN_USE_FLEXCAN5               FALSE
+#endif
+
+/**
+ * @brief   Number of RX mailboxes.
+ */
+#if !defined(SPC5_CAN_NUM_RX_MAILBOXES) || defined(__DOXYGEN__)
+#define SPC5_CAN_NUM_RX_MAILBOXES           8
+#endif
+
+/**
+ * @brief   Number of TX mailboxes.
+ */
+#if !defined(SPC5_CAN_NUM_TX_MAILBOXES) || defined(__DOXYGEN__)
+#define SPC5_CAN_NUM_TX_MAILBOXES           24
 #endif
 
 /**
@@ -394,6 +398,28 @@
 #if CAN_USE_SLEEP_MODE && !CAN_SUPPORTS_SLEEP
 #error "CAN sleep mode not supported in this architecture"
 #endif
+
+#if (SPC5_CAN_NUM_RX_MAILBOXES < 1) || (SPC5_CAN_NUM_RX_MAILBOXES > 32)
+#error "invalid number of RX mailboxes"
+#endif
+
+#if (SPC5_CAN_NUM_TX_MAILBOXES < 1) || (SPC5_CAN_NUM_TX_MAILBOXES > 32)
+#error "invalid number of TX mailboxes"
+#endif
+
+#if (SPC5_CAN_NUM_RX_MAILBOXES + SPC5_CAN_NUM_TX_MAILBOXES) > 32
+#error "invalid amount of RX and TX mailboxes"
+#endif
+
+/**
+ * @brief   Number of RX mailboxes to be allocated.
+ */
+#define CAN_TX_MAILBOXES            SPC5_CAN_NUM_TX_MAILBOXES
+
+/**
+ * @brief   Number of TX mailboxes to be allocated.
+ */
+#define CAN_RX_MAILBOXES            SPC5_CAN_NUM_RX_MAILBOXES
 
 /*===========================================================================*/
 /* Driver data structures and types.                                         */
