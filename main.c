@@ -515,7 +515,7 @@ int main(void) {
 
 #if !DS18B20_PRESENT
 		static DS18B20_Inner_Val DS_Temp_Vals;
-		msg_t msg;
+//		msg_t msg;
 //		msg = Core_Module_Update(Temp, NULL, 1000);
 		DS_Temp_Vals.temp[0] = -77 << 2;
 		Core_Module_Read(10, Temp, (char*) &DS_Temp_Vals);

@@ -27,6 +27,10 @@
 #define BOARD_ST_STM32F100C_BASE
 #define BOARD_NAME                  "ST STM32F100C-Base"
 
+
+#define LEDSwap() GPIOB->ODR ^= PAL_PORT_BIT(8)
+#define LEDB1Swap() GPIOB->ODR ^= PAL_PORT_BIT(9)
+
 /*
  * Board oscillators-related settings.
  * NOTE: HSE not fitted.
