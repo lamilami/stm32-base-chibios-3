@@ -15,7 +15,7 @@
  */
 
 #ifdef STM32F100C8
-static const SPIConfig hs_spicfg = { NULL, GPIOA, 4, SPI_CR1_BR_1, // | SPI_CR1_MSTR,
+static const SPIConfig hs_spicfg = { NULL, GPIOA, 15, SPI_CR1_BR_1, // | SPI_CR1_MSTR,
 //  SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0 // | SPI_CR2_FRXTH
 		};
 #else
