@@ -16,11 +16,6 @@
 #define NRF_IRQ_Pin 	GPIOB_PIN7
 #define NRF_CE_IRQ_Port		GPIOB
 
-//#define nRF24_IRQ_EXTI_PortSource		GPIO_PortSourceGPIOB
-//#define nRF24_IRQ_EXTI_PinSource		GPIO_PinSource7
-//#define nRF24_IRQ_EXTI_Line				EXTI_Line7
-//#define nRF24_IRQ_Channel				EXTI9_5_IRQn
-
 #define NRF_SPI_NSS_Pin GPIOA_PIN15
 #define NRF_SPI_SCK_Pin GPIOB_PIN3
 #define NRF_SPI_MISO_Pin GPIOB_PIN4
@@ -28,49 +23,37 @@
 
 #define NRF_SPI_Port		GPIOB
 #define NRF_SPI_NSS_Port	GPIOA
-//#define NRF_CE_IRQ_Port		GPIOB
 
 #define NRF_IRQ_EXT_Port	EXT_MODE_GPIOB
 
 #else
 
-#define GPIO_EXTILineConfig SYSCFG_EXTILineConfig
-
 #define NRF_CE_Pin GPIOF_PIN0
 #define NRF_IRQ_Pin GPIOF_PIN1
 
-//#define NRF_CE_IRQ_Port		((GPIO_TypeDef *) GPIOF_BASE)
 #define NRF_CE_IRQ_Port		GPIOF
-
-//#define nRF24_IRQ_EXTI_PortSource		EXTI_PortSourceGPIOF
-//#define nRF24_IRQ_EXTI_PinSource		EXTI_PinSource1
-//#define nRF24_IRQ_EXTI_Line				EXTI_Line1
-//#define nRF24_IRQ_Channel				EXTI0_1_IRQn
 
 #define NRF_SPI_NSS_Pin GPIOA_PIN4
 #define NRF_SPI_SCK_Pin GPIOA_PIN5
 #define NRF_SPI_MISO_Pin GPIOA_PIN6
 #define NRF_SPI_MOSI_Pin GPIOA_PIN7
 
-//#define NRF_SPI_Port		((GPIO_TypeDef *) GPIOA_BASE)
 #define NRF_SPI_Port		GPIOA
 
 #define NRF_IRQ_EXT_Port	EXT_MODE_GPIOF
 #endif
-
 
 /*
  * Maximum speed SPI configuration (18MHz, CPHA=0, CPOL=0, MSb first).
  */
 
 #ifdef STM32F100C8
-static const SPIConfig hs_spicfg = { NULL, NRF_SPI_NSS_Port, NRF_SPI_NSS_Pin, SPI_CR1_BR_1 // , // | SPI_CR1_MSTR,
+static const SPIConfig hs_spicfg = {NULL, NRF_SPI_NSS_Port, NRF_SPI_NSS_Pin, SPI_CR1_BR_1 // , // | SPI_CR1_MSTR,
 //  SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0 // | SPI_CR2_FRXTH
-		};
+};
 #else
-static const SPIConfig hs_spicfg =
-{	NULL, GPIOA, 4, SPI_CR1_BR_1, // | SPI_CR1_MSTR,
-	SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0// | SPI_CR2_FRXTH
+static const SPIConfig hs_spicfg = { NULL, GPIOA, 4, SPI_CR1_BR_1, // | SPI_CR1_MSTR,
+		SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0 // | SPI_CR2_FRXTH
 };
 #endif
 
@@ -86,7 +69,6 @@ typedef enum {
 	DMA1_SPI_READ, /**< Channel3 is idle */
 	DMA1_SPI_WRITE /**< Transfer completed */
 } DMA1_SPI_direction_t;
-
 
 void nRF24_Init(void);
 
