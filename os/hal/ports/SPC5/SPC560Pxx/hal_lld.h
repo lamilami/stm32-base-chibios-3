@@ -168,6 +168,28 @@
 /** @} */
 
 /**
+ * @name    Clock selectors used in the CGM_OCDS_SC register
+ * @{
+ */
+#define SPC5_CGM_OCDS_SELCTL_MASK   (15U << 24)
+#define SPC5_CGM_OCDS_SELCTL_IRC    (0U << 24)
+#define SPC5_CGM_OCDS_SELCTL_XOSC   (1U << 24)
+#define SPC5_CGM_OCDS_SELCTL_FMPLL0 (2U << 24)
+#define SPC5_CGM_OCDS_SELCTL_FMPLL1 (3U << 24)
+/** @} */
+
+/**
+ * @name    Clock dividers used in the CGM_OCDS_SC register
+ * @{
+ */
+#define SPC5_CGM_OCDS_SELDIV_MASK   (3U << 28)
+#define SPC5_CGM_OCDS_SELDIV_DIV1   (0U << 28)
+#define SPC5_CGM_OCDS_SELDIV_DIV2   (1U << 28)
+#define SPC5_CGM_OCDS_SELDIV_DIV4   (2U << 28)
+#define SPC5_CGM_OCDS_SELDIV_DIV8   (3U << 28)
+/** @} */
+
+/**
  * @name    ME_GS register bits definitions
  * @{
  */
@@ -364,6 +386,21 @@
  */
 #if !defined(SPC5_FMPLL1_MR_INIT) || defined(__DOXYGEN__)
 #define SPC5_FMPLL1_MR_INIT                 0
+#endif
+
+/**
+ * @brief   Clock Out clock source.
+ */
+#if !defined(SPC5_CLKOUT_SRC) || defined(__DOXYGEN__)
+#define SPC5_CLKOUT_SRC                     SPC5_CGM_OCDS_SELCTL_IRC
+#endif
+
+/**
+ * @brief   Clock Out clock divider value.
+ * @note    Possible values are 1, 2, 4 and 8.
+ */
+#if !defined(SPC5_CLKOUT_DIV_VALUE) || defined(__DOXYGEN__)
+#define SPC5_CLKOUT_DIV_VALUE               2
 #endif
 
 /**
@@ -893,6 +930,34 @@
 #error "SPC5_FMPLL1_CLK outside acceptable range (0...SPC5_FMPLL1_CLK_MAX)"
 #endif
 #endif /* SPC5_HAS_FMPLL1 */
+
+/**
+ * @brief   CLKOUT clock point.
+ */
+#if (SPC5_CLKOUT_SRC == SPC5_CGM_OCDS_SELCTL_IRC) || defined(__DOXYGEN__)
+#define SPC5_CLKOUT_CLK         SPC5_FMPLL_SRC_IRC
+#elif SPC5_CLKOUT_SRC == SPC5_CGM_OCDS_SELCTL_XOSC
+#define SPC5_CLKOUT_CLK         SPC5_FMPLL_SRC_XOSC
+#elif SPC5_CLKOUT_SRC == SPC5_CGM_OCDS_SELCTL_FMPLL0
+#define SPC5_CLKOUT_CLK         SPC5_FMPLL0_CLK
+#elif SPC5_CLKOUT_SRC == SPC5_CGM_OCDS_SELCTL_FMPLL1
+#define SPC5_CLKOUT_CLK         SPC5_FMPLL1_CLK
+#else
+#error "invalid SPC5_CLKOUT_SRC value specified"
+#endif
+
+/* Check on the CLKOUT divider settings.*/
+#if SPC5_CLKOUT_DIV_VALUE == 1
+#define SPC5_CGM_OCDS_SELDIV    SPC5_CGM_OCDS_SELDIV_DIV1
+#elif SPC5_CLKOUT_DIV_VALUE == 2
+#define SPC5_CGM_OCDS_SELDIV    SPC5_CGM_OCDS_SELDIV_DIV2
+#elif SPC5_CLKOUT_DIV_VALUE == 4
+#define SPC5_CGM_OCDS_SELDIV    SPC5_CGM_OCDS_SELDIV_DIV4
+#elif SPC5_CLKOUT_DIV_VALUE == 8
+#define SPC5_CGM_OCDS_SELDIV    SPC5_CGM_OCDS_SELDIV_DIV8
+#else
+#error "invalid SPC5_CLKOUT_DIV_VALUE value specified"
+#endif
 
 #if SPC5_HAS_AC0 || defined(__DOXYGEN__)
 /**
