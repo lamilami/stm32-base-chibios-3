@@ -241,7 +241,7 @@
  */
 #define SPC5_ME_LP_PC_HALT0         (1U << 8)
 #define SPC5_ME_LP_PC_STOP0         (1U << 10)
-#define SPC5_ME_LP_PC_STANDBY0      (1U << 10)
+#define SPC5_ME_LP_PC_STANDBY0      (1U << 13)
 /** @} */
 
 /**

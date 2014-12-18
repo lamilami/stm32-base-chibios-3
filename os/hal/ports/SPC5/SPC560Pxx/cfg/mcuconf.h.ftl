@@ -175,6 +175,8 @@
   [#assign options = options + " | SPC5_FMPLL_INC_STEP(" + conf.instance.initialization_settings.fmpll1_settings.increment_step.value[0]?trim + ")" /]
 [/#if]
 #define SPC5_FMPLL1_MR_INIT                 (0${options})
+#define SPC5_CLKOUT_SRC                     SPC5_CGM_OCDS_SELCTL_${conf.instance.initialization_settings.clocks.clkout_clock_source.value[0]}
+#define SPC5_CLKOUT_DIV_VALUE               ${conf.instance.initialization_settings.clocks.clkout_clock_divider.value[0]}
 #define SPC5_AUX0CLK_SRC                    SPC5_CGM_SS_${conf.instance.initialization_settings.clocks.aux0_clock_source.value[0]}
 #define SPC5_MCONTROL_DIVIDER_VALUE         ${conf.instance.initialization_settings.clocks.motor_control_clock_divider.value[0]}
 #define SPC5_FMPLL1_CLK_DIVIDER_VALUE       ${conf.instance.initialization_settings.clocks.fmpll1_div_clock_divider.value[0]}

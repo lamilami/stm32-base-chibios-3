@@ -233,6 +233,9 @@ void spc_clock_init(void) {
   if (halSPCSetRunMode(SPC5_RUNMODE_DRUN) == OSAL_FAILED) {
     SPC5_CLOCK_FAILURE_HOOK();
   }
+
+  /* Clock Out selection after all the other configurations.*/
+  CGM.OCDSSC.R  = SPC5_CLKOUT_SRC | SPC5_CGM_OCDS_SELDIV;
 #endif /* !SPC5_NO_INIT */
 }
 
