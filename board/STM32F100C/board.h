@@ -28,7 +28,7 @@
 #define BOARD_NAME                  "ST STM32F100C-Base"
 
 
-#define LEDSwap() GPIOB->ODR ^= PAL_PORT_BIT(8)
+#define LEDSwap() GPIOC->ODR ^= PAL_PORT_BIT(13)
 #define LEDB1Swap() GPIOB->ODR ^= PAL_PORT_BIT(9)
 
 /*

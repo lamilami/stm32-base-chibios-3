@@ -181,7 +181,7 @@ int main(void) {
 #if MY_ADDR==10
 	Radio_Send_Command(11, RF_PING, 0, NULL);
 #else
-//	Radio_Send_Command(10, RF_PING, 0, NULL);
+	Radio_Send_Command(10, RF_PING, 0, NULL);
 #endif
 
 #if WATCHDOG_PRESENT
@@ -482,7 +482,7 @@ int main(void) {
 		}
 #endif
 
-#ifdef STM32F100C8
+#ifdef STM32F100C8_old
 
 		//		GPIOD->BRR = 0x2;
 		//		chThdSleepMilliseconds(100);
