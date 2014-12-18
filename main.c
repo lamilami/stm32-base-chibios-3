@@ -525,7 +525,7 @@ int main(void) {
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT
 //		Radio_Send_Command(11, RF_PING, 0, NULL);
-		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(10));
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(3));
 //		LEDB1Swap();
 #endif
 
