@@ -77,9 +77,9 @@ void nRF24_GPIO_init(void) {
 	 GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
 	 GPIO_Init(GPIOB, &GPIO_InitStructure);
 	 */
-	palSetPadMode(NRF_SPI_Port, NRF_SPI_SCK_Pin, PAL_MODE_OUTPUT_PUSHPULL);
-	palSetPadMode(NRF_SPI_Port, NRF_SPI_MISO_Pin, PAL_MODE_OUTPUT_PUSHPULL);
-	palSetPadMode(NRF_SPI_Port, NRF_SPI_MOSI_Pin, PAL_MODE_OUTPUT_PUSHPULL);
+	palSetPadMode(NRF_SPI_Port, NRF_SPI_SCK_Pin, PAL_MODE_STM32_ALTERNATE_PUSHPULL);
+	palSetPadMode(NRF_SPI_Port, NRF_SPI_MISO_Pin, PAL_MODE_STM32_ALTERNATE_PUSHPULL);
+	palSetPadMode(NRF_SPI_Port, NRF_SPI_MOSI_Pin, PAL_MODE_STM32_ALTERNATE_PUSHPULL);
 
 	/*Configure peripheral I/O remapping */
 //	GPIO_PinRemapConfig(GPIO_Remap_SPI1, ENABLE);

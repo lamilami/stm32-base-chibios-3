@@ -184,8 +184,8 @@
     <File name="os/hal/include/hal_ioblock.h" path="os/hal/include/hal_ioblock.h" type="1"/>
     <File name="os/hal/include/can.h" path="os/hal/include/can.h" type="1"/>
     <File name="modules/EEPROM/eeprom_testsuit.c" path="modules/EEPROM/eeprom_testsuit.c" type="1"/>
-    <File name="modules/LM75/LM75_hal.c" path="modules/LM75/LM75_hal.c" type="1"/>
     <File name="modules/EEPROM/eeprom_testsuit_conf.h" path="modules/EEPROM/eeprom_testsuit_conf.h" type="1"/>
+    <File name="modules/LM75/LM75_hal.c" path="modules/LM75/LM75_hal.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F1xx/adc_lld.c" path="os/hal/ports/STM32/STM32F1xx/adc_lld.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv1/spi_lld.c" path="os/hal/ports/STM32/LLD/SPIv1/spi_lld.c" type="1"/>
     <File name="board/STM32F100C/mcuconf.h" path="board/STM32F100C/mcuconf.h" type="1"/>
@@ -248,9 +248,9 @@
     <File name="os/hal/src/adc.c" path="os/hal/src/adc.c" type="1"/>
     <File name="os/hal/include" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/I2Cv1/i2c_lld.h" path="os/hal/ports/STM32/LLD/I2Cv1/i2c_lld.h" type="1"/>
+    <File name="board/STM32F100C/halconf.h" path="board/STM32F100C/halconf.h" type="1"/>
     <File name="os/hal/include/ext.h" path="os/hal/include/ext.h" type="1"/>
     <File name="os/rt/src/chmempools.c" path="os/rt/src/chmempools.c" type="1"/>
-    <File name="board/STM32F100C/halconf.h" path="board/STM32F100C/halconf.h" type="1"/>
     <File name="os/ext/CMSIS" path="" type="2"/>
     <File name="os/hal/ports" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/I2Cv1" path="" type="2"/>
@@ -344,7 +344,7 @@
     <File name="os/hal/include/hal_channels.h" path="os/hal/include/hal_channels.h" type="1"/>
     <File name="os/hal/src/i2s.c" path="os/hal/src/i2s.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/GPIOv1" path="" type="2"/>
-    <File name="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v7m.S" path="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v7m.s" type="1"/>
+    <File name="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v7m.S" path="os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v7m.S" type="1"/>
     <File name="os/rt/src/chtm.c" path="os/rt/src/chtm.c" type="1"/>
     <File name="os/hal/src/pal.c" path="os/hal/src/pal.c" type="1"/>
     <File name="os/rt/src/chmtx.c" path="os/rt/src/chmtx.c" type="1"/>
