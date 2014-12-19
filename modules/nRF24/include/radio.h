@@ -113,13 +113,6 @@ void radio_set_status(radio_status_t new_status);
  */
 uint8_t radio_get_pload_byte(uint8_t byte_index);
 
-/** This function load the data to be sent into the radio, sends it, and waits for
- * the response.
- * @param packet The data to send. Maximum 2 byte
- * @param length The length of the data
- */
-void radio_send_packet(uint8_t *packet, uint8_t length);
-
 /** This function reads the interrupts. It does the work
  * of a interrupt handler by manually reading the interrupt
  * flags and act on them. Sets the status with \

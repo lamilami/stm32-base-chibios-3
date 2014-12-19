@@ -164,6 +164,7 @@ int main(void) {
 	Core_Start();
 
 	LEDB1Swap();
+	LEDSwap();
 /*
 #define NRF_CE_IRQ_Port		GPIOF
 #define NRF_CE_Pin GPIOF_PIN0
@@ -179,9 +180,9 @@ int main(void) {
 	chThdSleepSeconds(1);
 
 #if MY_ADDR==10
-	Radio_Send_Command(11, RF_PING, 0, NULL);
+//	Radio_Send_Command(11, RF_PING, 0, NULL);
 #else
-	Radio_Send_Command(10, RF_PING, 0, NULL);
+//	Radio_Send_Command(10, RF_PING, 0, NULL);
 #endif
 
 #if WATCHDOG_PRESENT

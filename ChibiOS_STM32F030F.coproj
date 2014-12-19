@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Project version="2G - 1.7.6" name="STM32F030F">
-  <Target name="ChibiOS_Test" isCurrent="0">
+<Project version="2G - 1.7.6" name="ChibiOS_F030F">
+  <Target name="STM32F030F" isCurrent="0">
     <Device manufacturerId="9" manufacturerName="ST" chipId="441" chipName="STM32F030F4P6" boardId="" boardName=""/>
     <BuildOption>
       <Compile>
@@ -40,7 +40,7 @@
       <Output>
         <Option name="OutputFileType" value="0"/>
         <Option name="Path" value="./"/>
-        <Option name="Name" value="ChibiOS_FloorHeater"/>
+        <Option name="Name" value="ChibiOS_STM32F030F"/>
         <Option name="HEX" value="1"/>
         <Option name="BIN" value="1"/>
       </Output>
@@ -111,7 +111,7 @@
       <Output>
         <Option name="OutputFileType" value="0"/>
         <Option name="Path" value="./"/>
-        <Option name="Name" value="ChibiOS_FloorHeater"/>
+        <Option name="Name" value="ChibiOS_STM32F030F"/>
         <Option name="HEX" value="1"/>
         <Option name="BIN" value="1"/>
       </Output>
@@ -317,9 +317,9 @@
     <File name="os/rt/include/chmboxes.h" path="os/rt/include/chmboxes.h" type="1"/>
     <File name="os/hal/include/hal_mmcsd.h" path="os/hal/include/hal_mmcsd.h" type="1"/>
     <File name="modules/FloorHeater" path="" type="2"/>
-    <File name="board/STM32F030F/board.c" path="board/STM32F030F/board.c" type="1"/>
     <File name="os/common/ports/ARMCMx/compilers/GCC/vectors.c" path="os/common/ports/ARMCMx/compilers/GCC/vectors.c" type="1"/>
     <File name="os/hal/src/uart.c" path="os/hal/src/uart.c" type="1"/>
+    <File name="board/STM32F030F/board.c" path="board/STM32F030F/board.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/USARTv2/uart_lld.c" path="os/hal/ports/STM32/LLD/USARTv2/uart_lld.c" type="1"/>
     <File name="os/rt/include/chsem.h" path="os/rt/include/chsem.h" type="1"/>
     <File name="board/STM32F030F/STM32F0xx/adc_lld.h" path="board/STM32F030F/STM32F0xx/adc_lld.h" type="1"/>

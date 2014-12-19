@@ -33,26 +33,6 @@
 #define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел
 //#define DEBUG_Discovery
 
-#ifdef DEBUG_Discovery
-#ifdef STM32F100C8
-#define LEDSwap() GPIOA->ODR ^= 0x1
-#define LEDB1On() GPIOA->BSRR = GPIO_Pin_0
-#define LEDB1Off() GPIOA->BRR = GPIO_Pin_0
-#define LEDB1Swap() GPIOA->ODR ^= 0x2
-#else
-#define LEDSwap() GPIOA->ODR ^= 0x8
-//#define LEDB1On() GPIOB->BSRR = GPIO_Pin_1
-//#define LEDB1Off() GPIOB->BRR = GPIO_Pin_1
-#define LEDB1Swap() GPIOA->ODR ^= 0x4
-#endif
-
-void LEDBlinkS(uint8_t cnt);
-void LEDBlinkI(uint8_t cnt);
-//#define LEDBlink LEDBlink();
-//#define LEDBlink   if (Blinker_Thread != NULL) { chSchReadyI(Blinker_Thread); Blinker_Thread = NULL; }
-
-#endif
-
 /**
  * @brief   Enables the PAL subsystem.
  */
