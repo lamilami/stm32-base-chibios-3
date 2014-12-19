@@ -26,9 +26,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/nRF24/src/nRF24_HAL.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="101" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" partName="core.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.h" title="core.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.h" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" partName="core.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.h" title="core.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/core.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/core.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="120" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="59" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="nRF24_HAL.h" partName="nRF24_HAL.h" path="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/nRF24/include/nRF24_HAL.h" title="nRF24_HAL.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/modules/nRF24/include/nRF24_HAL.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/nRF24/include/nRF24_HAL.h"/>
@@ -38,7 +38,7 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/nRF24/src/radio.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="15" selectionOffset="10088" selectionTopPixel="6975"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0_Test/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/main.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="12470" selectionTopPixel="7513"/>
 </editor>
@@ -92,8 +92,7 @@
 </view>
 <view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
 <viewState horizontalPosition="0" verticalPosition="0">
-<selection>
-<element name="AFIO"/>
+<selection>&#x0A;<element name="AFIO"/>
 </selection>
 <registerValues baseAddress="Base Address: 0x40010000" description="Description:  Alternate function I/O and debug configuration"/>
 </viewState>
@@ -239,57 +238,41 @@
 <view id="org.eclipse.cdt.dsf.debug.ui.disassembly.view"/>
 <fastViewBars/>
 <viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
-<layout>
-<mainWindow>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@768fd2">
-<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
-<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@768fd2">&#x0A;<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="954" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@768fd2">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="954" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@768fd2">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@b2916d" ratio="0.55793226" ratioLeft="313" ratioRight="248" relationship="4" relative="org.eclipse.ui.internal.ViewStack@768fd2">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@b2916d" ratio="0.55793226" ratioLeft="313" ratioRight="248" relationship="4" relative="org.eclipse.ui.internal.ViewStack@768fd2">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@474d7f" ratio="0.5" ratioLeft="636" ratioRight="636" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b2916d">
-<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">
-<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@474d7f" ratio="0.5" ratioLeft="636" ratioRight="636" relationship="2" relative="org.eclipse.ui.internal.ViewStack@b2916d">&#x0A;<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
 <page content="org.eclipse.debug.ui.MemoryView" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1ab5957" ratio="0.75" ratioLeft="954" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@768fd2">
-<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">
-<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1ab5957" ratio="0.75" ratioLeft="954" ratioRight="318" relationship="2" relative="org.eclipse.ui.internal.ViewStack@768fd2">&#x0A;<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">&#x0A;<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
 <page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="Disassembly"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
@@ -316,6 +299,7 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/nRF24/src/radio.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/core.h"/>
 </editors>
 <item historyLabel="radio.c" index="1">
 <position info="not_deleted" x="7882" y="0"/>
@@ -461,8 +445,11 @@
 <item historyLabel="main.c" index="11">
 <position info="not_deleted" x="3390" y="0"/>
 </item>
-<item active="true" historyLabel="main.c" index="11">
+<item historyLabel="main.c" index="11">
 <position info="not_deleted" x="12470" y="0"/>
+</item>
+<item active="true" historyLabel="core.h" index="14">
+<position info="not_deleted" x="120" y="2"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -471,6 +458,12 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ChibiOS_F030F/main.c">
+<persistable path="/ChibiOS_F030F/main.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_F031F/modules/core.h">
+<persistable path="/ChibiOS_F031F/modules/core.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="crt0.c" tooltip="ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c">
 <persistable path="/ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
 </file>
@@ -506,9 +499,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ChibiOS_Test/main.c">
 <persistable path="/ChibiOS_Test/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.h" tooltip="ChibiOS_F100C/modules/nRF24/include/radio.h">
-<persistable path="/ChibiOS_F100C/modules/nRF24/include/radio.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="nRF24.c" tooltip="ChibiOS_F100C/modules/nRF24/src/nRF24.c">
 <persistable path="/ChibiOS_F100C/modules/nRF24/src/nRF24.c"/>
