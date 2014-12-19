@@ -1,8 +1,8 @@
 syntax: glob
 
-ChibiOS_Test/*
-STM32F030F/Debug/*
-STM32F030F/ChibiOS_FloorHeater.elf.xcodeproj/*
+STM32F*/Debug/*
+STM32F*/*.elf.xcodeproj/*
+
 logs/*
 */.svn/*
 */*.bak
