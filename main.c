@@ -212,9 +212,9 @@ int main(void) {
 	   *   Using GWin
 	   */
 
-	  gwinSetDefaultFont(gdispOpenFont("DejaVuSans16"));
+//	  gwinSetDefaultFont(gdispOpenFont("DejaVuSans16"));
 //	  gwinSetDefaultStyle(&WhiteWidgetStyle, FALSE);
-	  gdispClear(White);
+//	  gdispClear(White);
 
 #endif
 

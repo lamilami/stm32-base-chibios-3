@@ -19,8 +19,8 @@
  */
 
 
-__main_stack_size__     = 0x0100;
-__process_stack_size__  = 0x0100;
+__main_stack_size__     = 0x0400;
+__process_stack_size__  = 0x0400;
  
 
 

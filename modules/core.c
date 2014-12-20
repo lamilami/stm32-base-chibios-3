@@ -353,7 +353,11 @@ uint8_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inv
 		ret_size = base_struct->ival_size;
 	} else {
 		inval[0] = type;
+#if RADIO_PRESENT
 		ret_size = Radio_Send_Command(addr, RF_GET, 1, inval);
+#else
+		ret_size = 0;
+#endif
 	}
 	return ret_size;
 }
