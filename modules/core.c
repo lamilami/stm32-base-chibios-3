@@ -267,6 +267,8 @@ void Core_Start()
 	halInit();
 	chSysInit();
 
+	osalThreadSleepMilliseconds(500);
+
 	chThdSetPriority(LOWPRIO);
 	register int i;
 	for (i = 0; i <= Other; i++)

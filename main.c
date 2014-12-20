@@ -358,7 +358,7 @@ int main(void) {
 		chThdSleepSeconds(1);
 		DHT_Temp_Vals.temp = 77 << 2;
 		DHT_Temp_Vals.humidity = 0;
-		Core_Module_Read(DHT11, (char*) &DHT_Temp_Vals);
+		Core_Module_Read(localhost, DHT11, (char*) &DHT_Temp_Vals);
 
 //		printf("DHT11 Temp: %d, Hum: %d,  Cnt: %d \r\n", (int) DHT_Temp_Vals.temp/4, (int) DHT_Temp_Vals.humidity, time_cnt);
 		time_cnt++;
@@ -394,6 +394,7 @@ int main(void) {
 		 data[0]=3;
 		 Radio_Send_Command(10, RF_GET, 1, data);
 		 chThdSleepSeconds(3);*/
+		ClearLCDScreen();
 		Cursor(0, 0); //Установка курсора
 		PrintStr("Outer temp=");//Написание текста
 		/*	    PutData[2][0]=1;
