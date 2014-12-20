@@ -13,6 +13,8 @@
 #define PIR_PRESENT			FALSE
 #define LM75_PRESENT		FALSE
 
+#define uGFX_PRESENT		TRUE
+
 #define SEMIHOSTING			FALSE
 
 #define localhost			0
@@ -28,6 +30,12 @@
 #include "cli.h"
 #include "PIR.h"
 #include "lcd.h"
+
+#if uGFX_PRESENT
+#include "gfx.h"
+#include "board_ILI9341_spi.h"
+#endif
+
 //#include "LM75.h"
 
 /*

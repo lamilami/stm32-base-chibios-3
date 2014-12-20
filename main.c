@@ -165,18 +165,70 @@ int main(void) {
 
 	LEDB1Swap();
 	LEDSwap();
-/*
-#define NRF_CE_IRQ_Port		GPIOF
-#define NRF_CE_Pin GPIOF_PIN0
 
-	palSetPadMode(GPIOF, NRF_CE_Pin,
-			PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST); // | PAL_STM32_PUDR_FLOATING);
-	palSetPad(NRF_CE_IRQ_Port, NRF_CE_Pin);
+#if uGFX_PRESENT
+	coord_t width, height;
+	coord_t i, j;
 
-	chThdSleepSeconds(3);
-*/
+	/*
+	 * This initialization requires the OS already active because it uses delay
+	 * APIs inside.
+	 */
+	// Initialize uGFX and the underlying system
+	gfxInit();
+	// Get the screen size
+	width = gdispGetWidth();
+	height = gdispGetHeight();
+
+	gdispDrawBox(10, 10, width / 2, height / 2, Yellow);
+	gdispFillArea(width / 2, height / 2, width / 2 - 10, height / 2 - 10, Blue);
+	gdispDrawLine(5, 30, width - 50, height - 40, Red);
+
+	for (i = 5, j = 0; i < width && j < height; i += 7, j += i / 20)
+		gdispDrawPixel(i, j, Green);
+
+	font_t font = gdispOpenFont("DejaVuSans24");
+	gwinSetDefaultFont(font);
+
+	gdispDrawString(16, 16, "STM32VLDiscovery", font, White);
+
+	gdispDrawStringBox(0, 150, width, 40, "ChibiOS/RT + uGFX", font, White,
+			justifyCenter);
+
+	chThdSleepMilliseconds(5000);
+
+	  /*
+	   * Normal main() thread activity, in this demo it does nothing except
+	   * sleeping in a loop and check the button state
+	   */
+
+	  gdispClear(Black);
+	  gdispDrawStringBox(0, 0, width, 24, "ADC Results:", font, Green, justifyCenter);
+	  gdispFillStringBox(0, (height-24), width/2, 24, "Seconds:", font, Yellow, Green, justifyRight);
+
+	  chThdSleepMilliseconds(5000);
+
+	  /*
+	   *   Using GWin
+	   */
+
+	  gwinSetDefaultFont(gdispOpenFont("DejaVuSans16"));
+//	  gwinSetDefaultStyle(&WhiteWidgetStyle, FALSE);
+	  gdispClear(White);
+
+#endif
+
+	/*
+	 #define NRF_CE_IRQ_Port		GPIOF
+	 #define NRF_CE_Pin GPIOF_PIN0
+
+	 palSetPadMode(GPIOF, NRF_CE_Pin,
+	 PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST); // | PAL_STM32_PUDR_FLOATING);
+	 palSetPad(NRF_CE_IRQ_Port, NRF_CE_Pin);
+
+	 chThdSleepSeconds(3);
+	 */
 //	eeprom_cmd_test(NULL, 0, NULL);
-
 	chThdSleepSeconds(1);
 
 #if MY_ADDR==10
@@ -522,7 +574,7 @@ int main(void) {
 		DS_Temp_Vals.temp[0] = -77 << 2;
 		Core_Module_Read(10, Temp, (char*) &DS_Temp_Vals);
 		if ((DS_Temp_Vals.cont_errors > 0)) // || (msg != MSG_OK))
-		DS_Temp_Vals.temp[0] = -99 << 2;
+			DS_Temp_Vals.temp[0] = -99 << 2;
 #endif
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT

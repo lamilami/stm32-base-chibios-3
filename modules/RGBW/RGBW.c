@@ -125,23 +125,23 @@ THD_FUNCTION(RGBW_Controller,arg)
 
 	timer_str_t R_Tim, B_Tim, G_Tim;
 
-	Inner_Val_RGBW.Blue = 10;
-	Inner_Val_RGBW.Red = 10;
-	Inner_Val_RGBW.Green = 10;
+	Inner_Val_RGBW.Blue_Power = 10;
+	Inner_Val_RGBW.Red_Power = 10;
+	Inner_Val_RGBW.Green_Power = 10;
 
-	R_Tim.curr_power = &Inner_Val_RGBW.Red;
+	R_Tim.curr_power = &Inner_Val_RGBW.Red_Power;
 	R_Tim.inc = 0;
 	R_Tim.rise_time = 0;
 	R_Tim.max_power = *R_Tim.curr_power;
 	R_Tim.vt = &vt_r;
 
-	G_Tim.curr_power = &Inner_Val_RGBW.Green;
+	G_Tim.curr_power = &Inner_Val_RGBW.Green_Power;
 	G_Tim.inc = 0;
 	G_Tim.rise_time = 0;
 	G_Tim.max_power = *G_Tim.curr_power;
 	G_Tim.vt = &vt_g;
 
-	B_Tim.curr_power = &Inner_Val_RGBW.Blue;
+	B_Tim.curr_power = &Inner_Val_RGBW.Blue_Power;
 	B_Tim.inc = 0;
 	B_Tim.rise_time = 0;
 	B_Tim.max_power = *B_Tim.curr_power;
@@ -150,9 +150,9 @@ THD_FUNCTION(RGBW_Controller,arg)
 	while (TRUE)
 	{
 
-		pwmEnableChannel(&PWMD3, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Red));     // 10% duty cycle
-		pwmEnableChannel(&PWMD3, 1, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Blue));     // 10% duty cycle
-		pwmEnableChannel(&PWMD3, 3, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Green));     // 10% duty cycle
+		pwmEnableChannel(&PWMD3, 0, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Red_Power));     // 10% duty cycle
+		pwmEnableChannel(&PWMD3, 1, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Blue_Power));     // 10% duty cycle
+		pwmEnableChannel(&PWMD3, 3, PWM_PERCENTAGE_TO_WIDTH(&PWMD3, Inner_Val_RGBW.Green_Power));     // 10% duty cycle
 
 		eventmask_t evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_RGBW.RW.Max_Delay_Sec));
 
@@ -162,9 +162,9 @@ THD_FUNCTION(RGBW_Controller,arg)
 		{
 		case (EVENTMASK_REREAD):
 
-			ComputeRiseVals_S(Inner_Val_RGBW.Red, Inner_Val_RGBW.RW.Red_Set, &R_Tim);
-			ComputeRiseVals_S(Inner_Val_RGBW.Blue, Inner_Val_RGBW.RW.Blue_Set, &B_Tim);
-			ComputeRiseVals_S(Inner_Val_RGBW.Green, Inner_Val_RGBW.RW.Green_Set, &G_Tim);
+			ComputeRiseVals_S(Inner_Val_RGBW.Red_Power, Inner_Val_RGBW.RW.Red_Set, &R_Tim);
+			ComputeRiseVals_S(Inner_Val_RGBW.Blue_Power, Inner_Val_RGBW.RW.Blue_Set, &B_Tim);
+			ComputeRiseVals_S(Inner_Val_RGBW.Green_Power, Inner_Val_RGBW.RW.Green_Set, &G_Tim);
 
 			_core_wakeup_i(&Update_Thread, MSG_OK);
 
