@@ -59,7 +59,7 @@ static msg_t rf_mb_b[MB_CNT][RF_MAX_IO_BUFFERS];
 
 static thread_t *Radio_Thread = NULL;
 
-static uint8_t full_rx_addr[3], full_tx_addr[3];
+static uint8_t full_rx_addr[3], full_tx_addr[3], test_addr[3];
 
 /** The current status of the radio. Should be set with radio_set_status(), 
  * and read with radio_get_status().
@@ -113,6 +113,7 @@ void radio_init(void) {
 	full_tx_addr[0] = RF_WORK_PIPE_BYTE;
 
 	nRF24_set_address(nRF24_PIPE1, full_tx_addr); // Sets recieving address on pipe1
+	nRF24_get_address(nRF24_PIPE1, test_addr);
 
 	full_tx_addr[0] = RF_FW_PIPE_BYTE;
 	nRF24_set_address(nRF24_PIPE2, full_tx_addr); // Sets recieving address on pipe2
