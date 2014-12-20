@@ -16,7 +16,7 @@ typedef struct
 
 	RGBW_Inner_Val_RW RW;
 
-	volatile int32_t Red, Green, Blue, White;
+	volatile int32_t Red_Power, Green_Power, Blue_Power, White_Power;
 
 //	volatile systime_t 	Correction_24H_Sec;
 } RGBW_Inner_Val;
