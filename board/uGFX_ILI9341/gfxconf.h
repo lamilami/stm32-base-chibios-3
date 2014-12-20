@@ -45,7 +45,7 @@
 #define GDISP_NEED_MULTITHREAD                       TRUE
 #define GDISP_NEED_STREAMING                         FALSE
 #define GDISP_NEED_TEXT                              TRUE
-    #define GDISP_NEED_ANTIALIAS                     FALSE
+    #define GDISP_NEED_ANTIALIAS                     TRUE
     #define GDISP_NEED_UTF8                          FALSE
     #define GDISP_NEED_TEXT_KERNING                  FALSE
     #define GDISP_INCLUDE_FONT_UI1                   FALSE
@@ -83,7 +83,7 @@
     #define GDISP_NEED_IMAGE_PNG                     FALSE
     #define GDISP_NEED_IMAGE_ACCOUNTING              FALSE
 
-#define GDISP_NEED_STARTUP_LOGO                      TRUE
+#define GDISP_NEED_STARTUP_LOGO                      FALSE
 
 #define GDISP_DEFAULT_ORIENTATION                    GDISP_ROTATE_LANDSCAPE
 //GDISP_ROTATE_PORTRAIT

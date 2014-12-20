@@ -187,10 +187,10 @@ int main(void) {
 	for (i = 5, j = 0; i < width && j < height; i += 7, j += i / 20)
 		gdispDrawPixel(i, j, Green);
 
-	font_t font = gdispOpenFont("DejaVuSans24");
+	font_t font = gdispOpenFont("DejaVuSans32_aa");
 	gwinSetDefaultFont(font);
 
-	gdispDrawString(16, 16, "STM32VLDiscovery", font, White);
+	gdispDrawString(16, 16, "STM32F100C by Michail", font, White);
 
 	gdispDrawStringBox(0, 150, width, 40, "ChibiOS/RT + uGFX", font, White,
 			justifyCenter);
