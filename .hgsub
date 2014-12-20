@@ -1,2 +1,2 @@
 uGFX = [git]https://bitbucket.org/Tectu/ugfx.git
-
+os = [svn]http://svn.code.sf.net/p/chibios/svn/trunk/os
