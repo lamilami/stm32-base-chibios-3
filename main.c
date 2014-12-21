@@ -32,6 +32,10 @@
 #include "lcd.h"
 #endif
 
+#if uGFX_PRESENT
+#include "printf.h"
+#endif
+
 #ifdef DEBUG_Discovery
 
 #ifdef comment
@@ -163,10 +167,13 @@ int main(void) {
 
 	Core_Start();
 
+	systime_t time_start = chVTGetSystemTime();
+
 	LEDB1Swap();
 	LEDSwap();
 
 #if uGFX_PRESENT
+
 	coord_t width, height;
 	coord_t i, j;
 
@@ -197,25 +204,46 @@ int main(void) {
 
 	chThdSleepMilliseconds(5000);
 
-	  /*
-	   * Normal main() thread activity, in this demo it does nothing except
-	   * sleeping in a loop and check the button state
-	   */
+	/*
+	 * Normal main() thread activity, in this demo it does nothing except
+	 * sleeping in a loop and check the button state
+	 */
 
-	  gdispClear(Black);
-	  gdispDrawStringBox(0, 0, width, 24, "ADC Results:", font, Green, justifyCenter);
-	  gdispFillStringBox(0, (height-24), width/2, 24, "Seconds:", font, Yellow, Green, justifyRight);
+	gdispClear(Black);
+	gdispDrawStringBox(0, 0, width, 24, "ADC Results:", font, Green,
+			justifyCenter);
+	gdispFillStringBox(0, (height - 24), width / 2, 24, "Seconds:", font,
+			Yellow, Green, justifyRight);
 
-	  chThdSleepMilliseconds(5000);
+//	  chThdSleepMilliseconds(5000);
 
-	  /*
-	   *   Using GWin
-	   */
+	time_start = chVTGetSystemTime();
+	uint8_t seconds_counter = 12, min = 49, hours = 11;
+
+	while (TRUE) {
+		char buf[24];
+		sprintf_(buf, " %02u:%02u:%02u ", hours, min, seconds_counter);
+		gdispFillStringBox(width / 2, (height - 24), width / 2, 24, buf, font,
+				White, Green, justifyLeft);
+		seconds_counter++;
+		if (seconds_counter > 59) {
+			seconds_counter = 0;
+			min++;
+		}
+		if (min > 59) {
+			min = 0;
+			hours++;
+		}
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
+	}
+
+	/*
+	 *   Using GWin
+	 */
 
 //	  gwinSetDefaultFont(gdispOpenFont("DejaVuSans16"));
 //	  gwinSetDefaultStyle(&WhiteWidgetStyle, FALSE);
 //	  gdispClear(White);
-
 #endif
 
 	/*
@@ -281,11 +309,9 @@ int main(void) {
 	temperature = t_int + t_frac;
 #endif
 
-	systime_t time_start = chVTGetSystemTime();
-
 //	RGBW_IW;
 
-#ifdef RGBW_Test
+#if HAL_USE_RTC
 
 	RTCDateTime DateTime;
 
