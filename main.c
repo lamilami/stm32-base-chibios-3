@@ -22,6 +22,7 @@
 #include "hal.h"
 #include "core.h"
 #include "halconf.h"
+//#include <time.h>
 #if SEMIHOSTING
 #include "semihosting.h"
 #endif
@@ -202,7 +203,7 @@ int main(void) {
 	gdispDrawStringBox(0, 150, width, 40, "ChibiOS/RT + uGFX", font, White,
 			justifyCenter);
 
-	chThdSleepMilliseconds(5000);
+//	chThdSleepMilliseconds(5000);
 
 	/*
 	 * Normal main() thread activity, in this demo it does nothing except
@@ -210,30 +211,84 @@ int main(void) {
 	 */
 
 	gdispClear(Black);
-	gdispDrawStringBox(0, 0, width, 24, "ADC Results:", font, Green,
-			justifyCenter);
-	gdispFillStringBox(0, (height - 24), width / 2, 24, "Seconds:", font,
-			Yellow, Green, justifyRight);
-
+	/*
+	 gdispDrawStringBox(0, 0, width, 24, "ADC Results:", font, Green,
+	 justifyCenter);
+	 gdispFillStringBox(0, (height - 24), width / 2, 24, "Seconds:", font,
+	 Yellow, Green, justifyRight);
+	 */
 //	  chThdSleepMilliseconds(5000);
-
 	time_start = chVTGetSystemTime();
-	uint8_t seconds_counter = 12, min = 49, hours = 11;
+//	uint32_t seconds = 12, min = 49, hours = 11;
+
+	struct tm DT_StructTM, DT_StructTM_old;
+
+	DT_StructTM.tm_year = 114;
+	DT_StructTM.tm_mon = 11;
+	DT_StructTM.tm_mday = 22;
+	DT_StructTM.tm_isdst = 0;
+	DT_StructTM.tm_wday = 0;
+
+	DT_StructTM.tm_hour = 15;
+	DT_StructTM.tm_min = 07;
+	DT_StructTM.tm_sec = 00;
+
+	DT_StructTM_old = DT_StructTM;
+	DT_StructTM_old.tm_sec--;
+	DT_StructTM_old.tm_min--;
+	DT_StructTM_old.tm_hour--;
+
+	RTCDateTime DateTime;
+
+	rtcConvertStructTmToDateTime(&DT_StructTM, 0, &DateTime);
+
+//	rtcSetTime(&RTCD1, &DateTime);
+
+//	chThdSleepSeconds(1000);
 
 	while (TRUE) {
-		char buf[24];
-		sprintf_(buf, " %02u:%02u:%02u ", hours, min, seconds_counter);
-		gdispFillStringBox(width / 2, (height - 24), width / 2, 24, buf, font,
-				White, Green, justifyLeft);
-		seconds_counter++;
-		if (seconds_counter > 59) {
-			seconds_counter = 0;
-			min++;
+
+		char buf[5];
+		rtcGetTime(&RTCD1, &DateTime);
+		rtcConvertDateTimeToStructTm(&DateTime, &DT_StructTM);
+
+#define NUMBERS_WIDTH 36
+#define COLON_WIDTH 6
+
+		if (DT_StructTM.tm_hour != DT_StructTM_old.tm_hour) {
+			sprintf_(buf, " %02u:", DT_StructTM.tm_hour);
+			DT_StructTM_old.tm_hour = DT_StructTM.tm_hour;
+			gdispFillStringBox(width - NUMBERS_WIDTH * 3 - COLON_WIDTH * 2,
+					(height - 24), NUMBERS_WIDTH + COLON_WIDTH, 24, buf, font,
+					White, Green, justifyLeft);
 		}
-		if (min > 59) {
-			min = 0;
-			hours++;
+		if (DT_StructTM.tm_min != DT_StructTM_old.tm_min) {
+			sprintf_(buf, " %02u:", DT_StructTM.tm_min);
+			DT_StructTM_old.tm_min = DT_StructTM.tm_min;
+			gdispFillStringBox(width - NUMBERS_WIDTH * 2 - COLON_WIDTH,
+					(height - 24), NUMBERS_WIDTH + COLON_WIDTH, 24, buf, font,
+					White, Green, justifyLeft);
 		}
+		if (DT_StructTM.tm_sec != DT_StructTM_old.tm_sec) {
+			sprintf_(buf, " %02u", DT_StructTM.tm_sec);
+			DT_StructTM_old.tm_sec = DT_StructTM.tm_sec;
+			gdispFillStringBox(width - NUMBERS_WIDTH, (height - 24),
+					NUMBERS_WIDTH, 24, buf, font, Yellow, Green, justifyLeft);
+		}
+
+//		sprintf_(buf, " %02u:%02u:%02u ", hours, min, seconds_counter);
+		/*		gdispFillStringBox(width / 2, (height - 24), width / 2, 24, buf, font,
+		 White, Green, justifyLeft);
+		 seconds_counter++;
+		 if (seconds_counter > 59) {
+		 seconds_counter = 0;
+		 min++;
+		 }
+		 if (min > 59) {
+		 min = 0;
+		 hours++;
+		 }
+		 */
 		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
 	}
 
@@ -311,7 +366,7 @@ int main(void) {
 
 //	RGBW_IW;
 
-#if HAL_USE_RTC
+#if HAL_USE_RTC_1
 
 	RTCDateTime DateTime;
 
