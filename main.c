@@ -176,7 +176,7 @@ int main(void) {
 #if uGFX_PRESENT
 
 	coord_t width, height;
-	coord_t i, j;
+//	coord_t i, j;
 
 	/*
 	 * This initialization requires the OS already active because it uses delay
@@ -188,29 +188,29 @@ int main(void) {
 	width = gdispGetWidth();
 	height = gdispGetHeight();
 
-	gdispDrawBox(10, 10, width / 2, height / 2, Yellow);
-	gdispFillArea(width / 2, height / 2, width / 2 - 10, height / 2 - 10, Blue);
-	gdispDrawLine(5, 30, width - 50, height - 40, Red);
+	/*
+	 gdispDrawBox(10, 10, width / 2, height / 2, Yellow);
+	 gdispFillArea(width / 2, height / 2, width / 2 - 10, height / 2 - 10, Blue);
+	 gdispDrawLine(5, 30, width - 50, height - 40, Red);
 
-	for (i = 5, j = 0; i < width && j < height; i += 7, j += i / 20)
-		gdispDrawPixel(i, j, Green);
+	 for (i = 5, j = 0; i < width && j < height; i += 7, j += i / 20)
+	 gdispDrawPixel(i, j, Green);
 
-	font_t font = gdispOpenFont("DejaVuSans32_aa");
-	gwinSetDefaultFont(font);
+	 font_t font = gdispOpenFont("DejaVuSans24");
+	 gwinSetDefaultFont(font);
 
-	gdispDrawString(16, 16, "STM32F100C by Michail", font, White);
+	 gdispDrawString(16, 16, "STM32F100C by Michail", font, White);
 
-	gdispDrawStringBox(0, 150, width, 40, "ChibiOS/RT + uGFX", font, White,
-			justifyCenter);
-
+	 gdispDrawStringBox(0, 150, width, 40, "ChibiOS/RT + uGFX", font, White,
+	 justifyCenter);
+	 */
 //	chThdSleepMilliseconds(5000);
-
 	/*
 	 * Normal main() thread activity, in this demo it does nothing except
 	 * sleeping in a loop and check the button state
 	 */
 
-	gdispClear(Black);
+//	gdispClear(Black);
 	/*
 	 gdispDrawStringBox(0, 0, width, 24, "ADC Results:", font, Green,
 	 justifyCenter);
@@ -229,9 +229,9 @@ int main(void) {
 	DT_StructTM.tm_isdst = 0;
 	DT_StructTM.tm_wday = 0;
 
-	DT_StructTM.tm_hour = 15;
-	DT_StructTM.tm_min = 07;
-	DT_StructTM.tm_sec = 00;
+	DT_StructTM.tm_hour = 20;
+	DT_StructTM.tm_min = 17;
+	DT_StructTM.tm_sec = 07;
 
 	DT_StructTM_old = DT_StructTM;
 	DT_StructTM_old.tm_sec--;
@@ -246,34 +246,43 @@ int main(void) {
 
 //	chThdSleepSeconds(1000);
 
+	 font_t font = gdispOpenFont("DejaVuSans24");
+	 gwinSetDefaultFont(font);
+
 	while (TRUE) {
 
 		char buf[5];
 		rtcGetTime(&RTCD1, &DateTime);
 		rtcConvertDateTimeToStructTm(&DateTime, &DT_StructTM);
 
-#define NUMBERS_WIDTH 36
-#define COLON_WIDTH 6
+#define NUMBERS_WIDTH 35
+#define NUMBERS_HEIGHT 21
+#define COLON_WIDTH 4
+#define TEXT_COLOR White
+#define BG_COLOR Green
 
 		if (DT_StructTM.tm_hour != DT_StructTM_old.tm_hour) {
-			sprintf_(buf, " %02u:", DT_StructTM.tm_hour);
+			sprintf_(buf, "%02u:", DT_StructTM.tm_hour);
 			DT_StructTM_old.tm_hour = DT_StructTM.tm_hour;
 			gdispFillStringBox(width - NUMBERS_WIDTH * 3 - COLON_WIDTH * 2,
-					(height - 24), NUMBERS_WIDTH + COLON_WIDTH, 24, buf, font,
-					White, Green, justifyLeft);
+					(height - NUMBERS_HEIGHT), NUMBERS_WIDTH + COLON_WIDTH,
+					NUMBERS_HEIGHT, buf, font, TEXT_COLOR, BG_COLOR,
+					justifyLeft);
 		}
 		if (DT_StructTM.tm_min != DT_StructTM_old.tm_min) {
-			sprintf_(buf, " %02u:", DT_StructTM.tm_min);
+			sprintf_(buf, "%02u:", DT_StructTM.tm_min);
 			DT_StructTM_old.tm_min = DT_StructTM.tm_min;
 			gdispFillStringBox(width - NUMBERS_WIDTH * 2 - COLON_WIDTH,
-					(height - 24), NUMBERS_WIDTH + COLON_WIDTH, 24, buf, font,
-					White, Green, justifyLeft);
+					(height - NUMBERS_HEIGHT), NUMBERS_WIDTH + COLON_WIDTH,
+					NUMBERS_HEIGHT, buf, font, TEXT_COLOR, BG_COLOR,
+					justifyLeft);
 		}
 		if (DT_StructTM.tm_sec != DT_StructTM_old.tm_sec) {
-			sprintf_(buf, " %02u", DT_StructTM.tm_sec);
+			sprintf_(buf, "%02u ", DT_StructTM.tm_sec);
 			DT_StructTM_old.tm_sec = DT_StructTM.tm_sec;
-			gdispFillStringBox(width - NUMBERS_WIDTH, (height - 24),
-					NUMBERS_WIDTH, 24, buf, font, Yellow, Green, justifyLeft);
+			gdispFillStringBox(width - NUMBERS_WIDTH, (height - NUMBERS_HEIGHT),
+					NUMBERS_WIDTH, NUMBERS_HEIGHT, buf, font, TEXT_COLOR,
+					BG_COLOR, justifyLeft);
 		}
 
 //		sprintf_(buf, " %02u:%02u:%02u ", hours, min, seconds_counter);

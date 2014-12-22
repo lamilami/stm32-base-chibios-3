@@ -45,7 +45,7 @@
 #define GDISP_NEED_MULTITHREAD                       TRUE
 #define GDISP_NEED_STREAMING                         FALSE
 #define GDISP_NEED_TEXT                              TRUE
-    #define GDISP_NEED_ANTIALIAS                     TRUE
+    #define GDISP_NEED_ANTIALIAS                     FALSE
     #define GDISP_NEED_UTF8                          FALSE
     #define GDISP_NEED_TEXT_KERNING                  FALSE
     #define GDISP_INCLUDE_FONT_UI1                   FALSE
