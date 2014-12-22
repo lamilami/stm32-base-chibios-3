@@ -19,9 +19,9 @@
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/main.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Work/CoIDE/ChibiOS_3.0/main.c" title="main.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5939" selectionTopPixel="3780"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3603" selectionTopPixel="3360"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="rtc_lld.c" partName="rtc_lld.c" path="C:/Work/CoIDE/ChibiOS_3.0/os/hal/ports/STM32/LLD/RTCv1/rtc_lld.c" title="rtc_lld.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/os/hal/ports/STM32/LLD/RTCv1/rtc_lld.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/os/hal/ports/STM32/LLD/RTCv1/rtc_lld.c"/>
@@ -35,6 +35,10 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/os/hal/include/rtc.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="1215"/>
 </editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="gdisp_colors.h" partName="gdisp_colors.h" title="gdisp_colors.h" tooltip="D:\Work\CoIDE\ChibiOS_3.0\uGFX\src\gdisp\gdisp_colors.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" path="D:\Work\CoIDE\ChibiOS_3.0\uGFX\src\gdisp\gdisp_colors.h" project="ChibiOS_F100C"/>
+<editorState selectionHorizontalPixel="0" selectionLength="6" selectionOffset="3071" selectionTopPixel="1480"/>
+</editor>
 </editors>
 <views>
 <view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
@@ -42,8 +46,11 @@
 <ExpressionKeySet ExpKeys="DT_StructTM,&amp;(Inner_Val_DHT11).temp,(Inner_Val_DS18B20).temp[0],&amp;(Inner_Val_DHT11).humidity,&amp;Temp_Vals.temp,&amp;time_cnt,&amp;DS_Temp_Vals.temp[0],&amp;DHT_Temp_Vals.temp,&amp;DHT_Temp_Vals.humidity,full_tx_addr,test_addr,ip,(sensor-&gt;data &amp; 0xFF00) &gt;&gt; 8,(sensor-&gt;data &amp; 0xFF000000) &gt;&gt; 24,sensor-&gt;humidity,seq[2],seq[3],((((sensor-&gt;time_measurment) - 1UL) * (1000000UL / 1000000)) + 1UL),(*tx_buffer).cmd,(*tx_buffer).pipenum,(*tx_buffer).size,(*tx_buffer).data,full_tx_addr,DS_Temp_Vals,Inner_Val_DS18B20.temp[0],"/>
 </viewState>
 </view>
+<view id="org.eclipse.ui.views.ProgressView" partName="Progress">
+<viewState/>
+</view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="29">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="25">
 <expanded>
 <element path="/ChibiOS_F100C"/>
 <element path="/ChibiOS_F100C/board"/>
@@ -79,8 +86,7 @@
 </view>
 <view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
 <viewState horizontalPosition="0" verticalPosition="1">
-<selection>
-<element name="RTC"/>
+<selection>&#x0A;<element name="RTC"/>
 </selection>
 <registerValues baseAddress="Base Address: 0x40002800" description="Description:  Real Time Clock (RTC) Control Registers"/>
 </viewState>
@@ -126,6 +132,7 @@
 <view id="org.coocox.component.ui.Help"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.search.ui.views.SearchView"/>
+<view id="org.eclipse.ui.views.ProgressView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -145,9 +152,11 @@
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
+<page content="org.eclipse.ui.views.ProgressView" label="Progress"/>
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
@@ -230,57 +239,41 @@
 <view id="org.coocox.coassistant.view.CoAssistantView_debug"/>
 <fastViewBars/>
 <viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
-<layout>
-<mainWindow>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@22cfbd">
-<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
-<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@22cfbd">&#x0A;<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.internal.ViewStack@22cfbd">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.internal.ViewStack@22cfbd">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@c6f1fc" ratio="0.5519399" ratioLeft="441" ratioRight="358" relationship="4" relative="org.eclipse.ui.internal.ViewStack@22cfbd">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@c6f1fc" ratio="0.5519399" ratioLeft="441" ratioRight="358" relationship="4" relative="org.eclipse.ui.internal.ViewStack@22cfbd">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@145313d" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.ui.internal.ViewStack@c6f1fc">
-<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">
-<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@145313d" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.ui.internal.ViewStack@c6f1fc">&#x0A;<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
 <page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
 <page content="org.eclipse.debug.ui.MemoryView" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1a3aace" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.internal.ViewStack@22cfbd">
-<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">
-<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1a3aace" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.internal.ViewStack@22cfbd">&#x0A;<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">&#x0A;<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
 <page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
@@ -293,31 +286,8 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/hal/src/rtc.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/hal/ports/STM32/LLD/RTCv1/rtc_lld.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
+<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="D:\Work\CoIDE\ChibiOS_3.0\uGFX\src\gdisp\gdisp_colors.h" project="ChibiOS_F100C"/>
 </editors>
-<item historyLabel="rtc_lld.c" index="2">
-<position info="not_deleted" x="7889" y="0"/>
-</item>
-<item historyLabel="rtc.c" index="1">
-<position info="not_deleted" x="8566" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5187" y="0"/>
-</item>
-<item historyLabel="crt0.c" index="3">
-<position info="not_deleted" x="7423" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3460" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="3458" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="4836" y="0"/>
-</item>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="4967" y="0"/>
 </item>
@@ -441,8 +411,32 @@
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="5338" y="0"/>
 </item>
-<item active="true" historyLabel="main.c" index="0">
+<item historyLabel="main.c" index="0">
 <position info="not_deleted" x="5648" y="0"/>
+</item>
+<item historyLabel="gdisp_colors.h" index="1">
+<position info="not_deleted" x="2805" y="4"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6647" y="0"/>
+</item>
+<item historyLabel="gdisp_colors.h" index="1">
+<position info="not_deleted" x="3071" y="6"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6727" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="4590" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="6106" y="55"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5558" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="0">
+<position info="not_deleted" x="3603" y="16"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -454,41 +448,44 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="crt0.c" tooltip="ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c">
 <persistable path="/ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="rtc.h" tooltip="ChibiOS_F100C/os/hal/include/rtc.h">
-<persistable path="/ChibiOS_F100C/os/hal/include/rtc.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="rtc.c" tooltip="ChibiOS_F100C/os/hal/src/rtc.c">
+<persistable path="/ChibiOS_F100C/os/hal/src/rtc.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="ChibiOS_F100C/modules/core.c">
-<persistable path="/ChibiOS_F100C/modules/core.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chsys.c" tooltip="ChibiOS_F100C/os/rt/src/chsys.c">
+<persistable path="/ChibiOS_F100C/os/rt/src/chsys.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="rtc_lld.c" tooltip="ChibiOS_F100C/os/hal/ports/STM32/LLD/RTCv1/rtc_lld.c">
 <persistable path="/ChibiOS_F100C/os/hal/ports/STM32/LLD/RTCv1/rtc_lld.c"/>
 </file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="time.h" tooltip="D:\Programs\GNU Tools ARM Embedded\4.8 2014q2\arm-none-eabi\include\time.h">
-<persistable path="D:\Programs\GNU Tools ARM Embedded\4.8 2014q2\arm-none-eabi\include\time.h" project="ChibiOS_F100C"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="rtc.h" tooltip="ChibiOS_F100C/os/hal/include/rtc.h">
+<persistable path="/ChibiOS_F100C/os/hal/include/rtc.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="hal.c" tooltip="ChibiOS_F100C/os/hal/src/hal.c">
+<persistable path="/ChibiOS_F100C/os/hal/src/hal.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="halconf.h" tooltip="ChibiOS_F100C/board/STM32F100C/halconf.h">
 <persistable path="/ChibiOS_F100C/board/STM32F100C/halconf.h"/>
 </file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="hal_lld_f100.h" tooltip="ChibiOS_F100C/os/hal/ports/STM32/STM32F1xx/hal_lld_f100.h">
+<persistable path="/ChibiOS_F100C/os/hal/ports/STM32/STM32F1xx/hal_lld_f100.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mcuconf.h" tooltip="ChibiOS_F100C/board/STM32F100C/mcuconf.h">
+<persistable path="/ChibiOS_F100C/board/STM32F100C/mcuconf.h"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_F100C/modules/core.h">
 <persistable path="/ChibiOS_F100C/modules/core.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="rtc.c" tooltip="ChibiOS_F100C/os/hal/src/rtc.c">
-<persistable path="/ChibiOS_F100C/os/hal/src/rtc.c"/>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gdisp_colors.h" tooltip="D:\Work\CoIDE\ChibiOS_3.0\uGFX\src\gdisp\gdisp_colors.h">
+<persistable path="D:\Work\CoIDE\ChibiOS_3.0\uGFX\src\gdisp\gdisp_colors.h" project="ChibiOS_F100C"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gdisp_gdisp.c" tooltip="ChibiOS_F100C/uGFX/src/gdisp/gdisp_gdisp.c">
-<persistable path="/ChibiOS_F100C/uGFX/src/gdisp/gdisp_gdisp.c"/>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="printf.h" tooltip="D:\Work\CoIDE\ChibiOS_3.0\printf.h">
+<persistable path="D:\Work\CoIDE\ChibiOS_3.0\printf.h" project="ChibiOS_F100C"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sys_defs.h" tooltip="ChibiOS_F100C/uGFX/src/gdisp/sys_defs.h">
-<persistable path="/ChibiOS_F100C/uGFX/src/gdisp/sys_defs.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gfxconf.h" tooltip="ChibiOS_F100C/board/uGFX_ILI9341/gfxconf.h">
+<persistable path="/ChibiOS_F100C/board/uGFX_ILI9341/gfxconf.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ChibiOS_F100C/main.c">
 <persistable path="/ChibiOS_F100C/main.c"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sys_defs.h" tooltip="C:\Work\CoIDE\ChibiOS_3.0_Test\uGFX\src\gevent\sys_defs.h">
-<persistable path="C:\Work\CoIDE\ChibiOS_3.0_Test\uGFX\src\gevent\sys_defs.h" project="ChibiOS_F100C"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mf_kerning.h" tooltip="ChibiOS_F100C/uGFX/src/gdisp/mcufont/mf_kerning.h">
-<persistable path="/ChibiOS_F100C/uGFX/src/gdisp/mcufont/mf_kerning.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mf_encoding.h" tooltip="ChibiOS_F100C/uGFX/src/gdisp/mcufont/mf_encoding.h">
 <persistable path="/ChibiOS_F100C/uGFX/src/gdisp/mcufont/mf_encoding.h"/>
