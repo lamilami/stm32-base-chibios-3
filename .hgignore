@@ -2,7 +2,6 @@ syntax: glob
 
 STM32F*/Debug/*
 STM32F*/*.elf.xcodeproj/*
-
 logs/*
 */*.bak
 *.old
