@@ -4,7 +4,6 @@ STM32F*/Debug/*
 STM32F*/*.elf.xcodeproj/*
 
 logs/*
-*/.svn/*
 */*.bak
 *.old
 a.out
