@@ -246,8 +246,50 @@ int main(void) {
 
 //	chThdSleepSeconds(1000);
 
-	 font_t font = gdispOpenFont("DejaVuSans24");
-	 gwinSetDefaultFont(font);
+	font_t font24 = gdispOpenFont("DejaVuSans24");
+	font_t font32 = gdispOpenFont("DejaVuSans32");
+	gwinSetDefaultFont(font24);
+
+#define NUMBERS_WIDTH 35
+#define NUMBERS_HEIGHT 24
+#define HEIGHT_24	24
+#define HEIGHT_32	32
+#define COLON_WIDTH 4
+#define TEXT_COLOR White
+#define BG_COLOR Green
+#define OT_BG_COLOR	HTML2COLOR(0x660066)
+#define TEMP_BG_COLOR	HTML2COLOR(0x820000)
+#define HUM_BG_COLOR	HTML2COLOR(0x003264)
+#define TEXT_1_COLOR	Red
+#define TEXT_2_COLOR	Yellow
+#define TEXT_3_COLOR	HTML2COLOR(0x00B050)
+
+	gdispClear(BG_COLOR);
+
+	gdispFillStringBox(0, 0, width, HEIGHT_24, "GrowBox", font24, TEXT_COLOR,
+			BG_COLOR, justifyCenter);
+	gdispFillStringBox(0, HEIGHT_24, width, HEIGHT_32, "Outer Temp:", font32,
+			TEXT_COLOR, OT_BG_COLOR, justifyLeft);
+
+	gdispFillStringBox(0, HEIGHT_24 + HEIGHT_32, width / 2, HEIGHT_24,
+			"Temp 1:", font24, TEXT_1_COLOR, TEMP_BG_COLOR, justifyLeft);
+	gdispFillStringBox(0, HEIGHT_24 * 2 + HEIGHT_32, width / 2, HEIGHT_24,
+			"Temp 2:", font24, TEXT_2_COLOR, TEMP_BG_COLOR, justifyLeft);
+	gdispFillStringBox(0, HEIGHT_24 * 3 + HEIGHT_32, width / 2, HEIGHT_24,
+			"Temp 3:", font24, TEXT_3_COLOR, TEMP_BG_COLOR, justifyLeft);
+	gdispFillArea(0, HEIGHT_24 * 4 + HEIGHT_32, width / 2,
+			height - (HEIGHT_24 * 4 + HEIGHT_32 + NUMBERS_HEIGHT),
+			TEMP_BG_COLOR);
+
+	gdispFillStringBox(width / 2, HEIGHT_24 + HEIGHT_32, width / 2, HEIGHT_24,
+			"Hum 1:", font24, TEXT_1_COLOR, HUM_BG_COLOR, justifyLeft);
+	gdispFillStringBox(width / 2, HEIGHT_24 * 2 + HEIGHT_32, width / 2,
+			HEIGHT_24, "Hum 2:", font24, TEXT_2_COLOR, HUM_BG_COLOR, justifyLeft);
+	gdispFillStringBox(width / 2, HEIGHT_24 * 3 + HEIGHT_32, width / 2,
+			HEIGHT_24, "Hum 3:", font24, TEXT_3_COLOR, HUM_BG_COLOR, justifyLeft);
+	gdispFillArea(width / 2, HEIGHT_24 * 4 + HEIGHT_32, width / 2,
+			height - (HEIGHT_24 * 4 + HEIGHT_32 + NUMBERS_HEIGHT),
+			HUM_BG_COLOR);
 
 	while (TRUE) {
 
@@ -255,18 +297,12 @@ int main(void) {
 		rtcGetTime(&RTCD1, &DateTime);
 		rtcConvertDateTimeToStructTm(&DateTime, &DT_StructTM);
 
-#define NUMBERS_WIDTH 35
-#define NUMBERS_HEIGHT 21
-#define COLON_WIDTH 4
-#define TEXT_COLOR White
-#define BG_COLOR Green
-
 		if (DT_StructTM.tm_hour != DT_StructTM_old.tm_hour) {
 			sprintf_(buf, "%02u:", DT_StructTM.tm_hour);
 			DT_StructTM_old.tm_hour = DT_StructTM.tm_hour;
 			gdispFillStringBox(width - NUMBERS_WIDTH * 3 - COLON_WIDTH * 2,
 					(height - NUMBERS_HEIGHT), NUMBERS_WIDTH + COLON_WIDTH,
-					NUMBERS_HEIGHT, buf, font, TEXT_COLOR, BG_COLOR,
+					NUMBERS_HEIGHT, buf, font24, TEXT_COLOR, BG_COLOR,
 					justifyLeft);
 		}
 		if (DT_StructTM.tm_min != DT_StructTM_old.tm_min) {
@@ -274,14 +310,14 @@ int main(void) {
 			DT_StructTM_old.tm_min = DT_StructTM.tm_min;
 			gdispFillStringBox(width - NUMBERS_WIDTH * 2 - COLON_WIDTH,
 					(height - NUMBERS_HEIGHT), NUMBERS_WIDTH + COLON_WIDTH,
-					NUMBERS_HEIGHT, buf, font, TEXT_COLOR, BG_COLOR,
+					NUMBERS_HEIGHT, buf, font24, TEXT_COLOR, BG_COLOR,
 					justifyLeft);
 		}
 		if (DT_StructTM.tm_sec != DT_StructTM_old.tm_sec) {
 			sprintf_(buf, "%02u ", DT_StructTM.tm_sec);
 			DT_StructTM_old.tm_sec = DT_StructTM.tm_sec;
 			gdispFillStringBox(width - NUMBERS_WIDTH, (height - NUMBERS_HEIGHT),
-					NUMBERS_WIDTH, NUMBERS_HEIGHT, buf, font, TEXT_COLOR,
+					NUMBERS_WIDTH, NUMBERS_HEIGHT, buf, font24, TEXT_COLOR,
 					BG_COLOR, justifyLeft);
 		}
 
