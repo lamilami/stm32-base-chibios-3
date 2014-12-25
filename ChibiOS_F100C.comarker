@@ -16,8 +16,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/ChibiOS_F100C/main.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Work\CoIDE\ChibiOS_3.0_Test\main.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -36,8 +36,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/ChibiOS_F100C/modules/nRF24/src/radio.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Work\CoIDE\ChibiOS_3.0_Test\modules\nRF24\src\radio.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -55,8 +55,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/ChibiOS_F100C/main.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="D:\Work\CoIDE\ChibiOS_3.0\main.c"/>
-<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 <attrib name="org.eclipse.debug.core.enabled" value="true"/>
+<attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
 </marker>
 </breakpoint>
 <breakpoint enabled="true" persistant="true" registered="true">
@@ -75,8 +75,8 @@
 <attrib name="registered" value="true"/>
 <attrib name="path" value="/ChibiOS_F100C/main.c"/>
 <attrib name="org.eclipse.cdt.debug.core.sourceHandle" value="C:\Work\CoIDE\ChibiOS_3.0\main.c"/>
-<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 <attrib name="org.eclipse.cdt.debug.core.ignoreCount" value="0"/>
+<attrib name="org.eclipse.debug.core.enabled" value="true"/>
 </marker>
 </breakpoint>
 </breakpoints>
