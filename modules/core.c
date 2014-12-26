@@ -10,28 +10,24 @@ static core_base_struct_t Core_Base;
 volatile core_base_struct_t* Core_BasePtr = NULL;
 //static msg_t core_msg_b;
 
-void Core_Module_Register(core_base_struct_t* Base_Struct)
-{
-	chSysLock();
-	if (Core_BasePtr != NULL)
-	{
-		volatile static core_base_struct_t *current;
-		current = Core_BasePtr;
-		while ((*current).next != NULL)
-		{
-			current = (*current).next;
-		}
+void Core_Module_Register(core_base_struct_t* Base_Struct) {
+  chSysLock();
+  if (Core_BasePtr != NULL) {
+    volatile static core_base_struct_t *current;
+    current = Core_BasePtr;
+    while ((*current).next != NULL) {
+      current = (*current).next;
+    }
 
-		(*current).next = Base_Struct;
-	}
-	else
-	{
-		Core_BasePtr = Base_Struct;
-	}
-	(*Base_Struct).next = NULL;
-	chSysUnlock();
+    (*current).next = Base_Struct;
+  }
+  else {
+    Core_BasePtr = Base_Struct;
+  }
+  (*Base_Struct).next = NULL;
+  chSysUnlock();
 
-	Modules_Array[(*Base_Struct).type].Base_Struct = Base_Struct;
+  Modules_Array[(*Base_Struct).type].Base_Struct = Base_Struct;
 
 //	chEvtObjectInit(&(*Base_Struct).event_source);
 //	chEvtRegisterMask(&(*Base_Struct).event_source, &(*Base_Struct).event_listener, EVENT_MASK((uint8_t)(*Base_Struct).type));
@@ -60,32 +56,30 @@ void Core_Module_Register(core_base_struct_t* Base_Struct)
  return ((*current).ival_size + 4);
  }
  */
-core_base_struct_t* Core_GetStructAddrByType(const core_types_t type)
-{
-	/*	volatile static core_base_struct_t *current;
-	 current = Core_BasePtr;
-	 while (((*current).type != type) && ((*current).next != NULL))
-	 {
-	 current = (*current).next;
-	 }
+core_base_struct_t* Core_GetStructAddrByType(const core_types_t type) {
+  /*	volatile static core_base_struct_t *current;
+   current = Core_BasePtr;
+   while (((*current).type != type) && ((*current).next != NULL))
+   {
+   current = (*current).next;
+   }
 
-	 if ((*current).type != type)
-	 {
-	 return NULL;
-	 }
+   if ((*current).type != type)
+   {
+   return NULL;
+   }
 
-	 return (core_base_struct_t*) current;*/
+   return (core_base_struct_t*) current;*/
 
-	return Modules_Array[type].Base_Struct;
+  return Modules_Array[type].Base_Struct;
 }
 
-void* Core_GetIvalAddrByType(const core_types_t type)
-{
+void* Core_GetIvalAddrByType(const core_types_t type) {
 //	core_base_struct_t *current;
 //	current = Core_GetStructAddrByType(type)->inner_values;
 
 //	return (void *) Core_GetStructAddrByType(type)->inner_values;
-	return (void *) Modules_Array[type].Base_Struct->inner_values;
+  return (void *)Modules_Array[type].Base_Struct->inner_values;
 }
 
 /*
@@ -113,48 +107,33 @@ void* Core_GetIvalAddrByType(const core_types_t type)
  }
  */
 
-void Core_Init()
-{
-	Core_Base.type = Base;
-	Core_Base.ival_size = 0;
-	Core_Base.next = NULL;
-	Core_Base.description = "Test Board 1\0";
+void Core_Init() {
+  Core_Base.type = Base;
+  Core_Base.ival_size = 0;
+  Core_Base.next = NULL;
+  Core_Base.description = "Test Board 1\0";
 
-	Core_Module_Register(&Core_Base);
+  Core_Module_Register(&Core_Base);
 
-	EXTConfig static extcfg =
-	{
-	{
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
-	{ EXT_CH_MODE_DISABLED, NULL },
+  EXTConfig static extcfg = { { {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
+                               {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
+                               {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
+                               {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
+                               {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
+                               {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
+                               {EXT_CH_MODE_DISABLED, NULL},
 #ifndef STM32F10X_MD_VL
-			{ EXT_CH_MODE_DISABLED, NULL },
-			{ EXT_CH_MODE_DISABLED, NULL },
-			{ EXT_CH_MODE_DISABLED, NULL },
-			{ EXT_CH_MODE_DISABLED, NULL },
+                               { EXT_CH_MODE_DISABLED, NULL},
+                               { EXT_CH_MODE_DISABLED, NULL},
+                               { EXT_CH_MODE_DISABLED, NULL},
+                               { EXT_CH_MODE_DISABLED, NULL},
 #endif
-			{ EXT_CH_MODE_DISABLED, NULL } } };
+                               {EXT_CH_MODE_DISABLED, NULL}}};
 
-	/*
-	 * Activates the EXT driver 1.
-	 */
-	extStart(&EXTD1, &extcfg);
+  /*
+   * Activates the EXT driver 1.
+   */
+  extStart(&EXTD1, &extcfg);
 }
 
 #ifdef Core_Thread
@@ -162,131 +141,137 @@ THD_WORKING_AREA(waCore, 256);
 //__attribute__((noreturn))
 THD_FUNCTION(Core,arg)
 {
-	(void) arg;
-	thread_t *answer_thread;
-	msg_t message;
+  (void) arg;
+  thread_t *answer_thread;
+  msg_t message;
 //	chRegSetThreadName("Core");
 
-	EXTConfig extcfg =
-	{
-		{
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL},
-			{	EXT_CH_MODE_DISABLED, NULL}}};
+  EXTConfig extcfg =
+  {
+    {
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL},
+      { EXT_CH_MODE_DISABLED, NULL}}};
 
-	/*
-	 * Activates the EXT driver 1.
-	 */
-	extStart(&EXTD1, &extcfg);
+  /*
+   * Activates the EXT driver 1.
+   */
+  extStart(&EXTD1, &extcfg);
 
 //	core_base_struct_t *current;
 //	current = &Core_Base;
 //	chMBObjectInit(&core_mb, core_mb_b, 1);
 
-	while (TRUE)
-	{
+  while (TRUE)
+  {
 //		chMBFetch(&core_mb, (msg_t *) &tx_buffer, TIME_INFINITE);
-		answer_thread = chMsgWait();
-		message = chMsgGet(answer_thread);
-		chMsgRelease(answer_thread, (msg_t) message);
-		chThdSleepSeconds(50);
-	}
+    answer_thread = chMsgWait();
+    message = chMsgGet(answer_thread);
+    chMsgRelease(answer_thread, (msg_t) message);
+    chThdSleepSeconds(50);
+  }
 }
 #endif
 
-inline void Core_Register_Thread(core_types_t type, thread_t* thd, thread_reference_t* upd_thd)
-{
-	Modules_Array[type].Base_Thread = thd;
-	Modules_Array[type].Base_Thread_Updater = upd_thd;
-	*Modules_Array[type].Base_Thread_Updater = NULL;
+inline void Core_Register_Thread(core_types_t type, thread_t* thd, thread_reference_t* upd_thd) {
+  Modules_Array[type].Base_Thread = thd;
+  Modules_Array[type].Base_Thread_Updater = upd_thd;
+  *Modules_Array[type].Base_Thread_Updater = NULL;
 }
 
-static void Start_Modules(void)
-{
-	/*
-	 #if WATCHDOG_PRESENT
-	 WatchDog_Start();
-	 #endif
-	 */
+static void Start_Modules(void) {
+  /*
+   #if WATCHDOG_PRESENT
+   WatchDog_Start();
+   #endif
+   */
+#if ILI9341_PRESENT
+  ILI9341_Start();
+#endif
+
 #if LCD1602_PRESENT
-	InitializeLCD();     //Инициализация дисплея
-	ClearLCDScreen();//Очистка дисплея от мусора
+  InitializeLCD(); //Инициализация дисплея
+  ClearLCDScreen();//Очистка дисплея от мусора
 #endif
 #if CLI_PRESENT
-	CLI_Start();
+  CLI_Start();
 #endif
 #if RADIO_PRESENT
-	Radio_Start();
+  Radio_Start();
 #endif
 #if DS18B20_PRESENT
-	DS18B20_Start();
+  DS18B20_Start();
 #endif
 #if DHT11_PRESENT
-	DHT11_Start();
+  DHT11_Start();
 #endif
 #if FloorHeater_PRESENT
-	FloorHeater_Start();
+  FloorHeater_Start();
 #endif
 #if RGBW_PRESENT
-	RGBW_Start();
+  RGBW_Start();
 #endif
 #if PIR_PRESENT
-	PIR_Start();
+  PIR_Start();
 #endif
 }
 
-void Core_Start()
-{
-	/*
-	 * System initializations.
-	 * - HAL initialization, this also initializes the configured device drivers
-	 *   and performs the board-specific initializations.
-	 * - Kernel initialization, the main() function becomes a thread and the
-	 *   RTOS is active.
-	 */
-	halInit();
-	chSysInit();
+void Core_Start() {
 
-	osalThreadSleepMilliseconds(500);
+  /*
+   * System initializations.
+   * - HAL initialization, this also initializes the configured device drivers
+   *   and performs the board-specific initializations.
+   * - Kernel initialization, the main() function becomes a thread and the
+   *   RTOS is active.
+   */
+  halInit();
 
-	chThdSetPriority(LOWPRIO);
-	register int i;
-	for (i = 0; i <= Other; i++)
-	{
-		Modules_Array[i].Base_Struct = NULL;
-		Modules_Array[i].Base_Thread = NULL;
+#if uGFX_PRESENT
+  // Initialize uGFX and the underlying system
+  gfxInit();
+#endif
+
+  chSysInit();
+
+  osalThreadSleepMilliseconds(500);
+
+  chThdSetPriority(LOWPRIO);
+  register int i;
+  for (i = 0; i <= Other; i++) {
+    Modules_Array[i].Base_Struct = NULL;
+    Modules_Array[i].Base_Thread = NULL;
 //		*Modules_Array[i].Base_Thread_Updater = NULL;
-	}
+  }
 
 //	Core_Init((void*) (uint32_t) id);
-	Core_Init();
+  Core_Init();
 //	Modules_Array[Base].Base_Thread = chThdCreateStatic(waCore, sizeof(waCore), LOWPRIO, Core, NULL);
 
-	while (Core_BasePtr == NULL)
-	{
-		chThdYield();
-	}
-	Start_Modules();
+  while (Core_BasePtr == NULL) {
+    chThdYield();
+  }
+  Start_Modules();
 }
 
 /*void sleepUntil(systime_t *previous, systime_t period)
@@ -310,56 +295,51 @@ void Core_Start()
  }
  }*/
 
-msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds)
-{
-	if (inval != NULL)
-	{
-		core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
-		chSysLock();
-		memcpy((void *) base_struct->inner_values, inval, base_struct->ival_rw_size);
+msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds) {
+  if (inval != NULL) {
+    core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
+    chSysLock();
+    memcpy((void *)base_struct->inner_values, inval, base_struct->ival_rw_size);
 //	ByteArrayCopy(inval, (char*) base_struct->inner_values, base_struct->ival_rw_size);
-		chSysUnlock();
-	}
-	if (Modules_Array[type].Base_Thread != 0)
-	{
-		chSysLock();
-		while (*Modules_Array[type].Base_Thread_Updater != NULL)
-		{
-			chSysUnlock();
-			chSysLock();
-			chSchDoYieldS();
-		}
-		chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
-		msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
-		*Modules_Array[type].Base_Thread_Updater = NULL;
-		chSysUnlock();
-		return msg;
-	}
-	return MSG_ERROR;
+    chSysUnlock();
+  }
+  if (Modules_Array[type].Base_Thread != 0) {
+    chSysLock();
+    while (*Modules_Array[type].Base_Thread_Updater != NULL) {
+      chSysUnlock();
+      chSysLock();
+      chSchDoYieldS();
+    }
+    chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
+    msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
+    *Modules_Array[type].Base_Thread_Updater = NULL;
+    chSysUnlock();
+    return msg;
+  }
+  return MSG_ERROR;
 }
 
-uint8_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval)
-{
-	uint8_t ret_size = 0;
-	if ((addr == localhost) || (addr == MY_ADDR))
-	{
-		core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
-		if (base_struct == NULL)
-			return 0;
-		chSysLock();
-		memcpy(inval, (void *) base_struct->inner_values, base_struct->ival_size);
+uint8_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval) {
+  uint8_t ret_size = 0;
+  if ((addr == localhost) || (addr == MY_ADDR)) {
+    core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
+    if (base_struct == NULL)
+      return 0;
+    chSysLock();
+    memcpy(inval, (void *)base_struct->inner_values, base_struct->ival_size);
 //	ByteArrayCopy((char*) base_struct->inner_values, inval, base_struct->ival_size);
-		chSysUnlock();
-		ret_size = base_struct->ival_size;
-	} else {
-		inval[0] = type;
+    chSysUnlock();
+    ret_size = base_struct->ival_size;
+  }
+  else {
+    inval[0] = type;
 #if RADIO_PRESENT
-		ret_size = Radio_Send_Command(addr, RF_GET, 1, inval);
+    ret_size = Radio_Send_Command(addr, RF_GET, 1, inval);
 #else
-		ret_size = 0;
+    ret_size = 0;
 #endif
-	}
-	return ret_size;
+  }
+  return ret_size;
 }
 
 /*

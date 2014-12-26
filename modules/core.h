@@ -3,7 +3,7 @@
 
 #define MY_ADDR				11
 #define RADIO_PRESENT		FALSE
-#define DS18B20_PRESENT		TRUE
+#define DS18B20_PRESENT		FALSE
 #define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
@@ -14,6 +14,11 @@
 #define LM75_PRESENT		FALSE
 
 #define uGFX_PRESENT		TRUE
+
+#if uGFX_PRESENT
+#define ILI9341_PRESENT     TRUE
+
+#endif
 
 #define SEMIHOSTING			FALSE
 
@@ -33,8 +38,12 @@
 
 #if uGFX_PRESENT
 #include "gfx.h"
+#if ILI9341_PRESENT
 #include "board_ILI9341_spi.h"
+#include "ILI9341.h"
 #endif
+#endif
+
 
 //#include "LM75.h"
 
