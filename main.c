@@ -169,16 +169,6 @@ int main(void) {
   LEDB1Swap();
   LEDSwap();
 
-  /*
-   #define NRF_CE_IRQ_Port		GPIOF
-   #define NRF_CE_Pin GPIOF_PIN0
-
-   palSetPadMode(GPIOF, NRF_CE_Pin,
-   PAL_MODE_OUTPUT_PUSHPULL | PAL_STM32_OSPEED_HIGHEST); // | PAL_STM32_PUDR_FLOATING);
-   palSetPad(NRF_CE_IRQ_Port, NRF_CE_Pin);
-
-   chThdSleepSeconds(3);
-   */
 //	eeprom_cmd_test(NULL, 0, NULL);
   chThdSleepSeconds(1);
 
