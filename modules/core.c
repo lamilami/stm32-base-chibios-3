@@ -250,6 +250,7 @@ void Core_Start() {
 #if uGFX_PRESENT
   // Initialize uGFX and the underlying system
   gfxInit();
+  gdispClear(Black);
 #endif
 
   chSysInit();
