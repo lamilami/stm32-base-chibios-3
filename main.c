@@ -510,7 +510,7 @@ int main(void) {
 
 #endif
 
-#if !DS18B20_PRESENT
+#if !DS18B20_PRESENT && !uGFX_PRESENT
     static DS18B20_Inner_Val DS_Temp_Vals;
 //		msg_t msg;
 //		msg = Core_Module_Update(Temp, NULL, 1000);
@@ -522,7 +522,7 @@ int main(void) {
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT
 //		Radio_Send_Command(11, RF_PING, 0, NULL);
-    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(3));
+    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
 //		LEDB1Swap();
 #endif
 

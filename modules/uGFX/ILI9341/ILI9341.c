@@ -20,7 +20,7 @@
 #define TEXT_2_COLOR    Yellow
 #define TEXT_3_COLOR    HTML2COLOR(0x00B050)
 
-THD_WORKING_AREA(waILI9341, 1024);
+THD_WORKING_AREA(waILI9341, 2048);
 //__attribute__((noreturn))
 THD_FUNCTION(ILI9341,arg) {
   (void)arg;
@@ -131,6 +131,9 @@ THD_FUNCTION(ILI9341,arg) {
 //    gwinSetDefaultFont(gdispOpenFont("DejaVuSans16"));
 //    gwinSetDefaultStyle(&WhiteWidgetStyle, FALSE);
 //    gdispClear(White);
+
+  osalThreadSleepSeconds(1);
+
   while (TRUE) {
 
     char buf[5];
@@ -155,6 +158,20 @@ THD_FUNCTION(ILI9341,arg) {
       gdispFillStringBox(width - NUMBERS_WIDTH, (height - NUMBERS_HEIGHT), NUMBERS_WIDTH, NUMBERS_HEIGHT, buf, font24,
                          TEXT_COLOR, BG_COLOR, justifyLeft);
     }
+
+
+    static DS18B20_Inner_Val DS_Temp_Vals;
+//		msg_t msg;
+//		msg = Core_Module_Update(Temp, NULL, 1000);
+    DS_Temp_Vals.temp[0] = -77 << 2;
+    Core_Module_Read(10, Temp, (char*) &DS_Temp_Vals);
+    if ((DS_Temp_Vals.cont_errors > 0))// || (msg != MSG_OK))
+    DS_Temp_Vals.temp[0] = -99 << 2;
+
+    sprintf_(buf, "%02d", DS_Temp_Vals.temp[0]/4);
+
+    gdispFillStringBox(width-64, HEIGHT_24, 64, HEIGHT_32, buf, font32, TEXT_COLOR, OT_BG_COLOR, justifyRight);
+
 
     time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
   }
