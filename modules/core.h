@@ -1,9 +1,9 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
-#define MY_ADDR				11
-#define RADIO_PRESENT		FALSE
-#define DS18B20_PRESENT		FALSE
+#define MY_ADDR				10
+#define RADIO_PRESENT		TRUE
+#define DS18B20_PRESENT		TRUE
 #define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
@@ -13,7 +13,7 @@
 #define PIR_PRESENT			FALSE
 #define LM75_PRESENT		FALSE
 
-#define uGFX_PRESENT		TRUE
+#define uGFX_PRESENT		FALSE
 
 #if uGFX_PRESENT
 #define ILI9341_PRESENT     TRUE
