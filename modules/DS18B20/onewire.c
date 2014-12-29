@@ -94,8 +94,13 @@ uint8_t OW_Init() {
 // осуществляет сброс и проверку на наличие устройств на шине
 //-----------------------------------------------------------------------------
 uint8_t OW_Reset() {
-  uint8_t ow_presence;
+  uint8_t ow_presence = 0;
 
+//  sdStop(&SD1);
+  osalSysLock();
+  iqResetI(&SD1.iqueue);
+  oqResetI(&SD1.oqueue);
+  osalSysUnlock();
   sdStart(&SD1, &sd_cfg_low);
 
   sdPut(&SD1, (0xf0 & (uint16_t)0x01FF));
@@ -140,6 +145,11 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
     command++;
     cLen--;
 
+    osalSysLock();
+    iqResetI(&SD1.iqueue);
+    oqResetI(&SD1.oqueue);
+    osalSysUnlock();
+
     sdWrite(&SD1, ow_buf, 8);
     sdRead(&SD1, ow_buf, 8);
 
@@ -161,6 +171,11 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
 
 // send nbits bits from ow_buf to 1-wire
 void OW_SendBits(uint8_t nbits) {
+
+  osalSysLock();
+  iqResetI(&SD1.iqueue);
+  oqResetI(&SD1.oqueue);
+  osalSysUnlock();
 
   sdWrite(&SD1, ow_buf, nbits);
   sdRead(&SD1, ow_buf, nbits);
