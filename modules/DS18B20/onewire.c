@@ -17,9 +17,6 @@
 #undef OW_USART3
 #undef OW_USART4
 
-//static UARTConfig uart1_cfg_high = {txend1, txend2, rxend, rxchar, rxerr, 100000, 0, 0, USART_CR3_HDSEL};
-//static UARTConfig uart1_cfg_low = {txend1, txend2, rxend, rxchar, rxerr, 9600, 0, 0, USART_CR3_HDSEL};
-
 #define OW_USART 		USART1
 #define OW_DMA_CH_RX 	DMA1_Channel5
 #define OW_DMA_CH_TX 	DMA1_Channel4
@@ -52,6 +49,64 @@ uint8_t ow_buf[8];
 #define OW_0	0x00
 #define OW_1	0xff
 #define OW_R_1	0xff
+
+static thread_t *ow_tp;
+#define EVENTMASK_READCHAR  1
+#define EVENTMASK_RXEND     2
+#define EVENTMASK_RXERROR   4
+static eventmask_t evt;
+
+/*
+ * This callback is invoked on a receive error, the errors mask is passed
+ * as parameter.
+ */
+static void rxerr(UARTDriver *uartp, uartflags_t e) {
+  (void)uartp;
+  (void)e;
+  chSysLockFromISR();
+//  chVTResetI(&vt1);
+//  chVTSetI(&vt1, MS2ST(5000), restart, NULL);
+  __asm("BKPT #0\n");
+  if (ow_tp != NULL)
+    chEvtSignalI(ow_tp, (eventmask_t)EVENTMASK_RXERROR);
+  chSysUnlockFromISR();
+}
+
+/*
+ * This callback is invoked when a character is received but the application
+ * was not ready to receive it, the character is passed as parameter.
+ */
+static void rxchar(UARTDriver *uartp, uint16_t c) {
+
+  (void)uartp;
+  (void)c;
+  /* Flashing the LED each time a character is received.*/
+//  palSetPad(GPIOC, GPIOC_LED4);
+  chSysLockFromISR();
+  ow_buf[0] = c;
+  if (ow_tp != NULL)
+    chEvtSignalI(ow_tp, (eventmask_t)EVENTMASK_READCHAR);
+//  chVTResetI(&vt2);
+//  chVTSetI(&vt2, MS2ST(200), ledoff, NULL);
+  chSysUnlockFromISR();
+}
+
+/*
+ * This callback is invoked when a receive buffer has been completely written.
+ */
+static void rxend(UARTDriver *uartp) {
+
+  (void)uartp;
+  chSysLockFromISR();
+//  chVTResetI(&vt1);
+//  chVTSetI(&vt1, MS2ST(5000), restart, NULL);
+  if (ow_tp != NULL)
+    chEvtSignalI(ow_tp, (eventmask_t)EVENTMASK_RXEND);
+  chSysUnlockFromISR();
+}
+
+static UARTConfig uart1_cfg_high = {NULL, NULL, rxend, rxchar, rxerr, 100000, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
+static UARTConfig uart1_cfg_low = {NULL, NULL, rxend, rxchar, rxerr, 9600, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
 
 //-----------------------------------------------------------------------------
 // функци€ преобразует один байт в восемь, дл€ передачи через USART
@@ -176,7 +231,7 @@ uint8_t OW_Init() {
 
    GPIO_Init(((GPIO_TypeDef *) GPIOA_BASE), &GPIO_InitStruct);*/
 
-  palSetPadMode( GPIOA, GPIOA_PIN9,
+  palSetPadMode(GPIOA, GPIOA_PIN9,
                 PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_MID | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_OPENDRAIN);
 
 //	GPIO_PinAFConfig(((GPIO_TypeDef *) GPIOA_BASE), GPIO_PinSource9, GPIO_AF_1);
@@ -195,9 +250,8 @@ uint8_t OW_Init() {
    */
 //	SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Rx, ENABLE);
 //	SYSCFG_DMAChannelRemapConfig(SYSCFG_DMARemap_USART1Tx, ENABLE);
-  SYSCFG->CFGR1 |= (uint32_t)SYSCFG_CFGR1_USART1RX_DMA_RMP | SYSCFG_CFGR1_USART1TX_DMA_RMP;
+//  SYSCFG->CFGR1 |= (uint32_t)SYSCFG_CFGR1_USART1RX_DMA_RMP | SYSCFG_CFGR1_USART1TX_DMA_RMP;
 //	SYSCFG->CFGR1 |= (uint32_t) SYSCFG_CFGR1_USART1TX_DMA_RMP;
-
 #ifdef Separ_USART
 
   /*	USART_InitStructure.USART_BaudRate = 100000;
@@ -267,65 +321,7 @@ uint8_t OW_Init() {
 
 #endif
 
-  /*	USART_InitStructure.USART_BaudRate = 100000;
-   USART_InitStructure.USART_WordLength = USART_WordLength_8b;
-   USART_InitStructure.USART_StopBits = USART_StopBits_2;
-   USART_InitStructure.USART_Parity = USART_Parity_No;
-   USART_InitStructure.USART_HardwareFlowControl =
-   USART_HardwareFlowControl_None;
-   USART_InitStructure.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
-
-   USART_Init(OW_USART, &USART_InitStructure);
-   */
-
-  uint32_t tmpreg = 0;
-
-  OW_USART->CR1 &= (uint32_t)~((uint32_t)USART_CR1_UE);
-
-  /*---------------------------- USART CR2 Configuration -----------------------*/
-  tmpreg = OW_USART->CR2;
-  /* Clear STOP[13:12] bits */
-  tmpreg &= (uint32_t)~((uint32_t)USART_CR2_STOP);
-
-  /* Configure the USART Stop Bits, Clock, CPOL, CPHA and LastBit ------------*/
-  /* Set STOP[13:12] bits according to USART_StopBits value */
-  tmpreg |= (uint32_t)USART_CR2_STOP_1;
-
-  /* Write to USART CR2 */OW_USART->CR2 = tmpreg;
-
-  /*---------------------------- USART CR1 Configuration -----------------------*/
-  tmpreg = OW_USART->CR1;
-  /* Clear M, PCE, PS, TE and RE bits */
-  tmpreg &= (uint32_t)~((uint32_t)(USART_CR1_M | USART_CR1_PCE | USART_CR1_PS));
-
-  /* Configure the USART Word Length, Parity and mode ----------------------- */
-  /* Set the M bits according to USART_WordLength value */
-  /* Set PCE and PS bits according to USART_Parity value */
-  /* Set TE and RE bits according to USART_Mode value */
-  tmpreg |= (uint32_t)USART_CR1_RE | USART_CR1_TE;
-
-  /* Write to USART CR1 */OW_USART->CR1 = tmpreg;
-
-  /*---------------------------- USART CR3 Configuration -----------------------*/
-  tmpreg = OW_USART->CR3;
-  /* Clear CTSE and RTSE bits */
-  tmpreg &= (uint32_t)~((uint32_t)(USART_CR3_RTSE | USART_CR3_CTSE));
-
-  /* Configure the USART HFC -------------------------------------------------*/
-  /* Set CTSE and RTSE bits according to USART_HardwareFlowControl value */
-//	tmpreg |= USART_InitStruct->USART_HardwareFlowControl;
-  /* Write to USART CR3 */OW_USART->CR3 = tmpreg;
-
-  OW_USART->BRR = OW_USART_CLK / 100000;     //24000000
-
-  // «десь вставим разрешение работы USART в полудуплексном режиме
-//	USART_HalfDuplexCmd(OW_USART, ENABLE);
-
-  /* Enable the Half-Duplex mode by setting the HDSEL bit in the CR3 register */OW_USART->CR3 |= USART_CR3_HDSEL;
-
-//	USART_Cmd(OW_USART, ENABLE);
-
-  /* Enable the selected USART by setting the UE bit in the CR1 register */OW_USART->CR1 |= USART_CR1_UE;
+  uartStart(&UARTD1, &uart1_cfg_high);
 
   return OW_OK;
 }
@@ -335,6 +331,8 @@ uint8_t OW_Init() {
 //-----------------------------------------------------------------------------
 uint8_t OW_Reset() {
   uint8_t ow_presence;
+
+#ifdef Separ_USART
   /*	USART_InitTypeDef USART_InitStructure;
 
    USART_InitStructure.USART_BaudRate = 9600;
@@ -403,6 +401,20 @@ uint8_t OW_Reset() {
     return OW_ERROR;
   }
 
+#endif
+
+  ow_buf[0] = (0xf0 & (uint16_t)0x01FF);
+  ow_tp = chThdGetSelfX();
+
+  uartStart(&UARTD1, &uart1_cfg_low);
+  uartStartSend(&UARTD1, 1, &ow_buf[0]);
+  do {
+    evt = chEvtWaitOne((eventmask_t)EVENTMASK_READCHAR);
+  } while (evt != EVENTMASK_READCHAR);
+
+  ow_presence = ow_buf[0];
+  uartStart(&UARTD1, &uart1_cfg_high);
+
   if (ow_presence != 0xf0) {
     return OW_OK;
   }
@@ -440,6 +452,7 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
     command++;
     cLen--;
 
+#ifdef Separ_USART
     /*
 
      DMA_InitTypeDef DMA_InitStructure;
@@ -506,7 +519,7 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
     OW_DMA_CH_TX->CCR &= (uint16_t)(~DMA_CCR_EN);
 
     /* Reset interrupt pending bits for DMA1 Channel5 */DMA1->IFCR |= ((uint32_t)(
-        DMA_ISR_GIF4 | DMA_ISR_TCIF4 | DMA_ISR_HTIF4 | DMA_ISR_TEIF4));
+            DMA_ISR_GIF4 | DMA_ISR_TCIF4 | DMA_ISR_HTIF4 | DMA_ISR_TEIF4));
 
     /* Configure DMAy Channelx: data transfer, data size, priority level and mode */
 
@@ -561,6 +574,21 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
       return OW_ERROR;
     }
 
+#endif
+
+    osalSysLock();
+
+    ow_tp = chThdGetSelfX();
+
+//    uartStart(&UARTD1, &uart1_cfg_low);
+    uartStartReceiveI(&UARTD1, 8, &ow_buf);
+    uartStartSendI(&UARTD1, 8, &ow_buf);
+
+    osalSysUnlock();
+
+    do {
+      evt = chEvtWaitOne((eventmask_t)EVENTMASK_RXEND);
+    } while (evt != EVENTMASK_RXEND);
     // если прочитанные данные кому-то нужны - выкинем их в буфер
     if (readStart == 0 && dLen > 0) {
       *data = OW_toByte(ow_buf);
@@ -579,6 +607,8 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
 
 // send nbits bits from ow_buf to 1-wire
 void OW_SendBits(uint8_t nbits) {
+
+#ifdef Separ_USART
   /*
    DMA_InitTypeDef DMA_InitStructure;
    // DMA for reading
@@ -600,7 +630,7 @@ void OW_SendBits(uint8_t nbits) {
   OW_DMA_CH_RX->CCR &= (uint16_t)(~DMA_CCR_EN);
 
   /* Reset interrupt pending bits for DMA1 Channel5 */DMA1->IFCR |= ((uint32_t)(
-      DMA_ISR_GIF5 | DMA_ISR_TCIF5 | DMA_ISR_HTIF5 | DMA_ISR_TEIF5));
+          DMA_ISR_GIF5 | DMA_ISR_TCIF5 | DMA_ISR_HTIF5 | DMA_ISR_TEIF5));
 
   /*--------------------------- DMAy Channelx CCR Configuration ----------------*/
 
@@ -635,10 +665,10 @@ void OW_SendBits(uint8_t nbits) {
   /* Disable the selected DMAy Channelx */OW_DMA_CH_TX->CCR &= (uint16_t)(~DMA_CCR_EN);
 
   /* Reset interrupt pending bits for DMA1 Channel5 */DMA1->IFCR |= ((uint32_t)(
-      DMA_ISR_GIF4 | DMA_ISR_TCIF4 | DMA_ISR_HTIF4 | DMA_ISR_TEIF4));
+          DMA_ISR_GIF4 | DMA_ISR_TCIF4 | DMA_ISR_HTIF4 | DMA_ISR_TEIF4));
 
   /* Configure DMAy Channelx: data transfer, data size, priority level and mode */OW_DMA_CH_TX->CCR = DMA_CCR_DIR
-      | DMA_CCR_MINC;
+  | DMA_CCR_MINC;
 
   /*--------------------------- DMAy Channelx CNDTR Configuration --------------*/
   /* Write to DMAy Channelx CNDTR */OW_DMA_CH_TX->CNDTR = nbits;
@@ -665,11 +695,11 @@ void OW_SendBits(uint8_t nbits) {
 //	 USART_Cmd(OW_USART, ENABLE);
   OW_USART->CR1 |= USART_CR1_UE;
 
-  // wait end of transmission
-  //	while OW_DMA_TRANSFER_END;
+// wait end of transmission
+//	while OW_DMA_TRANSFER_END;
   uint8_t cntr;
   cntr = 0;
-  // ∆дем, пока не примем 8 байт
+// ∆дем, пока не примем 8 байт
   while ((cntr < 5) && ((DMA1->ISR & OW_DMA_FLAG) == RESET)) {
     cntr++;
     chThdSleepMicroseconds(nbits*100);
@@ -682,6 +712,21 @@ void OW_SendBits(uint8_t nbits) {
   OW_DMA_CH_RX->CCR &= (uint16_t)(~DMA_CCR_EN);
 //	 USART_DMACmd(OW_USART, USART_DMAReq_Tx | USART_DMAReq_Rx, DISABLE);
   OW_USART->CR3 &= (uint32_t)~(USART_CR3_DMAT | USART_CR3_DMAR);
+
+#endif
+
+  osalSysLock();
+
+  ow_tp = chThdGetSelfX();
+
+  uartStartReceive(&UARTD1, nbits, &ow_buf);
+  uartStartSend(&UARTD1, nbits, &ow_buf);
+
+  osalSysUnlock();
+
+  do {
+    evt = chEvtWaitOne((eventmask_t)EVENTMASK_RXEND);
+  } while (evt != EVENTMASK_RXEND);
 }
 
 //-----------------------------------------------------------------------------
@@ -706,8 +751,8 @@ uint8_t OW_Scan(uint8_t *buf, uint8_t num) {
     //(issue the 'ROM search' command)
     if (0 == OW_WriteCmd(OW_SEARCH_ROM))
       return 0;
-    next = 0;     // next path to follow
-    pos = 1;     // path bit pointer
+    next = 0; // next path to follow
+    pos = 1; // path bit pointer
     for (cnt_byte = 0; cnt_byte != 8; cnt_byte++) {
       buf[cnt_num * 8 + cnt_byte] = 0;
       for (cnt_bit = 0; cnt_bit != 8; cnt_bit++) {
@@ -717,12 +762,12 @@ uint8_t OW_Scan(uint8_t *buf, uint8_t num) {
         bit = (ow_buf[0] == OW_1);
         chk = (ow_buf[1] == OW_1);
         if (bit && chk)
-          return 0;     // error
-        if (!bit && !chk) {     // collision, both are zero
+          return 0; // error
+        if (!bit && !chk) { // collision, both are zero
           if (pos & path)
-            bit = 1;     // if we've been here before
+            bit = 1; // if we've been here before
           else
-            next = (path & (pos - 1)) | pos;     // else, new branch for next
+            next = (path & (pos - 1)) | pos; // else, new branch for next
           pos <<= 1;
         }
         //(save this bit as part of the current ROM value)
