@@ -327,7 +327,7 @@ int main(void) {
 
   while (TRUE) {
 
-#if DS18B20_PRESENT && !FloorHeater_PRESENT
+#if DS18B20_PRESENT && !FloorHeater_PRESENT && !uGFX_PRESENT
 
     static DS18B20_Inner_Val DS_Temp_Vals;
     msg_t msg;

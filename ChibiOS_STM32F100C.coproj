@@ -179,8 +179,8 @@
     <File name="uGFX/src/gqueue/sys_rules.h" path="uGFX/src/gqueue/sys_rules.h" type="1"/>
     <File name="os/rt/src/chschd.c" path="os/rt/src/chschd.c" type="1"/>
     <File name="uGFX/src/gos/sys_rules.h" path="uGFX/src/gos/sys_rules.h" type="1"/>
-    <File name="modules/DHT11/DHT11.h" path="modules/DHT11/DHT11.h" type="1"/>
     <File name="os/hal/ports/STM32/STM32F1xx/stm32_isr.h" path="os/hal/ports/STM32/STM32F1xx/stm32_isr.h" type="1"/>
+    <File name="modules/DHT11/DHT11.h" path="modules/DHT11/DHT11.h" type="1"/>
     <File name="uGFX/src/gdisp/mcufont/mcufont.h" path="uGFX/src/gdisp/mcufont/mcufont.h" type="1"/>
     <File name="os/hal/include/pwm.h" path="os/hal/include/pwm.h" type="1"/>
     <File name="os/common/ports/ARMCMx/compilers/GCC" path="" type="2"/>
@@ -238,9 +238,9 @@
     <File name="main.c" path="main.c" type="1"/>
     <File name="uGFX/src/ginput/ginput_toggle.c" path="uGFX/src/ginput/ginput_toggle.c" type="1"/>
     <File name="modules/LCD1602/lcd.c" path="modules/LCD1602/lcd.c" type="1"/>
-    <File name="os/ext/CMSIS/include/arm_common_tables.h" path="os/ext/CMSIS/include/arm_common_tables.h" type="1"/>
     <File name="uGFX/src/gtimer" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/ext_lld.c" path="os/hal/ports/STM32/LLD/ext_lld.c" type="1"/>
+    <File name="os/ext/CMSIS/include/arm_common_tables.h" path="os/ext/CMSIS/include/arm_common_tables.h" type="1"/>
     <File name="os/rt/include/chmtx.h" path="os/rt/include/chmtx.h" type="1"/>
     <File name="uGFX/src/gqueue/sys_defs.h" path="uGFX/src/gqueue/sys_defs.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD" path="" type="2"/>
@@ -267,9 +267,9 @@
     <File name="modules/core.c" path="modules/core.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/USARTv1" path="" type="2"/>
     <File name="os/hal/src/hal_mmcsd.c" path="os/hal/src/hal_mmcsd.c" type="1"/>
-    <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
     <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
     <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
+    <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" path="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" type="1"/>
     <File name="board/uGFX_ILI9341/board_ILI9341_spi.h" path="board/uGFX_ILI9341/board_ILI9341_spi.h" type="1"/>
@@ -278,11 +278,11 @@
     <File name="os/hal/ports/STM32/LLD/I2Cv1/i2c_lld.h" path="os/hal/ports/STM32/LLD/I2Cv1/i2c_lld.h" type="1"/>
     <File name="os/hal/include" path="" type="2"/>
     <File name="os/hal/src/adc.c" path="os/hal/src/adc.c" type="1"/>
-    <File name="os/hal/include/ext.h" path="os/hal/include/ext.h" type="1"/>
-    <File name="uGFX/src/gdisp/mcufont/mf_scaledfont.c" path="uGFX/src/gdisp/mcufont/mf_scaledfont.c" type="1"/>
-    <File name="uGFX/src/gdisp/mcufont/mf_encoding.h" path="uGFX/src/gdisp/mcufont/mf_encoding.h" type="1"/>
     <File name="os/rt/src/chmempools.c" path="os/rt/src/chmempools.c" type="1"/>
+    <File name="os/hal/include/ext.h" path="os/hal/include/ext.h" type="1"/>
     <File name="board/STM32F100C/halconf.h" path="board/STM32F100C/halconf.h" type="1"/>
+    <File name="uGFX/src/gdisp/mcufont/mf_encoding.h" path="uGFX/src/gdisp/mcufont/mf_encoding.h" type="1"/>
+    <File name="uGFX/src/gdisp/mcufont/mf_scaledfont.c" path="uGFX/src/gdisp/mcufont/mf_scaledfont.c" type="1"/>
     <File name="os/ext/CMSIS" path="" type="2"/>
     <File name="uGFX/src/gdisp/mcufont/mf_font.c" path="uGFX/src/gdisp/mcufont/mf_font.c" type="1"/>
     <File name="uGFX/src/gdisp/mcufont/mf_bwfont.c" path="uGFX/src/gdisp/mcufont/mf_bwfont.c" type="1"/>
