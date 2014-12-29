@@ -2,7 +2,7 @@
 #define _CORE_H_
 
 #define MY_ADDR				10
-#define RADIO_PRESENT		FALSE
+#define RADIO_PRESENT		TRUE
 #define DS18B20_PRESENT		TRUE
 #define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
