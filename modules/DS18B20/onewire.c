@@ -85,6 +85,8 @@ uint8_t OW_Init() {
 
 #endif
 
+  chThdSleepMilliseconds(1);
+
   sdStart(&SD1, &sd_cfg_high);
 
   return OW_OK;
@@ -97,10 +99,13 @@ uint8_t OW_Reset() {
   uint8_t ow_presence = 0;
 
 //  sdStop(&SD1);
-  osalSysLock();
-  iqResetI(&SD1.iqueue);
-  oqResetI(&SD1.oqueue);
-  osalSysUnlock();
+  /*
+   osalSysLock();
+   iqResetI(&SD1.iqueue);
+   oqResetI(&SD1.oqueue);
+   osalSysUnlock();
+   */
+
   sdStart(&SD1, &sd_cfg_low);
 
   sdPut(&SD1, (0xf0 & (uint16_t)0x01FF));
@@ -144,12 +149,12 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
     OW_toBits(*command, ow_buf);
     command++;
     cLen--;
-
-    osalSysLock();
-    iqResetI(&SD1.iqueue);
-    oqResetI(&SD1.oqueue);
-    osalSysUnlock();
-
+    /*
+     osalSysLock();
+     iqResetI(&SD1.iqueue);
+     oqResetI(&SD1.oqueue);
+     osalSysUnlock();
+     */
     sdWrite(&SD1, ow_buf, 8);
     sdRead(&SD1, ow_buf, 8);
 
@@ -171,12 +176,12 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
 
 // send nbits bits from ow_buf to 1-wire
 void OW_SendBits(uint8_t nbits) {
-
-  osalSysLock();
-  iqResetI(&SD1.iqueue);
-  oqResetI(&SD1.oqueue);
-  osalSysUnlock();
-
+  /*
+   osalSysLock();
+   iqResetI(&SD1.iqueue);
+   oqResetI(&SD1.oqueue);
+   osalSysUnlock();
+   */
   sdWrite(&SD1, ow_buf, nbits);
   sdRead(&SD1, ow_buf, nbits);
 
@@ -204,8 +209,8 @@ uint8_t OW_Scan(uint8_t *buf, uint8_t num) {
     //(issue the 'ROM search' command)
     if (0 == OW_WriteCmd(OW_SEARCH_ROM))
       return 0;
-    next = 0; // next path to follow
-    pos = 1; // path bit pointer
+    next = 0;     // next path to follow
+    pos = 1;     // path bit pointer
     for (cnt_byte = 0; cnt_byte != 8; cnt_byte++) {
       buf[cnt_num * 8 + cnt_byte] = 0;
       for (cnt_bit = 0; cnt_bit != 8; cnt_bit++) {
@@ -215,12 +220,12 @@ uint8_t OW_Scan(uint8_t *buf, uint8_t num) {
         bit = (ow_buf[0] == OW_1);
         chk = (ow_buf[1] == OW_1);
         if (bit && chk)
-          return 0; // error
-        if (!bit && !chk) { // collision, both are zero
+          return 0;     // error
+        if (!bit && !chk) {     // collision, both are zero
           if (pos & path)
-            bit = 1; // if we've been here before
+            bit = 1;     // if we've been here before
           else
-            next = (path & (pos - 1)) | pos; // else, new branch for next
+            next = (path & (pos - 1)) | pos;     // else, new branch for next
           pos <<= 1;
         }
         //(save this bit as part of the current ROM value)
