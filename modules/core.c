@@ -258,8 +258,8 @@ void Core_Start() {
   osalThreadSleepMilliseconds(500);
 
   chThdSetPriority(LOWPRIO);
-  register int i;
-  for (i = 0; i <= Other; i++) {
+  register uint8_t i;
+  for (i = 0; i < Other; i++) {
     Modules_Array[i].Base_Struct = NULL;
     Modules_Array[i].Base_Thread = NULL;
 //		*Modules_Array[i].Base_Thread_Updater = NULL;
