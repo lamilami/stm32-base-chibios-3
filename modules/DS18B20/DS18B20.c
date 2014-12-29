@@ -55,10 +55,10 @@ THD_FUNCTION(DS18B20,arg) {
 
   OW_Init();
 
-  do {
+  while (OW_Send(OW_SEND_RESET, (uint8_t *)"\xcc\x4e\x00\x00\x3f", 5, NULL, 0, OW_NO_READ) != OW_OK) {
     //Waiting DS18B20 to initialize
     chThdSleepSeconds(1);
-  } while (OW_Send(OW_SEND_RESET, (uint8_t *)"\xcc\x4e\x00\x00\x3f", 5, NULL, 0, OW_NO_READ) != OW_OK);
+  }
 
   if (sens_addr[0][0] == 0) {
 
