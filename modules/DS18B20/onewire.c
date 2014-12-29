@@ -50,63 +50,12 @@ uint8_t ow_buf[8];
 #define OW_1	0xff
 #define OW_R_1	0xff
 
-static thread_t *ow_tp;
-#define EVENTMASK_READCHAR  1
-#define EVENTMASK_RXEND     2
-#define EVENTMASK_RXERROR   4
-static eventmask_t evt;
+//static UARTConfig uart1_cfg_high = {NULL, NULL, rxend, rxchar, rxerr, 100000, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
+//static UARTConfig uart1_cfg_low = {NULL, NULL, rxend, rxchar, rxerr, 9600, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
 
-/*
- * This callback is invoked on a receive error, the errors mask is passed
- * as parameter.
- */
-static void rxerr(UARTDriver *uartp, uartflags_t e) {
-  (void)uartp;
-  (void)e;
-  chSysLockFromISR();
-//  chVTResetI(&vt1);
-//  chVTSetI(&vt1, MS2ST(5000), restart, NULL);
-  __asm("BKPT #0\n");
-  if (ow_tp != NULL)
-    chEvtSignalI(ow_tp, (eventmask_t)EVENTMASK_RXERROR);
-  chSysUnlockFromISR();
-}
+static SerialConfig sd_cfg_high = {100000,0, USART_CR2_STOP_1, USART_CR3_HDSEL};
+static SerialConfig sd_cfg_low = {9600,0, USART_CR2_STOP_1, USART_CR3_HDSEL};
 
-/*
- * This callback is invoked when a character is received but the application
- * was not ready to receive it, the character is passed as parameter.
- */
-static void rxchar(UARTDriver *uartp, uint16_t c) {
-
-  (void)uartp;
-  (void)c;
-  /* Flashing the LED each time a character is received.*/
-//  palSetPad(GPIOC, GPIOC_LED4);
-  chSysLockFromISR();
-  ow_buf[0] = c;
-  if (ow_tp != NULL)
-    chEvtSignalI(ow_tp, (eventmask_t)EVENTMASK_READCHAR);
-//  chVTResetI(&vt2);
-//  chVTSetI(&vt2, MS2ST(200), ledoff, NULL);
-  chSysUnlockFromISR();
-}
-
-/*
- * This callback is invoked when a receive buffer has been completely written.
- */
-static void rxend(UARTDriver *uartp) {
-
-  (void)uartp;
-  chSysLockFromISR();
-//  chVTResetI(&vt1);
-//  chVTSetI(&vt1, MS2ST(5000), restart, NULL);
-  if (ow_tp != NULL)
-    chEvtSignalI(ow_tp, (eventmask_t)EVENTMASK_RXEND);
-  chSysUnlockFromISR();
-}
-
-static UARTConfig uart1_cfg_high = {NULL, NULL, rxend, rxchar, rxerr, 100000, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
-static UARTConfig uart1_cfg_low = {NULL, NULL, rxend, rxchar, rxerr, 9600, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
 
 //-----------------------------------------------------------------------------
 // функция преобразует один байт в восемь, для передачи через USART
@@ -321,7 +270,9 @@ uint8_t OW_Init() {
 
 #endif
 
-  uartStart(&UARTD1, &uart1_cfg_high);
+  sdStart(&SD1, &sd_cfg_high);
+
+//  uartStart(&UARTD1, &uart1_cfg_high);
 
   return OW_OK;
 }
@@ -401,7 +352,7 @@ uint8_t OW_Reset() {
     return OW_ERROR;
   }
 
-#endif
+#elif UART_OW
 
   ow_buf[0] = (0xf0 & (uint16_t)0x01FF);
   ow_tp = chThdGetSelfX();
@@ -414,6 +365,18 @@ uint8_t OW_Reset() {
 
   ow_presence = ow_buf[0];
   uartStart(&UARTD1, &uart1_cfg_high);
+
+#endif
+
+ // ow_buf[0] = (0xf0 & (uint16_t)0x01FF);
+//  ow_tp = chThdGetSelfX();
+
+  sdStart(&SD1, &sd_cfg_low);
+
+  sdPut(&SD1, (0xf0 & (uint16_t)0x01FF));
+  ow_presence = sdGet(&SD1);
+
+  sdStart(&SD1, &sd_cfg_high);
 
   if (ow_presence != 0xf0) {
     return OW_OK;
@@ -574,7 +537,7 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
       return OW_ERROR;
     }
 
-#endif
+#elif UART_OW
 
     osalSysLock();
 
@@ -589,6 +552,13 @@ uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen, uint8_t *data
     do {
       evt = chEvtWaitOne((eventmask_t)EVENTMASK_RXEND);
     } while (evt != EVENTMASK_RXEND);
+
+#endif
+
+    sdWrite (&SD1, ow_buf, 8);
+//    ow_buf[0] = ow_buf[1] = ow_buf[2] = ow_buf[3] = 0x55;
+    sdRead (&SD1, ow_buf, 8);
+
     // если прочитанные данные кому-то нужны - выкинем их в буфер
     if (readStart == 0 && dLen > 0) {
       *data = OW_toByte(ow_buf);
@@ -713,7 +683,7 @@ void OW_SendBits(uint8_t nbits) {
 //	 USART_DMACmd(OW_USART, USART_DMAReq_Tx | USART_DMAReq_Rx, DISABLE);
   OW_USART->CR3 &= (uint32_t)~(USART_CR3_DMAT | USART_CR3_DMAR);
 
-#endif
+#elif UART_OW
 
   osalSysLock();
 
@@ -727,6 +697,12 @@ void OW_SendBits(uint8_t nbits) {
   do {
     evt = chEvtWaitOne((eventmask_t)EVENTMASK_RXEND);
   } while (evt != EVENTMASK_RXEND);
+
+#endif
+
+  sdWrite (&SD1, ow_buf, nbits);
+  sdRead (&SD1, ow_buf, nbits);
+
 }
 
 //-----------------------------------------------------------------------------
