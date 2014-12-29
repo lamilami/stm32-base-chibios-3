@@ -170,7 +170,7 @@ int main(void) {
   LEDSwap();
 
 //	eeprom_cmd_test(NULL, 0, NULL);
-  chThdSleepSeconds(1);
+  chThdSleepSeconds(3);
 
 #if MY_ADDR==10
 //	Radio_Send_Command(11, RF_PING, 0, NULL);
@@ -522,7 +522,7 @@ int main(void) {
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT
 //		Radio_Send_Command(11, RF_PING, 0, NULL);
-    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
+    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(3));
 //		LEDB1Swap();
 #endif
 
