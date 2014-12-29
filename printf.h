@@ -39,7 +39,7 @@
 | options
 +=============================================================================+
 */
-//#define INCLUDE_FLOAT  // this enables float in printf() and costs you about 2kByte ROM
+#define INCLUDE_FLOAT  // this enables float in printf() and costs you about 2kByte ROM
 //#define UART1_BAUDRATE  		115200
 /*
 +=============================================================================+

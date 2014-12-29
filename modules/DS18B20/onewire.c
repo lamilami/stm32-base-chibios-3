@@ -21,8 +21,8 @@ uint8_t ow_buf[8];
 //static UARTConfig uart1_cfg_high = {NULL, NULL, rxend, rxchar, rxerr, 100000, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
 //static UARTConfig uart1_cfg_low = {NULL, NULL, rxend, rxchar, rxerr, 9600, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
 
-static SerialConfig sd_cfg_high = {100000, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
-static SerialConfig sd_cfg_low = {9600, 0, USART_CR2_STOP_1, USART_CR3_HDSEL};
+static SerialConfig sd_cfg_high = {100000, 0, 0, USART_CR3_HDSEL};
+static SerialConfig sd_cfg_low = {9600, 0, 0, USART_CR3_HDSEL};
 
 //-----------------------------------------------------------------------------
 // функция преобразует один байт в восемь, для передачи через USART

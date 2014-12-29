@@ -104,7 +104,7 @@ THD_FUNCTION(ILI9341,arg) {
   gdispClear(BG_COLOR);
 
   gdispFillStringBox(0, 0, width, HEIGHT_24, "GrowBox", font24, TEXT_COLOR, BG_COLOR, justifyCenter);
-  gdispFillStringBox(0, HEIGHT_24, width, HEIGHT_32, "Outer Temp:", font32, TEXT_COLOR, OT_BG_COLOR, justifyLeft);
+  gdispFillStringBox(0, HEIGHT_24, width, HEIGHT_32, "Out. Temp:", font32, TEXT_COLOR, OT_BG_COLOR, justifyLeft);
 
   gdispFillStringBox(0, HEIGHT_24 + HEIGHT_32, width / 2, HEIGHT_24, "Temp 1:", font24, TEXT_1_COLOR, TEMP_BG_COLOR,
                      justifyLeft);
@@ -131,7 +131,6 @@ THD_FUNCTION(ILI9341,arg) {
 //    gwinSetDefaultFont(gdispOpenFont("DejaVuSans16"));
 //    gwinSetDefaultStyle(&WhiteWidgetStyle, FALSE);
 //    gdispClear(White);
-
   osalThreadSleepSeconds(1);
 
   while (TRUE) {
@@ -159,19 +158,21 @@ THD_FUNCTION(ILI9341,arg) {
                          TEXT_COLOR, BG_COLOR, justifyLeft);
     }
 
-
     static DS18B20_Inner_Val DS_Temp_Vals;
+    static int16_t temp_old = -999;
 //		msg_t msg;
 //		msg = Core_Module_Update(Temp, NULL, 1000);
     DS_Temp_Vals.temp[0] = -77 << 2;
-    Core_Module_Read(10, Temp, (char*) &DS_Temp_Vals);
-    if ((DS_Temp_Vals.cont_errors > 0))// || (msg != MSG_OK))
-    DS_Temp_Vals.temp[0] = -99 << 2;
+    Core_Module_Update(Temp, NULL, 1000);
+    Core_Module_Read(localhost, Temp, (char*)&DS_Temp_Vals);
+    if ((DS_Temp_Vals.cont_errors > 0))     // || (msg != MSG_OK))
+      DS_Temp_Vals.temp[0] = -99 << 2;
 
-    sprintf_(buf, "%02d", DS_Temp_Vals.temp[0]/4);
-
-    gdispFillStringBox(width-64, HEIGHT_24, 64, HEIGHT_32, buf, font32, TEXT_COLOR, OT_BG_COLOR, justifyRight);
-
+    if (temp_old != DS_Temp_Vals.temp[0]) {
+      temp_old = DS_Temp_Vals.temp[0];
+      sprintf_(buf, "%02f", (float)DS_Temp_Vals.temp[0]/4);
+      gdispFillStringBox(width - 120, HEIGHT_24, 120, HEIGHT_32, buf, font32, TEXT_COLOR, OT_BG_COLOR, justifyRight);
+    }
 
     time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
   }
