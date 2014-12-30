@@ -6,6 +6,11 @@
 
 #include "printf.h"
 
+graph_t Graph_Data= {};
+
+static thread_t *tp;
+#define ALARM_PERIOD_MS 5000
+
 #define NUMBERS_WIDTH 35
 #define NUMBERS_HEIGHT 24
 #define HEIGHT_24   24
@@ -20,11 +25,35 @@
 #define TEXT_2_COLOR    Yellow
 #define TEXT_3_COLOR    HTML2COLOR(0x00B050)
 
+static void rtc_cb(RTCDriver *rtcp, rtcevent_t event) {
+
+  (void)rtcp;
+
+  switch (event) {
+    case RTC_EVENT_OVERFLOW:
+    break;
+    case RTC_EVENT_SECOND:
+    /* Wakes up the thread.*/
+    chSysLockFromISR();
+    chEvtSignalI(tp, (eventmask_t)1);
+    chSysUnlockFromISR();
+    break;
+    case RTC_EVENT_ALARM:
+    /* Wakes up the thread.*/
+    chSysLockFromISR();
+    chEvtSignalI(tp, (eventmask_t)2);
+    chSysUnlockFromISR();
+    break;
+  }
+}
+
 THD_WORKING_AREA(waILI9341, 2048);
 //__attribute__((noreturn))
 THD_FUNCTION(ILI9341,arg) {
   (void)arg;
 //  thread_t *answer_thread;
+
+  tp = chThdGetSelfX();
 
   coord_t width, height;
 //  coord_t i, j;
@@ -68,10 +97,9 @@ THD_FUNCTION(ILI9341,arg) {
    Yellow, Green, justifyRight);
    */
 //    chThdSleepMilliseconds(5000);
-  static systime_t time_start;
-  time_start = chVTGetSystemTime();
+//  static systime_t time_start;
+//  time_start = chVTGetSystemTime();
 //  uint32_t seconds = 12, min = 49, hours = 11;
-
   struct tm DT_StructTM, DT_StructTM_old;
 
   DT_StructTM.tm_year = 114;
@@ -90,6 +118,7 @@ THD_FUNCTION(ILI9341,arg) {
   DT_StructTM_old.tm_hour--;
 
   RTCDateTime DateTime;
+//  RTCAlarm AlarmTime;
 
   rtcConvertStructTmToDateTime(&DT_StructTM, 0, &DateTime);
 
@@ -107,22 +136,22 @@ THD_FUNCTION(ILI9341,arg) {
   gdispFillStringBox(0, HEIGHT_24, width, HEIGHT_32, "Out. Temp:", font32, TEXT_COLOR, OT_BG_COLOR, justifyLeft);
 
   gdispFillStringBox(0, HEIGHT_24 + HEIGHT_32, width / 2, HEIGHT_24, "Temp 1:", font24, TEXT_1_COLOR, TEMP_BG_COLOR,
-                     justifyLeft);
+      justifyLeft);
   gdispFillStringBox(0, HEIGHT_24 * 2 + HEIGHT_32, width / 2, HEIGHT_24, "Temp 2:", font24, TEXT_2_COLOR, TEMP_BG_COLOR,
-                     justifyLeft);
+      justifyLeft);
   gdispFillStringBox(0, HEIGHT_24 * 3 + HEIGHT_32, width / 2, HEIGHT_24, "Temp 3:", font24, TEXT_3_COLOR, TEMP_BG_COLOR,
-                     justifyLeft);
+      justifyLeft);
   gdispFillArea(0, HEIGHT_24 * 4 + HEIGHT_32, width / 2, height - (HEIGHT_24 * 4 + HEIGHT_32 + NUMBERS_HEIGHT),
-                TEMP_BG_COLOR);
+      TEMP_BG_COLOR);
 
   gdispFillStringBox(width / 2, HEIGHT_24 + HEIGHT_32, width / 2, HEIGHT_24, "Hum 1:", font24, TEXT_1_COLOR,
-                     HUM_BG_COLOR, justifyLeft);
+      HUM_BG_COLOR, justifyLeft);
   gdispFillStringBox(width / 2, HEIGHT_24 * 2 + HEIGHT_32, width / 2, HEIGHT_24, "Hum 2:", font24, TEXT_2_COLOR,
-                     HUM_BG_COLOR, justifyLeft);
+      HUM_BG_COLOR, justifyLeft);
   gdispFillStringBox(width / 2, HEIGHT_24 * 3 + HEIGHT_32, width / 2, HEIGHT_24, "Hum 3:", font24, TEXT_3_COLOR,
-                     HUM_BG_COLOR, justifyLeft);
+      HUM_BG_COLOR, justifyLeft);
   gdispFillArea(width / 2, HEIGHT_24 * 4 + HEIGHT_32, width / 2, height - (HEIGHT_24 * 4 + HEIGHT_32 + NUMBERS_HEIGHT),
-                HUM_BG_COLOR);
+      HUM_BG_COLOR);
 
   /*
    *   Using GWin
@@ -133,29 +162,36 @@ THD_FUNCTION(ILI9341,arg) {
 //    gdispClear(White);
   osalThreadSleepSeconds(1);
 
+  rtcSetCallback(&RTCD1, rtc_cb);
+
   while (TRUE) {
 
     char buf[5];
     rtcGetTime(&RTCD1, &DateTime);
+    /*
+     AlarmTime = DateTime;
+     AlarmTime.millisecond = AlarmTime.millisecond - (AlarmTime.millisecond%ALARM_PERIOD_MS) + ALARM_PERIOD_MS;
+     rtcSetAlarm(&RTCD1, 0, &AlarmTime);
+     */
     rtcConvertDateTimeToStructTm(&DateTime, &DT_StructTM);
 
     if (DT_StructTM.tm_hour != DT_StructTM_old.tm_hour) {
       sprintf_(buf, "%02u:", DT_StructTM.tm_hour);
       DT_StructTM_old.tm_hour = DT_StructTM.tm_hour;
       gdispFillStringBox(width - NUMBERS_WIDTH * 3 - COLON_WIDTH * 2, (height - NUMBERS_HEIGHT),
-                         NUMBERS_WIDTH + COLON_WIDTH, NUMBERS_HEIGHT, buf, font24, TEXT_COLOR, BG_COLOR, justifyLeft);
+          NUMBERS_WIDTH + COLON_WIDTH, NUMBERS_HEIGHT, buf, font24, TEXT_COLOR, BG_COLOR, justifyLeft);
     }
     if (DT_StructTM.tm_min != DT_StructTM_old.tm_min) {
       sprintf_(buf, "%02u:", DT_StructTM.tm_min);
       DT_StructTM_old.tm_min = DT_StructTM.tm_min;
       gdispFillStringBox(width - NUMBERS_WIDTH * 2 - COLON_WIDTH, (height - NUMBERS_HEIGHT),
-                         NUMBERS_WIDTH + COLON_WIDTH, NUMBERS_HEIGHT, buf, font24, TEXT_COLOR, BG_COLOR, justifyLeft);
+          NUMBERS_WIDTH + COLON_WIDTH, NUMBERS_HEIGHT, buf, font24, TEXT_COLOR, BG_COLOR, justifyLeft);
     }
     if (DT_StructTM.tm_sec != DT_StructTM_old.tm_sec) {
       sprintf_(buf, "%02u ", DT_StructTM.tm_sec);
       DT_StructTM_old.tm_sec = DT_StructTM.tm_sec;
       gdispFillStringBox(width - NUMBERS_WIDTH, (height - NUMBERS_HEIGHT), NUMBERS_WIDTH, NUMBERS_HEIGHT, buf, font24,
-                         TEXT_COLOR, BG_COLOR, justifyLeft);
+          TEXT_COLOR, BG_COLOR, justifyLeft);
     }
 
     static DS18B20_Inner_Val DS_Temp_Vals;
@@ -165,8 +201,8 @@ THD_FUNCTION(ILI9341,arg) {
     DS_Temp_Vals.temp[0] = -77 << 2;
     Core_Module_Update(Temp, NULL, 1000);
     Core_Module_Read(localhost, Temp, (char*)&DS_Temp_Vals);
-    if ((DS_Temp_Vals.cont_errors > 0))     // || (msg != MSG_OK))
-      DS_Temp_Vals.temp[0] = -99 << 2;
+    if ((DS_Temp_Vals.cont_errors > 0))// || (msg != MSG_OK))
+    DS_Temp_Vals.temp[0] = -99 << 2;
 
     if (temp_old != DS_Temp_Vals.temp[0]) {
       temp_old = DS_Temp_Vals.temp[0];
@@ -174,7 +210,33 @@ THD_FUNCTION(ILI9341,arg) {
       gdispFillStringBox(width - 120, HEIGHT_24, 120, HEIGHT_32, buf, font32, TEXT_COLOR, OT_BG_COLOR, justifyRight);
     }
 
-    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
+    eventmask_t evt;
+    uint8_t x;
+    /* Checks if an IRQ happened else wait.*/
+    evt = chEvtWaitOne((eventmask_t)ALL_EVENTS);
+    switch (evt)
+    {
+      case (1):
+      if ((DateTime.millisecond - (DateTime.millisecond%1000))%ALARM_PERIOD_MS == 0)
+      {
+        for (x = 0; x < M5_VALS-1; x++)
+        {
+          gdispDrawPixel(x+80, height - (HEIGHT_24 * 4 + HEIGHT_32 + NUMBERS_HEIGHT)-10-Graph_Data.m5[x].temp[0], TEMP_BG_COLOR);
+          Graph_Data.m5[x]=Graph_Data.m5[x+1];
+          gdispDrawPixel(x+80, height - (HEIGHT_24 * 4 + HEIGHT_32 + NUMBERS_HEIGHT)-10-Graph_Data.m5[x].temp[0], TEXT_1_COLOR);
+        }
+        gdispDrawPixel(x+80, height - (HEIGHT_24 * 4 + HEIGHT_32 + NUMBERS_HEIGHT)-10-Graph_Data.m5[x].temp[0], TEMP_BG_COLOR);
+        Graph_Data.m5[x].temp[0]=DS_Temp_Vals.temp[0]/4;
+        gdispDrawPixel(x+80, height - (HEIGHT_24 * 4 + HEIGHT_32 + NUMBERS_HEIGHT)-10-Graph_Data.m5[x].temp[0], TEXT_1_COLOR);
+      }
+      break;
+      case (2):
+      break;
+      default:
+      break;
+    }
+
+    //    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
   }
 }
 
