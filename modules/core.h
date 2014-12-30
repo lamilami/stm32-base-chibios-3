@@ -116,6 +116,7 @@ inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_
 //void ByteArrayCopy(const volatile char* src, volatile char* dst, const uint8_t cnt);
 #define ABS(a) (((a) < 0) ? -(a) : (a))
 #define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел
+#define MIN(x,y) (((x)<(y))?(x):(y))
 
 void Core_Start();
 
