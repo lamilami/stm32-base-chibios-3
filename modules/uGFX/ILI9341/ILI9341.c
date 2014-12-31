@@ -7,8 +7,6 @@
 
 #include "printf.h"
 
-graph_t Graph_Data = {};
-
 static thread_t *tp;
 #define ALARM_PERIOD_MS 5000
 #define NUMBERS_WIDTH 35
@@ -164,6 +162,19 @@ THD_FUNCTION(ILI9341,arg) {
 //    gwinSetDefaultFont(gdispOpenFont("DejaVuSans16"));
 //    gwinSetDefaultStyle(&WhiteWidgetStyle, FALSE);
 //    gdispClear(White);
+  static graph_elem_t Vals_Cur, Vals_old, Vals_prev[2];
+  graph_t Graph_Data;
+  uint8_t x, num, val;
+
+  for (val = 0; val < 2; val++) {
+    for (num = 0; num < 3; num++) {
+      Vals_old.val[val][num] = Vals_Cur.val[val][num] = -99;
+      for (x = 0; x < M5_VALS; x++) {
+        Graph_Data.m5[x].val[val][num] = -99;
+      }
+    }
+  }
+
   osalThreadSleepSeconds(1);
 
   rtcSetCallback(&RTCD1, rtc_cb);
@@ -214,7 +225,7 @@ THD_FUNCTION(ILI9341,arg) {
       gdispFillStringBox(width - 120, HEIGHT_24, 120, HEIGHT_32, buf, font32, TEXT_COLOR, OT_BG_COLOR, justifyRight);
     }
 
-    static graph_elem_t Vals_Cur = {}, Vals_old = {}, Vals_prev[2];
+//    static graph_elem_t Vals_Cur = {}, Vals_old = {}, Vals_prev[2];
 
     Vals_Cur.temp[2] = DS_Temp_Vals.temp[0] / 4;
 
@@ -230,7 +241,7 @@ THD_FUNCTION(ILI9341,arg) {
     Vals_Cur.hum[1] = DS_Temp_Vals.temp[0] / 4;
     Vals_Cur.temp[0] = DS_Temp_Vals.temp[0] / 4;
 
-    uint8_t x, num, val;
+//    uint8_t x, num, val;
 
     for (val = 0; val < 2; val++) {
       for (num = 0; num < 3; num++) {
@@ -258,12 +269,12 @@ THD_FUNCTION(ILI9341,arg) {
         for (val = 0; val < 2; val++) {
           for (num = 0; num < 3; num++) {
             for (x = 0; x < M5_VALS; x++) {
-              if (Graph_Data.m5[x].val[val][num] != 0) {
+              if (Graph_Data.m5[x].val[val][num] > -50) {
                 max[val] = MAX(max[val], Graph_Data.m5[x].val[val][num]);
                 min[val] = MIN(min[val], Graph_Data.m5[x].val[val][num]);
               }
             }
-            if (Vals_Cur.val[val][num] != 0) {
+            if (Vals_Cur.val[val][num] > -50) {
               max[val] = MAX(max[val], Vals_Cur.val[val][num]);
               min[val] = MIN(min[val], Vals_Cur.val[val][num]);
             }
@@ -276,19 +287,15 @@ THD_FUNCTION(ILI9341,arg) {
 
         for (val = 0; val < 2; val++) {
           for (num = 0; num < 3; num++) {
-            Vals_prev[0].val[val][num] = Vals_prev[1].val[val][num] = 0;
+            Vals_prev[0].val[val][num] = Vals_prev[1].val[val][num] = -99;
             for (x = 0; x < M5_VALS; x++) {
-              if (Graph_Data.m5[x].val[val][num] != 0) {
-                if (Vals_prev[0].val[val][num] != 0) {
-//                gdispDrawLine( x + 10 + val * (width / 2),
-//                              height - NUMBERS_HEIGHT - 10 - Vals_prev[0].val[val][num] * 8 + 200,
-//                              x + 11 + val * (width / 2),
-//                              height - NUMBERS_HEIGHT - 10 - Graph_Data.m5[x].val[val][num] * 8 + 200, BG_Color[val]);
+              if (Graph_Data.m5[x].val[val][num] > -50) {
+                if (Vals_prev[0].val[val][num] > -50) {
                   gdispDrawLine(
                       x + 10 + val * (width / 2),
-                      height - NUMBERS_HEIGHT - 17 - (Vals_prev[0].val[val][num]-old_min[val])*old_range[val],
+                      height - NUMBERS_HEIGHT - 17 - (Vals_prev[0].val[val][num] - old_min[val]) * old_range[val],
                       x + 11 + val * (width / 2),
-                      height - NUMBERS_HEIGHT - 17 - (Graph_Data.m5[x].val[val][num]-old_min[val])*old_range[val],
+                      height - NUMBERS_HEIGHT - 17 - (Graph_Data.m5[x].val[val][num] - old_min[val]) * old_range[val],
                       BG_Color[val]);
                 }
                 Vals_prev[0].val[val][num] = Graph_Data.m5[x].val[val][num];
@@ -297,18 +304,17 @@ THD_FUNCTION(ILI9341,arg) {
                 Graph_Data.m5[x].val[val][num] = Graph_Data.m5[x + 1].val[val][num];
               }
               else {
-                Graph_Data.m5[x].val[val][num] = Vals_Cur.val[val][num];
+                if ((ABS(Vals_Cur.val[val][num] - Vals_prev[1].val[val][num]) < 10) || (Vals_prev[1].val[val][num] == -99))
+                  Graph_Data.m5[x].val[val][num] = Vals_Cur.val[val][num];
+                else
+                  Graph_Data.m5[x].val[val][num] = -99;
               }
-              if (Graph_Data.m5[x].val[val][num] != 0) {
-                if (Vals_prev[1].val[val][num] != 0) {
-//                gdispDrawLine( x + 10 + val * (width / 2),
-//                              height - NUMBERS_HEIGHT - 10 - Vals_prev[1].val[val][num] * 8 + 200,
-//                              x + 11 + val * (width / 2),
-//                              height - NUMBERS_HEIGHT - 10 - Graph_Data.m5[x].val[val][num] * 8 + 200, Text_Color[num]);
-                  gdispDrawLine( x + 10 + val * (width / 2),
-                                height - NUMBERS_HEIGHT - 17 - (Vals_prev[1].val[val][num]-min[val])*range[val],
+              if (Graph_Data.m5[x].val[val][num] > -50) {
+                if (Vals_prev[1].val[val][num] > -50) {
+                  gdispDrawLine(x + 10 + val * (width / 2),
+                                height - NUMBERS_HEIGHT - 17 - (Vals_prev[1].val[val][num] - min[val]) * range[val],
                                 x + 11 + val * (width / 2),
-                                height - NUMBERS_HEIGHT - 17 - (Graph_Data.m5[x].val[val][num]-min[val])*range[val],
+                                height - NUMBERS_HEIGHT - 17 - (Graph_Data.m5[x].val[val][num] - min[val]) * range[val],
                                 Text_Color[num]);
                 }
                 Vals_prev[1].val[val][num] = Graph_Data.m5[x].val[val][num];
@@ -317,7 +323,8 @@ THD_FUNCTION(ILI9341,arg) {
           }
         }
 
-        if ((old_range[0] != range[0]) || (old_range[1] != range[1])) redraw = TRUE;
+        if ((old_range[0] != range[0]) || (old_range[1] != range[1]))
+          redraw = TRUE;
 
         old_min[0] = min[0];
         old_min[1] = min[1];
