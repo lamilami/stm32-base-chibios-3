@@ -48,7 +48,7 @@ typedef enum
 	BROADBAND = 0, WORK, FW
 } RF_pipes_t;
 
-#define RF_OUT_POWER nRF24_12DBM
+#define RF_OUT_POWER nRF24_0DBM
 
 /** Defines the channel the radio should operate on*/
 #define RF_CHANNEL 40
