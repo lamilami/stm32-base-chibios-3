@@ -9,18 +9,25 @@ typedef union {
   int8_t val[2][3];
 } graph_elem_t;
 
+//#define S10_VALS 30
 //#define M5_VALS 36
 //#define H1_VALS 24
-//#define D1_VALS 14
+//#define D1_VALS 28
 
-#define M5_VALS 110
-#define H1_VALS 1
-#define D1_VALS 1
+#define S10_VALS 30
+#define M5_VALS 36
+#define M5_PERIOD 30
+#define H1_VALS 24
+#define D1_VALS 28
 
-typedef struct {
+typedef union {
+  struct {
+  graph_elem_t s10[S10_VALS];
   graph_elem_t m5[M5_VALS];
-  graph_elem_t h1[24];
-  graph_elem_t d1[14];
+  graph_elem_t h1[H1_VALS];
+  graph_elem_t d1[D1_VALS];
+  };
+  graph_elem_t val[S10_VALS+M5_VALS+H1_VALS+D1_VALS];
 } graph_t;
 
 void ILI9341_Start(void);
