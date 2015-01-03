@@ -16,9 +16,13 @@ typedef union {
 
 #define S10_VALS 30
 #define M5_VALS 36
-#define M5_PERIOD 30
+//#define M5_PERIOD 30
+#define M5_PERIOD 5
 #define H1_VALS 24
+//#define H1_PERIOD 12
+#define H1_PERIOD 6
 #define D1_VALS 28
+#define D1_PERIOD 24
 
 typedef union {
   struct {
@@ -27,7 +31,7 @@ typedef union {
   graph_elem_t h1[H1_VALS];
   graph_elem_t d1[D1_VALS];
   };
-  graph_elem_t val[S10_VALS+M5_VALS+H1_VALS+D1_VALS];
+  graph_elem_t through[S10_VALS+M5_VALS+H1_VALS+D1_VALS];
 } graph_t;
 
 void ILI9341_Start(void);
