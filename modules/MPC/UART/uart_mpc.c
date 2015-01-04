@@ -2,11 +2,79 @@
 #include "hal.h"
 #include "core.h"
 
-#if UART_MPC_PRESENT
+#if MPC_UART_PRESENT
 
-static SerialConfig sd_mpc_cfg = {38400, USART_CR1_M | USART_CR1_WAKE | USART_CR1_RWU, (USART_CR2_ADD & ((MY_ADDR >> 6) & 0x03)), USART_CR3_HDSEL};
+/*
+ * This callback is invoked when a transmission buffer has been completely
+ * read by the driver.
+ */
+static void txend1(UARTDriver *uartp) {
 
-void UART_MPC_Start()
+  (void)uartp;
+
+//  palClearPad(IOPORT3, GPIOC_LED);
+}
+
+/*
+ * This callback is invoked when a transmission has physically completed.
+ */
+static void txend2(UARTDriver *uartp) {
+
+  (void)uartp;
+
+//  palSetPad(IOPORT3, GPIOC_LED);
+//  chSysLockFromISR();
+//  chVTResetI(&vt1);
+//  chVTDoSetI(&vt1, MS2ST(5000), restart, NULL);
+//  chSysUnlockFromISR();
+}
+
+/*
+ * This callback is invoked on a receive error, the errors mask is passed
+ * as parameter.
+ */
+static void rxerr(UARTDriver *uartp, uartflags_t e) {
+
+  (void)uartp;
+  (void)e;
+}
+
+/*
+ * This callback is invoked when a character is received but the application
+ * was not ready to receive it, the character is passed as parameter.
+ */
+static void rxchar(UARTDriver *uartp, uint16_t c) {
+
+  (void)uartp;
+  (void)c;
+  osalSysLockFromISR();
+  chEvtSignalI(MPC_Thread, (eventmask_t)EVENTMASK_UART_IRQ);
+  osalSysUnlockFromISR();
+  /* Flashing the LED each time a character is received.*/
+//  palClearPad(IOPORT3, GPIOC_LED);
+//  chSysLockFromISR();
+//  chVTResetI(&vt2);
+//  chVTDoSetI(&vt2, MS2ST(200), ledoff, NULL);
+//  chSysUnlockFromISR();
+}
+
+/*
+ * This callback is invoked when a receive buffer has been completely written.
+ */
+static void rxend(UARTDriver *uartp) {
+
+  (void)uartp;
+  osalSysLockFromISR();
+  chEvtSignalI(MPC_Thread, (eventmask_t)EVENTMASK_UART_IRQ);
+  osalSysUnlockFromISR();
+}
+
+//static SerialConfig sd_mpc_cfg = {38400, USART_CR1_M | USART_CR1_WAKE | USART_CR1_RWU, (USART_CR2_ADD & ((MY_ADDR >> 6) & 0x03)), USART_CR3_HDSEL};
+
+static UARTConfig mpc_uart_cfg = {txend1, txend2, rxend, rxchar, rxerr, 38400, USART_CR1_M | USART_CR1_WAKE | USART_CR1_RWU, (USART_CR2_ADD & ((MY_ADDR >> 6) & 0x03)), USART_CR3_HDSEL};
+
+
+void UART_MPC_init()
 {
 
 #ifdef STM32F100C8
@@ -18,11 +86,11 @@ void UART_MPC_Start()
 
   chThdSleepMilliseconds(1);
 
-  sdStart(&SD2, &sd_mpc_cfg);
+  uartStart(&UARTD2, &mpc_uart_cfg);
 
-  sdPut(&SD2, 0x3F0);
-  volatile uint16_t ch = 0;
-  ch = sdGet(&SD2);
+//  sdPut(&SD2, 0x3F0);
+//  volatile uint16_t ch = 0;
+//  ch = sdGet(&SD2);
 
 //  return OW_OK;
 

@@ -14,6 +14,10 @@
 #ifndef RADIO_H__
 #define RADIO_H__
 
+#if MPC_RADIO_PRESENT
+
+#include "MPC.h"
+
 /** @file
  * @ingroup main
  * Radio header file for the nRF24LU1 example application
@@ -31,20 +35,6 @@
 
 typedef enum
 {
-//  команды
-	RF_NOP = 0x00,
-	RF_PING,
-	RF_PONG,
-	RF_GET,
-	RF_PUT,
-	RF_SET,
-	RF_OK,
-	RF_FAIL,
-	RF_END = 0xFF
-} RF_commands_t;
-
-typedef enum
-{
 	BROADBAND = 0, WORK, FW
 } RF_pipes_t;
 
@@ -55,9 +45,6 @@ typedef enum
 
 /** Defines the time in ms it takes for the radio to come up to operational mode */
 #define RF_POWER_UP_DELAY 2
-
-/** Defines the payload length the radio should use */
-#define RF_MAX_PAYLOAD_LENGTH 32
 
 /** Defines how many retransmitts that should be performed */
 #define RF_RETRANSMITS 10
@@ -119,10 +106,13 @@ uint8_t radio_get_pload_byte(uint8_t byte_index);
  */
 // void radio_irq (void);
 //void Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t *data);
+
+#ifdef PRE_MPC
 uint8_t Radio_Send_Command(uint8_t rcv_addr, RF_commands_t command, uint8_t data_size, void *data);
 void Radio_Receive_Command(void);
 
 void Radio_Start();
+*/
 
 typedef struct
 {
@@ -150,8 +140,15 @@ typedef struct
 
 #define RF_MAX_IO_BUFFERS 3
 
+#endif
+
 //uint8_t PutData[5][RF_MAX_PAYLOAD_LENGTH - 1];
 
 bool rf_sended_debug;
+void radio_init();
+bool inline _radio_rcv_irq();
+void inline _radio_send(payload_t * tx_buffer);
+
+#endif
 
 #endif

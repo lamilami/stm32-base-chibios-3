@@ -216,12 +216,17 @@ static void Start_Modules(void) {
 #if CLI_PRESENT
   CLI_Start();
 #endif
-#if UART_MPC_PRESENT
-  UART_MPC_Start();
+#if MPC_PRESENT
+  MPC_Start();
 #endif
-#if RADIO_PRESENT
-  Radio_Start();
-#endif
+  /*
+   #if UART_MPC_PRESENT
+   UART_MPC_Start();
+   #endif
+   #if RADIO_PRESENT
+   Radio_Start();
+   #endif
+   */
 #if DS18B20_PRESENT
   DS18B20_Start();
 #endif
@@ -337,8 +342,8 @@ uint8_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inv
   }
   else {
     inval[0] = type;
-#if RADIO_PRESENT
-    ret_size = Radio_Send_Command(addr, RF_GET, 1, inval);
+#if MPC_PRESENT
+    ret_size = MPC_Send_Command(addr, RF_GET, 1, inval);
 #else
     ret_size = 0;
 #endif
