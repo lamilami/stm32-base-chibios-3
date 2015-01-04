@@ -9,9 +9,7 @@
 
 static thread_t *tp;
 volatile static coord_t width, height;
-
 #define ALARM_PERIOD_MS 1000
-
 #define NUMBERS_WIDTH 35
 #define GRAPH_NUMBERS_WIDTH 30
 #define GRAPH_HEIGHT    60
@@ -53,8 +51,8 @@ static void rtc_cb(RTCDriver *rtcp, rtcevent_t event) {
   }
 }
 
-void Redraw_Graph(coord_t x_start, coord_t graph_width, int16_t old_min[2], int16_t min[2], int16_t old_range[2],
-                  int16_t range[2], graph_elem_t* Graph_Elem, graph_elem_t* Vals_Cur, bool shift) {
+void Redraw_Graph(coord_t x_start, coord_t graph_width, int16_t old_min[2], int16_t min[2], float old_range[2],
+                  float range[2], graph_elem_t* Graph_Elem, graph_elem_t* Vals_Cur, bool shift) {
   static graph_elem_t Vals_prev[2];
   register uint8_t x, num, val;
   graph_elem_t* Curr_Elem;
@@ -83,7 +81,7 @@ void Redraw_Graph(coord_t x_start, coord_t graph_width, int16_t old_min[2], int1
             Curr_Elem->val[val][num] = (Curr_Elem + 1)->val[val][num];
           }
           else {
-            if ((ABS(Vals_Cur->val[val][num] - Vals_prev[1].val[val][num]) < 10) || (Vals_prev[1].val[val][num] == -99))
+            if ((ABS(Vals_Cur->val[0][num] - Vals_prev[1].val[0][num]) < 10) || (Vals_prev[1].val[val][num] == -99))
               Curr_Elem->val[val][num] = Vals_Cur->val[val][num];
             else
               Curr_Elem->val[val][num] = -99;
@@ -242,8 +240,7 @@ THD_FUNCTION(ILI9341,arg) {
 //  gdispDrawBox(5, height - NUMBERS_HEIGHT - GRAPH_HEIGHT - 25, width / 2 - 10, GRAPH_HEIGHT + 20, GRAPH_COLOR);
 //  gdispDrawBox(width / 2 + 5, height - NUMBERS_HEIGHT - GRAPH_HEIGHT - 25, width / 2 - 10, GRAPH_HEIGHT + 20, GRAPH_COLOR);
 
-  static graph_elem_t Vals_Cur_s10, Vals_Cur_m5, Vals_Cur_h1, Vals_Cur_d1, Vals_old_s10, Vals_old_m5, Vals_old_h1,
-      Vals_old_d1;
+  static graph_elem_t Vals_Cur_s10, Vals_Cur_m5, Vals_Cur_h1, Vals_Cur_d1, Vals_old_s10;
   graph_t Graph_Data;
   uint8_t x, num, val;
 
@@ -287,9 +284,6 @@ THD_FUNCTION(ILI9341,arg) {
         Graph_Data.through[x].val[val][num] = -99;
       }
       Vals_old_s10.val[val][num] = Vals_Cur_s10.val[val][num] = -99;
-      Vals_old_m5.val[val][num] = Vals_Cur_m5.val[val][num] = -99;
-      Vals_old_h1.val[val][num] = Vals_Cur_h1.val[val][num] = -99;
-      Vals_old_d1.val[val][num] = Vals_Cur_d1.val[val][num] = -99;
     }
   }
 
@@ -356,8 +350,19 @@ THD_FUNCTION(ILI9341,arg) {
     //   Vals[0].temp[0] = DS_Temp_Vals.temp[0];
     //   Vals[0].hum[1] = DS_Temp_Vals.temp[0];
 
-    Vals_Cur_s10.hum[1] = DS_Temp_Vals.temp[0] / 4;
-    Vals_Cur_s10.temp[0] = DS_Temp_Vals.temp[0] / 4;
+//    Vals_Cur_s10.hum[1] = DS_Temp_Vals.temp[0] / 4;
+    Vals_Cur_s10.temp[1] = DS_Temp_Vals.temp[0] / 4;
+    Vals_Cur_s10.hum[1] = DS_Temp_Vals.temp[0] / 2;
+
+    static DHT11_Inner_Val DHT_Temp_Vals;
+//    Core_Module_Update(DHT11, NULL, 3000);
+//    chThdSleepSeconds(1);
+    DHT_Temp_Vals.temp = -77 << 2;
+    DHT_Temp_Vals.humidity = -99;
+    Core_Module_Read(10, DHT11, (char*)&DHT_Temp_Vals);
+
+    Vals_Cur_s10.hum[0] = DHT_Temp_Vals.humidity;
+    Vals_Cur_s10.temp[0] = DHT_Temp_Vals.temp / 4;
 
 //    uint8_t x, num, val;
 
@@ -381,22 +386,22 @@ THD_FUNCTION(ILI9341,arg) {
 //      bool redraw;
 //        redraw = FALSE;
       int16_t max[2] = {-99, -99}, min[2] = {99, 99};
-      static int16_t old_min[2] = {99, 99};
-      static uint8_t cnt_s10 = 0, cnt_m5 = 0, cnt_h1 = 0, cnt_d1 = 0;
+      static int16_t old_min[2] = {99, 99}, old_max[2] = {99, 99};
+      static uint8_t cnt_s10 = 0, cnt_m5 = 0, cnt_h1 = 0;
 
-      if (cnt_s10 >= M5_PERIOD) {
-        Vals_Cur_m5 = Get_Mean(Graph_Data.s10, M5_PERIOD);
+      if (cnt_h1 >= D1_PERIOD) {
+        Vals_Cur_d1 = Get_Mean(Graph_Data.h1, D1_PERIOD);
       }
 
       if (cnt_m5 >= H1_PERIOD) {
         Vals_Cur_h1 = Get_Mean(Graph_Data.m5, H1_PERIOD);
       }
 
-      if (cnt_h1 >= D1_PERIOD) {
-        Vals_Cur_d1 = Get_Mean(Graph_Data.h1, D1_PERIOD);
+      if (cnt_s10 >= M5_PERIOD) {
+        Vals_Cur_m5 = Get_Mean(Graph_Data.s10, M5_PERIOD);
       }
 
-      static int16_t old_range[2] = {GRAPH_HEIGHT, GRAPH_HEIGHT}, range[2];
+      static float old_range[2] = {GRAPH_HEIGHT, GRAPH_HEIGHT}, range[2];
 
       for (val = 0; val < 2; val++) {
         for (num = 0; num < 3; num++) {
@@ -412,11 +417,11 @@ THD_FUNCTION(ILI9341,arg) {
           }
         }
         if (max[val] != min[val])
-          range[val] = GRAPH_HEIGHT / (max[val] - min[val]);
+          range[val] = GRAPH_HEIGHT / (float)(max[val] - min[val]);
         else
           range[val] = 0;
 
-        if ((old_min[val] != min[val]) || (old_range[val] != range[val])) {
+        if ((old_min[val] != min[val]) || (old_max[val] != max[val])) {
           sprintf_(buf, "%02i", min[val]);
           gdispFillStringBox((width / 2) * (val + 1) - 21, height - NUMBERS_HEIGHT - 22, 15, 10, buf, font12,
                              GRAPH_COLOR, BG_Color[val], justifyRight);
@@ -429,6 +434,11 @@ THD_FUNCTION(ILI9341,arg) {
         }
       }
 
+      if (cnt_h1 >= D1_PERIOD) {
+        Redraw_Graph(10, D1_VALS, &old_min[0], &min[0], &old_range[0], &range[0], &Graph_Data.d1[0], &Vals_Cur_d1,
+                     TRUE);
+        cnt_h1 = 0;
+      }
       if (cnt_m5 >= H1_PERIOD) {
         Redraw_Graph(10 + D1_VALS + 1, H1_VALS, &old_min[0], &min[0], &old_range[0], &range[0], &Graph_Data.h1[0],
                      &Vals_Cur_h1, TRUE);
@@ -449,22 +459,30 @@ THD_FUNCTION(ILI9341,arg) {
       Redraw_Graph(10 + D1_VALS + H1_VALS + M5_VALS + 3, S10_VALS, &old_min[0], &min[0], &old_range[0], &range[0],
                    &Graph_Data.s10[0], &Vals_Cur_s10, TRUE);
 
-      if ((old_range[0] != range[0]) || (old_range[1] != range[1]) || (old_min[0] != min[0])
-          || (old_min[1] != min[1])) {
+      if ((old_max[0] != max[0]) || (old_max[1] != max[1]) || (old_min[0] != min[0]) || (old_min[1] != min[1])) {
         old_min[0] = min[0];
         old_min[1] = min[1];
+        old_max[0] = max[0];
+        old_max[1] = max[1];
         old_range[0] = range[0];
         old_range[1] = range[1];
-        gdispFillArea(10 + D1_VALS + 2, height - NUMBERS_HEIGHT - 17 - GRAPH_HEIGHT, H1_VALS, GRAPH_HEIGHT+1,
+
+        gdispFillArea(10 + 1, height - NUMBERS_HEIGHT - 17 - GRAPH_HEIGHT, D1_VALS, GRAPH_HEIGHT + 1, TEMP_BG_COLOR);
+        gdispFillArea(10 + 1 + (width / 2), height - NUMBERS_HEIGHT - 17 - GRAPH_HEIGHT, D1_VALS, GRAPH_HEIGHT + 1,
+                      HUM_BG_COLOR);
+        Redraw_Graph(10, D1_VALS, &old_min[0], &min[0], &old_range[0], &range[0], &Graph_Data.d1[0], &Vals_Cur_d1,
+                     FALSE);
+
+        gdispFillArea(10 + D1_VALS + 2, height - NUMBERS_HEIGHT - 17 - GRAPH_HEIGHT, H1_VALS, GRAPH_HEIGHT + 1,
                       TEMP_BG_COLOR);
         gdispFillArea(10 + D1_VALS + 2 + (width / 2), height - NUMBERS_HEIGHT - 17 - GRAPH_HEIGHT, H1_VALS,
-                      GRAPH_HEIGHT+1, HUM_BG_COLOR);
+                      GRAPH_HEIGHT + 1, HUM_BG_COLOR);
         Redraw_Graph(10 + D1_VALS + 1, H1_VALS, &old_min[0], &min[0], &old_range[0], &range[0], &Graph_Data.h1[0],
                      &Vals_Cur_h1, FALSE);
-        gdispFillArea(10 + D1_VALS + H1_VALS + 3, height - NUMBERS_HEIGHT - 17 - GRAPH_HEIGHT, M5_VALS, GRAPH_HEIGHT+1,
-                      TEMP_BG_COLOR);
+        gdispFillArea(10 + D1_VALS + H1_VALS + 3, height - NUMBERS_HEIGHT - 17 - GRAPH_HEIGHT, M5_VALS,
+                      GRAPH_HEIGHT + 1, TEMP_BG_COLOR);
         gdispFillArea(10 + D1_VALS + H1_VALS + 3 + (width / 2), height - NUMBERS_HEIGHT - 17 - GRAPH_HEIGHT, M5_VALS,
-                      GRAPH_HEIGHT+1, HUM_BG_COLOR);
+                      GRAPH_HEIGHT + 1, HUM_BG_COLOR);
         Redraw_Graph(10 + D1_VALS + H1_VALS + 2, M5_VALS, &old_min[0], &min[0], &old_range[0], &range[0],
                      &Graph_Data.m5[0], &Vals_Cur_m5, FALSE);
         Redraw_Graph(10 + D1_VALS + H1_VALS + M5_VALS + 3, S10_VALS, &old_min[0], &min[0], &old_range[0], &range[0],

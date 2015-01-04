@@ -13,81 +13,53 @@
 <part id="0"/>
 <part id="1"/>
 <part id="2"/>
-<part id="3"/>
-<part id="4"/>
-<part id="5"/>
-<part id="6"/>
-<part id="7"/>
-<part id="8"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ILI9341.c" partName="ILI9341.c" path="D:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.c" title="ILI9341.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="15603" selectionTopPixel="2023"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" partName="radio.c" path="D:/Work/CoIDE/ChibiOS_3.0/modules/nRF24/src/radio.c" title="radio.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/nRF24/src/radio.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/nRF24/src/radio.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="12" selectionOffset="3393" selectionTopPixel="2063"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="nRF24_reg.h" partName="nRF24_reg.h" path="D:/Work/CoIDE/ChibiOS_3.0/modules/nRF24/include/nRF24_reg.h" title="nRF24_reg.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/nRF24/include/nRF24_reg.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/nRF24/include/nRF24_reg.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="10" selectionOffset="4860" selectionTopPixel="2000"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="radio.h" partName="radio.h" path="D:/Work/CoIDE/ChibiOS_3.0/modules/nRF24/include/radio.h" title="radio.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/nRF24/include/radio.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/nRF24/include/radio.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="33" selectionOffset="1073" selectionTopPixel="0"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ILI9341.h" partName="ILI9341.h" path="D:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.h" title="ILI9341.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="113" selectionTopPixel="36"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="gfxconf.h" partName="gfxconf.h" path="D:/Work/CoIDE/ChibiOS_3.0/board/uGFX_ILI9341/gfxconf.h" title="gfxconf.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/board/uGFX_ILI9341/gfxconf.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/board/uGFX_ILI9341/gfxconf.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2549" selectionTopPixel="796"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Work/CoIDE/ChibiOS_3.0/main.c" title="main.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3467" selectionTopPixel="3160"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Work/CoIDE/ChibiOS_3.0/main.c" title="main.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3467" selectionTopPixel="3100"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.h" partName="DHT11.h" path="D:/Work/CoIDE/ChibiOS_3.0/modules/DHT11/DHT11.h" title="DHT11.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/DHT11/DHT11.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/DHT11/DHT11.h"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MPC.c" partName="MPC.c" path="D:/Work/CoIDE/ChibiOS_3.0/modules/MPC/MPC.c" title="MPC.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/MPC/MPC.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/MPC/MPC.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" partName="radio.c" path="D:/Work/CoIDE/ChibiOS_3.0/modules/MPC/nRF24/radio.c" title="radio.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/MPC/nRF24/radio.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/MPC/nRF24/radio.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" partName="core.h" path="D:/Work/CoIDE/ChibiOS_3.0/modules/core.h" title="core.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/core.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/core.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="204" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
 <view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
 <viewState>
-<ExpressionKeySet ExpKeys="&amp;(time_cnt),&amp;(Temp_Vals.temp),RTCD1,buf,rf_mb,DS_Temp_Vals.temp[0],sens_addr,ow_buf,(width / 2)*(val+1)-36,Vals_Cur.val[val][num]/4,x + val * (width / 2) + x_start,Curr_Elem-&gt;val[val][num],Vals_prev[0].val[val][num],old_min[val],min[val],old_range[val],range[val],height - 24 - 17 - (Vals_prev[0].val[val][num] - old_min[val]) * old_range[val],height - 24 - 17 - (Curr_Elem-&gt;val[val][num] - old_min[val]) * old_range[val],x,x + val * (width / 2) + x_start,x + 1 + val * (width / 2) + x_start,"/>
+<ExpressionKeySet ExpKeys="full_tx_addr,test_addr,(*tx_buffer).pipenum,(*tx_buffer).dst_addr &amp; 0x3F,(*tx_buffer).pload,(*rx_buffer).pload,(*rx_buffer).pipenum,(*rx_buffer).pload[1],Vals_prev[1].val[val][num] - min[val],(float)(Vals_prev[1].val[val][num] - min[val]) * range[val],range[val],Curr_Elem-&gt;val[val][num],Vals_prev[0].val[val][num],range[0],range[1],old_range[val],range[val],height - 24 - 17 - (Vals_prev[0].val[val][num] - old_min[val]) * old_range[val],height - 24 - 17 - (Curr_Elem-&gt;val[val][num] - old_min[val]) * old_range[val],x + val * (width / 2) + x_start,x + 1 + val * (width / 2) + x_start,Vals_prev[1].val[val][num],Curr_Elem-&gt;val[val][num],range[val],old_min[val],min[val],val,(float)60 / (float)(max[val] - min[val]),"/>
 </viewState>
 </view>
 <view id="org.eclipse.ui.views.ProgressView" partName="Progress">
 <viewState/>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="14">
 <expanded>
 <element path="/ChibiOS_F100C"/>
 <element path="/ChibiOS_F100C/board"/>
+<element path="/ChibiOS_F100C/board/STM32F100C"/>
 <element path="/ChibiOS_F100C/board/uGFX_ILI9341"/>
 <element path="/ChibiOS_F100C/modules"/>
-<element path="/ChibiOS_F100C/modules/DHT11"/>
-<element path="/ChibiOS_F100C/modules/DS18B20"/>
-<element path="/ChibiOS_F100C/modules/nRF24"/>
-<element path="/ChibiOS_F100C/modules/nRF24/include"/>
-<element path="/ChibiOS_F100C/modules/nRF24/src"/>
+<element path="/ChibiOS_F100C/modules/MPC"/>
+<element path="/ChibiOS_F100C/modules/MPC/nRF24"/>
+<element path="/ChibiOS_F100C/modules/MPC/UART"/>
 <element path="/ChibiOS_F100C/os"/>
-<element path="/ChibiOS_F100C/os/rt"/>
-<element path="/ChibiOS_F100C/os/rt/include"/>
+<element path="/ChibiOS_F100C/os/hal"/>
+<element path="/ChibiOS_F100C/os/hal/ports"/>
+<element path="/ChibiOS_F100C/os/hal/ports/STM32"/>
+<element path="/ChibiOS_F100C/os/hal/ports/STM32/LLD"/>
+<element path="/ChibiOS_F100C/os/hal/ports/STM32/LLD/USARTv1"/>
 <element path="/ChibiOS_F100C/os/various"/>
 </expanded>
 <selection>
-<element path="/ChibiOS_F100C/modules/DHT11/DHT11.h"/>
+<element path="/ChibiOS_F100C/modules/core.h"/>
 </selection>
 </viewState>
 </view>
@@ -104,6 +76,13 @@
 </view>
 <view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
+</view>
+<view id="org.coocox.coassistant.view.CoAssistantView_debug" partName="Peripherals">
+<viewState horizontalPosition="0" verticalPosition="11">
+<selection>&#x0A;<element name="USART2"/>
+</selection>
+<registerValues baseAddress="Base Address: 0x40004400" description="Description:  Universal synchronous/asynchronous receiver/transmitter 2 registers"/>
+</viewState>
 </view>
 <view id="org.eclipse.debug.ui.VariableView" partName="Variables">
 <viewState/>
@@ -239,63 +218,50 @@
 <hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.eclipse.search.ui.views.SearchView"/>
 <view id="org.coocox.codebugger.trace.ui.traceview"/>
 <view id="org.eclipse.debug.ui.VariableView"/>
-<view id="org.eclipse.search.ui.views.SearchView"/>
 <view id="org.eclipse.debug.ui.ExpressionView"/>
 <view id="org.coocox.builder.ui.views.ProjectView"/>
+<view id="org.coocox.coassistant.view.CoAssistantView_debug"/>
 <fastViewBars/>
 <viewLayoutRec closeable="false" id="org.eclipse.debug.ui.DebugView"/>
-<layout>
-<mainWindow>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@22cfbd">
-<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">
-<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.ui.internal.ViewStack@22cfbd">&#x0A;<folder activePageID="org.coocox.builder.ui.views.ProjectView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.builder.ui.views.ProjectView" label="Project"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.internal.ViewStack@22cfbd">
-<folder appearance="2" expanded="2">
-<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.internal.ViewStack@22cfbd">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@c6f1fc" ratio="0.31988472" ratioLeft="333" ratioRight="708" relationship="4" relative="org.eclipse.ui.internal.ViewStack@22cfbd">
-<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
-<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@c6f1fc" ratio="0.82804996" ratioLeft="862" ratioRight="179" relationship="4" relative="org.eclipse.ui.internal.ViewStack@22cfbd">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
+<part id="2"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@145313d" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.ui.internal.ViewStack@c6f1fc">
-<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
-<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@145313d" ratio="0.5" ratioLeft="956" ratioRight="956" relationship="2" relative="org.eclipse.ui.internal.ViewStack@c6f1fc">&#x0A;<folder activePageID="org.eclipse.debug.ui.ExpressionView" appearance="2" expanded="2">&#x0A;<page content="org.coocox.codebugger.trace.ui.traceview" label="Semihosting"/>
 <page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
-<page content="org.eclipse.search.ui.views.SearchView" label="Search"/>
 <page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
 <page content="org.eclipse.debug.ui.MemoryView" label="LabelNotFound"/>
 <page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
-<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
 <part id="1"/>
 <part id="2"/>
-<part id="3"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1a3aace" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.internal.ViewStack@22cfbd">
-<folder appearance="2" expanded="2">
-<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="LabelNotFound"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1a3aace" ratio="0.75" ratioLeft="1434" ratioRight="478" relationship="2" relative="org.eclipse.ui.internal.ViewStack@22cfbd">&#x0A;<folder activePageID="org.coocox.coassistant.view.CoAssistantView_debug" appearance="2" expanded="2">&#x0A;<page content="org.coocox.coassistant.view.CoAssistantView_debug" label="Peripherals"/>
 <page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ContentOutline" label="LabelNotFound"/>
 <page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.29986054" ratioLeft="430" ratioRight="1004" relationship="2" relative="org.eclipse.ui.internal.ViewStack@22cfbd"/>
@@ -306,160 +272,172 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DHT11/DHT11.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/UART_MPC/uart_mpc.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/core.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/hal/include/serial.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/hal/include/hal_queues.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/hal/src/hal_queues.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DS18B20/onewire.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/rt/src/chsys.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/rt/src/chsem.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/rt/src/chmboxes.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/nRF24/src/radio.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/hal/ports/STM32/LLD/USARTv1/uart_lld.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/MPC/MPC.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/MPC/nRF24/radio.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/core.h"/>
 </editors>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="200" y="0"/>
+<item historyLabel="serial.h" index="3">
+<position info="not_deleted" x="5731" y="0"/>
 </item>
-<item historyLabel="ILI9341.h" index="1">
-<position info="not_deleted" x="399" y="0"/>
+<item historyLabel="hal_queues.h" index="4">
+<position info="not_deleted" x="10824" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="18850" y="0"/>
+<item historyLabel="hal_queues.c" index="5">
+<position info="not_deleted" x="10244" y="12"/>
 </item>
-<item historyLabel="crt0.c" index="2">
+<item historyLabel="hal_queues.h" index="4">
+<position info="not_deleted" x="10824" y="0"/>
+</item>
+<item historyLabel="serial.h" index="3">
+<position info="not_deleted" x="5731" y="0"/>
+</item>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="388" y="0"/>
+</item>
+<item historyLabel="crt0.c" index="6">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="main.c" index="3">
+<item historyLabel="main.c" index="0">
 <position info="not_deleted" x="3467" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="18694" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="309" y="0"/>
 </item>
-<item historyLabel="ILI9341.h" index="1">
-<position info="not_deleted" x="399" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="491" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="18694" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="524" y="0"/>
 </item>
-<item historyLabel="ILI9341.h" index="1">
-<position info="not_deleted" x="399" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="541" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="18694" y="0"/>
+<item historyLabel="crt0.c" index="6">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="17149" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3467" y="0"/>
 </item>
-<item historyLabel="ILI9341.h" index="1">
-<position info="not_deleted" x="113" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="309" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="17149" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="491" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="15442" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="524" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3737" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="595" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3801" y="0"/>
+<item historyLabel="onewire.c" index="7">
+<position info="not_deleted" x="2528" y="28"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3857" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="595" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3892" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="573" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3929" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="524" y="23"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3964" y="0"/>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="3467" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4001" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="309" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3929" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="459" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3964" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="491" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4001" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="524" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3929" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="547" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3964" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="576" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4001" y="0"/>
+<item historyLabel="chsys.c" index="8">
+<position info="not_deleted" x="5695" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3929" y="0"/>
+<item historyLabel="chsem.c" index="9">
+<position info="not_deleted" x="10543" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3964" y="0"/>
+<item historyLabel="chmboxes.c" index="10">
+<position info="not_deleted" x="13889" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4001" y="0"/>
+<item historyLabel="chmboxes.c" index="10">
+<position info="not_deleted" x="12761" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4048" y="0"/>
+<item historyLabel="radio.c" index="11">
+<position info="not_deleted" x="8199" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4102" y="0"/>
+<item historyLabel="core.c" index="2">
+<position info="not_deleted" x="9394" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3929" y="0"/>
+<item historyLabel="ILI9341.c" index="12">
+<position info="not_deleted" x="13317" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3964" y="0"/>
+<item historyLabel="core.c" index="2">
+<position info="not_deleted" x="9394" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4001" y="0"/>
+<item historyLabel="chmboxes.c" index="10">
+<position info="not_deleted" x="12761" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4048" y="0"/>
+<item historyLabel="radio.c" index="11">
+<position info="not_deleted" x="8199" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4102" y="0"/>
+<item historyLabel="uart_mpc.c" index="1">
+<position info="not_deleted" x="576" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3929" y="0"/>
+<item historyLabel="uart_lld.c" index="13">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3964" y="0"/>
+<item historyLabel="uart_lld.c" index="13">
+<position info="not_deleted" x="25961" y="7"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4001" y="0"/>
+<item historyLabel="uart_lld.c" index="13">
+<position info="not_deleted" x="14531" y="7"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4048" y="0"/>
+<item historyLabel="uart_lld.c" index="13">
+<position info="not_deleted" x="17712" y="7"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4102" y="0"/>
+<item historyLabel="uart_lld.c" index="13">
+<position info="not_deleted" x="22249" y="7"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3929" y="0"/>
+<item historyLabel="uart_lld.c" index="13">
+<position info="not_deleted" x="24559" y="7"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4154" y="0"/>
+<item historyLabel="uart_lld.c" index="13">
+<position info="not_deleted" x="25961" y="7"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4190" y="0"/>
+<item historyLabel="MPC.c" index="14">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="3892" y="0"/>
+<item historyLabel="radio.c" index="15">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4357" y="0"/>
-</item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="4373" y="0"/>
-</item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="15603" y="0"/>
-</item>
-<item active="true" historyLabel="DHT11.h" index="4">
+<item active="true" historyLabel="core.h" index="16">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
@@ -469,50 +447,50 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.h" tooltip="ChibiOS_F100C/modules/DHT11/DHT11.h">
-<persistable path="/ChibiOS_F100C/modules/DHT11/DHT11.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_F100C/modules/core.h">
+<persistable path="/ChibiOS_F100C/modules/core.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" tooltip="ChibiOS_F100C/modules/MPC/nRF24/radio.c">
+<persistable path="/ChibiOS_F100C/modules/MPC/nRF24/radio.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="MPC.c" tooltip="ChibiOS_F100C/modules/MPC/MPC.c">
+<persistable path="/ChibiOS_F100C/modules/MPC/MPC.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uart_lld.c" tooltip="ChibiOS_F100C/os/hal/ports/STM32/LLD/USARTv1/uart_lld.c">
+<persistable path="/ChibiOS_F100C/os/hal/ports/STM32/LLD/USARTv1/uart_lld.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chsys.c" tooltip="ChibiOS_F100C/os/rt/src/chsys.c">
+<persistable path="/ChibiOS_F100C/os/rt/src/chsys.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="crt0.c" tooltip="ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c">
 <persistable path="/ChibiOS_F100C/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ChibiOS_F100C/main.c">
-<persistable path="/ChibiOS_F100C/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="hal_queues.c" tooltip="ChibiOS_F100C/os/hal/src/hal_queues.c">
+<persistable path="/ChibiOS_F100C/os/hal/src/hal_queues.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gfxconf.h" tooltip="ChibiOS_F100C/board/uGFX_ILI9341/gfxconf.h">
-<persistable path="/ChibiOS_F100C/board/uGFX_ILI9341/gfxconf.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="hal_queues.h" tooltip="ChibiOS_F100C/os/hal/include/hal_queues.h">
+<persistable path="/ChibiOS_F100C/os/hal/include/hal_queues.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ILI9341.h" tooltip="ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.h">
-<persistable path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="serial.h" tooltip="ChibiOS_F100C/os/hal/include/serial.h">
+<persistable path="/ChibiOS_F100C/os/hal/include/serial.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="sys_defs.h" tooltip="ChibiOS_F100C/uGFX/src/gdisp/sys_defs.h">
-<persistable path="/ChibiOS_F100C/uGFX/src/gdisp/sys_defs.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="nRF24.c" tooltip="ChibiOS_F100C/modules/nRF24/src/nRF24.c">
+<persistable path="/ChibiOS_F100C/modules/nRF24/src/nRF24.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_F100C/modules/core.h">
-<persistable path="/ChibiOS_F100C/modules/core.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="nRF24.h" tooltip="ChibiOS_F100C/modules/nRF24/include/nRF24.h">
+<persistable path="/ChibiOS_F100C/modules/nRF24/include/nRF24.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.h" tooltip="ChibiOS_F031F/modules/nRF24/include/radio.h">
-<persistable path="/ChibiOS_F031F/modules/nRF24/include/radio.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.h" tooltip="ChibiOS_F100C/modules/nRF24/include/radio.h">
-<persistable path="/ChibiOS_F100C/modules/nRF24/include/radio.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="ChibiOS_F100C/modules/core.c">
+<persistable path="/ChibiOS_F100C/modules/core.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="radio.c" tooltip="ChibiOS_F100C/modules/nRF24/src/radio.c">
 <persistable path="/ChibiOS_F100C/modules/nRF24/src/radio.c"/>
 </file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="gdisp_colors.h" tooltip="D:\Work\CoIDE\ChibiOS_3.0\uGFX\src\gdisp\gdisp_colors.h">
-<persistable path="D:\Work\CoIDE\ChibiOS_3.0\uGFX\src\gdisp\gdisp_colors.h" project="ChibiOS_F100C"/>
-</file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="printf.h" tooltip="D:\Work\CoIDE\ChibiOS_3.0\printf.h">
-<persistable path="D:\Work\CoIDE\ChibiOS_3.0\printf.h" project="ChibiOS_F100C"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="hal_queues.c" tooltip="ChibiOS_F100C/os/hal/src/hal_queues.c">
-<persistable path="/ChibiOS_F100C/os/hal/src/hal_queues.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="serial.c" tooltip="ChibiOS_F100C/os/hal/src/serial.c">
-<persistable path="/ChibiOS_F100C/os/hal/src/serial.c"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x.h" tooltip="ChibiOS_F100C/os/ext/CMSIS/ST/stm32f10x.h">
 <persistable path="/ChibiOS_F100C/os/ext/CMSIS/ST/stm32f10x.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="mcuconf.h" tooltip="ChibiOS_F100C/board/STM32F100C/mcuconf.h">
+<persistable path="/ChibiOS_F100C/board/STM32F100C/mcuconf.h"/>
 </file>
 </mruList>
 </workbench>
