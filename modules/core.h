@@ -1,8 +1,14 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
-#define MY_ADDR				30
+#define NET_ADDR            30
+#define SUB_ADDR            1
+
+#define MY_ADDR				((NET_ADDR & 0x3F) | ((SUB_ADDR << 6) & 0xC0))
+
+#define MPC_PRESENT         TRUE
 #define RADIO_PRESENT		TRUE
+#define UART_MPC_PRESENT    TRUE
 #define DS18B20_PRESENT		TRUE
 #define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
@@ -44,6 +50,9 @@
 #endif
 #endif
 
+#if UART_MPC_PRESENT
+#include "uart_mpc.h"
+#endif
 
 //#include "LM75.h"
 

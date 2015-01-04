@@ -210,11 +210,14 @@ static void Start_Modules(void) {
 #endif
 
 #if LCD1602_PRESENT
-  InitializeLCD(); //Инициализация дисплея
+  InitializeLCD();     //Инициализация дисплея
   ClearLCDScreen();//Очистка дисплея от мусора
 #endif
 #if CLI_PRESENT
   CLI_Start();
+#endif
+#if UART_MPC_PRESENT
+  UART_MPC_Start();
 #endif
 #if RADIO_PRESENT
   Radio_Start();

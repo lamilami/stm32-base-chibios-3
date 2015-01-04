@@ -22,7 +22,8 @@ typedef union {
 //#define H1_PERIOD 12
 #define H1_PERIOD 6
 #define D1_VALS 28
-#define D1_PERIOD 24
+//#define D1_PERIOD 24
+#define D1_PERIOD 3
 
 typedef union {
   struct {
