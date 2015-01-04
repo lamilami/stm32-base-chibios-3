@@ -21,7 +21,7 @@
 #include "hal.h"
 #include "core.h"
 
-#if	RADIO_PRESENT
+#if	MPC_RADIO_PRESENT
 
 //#include "nordic_common.h"
 #include "nRF24.h"

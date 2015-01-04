@@ -352,7 +352,9 @@ THD_FUNCTION(ILI9341,arg) {
 
 //    Vals_Cur_s10.hum[1] = DS_Temp_Vals.temp[0] / 4;
     Vals_Cur_s10.temp[1] = DS_Temp_Vals.temp[0] / 4;
-    Vals_Cur_s10.hum[1] = DS_Temp_Vals.temp[0] / 2;
+    if (Vals_Cur_s10.temp[1] > -50)
+      Vals_Cur_s10.hum[1] = DS_Temp_Vals.temp[0] / 2;
+    else Vals_Cur_s10.hum[1] = -99;
 
     static DHT11_Inner_Val DHT_Temp_Vals;
 //    Core_Module_Update(DHT11, NULL, 3000);
