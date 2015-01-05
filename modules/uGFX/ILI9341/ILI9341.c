@@ -62,11 +62,18 @@ void Redraw_Graph(coord_t x_start, coord_t graph_width, int16_t old_min[2], int1
   for (val = 0; val < 2; val++) {
     for (num = 0; num < 3; num++) {
       Vals_prev[0].val[val][num] = Vals_prev[1].val[val][num] = -99;
-      for (x = 0; x < graph_width; x++) {
+    }
+  }
+
+  for (x = 0; x < graph_width; x++) {
+    for (val = 0; val < 2; val++) {
+      for (num = 0; num < 3; num++) {
         Curr_Elem = Graph_Elem + x;
         if ((shift) || (old_range[val] != range[val])) {
           if (Curr_Elem->val[val][num] > -50) {
-            if (Vals_prev[0].val[val][num] > -50) {
+            if ((Vals_prev[0].val[val][num] > -50)
+                && ((num == 2) || (Vals_prev[0].val[val][num] != Vals_prev[0].val[val][num + 1])
+                    || (Curr_Elem->val[val][num] != Curr_Elem->val[val][num + 1]))) {
               gdispDrawLine(x + val * (width / 2) + x_start,
                             height - NUMBERS_HEIGHT - 17 - (Vals_prev[0].val[val][num] - old_min[val]) * old_range[val],
                             x + 1 + val * (width / 2) + x_start,
@@ -88,7 +95,9 @@ void Redraw_Graph(coord_t x_start, coord_t graph_width, int16_t old_min[2], int1
           }
         }
         if (Curr_Elem->val[val][num] > -50) {
-          if (Vals_prev[1].val[val][num] > -50) {
+          if ((Vals_prev[1].val[val][num] > -50)
+              && ((num == 2) || (Vals_prev[1].val[val][num] != Vals_prev[1].val[val][num + 1])
+                  || (Curr_Elem->val[val][num] != Curr_Elem->val[val][num + 1]))) {
             gdispDrawLine(x + val * (width / 2) + x_start,
                           height - NUMBERS_HEIGHT - 17 - (Vals_prev[1].val[val][num] - min[val]) * range[val],
                           x + 1 + val * (width / 2) + x_start,
@@ -354,7 +363,8 @@ THD_FUNCTION(ILI9341,arg) {
     Vals_Cur_s10.temp[1] = DS_Temp_Vals.temp[0] / 4;
     if (Vals_Cur_s10.temp[1] > -50)
       Vals_Cur_s10.hum[1] = DS_Temp_Vals.temp[0] / 2;
-    else Vals_Cur_s10.hum[1] = -99;
+    else
+      Vals_Cur_s10.hum[1] = -99;
 
     static DHT11_Inner_Val DHT_Temp_Vals;
 //    Core_Module_Update(DHT11, NULL, 3000);

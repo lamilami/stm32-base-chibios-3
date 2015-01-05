@@ -28,6 +28,8 @@
 #ifndef _CHCONF_H_
 #define _CHCONF_H_
 
+#define CH_DEBUG        TRUE
+
 /*===========================================================================*/
 /**
  * @name System timers settings
@@ -333,7 +335,11 @@
  *
  * @note    The default is @p FALSE.
  */
+#if CH_DEBUG
 #define CH_DBG_SYSTEM_STATE_CHECK           TRUE
+#else
+#define CH_DBG_SYSTEM_STATE_CHECK           FALSE
+#endif
 
 /**
  * @brief   Debug option, parameters checks.
@@ -342,7 +348,11 @@
  *
  * @note    The default is @p FALSE.
  */
+#if CH_DEBUG
 #define CH_DBG_ENABLE_CHECKS                TRUE
+#else
+#define CH_DBG_ENABLE_CHECKS                FALSE
+#endif
 
 /**
  * @brief   Debug option, consistency checks.
@@ -352,7 +362,11 @@
  *
  * @note    The default is @p FALSE.
  */
+#if CH_DEBUG
 #define CH_DBG_ENABLE_ASSERTS               TRUE
+#else
+#define CH_DBG_ENABLE_ASSERTS               FALSE
+#endif
 
 /**
  * @brief   Debug option, trace buffer.
@@ -373,7 +387,11 @@
  * @note    The default failure mode is to halt the system with the global
  *          @p panic_msg variable set to @p NULL.
  */
+#if CH_DEBUG
 #define CH_DBG_ENABLE_STACK_CHECK           TRUE
+#else
+#define CH_DBG_ENABLE_STACK_CHECK           FALSE
+#endif
 
 /**
  * @brief   Debug option, stacks initialization.
@@ -383,7 +401,11 @@
  *
  * @note    The default is @p FALSE.
  */
+#if CH_DEBUG
 #define CH_DBG_FILL_THREADS                 TRUE
+#else
+#define CH_DBG_FILL_THREADS                 FALSE
+#endif
 
 /**
  * @brief   Debug option, threads profiling.
@@ -501,8 +523,8 @@
 /* Port-specific settings (override port settings defaulted in chcore.h).    */
 /*===========================================================================*/
 
-//#define CORTEX_ENABLE_WFI_IDLE		TRUE
-#define CORTEX_ENABLE_WFI_IDLE		FALSE
+#define CORTEX_ENABLE_WFI_IDLE		TRUE
+//#define CORTEX_ENABLE_WFI_IDLE		FALSE
 #endif  /* _CHCONF_H_ */
 
 /** @} */

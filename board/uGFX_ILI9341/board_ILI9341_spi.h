@@ -44,8 +44,8 @@
  * Speed 12 MHz, CPHA=0, CPOL=0, 8bits frames, MSb transmitted first.
  * Soft slave select.
  */
-static const SPIConfig spi2cfg = { NULL, LCD_SPI_CS_PORT, LCD_CS, (SPI_CR1_MSTR
-		| SPI_CR1_SPE | SPI_CR1_SSM | SPI_CR1_SSI) };
+static const SPIConfig spi2cfg = {NULL, LCD_SPI_CS_PORT, LCD_CS,
+                                  (SPI_CR1_MSTR | SPI_CR1_SPE | SPI_CR1_SSM | SPI_CR1_SSI)};
 
 static void send_data(uint16_t data);
 
@@ -61,21 +61,24 @@ static void send_data(uint16_t data);
  */
 static inline void init_board(GDisplay *g) {
 
-	// As we are not using multiple displays we set g->board to NULL as we don't use it.
+  // As we are not using multiple displays we set g->board to NULL as we don't use it.
 //  g->board = 0;
 
-	palSetPadMode(LCD_SPI_CS_PORT, LCD_CS, PAL_MODE_OUTPUT_PUSHPULL);
-	palSetPadMode(LCD_CTRL_PORT, LCD_DC, PAL_MODE_OUTPUT_PUSHPULL);
-	palSetPadMode(LCD_CTRL_PORT, LCD_RES, PAL_MODE_OUTPUT_PUSHPULL);
+  gfxSleepMilliseconds(50);
 
-	palSetGroupMode(LCD_SPI_PORT,
-			PAL_PORT_BIT(LCD_SCK) | PAL_PORT_BIT(LCD_MISO)
-					| PAL_PORT_BIT(LCD_MOSI), 0, LCD_SPI_PAL_PIN_MODE);
+  palSetPadMode(LCD_SPI_CS_PORT, LCD_CS, PAL_MODE_OUTPUT_PUSHPULL);
+  palSetPadMode(LCD_CTRL_PORT, LCD_DC, PAL_MODE_OUTPUT_PUSHPULL);
+  palSetPadMode(LCD_CTRL_PORT, LCD_RES, PAL_MODE_OUTPUT_PUSHPULL);
 
-	LCD_SPI_REMAP_CMD;
+  palSetGroupMode(LCD_SPI_PORT, PAL_PORT_BIT(LCD_SCK) | PAL_PORT_BIT(LCD_MISO) | PAL_PORT_BIT(LCD_MOSI), 0,
+                  LCD_SPI_PAL_PIN_MODE);
 
-	spiStart(&SPID2, &spi2cfg);
-	spiSelectI(&SPID2);
+  LCD_SPI_REMAP_CMD;
+
+  gfxSleepMilliseconds(50);
+
+  spiStart(&SPID2, &spi2cfg);
+  spiSelect(&SPID2);
 }
 
 /**
@@ -86,7 +89,7 @@ static inline void init_board(GDisplay *g) {
  * @notapi
  */
 static inline void post_init_board(GDisplay *g) {
-	(void) g;
+  (void)g;
 }
 
 /**
@@ -98,13 +101,14 @@ static inline void post_init_board(GDisplay *g) {
  * @notapi
  */
 static inline void setpin_reset(GDisplay *g, bool_t state) {
-	(void) g;
+  (void)g;
 
-	if (state == TRUE) {
-		palClearPad(LCD_CTRL_PORT, LCD_RES);
-	} else {
-		palSetPad(LCD_CTRL_PORT, LCD_RES);
-	}
+  if (state == TRUE) {
+    palClearPad(LCD_CTRL_PORT, LCD_RES);
+  }
+  else {
+    palSetPad(LCD_CTRL_PORT, LCD_RES);
+  }
 }
 
 /**
@@ -116,8 +120,8 @@ static inline void setpin_reset(GDisplay *g, bool_t state) {
  * @notapi
  */
 static inline void set_backlight(GDisplay *g, uint8_t percent) {
-	(void) g;
-	(void) percent;
+  (void)g;
+  (void)percent;
 }
 
 /**
@@ -128,7 +132,7 @@ static inline void set_backlight(GDisplay *g, uint8_t percent) {
  * @notapi
  */
 static inline void acquire_bus(GDisplay *g) {
-	(void) g;
+  (void)g;
 }
 
 /**
@@ -139,7 +143,7 @@ static inline void acquire_bus(GDisplay *g) {
  * @notapi
  */
 static inline void release_bus(GDisplay *g) {
-	(void) g;
+  (void)g;
 }
 
 /**
@@ -151,9 +155,9 @@ static inline void release_bus(GDisplay *g) {
  */
 static inline void send_data(uint16_t data) {
 // http://forum.easyelectronics.ru/viewtopic.php?p=262122#p262122
-	while (!(SPI2->SR & SPI_SR_TXE))
-		; // при входе на отправку проверяем - а пустой ли SPI_DR
-	SPI2->DR = data; // загрузили в SPI_DR код команды
+  while (!(SPI2->SR & SPI_SR_TXE))
+    ;     // при входе на отправку проверяем - а пустой ли SPI_DR
+  SPI2->DR = data;     // загрузили в SPI_DR код команды
 
 }
 
@@ -166,20 +170,20 @@ static inline void send_data(uint16_t data) {
  * @notapi
  */
 static inline void write_index(GDisplay *g, uint16_t index) {
-	(void) g;
+  (void)g;
 
-	while (SPI2->SR & SPI_SR_BSY)
-		;
-	LCD_CS_RES;
-	LCD_DC_CMD; // переводим дисплей в режим команд
-	LCD_CS_SET;
-	send_data(index);
-	while (SPI2->SR & SPI_SR_BSY)
-		; // пока флаг установлен (==1) -- модуль SPI занят
-	/* лишний цикл ожидания окончания передачи команды позволяет в дальнейшем слать
-	 * байты данных без ненужных ожиданий и задержек.
-	 */
-	LCD_DC_DATA; // переводим дисплей в режим данных
+  while (SPI2->SR & SPI_SR_BSY)
+    ;
+  LCD_CS_RES;
+  LCD_DC_CMD;     // переводим дисплей в режим команд
+  LCD_CS_SET;
+  send_data(index);
+  while (SPI2->SR & SPI_SR_BSY)
+    ;     // пока флаг установлен (==1) -- модуль SPI занят
+  /* лишний цикл ожидания окончания передачи команды позволяет в дальнейшем слать
+   * байты данных без ненужных ожиданий и задержек.
+   */
+  LCD_DC_DATA;     // переводим дисплей в режим данных
 }
 
 /**
@@ -191,9 +195,9 @@ static inline void write_index(GDisplay *g, uint16_t index) {
  * @notapi
  */
 static inline void write_data(GDisplay *g, uint16_t data) {
-	(void) g;
+  (void)g;
 
-	send_data(data);
+  send_data(data);
 }
 
 /**
@@ -204,7 +208,7 @@ static inline void write_data(GDisplay *g, uint16_t data) {
  * @notapi
  */
 static inline void setreadmode(GDisplay *g) {
-	(void) g;
+  (void)g;
 }
 
 /**
@@ -215,7 +219,7 @@ static inline void setreadmode(GDisplay *g) {
  * @notapi
  */
 static inline void setwritemode(GDisplay *g) {
-	(void) g;
+  (void)g;
 }
 
 /**
@@ -227,8 +231,8 @@ static inline void setwritemode(GDisplay *g) {
  * @notapi
  */
 static inline uint16_t read_data(GDisplay *g) {
-	(void) g;
-	return 0;
+  (void)g;
+  return 0;
 }
 
 #endif /* _GDISP_LLD_BOARD_H */
