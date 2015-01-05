@@ -8,6 +8,7 @@ thread_t *MPC_Thread;
 #define EVENTMASK_SEND 0x1
 #define EVENTMASK_RADIO_IRQ 0x2
 #define EVENTMASK_UART_IRQ 0x4
+#define EVENTMASK_UART_TX_IRQ 0x8
 
 /** Defines the payload length the radio should use */
 #define MPC_MAX_PAYLOAD_LENGTH 32

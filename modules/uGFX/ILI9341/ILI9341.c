@@ -2,8 +2,8 @@
 #include "hal.h"
 #include "core.h"
 
-//#if ILI9341_PRESENT
-#if 1
+#if ILI9341_PRESENT
+//#if 1
 
 #include "printf.h"
 
@@ -348,7 +348,7 @@ THD_FUNCTION(ILI9341,arg) {
 
 //    static graph_elem_t Vals_Cur = {}, Vals_old = {}, Vals_prev[2];
 
-    Vals_Cur_s10.temp[2] = DS_Temp_Vals.temp[0] / 4;
+//    Vals_Cur_s10.temp[2] = DS_Temp_Vals.temp[0] / 4;
 
     DS_Temp_Vals.temp[0] = -77 << 2;
 //    Core_Module_Update(Temp, NULL, 1000);
