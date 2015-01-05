@@ -109,12 +109,13 @@ THD_FUNCTION(MPC,arg) {
   while (TRUE) {
     /* Checks if an IRQ happened else wait.*/
     eventmask_t t = chEvtWaitOne((eventmask_t)EVENTMASK_RADIO_IRQ | EVENTMASK_SEND);
-    if (t == EVENTMASK_RADIO_IRQ) {
+    switch (t) {
+    case (EVENTMASK_RADIO_IRQ):
 #if MPC_RADIO_PRESENT
+      ;
       payload_t * rx_buffer = 0;
       chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *)&rx_buffer, TIME_INFINITE);
-      if (_radio_rcv_irq(rx_buffer))
-      {
+      if (_radio_rcv_irq(rx_buffer)) {
         chMBPost(&rf_mb[RF_MB_RX], (msg_t)rx_buffer, TIME_INFINITE);
       }
       else {
@@ -123,19 +124,32 @@ THD_FUNCTION(MPC,arg) {
 #else
       __asm("BKPT #0\n");
 #endif
-    }
-    else {
+      break;
+    case (EVENTMASK_SEND):
       // Send part
       LEDSwap();
 
       payload_t * tx_buffer = 0;
       chMBFetch(&rf_mb[RF_MB_TX], (msg_t *)&tx_buffer, TIME_INFINITE);
-#if MPC_RADIO_PRESENT
-      _radio_send(tx_buffer);
-//#else
-//      __asm("BKPT #0\n");
+      if ((((*tx_buffer).dst_addr & 0x3F) == (MY_ADDR & 0x3F)) && ((*tx_buffer).dst_addr != MY_ADDR)) {
+#if MPC_UART_PRESENT
+        _uart_send(tx_buffer);
+#else
+        __asm("BKPT #0\n");
 #endif
+      }
+      else {
+#if MPC_RADIO_PRESENT
+        _radio_send(tx_buffer);
+#else
+        __asm("BKPT #0\n");
+#endif
+      }
       chMBPost(&rf_mb[RF_MB_FREE], (msg_t)tx_buffer, TIME_INFINITE);
+      break;
+    default:
+      __asm("BKPT #0\n");
+      break;
     }
   }
 }
