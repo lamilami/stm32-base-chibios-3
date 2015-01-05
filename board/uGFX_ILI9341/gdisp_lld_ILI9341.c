@@ -79,6 +79,8 @@ LLDSPEC bool_t gdisp_lld_init(GDisplay *g) {
 	// Initialise the board interface
 	init_board(g);
 
+    gfxSleepMilliseconds(50);
+
 	// Hardware reset
 	setpin_reset(g, TRUE);
 	gfxSleepMilliseconds(20);

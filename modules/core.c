@@ -253,15 +253,15 @@ void Core_Start() {
    * - Kernel initialization, the main() function becomes a thread and the
    *   RTOS is active.
    */
-  halInit();
 
 #if uGFX_PRESENT
   // Initialize uGFX and the underlying system
   gfxInit();
   gdispClear(Black);
-#endif
-
+#else
+  halInit();
   chSysInit();
+#endif
 
   osalThreadSleepMilliseconds(500);
 
