@@ -174,10 +174,20 @@ static inline void write_index(GDisplay *g, uint16_t index) {
 
   while (SPI2->SR & SPI_SR_BSY)
     ;
+  __asm("NOP\n");
+  __asm("NOP\n");
+//  __asm("NOP\n");
+//  __asm("NOP\n");
+//  __asm("NOP\n");
   LCD_CS_RES;
   LCD_DC_CMD;     // переводим дисплей в режим команд
   LCD_CS_SET;
   send_data(index);
+  __asm("NOP\n");
+  __asm("NOP\n");
+  __asm("NOP\n");
+  __asm("NOP\n");
+//  __asm("NOP\n");
   while (SPI2->SR & SPI_SR_BSY)
     ;     // пока флаг установлен (==1) -- модуль SPI занят
   /* лишний цикл ожидания окончания передачи команды позволяет в дальнейшем слать
