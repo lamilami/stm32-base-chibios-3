@@ -2,7 +2,8 @@
 #include "hal.h"
 #include "core.h"
 
-#if MPC_UART_PRESENT
+//#if MPC_UART_PRESENT
+#if 1
 
 /*
  * This callback is invoked when a transmission buffer has been completely
@@ -39,6 +40,9 @@ static void rxerr(UARTDriver *uartp, uartflags_t e) {
   (void)e;
 }
 
+uint16_t rxb[10];
+uint8_t z = 0;
+
 /*
  * This callback is invoked when a character is received but the application
  * was not ready to receive it, the character is passed as parameter.
@@ -48,6 +52,8 @@ static void rxchar(UARTDriver *uartp, uint16_t c) {
   (void)uartp;
   (void)c;
   osalSysLockFromISR();
+  rxb[z]=c;
+  z++;
   chEvtSignalI(MPC_Thread, (eventmask_t)EVENTMASK_UART_IRQ);
   osalSysUnlockFromISR();
   /* Flashing the LED each time a character is received.*/
@@ -72,6 +78,7 @@ static void rxend(UARTDriver *uartp) {
 //static SerialConfig sd_mpc_cfg = {38400, USART_CR1_M | USART_CR1_WAKE | USART_CR1_RWU, (USART_CR2_ADD & ((MY_ADDR >> 6) & 0x03)), USART_CR3_HDSEL};
 
 static UARTConfig mpc_uart_cfg = {txend1, txend2, rxend, rxchar, rxerr, 38400, USART_CR1_M | USART_CR1_WAKE | USART_CR1_RWU, (USART_CR2_ADD & ((MY_ADDR >> 6) & 0x03)), USART_CR3_HDSEL};
+//static UARTConfig mpc_uart_cfg = {txend1, txend2, rxend, rxchar, rxerr, 38400, USART_CR1_M, 0, USART_CR3_HDSEL};
 
 
 void UART_MPC_init()
@@ -93,6 +100,22 @@ void UART_MPC_init()
 //  ch = sdGet(&SD2);
 
 //  return OW_OK;
+
+  chThdSleepMilliseconds(1);
+
+  char q[6];
+  q[0] = 0x5A;
+  q[1] = 0x00; //Address bit
+  q[2] = 0x01;
+  q[3] = 0x01;
+  q[4] = 0xA5;
+  q[5] = 0x00;
+
+  uartStartSend(&UARTD2, 3, &q);
+
+  chThdSleepSeconds(1);
+  __asm("BKPT #0\n");
+  z++;
 
 #else
 

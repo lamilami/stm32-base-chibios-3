@@ -9,7 +9,7 @@
 
 static thread_t *tp;
 volatile static coord_t width, height;
-#define ALARM_PERIOD_MS 1000
+#define ALARM_PERIOD_MS 5000
 #define NUMBERS_WIDTH 35
 #define GRAPH_NUMBERS_WIDTH 30
 #define GRAPH_HEIGHT    60
