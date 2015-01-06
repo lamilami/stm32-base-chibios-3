@@ -14,7 +14,7 @@
 #endif
 
 #define MB_CNT 4
-#define RF_MAX_IO_BUFFERS 3
+#define RF_MAX_IO_BUFFERS 4
 
 static mailbox_t rf_mb[MB_CNT];
 static msg_t rf_mb_b[MB_CNT][RF_MAX_IO_BUFFERS];
@@ -39,12 +39,12 @@ THD_FUNCTION(MPC_Processor,arg) {
     switch ((*rx_buffer).cmd) {
     case RF_PING:
 //          LEDB1Swap();
-      MPC_Send_Command((*rx_buffer).src_addr, RF_PONG, 0, NULL);     // load message into radio
+      MPC_Send_Command((*rx_buffer).src_addr, RF_PONG, 0, NULL); // load message into radio
       chMBPost(&rf_mb[RF_MB_FREE], (msg_t)rx_buffer, TIME_INFINITE);
       break;
     case RF_PONG:
 //          LEDB1Swap();
-      MPC_Send_Command((*rx_buffer).src_addr, RF_PING, 0, NULL);
+//      MPC_Send_Command((*rx_buffer).src_addr, RF_PING, 0, NULL);
       chMBPost(&rf_mb[RF_MB_FREE], (msg_t)rx_buffer, TIME_INFINITE);
 //          nRF24_hw_ce_high();
       break;
@@ -108,12 +108,12 @@ THD_FUNCTION(MPC,arg) {
 
   while (TRUE) {
     /* Checks if an IRQ happened else wait.*/
-    eventmask_t t = chEvtWaitOne((eventmask_t)EVENTMASK_RADIO_IRQ | EVENTMASK_SEND);
+    eventmask_t t = chEvtWaitOne((eventmask_t)EVENTMASK_RADIO_IRQ | EVENTMASK_UART_IRQ | EVENTMASK_SEND);
     switch (t) {
     case (EVENTMASK_RADIO_IRQ):
 #if MPC_RADIO_PRESENT
       ;
-      payload_t * rx_buffer = 0;
+      static payload_t * rx_buffer = 0;
       chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *)&rx_buffer, TIME_INFINITE);
       if (_radio_rcv_irq(rx_buffer)) {
         chMBPost(&rf_mb[RF_MB_RX], (msg_t)rx_buffer, TIME_INFINITE);
@@ -125,13 +125,23 @@ THD_FUNCTION(MPC,arg) {
       __asm("BKPT #0\n");
 #endif
       break;
+    case (EVENTMASK_UART_IRQ):
+      ;
+      static payload_t * rx_buffer = 0;
+      chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *)&rx_buffer, TIME_INFINITE);
+      if (_uart_rcv_irq(rx_buffer)) {
+        chMBPost(&rf_mb[RF_MB_RX], (msg_t)rx_buffer, TIME_INFINITE);
+      }
+      else {
+        chMBPost(&rf_mb[RF_MB_FREE], (msg_t)rx_buffer, TIME_INFINITE);
+      }
     case (EVENTMASK_SEND):
       // Send part
       LEDSwap();
 
       payload_t * tx_buffer = 0;
       chMBFetch(&rf_mb[RF_MB_TX], (msg_t *)&tx_buffer, TIME_INFINITE);
-      if ((((*tx_buffer).dst_addr & 0x3F) == (MY_ADDR & 0x3F)) && ((*tx_buffer).dst_addr != MY_ADDR)) {
+      if ((((*tx_buffer).dst_addr & 0x3F) == (MY_ADDR & 0x3F)) ) { //  && ((*tx_buffer).dst_addr != MY_ADDR)) {
 #if MPC_UART_PRESENT
         _uart_send(tx_buffer);
 #else
@@ -157,7 +167,8 @@ THD_FUNCTION(MPC,arg) {
 uint8_t MPC_Send_Command(uint8_t rcv_addr, MPC_commands_t command, uint8_t data_size, void *data) {
   payload_t * tx_buffer = 0;
   chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *)&tx_buffer, TIME_INFINITE);
-  (*tx_buffer).src_addr = (MY_ADDR & 0x3F);
+//  (*tx_buffer).src_addr = (MY_ADDR & 0x3F);
+  (*tx_buffer).src_addr = MY_ADDR;
   (*tx_buffer).dst_addr = rcv_addr;
   (*tx_buffer).cmd = command;
   (*tx_buffer).pipenum = 1;

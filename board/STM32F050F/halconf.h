@@ -25,12 +25,14 @@
  * @{
  */
 
+#include "core.h"
+
 #ifndef _HALCONF_H_
 #define _HALCONF_H_
 
 #include "mcuconf.h"
 
-#define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел
+//#define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел
 //#define DEBUG_Discovery
 
 /**
@@ -128,7 +130,11 @@
  * @brief   Enables the SERIAL subsystem.
  */
 #if !defined(HAL_USE_SERIAL) || defined(__DOXYGEN__)
+#if (DS18B20_PRESENT || CLI_PRESENT)
 #define HAL_USE_SERIAL              TRUE
+#else
+#define HAL_USE_SERIAL              FALSE
+#endif
 #endif
 
 /**
@@ -142,14 +148,22 @@
  * @brief   Enables the SPI subsystem.
  */
 #if !defined(HAL_USE_SPI) || defined(__DOXYGEN__)
+#if MPC_RADIO_PRESENT
 #define HAL_USE_SPI                 TRUE
+#else
+#define HAL_USE_SPI                 FALSE
+#endif
 #endif
 
 /**
  * @brief   Enables the UART subsystem.
  */
 #if !defined(HAL_USE_UART) || defined(__DOXYGEN__)
+#if MPC_UART_PRESENT
+#define HAL_USE_UART                TRUE
+#else
 #define HAL_USE_UART                FALSE
+#endif
 #endif
 
 /**
