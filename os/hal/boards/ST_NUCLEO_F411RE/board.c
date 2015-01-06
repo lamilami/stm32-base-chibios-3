@@ -77,11 +77,10 @@ void __early_init(void) {
  * @brief   SDC card detection.
  */
 bool sdc_lld_is_card_inserted(SDCDriver *sdcp) {
-  static bool last_status = false;
 
-  if (blkIsTransferring(sdcp))
-    return last_status;
-  return last_status = (bool)palReadPad(GPIOC, GPIOC_SD_D3);
+  (void)sdcp;
+  /* TODO: Fill the implementation.*/
+  return true;
 }
 
 /**
@@ -90,6 +89,7 @@ bool sdc_lld_is_card_inserted(SDCDriver *sdcp) {
 bool sdc_lld_is_write_protected(SDCDriver *sdcp) {
 
   (void)sdcp;
+  /* TODO: Fill the implementation.*/
   return false;
 }
 #endif /* HAL_USE_SDC */

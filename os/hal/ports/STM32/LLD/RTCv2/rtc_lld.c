@@ -303,21 +303,21 @@ void rtc_lld_init(void) {
   RTCD1.rtc->WPR = 0xCA;
   RTCD1.rtc->WPR = 0x53;
 
-  rtc_enter_init();
-
   /* If calendar has not been initialized yet then proceed with the
      initial setup.*/
   if (!(RTCD1.rtc->ISR & RTC_ISR_INITS)) {
+
+    rtc_enter_init();
 
     RTCD1.rtc->CR   = 0;
     RTCD1.rtc->ISR  = 0;
     RTCD1.rtc->PRER = STM32_RTC_PRER_BITS;
     RTCD1.rtc->PRER = STM32_RTC_PRER_BITS;
+
+    rtc_exit_init();
   }
   else
     RTCD1.rtc->ISR &= ~RTC_ISR_RSF;
-
-  rtc_exit_init();
 }
 
 /**
