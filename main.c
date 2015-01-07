@@ -166,11 +166,11 @@ int main(void) {
 
   systime_t time_start = chVTGetSystemTime();
 
-  LEDB1Swap();
-  LEDSwap();
+//  LEDB1Swap();
+//  LEDSwap();
 
 //	eeprom_cmd_test(NULL, 0, NULL);
-  chThdSleepSeconds(3);
+  chThdSleepSeconds(1);
 
 #if MY_ADDR==10
 //	Radio_Send_Command(11, RF_PING, 0, NULL);
@@ -521,12 +521,12 @@ int main(void) {
 #endif
 
 #if  MPC_UART_PRESENT
-    MPC_Send_Command(MY_ADDR, RF_PING, 0, NULL);
+//    MPC_Send_Command(MY_ADDR, RF_PING, 0, NULL);
 #endif
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT
 //		Radio_Send_Command(11, RF_PING, 0, NULL);
-    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(30));
+    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(3));
 //		LEDB1Swap();
 #endif
 
