@@ -328,8 +328,8 @@ msg_t Core_Module_Update(const core_types_t type, const char * inval, const syst
   return MSG_ERROR;
 }
 
-uint8_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval) {
-  uint8_t ret_size = 0;
+msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval) {
+  msg_t ret_size = MSG_OK;
   if ((addr == localhost) || (addr == MY_ADDR)) {
     core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
     if (base_struct == NULL)
@@ -345,7 +345,7 @@ uint8_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inv
 #if MPC_PRESENT
     ret_size = MPC_Send_Command(addr, RF_GET, 1, inval);
 #else
-    ret_size = 0;
+    ret_size = MSG_TIMEOUT;
 #endif
   }
   return ret_size;
