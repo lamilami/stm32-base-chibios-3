@@ -2,19 +2,20 @@
 #define _CORE_H_
 
 #define NET_ADDR            30      //5-bit nRF24 addr
-#define SUB_ADDR            1       //3-bit USART addr
+#define SUB_ADDR            0       //3-bit USART addr
 
 #define MY_ADDR				((NET_ADDR & 0x3F) | ((SUB_ADDR << 6) & 0xC0))
+#define SUBMOD_ADDR(addr)   ((NET_ADDR & 0x3F) | (((addr) << 6) & 0xC0))
 
 #define MPC_PRESENT         TRUE
 
 #if MPC_PRESENT
-#define MPC_RADIO_PRESENT	FALSE
+#define MPC_RADIO_PRESENT	TRUE
 #define MPC_UART_PRESENT    TRUE
 #endif
 
-#define DS18B20_PRESENT		FALSE
-#define DHT11_PRESENT		TRUE
+#define DS18B20_PRESENT		TRUE
+#define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
@@ -23,7 +24,7 @@
 #define PIR_PRESENT			FALSE
 #define LM75_PRESENT		FALSE
 
-#define uGFX_PRESENT		FALSE
+#define uGFX_PRESENT		TRUE
 
 #if uGFX_PRESENT
 #define ILI9341_PRESENT     TRUE
@@ -129,7 +130,7 @@ void Core_Module_Register(core_base_struct_t* Base_Struct);
 //void* Core_GetIvalAddrByType(const core_types_t type);
 //msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds);
 msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds);
-uint8_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval);
+msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval);
 bool Core_Events_Register(const core_types_t type);
 inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
 //void ByteArrayCopy(const volatile char* src, volatile char* dst, const uint8_t cnt);

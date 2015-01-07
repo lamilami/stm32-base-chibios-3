@@ -42,8 +42,8 @@ THD_FUNCTION(MPC_Processor,arg)
 		{
 		case RF_PING:
 			LED3Swap();
+//            osalThreadSleepMilliseconds(5);
 			MPC_Send_Command((*rx_buffer).src_addr, RF_PONG, 0, NULL);     // load message into radio
-			osalThreadSleepMilliseconds(5);
 			chMBPost(&rf_mb[RF_MB_FREE], (msg_t) rx_buffer, TIME_INFINITE);
 			break;
 		case RF_PONG:
@@ -113,7 +113,7 @@ THD_FUNCTION(MPC,arg)
 	UART_MPC_init();
 #endif
 
-	chThdCreateStatic(waMPC_Processor, sizeof(waMPC_Processor), NORMALPRIO, MPC_Processor, NULL);
+	chThdCreateStatic(waMPC_Processor, sizeof(waMPC_Processor), HIGHPRIO, MPC_Processor, NULL);
 
 	while (TRUE)
 	{
@@ -124,15 +124,15 @@ THD_FUNCTION(MPC,arg)
 		case (EVENTMASK_RADIO_IRQ):
 #if MPC_RADIO_PRESENT
 			;
-			static payload_t * rx_buffer = 0;
-			chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *)&rx_buffer, TIME_INFINITE);
-			if (_radio_rcv_irq(rx_buffer))
+			static payload_t * nRF24_rx_buffer = 0;
+			chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *)&nRF24_rx_buffer, TIME_INFINITE);
+			if (_radio_rcv_irq(nRF24_rx_buffer))
 			{
-				chMBPost(&rf_mb[RF_MB_RX], (msg_t)rx_buffer, TIME_INFINITE);
+				chMBPost(&rf_mb[RF_MB_RX], (msg_t)nRF24_rx_buffer, TIME_INFINITE);
 			}
 			else
 			{
-				chMBPost(&rf_mb[RF_MB_FREE], (msg_t)rx_buffer, TIME_INFINITE);
+				chMBPost(&rf_mb[RF_MB_FREE], (msg_t)nRF24_rx_buffer, TIME_INFINITE);
 			}
 #else
 			__asm("BKPT #0\n");
@@ -141,16 +141,17 @@ THD_FUNCTION(MPC,arg)
 		case (EVENTMASK_UART_IRQ):
 //      LEDB1Swap();
 			;
-			static payload_t * rx_buffer = 0;
-			chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *) &rx_buffer, TIME_INFINITE);
-			if (_uart_rcv_irq(rx_buffer))
+			static payload_t * uart_rx_buffer = 0;
+			chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *) &uart_rx_buffer, TIME_INFINITE);
+			if (_uart_rcv_irq(uart_rx_buffer))
 			{
-				chMBPost(&rf_mb[RF_MB_RX], (msg_t) rx_buffer, TIME_INFINITE);
+				chMBPost(&rf_mb[RF_MB_RX], (msg_t) uart_rx_buffer, TIME_INFINITE);
 			}
 			else
 			{
-				chMBPost(&rf_mb[RF_MB_FREE], (msg_t) rx_buffer, TIME_INFINITE);
+				chMBPost(&rf_mb[RF_MB_FREE], (msg_t) uart_rx_buffer, TIME_INFINITE);
 			}
+			break;
 		case (EVENTMASK_SEND):
 			// Send part
 			LED0Swap();
@@ -182,7 +183,7 @@ THD_FUNCTION(MPC,arg)
 	}
 }
 
-uint8_t MPC_Send_Command(uint8_t rcv_addr, MPC_commands_t command, uint8_t data_size, void *data)
+msg_t MPC_Send_Command(uint8_t rcv_addr, MPC_commands_t command, uint8_t data_size, void *data)
 {
 	payload_t * tx_buffer = 0;
 	chMBFetch(&rf_mb[RF_MB_FREE], (msg_t *) &tx_buffer, TIME_INFINITE);
@@ -193,7 +194,7 @@ uint8_t MPC_Send_Command(uint8_t rcv_addr, MPC_commands_t command, uint8_t data_
 	(*tx_buffer).pipenum = 1;
 	(*tx_buffer).size = 3 + data_size;
 	memcpy((void *) (*tx_buffer).data, data, data_size);
-	uint8_t ret_size = data_size;
+	msg_t ret_size = data_size;
 
 	switch (command)
 	{
@@ -207,7 +208,7 @@ uint8_t MPC_Send_Command(uint8_t rcv_addr, MPC_commands_t command, uint8_t data_
 		chMBPost(&rf_mb[RF_MB_TX], (msg_t) tx_buffer, TIME_INFINITE);
 		chEvtSignal(MPC_Thread, (eventmask_t) EVENTMASK_SEND);
 
-		ret_size = chMBFetch(&rf_mb[RF_MB_PS], (msg_t *) &tx_buffer, MS2ST(500));
+		ret_size = chMBFetch(&rf_mb[RF_MB_PS], (msg_t *) &tx_buffer, MS2ST(50));
 		if (ret_size == MSG_OK)
 		{
 			ret_size = (*tx_buffer).size - 3;
@@ -224,7 +225,7 @@ uint8_t MPC_Send_Command(uint8_t rcv_addr, MPC_commands_t command, uint8_t data_
 
 void MPC_Start()
 {
-	chThdCreateStatic(waMPC, sizeof(waMPC), NORMALPRIO, MPC, NULL);
+	chThdCreateStatic(waMPC, sizeof(waMPC), HIGHPRIO, MPC, NULL);
 	chThdYield();
 }
 
