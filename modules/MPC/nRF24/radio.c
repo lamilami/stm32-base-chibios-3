@@ -140,7 +140,7 @@ bool inline _radio_rcv_irq(payload_t * rx_buffer) {
   /* Perform processing here.*/
   switch (nRF24_get_clear_irq_flags()) {
   case (1 << nRF24_IRQ_RX_DR):     // Packet received
-    LEDB1Swap();
+//    LEDB1Swap();
     rf_sended_debug = TRUE;
     radio_set_status(RF_RX_DR);
 
