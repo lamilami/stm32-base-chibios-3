@@ -29,7 +29,7 @@ typedef enum
 } MPC_commands_t;
 
 void MPC_Start(void);
-uint8_t MPC_Send_Command(uint8_t rcv_addr, MPC_commands_t command, uint8_t data_size, void *data);
+msg_t MPC_Send_Command(uint8_t rcv_addr, MPC_commands_t command, uint8_t data_size, void *data);
 
 typedef struct
 {

@@ -521,12 +521,12 @@ int main(void) {
 #endif
 
 #if  MPC_UART_PRESENT
-//    MPC_Send_Command(MY_ADDR, RF_PING, 0, NULL);
+//    MPC_Send_Command(94, RF_PING, 0, NULL);
 #endif
 
 #if !FloorHeater_PRESENT && !RGBW_PRESENT
 //		Radio_Send_Command(11, RF_PING, 0, NULL);
-    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(3));
+    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
 //		LEDB1Swap();
 #endif
 

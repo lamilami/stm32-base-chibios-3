@@ -31,6 +31,10 @@
 #define LEDSwap() GPIOC->ODR ^= PAL_PORT_BIT(13)
 #define LEDB1Swap() GPIOB->ODR ^= PAL_PORT_BIT(9)
 
+#define LED0Swap()
+#define LED2Swap()
+#define LED3Swap()
+
 /*
  * Board oscillators-related settings.
  * NOTE: HSE not fitted.

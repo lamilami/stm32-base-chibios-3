@@ -16,14 +16,14 @@ typedef union {
 
 #define S10_VALS 30
 #define M5_VALS 36
-//#define M5_PERIOD 30
-#define M5_PERIOD 5
+#define M5_PERIOD 30
+//#define M5_PERIOD 5
 #define H1_VALS 24
-//#define H1_PERIOD 12
-#define H1_PERIOD 6
+#define H1_PERIOD 12
+//#define H1_PERIOD 6
 #define D1_VALS 28
-//#define D1_PERIOD 24
-#define D1_PERIOD 3
+#define D1_PERIOD 24
+//#define D1_PERIOD 3
 
 typedef union {
   struct {

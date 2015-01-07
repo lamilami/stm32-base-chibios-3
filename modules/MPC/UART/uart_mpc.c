@@ -26,7 +26,9 @@ static void txend1(UARTDriver *uartp) {
 static void txend2(UARTDriver *uartp) {
 
   (void)uartp;
-
+  osalSysLockFromISR();
+  chEvtSignalI(MPC_Thread, (eventmask_t)EVENTMASK_UART_TX_IRQ);
+  osalSysUnlockFromISR();
 //  palSetPad(IOPORT3, GPIOC_LED);
 //  chSysLockFromISR();
 //  chVTResetI(&vt1);
@@ -69,7 +71,7 @@ static void rxchar(UARTDriver *uartp, uint16_t c) {
   else {
     if (c > 0) {
       rxb[0] = c;
-      uartStartReceiveI(&UARTD, c << 1, &rxb[1]);
+      uartStartReceiveI(&UARTD, c, &rxb[1]);
       chVTResetI(&vt1);
       chVTDoSetI(&vt1, MS2ST(1000), _RX_ERR, NULL);
     }
@@ -95,6 +97,7 @@ static void rxend(UARTDriver *uartp) {
   osalSysLockFromISR();
   chVTResetI(&vt1);
   chEvtSignalI(MPC_Thread, (eventmask_t)EVENTMASK_UART_IRQ);
+//  UARTD.usart->RQR |= USART_RQR_MMRQ;
   osalSysUnlockFromISR();
 }
 
@@ -125,7 +128,7 @@ void UART_MPC_init() {
 //  ch = sdGet(&SD2);
 
 //  return OW_OK;
-
+/*
   chThdSleepMilliseconds(1);
 
   char q[12];
@@ -141,12 +144,12 @@ void UART_MPC_init() {
   q[9] = 0x01;
   q[10] = 0xA5;
   q[11] = 0x00;
-
-  uartStartSend(&UARTD, 6, &q);
+*/
+//  uartStartSend(&UARTD, 6, &q);
 
   chThdSleepSeconds(1);
 //  __asm("BKPT #0\n");
-  z++;
+ // z++;
 
 #else
 
@@ -220,8 +223,8 @@ void inline _uart_send(payload_t * tx_buffer) {
   for (x = 0; x < (*tx_buffer).size; x++) {
     txb[x + 2] = (*tx_buffer).pload[x];
   }
-  uartStartSend(&UARTD, ((*tx_buffer).size + 2) << 1, &txb);
-//  chEvtWaitOne((eventmask_t)EVENTMASK_UART_TX_IRQ);
+  uartStartSend(&UARTD, ((*tx_buffer).size + 2), &txb);
+  chEvtWaitOne((eventmask_t)EVENTMASK_UART_TX_IRQ);
 }
 
 bool inline _uart_rcv_irq(payload_t * rx_buffer) {
