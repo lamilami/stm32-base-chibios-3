@@ -1,0 +1,13 @@
+syntax: glob
+
+os/.svn/*
+STM32F*/Debug/*
+STM32F*/*.elf.xcodeproj/*
+logs/*
+*/*.bak
+*.old
+a.out
+*.orig
+info.txt
+error.txt
+
