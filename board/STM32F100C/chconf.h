@@ -28,7 +28,7 @@
 #ifndef _CHCONF_H_
 #define _CHCONF_H_
 
-#define CH_DEBUG        TRUE
+#define CH_DEBUG        FALSE
 
 /*===========================================================================*/
 /**

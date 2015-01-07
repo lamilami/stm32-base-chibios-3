@@ -138,7 +138,7 @@ typedef struct
 	};
 } payload_t;
 
-#define RF_MAX_IO_BUFFERS 3
+//#define RF_MAX_IO_BUFFERS 3
 
 #endif
 
