@@ -224,6 +224,29 @@ int main(void) {
 
 //	RGBW_IW;
 
+#if RTC_SET_TIME
+
+  struct tm DT_StructTM;
+
+  DT_StructTM.tm_year = 115;
+  DT_StructTM.tm_mon = 12;
+  DT_StructTM.tm_mday = 10;
+  DT_StructTM.tm_isdst = 0;
+  DT_StructTM.tm_wday = 7;
+
+  DT_StructTM.tm_hour = 22;
+  DT_StructTM.tm_min = 59;
+  DT_StructTM.tm_sec = 39;
+
+  RTCDateTime DateTime;
+//  RTCAlarm AlarmTime;
+
+  rtcConvertStructTmToDateTime(&DT_StructTM, 0, &DateTime);
+
+  rtcSetTime(&RTCD1, &DateTime);
+
+#endif
+
 #if HAL_USE_RTC_1
 
   RTCDateTime DateTime;
@@ -231,7 +254,7 @@ int main(void) {
   DateTime.year = 33;
   DateTime.month = 8;
   DateTime.dstflag = 0;
-  DateTime.dayofweek = 4;
+  DateTime.dayofweek = 07;
   DateTime.day = 28;
   DateTime.millisecond = 0;
 
@@ -240,6 +263,7 @@ int main(void) {
   chThdSleepSeconds(1000);
 
   rtcGetTime(&RTCD1, &DateTime);
+
 #ifdef tralala
   /* Disable write protection. */
   RTCD1.rtc->WPR = 0xCA;
@@ -335,7 +359,7 @@ int main(void) {
     DS_Temp_Vals.temp[0] = -77 << 2;
     Core_Module_Read(localhost, Temp, (char*)&DS_Temp_Vals);
     if ((DS_Temp_Vals.cont_errors > 0) || (msg != MSG_OK))
-      DS_Temp_Vals.temp[0] = -99 << 2;
+    DS_Temp_Vals.temp[0] = -99 << 2;
 
 #endif
 
@@ -364,12 +388,12 @@ int main(void) {
 
 #if SEMIHOSTING
 #if DS18B20_PRESENT
-    SH_PrintStr("DS Temp="); //Написание текста
+    SH_PrintStr("DS Temp=");     //Написание текста
     SH_PutSignedQ2(DS_Temp_Vals.temp[0]);
 #endif
 
 #if DHT11_PRESENT
-    SH_PrintStr("; DHT Temp="); //Написание текста
+    SH_PrintStr("; DHT Temp=");     //Написание текста
     SH_PutSignedQ2(DHT_Temp_Vals.temp);
     SH_PrintStr(", Hum=");//Написание текста
     SH_PutUnsignedInt(DHT_Temp_Vals.humidity);
@@ -386,7 +410,7 @@ int main(void) {
      Radio_Send_Command(10, RF_GET, 1, data);
      chThdSleepSeconds(3);*/
     ClearLCDScreen();
-    Cursor(0, 0); //Установка курсора
+    Cursor(0, 0);     //Установка курсора
     PrintStr("Outer temp=");//Написание текста
     /*	    PutData[2][0]=1;
      PutData[2][1]=2;
@@ -401,7 +425,7 @@ int main(void) {
     LCD_PutSignedQ2(DS_Temp_Vals.temp[0]);
     PrintStr("              ");
     Cursor(1, 0);
-    PrintStr(" Temp="); //Написание текста
+    PrintStr(" Temp=");     //Написание текста
 //		tmp = DHT_Temp_Vals.temp;
     LCD_PutUnsignedInt(DHT_Temp_Vals.temp >> 2);
     PrintStr(" Hum=");//Написание текста
