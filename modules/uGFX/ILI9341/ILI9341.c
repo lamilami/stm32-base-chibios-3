@@ -431,22 +431,23 @@ THD_FUNCTION(ILI9341,arg) {
 
     }
 
-    if ((DateTime.millisecond - (DateTime.millisecond % 1000)) % ALARM_PERIOD_MS == 0) {
+    static uint32_t old_D1 = 0, old_H1 = 0, old_M5 = 0, old_S10 = 0;
+
+    if ((uint32_t)(DateTime.millisecond / ALARM_PERIOD_MS) != old_S10) {
+      old_S10 = (uint32_t)(DateTime.millisecond / ALARM_PERIOD_MS);
 //      bool redraw;
 //        redraw = FALSE;
       int16_t max[2] = {-99, -99}, min[2] = {99, 99};
       static int16_t old_min[2] = {99, 99}, old_max[2] = {99, 99};
-      static uint8_t cnt_s10 = 0, cnt_m5 = 0, cnt_h1 = 0;
+//      static uint8_t cnt_s10 = 0, cnt_m5 = 0, cnt_h1 = 0;
 
-      if (cnt_h1 >= D1_PERIOD) {
-        Vals_Cur_d1 = Get_Mean(Graph_Data.h1, D1_PERIOD);
-      }
-
-      if (cnt_m5 >= H1_PERIOD) {
-        Vals_Cur_h1 = Get_Mean(Graph_Data.m5, H1_PERIOD);
-      }
-
-      if (cnt_s10 >= M5_PERIOD) {
+      if ((uint32_t)(DateTime.millisecond / 300000) != old_M5) {
+        if ((uint32_t)(DateTime.millisecond / 3600000) != old_H1) {
+          if (DateTime.day != old_D1) {
+            Vals_Cur_d1 = Get_Mean(Graph_Data.h1, D1_PERIOD);
+          }
+          Vals_Cur_h1 = Get_Mean(Graph_Data.m5, H1_PERIOD);
+        }
         Vals_Cur_m5 = Get_Mean(Graph_Data.s10, M5_PERIOD);
       }
 
@@ -485,22 +486,25 @@ THD_FUNCTION(ILI9341,arg) {
         }
       }
 
-      if (cnt_h1 >= D1_PERIOD) {
-        Redraw_Graph(10, D1_VALS, &old_min[0], &min[0], &old_range[0], &range[0], &Graph_Data.d1[0], &Vals_Cur_d1,
-                     TRUE);
-        cnt_h1 = 0;
-      }
-      if (cnt_m5 >= H1_PERIOD) {
-        Redraw_Graph(10 + D1_VALS + 1, H1_VALS, &old_min[0], &min[0], &old_range[0], &range[0], &Graph_Data.h1[0],
-                     &Vals_Cur_h1, TRUE);
-        cnt_m5 = 0;
-        cnt_h1++;
-      }
-      if (cnt_s10 >= M5_PERIOD) {
+      if ((uint32_t)(DateTime.millisecond / 300000) != old_M5) {
+        old_M5 = (uint32_t)(DateTime.millisecond / 300000);
+        if ((uint32_t)(DateTime.millisecond / 3600000) != old_H1) {
+          old_H1 = (uint32_t)(DateTime.millisecond / 3600000);
+          if (DateTime.day != old_D1) {
+            old_D1 = DateTime.day;
+            Redraw_Graph(10, D1_VALS, &old_min[0], &min[0], &old_range[0], &range[0], &Graph_Data.d1[0], &Vals_Cur_d1,
+                         TRUE);
+//            cnt_h1 = 0;
+          }
+          Redraw_Graph(10 + D1_VALS + 1, H1_VALS, &old_min[0], &min[0], &old_range[0], &range[0], &Graph_Data.h1[0],
+                       &Vals_Cur_h1, TRUE);
+//          cnt_m5 = 0;
+//          cnt_h1++;
+        }
         Redraw_Graph(10 + D1_VALS + H1_VALS + 2, M5_VALS, &old_min[0], &min[0], &old_range[0], &range[0],
                      &Graph_Data.m5[0], &Vals_Cur_m5, TRUE);
-        cnt_s10 = 0;
-        cnt_m5++;
+//        cnt_s10 = 0;
+//        cnt_m5++;
       }
 //      else if ((old_range[0] != range[0]) || (old_range[1] != range[1]) || (old_min[0] != min[0])
 //          || (old_min[1] != min[1])) {
@@ -541,7 +545,7 @@ THD_FUNCTION(ILI9341,arg) {
                      &Graph_Data.s10[0], &Vals_Cur_s10, FALSE);
       }
 
-      cnt_s10++;
+//      cnt_s10++;
     }
     //    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
     chEvtWaitOne((eventmask_t)1);
