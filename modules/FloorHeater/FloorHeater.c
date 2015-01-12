@@ -9,22 +9,6 @@ static thread_reference_t Update_Thread;
 
 static core_base_struct_t Core_FloorHeater;
 volatile static FloorHeater_Inner_Val Inner_Val_FH = {};
-//volatile static FloorHeater_Inner_Val_RW Floor_PID;
-
-/*
-typedef struct
-{
-//  double dState;                  // Last position input
-	int32_t iState;     // Integrator state
-	int32_t iMax, iMin;
-	// Maximum and minimum allowable integrator state
-	int32_t iGain,     // integral gain
-			pGain;     // proportional gain
-//             dGain;         // derivative gain
-	uint16_t Desired_Temp;
-} SPid;
-
-volatile static SPid Floor_PID = { };*/
 
 int32_t UpdatePID_S(volatile FloorHeater_Inner_Val * pid, int32_t error)     //, double position)
 {
@@ -63,22 +47,14 @@ NULL, /* No callback */
 void FloorHeater_Init()
 {
 
-//	Core_FloorHeater.id = (uint32_t) arg;
 	Core_FloorHeater.type = Heater;
-//	Core_Base.addr = MY_ADDR;
-//	Core_Base.mbox = &core_mb;
-//	Core_FloorHeater.thread = chThdGetSelfX();
-//	Core_FloorHeater.direction = RO;
 	Core_FloorHeater.next = NULL;
 	Core_FloorHeater.description = "FloorHeater, 330 Watt PWM (PI)";
-//	Core_FloorHeater.current_value = 0xffff;
 	Core_FloorHeater.inner_values = &Inner_Val_FH;
 	Core_FloorHeater.ival_size = sizeof(FloorHeater_Inner_Val);
 	Core_FloorHeater.ival_rw_size = sizeof(FloorHeater_Inner_Val_RW);
 
-	/*	chSysLock();
-	 Core_Base.next = &Core_DS18B20;
-	 chSysUnlock();*/
+
 
 	Inner_Val_FH.RW.iGain = 2;
 	Inner_Val_FH.RW.pGain = 4;

@@ -1,7 +1,7 @@
 #ifndef DHT11_H_
 #define DHT11_H_
 
-#define DHT11_PIN	GPIOA_PIN10
+#define DHT11_PIN	GPIOA_PIN0
 
 void DHT11_Start();
 

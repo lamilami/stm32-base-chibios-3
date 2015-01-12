@@ -146,7 +146,7 @@ uint16_t FloorHeater_cb() {
 
   static DHT11_Inner_Val Temp_Vals;
   Core_Module_Update(DHT11, NULL, 3000);
-  Core_Module_Read(DHT11, (char*) &Temp_Vals);
+  Core_Module_Read(localhost, DHT11, (char*) &Temp_Vals);
 
   return Temp_Vals.temp;
 

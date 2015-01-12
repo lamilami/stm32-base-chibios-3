@@ -160,7 +160,7 @@ void UART_MPC_init() {
 
 //  palSetPadMode(GPIOA, GPIOA_PIN2,
 //                PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_MID | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_OPENDRAIN);
-  palSetPadMode(GPIOA, GPIOA_PIN9,
+  palSetPadMode(GPIOA, GPIOA_PIN2,
                 PAL_MODE_ALTERNATE(1) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLUP | PAL_STM32_OTYPE_OPENDRAIN);
 
   //  palSetPadMode(GPIOA, GPIOA_PIN3, PAL_MODE_STM32_ALTERNATE_OPENDRAIN);
@@ -206,14 +206,6 @@ void UART_MPC_init() {
 //  z++;
 #endif
 
-  /*
-   #if DHT11_PRESENT
-   DHT11_Init();
-   thread_t* thd = chThdCreateStatic(waDHT11_thread, sizeof(waDHT11_thread), HIGHPRIO, DHT11_thread, NULL);
-   Core_Register_Thread(DHT11, thd, &Update_Thread);
-   chThdYield();
-   #endif
-   */
 }
 
 void inline _uart_send(payload_t * tx_buffer) {

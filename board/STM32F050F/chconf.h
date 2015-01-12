@@ -474,7 +474,7 @@
  * @note    This macro can be used to activate a power saving mode.
  */
 #define CH_CFG_IDLE_ENTER_HOOK() {                                      	\
-	GPIOA->BRR = 2;														 	\
+	GPIOF->BRR = 1;														 	\
 }
 
 //	palClearPad(GPIOF,0);
@@ -486,7 +486,7 @@
  * @note    This macro can be used to deactivate a power saving mode.
  */
 #define CH_CFG_IDLE_LEAVE_HOOK() {                                         	\
-	GPIOA->BSRRL = 2;														\
+	GPIOF->BSRRL = 1;														\
 }
 
 //GPIOF->

@@ -149,9 +149,9 @@
     <File name="os/hal/include/hal.h" path="os/hal/include/hal.h" type="1"/>
     <File name="os/rt/src/chsem.c" path="os/rt/src/chsem.c" type="1"/>
     <File name="modules/Watchdog/iwdg.h" path="modules/Watchdog/iwdg.h" type="1"/>
-    <File name="uGFX/src/gos/gos_chibios.c" path="uGFX/src/gos/gos_chibios.c" type="1"/>
-    <File name="os/rt/include/chmempools.h" path="os/rt/include/chmempools.h" type="1"/>
     <File name="os/ext/CMSIS/include/core_cmFunc.h" path="os/ext/CMSIS/include/core_cmFunc.h" type="1"/>
+    <File name="os/rt/include/chmempools.h" path="os/rt/include/chmempools.h" type="1"/>
+    <File name="uGFX/src/gos/gos_chibios.c" path="uGFX/src/gos/gos_chibios.c" type="1"/>
     <File name="modules/FloorHeater/FloorHeater.h" path="modules/FloorHeater/FloorHeater.h" type="1"/>
     <File name="modules/Watchdog" path="" type="2"/>
     <File name="os/rt/src/chcond.c" path="os/rt/src/chcond.c" type="1"/>
@@ -163,29 +163,29 @@
     <File name="uGFX/src/gos/sys_defs.h" path="uGFX/src/gos/sys_defs.h" type="1"/>
     <File name="modules/DS18B20/DS18B20.h" path="modules/DS18B20/DS18B20.h" type="1"/>
     <File name="os/hal/src/usb.c" path="os/hal/src/usb.c" type="1"/>
-    <File name="os/hal/ports/STM32/LLD/USARTv1/uart_lld.h" path="os/hal/ports/STM32/LLD/USARTv1/uart_lld.h" type="1"/>
     <File name="os/rt/include/chdebug.h" path="os/rt/include/chdebug.h" type="1"/>
+    <File name="os/hal/ports/STM32/LLD/USARTv1/uart_lld.h" path="os/hal/ports/STM32/LLD/USARTv1/uart_lld.h" type="1"/>
     <File name="uGFX/src/gqueue" path="" type="2"/>
     <File name="modules/EEPROM/drv/24xx.c" path="modules/EEPROM/drv/24xx.c" type="1"/>
     <File name="os/rt/ports/ARMCMx/compilers" path="" type="2"/>
     <File name="os/ext/CMSIS/include" path="" type="2"/>
-    <File name="modules/RGBW" path="" type="2"/>
     <File name="os/hal/osal/rt/osal.h" path="os/hal/osal/rt/osal.h" type="1"/>
-    <File name="modules/MPC/UART/uart_mpc.h" path="modules/MPC/UART/uart_mpc.h" type="1"/>
+    <File name="modules/RGBW" path="" type="2"/>
     <File name="uGFX/src/gwin/gwin_widget.h" path="uGFX/src/gwin/gwin_widget.h" type="1"/>
+    <File name="modules/MPC/UART/uart_mpc.h" path="modules/MPC/UART/uart_mpc.h" type="1"/>
     <File name="modules/MPC" path="" type="2"/>
-    <File name="os/various/shell.h" path="os/various/shell.h" type="1"/>
     <File name="os/ext/CMSIS/ST/system_stm32f10x.h" path="os/ext/CMSIS/ST/system_stm32f10x.h" type="1"/>
+    <File name="os/various/shell.h" path="os/various/shell.h" type="1"/>
     <File name="modules/DS18B20/onewire.h" path="modules/DS18B20/onewire.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/st_lld.c" path="os/hal/ports/STM32/LLD/TIMv1/st_lld.c" type="1"/>
     <File name="os/ext/CMSIS/include/arm_math.h" path="os/ext/CMSIS/include/arm_math.h" type="1"/>
     <File name="uGFX/src/gqueue/sys_rules.h" path="uGFX/src/gqueue/sys_rules.h" type="1"/>
     <File name="os/rt/src/chschd.c" path="os/rt/src/chschd.c" type="1"/>
+    <File name="modules/DHT11/DHT11.h" path="modules/DHT11/DHT11.h" type="1"/>
     <File name="uGFX/src/gos/sys_rules.h" path="uGFX/src/gos/sys_rules.h" type="1"/>
     <File name="os/hal/ports/STM32/STM32F1xx/stm32_isr.h" path="os/hal/ports/STM32/STM32F1xx/stm32_isr.h" type="1"/>
-    <File name="modules/DHT11/DHT11.h" path="modules/DHT11/DHT11.h" type="1"/>
-    <File name="uGFX/src/gdisp/mcufont/mcufont.h" path="uGFX/src/gdisp/mcufont/mcufont.h" type="1"/>
     <File name="os/hal/include/pwm.h" path="os/hal/include/pwm.h" type="1"/>
+    <File name="uGFX/src/gdisp/mcufont/mcufont.h" path="uGFX/src/gdisp/mcufont/mcufont.h" type="1"/>
     <File name="os/common/ports/ARMCMx/compilers/GCC" path="" type="2"/>
     <File name="uGFX/src/gdriver/sys_options.h" path="uGFX/src/gdriver/sys_options.h" type="1"/>
     <File name="uGFX/src/gos/gos_chibios.h" path="uGFX/src/gos/gos_chibios.h" type="1"/>
@@ -195,18 +195,18 @@
     <File name="os/hal/ports/STM32/STM32F1xx/adc_lld.h" path="os/hal/ports/STM32/STM32F1xx/adc_lld.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/GPIOv1/pal_lld.c" path="os/hal/ports/STM32/LLD/GPIOv1/pal_lld.c" type="1"/>
     <File name="os/ext/CMSIS/include/arm_const_structs.h" path="os/ext/CMSIS/include/arm_const_structs.h" type="1"/>
-    <File name="os/hal/include/can.h" path="os/hal/include/can.h" type="1"/>
     <File name="os/hal/include/hal_ioblock.h" path="os/hal/include/hal_ioblock.h" type="1"/>
+    <File name="os/hal/include/can.h" path="os/hal/include/can.h" type="1"/>
     <File name="modules/EEPROM/eeprom_testsuit.c" path="modules/EEPROM/eeprom_testsuit.c" type="1"/>
-    <File name="modules/EEPROM/eeprom_testsuit_conf.h" path="modules/EEPROM/eeprom_testsuit_conf.h" type="1"/>
     <File name="modules/LM75/LM75_hal.c" path="modules/LM75/LM75_hal.c" type="1"/>
+    <File name="modules/EEPROM/eeprom_testsuit_conf.h" path="modules/EEPROM/eeprom_testsuit_conf.h" type="1"/>
     <File name="os/hal/ports/STM32/STM32F1xx/adc_lld.c" path="os/hal/ports/STM32/STM32F1xx/adc_lld.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv1/spi_lld.c" path="os/hal/ports/STM32/LLD/SPIv1/spi_lld.c" type="1"/>
     <File name="board/STM32F100C/mcuconf.h" path="board/STM32F100C/mcuconf.h" type="1"/>
     <File name="os/common/ports/ARMCMx" path="" type="2"/>
+    <File name="modules/Command Shell/cli.c" path="modules/Command Shell/cli.c" type="1"/>
     <File name="os/hal/include/dac.h" path="os/hal/include/dac.h" type="1"/>
     <File name="uGFX/src/gdisp" path="" type="2"/>
-    <File name="modules/Command Shell/cli.c" path="modules/Command Shell/cli.c" type="1"/>
     <File name="modules/MPC/UART/uart_mpc.c" path="modules/MPC/UART/uart_mpc.c" type="1"/>
     <File name="os/rt/include/chheap.h" path="os/rt/include/chheap.h" type="1"/>
     <File name="os/hal/ports/STM32/STM32F1xx" path="" type="2"/>
@@ -237,14 +237,14 @@
     <File name="os/hal/include/i2s.h" path="os/hal/include/i2s.h" type="1"/>
     <File name="os/hal/src/serial_usb.c" path="os/hal/src/serial_usb.c" type="1"/>
     <File name="os/hal/src/rtc.c" path="os/hal/src/rtc.c" type="1"/>
-    <File name="os/ext/CMSIS/include/core_cm3.h" path="os/ext/CMSIS/include/core_cm3.h" type="1"/>
     <File name="os/hal/src/sdc.c" path="os/hal/src/sdc.c" type="1"/>
+    <File name="os/ext/CMSIS/include/core_cm3.h" path="os/ext/CMSIS/include/core_cm3.h" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
     <File name="uGFX/src/ginput/ginput_toggle.c" path="uGFX/src/ginput/ginput_toggle.c" type="1"/>
     <File name="modules/LCD1602/lcd.c" path="modules/LCD1602/lcd.c" type="1"/>
+    <File name="os/hal/ports/STM32/LLD/ext_lld.c" path="os/hal/ports/STM32/LLD/ext_lld.c" type="1"/>
     <File name="os/ext/CMSIS/include/arm_common_tables.h" path="os/ext/CMSIS/include/arm_common_tables.h" type="1"/>
     <File name="uGFX/src/gtimer" path="" type="2"/>
-    <File name="os/hal/ports/STM32/LLD/ext_lld.c" path="os/hal/ports/STM32/LLD/ext_lld.c" type="1"/>
     <File name="modules/MPC/UART" path="" type="2"/>
     <File name="os/rt/include/chmtx.h" path="os/rt/include/chmtx.h" type="1"/>
     <File name="uGFX/src/gqueue/sys_defs.h" path="uGFX/src/gqueue/sys_defs.h" type="1"/>
@@ -257,23 +257,23 @@
     <File name="os/hal/ports/STM32/LLD/SPIv1" path="" type="2"/>
     <File name="os/rt/ports/ARMCMx" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/I2Cv1/i2c_lld.c" path="os/hal/ports/STM32/LLD/I2Cv1/i2c_lld.c" type="1"/>
+    <File name="uGFX/src/gdisp/mcufont/mf_scaledfont.h" path="uGFX/src/gdisp/mcufont/mf_scaledfont.h" type="1"/>
     <File name="uGFX/src/gdisp/mcufont/mf_encoding.c" path="uGFX/src/gdisp/mcufont/mf_encoding.c" type="1"/>
     <File name="os/rt/src/chvt.c" path="os/rt/src/chvt.c" type="1"/>
-    <File name="uGFX/src/gdisp/mcufont/mf_scaledfont.h" path="uGFX/src/gdisp/mcufont/mf_scaledfont.h" type="1"/>
     <File name="os/rt/src/chstats.c" path="os/rt/src/chstats.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F1xx/ext_lld_isr.c" path="os/hal/ports/STM32/STM32F1xx/ext_lld_isr.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv1/spi_lld.h" path="os/hal/ports/STM32/LLD/SPIv1/spi_lld.h" type="1"/>
     <File name="board" path="" type="2"/>
+    <File name="modules/RGBW/RGBW.h" path="modules/RGBW/RGBW.h" type="1"/>
     <File name="os/common/ports/ARMCMx/devices/STM32F1xx" path="" type="2"/>
     <File name="board/uGFX_ILI9341/ILI9341.h" path="board/uGFX_ILI9341/ILI9341.h" type="1"/>
-    <File name="modules/RGBW/RGBW.h" path="modules/RGBW/RGBW.h" type="1"/>
     <File name="os/rt/include/chvt.h" path="os/rt/include/chvt.h" type="1"/>
     <File name="os/hal/src/hal_mmcsd.c" path="os/hal/src/hal_mmcsd.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/USARTv1" path="" type="2"/>
     <File name="modules/core.c" path="modules/core.c" type="1"/>
+    <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
     <File name="os/rt/ports/ARMCMx/compilers/GCC" path="" type="2"/>
     <File name="os/hal/include/hal_queues.h" path="os/hal/include/hal_queues.h" type="1"/>
-    <File name="modules/LCD1602/lcd.h" path="modules/LCD1602/lcd.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" path="os/hal/ports/STM32/LLD/TIMv1/stm32_tim.h" type="1"/>
     <File name="board/uGFX_ILI9341/board_ILI9341_spi.h" path="board/uGFX_ILI9341/board_ILI9341_spi.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.h" type="1"/>
@@ -282,37 +282,37 @@
     <File name="os/hal/src/adc.c" path="os/hal/src/adc.c" type="1"/>
     <File name="os/hal/include" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/I2Cv1/i2c_lld.h" path="os/hal/ports/STM32/LLD/I2Cv1/i2c_lld.h" type="1"/>
+    <File name="board/STM32F100C/halconf.h" path="board/STM32F100C/halconf.h" type="1"/>
+    <File name="uGFX/src/gdisp/mcufont/mf_encoding.h" path="uGFX/src/gdisp/mcufont/mf_encoding.h" type="1"/>
     <File name="os/rt/src/chmempools.c" path="os/rt/src/chmempools.c" type="1"/>
     <File name="os/hal/include/ext.h" path="os/hal/include/ext.h" type="1"/>
-    <File name="uGFX/src/gdisp/mcufont/mf_encoding.h" path="uGFX/src/gdisp/mcufont/mf_encoding.h" type="1"/>
     <File name="uGFX/src/gdisp/mcufont/mf_scaledfont.c" path="uGFX/src/gdisp/mcufont/mf_scaledfont.c" type="1"/>
-    <File name="board/STM32F100C/halconf.h" path="board/STM32F100C/halconf.h" type="1"/>
     <File name="os/ext/CMSIS" path="" type="2"/>
-    <File name="uGFX/src/gdisp/mcufont/mf_bwfont.c" path="uGFX/src/gdisp/mcufont/mf_bwfont.c" type="1"/>
     <File name="uGFX/src/gdisp/mcufont/mf_font.c" path="uGFX/src/gdisp/mcufont/mf_font.c" type="1"/>
+    <File name="uGFX/src/gdisp/mcufont/mf_bwfont.c" path="uGFX/src/gdisp/mcufont/mf_bwfont.c" type="1"/>
     <File name="os/hal/ports" path="" type="2"/>
-    <File name="uGFX/src/gdisp/mcufont/mf_wordwrap.h" path="uGFX/src/gdisp/mcufont/mf_wordwrap.h" type="1"/>
     <File name="modules/uGFX/ILI9341/ILI9341.h" path="modules/uGFX/ILI9341/ILI9341.h" type="1"/>
+    <File name="uGFX/src/gdisp/mcufont/mf_wordwrap.h" path="uGFX/src/gdisp/mcufont/mf_wordwrap.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/I2Cv1" path="" type="2"/>
     <File name="os/hal/ports/common" path="" type="2"/>
     <File name="os/hal/ports/STM32/STM32F1xx/stm32_registry.h" path="os/hal/ports/STM32/STM32F1xx/stm32_registry.h" type="1"/>
     <File name="os/common/ports/ARMCMx/devices/STM32F1xx/cmparams.h" path="os/common/ports/ARMCMx/devices/STM32F1xx/cmparams.h" type="1"/>
-    <File name="modules/PIR" path="" type="2"/>
-    <File name="uGFX/src/ginput" path="" type="2"/>
     <File name="os/rt/src/chmboxes.c" path="os/rt/src/chmboxes.c" type="1"/>
+    <File name="uGFX/src/ginput" path="" type="2"/>
+    <File name="modules/PIR" path="" type="2"/>
     <File name="modules/DS18B20/onewire.c" path="modules/DS18B20/onewire.c" type="1"/>
     <File name="uGFX/src/gdisp/gdisp_gdisp.c" path="uGFX/src/gdisp/gdisp_gdisp.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c" path="os/hal/ports/STM32/LLD/TIMv1/pwm_lld.c" type="1"/>
     <File name="os/rt/src/chdebug.c" path="os/rt/src/chdebug.c" type="1"/>
     <File name="os/rt/include/chdynamic.h" path="os/rt/include/chdynamic.h" type="1"/>
-    <File name="modules/Watchdog/iwdg_lld.c" path="modules/Watchdog/iwdg_lld.c" type="1"/>
     <File name="os/rt/include/chbsem.h" path="os/rt/include/chbsem.h" type="1"/>
+    <File name="modules/Watchdog/iwdg_lld.c" path="modules/Watchdog/iwdg_lld.c" type="1"/>
     <File name="modules/DS18B20" path="" type="2"/>
     <File name="board/uGFX_ILI9341/gfxconf.h" path="board/uGFX_ILI9341/gfxconf.h" type="1"/>
     <File name="os/hal/src/spi.c" path="os/hal/src/spi.c" type="1"/>
     <File name="board/uGFX_ILI9341" path="" type="2"/>
-    <File name="os/hal/src/st.c" path="os/hal/src/st.c" type="1"/>
     <File name="uGFX/src/gdisp/driver.h" path="uGFX/src/gdisp/driver.h" type="1"/>
+    <File name="os/hal/src/st.c" path="os/hal/src/st.c" type="1"/>
     <File name="modules/MPC/nRF24/radio.h" path="modules/MPC/nRF24/radio.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/RTCv1" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1" path="" type="2"/>
@@ -324,19 +324,19 @@
     <File name="modules/MPC/nRF24/nRF24.h" path="modules/MPC/nRF24/nRF24.h" type="1"/>
     <File name="os/hal/include/pal.h" path="os/hal/include/pal.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/GPIOv1/pal_lld.h" path="os/hal/ports/STM32/LLD/GPIOv1/pal_lld.h" type="1"/>
-    <File name="uGFX/src/gdriver/sys_defs.h" path="uGFX/src/gdriver/sys_defs.h" type="1"/>
     <File name="os/hal/src/serial.c" path="os/hal/src/serial.c" type="1"/>
+    <File name="uGFX/src/gdriver/sys_defs.h" path="uGFX/src/gdriver/sys_defs.h" type="1"/>
     <File name="os/rt/include/chthreads.h" path="os/rt/include/chthreads.h" type="1"/>
     <File name="modules/MPC/nRF24/radio.c" path="modules/MPC/nRF24/radio.c" type="1"/>
     <File name="modules/LCD1602" path="" type="2"/>
-    <File name="modules/EEPROM/base_rw.h" path="modules/EEPROM/base_rw.h" type="1"/>
-    <File name="os/rt" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/USARTv1/uart_lld.c" path="os/hal/ports/STM32/LLD/USARTv1/uart_lld.c" type="1"/>
+    <File name="os/rt" path="" type="2"/>
+    <File name="modules/EEPROM/base_rw.h" path="modules/EEPROM/base_rw.h" type="1"/>
     <File name="uGFX/src/gwin/gwin_wm.c" path="uGFX/src/gwin/gwin_wm.c" type="1"/>
     <File name="modules/DS18B20/DS18B20.c" path="modules/DS18B20/DS18B20.c" type="1"/>
     <File name="uGFX/src/gevent/gevent_gevent.c" path="uGFX/src/gevent/gevent_gevent.c" type="1"/>
-    <File name="uGFX/src/ginput/ginput_dial.h" path="uGFX/src/ginput/ginput_dial.h" type="1"/>
     <File name="uGFX/src/gdisp/mcufont/mf_bwfont.h" path="uGFX/src/gdisp/mcufont/mf_bwfont.h" type="1"/>
+    <File name="uGFX/src/ginput/ginput_dial.h" path="uGFX/src/ginput/ginput_dial.h" type="1"/>
     <File name="modules/uGFX/ILI9341/ILI9341.c" path="modules/uGFX/ILI9341/ILI9341.c" type="1"/>
     <File name="uGFX/src/gdisp/mcufont/mf_wordwrap.c" path="uGFX/src/gdisp/mcufont/mf_wordwrap.c" type="1"/>
     <File name="os/hal/src/can.c" path="os/hal/src/can.c" type="1"/>
@@ -344,8 +344,8 @@
     <File name="modules/MPC/nRF24/nRF24.c" path="modules/MPC/nRF24/nRF24.c" type="1"/>
     <File name="modules/Watchdog/iwdg_lld.h" path="modules/Watchdog/iwdg_lld.h" type="1"/>
     <File name="os/hal/src/hal_queues.c" path="os/hal/src/hal_queues.c" type="1"/>
-    <File name="uGFX/src/gdisp/mcufont/mf_config.h" path="uGFX/src/gdisp/mcufont/mf_config.h" type="1"/>
     <File name="board/STM32F100C/board.c" path="board/STM32F100C/board.c" type="1"/>
+    <File name="uGFX/src/gdisp/mcufont/mf_config.h" path="uGFX/src/gdisp/mcufont/mf_config.h" type="1"/>
     <File name="modules/Watchdog/WatchDog.h" path="modules/Watchdog/WatchDog.h" type="1"/>
     <File name="board/STM32F100C" path="" type="2"/>
     <File name="os/rt/include" path="" type="2"/>
@@ -353,8 +353,8 @@
     <File name="os/rt/src/chmemcore.c" path="os/rt/src/chmemcore.c" type="1"/>
     <File name="uGFX/src/gevent/sys_defs.h" path="uGFX/src/gevent/sys_defs.h" type="1"/>
     <File name="modules/EEPROM/eeprom_spi.h" path="modules/EEPROM/eeprom_spi.h" type="1"/>
-    <File name="os/rt/include/chmsg.h" path="os/rt/include/chmsg.h" type="1"/>
     <File name="uGFX/src/gevent/sys_options.h" path="uGFX/src/gevent/sys_options.h" type="1"/>
+    <File name="os/rt/include/chmsg.h" path="os/rt/include/chmsg.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/USARTv1/serial_lld.c" path="os/hal/ports/STM32/LLD/USARTv1/serial_lld.c" type="1"/>
     <File name="uGFX/src/gtimer/sys_defs.h" path="uGFX/src/gtimer/sys_defs.h" type="1"/>
     <File name="modules/LM75" path="" type="2"/>
@@ -373,8 +373,8 @@
     <File name="uGFX/src/gtimer/sys_options.h" path="uGFX/src/gtimer/sys_options.h" type="1"/>
     <File name="os/hal" path="" type="2"/>
     <File name="uGFX/gfx.h" path="uGFX/gfx.h" type="1"/>
-    <File name="os/hal/include/sdc.h" path="os/hal/include/sdc.h" type="1"/>
     <File name="modules/EEPROM/eeprom.c" path="modules/EEPROM/eeprom.c" type="1"/>
+    <File name="os/hal/include/sdc.h" path="os/hal/include/sdc.h" type="1"/>
     <File name="os/hal/include/i2c.h" path="os/hal/include/i2c.h" type="1"/>
     <File name="uGFX/src/gwin/sys_options.h" path="uGFX/src/gwin/sys_options.h" type="1"/>
     <File name="os/hal/src/hal.c" path="os/hal/src/hal.c" type="1"/>
@@ -385,8 +385,8 @@
     <File name="os/common/ports/ARMCMx/devices" path="" type="2"/>
     <File name="uGFX/src/ginput/driver_dial.h" path="uGFX/src/ginput/driver_dial.h" type="1"/>
     <File name="modules/LM75/LM75.c" path="modules/LM75/LM75.c" type="1"/>
-    <File name="uGFX/src/gdisp/fonts" path="" type="2"/>
     <File name="uGFX/src/gtimer/sys_rules.h" path="uGFX/src/gtimer/sys_rules.h" type="1"/>
+    <File name="uGFX/src/gdisp/fonts" path="" type="2"/>
     <File name="os/hal/src/dac.c" path="os/hal/src/dac.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv1/i2s_lld.h" path="os/hal/ports/STM32/LLD/SPIv1/i2s_lld.h" type="1"/>
     <File name="os/common/ports" path="" type="2"/>
@@ -406,8 +406,8 @@
     <File name="os/hal/ports/STM32/LLD/ext_lld.h" path="os/hal/ports/STM32/LLD/ext_lld.h" type="1"/>
     <File name="board/STM32F100C/chconf.h" path="board/STM32F100C/chconf.h" type="1"/>
     <File name="os/hal/ports/STM32/STM32F1xx/ext_lld_isr.h" path="os/hal/ports/STM32/STM32F1xx/ext_lld_isr.h" type="1"/>
-    <File name="os/rt/include/chmboxes.h" path="os/rt/include/chmboxes.h" type="1"/>
     <File name="os/hal/include/hal_mmcsd.h" path="os/hal/include/hal_mmcsd.h" type="1"/>
+    <File name="os/rt/include/chmboxes.h" path="os/rt/include/chmboxes.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/USARTv1/serial_lld.h" path="os/hal/ports/STM32/LLD/USARTv1/serial_lld.h" type="1"/>
     <File name="modules/FloorHeater" path="" type="2"/>
     <File name="os/common/ports/ARMCMx/compilers/GCC/vectors.c" path="os/common/ports/ARMCMx/compilers/GCC/vectors.c" type="1"/>
@@ -430,28 +430,28 @@
     <File name="os/hal/ports/STM32/STM32F1xx/stm32_dma.h" path="os/hal/ports/STM32/STM32F1xx/stm32_dma.h" type="1"/>
     <File name="uGFX/src/gdisp/mcufont" path="" type="2"/>
     <File name="modules/MPC/MPC.c" path="modules/MPC/MPC.c" type="1"/>
-    <File name="modules/Command Shell" path="" type="2"/>
     <File name="modules/DHT11" path="" type="2"/>
+    <File name="modules/Command Shell" path="" type="2"/>
     <File name="os/hal/ports/common/ARMCMx/nvic.c" path="os/hal/ports/common/ARMCMx/nvic.c" type="1"/>
     <File name="modules/DHT11/DHT11_hal.c" path="modules/DHT11/DHT11_hal.c" type="1"/>
     <File name="uGFX/src/gevent" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/icu_lld.c" path="os/hal/ports/STM32/LLD/TIMv1/icu_lld.c" type="1"/>
-    <File name="uGFX/src/gwin/sys_defs.h" path="uGFX/src/gwin/sys_defs.h" type="1"/>
     <File name="modules/EEPROM/drv/drv_tbl.c" path="modules/EEPROM/drv/drv_tbl.c" type="1"/>
+    <File name="uGFX/src/gwin/sys_defs.h" path="uGFX/src/gwin/sys_defs.h" type="1"/>
     <File name="modules" path="" type="2"/>
     <File name="uGFX/src/gdisp/gdisp_fonts.c" path="uGFX/src/gdisp/gdisp_fonts.c" type="1"/>
     <File name="uGFX/src/gdisp/mcufont/mf_kerning.h" path="uGFX/src/gdisp/mcufont/mf_kerning.h" type="1"/>
-    <File name="modules/LM75/LM75_hal.h" path="modules/LM75/LM75_hal.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/icu_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/icu_lld.h" type="1"/>
-    <File name="os/hal/include/gpt.h" path="os/hal/include/gpt.h" type="1"/>
+    <File name="modules/LM75/LM75_hal.h" path="modules/LM75/LM75_hal.h" type="1"/>
     <File name="modules/MPC/MPC.h" path="modules/MPC/MPC.h" type="1"/>
+    <File name="os/hal/include/gpt.h" path="os/hal/include/gpt.h" type="1"/>
     <File name="os/hal/osal/rt" path="" type="2"/>
     <File name="uGFX/src/gos/sys_options.h" path="uGFX/src/gos/sys_options.h" type="1"/>
     <File name="os/rt/src/chmsg.c" path="os/rt/src/chmsg.c" type="1"/>
     <File name="os/rt/src/chsys.c" path="os/rt/src/chsys.c" type="1"/>
     <File name="os/hal/include/rtc.h" path="os/hal/include/rtc.h" type="1"/>
-    <File name="uGFX/src/ginput/ginput_mouse.h" path="uGFX/src/ginput/ginput_mouse.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/RTCv1/rtc_lld.h" path="os/hal/ports/STM32/LLD/RTCv1/rtc_lld.h" type="1"/>
+    <File name="uGFX/src/ginput/ginput_mouse.h" path="uGFX/src/ginput/ginput_mouse.h" type="1"/>
     <File name="modules/EEPROM" path="" type="2"/>
     <File name="os/rt/ports/ARMCMx/chcore_v7m.h" path="os/rt/ports/ARMCMx/chcore_v7m.h" type="1"/>
     <File name="uGFX/src/gdisp/mcufont/mf_rlefont.c" path="uGFX/src/gdisp/mcufont/mf_rlefont.c" type="1"/>
@@ -463,15 +463,15 @@
     <File name="os/hal/include/adc.h" path="os/hal/include/adc.h" type="1"/>
     <File name="uGFX/src/ginput/driver_mouse.h" path="uGFX/src/ginput/driver_mouse.h" type="1"/>
     <File name="uGFX/src/ginput/sys_options.h" path="uGFX/src/ginput/sys_options.h" type="1"/>
-    <File name="uGFX/src/gqueue/gqueue_gqueue.c" path="uGFX/src/gqueue/gqueue_gqueue.c" type="1"/>
     <File name="os/hal/src/ext.c" path="os/hal/src/ext.c" type="1"/>
+    <File name="uGFX/src/gqueue/gqueue_gqueue.c" path="uGFX/src/gqueue/gqueue_gqueue.c" type="1"/>
     <File name="modules/uGFX/ILI9341" path="" type="2"/>
     <File name="os/rt/include/chstreams.h" path="os/rt/include/chstreams.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" type="1"/>
-    <File name="uGFX/src/gfx.c" path="uGFX/src/gfx.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" type="1"/>
-    <File name="os/hal/include/icu.h" path="os/hal/include/icu.h" type="1"/>
+    <File name="uGFX/src/gfx.c" path="uGFX/src/gfx.c" type="1"/>
     <File name="modules/MPC/nRF24/nRF24_HAL.c" path="modules/MPC/nRF24/nRF24_HAL.c" type="1"/>
+    <File name="os/hal/include/icu.h" path="os/hal/include/icu.h" type="1"/>
     <File name="os/rt/include/chstats.h" path="os/rt/include/chstats.h" type="1"/>
     <File name="os/ext/CMSIS/include/core_cmInstr.h" path="os/ext/CMSIS/include/core_cmInstr.h" type="1"/>
     <File name="os/rt/ports/ARMCMx/chcore_v7m.c" path="os/rt/ports/ARMCMx/chcore_v7m.c" type="1"/>
@@ -489,8 +489,8 @@
     <File name="os/rt/src/chregistry.c" path="os/rt/src/chregistry.c" type="1"/>
     <File name="os/hal/ports/STM32/STM32F1xx/stm32_dma.c" path="os/hal/ports/STM32/STM32F1xx/stm32_dma.c" type="1"/>
     <File name="modules/DHT11/DHT11_hal.h" path="modules/DHT11/DHT11_hal.h" type="1"/>
-    <File name="os/hal/src/i2c.c" path="os/hal/src/i2c.c" type="1"/>
     <File name="modules/PIR/PIR.c" path="modules/PIR/PIR.c" type="1"/>
+    <File name="os/hal/src/i2c.c" path="os/hal/src/i2c.c" type="1"/>
     <File name="os" path="" type="2"/>
     <File name="modules/LM75/LM75.h" path="modules/LM75/LM75.h" type="1"/>
     <File name="os/hal/src/pwm.c" path="os/hal/src/pwm.c" type="1"/>

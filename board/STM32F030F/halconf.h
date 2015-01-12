@@ -25,33 +25,14 @@
  * @{
  */
 
+#include "core.h"
 #ifndef _HALCONF_H_
 #define _HALCONF_H_
 
 #include "mcuconf.h"
 
-#define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел
+//#define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел
 //#define DEBUG_Discovery
-
-#ifdef DEBUG_Discovery
-#ifdef STM32F100C8
-#define LEDSwap() GPIOC->ODR ^= GPIO_Pin_13
-#define LEDB1On() GPIOA->BSRR = GPIO_Pin_0
-#define LEDB1Off() GPIOA->BRR = GPIO_Pin_0
-#define LEDB1Swap() GPIOA->ODR ^= GPIO_Pin_0
-#else
-#define LEDSwap() GPIOA->ODR ^= GPIOA_PIN3
-//#define LEDB1On() GPIOB->BSRR = GPIO_Pin_1
-//#define LEDB1Off() GPIOB->BRR = GPIO_Pin_1
-#define LEDB1Swap() GPIOA->ODR ^= GPIOA_PIN1
-#endif
-
-void LEDBlinkS(uint8_t cnt);
-void LEDBlinkI(uint8_t cnt);
-//#define LEDBlink LEDBlink();
-//#define LEDBlink   if (Blinker_Thread != NULL) { chSchReadyI(Blinker_Thread); Blinker_Thread = NULL; }
-
-#endif
 
 /**
  * @brief   Enables the PAL subsystem.
@@ -148,7 +129,11 @@ void LEDBlinkI(uint8_t cnt);
  * @brief   Enables the SERIAL subsystem.
  */
 #if !defined(HAL_USE_SERIAL) || defined(__DOXYGEN__)
+#if (DS18B20_PRESENT || CLI_PRESENT)
 #define HAL_USE_SERIAL              TRUE
+#else
+#define HAL_USE_SERIAL              FALSE
+#endif
 #endif
 
 /**
@@ -162,14 +147,22 @@ void LEDBlinkI(uint8_t cnt);
  * @brief   Enables the SPI subsystem.
  */
 #if !defined(HAL_USE_SPI) || defined(__DOXYGEN__)
+#if MPC_RADIO_PRESENT
 #define HAL_USE_SPI                 TRUE
+#else
+#define HAL_USE_SPI                 FALSE
+#endif
 #endif
 
 /**
  * @brief   Enables the UART subsystem.
  */
 #if !defined(HAL_USE_UART) || defined(__DOXYGEN__)
+#if MPC_UART_PRESENT
+#define HAL_USE_UART                TRUE
+#else
 #define HAL_USE_UART                FALSE
+#endif
 #endif
 
 /**
