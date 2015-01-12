@@ -1,14 +1,14 @@
 /*
-    ChibiOS/NIL - Copyright (C) 2013,2014 Giovanni Di Sirio.
+    ChibiOS - Copyright (C) 2006..2015 Giovanni Di Sirio.
 
-    This file is part of ChibiOS/NIL.
+    This file is part of ChibiOS.
 
-    ChibiOS/NIL is free software; you can redistribute it and/or modify
+    ChibiOS is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 3 of the License, or
     (at your option) any later version.
 
-    ChibiOS/NIL is distributed in the hope that it will be useful,
+    ChibiOS is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
@@ -46,10 +46,10 @@ typedef struct nil_thread thread_t;
  */
 #define _NIL_                           /**< @brief Nil RTOS identification.*/
 
-#define CH_KERNEL_VERSION      "0.1.0alpha"
+#define CH_KERNEL_VERSION      "1.0.0dev"
 
-#define CH_KERNEL_MAJOR        0
-#define CH_KERNEL_MINOR        1
+#define CH_KERNEL_MAJOR        1
+#define CH_KERNEL_MINOR        0
 #define CH_KERNEL_PATCH        0
 /** @} */
 
