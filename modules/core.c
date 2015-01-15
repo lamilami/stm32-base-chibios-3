@@ -123,10 +123,8 @@ void Core_Init() {
                                {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
                                {EXT_CH_MODE_DISABLED, NULL},
 #ifndef STM32F10X_MD_VL
-                               { EXT_CH_MODE_DISABLED, NULL},
-                               { EXT_CH_MODE_DISABLED, NULL},
-                               { EXT_CH_MODE_DISABLED, NULL},
-                               { EXT_CH_MODE_DISABLED, NULL},
+                               {EXT_CH_MODE_DISABLED, NULL},
+                               {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
 #endif
                                {EXT_CH_MODE_DISABLED, NULL}}};
 
@@ -210,7 +208,7 @@ static void Start_Modules(void) {
 #endif
 
 #if LCD1602_PRESENT
-  InitializeLCD();     //Инициализация дисплея
+  InitializeLCD(); //Инициализация дисплея
   ClearLCDScreen();//Очистка дисплея от мусора
 #endif
 #if CLI_PRESENT
@@ -307,10 +305,12 @@ void Core_Start() {
 msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds) {
   if (inval != NULL) {
     core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
-    chSysLock();
-    memcpy((void *)base_struct->inner_values, inval, base_struct->ival_rw_size);
+    if (base_struct->ival_rw_size != 0) {
+      chSysLock();
+      memcpy((void *)base_struct->inner_values, inval, base_struct->ival_rw_size);
 //	ByteArrayCopy(inval, (char*) base_struct->inner_values, base_struct->ival_rw_size);
-    chSysUnlock();
+      chSysUnlock();
+    }
   }
   if (Modules_Array[type].Base_Thread != 0) {
     chSysLock();
@@ -334,10 +334,12 @@ msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval
     core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
     if (base_struct == NULL)
       return 0;
-    chSysLock();
-    memcpy(inval, (void *)base_struct->inner_values, base_struct->ival_size);
+    if (base_struct->ival_size != 0) {
+      chSysLock();
+      memcpy(inval, (void *)base_struct->inner_values, base_struct->ival_size);
 //	ByteArrayCopy((char*) base_struct->inner_values, inval, base_struct->ival_size);
-    chSysUnlock();
+      chSysUnlock();
+    }
     ret_size = base_struct->ival_size;
   }
   else {

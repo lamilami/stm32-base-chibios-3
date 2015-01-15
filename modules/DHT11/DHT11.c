@@ -18,14 +18,15 @@ volatile static DHT11_Inner_Val Inner_Val_DHT11;
 void DHT11_Init()
 {
 	Core_DHT11.type = DHT11;
+    Core_DHT11.Auto_Update_Sec = 180;
 //	Core_DHT11.direction = RW;
 	Core_DHT11.next = NULL;
 	Core_DHT11.description = "DHT11 Hum&Temp Sensor";
-	Core_DHT11.inner_values = &Inner_Val_DHT11;
+	Core_DHT11.inner_values[0] = &Inner_Val_DHT11;
 	Core_DHT11.ival_size = sizeof(DHT11_Inner_Val);
 	Core_DHT11.ival_rw_size = sizeof(DHT11_Inner_Val_RW);
 
-	Inner_Val_DHT11.RW.Auto_Update_Sec = 180;
+//	Inner_Val_DHT11.RW.Auto_Update_Sec = 180;
 	Inner_Val_DHT11.cont_errors = 0;
 	Inner_Val_DHT11.global_errors_32 = 0;
 	Inner_Val_DHT11.humidity = 0xFFFF;
@@ -97,7 +98,7 @@ THD_FUNCTION(DHT11_thread,arg)
 
 		chSysUnlock();
 
-		evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_DHT11.RW.Auto_Update_Sec-1));
+		evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Core_DHT11.Auto_Update_Sec-1));
 
 		dht11Update(&DHTD1, NULL);
 
