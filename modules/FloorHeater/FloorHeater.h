@@ -1,6 +1,8 @@
 #ifndef FloorHeater_H_
 #define FloorHeater_H_
 
+#define FH_QUANTITY 1
+
 //#include "DS18B20.h"
 
 // Желаемая температура в градусах Цельсия
@@ -14,8 +16,6 @@ typedef uint16_t (*FloorHeater_Callback_Type)();
 
 typedef struct
 {
-
-	volatile systime_t Auto_Update_Sec;
 	volatile uint16_t Desired_Temp;
 	FloorHeater_Callback_Type Get_Temp_Callback;
 

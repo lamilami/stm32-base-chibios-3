@@ -79,6 +79,8 @@
 */
 #define EVENTMASK_REREAD 0x04
 
+#define MAX_NUMBER_OF_SENSORS 5
+
 #define MSG_ERROR	-3
 
 typedef enum
@@ -103,10 +105,12 @@ typedef struct core_base_struct core_base_struct_t;
 struct core_base_struct
 {
 	core_types_t type;
+	uint8_t quantity;
+    volatile systime_t Auto_Update_Sec;
 //	mod_update_timeout_t Mod_Update_Timeout;
 //	event_source_t event_source;
 //	event_listener_t event_listener;
-	volatile void* inner_values;
+	volatile void* inner_values[MAX_NUMBER_OF_SENSORS];
 	volatile uint8_t ival_rw_size;
 	volatile uint8_t ival_size;
 	volatile const char* description;

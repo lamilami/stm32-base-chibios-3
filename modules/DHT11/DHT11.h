@@ -7,7 +7,7 @@ void DHT11_Start();
 
 typedef struct
 {
-	volatile systime_t Auto_Update_Sec;
+//	volatile systime_t Auto_Update_Sec;
 } DHT11_Inner_Val_RW;
 
 typedef struct
