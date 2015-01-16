@@ -52,19 +52,19 @@ typedef struct
 {
 	char *desc;
 	EXTDriver *ext_drv;
-	volatile uint32_t ext_mode;
-	volatile ioportid_t ext_port;
-	volatile uint16_t ext_pin;
+	uint32_t ext_mode;
+	ioportid_t ext_port;
+	uint16_t ext_pin;
 	EXTChannelConfig ext_cfg;
 	//
 	dht11_state_t state;
-	systime_t refresh_time;
-	uint16_t refresh_period;
+//	systime_t refresh_time;
+//	uint16_t refresh_period;
 	uint8_t temp;
 	uint8_t humidity;
 	uint8_t bit_count;
 	uint32_t data;
-	uint8_t crc;
+//	uint8_t crc;
 	lld_lock_t lock;
 	virtual_timer_t timer;
 	gptcnt_t time_measurment;

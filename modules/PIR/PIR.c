@@ -54,7 +54,7 @@ static void PIR_Init(void)
 	Inner_Val.RW.Delay_Seconds = 5;
 	Inner_Val.RW.PIR_Callback = NULL;
 
-	Core_Module_Register(&Core_PIR);
+	Core_Module_Register(&Core_PIR, NULL, NULL);
 }
 
 void PIR_Start()

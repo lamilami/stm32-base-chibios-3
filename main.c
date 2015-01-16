@@ -471,7 +471,7 @@ int main(void)
 //		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(30));
 #endif
 
-#if FloorHeater_PRESENT
+#if FloorHeater_PRESENT1
 
 		chThdSleepSeconds(180);
 		osalSysLock();

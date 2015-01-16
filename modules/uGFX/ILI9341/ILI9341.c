@@ -356,8 +356,8 @@ THD_FUNCTION(ILI9341,arg) {
 //		msg_t msg;
 //		msg = Core_Module_Update(Temp, NULL, 1000);
       DS_Temp_Vals.temp[0] = -77 << 2;
-      Core_Module_Update(Temp, NULL, 1000);
-      Core_Module_Read(localhost, Temp, (char*)&DS_Temp_Vals);
+      Core_Module_Update(Temp, 0, NULL, 1000);
+      Core_Module_Read(localhost, Temp, 0, (char*)&DS_Temp_Vals);
       if ((DS_Temp_Vals.cont_errors > 0))     // || (msg != MSG_OK))
         DS_Temp_Vals.temp[0] = -99 << 2;
 
@@ -394,7 +394,7 @@ THD_FUNCTION(ILI9341,arg) {
 //    chThdSleepSeconds(1);
 //      DHT_Temp_Vals.temp = -77 << 2;
 //      DHT_Temp_Vals.humidity = -99;
-        if (Core_Module_Read(SUBMOD_ADDR(num+1), DHT11, (char*)&DHT_Temp_Vals) != MSG_TIMEOUT) {
+        if (Core_Module_Read(SUBMOD_ADDR(num+1), DHT11, 0, (char*)&DHT_Temp_Vals) != MSG_TIMEOUT) {
           Vals_Cur_s10.hum[num] = DHT_Temp_Vals.humidity;
           Vals_Cur_s10.temp[num] = DHT_Temp_Vals.temp / 4;
         }

@@ -2,7 +2,7 @@
 #define _CORE_H_
 
 #define NET_ADDR            30      //5-bit nRF24 addr
-#define SUB_ADDR            2       //3-bit USART addr
+#define SUB_ADDR            1       //3-bit USART addr
 
 #define MY_ADDR				((NET_ADDR & 0x3F) | ((SUB_ADDR << 6) & 0xC0))
 #define SUBMOD_ADDR(addr)   ((NET_ADDR & 0x3F) | (((addr) << 6) & 0xC0))
@@ -16,10 +16,10 @@
 
 #define DS18B20_PRESENT		FALSE
 #define DHT11_PRESENT		TRUE
-#define FloorHeater_PRESENT TRUE
+#define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
-#define RGBW_PRESENT		TRUE
+#define RGBW_PRESENT		FALSE
 #define CLI_PRESENT			FALSE
 #define PIR_PRESENT			FALSE
 #define LM75_PRESENT		FALSE
@@ -107,6 +107,8 @@ struct core_base_struct
 {
 	core_types_t type;
 	uint8_t quantity;
+    thread_t* Base_Thread;
+    thread_reference_t* Base_Thread_Updater;
 //	mod_update_timeout_t Mod_Update_Timeout;
 //	event_source_t event_source;
 //	event_listener_t event_listener;
@@ -121,19 +123,18 @@ struct core_base_struct
 	    volatile uint16_t uint16[2];
 	    volatile uint32_t uint32;
 	} custom;*/
-
 };
 
 typedef struct
 {
 	core_base_struct_t* Base_Struct;
-	thread_t* Base_Thread;
-	thread_reference_t* Base_Thread_Updater;
+//	thread_t* Base_Thread;
+//	thread_reference_t* Base_Thread_Updater;
 } core_array_t;
 
 //volatile extern core_base_struct_t* Core_BasePtr;
 
-void Core_Module_Register(core_base_struct_t* Base_Struct);
+void Core_Module_Register(core_base_struct_t* Base_Struct, thread_t* thd, thread_reference_t* upd_thd);
 //uint8_t Core_GetDataById(const uint8_t id, uint16_t* data);
 //uint16_t Core_SetDataById(const uint8_t id, uint16_t value);
 
@@ -143,7 +144,7 @@ void Core_Module_Register(core_base_struct_t* Base_Struct);
 msg_t Core_Module_Update(const core_types_t type, const uint8_t number, const char * inval, const systime_t timeout_milliseconds);
 msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, const uint8_t number, char * inval);
 bool Core_Events_Register(const core_types_t type);
-inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
+//inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
 //void ByteArrayCopy(const volatile char* src, volatile char* dst, const uint8_t cnt);
 #define ABS(a) (((a) < 0) ? -(a) : (a))
 #define MAX(x,y) (((x)>(y))?(x):(y)) // максимум двух чисел

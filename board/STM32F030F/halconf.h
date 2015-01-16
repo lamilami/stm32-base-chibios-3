@@ -66,7 +66,11 @@
  * @brief   Enables the GPT subsystem.
  */
 #if !defined(HAL_USE_GPT) || defined(__DOXYGEN__)
+#if DHT11_PRESENT
 #define HAL_USE_GPT                 TRUE
+#else
+#define HAL_USE_GPT                 FALSE
+#endif
 #endif
 
 /**
@@ -108,14 +112,22 @@
  * @brief   Enables the PWM subsystem.
  */
 #if !defined(HAL_USE_PWM) || defined(__DOXYGEN__)
+#if (FloorHeater_PRESENT || RGBW_PRESENT)
 #define HAL_USE_PWM                 TRUE
+#else
+#define HAL_USE_PWM                 FALSE
+#endif
 #endif
 
 /**
  * @brief   Enables the RTC subsystem.
  */
 #if !defined(HAL_USE_RTC) || defined(__DOXYGEN__)
+#if uGFX_PRESENT
 #define HAL_USE_RTC                 TRUE
+#else
+#define HAL_USE_RTC                 FALSE
+#endif
 #endif
 
 /**
@@ -327,7 +339,11 @@
  * @brief   Enables the WATCHDOG subsystem.
  */
 #if !defined(HAL_USE_IWDG) || defined(__DOXYGEN__)
+#if WATCHDOG_PRESENT
 #define HAL_USE_IWDG    TRUE
+#else
+#define HAL_USE_IWDG    FALSE
+#endif
 #endif
 
 #endif /* _HALCONF_H_ */

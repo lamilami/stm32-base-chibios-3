@@ -406,7 +406,7 @@
 #if CH_DEBUG
 #define CH_DBG_FILL_THREADS                 TRUE
 #else
-#define CH_DBG_FILL_THREADS                 FALSE
+#define CH_DBG_FILL_THREADS                 TRUE
 #endif
 
 /**
