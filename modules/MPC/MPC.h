@@ -12,7 +12,7 @@ thread_t *MPC_Thread;
 #define EVENTMASK_UART_ERROR 0x10
 
 /** Defines the payload length the radio should use */
-#define MPC_MAX_PAYLOAD_LENGTH 32
+#define MPC_MAX_PAYLOAD_LENGTH 16
 
 typedef enum
 {
