@@ -23,9 +23,9 @@ NULL, /* No callback */
 
 typedef struct timer_str
 {
-	volatile int32_t * curr_power;
+	volatile int16_t * curr_power;
 	volatile systime_t rise_time;
-	volatile int32_t max_power;
+	volatile int16_t max_power;
 	volatile int8_t inc;
 	virtual_timer_t* vt;
 } timer_str_t;
@@ -49,9 +49,9 @@ volatile static RGBW_Inner_Val Inner_Val_RGBW;
 void RGBW_Init()
 {
 	Core_RGBW.type = RGBW;
-	Core_RGBW.next = NULL;
-	Core_RGBW.description = "RGBW Controller";
-	Core_RGBW.inner_values = &Inner_Val_RGBW;
+//	Core_RGBW.next = NULL;
+//	Core_RGBW.description = "RGBW Controller";
+	Core_RGBW.inner_values[0] = &Inner_Val_RGBW;
 	Core_RGBW.ival_size = sizeof(RGBW_Inner_Val);
 	Core_RGBW.ival_rw_size = sizeof(RGBW_Inner_Val_RW);
 
@@ -110,7 +110,7 @@ void CheckVT_S(timer_str_t *tim_struct)
 	}
 }
 
-THD_WORKING_AREA(waRGBW_Controller, 256);
+THD_WORKING_AREA(waRGBW_Controller, 128);
 //__attribute__((noreturn))
 THD_FUNCTION(RGBW_Controller,arg)
 {

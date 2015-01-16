@@ -31,9 +31,9 @@ typedef struct {
   FloorHeater_Callback_Type Get_Temp_Callback;
 
   int32_t iState; // Integrator state
-  int32_t iMax, iMin;
+  int16_t iMax, iMin;
   // Maximum and minimum allowable integrator state
-  int32_t iGain, // integral gain
+  uint8_t iGain, // integral gain
       pGain; // proportional gain
   uint8_t MaxPower;
 

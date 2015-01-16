@@ -27,7 +27,7 @@ static core_base_struct_t Core_FloorHeater;
 
 static FH_Working_Struct_t FH[FH_QUANTITY];
 
-int32_t UpdatePID_S(volatile FloorHeater_Inner_Val * pid, int32_t error) //, double position)
+int16_t UpdatePID_S(volatile FloorHeater_Inner_Val * pid, int32_t error) //, double position)
 {
 //	int32_t pTerm, /*dTerm,*/iTerm;
 
@@ -64,7 +64,7 @@ void FloorHeater_Init() {
 //  Core_FloorHeater.custom.uint32 = 180;
 //  Core_FloorHeater.Auto_Update_Sec = 180;
 //	Core_FloorHeater.next = NULL;
-  Core_FloorHeater.description = "FloorHeater, 330 Watt PWM (PI)";
+//  Core_FloorHeater.description = "FloorHeater, 330 Watt PWM (PI)";
   Core_FloorHeater.inner_values[0] = &FH[0].Inner_Val_FH;
   Core_FloorHeater.ival_size = sizeof(FloorHeater_Inner_Val);
   Core_FloorHeater.ival_rw_size = sizeof(FloorHeater_Inner_Val_RW);
@@ -178,8 +178,8 @@ THD_FUNCTION(FloorHeater,arg) {
 #endif
       }
       if (sensor_id < FH_QUANTITY) {
-        volatile int16_t ipwr, Current_Temp;
-        static volatile FloorHeater_Inner_Val Current_Ival;
+        int16_t ipwr, Current_Temp;
+        static FloorHeater_Inner_Val Current_Ival;
         //      msg = chMsgSend(DS18B20_Thread, msg);
         //      Desired_Temp = (*Tmp_Base).set_value;
         osalSysLock();
@@ -188,12 +188,12 @@ THD_FUNCTION(FloorHeater,arg) {
 
         if (Current_Ival.RW.Get_Temp_Callback != NULL) {
           Current_Temp = Current_Ival.RW.Get_Temp_Callback();
-          volatile int32_t pwr = UpdatePID_S(&Current_Ival, (Current_Ival.RW.Desired_Temp - Current_Temp));
+          int16_t pwr = UpdatePID_S(&Current_Ival, (Current_Ival.RW.Desired_Temp - Current_Temp));
           if (pwr > Current_Ival.RW.MaxPower)
             pwr = Current_Ival.RW.MaxPower;
           if (pwr < 0)
             pwr = 0;
-          ipwr = (int16_t)pwr;
+          ipwr = pwr;
         }
         else {
           Current_Temp = 0xFFF0;

@@ -19,7 +19,7 @@
 #define FloorHeater_PRESENT TRUE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
-#define RGBW_PRESENT		FALSE
+#define RGBW_PRESENT		TRUE
 #define CLI_PRESENT			FALSE
 #define PIR_PRESENT			FALSE
 #define LM75_PRESENT		FALSE
@@ -80,7 +80,7 @@
 #define EVENTMASK_REREAD 0x04
 #define EVENTMASK_MOD_PRIVATE_SHIFT 8
 
-#define MAX_NUMBER_OF_SENSORS 5
+#define MAX_NUMBER_OF_SENSORS 2
 
 #define MSG_ERROR	-3
 
@@ -99,7 +99,7 @@ typedef enum
 	Other
 } core_types_t;
 
-typedef msg_t (*mod_update_timeout_t)(msg_t msg, systime_t timeout);
+//typedef msg_t (*mod_update_timeout_t)(msg_t msg, systime_t timeout);
 
 typedef struct core_base_struct core_base_struct_t;
 
@@ -113,8 +113,8 @@ struct core_base_struct
 	volatile void* inner_values[MAX_NUMBER_OF_SENSORS];
 	volatile uint8_t ival_rw_size;
 	volatile uint8_t ival_size;
-	volatile const char* description;
-	core_base_struct_t *next;
+//	volatile const char* description;
+//	core_base_struct_t *next;
 /*	union {
 	    volatile char custom_field[4];
 	    volatile uint8_t uint8[4];
