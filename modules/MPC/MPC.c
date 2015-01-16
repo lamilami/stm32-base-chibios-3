@@ -14,7 +14,7 @@
 #endif
 
 #define MB_CNT 4
-#define RF_MAX_IO_BUFFERS 4
+#define RF_MAX_IO_BUFFERS 3
 
 static mailbox_t rf_mb[MB_CNT];
 static msg_t rf_mb_b[MB_CNT][RF_MAX_IO_BUFFERS];

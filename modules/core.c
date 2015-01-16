@@ -7,10 +7,13 @@
 static core_array_t Modules_Array[Other];
 
 static core_base_struct_t Core_Base;
-volatile core_base_struct_t* Core_BasePtr = NULL;
+#ifdef CORE_NEXT
+volatile static core_base_struct_t* Core_BasePtr = NULL;
+#endif
 //static msg_t core_msg_b;
 
-void Core_Module_Register(core_base_struct_t* Base_Struct) {
+inline void Core_Module_Register(core_base_struct_t* Base_Struct) {
+#ifdef CORE_NEXT
   chSysLock();
   if (Core_BasePtr != NULL) {
     volatile static core_base_struct_t *current;
@@ -26,6 +29,7 @@ void Core_Module_Register(core_base_struct_t* Base_Struct) {
   }
   (*Base_Struct).next = NULL;
   chSysUnlock();
+#endif
 
   Modules_Array[(*Base_Struct).type].Base_Struct = Base_Struct;
 
@@ -110,8 +114,8 @@ void* Core_GetIvalAddrByType(const core_types_t type) {
 void Core_Init() {
   Core_Base.type = Base;
   Core_Base.ival_size = 0;
-  Core_Base.next = NULL;
-  Core_Base.description = "Test Board 1\0";
+//  Core_Base.next = NULL;
+//  Core_Base.description = "Test Board 1\0";
 
   Core_Module_Register(&Core_Base);
 
@@ -274,10 +278,11 @@ void Core_Start() {
 //	Core_Init((void*) (uint32_t) id);
   Core_Init();
 //	Modules_Array[Base].Base_Thread = chThdCreateStatic(waCore, sizeof(waCore), LOWPRIO, Core, NULL);
-
+#ifdef CORE_NEXT
   while (Core_BasePtr == NULL) {
     chThdYield();
   }
+#endif
   Start_Modules();
 }
 

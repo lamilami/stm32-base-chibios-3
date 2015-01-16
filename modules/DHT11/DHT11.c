@@ -20,15 +20,15 @@ void DHT11_Init()
 	Core_DHT11.type = DHT11;
 //    Core_DHT11.Auto_Update_Sec = 180;
 //	Core_DHT11.direction = RW;
-	Core_DHT11.next = NULL;
-	Core_DHT11.description = "DHT11 Hum&Temp Sensor";
+//	Core_DHT11.next = NULL;
+//	Core_DHT11.description = "DHT11 Hum&Temp Sensor";
 	Core_DHT11.inner_values[0] = &Inner_Val_DHT11[0];
 	Core_DHT11.ival_size = sizeof(DHT11_Inner_Val);
 	Core_DHT11.ival_rw_size = sizeof(DHT11_Inner_Val_RW);
 
 	Inner_Val_DHT11[0].RW.Auto_Update_Sec = 180;
 	Inner_Val_DHT11[0].cont_errors = 0;
-	Inner_Val_DHT11[0].global_errors_32 = 0;
+	Inner_Val_DHT11[0].global_errors = 0;
 	Inner_Val_DHT11[0].humidity = 0xFFFF;
 	Inner_Val_DHT11[0].temp = 0xFFFF;
 
@@ -43,7 +43,7 @@ THD_FUNCTION(DHT11_thread,arg)
 //	thread_t *answer_thread;
 	//	chRegSetThreadName("DS18B20");
 
-	static uint32_t global_errors = 0;
+	static uint16_t global_errors = 0;
 	static uint16_t cont_errors = 0;
 //	static uint16_t old_temp = 0xffff;
 
@@ -88,8 +88,8 @@ THD_FUNCTION(DHT11_thread,arg)
 
 		Inner_Val_DHT11[0].temp = temperature << 2;
 		Inner_Val_DHT11[0].humidity = humidity;
-		Inner_Val_DHT11[0].cont_errors = MAX(Inner_Val_DHT11[0].cont_errors,cont_errors);
-		Inner_Val_DHT11[0].global_errors_32 = global_errors;
+		Inner_Val_DHT11[0].cont_errors = cont_errors;
+		Inner_Val_DHT11[0].global_errors = global_errors;
 
 		if (evt == EVENTMASK_REREAD)
 		{
