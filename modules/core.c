@@ -302,12 +302,12 @@ void Core_Start() {
  }
  }*/
 
-msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds) {
+msg_t Core_Module_Update(const core_types_t type, const uint8_t number, const char * inval, const systime_t timeout_milliseconds) {
   if (inval != NULL) {
     core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
     if (base_struct->ival_rw_size != 0) {
       chSysLock();
-      memcpy((void *)base_struct->inner_values, inval, base_struct->ival_rw_size);
+      memcpy((void *)base_struct->inner_values[number], inval, base_struct->ival_rw_size);
 //	ByteArrayCopy(inval, (char*) base_struct->inner_values, base_struct->ival_rw_size);
       chSysUnlock();
     }
@@ -328,7 +328,7 @@ msg_t Core_Module_Update(const core_types_t type, const char * inval, const syst
   return MSG_ERROR;
 }
 
-msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval) {
+msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, const uint8_t number, char * inval) {
   msg_t ret_size = MSG_OK;
   if ((addr == localhost) || (addr == MY_ADDR)) {
     core_base_struct_t* base_struct = Core_GetStructAddrByType(type);
@@ -336,7 +336,7 @@ msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval
       return 0;
     if (base_struct->ival_size != 0) {
       chSysLock();
-      memcpy(inval, (void *)base_struct->inner_values, base_struct->ival_size);
+      memcpy(inval, (void *)base_struct->inner_values[number], base_struct->ival_size);
 //	ByteArrayCopy((char*) base_struct->inner_values, inval, base_struct->ival_size);
       chSysUnlock();
     }
@@ -344,8 +344,9 @@ msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval
   }
   else {
     inval[0] = type;
+    inval[1] = number;
 #if MPC_PRESENT
-    ret_size = MPC_Send_Command(addr, RF_GET, 1, inval);
+    ret_size = MPC_Send_Command(addr, RF_GET, 2, inval);
 #else
     ret_size = MSG_TIMEOUT;
 #endif

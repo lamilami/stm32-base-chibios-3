@@ -145,8 +145,8 @@ uint16_t FloorHeater_cb() {
 #elif DHT11_PRESENT
 
   static DHT11_Inner_Val Temp_Vals;
-  Core_Module_Update(DHT11, NULL, 3000);
-  Core_Module_Read(localhost, DHT11, (char*) &Temp_Vals);
+  Core_Module_Update(DHT11, 0, NULL, 3000);
+  Core_Module_Read(localhost, 0, DHT11, (char*)&Temp_Vals);
 
   return Temp_Vals.temp;
 
@@ -338,7 +338,7 @@ int main(void) {
   FH_IV.iMin = -2;
   FH_IV.MaxPower = 100;
 
-  Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+  Core_Module_Update(Heater, 0, (void *)&FH_IV, 1000);
   chThdSleepSeconds(1);
 
 #endif
@@ -369,11 +369,11 @@ int main(void) {
     volatile static uint32_t time_cnt = 0;
 
     static DHT11_Inner_Val DHT_Temp_Vals;
-    Core_Module_Update(DHT11, NULL, 3000);
+    Core_Module_Update(DHT11,0 , NULL, 3000);
     chThdSleepSeconds(1);
     DHT_Temp_Vals.temp = 77 << 2;
     DHT_Temp_Vals.humidity = 0;
-    Core_Module_Read(localhost, DHT11, (char*) &DHT_Temp_Vals);
+    Core_Module_Read(localhost, DHT11, 0, (char*)&DHT_Temp_Vals);
 
 //		printf("DHT11 Temp: %d, Hum: %d,  Cnt: %d \r\n", (int) DHT_Temp_Vals.temp/4, (int) DHT_Temp_Vals.humidity, time_cnt);
     time_cnt++;
@@ -388,12 +388,12 @@ int main(void) {
 
 #if SEMIHOSTING
 #if DS18B20_PRESENT
-    SH_PrintStr("DS Temp=");     //Написание текста
+    SH_PrintStr("DS Temp="); //Написание текста
     SH_PutSignedQ2(DS_Temp_Vals.temp[0]);
 #endif
 
 #if DHT11_PRESENT
-    SH_PrintStr("; DHT Temp=");     //Написание текста
+    SH_PrintStr("; DHT Temp="); //Написание текста
     SH_PutSignedQ2(DHT_Temp_Vals.temp);
     SH_PrintStr(", Hum=");//Написание текста
     SH_PutUnsignedInt(DHT_Temp_Vals.humidity);
@@ -410,7 +410,7 @@ int main(void) {
      Radio_Send_Command(10, RF_GET, 1, data);
      chThdSleepSeconds(3);*/
     ClearLCDScreen();
-    Cursor(0, 0);     //Установка курсора
+    Cursor(0, 0); //Установка курсора
     PrintStr("Outer temp=");//Написание текста
     /*	    PutData[2][0]=1;
      PutData[2][1]=2;
@@ -425,7 +425,7 @@ int main(void) {
     LCD_PutSignedQ2(DS_Temp_Vals.temp[0]);
     PrintStr("              ");
     Cursor(1, 0);
-    PrintStr(" Temp=");     //Написание текста
+    PrintStr(" Temp="); //Написание текста
 //		tmp = DHT_Temp_Vals.temp;
     LCD_PutUnsignedInt(DHT_Temp_Vals.temp >> 2);
     PrintStr(" Hum=");//Написание текста
@@ -478,27 +478,27 @@ int main(void) {
     if (FH_IV.MaxPower >= 100) {
       if (tmp_temp >= High_Temp_Max) {
         FH_IV.MaxPower = Low_Load;
-        Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+        Core_Module_Update(Heater, 0, (void *)&FH_IV, 1000);
       }
       else if (tmp_temp >= Mid_Temp_Max) {
         FH_IV.MaxPower = Half_Load;
-        Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+        Core_Module_Update(Heater, 0, (void *)&FH_IV, 1000);
       }
     }
     else if (FH_IV.MaxPower >= Half_Load) {
       if (tmp_temp >= High_Temp_Max) {
         FH_IV.MaxPower = Low_Load;
-        Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+        Core_Module_Update(Heater, 0, (void *)&FH_IV, 1000);
       }
       else if (tmp_temp <= Mid_Temp_Min) {
         FH_IV.MaxPower = 100;
-        Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+        Core_Module_Update(Heater, 0, (void *)&FH_IV, 1000);
       }
     }
     else {
       if (tmp_temp <= High_Temp_Min) {
         FH_IV.MaxPower = Half_Load;
-        Core_Module_Update(Heater, (void *) &FH_IV, 1000);
+        Core_Module_Update(Heater, 0, (void *)&FH_IV, 1000);
       }
     }
 #endif

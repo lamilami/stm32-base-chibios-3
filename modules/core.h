@@ -78,6 +78,7 @@
 #endif
 */
 #define EVENTMASK_REREAD 0x04
+#define EVENTMASK_MOD_PRIVATE_SHIFT 8
 
 #define MAX_NUMBER_OF_SENSORS 5
 
@@ -106,7 +107,6 @@ struct core_base_struct
 {
 	core_types_t type;
 	uint8_t quantity;
-    volatile systime_t Auto_Update_Sec;
 //	mod_update_timeout_t Mod_Update_Timeout;
 //	event_source_t event_source;
 //	event_listener_t event_listener;
@@ -115,6 +115,13 @@ struct core_base_struct
 	volatile uint8_t ival_size;
 	volatile const char* description;
 	core_base_struct_t *next;
+/*	union {
+	    volatile char custom_field[4];
+	    volatile uint8_t uint8[4];
+	    volatile uint16_t uint16[2];
+	    volatile uint32_t uint32;
+	} custom;*/
+
 };
 
 typedef struct
@@ -133,8 +140,8 @@ void Core_Module_Register(core_base_struct_t* Base_Struct);
 //core_base_struct_t* Core_GetStructAddrByType(const core_types_t type);
 //void* Core_GetIvalAddrByType(const core_types_t type);
 //msg_t Core_Module_Update(const core_types_t type, systime_t timeout_milliseconds);
-msg_t Core_Module_Update(const core_types_t type, const char * inval, const systime_t timeout_milliseconds);
-msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, char * inval);
+msg_t Core_Module_Update(const core_types_t type, const uint8_t number, const char * inval, const systime_t timeout_milliseconds);
+msg_t Core_Module_Read(const uint8_t addr, const core_types_t type, const uint8_t number, char * inval);
 bool Core_Events_Register(const core_types_t type);
 inline void Core_Register_Thread(const core_types_t type, thread_t* thd, thread_reference_t* upd_thd);
 //void ByteArrayCopy(const volatile char* src, volatile char* dst, const uint8_t cnt);
