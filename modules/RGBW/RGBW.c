@@ -60,7 +60,6 @@ void RGBW_Init()
 	Inner_Val_RGBW.RW.Blue_Set = 0;
 	Inner_Val_RGBW.RW.Green_Set = 0;
 
-	Core_Module_Register(&Core_RGBW);
 }
 
 inline systime_t GetRiseTicksPeriod(uint16_t duration_sec, uint16_t max_pow)
@@ -190,7 +189,8 @@ void RGBW_Start()
 #if RGBW_PRESENT
 	RGBW_Init();
 	thread_t* thd = chThdCreateStatic(waRGBW_Controller, sizeof(waRGBW_Controller), NORMALPRIO, RGBW_Controller, NULL);
-	Core_Register_Thread(RGBW, thd, &Update_Thread);
+    Core_Module_Register(&Core_RGBW, thd, &Update_Thread);
+//	Core_Register_Thread(RGBW, thd, &Update_Thread);
 	chThdYield();
 #endif
 }

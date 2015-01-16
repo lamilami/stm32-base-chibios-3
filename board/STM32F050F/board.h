@@ -28,7 +28,7 @@
 #define BOARD_NAME                  "ST STM32F050F-Base"
 
 #define LED3Swap() palTogglePad(GPIOA, GPIOA_PIN3)
-#define LED2Swap() palTogglePad(GPIOA, GPIOA_PIN2)
+//#define LED2Swap() palTogglePad(GPIOA, GPIOA_PIN2)
 #define LED0Swap() palTogglePad(GPIOA, GPIOA_PIN0)
 
 //#define STM32_PCLK1 STM32_PCLK

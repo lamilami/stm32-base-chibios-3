@@ -24,7 +24,7 @@ static msg_t rf_mb_b[MB_CNT][RF_MAX_IO_BUFFERS];
 #define RF_MB_TX    2
 #define RF_MB_PS    3
 
-THD_WORKING_AREA(waMPC_Processor, 256);
+THD_WORKING_AREA(waMPC_Processor, 64);
 THD_FUNCTION(MPC_Processor,arg)
 {
   (void) arg;
@@ -47,7 +47,7 @@ THD_FUNCTION(MPC_Processor,arg)
       chMBPost(&rf_mb[RF_MB_FREE], (msg_t) rx_buffer, TIME_INFINITE);
       break;
       case RF_PONG:
-      LED2Swap();
+//      LED2Swap();
 //      MPC_Send_Command((*rx_buffer).src_addr, RF_PING, 0, NULL);
       chMBPost(&rf_mb[RF_MB_FREE], (msg_t) rx_buffer, TIME_INFINITE);
 //          nRF24_hw_ce_high();
@@ -82,7 +82,7 @@ THD_FUNCTION(MPC_Processor,arg)
   }
 }
 
-THD_WORKING_AREA(waMPC, 256);
+THD_WORKING_AREA(waMPC, 64);
 THD_FUNCTION(MPC,arg)
 {
   (void) arg;

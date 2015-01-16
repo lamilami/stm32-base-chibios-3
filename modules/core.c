@@ -12,7 +12,8 @@ volatile static core_base_struct_t* Core_BasePtr = NULL;
 #endif
 //static msg_t core_msg_b;
 
-inline void Core_Module_Register(core_base_struct_t* Base_Struct) {
+//inline void Core_Module_Register(core_base_struct_t* Base_Struct) {
+inline void Core_Module_Register(core_base_struct_t* Base_Struct, thread_t* thd, thread_reference_t* upd_thd) {
 #ifdef CORE_NEXT
   chSysLock();
   if (Core_BasePtr != NULL) {
@@ -33,6 +34,12 @@ inline void Core_Module_Register(core_base_struct_t* Base_Struct) {
 
   Modules_Array[(*Base_Struct).type].Base_Struct = Base_Struct;
 
+  Modules_Array[(*Base_Struct).type].Base_Struct->Base_Thread = thd;
+  Modules_Array[(*Base_Struct).type].Base_Struct->Base_Thread_Updater = upd_thd;
+  if (upd_thd != NULL)
+  {
+    *Modules_Array[(*Base_Struct).type].Base_Struct->Base_Thread_Updater = NULL;
+  }
 //	chEvtObjectInit(&(*Base_Struct).event_source);
 //	chEvtRegisterMask(&(*Base_Struct).event_source, &(*Base_Struct).event_listener, EVENT_MASK((uint8_t)(*Base_Struct).type));
 }
@@ -117,7 +124,7 @@ void Core_Init() {
 //  Core_Base.next = NULL;
 //  Core_Base.description = "Test Board 1\0";
 
-  Core_Module_Register(&Core_Base);
+  Core_Module_Register(&Core_Base, NULL, NULL);
 
   EXTConfig static extcfg = { { {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
                                {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
@@ -195,11 +202,13 @@ THD_FUNCTION(Core,arg)
 }
 #endif
 
+/*
 inline void Core_Register_Thread(core_types_t type, thread_t* thd, thread_reference_t* upd_thd) {
-  Modules_Array[type].Base_Thread = thd;
-  Modules_Array[type].Base_Thread_Updater = upd_thd;
-  *Modules_Array[type].Base_Thread_Updater = NULL;
+  Modules_Array[type].Base_Struct->Base_Thread = thd;
+  Modules_Array[type].Base_Struct->Base_Thread_Updater = upd_thd;
+  *Modules_Array[type].Base_Struct->Base_Thread_Updater = NULL;
 }
+*/
 
 static void Start_Modules(void) {
   /*
@@ -271,7 +280,8 @@ void Core_Start() {
   register uint8_t i;
   for (i = 0; i < Other; i++) {
     Modules_Array[i].Base_Struct = NULL;
-    Modules_Array[i].Base_Thread = NULL;
+//    (*Modules_Array[i]).Base_Struct->Base_Thread = NULL;
+//    ->*Base_Thread = 0;
 //		*Modules_Array[i].Base_Thread_Updater = NULL;
   }
 
@@ -317,16 +327,16 @@ msg_t Core_Module_Update(const core_types_t type, const uint8_t number, const ch
       chSysUnlock();
     }
   }
-  if (Modules_Array[type].Base_Thread != 0) {
+  if ((Modules_Array[type].Base_Struct != 0) && (Modules_Array[type].Base_Struct->Base_Thread != 0)) {
     chSysLock();
-    while (*Modules_Array[type].Base_Thread_Updater != NULL) {
+    while (*Modules_Array[type].Base_Struct->Base_Thread_Updater != NULL) {
       chSysUnlock();
       chSysLock();
       chSchDoYieldS();
     }
-    chEvtSignalI(Modules_Array[type].Base_Thread, EVENTMASK_REREAD);
-    msg_t msg = _core_wait_s(Modules_Array[type].Base_Thread_Updater, timeout_milliseconds);
-    *Modules_Array[type].Base_Thread_Updater = NULL;
+    chEvtSignalI(Modules_Array[type].Base_Struct->Base_Thread, EVENTMASK_REREAD);
+    msg_t msg = _core_wait_s(Modules_Array[type].Base_Struct->Base_Thread_Updater, timeout_milliseconds);
+    *Modules_Array[type].Base_Struct->Base_Thread_Updater = NULL;
     chSysUnlock();
     return msg;
   }

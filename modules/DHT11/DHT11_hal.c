@@ -193,7 +193,7 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			if (sensor->bit_count == 64)
 			{
 				sensor->bit_count = 0;
-				sensor->crc = 0;
+//				sensor->crc = 0;
 				sensor->state = DHT11_READ_CRC;
 			}
 			break;
@@ -203,7 +203,7 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 			if (sensor->bit_count % 2 == 1)
 			{
 				sensor->time_measurment = gptGetCounterX(&GPTD17);
-				sensor->crc <<= 1;
+//				sensor->crc <<= 1;
 			}
 			else
 			{
@@ -211,7 +211,7 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
 				sensor->time_measurment = tmp_time - sensor->time_measurment;
 				if (T172US(sensor->time_measurment) > 40)
 				{
-					sensor->crc += 1;
+//					sensor->crc += 1;
 				}
 			}
 			if (sensor->bit_count == 16)
@@ -311,7 +311,7 @@ dht11_state_t dht11Init(dht11_t *sensor)
 	dht11_state_t state;
 	if (lldLock(&sensor->lock) == true)
 	{
-		sensor->refresh_time = 0;
+//		sensor->refresh_time = 0;
 		sensor->temp = 0;
 		sensor->humidity = 0;
 		sensor_handlers[sensor->ext_pin] = sensor;

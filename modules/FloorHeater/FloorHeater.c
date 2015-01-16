@@ -82,7 +82,6 @@ void FloorHeater_Init() {
   FH[0].driver = PWMD1;
   FH[0].channel = 2;
 
-  Core_Module_Register(&Core_FloorHeater);
 }
 
 //void static PWM_Init()
@@ -217,7 +216,8 @@ THD_FUNCTION(FloorHeater,arg) {
 void FloorHeater_Start() {
   FloorHeater_Init();
   thread_t* thd = chThdCreateStatic(waFloorHeater, sizeof(waFloorHeater), HIGHPRIO, FloorHeater, NULL);
-  Core_Register_Thread(Heater, thd, &Update_Thread);
+  Core_Module_Register(&Core_FloorHeater, thd, &Update_Thread);
+//  Core_Register_Thread(Heater, thd, &Update_Thread);
   chThdYield();
 }
 
