@@ -7,7 +7,7 @@
 #define MY_ADDR				((NET_ADDR & 0x3F) | ((SUB_ADDR << 6) & 0xC0))
 #define SUBMOD_ADDR(addr)   ((NET_ADDR & 0x3F) | (((addr) << 6) & 0xC0))
 
-#define MPC_PRESENT         FALSE
+#define MPC_PRESENT         TRUE
 
 #if MPC_PRESENT
 #define MPC_RADIO_PRESENT	FALSE
