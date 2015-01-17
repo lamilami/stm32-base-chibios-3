@@ -360,8 +360,8 @@ int main(void)
 	chThdSleepSeconds(1);
 #else
 	FloorHeater_Inner_Val_RW FH_IV;
-	FH_IV.Desired_Temp = 75;
-    FH_IV.Auto_Update_Sec = 60;
+	FH_IV.Desired_Temp = 50;
+    FH_IV.Auto_Update_Sec = 10;
 	FH_IV.Get_Temp_Callback = FH_Humidifier_cb;
 	FH_IV.iGain = 2;
 	FH_IV.pGain = 4;
