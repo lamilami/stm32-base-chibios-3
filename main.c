@@ -111,7 +111,7 @@ uint16_t PIR_cb()
 #endif
 
 #if FloorHeater_PRESENT
-
+#if FloorH_1
 volatile uint16_t bt136_temp = 0;
 
 uint16_t FloorHeater_cb()
@@ -158,7 +158,18 @@ uint16_t FloorHeater_cb()
 #endif
 
 }
+#else
+uint16_t FH_Humidifier_cb()
+{
 
+	static DHT11_Inner_Val Temp_Vals;
+//	Core_Module_Update(DHT11, 0, NULL, 3000);
+	Core_Module_Read(localhost, DHT11, 0, (char*) &Temp_Vals);
+
+	return Temp_Vals.humidity;
+
+}
+#endif
 #endif //FloorHeater_PRESENT
 /*
  * Application entry point.
@@ -314,8 +325,8 @@ int main(void)
 #if RGBW_PRESENT
 	//	RGBW_Inner_Val* RGBW_IV = (RGBW_Inner_Val*) Core_GetIvalAddrByType(RGBW);
 	RGBW_Inner_Val RGBW_Day =
-	{ }, RGBW_Night =
-	{ };
+	{}, RGBW_Night =
+	{};
 //	RGBW_Inner_Val RGBW_Current;
 
 	RGBW_Day.RW.Red_Set = 10000;
@@ -333,7 +344,7 @@ int main(void)
 //	Core_Module_Read(RGBW, (void *) &RGBW_Current);
 
 #if FloorHeater_PRESENT
-
+#if FloorH_1
 	FloorHeater_Inner_Val_RW FH_IV;
 	FH_IV.Desired_Temp = 32 << 2;
 //  FH_IV.Auto_Update_Sec = 180;
@@ -347,7 +358,21 @@ int main(void)
 
 	Core_Module_Update(Heater, 0, (void *) &FH_IV, 1000);
 	chThdSleepSeconds(1);
+#else
+	FloorHeater_Inner_Val_RW FH_IV;
+	FH_IV.Desired_Temp = 75;
+    FH_IV.Auto_Update_Sec = 60;
+	FH_IV.Get_Temp_Callback = FH_Humidifier_cb;
+	FH_IV.iGain = 2;
+	FH_IV.pGain = 4;
+	FH_IV.iState = 0;
+	FH_IV.iMax = 25;
+	FH_IV.iMin = -2;
+	FH_IV.MaxPower = 100;
 
+	Core_Module_Update(Heater, 1, (void *) &FH_IV, 1000);
+	chThdSleepSeconds(1);
+#endif
 #endif
 
 	/*
