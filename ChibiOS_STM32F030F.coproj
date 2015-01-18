@@ -231,9 +231,9 @@
     <File name="os/rt/src/chstats.c" path="os/rt/src/chstats.c" type="1"/>
     <File name="board/STM32F030F/STM32F0xx" path="" type="2"/>
     <File name="board" path="" type="2"/>
-    <File name="board/STM32F030F/STM32F0xx/ext_lld_isr.c" path="board/STM32F030F/STM32F0xx/ext_lld_isr.c" type="1"/>
     <File name="os/hal/ports/STM32/LLD/RTCv2/rtc_lld.c" path="os/hal/ports/STM32/LLD/RTCv2/rtc_lld.c" type="1"/>
     <File name="modules/RGBW/RGBW.h" path="modules/RGBW/RGBW.h" type="1"/>
+    <File name="board/STM32F030F/STM32F0xx/ext_lld_isr.c" path="board/STM32F030F/STM32F0xx/ext_lld_isr.c" type="1"/>
     <File name="os/rt/include/chvt.h" path="os/rt/include/chvt.h" type="1"/>
     <File name="modules/core.c" path="modules/core.c" type="1"/>
     <File name="os/hal/src/hal_mmcsd.c" path="os/hal/src/hal_mmcsd.c" type="1"/>
@@ -346,9 +346,9 @@
     <File name="os/hal/ports/STM32/LLD/TIMv1/icu_lld.c" path="os/hal/ports/STM32/LLD/TIMv1/icu_lld.c" type="1"/>
     <File name="modules" path="" type="2"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/icu_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/icu_lld.h" type="1"/>
-    <File name="os/hal/include/gpt.h" path="os/hal/include/gpt.h" type="1"/>
     <File name="modules/MPC/MPC.h" path="modules/MPC/MPC.h" type="1"/>
     <File name="board/STM32F030F/STM32F0xx/stm32_dma.c" path="board/STM32F030F/STM32F0xx/stm32_dma.c" type="1"/>
+    <File name="os/hal/include/gpt.h" path="os/hal/include/gpt.h" type="1"/>
     <File name="os/hal/osal/rt" path="" type="2"/>
     <File name="os/rt/src/chmsg.c" path="os/rt/src/chmsg.c" type="1"/>
     <File name="os/rt/src/chsys.c" path="os/rt/src/chsys.c" type="1"/>
@@ -364,9 +364,9 @@
     <File name="os/rt/include/chstreams.h" path="os/rt/include/chstreams.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/st_lld.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" path="os/hal/ports/STM32/LLD/TIMv1/gpt_lld.h" type="1"/>
-    <File name="os/rt/include/chstats.h" path="os/rt/include/chstats.h" type="1"/>
     <File name="modules/MPC/nRF24/nRF24_HAL.c" path="modules/MPC/nRF24/nRF24_HAL.c" type="1"/>
     <File name="os/hal/include/icu.h" path="os/hal/include/icu.h" type="1"/>
+    <File name="os/rt/include/chstats.h" path="os/rt/include/chstats.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/SPIv2/spi_lld.h" path="os/hal/ports/STM32/LLD/SPIv2/spi_lld.h" type="1"/>
     <File name="os/ext/CMSIS/include/core_cmInstr.h" path="os/ext/CMSIS/include/core_cmInstr.h" type="1"/>
     <File name="os/hal/ports/STM32/LLD/GPIOv2/pal_lld.c" path="os/hal/ports/STM32/LLD/GPIOv2/pal_lld.c" type="1"/>
