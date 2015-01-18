@@ -16,6 +16,9 @@
 /* Driver exported variables.                                                */
 /*===========================================================================*/
 
+#define EVENTMASK_OK    EVENT_MASK(28)
+#define EVENTMASK_ERROR EVENT_MASK(29)
+
 GPTDriver GPTD17;
 dht11_t DHTD1;
 
@@ -26,10 +29,9 @@ dht11_t DHTD1;
 /*
  * GPT2 configuration.
  */
-static const GPTConfig gpt17cfg =
-{ Timer_Clock, /* 100kHz timer clock.*/
-NULL, /* Timer callback.*/
-0, 0 };
+static const GPTConfig gpt17cfg = {Timer_Clock, /* 100kHz timer clock.*/
+                                   NULL, /* Timer callback.*/
+                                   0, 0};
 
 /**
  * @brief   Enables the TIM3 peripheral clock.
@@ -73,220 +75,195 @@ dht11_t *sensor_handlers[EXT_MAX_CHANNELS];
 /*===========================================================================*/
 
 /*
-inline void NanoSleep(uint16_t cnt)
-{
-	volatile uint16_t i;
-	if (cnt == 0) cnt = 30000;
-	for(i=0;i<cnt;i++);
-}
-*/
+ inline void NanoSleep(uint16_t cnt)
+ {
+ volatile uint16_t i;
+ if (cnt == 0) cnt = 30000;
+ for(i=0;i<cnt;i++);
+ }
+ */
 
 /*
  * @brief
  */
-inline bool lldLock(lld_lock_t *lock)
-{
-	bool locked = false;
-	//
+inline bool lldLock(lld_lock_t *lock) {
+  bool locked = false;
+  //
 //	NanoSleep(0);
-	chSysLock();
-	if (lock->flag == false)
-	{
-		lock->flag = true;
-		locked = true;
-	}
+  chSysLock();
+  if (lock->flag == false) {
+    lock->flag = true;
+    locked = true;
+  }
 //	NanoSleep(0);
-	chSysUnlock();
-	return locked;
+  chSysUnlock();
+  return locked;
 }
 
 /*
  * @brief
  */
-inline void lldUnlock(lld_lock_t *lock)
-{
-	//
+inline void lldUnlock(lld_lock_t *lock) {
+  //
 //	NanoSleep(0);
-	chSysLock();
-	if (lock->flag == true)
-	{
-		lock->flag = false;
-	}
-	chSysUnlock();
+  chSysLock();
+  if (lock->flag == true) {
+    lock->flag = false;
+  }
+  chSysUnlock();
 //	NanoSleep(0);
 }
 
 /*
  * @brief
  */
-inline bool lldLockISR(lld_lock_t *lock)
-{
-	bool locked = false;
-	//
-	chSysLockFromISR();
-	if (lock->flag == false)
-	{
-		lock->flag = true;
-		locked = true;
-	}
-	chSysUnlockFromISR();
-	return locked;
+inline bool lldLockISR(lld_lock_t *lock) {
+  bool locked = false;
+  //
+  chSysLockFromISR();
+  if (lock->flag == false) {
+    lock->flag = true;
+    locked = true;
+  }
+  chSysUnlockFromISR();
+  return locked;
 }
 
 /*
  * @brief
  */
-inline void lldUnlockISR(lld_lock_t *lock)
-{
-	//
-	chSysLockFromISR();
-	if (lock->flag == true)
-	{
-		lock->flag = false;
-	}
-	chSysUnlockFromISR();
+inline void lldUnlockISR(lld_lock_t *lock) {
+  //
+  chSysLockFromISR();
+  if (lock->flag == true) {
+    lock->flag = false;
+  }
+  chSysUnlockFromISR();
 }
 
 /*
  * @brief   ...
  * @details ...
  */
-static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel)
-{
-	//
-	(void) extp;
-	dht11_t *sensor = sensor_handlers[channel];
-	if (sensor == NULL)
-	{
-		return;
-	}
-	//
-	if (lldLockISR(&sensor->lock) == true)
-	{
-		switch (sensor->state)
-		{
-		case DHT11_WAIT_RESPONSE:
-			sensor->bit_count++;
-			if (sensor->bit_count == 3)
-			{
-				sensor->bit_count = 0;
-				sensor->data = 0;
-				sensor->state = DHT11_READ_DATA;
-			}
-			break;
-		case DHT11_READ_DATA:
-			sensor->bit_count++;
-			if (sensor->bit_count % 2 == 1)
-			{
-				sensor->time_measurment = gptGetCounterX(&GPTD17);
-				sensor->data <<= 1;
-			}
-			else
-			{
-				volatile systime_t tmp_time = gptGetCounterX(&GPTD17);
-				sensor->time_measurment = tmp_time - sensor->time_measurment;
-				if (T172US(sensor->time_measurment) > 50)
-				{
-					sensor->data += 1;
-				}
-			}
-			if (sensor->bit_count == 64)
-			{
-				sensor->bit_count = 0;
+static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel) {
+  //
+  (void)extp;
+  dht11_t *sensor = sensor_handlers[channel];
+  if (sensor == NULL) {
+    return;
+  }
+  //
+  if (lldLockISR(&sensor->lock) == true) {
+    switch (sensor->state) {
+    case DHT11_WAIT_RESPONSE:
+      sensor->bit_count++;
+      if (sensor->bit_count == 3) {
+        sensor->bit_count = 0;
+        sensor->data = 0;
+        sensor->state = DHT11_READ_DATA;
+      }
+      break;
+    case DHT11_READ_DATA:
+      sensor->bit_count++;
+      if (sensor->bit_count % 2 == 1) {
+        sensor->time_measurment = gptGetCounterX(&GPTD17);
+        sensor->data <<= 1;
+      }
+      else {
+        volatile systime_t tmp_time = gptGetCounterX(&GPTD17);
+        sensor->time_measurment = tmp_time - sensor->time_measurment;
+        if (T172US(sensor->time_measurment) > 50) {
+          sensor->data += 1;
+        }
+      }
+      if (sensor->bit_count == 64) {
+        sensor->bit_count = 0;
 //				sensor->crc = 0;
-				sensor->state = DHT11_READ_CRC;
-			}
-			break;
-		case DHT11_READ_CRC:
-			sensor->bit_count++;
-			//sensor->crc = sensor->crc << 1;
-			if (sensor->bit_count % 2 == 1)
-			{
-				sensor->time_measurment = gptGetCounterX(&GPTD17);
+        sensor->state = DHT11_READ_CRC;
+      }
+      break;
+    case DHT11_READ_CRC:
+      sensor->bit_count++;
+      //sensor->crc = sensor->crc << 1;
+      if (sensor->bit_count % 2 == 1) {
+        sensor->time_measurment = gptGetCounterX(&GPTD17);
 //				sensor->crc <<= 1;
-			}
-			else
-			{
-				volatile systime_t tmp_time = gptGetCounterX(&GPTD17);
-				sensor->time_measurment = tmp_time - sensor->time_measurment;
-				if (T172US(sensor->time_measurment) > 40)
-				{
+      }
+      else {
+        volatile systime_t tmp_time = gptGetCounterX(&GPTD17);
+        sensor->time_measurment = tmp_time - sensor->time_measurment;
+        if (T172US(sensor->time_measurment) > 40) {
 //					sensor->crc += 1;
-				}
-			}
-			if (sensor->bit_count == 16)
-			{
-				chSysLockFromISR();
-				extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
-//				if (chVTIsArmedI(&sensor->timer) == true)
-//				{
-					chVTResetI(&sensor->timer);
-//				}
-				gptStopTimerI(&GPTD17);
-				chSysUnlockFromISR();
-				sensor->temp = (sensor->data & 0xFF00) >> 8;
-				sensor->humidity = (sensor->data & 0xFF000000) >> 24;
-				sensor->state = DHT11_READ_OK;
-			}
-			break;
-		case DHT11_UNINIT:
-		case DHT11_IDLE:
-		case DHT11_READ_REQUEST:
-		case DHT11_READ_OK:
-		case DHT11_BUSY:
-		case DHT11_ERROR:
-			break;
-		}
-		lldUnlockISR(&sensor->lock);
-	}
+        }
+      }
+      if (sensor->bit_count == 16) {
+        chSysLockFromISR();
+        extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
+        chVTResetI(&sensor->timer);
+        gptStopTimerI(&GPTD17);
+        sensor->temp = (sensor->data & 0xFF00) >> 8;
+        sensor->humidity = (sensor->data & 0xFF000000) >> 24;
+        sensor->state = DHT11_READ_OK;
+        chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_OK));
+        osalSysUnlockFromISR();
+      }
+      break;
+    case DHT11_UNINIT:
+    case DHT11_IDLE:
+    case DHT11_READ_REQUEST:
+    case DHT11_READ_OK:
+    case DHT11_BUSY:
+    case DHT11_ERROR:
+      break;
+    }
+    lldUnlockISR(&sensor->lock);
+  }
 }
 
 /*
  * @brief   ...
  * @details ...
  */
-void dht11_timer_handler(void *p)
-{
-	dht11_t *sensor = (dht11_t *) p;
-	//
-	if (lldLockISR(&sensor->lock) == true)
-	{
-		switch (sensor->state)
-		{
-		case DHT11_READ_REQUEST:
-			chSysLockFromISR();
-			chVTSetI(&sensor->timer, MS2ST(5), dht11_timer_handler, sensor);
-			palSetPad(sensor->ext_port, sensor->ext_pin);
-			palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_INPUT_PULLUP);
-			extChannelEnableI(sensor->ext_drv, sensor->ext_pin);
-			chSysUnlockFromISR();
-			sensor->bit_count = 0;
-			sensor->state = DHT11_WAIT_RESPONSE;
-			break;
-		case DHT11_UNINIT:
-		case DHT11_IDLE:
-		case DHT11_WAIT_RESPONSE:
-		case DHT11_READ_DATA:
-		case DHT11_READ_CRC:
-		case DHT11_READ_OK:
-		case DHT11_BUSY:
-		case DHT11_ERROR:
-			chSysLockFromISR();
-			extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
-			palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
-			palSetPad(sensor->ext_port, sensor->ext_pin);
+void dht11_timer_handler(void *p) {
+  dht11_t *sensor = (dht11_t *)p;
+  //
+  if (lldLockISR(&sensor->lock) == true) {
+    switch (sensor->state) {
+    case DHT11_READ_REQUEST:
+      chSysLockFromISR();
+      chVTSetI(&sensor->timer, MS2ST(5), dht11_timer_handler, sensor);
+      palSetPad(sensor->ext_port, sensor->ext_pin);
+      palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_INPUT_PULLUP);
+      extChannelEnableI(sensor->ext_drv, sensor->ext_pin);
+      chSysUnlockFromISR();
+      sensor->bit_count = 0;
+      sensor->state = DHT11_WAIT_RESPONSE;
+      break;
+    case DHT11_UNINIT:
+    case DHT11_IDLE:
+    case DHT11_WAIT_RESPONSE:
+    case DHT11_READ_DATA:
+    case DHT11_READ_CRC:
+    case DHT11_READ_OK:
+    case DHT11_BUSY:
+    case DHT11_ERROR:
+      chSysLockFromISR();
+      extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
+      palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
+      palSetPad(sensor->ext_port, sensor->ext_pin);
 //			if (chVTIsArmedI(&sensor->timer) == true)
 //			{
-				chVTResetI(&sensor->timer);
+      chVTResetI(&sensor->timer);
 //			}
-			gptStopTimerI(&GPTD17);
-			chSysUnlockFromISR();
-			sensor->state = DHT11_ERROR;
+      gptStopTimerI(&GPTD17);
+      sensor->state = DHT11_ERROR;
+      chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_ERROR));
+      osalSysUnlockFromISR();
 //                SerialConsole::debug("dht11Update timer error\r\n");
-			break;
-		}
-		lldUnlockISR(&sensor->lock);
-	}
+      break;
+    }
+    lldUnlockISR(&sensor->lock);
+  }
 }
 
 /*===========================================================================*/
@@ -296,99 +273,119 @@ void dht11_timer_handler(void *p)
 /*
  * @brief   ...
  */
-dht11_state_t dht11Init(dht11_t *sensor)
-{
-	GPTD17.tim = STM32_TIM17;
-	gptObjectInit(&GPTD17);
+dht11_state_t dht11Init(dht11_t *sensor) {
+  GPTD17.tim = STM32_TIM17;
+  gptObjectInit(&GPTD17);
 
-	rccEnableTIM17(FALSE);
-	rccResetTIM17();
+  rccEnableTIM17(FALSE);
+  rccResetTIM17();
 //	nvicEnableVector(STM32_TIM14_NUMBER, STM32_GPT_TIM14_IRQ_PRIORITY);
-	GPTD17.clock = STM32_TIMCLK1;
+  GPTD17.clock = STM32_TIMCLK1;
 
-	gptStart(&GPTD17, &gpt17cfg);
+  gptStart(&GPTD17, &gpt17cfg);
 
-	dht11_state_t state;
-	if (lldLock(&sensor->lock) == true)
-	{
+  dht11_state_t state;
+  if (lldLock(&sensor->lock) == true) {
 //		sensor->refresh_time = 0;
-		sensor->temp = 0;
-		sensor->humidity = 0;
-		sensor_handlers[sensor->ext_pin] = sensor;
+    sensor->updater_thread = NULL;
+    sensor->temp = 0;
+    sensor->humidity = 0;
+    sensor_handlers[sensor->ext_pin] = sensor;
 
-		palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
-		sensor->ext_cfg.mode = EXT_CH_MODE_BOTH_EDGES | sensor->ext_mode;
-		sensor->ext_cfg.cb = dht11_lld_ext_handler;
-		chSysLock();
-		extSetChannelModeI(sensor->ext_drv, sensor->ext_pin, &sensor->ext_cfg);
-		extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
-		chSysUnlock();
+    palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
+    sensor->ext_cfg.mode = EXT_CH_MODE_BOTH_EDGES | sensor->ext_mode;
+    sensor->ext_cfg.cb = dht11_lld_ext_handler;
+    chSysLock();
+    extSetChannelModeI(sensor->ext_drv, sensor->ext_pin, &sensor->ext_cfg);
+    extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
+    chSysUnlock();
 
-		state = sensor->state = DHT11_IDLE;
-		lldUnlock(&sensor->lock);
-		return state;
-	}
-	else
-	{
-		return DHT11_UNINIT;
-	}
+    state = sensor->state = DHT11_IDLE;
+    lldUnlock(&sensor->lock);
+    return state;
+  }
+  else {
+    return DHT11_UNINIT;
+  }
 }
 
 /*
  * @brief   ...
  */
-bool dht11Update(dht11_t *sensor, varg_t unused)
-{
-	//
-	(void) unused;
-	dht11_state_t state;
+dht11_state_t dht11Update(dht11_t *sensor, uint8_t retry) {
+  //
+  dht11_state_t state;
+  uint8_t cnt = 0;
+  eventmask_t evt = EVENTMASK_ERROR;
 
-	if (lldLock(&sensor->lock) == true)
-	{
+  do {
+    if (dht11StartUpdate(sensor) != DHT11_BUSY) {
+      uint8_t cnt = 0;
+      while (sensor->updater_thread != NULL) {
+        osalThreadSleepMilliseconds(10);
+      }
+      sensor->updater_thread = chThdGetSelfX();
+      evt = chEvtWaitOne(ALL_EVENTS);
+      if (evt != EVENTMASK_OK) {
+        osalThreadSleepMilliseconds(10);
+      }
+      cnt++;
+    }
+  } while ((evt != EVENTMASK_OK) || (cnt >= retry));
 
-			// low pulse
-			sensor->bit_count = 0;
-			state = sensor->state = DHT11_READ_REQUEST;
-			palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
-			palClearPad(sensor->ext_port, sensor->ext_pin);
+  sensor->updater_thread = NULL;
+  state = sensor->state;
 
-			osalSysLock();
+  return state;
+}
 
-			gptStopTimerI(&GPTD17);
-			gptStartContinuousI(&GPTD17, 65000);
+dht11_state_t dht11StartUpdate(dht11_t *sensor) {
+  dht11_state_t state;
 
-			chVTSetI(&sensor->timer, MS2ST(25), dht11_timer_handler, sensor);
+  if (lldLock(&sensor->lock) == true) {
 
-			osalSysUnlock();
+    // low pulse
+    sensor->bit_count = 0;
+    sensor->updater_thread = NULL;
+    state = sensor->state = DHT11_READ_REQUEST;
+    palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
+    palClearPad(sensor->ext_port, sensor->ext_pin);
 
-			lldUnlock(&sensor->lock);
-			//
-			return state;
-	}
-	else
-	{
-		return DHT11_BUSY;
-	}
+    osalSysLock();
+
+    gptStopTimerI(&GPTD17);
+    gptStartContinuousI(&GPTD17, 65000);
+
+    chVTSetI(&sensor->timer, MS2ST(25), dht11_timer_handler, sensor);
+
+    osalSysUnlock();
+
+    lldUnlock(&sensor->lock);
+    //
+    return state;
+  }
+  else {
+    return DHT11_BUSY;
+  }
+
 }
 
 /*
  * @brief   ...
  */
-bool dht11GetTemperature(dht11_t *sensor, int8_t *temp)
-{
-	//
-	*temp = sensor->temp;
-	return true;
+bool dht11GetTemperature(dht11_t *sensor, int8_t *temp) {
+//
+  *temp = sensor->temp;
+  return true;
 }
 
 /*
  * @brief   ...
  */
-bool dht11GetHumidity(dht11_t *sensor, int8_t *humidity)
-{
-	//
-	*humidity = sensor->humidity;
-	return true;
+bool dht11GetHumidity(dht11_t *sensor, int8_t *humidity) {
+//
+  *humidity = sensor->humidity;
+  return true;
 }
 
 #endif

@@ -45,10 +45,13 @@ THD_FUNCTION(DHT11_thread,arg) {
   static uint16_t cont_errors = 0;
 //	static uint16_t old_temp = 0xffff;
 
+
+  /*
   {
     //Waiting DHT11 to initialize
     chThdSleepSeconds(1);
   }
+  */
 
   static int8_t humidity, temperature;
 
@@ -59,17 +62,12 @@ THD_FUNCTION(DHT11_thread,arg) {
 //  DHTD1.refresh_period = 1000;
   dht11Init(&DHTD1);
 
-  dht11Update(&DHTD1, NULL);
-
   chEvtGetAndClearEvents(ALL_EVENTS);
 
   while (TRUE) {
     eventmask_t evt = 0;
-    chThdSleepSeconds(1);
-    dht11GetHumidity(&DHTD1, &humidity);
-    dht11GetTemperature(&DHTD1, &temperature);
 
-    if (DHTD1.state != DHT11_READ_OK) {
+    if (dht11Update(&DHTD1, 3) != DHT11_READ_OK) {
       global_errors++;
       cont_errors++;
       humidity = -99;
@@ -77,34 +75,28 @@ THD_FUNCTION(DHT11_thread,arg) {
     }
     else {
       cont_errors = 0;
+      dht11GetHumidity(&DHTD1, &humidity);
+      dht11GetTemperature(&DHTD1, &temperature);
     }
 
-    chSysLock();
+    osalSysLock();
 
     Inner_Val_DHT11[0].temp = temperature << 2;
     Inner_Val_DHT11[0].humidity = humidity;
     Inner_Val_DHT11[0].cont_errors = cont_errors;
     Inner_Val_DHT11[0].global_errors = global_errors;
 
+    osalSysUnlock();
+
+    evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_DHT11[0].RW.Auto_Update_Sec));
+
+    osalSysLock();
+
     if (evt == EVENTMASK_REREAD) {
       _core_wakeup_i(&Update_Thread, MSG_OK);
     }
 
-    chSysUnlock();
-
-    evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_DHT11[0].RW.Auto_Update_Sec-1));
-
-    dht11Update(&DHTD1, NULL);
-
-//		if (DHT11_READ_REQUEST != dht11Update(&DHTD1, NULL))
-//		{
-//			global_errors++;
-//			cont_errors++;
-//		}
-//		else
-//		{
-//			cont_errors = 0;
-//		}
+    osalSysUnlock();
   }
 }
 
