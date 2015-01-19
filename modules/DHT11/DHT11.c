@@ -10,10 +10,19 @@
 #include <stdlib.h>
 
 static thread_reference_t Update_Thread;
+static thread_reference_t DHT11_Thread;
+
+typedef struct {
+  uint8_t id;
+  volatile DHT11_Inner_Val Inner_Val_DHT11;
+  virtual_timer_t timer;
+  dht11_t DHTD;
+} DHT_Working_Struct_t;
 
 //volatile uint16_t out_temp[4];
 static core_base_struct_t Core_DHT11;
-volatile static DHT11_Inner_Val Inner_Val_DHT11[1];
+//volatile DHT11_Inner_Val Inner_Val_DHT11[DHT11_QUANTITY];
+static DHT_Working_Struct_t DHT[FH_QUANTITY];
 
 void DHT11_Init() {
   Core_DHT11.type = DHT11;
@@ -21,82 +30,127 @@ void DHT11_Init() {
 //	Core_DHT11.direction = RW;
 //	Core_DHT11.next = NULL;
 //	Core_DHT11.description = "DHT11 Hum&Temp Sensor";
-  Core_DHT11.inner_values[0] = &Inner_Val_DHT11[0];
   Core_DHT11.ival_size = sizeof(DHT11_Inner_Val);
   Core_DHT11.ival_rw_size = sizeof(DHT11_Inner_Val_RW);
 
-  Inner_Val_DHT11[0].RW.Auto_Update_Sec = 180;
-  Inner_Val_DHT11[0].cont_errors = 0;
-  Inner_Val_DHT11[0].global_errors = 0;
-  Inner_Val_DHT11[0].humidity = -99;
-  Inner_Val_DHT11[0].temp = -99 << 2;
+  uint8_t x;
 
+  for (x = 0; x < DHT11_QUANTITY; x++) {
+    Core_DHT11.inner_values[x] = &DHT[x].Inner_Val_DHT11;
+    DHT[x].Inner_Val_DHT11.RW.Auto_Update_Sec = 1;
+    DHT[x].Inner_Val_DHT11.cont_errors = 0;
+    DHT[x].Inner_Val_DHT11.global_errors = 0;
+    DHT[x].Inner_Val_DHT11.humidity = -99;
+    DHT[x].Inner_Val_DHT11.temp = -99 << 2;
+    DHT[x].id = x;
+  }
+
+  DHT[0].DHTD.ext_pin = DHT11_0_PIN;
+  DHT[0].DHTD.ext_port = DHT11_0_PORT;
+  DHT[0].DHTD.ext_drv = &EXTD1;
+  DHT[0].DHTD.ext_mode = EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | DHT11_0_EXT_PORT;
+  dht11Init(&DHT[0].DHTD);
+
+#if (DHT11_QUANTITY>1)
+  DHT[1].DHTD.ext_pin = DHT11_1_PIN;
+  DHT[1].DHTD.ext_port = DHT11_1_PORT;
+  DHT[1].DHTD.ext_drv = &EXTD1;
+  DHT[1].DHTD.ext_mode = EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | DHT11_1_EXT_PORT;
+  dht11Init(&DHT[1].DHTD);
+#endif
 //	Core_Module_Register(&Core_DHT11);
+}
+
+void dht_timer_handler(void *p) {
+  DHT_Working_Struct_t *DHT_struct = (DHT_Working_Struct_t *)p;
+  osalSysLockFromISR();
+  chEvtSignalI(DHT11_Thread, (eventmask_t)(EVENT_MASK(DHT_struct->id) << EVENTMASK_MOD_PRIVATE_SHIFT));
+//  chEvtSignalI(FH_Thread, (eventmask_t)(256));
+  chVTSetI(&DHT_struct->timer, S2ST(DHT_struct->Inner_Val_DHT11.RW.Auto_Update_Sec), dht_timer_handler, DHT_struct);
+  osalSysUnlockFromISR();
 }
 
 THD_WORKING_AREA(waDHT11_thread, 64);
 //__attribute__((noreturn))
 THD_FUNCTION(DHT11_thread,arg) {
   (void)arg;
-//	thread_t *answer_thread;
-  //	chRegSetThreadName("DS18B20");
 
-  static uint16_t global_errors = 0;
-  static uint16_t cont_errors = 0;
-//	static uint16_t old_temp = 0xffff;
+  DHT11_Thread = chThdGetSelfX();
 
-
-  /*
-  {
-    //Waiting DHT11 to initialize
-    chThdSleepSeconds(1);
+  uint8_t x;
+  osalSysLock();
+  for (x = 0; x < DHT11_QUANTITY; x++) {
+    chVTSetI(&DHT[x].timer, S2ST(DHT[x].Inner_Val_DHT11.RW.Auto_Update_Sec), dht_timer_handler, &DHT[x]);
   }
-  */
-
-  static int8_t humidity, temperature;
-
-  DHTD1.ext_pin = DHT11_PIN;
-  DHTD1.ext_port = GPIOA;
-  DHTD1.ext_drv = &EXTD1;
-  DHTD1.ext_mode = EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA;
-//  DHTD1.refresh_period = 1000;
-  dht11Init(&DHTD1);
+  osalSysUnlock();
 
   chEvtGetAndClearEvents(ALL_EVENTS);
 
   while (TRUE) {
     eventmask_t evt = 0;
+    uint8_t sensor_id = 0xFF;
 
-    if (dht11Update(&DHTD1, 3) != DHT11_READ_OK) {
-      global_errors++;
-      cont_errors++;
-      humidity = -99;
-      temperature = -99;
-    }
-    else {
-      cont_errors = 0;
-      dht11GetHumidity(&DHTD1, &humidity);
-      dht11GetTemperature(&DHTD1, &temperature);
-    }
-
-    osalSysLock();
-
-    Inner_Val_DHT11[0].temp = temperature << 2;
-    Inner_Val_DHT11[0].humidity = humidity;
-    Inner_Val_DHT11[0].cont_errors = cont_errors;
-    Inner_Val_DHT11[0].global_errors = global_errors;
-
-    osalSysUnlock();
-
-    evt = chEvtWaitOneTimeout(ALL_EVENTS, S2ST(Inner_Val_DHT11[0].RW.Auto_Update_Sec));
-
-    osalSysLock();
+    evt = chEvtWaitOne(ALL_EVENTS);
 
     if (evt == EVENTMASK_REREAD) {
+      osalSysLock();
       _core_wakeup_i(&Update_Thread, MSG_OK);
+      osalSysUnlock();
     }
+    else {
+      switch (evt) {
+      case (EVENT_MASK(0) << EVENTMASK_MOD_PRIVATE_SHIFT):
+        sensor_id = 0;
+        break;
+#if DHT11_QUANTITY >1
+      case (EVENT_MASK(1) << EVENTMASK_MOD_PRIVATE_SHIFT):
+        sensor_id = 1;
+        break;
+#endif
+#if DHT11_QUANTITY >2
+        case (EVENT_MASK(2) << EVENTMASK_MOD_PRIVATE_SHIFT):
+        sensor_id = 2;
+        break;
+#endif
+#if DHT11_QUANTITY >3
+        case (EVENT_MASK(3) << EVENTMASK_MOD_PRIVATE_SHIFT):
+        sensor_id = 3;
+        break;
+#endif
+      }
 
-    osalSysUnlock();
+      if (sensor_id < DHT11_QUANTITY) {
+
+        uint8_t error = 0;
+
+        int8_t humidity, temperature;
+
+        if (dht11Update(&DHT[sensor_id].DHTD, 3) != DHT11_READ_OK) {
+          error++;
+          humidity = -99;
+          temperature = -99;
+        }
+        else {
+//          error = 0;
+          dht11GetHumidity(&DHT[sensor_id].DHTD, &humidity);
+          dht11GetTemperature(&DHT[sensor_id].DHTD, &temperature);
+        }
+
+        osalSysLock();
+
+        DHT[sensor_id].Inner_Val_DHT11.temp = temperature << 2;
+        DHT[sensor_id].Inner_Val_DHT11.humidity = humidity;
+        if (error == 0) {
+          DHT[sensor_id].Inner_Val_DHT11.cont_errors = 0;
+        }
+        else {
+          DHT[sensor_id].Inner_Val_DHT11.global_errors++;
+          DHT[sensor_id].Inner_Val_DHT11.cont_errors++;
+        }
+
+        osalSysUnlock();
+      }
+    }
   }
 }
 

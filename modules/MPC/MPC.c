@@ -41,7 +41,7 @@ THD_FUNCTION(MPC_Processor,arg)
     switch ((*rx_buffer).cmd)
     {
       case RF_PING:
-      LED3Swap();
+//      LED3Swap();
 //            osalThreadSleepMilliseconds(5);
       MPC_Send_Command((*rx_buffer).src_addr, RF_PONG, 0, NULL);// load message into radio
       chMBPost(&rf_mb[RF_MB_FREE], (msg_t) rx_buffer, TIME_INFINITE);
