@@ -34,7 +34,7 @@ void DHT11_Init() {
 //	Core_Module_Register(&Core_DHT11);
 }
 
-THD_WORKING_AREA(waDHT11_thread, 64);
+THD_WORKING_AREA(waDHT11_thread, 128);
 //__attribute__((noreturn))
 THD_FUNCTION(DHT11_thread,arg) {
   (void)arg;

@@ -24,7 +24,7 @@ static msg_t rf_mb_b[MB_CNT][RF_MAX_IO_BUFFERS];
 #define RF_MB_TX    2
 #define RF_MB_PS    3
 
-THD_WORKING_AREA(waMPC_Processor, 64);
+THD_WORKING_AREA(waMPC_Processor, 128);
 THD_FUNCTION(MPC_Processor,arg)
 {
   (void) arg;
@@ -82,7 +82,7 @@ THD_FUNCTION(MPC_Processor,arg)
   }
 }
 
-THD_WORKING_AREA(waMPC, 64);
+THD_WORKING_AREA(waMPC, 128);
 THD_FUNCTION(MPC,arg)
 {
   (void) arg;
