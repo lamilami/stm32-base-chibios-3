@@ -1,7 +1,14 @@
 #ifndef DHT11_H_
 #define DHT11_H_
 
-#define DHT11_PIN	GPIOA_PIN0
+#define DHT11_QUANTITY 2
+
+#define DHT11_0_PIN	        GPIOA_PIN0
+#define DHT11_0_PORT        GPIOA
+#define DHT11_0_EXT_PORT    EXT_MODE_GPIOA
+#define DHT11_1_PIN         GPIOA_PIN3
+#define DHT11_1_PORT        GPIOA
+#define DHT11_1_EXT_PORT    EXT_MODE_GPIOA
 
 void DHT11_Start();
 
