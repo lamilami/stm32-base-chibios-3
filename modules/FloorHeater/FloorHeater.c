@@ -50,8 +50,8 @@ int16_t UpdatePID_S(volatile FloorHeater_Inner_Val * pid, int32_t error)     //,
   return (pid->pPower + pid->iPower);     // - dTerm);
 }
 
-PWMConfig pwmcfg_fh = {12000000, /* 12Mhz PWM clock frequency */
-                       10000, /* PWM frequency 1.2 kHz*/
+PWMConfig pwmcfg_fh = {1200000, /* 1.2Mhz PWM clock frequency */
+                       10000, /* PWM frequency 120 Hz*/
                        NULL, /* No callback */
                        /* Only channel 2&3 enabled */
                        { {PWM_OUTPUT_DISABLED, NULL}, {PWM_OUTPUT_ACTIVE_HIGH, NULL}, {PWM_OUTPUT_ACTIVE_HIGH, NULL}, {
@@ -140,15 +140,7 @@ THD_FUNCTION(FloorHeater,arg) {
   RCC_TIMERS_ENABLE_CMD();
   PAL_SET_MODE_CMD();
 
-  /*
-   palSetPadMode(GPIOA, GPIOA_PIN9,
-   PAL_MODE_ALTERNATE(2) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLDOWN | PAL_STM32_OTYPE_PUSHPULL);
-   palSetPadMode(GPIOA, GPIOA_PIN10,
-   PAL_MODE_ALTERNATE(2) | PAL_STM32_OSPEED_HIGHEST | PAL_STM32_PUDR_PULLDOWN | PAL_STM32_OTYPE_PUSHPULL);
-   */PWM_START_CMD();
-
-  pwmEnableChannel(&PWMD1, 1, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, /* ipwr * */10000));
-  pwmEnableChannel(&PWMD1, 2, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, /* ipwr * */10000));
+  PWM_START_CMD();
 
   uint8_t x;
 
