@@ -171,7 +171,7 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel) {
       }
       else {
         volatile systime_t tmp_time = gptGetCounterX(&GPTD17);
-        sensor->time_measurment = tmp_time - sensor->time_measurment;
+        sensor->time_measurment = (uint16_t)(tmp_time - sensor->time_measurment);
         if (T172US(sensor->time_measurment) > 50) {
           sensor->data += 1;
         }
@@ -191,7 +191,7 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel) {
       }
       else {
         volatile systime_t tmp_time = gptGetCounterX(&GPTD17);
-        sensor->time_measurment = tmp_time - sensor->time_measurment;
+        sensor->time_measurment = (uint16_t)(tmp_time - sensor->time_measurment);
         if (T172US(sensor->time_measurment) > 40) {
 //					sensor->crc += 1;
         }
@@ -200,11 +200,13 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel) {
         chSysLockFromISR();
         extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
         chVTResetI(&sensor->timer);
-        gptStopTimerI(&GPTD17);
+//        gptStopTimerI(&GPTD17);
         sensor->temp = (sensor->data & 0xFF00) >> 8;
         sensor->humidity = (sensor->data & 0xFF000000) >> 24;
         sensor->state = DHT11_READ_OK;
-        chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_OK));
+
+        if (sensor->updater_thread != NULL)
+          chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_OK));
         osalSysUnlockFromISR();
       }
       break;
@@ -255,9 +257,10 @@ void dht11_timer_handler(void *p) {
 //			{
       chVTResetI(&sensor->timer);
 //			}
-      gptStopTimerI(&GPTD17);
+//      gptStopTimerI(&GPTD17);
       sensor->state = DHT11_ERROR;
-      chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_ERROR));
+      if (sensor->updater_thread != NULL)
+        chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_ERROR));
       osalSysUnlockFromISR();
 //                SerialConsole::debug("dht11Update timer error\r\n");
       break;
@@ -295,10 +298,12 @@ dht11_state_t dht11Init(dht11_t *sensor) {
     palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
     sensor->ext_cfg.mode = EXT_CH_MODE_BOTH_EDGES | sensor->ext_mode;
     sensor->ext_cfg.cb = dht11_lld_ext_handler;
-    chSysLock();
+    osalSysLock();
     extSetChannelModeI(sensor->ext_drv, sensor->ext_pin, &sensor->ext_cfg);
     extChannelDisableI(sensor->ext_drv, sensor->ext_pin);
-    chSysUnlock();
+    gptStopTimerI(&GPTD17);
+    gptStartContinuousI(&GPTD17, 65000);
+    osalSysUnlock();
 
     state = sensor->state = DHT11_IDLE;
     lldUnlock(&sensor->lock);
@@ -318,24 +323,25 @@ dht11_state_t dht11Update(dht11_t *sensor, uint8_t retry) {
   uint8_t cnt = 0;
   eventmask_t evt = EVENTMASK_ERROR;
 
+  while (sensor->updater_thread != NULL) {
+    osalThreadSleepMilliseconds(10);
+  }
+
+  sensor->updater_thread = chThdGetSelfX();
+
   do {
     if (dht11StartUpdate(sensor) != DHT11_BUSY) {
-      uint8_t cnt = 0;
-      while (sensor->updater_thread != NULL) {
-        osalThreadSleepMilliseconds(10);
-      }
-      sensor->updater_thread = chThdGetSelfX();
-      evt = chEvtWaitOne(ALL_EVENTS);
+      evt = chEvtWaitOne(EVENTMASK_OK | EVENTMASK_ERROR);
       if (evt != EVENTMASK_OK) {
         osalThreadSleepMilliseconds(10);
       }
       cnt++;
     }
-  } while ((evt != EVENTMASK_OK) || (cnt >= retry));
+  } while ((evt != EVENTMASK_OK) && (cnt < retry));
 
-  sensor->updater_thread = NULL;
   state = sensor->state;
 
+  sensor->updater_thread = NULL;
   return state;
 }
 
@@ -346,17 +352,14 @@ dht11_state_t dht11StartUpdate(dht11_t *sensor) {
 
     // low pulse
     sensor->bit_count = 0;
-    sensor->updater_thread = NULL;
+//    sensor->updater_thread = NULL;
     state = sensor->state = DHT11_READ_REQUEST;
     palSetPadMode(sensor->ext_port, sensor->ext_pin, PAL_MODE_OUTPUT_PUSHPULL);
     palClearPad(sensor->ext_port, sensor->ext_pin);
 
     osalSysLock();
 
-    gptStopTimerI(&GPTD17);
-    gptStartContinuousI(&GPTD17, 65000);
-
-    chVTSetI(&sensor->timer, MS2ST(25), dht11_timer_handler, sensor);
+    chVTSetI(&sensor->timer, MS2ST(18), dht11_timer_handler, sensor);
 
     osalSysUnlock();
 

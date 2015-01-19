@@ -50,7 +50,7 @@ typedef void * varg_t;
  */
 typedef struct
 {
-	char *desc;
+//	char *desc;
 	EXTDriver *ext_drv;
 	uint32_t ext_mode;
 	ioportid_t ext_port;
