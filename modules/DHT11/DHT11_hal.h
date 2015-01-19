@@ -50,7 +50,7 @@ typedef void * varg_t;
  */
 typedef struct
 {
-	char *desc;
+//	char *desc;
 	EXTDriver *ext_drv;
 	uint32_t ext_mode;
 	ioportid_t ext_port;
@@ -68,6 +68,7 @@ typedef struct
 	lld_lock_t lock;
 	virtual_timer_t timer;
 	gptcnt_t time_measurment;
+	thread_t* updater_thread;
 } dht11_t;
 
 /*===========================================================================*/
@@ -83,7 +84,8 @@ extern "C"
 {
 #endif
 dht11_state_t dht11Init(dht11_t *sensor);
-bool dht11Update(dht11_t *sensor, varg_t unused);
+dht11_state_t dht11Update(dht11_t *sensor, uint8_t retry);
+dht11_state_t dht11StartUpdate(dht11_t *sensor);
 bool dht11GetTemperature(dht11_t *sensor, int8_t *temp);
 bool dht11GetHumidity(dht11_t *sensor, int8_t *humidity);
 #ifdef __cplusplus
