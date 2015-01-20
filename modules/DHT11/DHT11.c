@@ -64,13 +64,12 @@ void DHT11_Init() {
 void dht_timer_handler(void *p) {
   DHT_Working_Struct_t *DHT_struct = (DHT_Working_Struct_t *)p;
   osalSysLockFromISR();
-  chEvtSignalI(DHT11_Thread, (eventmask_t)(EVENT_MASK(DHT_struct->id) << EVENTMASK_MOD_PRIVATE_SHIFT));
-//  chEvtSignalI(FH_Thread, (eventmask_t)(256));
   chVTSetI(&DHT_struct->timer, S2ST(DHT_struct->Inner_Val_DHT11.RW.Auto_Update_Sec), dht_timer_handler, DHT_struct);
+  chEvtSignalI(DHT11_Thread, (eventmask_t)(EVENT_MASK(DHT_struct->id) << EVENTMASK_MOD_PRIVATE_SHIFT));
   osalSysUnlockFromISR();
 }
 
-THD_WORKING_AREA(waDHT11_thread, 64);
+THD_WORKING_AREA(waDHT11_thread, 128);
 //__attribute__((noreturn))
 THD_FUNCTION(DHT11_thread,arg) {
   (void)arg;
