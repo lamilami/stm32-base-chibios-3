@@ -122,7 +122,7 @@ THD_FUNCTION(DHT11_thread,arg) {
 
         uint8_t error = 0;
 
-        int8_t humidity, temperature;
+        int16_t humidity, temperature;
 
         if (dht11Update(&DHT[sensor_id].DHTD, 3) != DHT11_READ_OK) {
           error++;
