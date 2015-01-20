@@ -31,7 +31,7 @@
 //#define EXTI0_1_IRQHandler Vector54
 //#define EXTI9_5_IRQHandler Vector9C
 
-#define CH_DEBUG		FALSE
+#define CH_DEBUG		TRUE
 
 /*===========================================================================*/
 /**

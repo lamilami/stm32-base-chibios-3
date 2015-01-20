@@ -242,13 +242,15 @@ static void dht11_lld_ext_handler(EXTDriver *extp, expchannel_t channel) {
         if (sensor->crc == checksum) {
 #endif
           sensor->state = DHT11_READ_OK;
-          if (sensor->updater_thread != NULL)
-            chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_OK));
+//          if (sensor->updater_thread != NULL)
+//            chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_OK));
+          osalThreadResumeI(&sensor->updater_thread, MSG_OK);
 #if DHT_USE_CRC_CHECKSUM
         } else {
           sensor->state = DHT11_CRC_ERROR;
-          if (sensor->updater_thread != NULL)
-            chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_ERROR));
+//          if (sensor->updater_thread != NULL)
+//            chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_ERROR));
+          osalThreadResumeI(&sensor->updater_thread, MSG_TIMEOUT);
         }
 #endif
         osalSysUnlockFromISR();
@@ -301,8 +303,9 @@ void dht11_timer_handler(void *p) {
       palSetPad(sensor->ext_port, sensor->ext_pin);
       chVTResetI(&sensor->timer);
       sensor->state = DHT11_ERROR;
-      if (sensor->updater_thread != NULL)
-        chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_ERROR));
+//      if (sensor->updater_thread != NULL)
+//        chEvtSignalI(sensor->updater_thread, (eventmask_t)(EVENTMASK_ERROR));
+      osalThreadResumeI(&sensor->updater_thread, MSG_TIMEOUT);
       osalSysUnlockFromISR();
       break;
     }
@@ -359,23 +362,26 @@ dht11_state_t dht11Update(dht11_t *sensor, uint8_t retry) {
   //
   dht11_state_t state;
   uint8_t cnt = 0;
-  eventmask_t evt = EVENTMASK_ERROR;
+//  eventmask_t evt = EVENTMASK_ERROR;
 
   while (sensor->updater_thread != NULL) {
     osalThreadSleepMilliseconds(10);
   }
 
-  sensor->updater_thread = chThdGetSelfX();
+//  sensor->updater_thread = chThdGetSelfX();
 
   do {
     if (dht11StartUpdate(sensor) != DHT11_BUSY) {
-      evt = chEvtWaitOne(EVENTMASK_OK | EVENTMASK_ERROR);
-      if (evt != EVENTMASK_OK) {
-        osalThreadSleepMilliseconds(10);
-      }
+      osalSysLock();
+      osalThreadSuspendS(&sensor->updater_thread);
+      osalSysUnlock();
+//      evt = chEvtWaitOne(EVENTMASK_OK | EVENTMASK_ERROR);
+//      if (evt != EVENTMASK_OK) {
+//        osalThreadSleepMilliseconds(10);
+//      }
       cnt++;
     }
-  } while ((evt != EVENTMASK_OK) && (cnt < retry));
+  } while ((sensor->state != DHT11_READ_OK) && (cnt < retry));
 
   state = sensor->state;
 
