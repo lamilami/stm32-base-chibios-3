@@ -161,13 +161,19 @@ uint16_t FloorHeater_cb()
 #else
 uint16_t FH_Humidifier_cb()
 {
-
 	static DHT11_Inner_Val Temp_Vals;
+	static int16_t old_hum = 0;
 //	Core_Module_Update(DHT11, 0, NULL, 3000);
 	Core_Module_Read(localhost, DHT11, 0, (char*) &Temp_Vals);
-
-	return Temp_Vals.humidity;
-
+	if (Temp_Vals.cont_errors == 0)
+	{
+		old_hum = Temp_Vals.humidity;
+		return Temp_Vals.humidity;
+	}
+	else
+	{
+		return old_hum;
+	}
 }
 #endif
 #endif //FloorHeater_PRESENT
@@ -361,10 +367,10 @@ int main(void)
 #else
 	FloorHeater_Inner_Val_RW FH_IV;
 	FH_IV.Desired_Temp = 65;
-    FH_IV.Auto_Update_Sec = 180;
+	FH_IV.Auto_Update_Sec = 180;
 	FH_IV.Get_Temp_Callback = FH_Humidifier_cb;
-	FH_IV.iGain = 2;
 	FH_IV.pGain = 2;
+	FH_IV.iGain = 0;
 	FH_IV.iState = 0;
 	FH_IV.iMax = 25;
 	FH_IV.iMin = -2;
@@ -401,12 +407,14 @@ int main(void)
 #if DHT11_PRESENT
 		volatile static uint32_t time_cnt = 0;
 
-		static DHT11_Inner_Val DHT_Temp_Vals;
-		Core_Module_Update(DHT11, 0, NULL, 3000);
-		chThdSleepSeconds(1);
-		DHT_Temp_Vals.temp = 77 << 2;
-		DHT_Temp_Vals.humidity = 0;
-		Core_Module_Read(localhost, DHT11, 0, (char*) &DHT_Temp_Vals);
+		/*
+		 static DHT11_Inner_Val DHT_Temp_Vals;
+		 Core_Module_Update(DHT11, 0, NULL, 3000);
+		 chThdSleepSeconds(1);
+		 DHT_Temp_Vals.temp = 77 << 2;
+		 DHT_Temp_Vals.humidity = 0;
+		 Core_Module_Read(localhost, DHT11, 0, (char*) &DHT_Temp_Vals);
+		 */
 
 //		printf("DHT11 Temp: %d, Hum: %d,  Cnt: %d \r\n", (int) DHT_Temp_Vals.temp/4, (int) DHT_Temp_Vals.humidity, time_cnt);
 		time_cnt++;
@@ -594,6 +602,6 @@ int main(void)
 		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
 //		LEDB1Swap();
 #endif
-
+		time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
 	}
 }
