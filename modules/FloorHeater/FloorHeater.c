@@ -12,7 +12,7 @@ typedef struct {
   uint8_t id;
   volatile FloorHeater_Inner_Val Inner_Val_FH;
   virtual_timer_t timer;
-  PWMDriver driver;
+  PWMDriver *driver;
   pwmchannel_t channel;
 } FH_Working_Struct_t;
 
@@ -80,11 +80,12 @@ void FloorHeater_Init() {
   FH[0].Inner_Val_FH.RW.Get_Temp_Callback = NULL;
   FH[0].Inner_Val_FH.RW.MaxPower = 100;
 
-  FH[0].driver = PWMD1;
+  FH[0].driver = &PWMD1;
   FH[0].channel = 2;
   FH[0].id = 0;
 
   FH[1] = FH[0];
+  FH[1].driver = &PWMD1;
   FH[1].channel = 1;
   FH[1].Inner_Val_FH.RW.MaxPower = 100;
   FH[1].id = 1;
@@ -213,7 +214,7 @@ THD_FUNCTION(FloorHeater,arg) {
         FH[sensor_id].Inner_Val_FH = Current_Ival;
         osalSysUnlock();
 
-        pwmEnableChannel(&FH[sensor_id].driver, FH[sensor_id].channel, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, ipwr * 100));     // 10% duty cycle
+        pwmEnableChannel(FH[sensor_id].driver, FH[sensor_id].channel, PWM_PERCENTAGE_TO_WIDTH(&PWMD1, ipwr * 100));     // 10% duty cycle
 
       }
     }
