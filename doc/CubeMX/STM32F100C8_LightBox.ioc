@@ -1,5 +1,5 @@
 #MicroXplorer Configuration settings - do not modify
-#Mon Dec 22 09:19:42 BRT 2014
+#Wed Jan 21 09:58:02 BRT 2015
 File.Version=1
 KeepUserPlacement=true
 Mcu.Family=STM32F1
@@ -8,10 +8,11 @@ Mcu.IP1=SYS
 Mcu.IP2=TIM1
 Mcu.IP3=TIM2
 Mcu.IP4=TIM3
-Mcu.IP5=TIM15
-Mcu.IP6=TIM16
-Mcu.IP7=TIM17
-Mcu.IPNb=8
+Mcu.IP5=TIM4
+Mcu.IP6=TIM15
+Mcu.IP7=TIM16
+Mcu.IP8=TIM17
+Mcu.IPNb=9
 Mcu.Name=STM32F100C(8-B)Tx
 Mcu.Package=LQFP48
 Mcu.Pin0=PC13-TAMPER-RTC
@@ -81,13 +82,14 @@ PB14.Mode=PWM-Generation
 PB14.Signal=TIM15_CH1
 PB15.Mode=PWM-Generation
 PB15.Signal=TIM15_CH2
-PB6.Mode=PWM-Generation
-PB6.Signal=TIM16_CH1N
-PB7.Mode=PWM-Generation
-PB7.Signal=TIM17_CH1N
-PB8.Mode=PWM-Generation
+PB6.Locked=true
+PB6.Mode=PWM-Input-1
+PB6.Signal=TIM4_CH1
+PB7.Locked=true
+PB7.Signal=TIM4_CH2
+PB8.Mode=Input-Capture
 PB8.Signal=TIM16_CH1
-PB9.Mode=PWM-Generation
+PB9.Mode=Input-Capture
 PB9.Signal=TIM17_CH1
 PC13-TAMPER-RTC.GPIOParameters=GPIO_Label
 PC13-TAMPER-RTC.GPIO_Label=LED Led
