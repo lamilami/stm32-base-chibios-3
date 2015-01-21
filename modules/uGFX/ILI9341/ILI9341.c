@@ -2,8 +2,8 @@
 #include "hal.h"
 #include "core.h"
 
-//#if ILI9341_PRESENT
-#if 1
+#if ILI9341_PRESENT
+//#if 1
 
 #include "printf.h"
 
