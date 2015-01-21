@@ -1,0 +1,24 @@
+#ifndef RGBW_H_
+#define RGBW_H_
+#include "core.h"
+
+void RGBW_Start();
+
+typedef struct
+{
+	volatile uint16_t Red_Set, Green_Set, Blue_Set, White_Set;
+	volatile uint16_t Rise_Time_Sec;
+	volatile systime_t Max_Delay_Sec;
+} RGBW_Inner_Val_RW;
+
+typedef struct
+{
+
+	RGBW_Inner_Val_RW RW;
+
+	volatile int16_t Red_Power, Green_Power, Blue_Power, White_Power;
+
+//	volatile systime_t 	Correction_24H_Sec;
+} RGBW_Inner_Val;
+
+#endif
