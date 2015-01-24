@@ -126,6 +126,7 @@ void Core_Init() {
 
   Core_Module_Register(&Core_Base, NULL, NULL);
 
+/*
   EXTConfig static extcfg = { { {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
                                {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
                                {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
@@ -138,7 +139,8 @@ void Core_Init() {
                                {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL}, {EXT_CH_MODE_DISABLED, NULL},
 #endif
                                {EXT_CH_MODE_DISABLED, NULL}}};
-
+*/
+  EXTConfig static extcfg = {};
   /*
    * Activates the EXT driver 1.
    */
