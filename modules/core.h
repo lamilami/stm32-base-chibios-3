@@ -2,20 +2,20 @@
 #define _CORE_H_
 
 #define NET_ADDR            30      //5-bit nRF24 addr
-#define SUB_ADDR            1       //3-bit USART addr
+#define SUB_ADDR            0       //3-bit USART addr
 
 #define MY_ADDR				((NET_ADDR & 0x3F) | ((SUB_ADDR << 6) & 0xC0))
 #define SUBMOD_ADDR(addr)   ((NET_ADDR & 0x3F) | (((addr) << 6) & 0xC0))
 
-#define MPC_PRESENT         FALSE
+#define MPC_PRESENT         TRUE
 
 #if MPC_PRESENT
-#define MPC_RADIO_PRESENT	FALSE
+#define MPC_RADIO_PRESENT	TRUE
 #define MPC_UART_PRESENT    TRUE
 #endif
 
-#define DS18B20_PRESENT		FALSE
-#define DHT11_PRESENT		TRUE
+#define DS18B20_PRESENT		TRUE
+#define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
 #define WATCHDOG_PRESENT	FALSE
@@ -24,7 +24,7 @@
 #define PIR_PRESENT			FALSE
 #define LM75_PRESENT		FALSE
 
-#define uGFX_PRESENT		FALSE
+#define uGFX_PRESENT		TRUE
 
 #if uGFX_PRESENT
 #define ILI9341_PRESENT     TRUE
