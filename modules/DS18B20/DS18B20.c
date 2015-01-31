@@ -40,19 +40,10 @@ void DS18B20_Init() {
     Inner_Val_DS18B20.temp[i] = 0xFFFF;
   }
 
-  Core_Module_Register(&Core_DS18B20);
+//  Core_Module_Register(&Core_DS18B20);
 }
 
-THD_WORKING_AREA(waDS18B20, 256);
-//__attribute__((noreturn))
-THD_FUNCTION(DS18B20,arg) {
-  (void)arg;
-//	thread_t *answer_thread;
-
-  static ucnt_t global_errors = 0;
-  static uint16_t cont_errors = 0;
-//	static uint16_t old_temp = 0xffff;
-
+void DS18B20_ReInit() {
   OW_Init();
 
   while (OW_Send(OW_SEND_RESET, (uint8_t *)"\xcc\x4e\x00\x00\x3f", 5, NULL, 0, OW_NO_READ) != OW_OK) {
@@ -74,8 +65,21 @@ THD_FUNCTION(DS18B20,arg) {
       sens_addr[i][11] = 0xff;
     }
   }
+}
+
+THD_WORKING_AREA(waDS18B20, 256);
+//__attribute__((noreturn))
+THD_FUNCTION(DS18B20,arg) {
+  (void)arg;
+//	thread_t *answer_thread;
+
+  static ucnt_t global_errors = 0;
+  static uint16_t cont_errors = 0;
+//	static uint16_t old_temp = 0xffff;
 
 //	DS18B20_Init (arg,Core_DS18B20);
+
+  DS18B20_ReInit();
 
   while (TRUE) {
 
@@ -134,7 +138,8 @@ THD_FUNCTION(DS18B20,arg) {
     }
 
     if (cont_errors > 3) {
-      OW_Send(OW_SEND_RESET, (uint8_t *)"\xcc\x4e\x00\x00\x3f", 5, NULL, 0, OW_NO_READ);
+//      OW_Send(OW_SEND_RESET, (uint8_t *)"\xcc\x4e\x00\x00\x3f", 5, NULL, 0, OW_NO_READ);
+      DS18B20_ReInit();
     }
 
     chSysLock();
@@ -157,7 +162,8 @@ void DS18B20_Start() {
 #if DS18B20_PRESENT
   DS18B20_Init();
   thread_t* thd = chThdCreateStatic(waDS18B20, sizeof(waDS18B20), HIGHPRIO, DS18B20, NULL);
-  Core_Register_Thread(Temp, thd, &Update_Thread);
+  Core_Module_Register(&Core_DS18B20, thd, &Update_Thread);
+//  Core_Register_Thread(Temp, thd, &Update_Thread);
   chThdYield();
 #endif
 }

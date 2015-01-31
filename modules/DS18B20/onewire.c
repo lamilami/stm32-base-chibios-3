@@ -68,6 +68,8 @@ uint8_t OW_Init() {
 //	GPIO_InitTypeDef GPIO_InitStruct;
 //	USART_InitTypeDef USART_InitStructure;
 
+  sdStop(&SD1);
+
 #ifdef STM32F100C8
 
   rccEnableUSART1(TRUE);
