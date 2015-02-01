@@ -363,7 +363,7 @@ THD_FUNCTION(ILI9341,arg) {
 
       if (temp_old != DS_Temp_Vals.temp[0]) {
         temp_old = DS_Temp_Vals.temp[0];
-        sprintf_(buf, "%02f", (float)DS_Temp_Vals.temp[0] / 4);
+        sprintf_(buf, "%.2f", (float)DS_Temp_Vals.temp[0] / 4);
         gdispFillStringBox(width - 120, HEIGHT_24, 120, HEIGHT_32, buf, font32, TEXT_COLOR, OT_BG_COLOR, justifyRight);
       }
 
@@ -404,7 +404,7 @@ THD_FUNCTION(ILI9341,arg) {
         }
       }
 
-      Vals_Cur_s10.temp[2] = DS_Temp_Vals.temp[0] / 4;
+//      Vals_Cur_s10.temp[2] = DS_Temp_Vals.temp[0] / 4;
 
 //    uint8_t x, num, val;
 
@@ -413,7 +413,7 @@ THD_FUNCTION(ILI9341,arg) {
           if (Vals_old_s10.val[val][num] != Vals_Cur_s10.val[val][num]) {
             Vals_old_s10.val[val][num] = Vals_Cur_s10.val[val][num];
             if (Vals_Cur_s10.val[val][num] > -50) {
-              sprintf_(buf, "%02i ", Vals_Cur_s10.val[val][num]);
+              sprintf_(buf, "%i ", Vals_Cur_s10.val[val][num]);
             }
             else {
               sprintf_(buf, "    ");
