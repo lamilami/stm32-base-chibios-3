@@ -1,6 +1,6 @@
 syntax: glob
 
-os/.svn/*
+*/.svn/*
 STM32F*/Debug/*
 STM32F*/*.elf.xcodeproj/*
 logs/*

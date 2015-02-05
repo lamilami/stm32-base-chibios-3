@@ -14364,8 +14364,6 @@ struct MC_ME_tag {
         } B;
     } LP_PC[8];
 
-    uint8_t MC_ME_reserved4[30];
-
   /* SPC5STUDIO FIX */
   /* Removed dumb way to declare equivalent registers.*/
   union {
@@ -14379,6 +14377,8 @@ struct MC_ME_tag {
   } PCTL[256];
 
 #if 0
+	  uint8_t MC_ME_reserved4[30];
+
     union {
         vuint8_t R;
         struct {
@@ -22344,25 +22344,35 @@ struct SIUL2_tag {
 
     uint8_t SIUL2_reserved8[380];
 
-    union {
+    union {                              /* I/O Pin Multiplexed Signal Configuration Registers */
         vuint32_t R;
         struct {
-            vuint32_t:2;
-            vuint32_t OERC:2;
-              vuint32_t:2;
-            vuint32_t ODC:2;
-            vuint32_t SMC:1;
-            vuint32_t APC:1;
-            vuint32_t ILS:2;
-            vuint32_t IBE:1;
-            vuint32_t HYS:1;
-            vuint32_t WPDE:1;
-            vuint32_t WPUE:1;
-            vuint32_t INV:1;
-              vuint32_t:7;
-            vuint32_t SSS:8;
+          vuint32_t  :2;
+          vuint32_t OERC:2;
+          vuint32_t  :1;
+          vuint32_t ODC:3;
+          vuint32_t SMC:1;
+          vuint32_t APC:1;
+          vuint32_t ILS:2;
+          vuint32_t IBE:1;
+          vuint32_t HYS:1;
+          vuint32_t WPDE:1;
+          vuint32_t WPUE:1;
+          vuint32_t INV:1;
+          vuint32_t  :7;
+          vuint32_t SSS:8;
         } B;
-    } MSCR[1024];
+      } MSCR_IO[512];
+
+      union {                              /* Multiplexed Signal Configuration Register for Multiplexed Input Selection */
+        vuint32_t R;
+        struct {
+          vuint32_t  :16;
+          vuint32_t INV:1;
+          vuint32_t  :7;
+          vuint32_t SSS:8;
+        } B;
+      } MSCR_MUX[512];
 
     uint8_t SIUL2_reserved9[192];
 

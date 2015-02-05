@@ -70,11 +70,10 @@ void _pal_lld_init(const PALConfig *config) {
                                SPC5_ME_PCTL_RUN(2) | SPC5_ME_PCTL_LP(2));
 #endif
 
-  // FIXME 1 loop while
   /* Initialize MSCR_MUX registers.*/
   i = 0;
   while (config->mscr_mux[i].mscr_index != -1) {
-    SIUL2.MSCR[config->mscr_mux[i].mscr_index].R = config->mscr_mux[i].mscr_value;
+    SIUL2.MSCR_MUX[config->mscr_mux[i].mscr_index].R = config->mscr_mux[i].mscr_value;
     i++;
   }
 
@@ -82,7 +81,7 @@ void _pal_lld_init(const PALConfig *config) {
   i = 0;
   while (config->mscr_io[i].mscr_index != -1) {
     SIUL2.GPDO[config->mscr_io[i].mscr_index].R = config->mscr_io[i].gpdo_value;
-    SIUL2.MSCR[config->mscr_io[i].mscr_index].R = config->mscr_io[i].mscr_value;
+    SIUL2.MSCR_IO[config->mscr_io[i].mscr_index].R = config->mscr_io[i].mscr_value;
     i++;
   }
 }
@@ -147,8 +146,7 @@ void _pal_lld_setgroupmode(ioportid_t port,
   ioportmask_t m1 = 0x8000;
   while (m1) {
     if (mask & m1)
-      // FIXME check if the mode is correct
-      SIUL2.MSCR[pcr_index].R = mode;
+      SIUL2.MSCR_IO[pcr_index].R = mode;
     m1 >>= 1;
     ++pcr_index;
   }

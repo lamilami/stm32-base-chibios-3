@@ -73,7 +73,7 @@ void hal_lld_init(void) {
 
   /* The system is switched to the RUN0 mode, the default for normal
      operations.*/
-  if (halSPCSetRunMode(SPC5_RUNMODE_RUN0) == OSAL_FAILED) {
+  if (halSPCSetRunMode(SPC5_FINAL_RUNMODE) == OSAL_FAILED) {
     SPC5_CLOCK_FAILURE_HOOK();
   }
 

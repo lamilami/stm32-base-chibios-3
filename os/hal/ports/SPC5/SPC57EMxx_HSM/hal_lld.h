@@ -1,5 +1,5 @@
 /*
-    ChibiOS - Copyright (C) 2006..2015 Adam J. Porter
+    SPC5 HAL - Copyright (C) 2013 STMicroelectronics
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -15,94 +15,84 @@
 */
 
 /**
- * @file    KL2x/kinetis_tpm.h
- * @brief   Kinetis TPM registers layout header.
+ * @file    SPC57EMxx_HSM/hal_lld.h
+ * @brief   SPC57EMxx_HSM HAL subsystem low level driver header.
  *
  * @addtogroup HAL
  * @{
  */
 
-#ifndef _KINETIS_TPM_H_
-#define _KINETIS_TPM_H_
+#ifndef _HAL_LLD_H_
+#define _HAL_LLD_H_
+
+#include "xpc57em.h"
+#include "xpc57em_hsm.h"
+#include "spc57em_hsm_registry.h"
 
 /*===========================================================================*/
 /* Driver constants.                                                         */
 /*===========================================================================*/
 
 /**
- * @name    TPM_SC register
+ * @brief   Defines the support for realtime counters in the HAL.
+ */
+#define HAL_IMPLEMENTS_COUNTERS             FALSE
+
+/**
+ * @name    Platform identification
  * @{
  */
-#define TPM_SC_CMOD_DISABLE       (0 << 3)
-#define TPM_SC_CMOD_LPTPM_CLK     (1 << 3)
-#define TPM_SC_CMOD_LPTPM_EXTCLK  (2 << 3)
-#define TPM_SC_CPWMS              (1 << 5)
-#define TPM_SC_TOIE               (1 << 6)
-#define TPM_SC_TOF                (1 << 7)
-#define TPM_SC_DMA                (1 << 8)
+#define PLATFORM_NAME                       "SPC57EMxx HSM"
 /** @} */
 
 /**
- * @name    TPM_MOD register
+ * @name    Absolute Maximum Ratings
  * @{
  */
-#define TPM_MOD_MASK            (0xFFFF)
+/**
+ * @brief   Maximum XOSC clock frequency.
+ */
+#define SPC5_HSM_CLK_MAX                    100000000
 /** @} */
 
 /**
- * @name    TPM_CnSC register
+ * @name    Internal clock sources
  * @{
  */
-#define TPM_CnSC_DMA   (1 << 0)
-#define TPM_CnSC_ELSA  (1 << 2)
-#define TPM_CnSC_ELSB  (1 << 3)
-#define TPM_CnSC_MSA   (1 << 4)
-#define TPM_CnSC_MSB   (1 << 5)
-#define TPM_CnSC_CHIE  (1 << 6)
-#define TPM_CnSC_CHF   (1 << 7)
+#define SPC5_IRC_CLK                        16000000
 /** @} */
-
-/**
- * @name    TPM_CnV register
- * @{
- */
-#define TPM_CnV_VAL_MASK (0xFFFF)
-/** @} */
-
-/**
- * @name    TPM_STATUS register
- * @{
- */
-#define TPM_STATUS_CH0F (1 << 0)
-#define TPM_STATUS_CH1F (1 << 1)
-#define TPM_STATUS_CH2F (1 << 2)
-#define TPM_STATUS_CH3F (1 << 3)
-#define TPM_STATUS_CH4F (1 << 4)
-#define TPM_STATUS_CH5F (1 << 5)
-#define TPM_STATUS_TOF  (1 << 8)
-/** @} */
-
-/**
- * @name    TPM_CONF register
- * @{
- */
-#define TPM_CONF_DOZEEN         (1 << 5)
-#define TPM_CONF_DBGMODE_CONT   (3 << 6)
-#define TPM_CONF_DBGMODE_PAUSE  (0 << 6)
-#define TPM_CONF_GTBEEN         (1 << 9)
-#define TPM_CONF_CSOT           (1 << 16)
-#define TPM_CONF_CSOO           (1 << 17)
-#define TPM_CONF_CROT           (1 << 18)
-#define TPM_CONF_TRGSEL(n)      ((n) << 24)
-/** @{ */
 
 /*===========================================================================*/
 /* Driver pre-compile time settings.                                         */
 /*===========================================================================*/
 
+/**
+ * @brief   Disables the clocks initialization in the HAL.
+ */
+#if !defined(SPC5_NO_INIT) || defined(__DOXYGEN__)
+#define SPC5_NO_INIT                        FALSE
+#endif
+
+/**
+ * @brief   HSM PIT channel 0 IRQ priority.
+ * @note    This PIT channel is allocated permanently for system tick
+ *          generation.
+ */
+#if !defined(SPC5_PIT0_IRQ_PRIORITY) || defined(__DOXYGEN__)
+#define SPC5_PIT0_IRQ_PRIORITY              INTC_PSR_ENABLE(INTC_PSR_CORE4, 8)
+#endif
+
 /*===========================================================================*/
 /* Derived constants and error checks.                                       */
 /*===========================================================================*/
+
+/*-----------------------------------------*
+ * Configuration-related checks.           *
+ *-----------------------------------------*/
+
+#if !defined(SPC57EMxx_HSM_MCUCONF)
+#error "Using a wrong mcuconf.h file, SPC57EMxx_HSM_MCUCONF not defined"
+#endif
 
 /*===========================================================================*/
 /* Driver data structures and types.                                         */
@@ -115,6 +105,15 @@
 /*===========================================================================*/
 /* External declarations.                                                    */
 /*===========================================================================*/
-#endif /* _KINETIS_TPM_H_ */
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+  void hal_lld_init(void);
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* _HAL_LLD_H_ */
 
 /** @} */

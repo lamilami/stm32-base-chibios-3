@@ -38,7 +38,7 @@
 #define SPC5_LINFLEX0_PCTL                  92
 #define SPC5_LINFLEX0_RXI_HANDLER           vector376
 #define SPC5_LINFLEX0_TXI_HANDLER           vector377
-#define SPC5_LINFLEX0_ERR_HANDLER           vector388
+#define SPC5_LINFLEX0_ERR_HANDLER           vector378
 #define SPC5_LINFLEX0_RXI_NUMBER            376
 #define SPC5_LINFLEX0_TXI_NUMBER            377
 #define SPC5_LINFLEX0_ERR_NUMBER            378

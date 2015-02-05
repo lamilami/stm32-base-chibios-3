@@ -147,15 +147,24 @@
 /* LINFlex attributes.*/
 #define SPC5_HAS_LINFLEX0                   TRUE
 #define SPC5_LINFLEX0_PCTL                  92
-#define SPC5_LINFLEX0_RXI_HANDLER           vector79
-#define SPC5_LINFLEX0_TXI_HANDLER           vector80
-#define SPC5_LINFLEX0_ERR_HANDLER           vector81
-#define SPC5_LINFLEX0_RXI_NUMBER            79
-#define SPC5_LINFLEX0_TXI_NUMBER            80
-#define SPC5_LINFLEX0_ERR_NUMBER            81
+#define SPC5_LINFLEX0_RXI_HANDLER           vector376
+#define SPC5_LINFLEX0_TXI_HANDLER           vector377
+#define SPC5_LINFLEX0_ERR_HANDLER           vector388
+#define SPC5_LINFLEX0_RXI_NUMBER            376
+#define SPC5_LINFLEX0_TXI_NUMBER            377
+#define SPC5_LINFLEX0_ERR_NUMBER            378
 #define SPC5_LINFLEX0_CLK                   (halSPCGetSystemClock() / 1)
 
-#define SPC5_HAS_LINFLEX1                   FALSE
+#define SPC5_HAS_LINFLEX1                   TRUE
+#define SPC5_LINFLEX1_PCTL                  220
+#define SPC5_LINFLEX1_RXI_HANDLER           vector384
+#define SPC5_LINFLEX1_TXI_HANDLER           vector385
+#define SPC5_LINFLEX1_ERR_HANDLER           vector386
+#define SPC5_LINFLEX1_RXI_NUMBER            384
+#define SPC5_LINFLEX1_TXI_NUMBER            385
+#define SPC5_LINFLEX1_ERR_NUMBER            386
+#define SPC5_LINFLEX1_CLK                   (halSPCGetSystemClock() / 1)
+
 #define SPC5_HAS_LINFLEX2                   FALSE
 #define SPC5_HAS_LINFLEX3                   FALSE
 #define SPC5_HAS_LINFLEX4                   FALSE

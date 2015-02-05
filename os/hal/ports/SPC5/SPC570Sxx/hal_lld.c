@@ -15,8 +15,8 @@
 */
 
 /**
- * @file    SPC570Sxx/hal_lld.c
- * @brief   SPC570Sxx HAL subsystem low level driver source.
+ * @file    SPC56ELxx/hal_lld.c
+ * @brief   SPC56ELxx HAL subsystem low level driver source.
  *
  * @addtogroup HAL
  * @{
@@ -41,11 +41,12 @@
 /*===========================================================================*/
 
 /**
- * @brief   PIT_0 channel 0 interrupt handler.
+ * @brief   PIT channel 0 interrupt handler.
  *
  * @isr
  */
-OSAL_IRQ_HANDLER(vector59) {
+
+OSAL_IRQ_HANDLER(vector226) {
 
   OSAL_IRQ_PROLOGUE();
 
@@ -53,8 +54,8 @@ OSAL_IRQ_HANDLER(vector59) {
   osalOsTimerHandlerI();
   osalSysUnlockFromISR();
 
-  /* Resets the PIT_0 channel 0 IRQ flag.*/
-  PIT_0.RTI_TFLG.R = 1;
+  /* Resets the PIT channel 0 IRQ flag.*/
+  PIT_0.TIMER[0].TFLG.R = 1;
 
   OSAL_IRQ_EPILOGUE();
 }
@@ -69,7 +70,7 @@ OSAL_IRQ_HANDLER(vector59) {
  * @notapi
  */
 void hal_lld_init(void) {
-  uint32_t reg;
+  uint32_t n;
 
   /* The system is switched to the RUN0 mode, the default for normal
      operations.*/
@@ -77,25 +78,33 @@ void hal_lld_init(void) {
     SPC5_CLOCK_FAILURE_HOOK();
   }
 
-  /* PIT_0 channel 0 initialization for Kernel ticks, the PIT_0 is configured
+  /* PIT_0 clock initialization.*/
+  halSPCSetPeripheralClockMode(30, SPC5_ME_PCTL_RUN(2) | SPC5_ME_PCTL_LP(2));
+
+  /* TB counter enabled for debug and measurements.*/
+  asm volatile ("li      %%r3, 0x4000       \t\n"   /* TBEN bit.            */
+                "mtspr   1008, %%r3"                /* HID0 register.       */
+                : : : "r3");
+
+  /* PIT channel 0 initialization for Kernel ticks, the PIT is configured
      to run in DRUN,RUN0...RUN3 and HALT0 modes, the clock is gated in other
      modes.*/
-  INTC.PSR58_59.R    = SPC5_PIT0_IRQ_PRIORITY;
-  halSPCSetPeripheralClockMode(92,
-                               SPC5_ME_PCTL_RUN(2) | SPC5_ME_PCTL_LP(2));
-  reg = halSPCGetSystemClock() / OSAL_ST_FREQUENCY - 1;
-  PIT_0.MCR.R      = 1;        /* PIT_0 clock enabled, stop while debugging. */
-  PIT_0.RTI_LDVAL.R = reg;
-  PIT_0.RTI_CVAL.R  = reg;
-  PIT_0.RTI_TFLG.R  = 1;        /* Interrupt flag cleared.                  */
-  PIT_0.RTI_TCTRL.R = 3;        /* Timer active, interrupt enabled.         */
-
+/* When PIT_0 is activated */
+  INTC_PSR(226)      = SPC5_PIT0_IRQ_PRIORITY;
+  n = SPC5_PER_CLK / OSAL_ST_FREQUENCY - 1;
+  PIT_0.MCR.B.MDIS            = 0;       
+  PIT_0.MCR.B.FRZ            = 1;       /* Clock enabled, stop while debugging. */
+  PIT_0.TIMER[0].LDVAL.R = n;
+  PIT_0.TIMER[0].CVAL.R  = n;
+  PIT_0.TIMER[0].TFLG.R  = 1;       /* Interrupt flag cleared.              */
+  PIT_0.TIMER[0].TCTRL.B.TIE = 1;       /* Timer active, interrupt enabled.     */
+  PIT_0.TIMER[0].TCTRL.B.TEN = 1;       /* Timer Enable Bit.     */
   /* EDMA initialization.*/
-  // edmaInit();
+  //  edmaInit();
 }
 
 /**
- * @brief   SPC570Sxx clocks initialization.
+ * @brief   SPC56ELxx early initialization.
  * @note    All the involved constants come from the file @p board.h and
  *          @p hal_lld.h
  * @note    This function must be invoked only after the system reset.
@@ -109,20 +118,20 @@ void spc_clock_init(void) {
     ;
 
 #if !SPC5_NO_INIT
+
 #if SPC5_DISABLE_WATCHDOG
-  /* SWT_0 disabled.*/
-  SWT_0.SR.R = 0xC520;
-  SWT_0.SR.R = 0xD928;
-  SWT_0.CR.R = 0xFF00000A;
+  /* SWTs disabled.*/
+  SWT_2.SR.R        = 0xC520;
+  SWT_2.SR.R        = 0xD928;
+  SWT_2.CR.R        = 0xFF000002;
 #endif
 
-  /* SSCM initialization. Setting up the most restrictive handling of
-     invalid accesses to peripherals.*/
-  SSCM.ERROR.R = 3;                             /* PAE and RAE bits.        */
+  /* SSCM initialization from configuration data.*/
+  SSCM.ERROR.R      = SPC5_SSCM_ERROR_INIT;
 
   /* RGM errors clearing.*/
-  RGM.FES.R         = 0xFFFF;
-  RGM.DES.R         = 0xFFFF;
+  RGM.FES.R      = 0xFFFF;
+  RGM.DES.R      = 0xFFFF;
 
   /* The system must be in DRUN mode on entry, if this is not the case then
      it is considered a serious anomaly.*/
@@ -131,71 +140,111 @@ void spc_clock_init(void) {
   }
 
 #if defined(SPC5_OSC_BYPASS)
-  /* If the board is equipped with an oscillator instead of a xtal then the
+  /* If the board is equipped with an oscillator instead of a crystal then the
      bypass must be activated.*/
-  CGM.OSC_CTL.B.OSCBYP = TRUE;
+  XOSC.CTL.B.OSCBYP = TRUE;
 #endif /* SPC5_OSC_BYPASS */
 
-  /* Setting the various dividers and source selectors.*/
-  // FIX ME THE DIVIDER
-#if SPC5_HAS_AC0
-  CGM.AC0_DC0.R   = SPC5_CGM_AC0_DC0;
-  CGM.AC0_SC.R   = SPC5_AUX0CLK_SRC;
-#endif
-#if SPC5_HAS_AC1
-  CGM.AC1_DC0.R  = SPC5_CGM_AC1_DC0;
-  CGM.AC1_SC.R   = SPC5_AUX1CLK_SRC;
-#endif
-
+  /* Setting the system dividers to their final values.*/
+  MC_CGM.SC_DC0.R   = SPC5_CGM_SC_DC0_BITS;
+  MC_CGM.SC_DC1.R   = SPC5_CGM_SC_DC1_BITS;
+  
+  /* Setting the auxiliary dividers to their final values.*/
+  MC_CGM.AC0_DC0.R  = SPC5_CGM_AC0_DC0_BITS;
+  MC_CGM.AC0_DC1.R  = SPC5_CGM_AC0_DC1_BITS;
+  MC_CGM.AC0_DC2.R  = SPC5_CGM_AC0_DC2_BITS;
+  MC_CGM.AC0_DC3.R  = SPC5_CGM_AC0_DC3_BITS;
+  MC_CGM.AC0_DC4.R  = SPC5_CGM_AC0_DC4_BITS;
+  MC_CGM.AC0_DC5.R  = SPC5_CGM_AC0_DC5_BITS;
+  MC_CGM.AC1_DC0.R  = SPC5_CGM_AC1_DC0_BITS;
+  
+  /* Setting the clock selectors to their final sources.*/
+  MC_CGM.AC0_SC.R   = SPC5_CGM_AC0_SC_BITS;
+  MC_CGM.AC1_SC.R   = SPC5_CGM_AC1_SC_BITS;
+  MC_CGM.AC2_SC.R   = SPC5_CGM_AC1_SC_BITS;
+  MC_CGM.AC3_SC.R   = SPC5_CGM_AC3_SC_BITS;
+  
   /* Enables the XOSC in order to check its functionality before proceeding
      with the initialization.*/
-  MC_ME.DRUN_MC.R = SPC5_ME_MC_SYSCLK_IRC    | SPC5_ME_MC_IRCON         |         \
-              SPC5_ME_MC_XOSC0ON       | SPC5_ME_MC_CFLAON_NORMAL |         \
-              SPC5_ME_MC_DFLAON_NORMAL | SPC5_ME_MC_MVRON;
+  MC_ME.DRUN_MC.R   = SPC5_ME_MC_SYSCLK_IRC | SPC5_ME_MC_IRCON |
+                      SPC5_ME_MC_XOSC0ON | SPC5_ME_MC_FLAON_NORMAL |
+                      SPC5_ME_MC_MVRON;
   if (halSPCSetRunMode(SPC5_RUNMODE_DRUN) == OSAL_FAILED) {
     SPC5_CLOCK_FAILURE_HOOK();
   }
 
-  /* Run modes initialization.*/
-  MC_ME.IS.R            = 8;                        /* Resetting I_ICONF status.*/
-  MC_ME.ME.R          = SPC5_ME_ME_BITS;          /* Enabled run modes.       */
-  MC_ME.TEST_MC.R       = SPC5_ME_TEST_MC_BITS;     /* TEST run mode.           */
-  MC_ME.SAFE_MC.R       = SPC5_ME_SAFE_MC_BITS;     /* SAFE run mode.           */
-  MC_ME.DRUN_MC.R       = SPC5_ME_DRUN_MC_BITS;     /* DRUN run mode.           */
-  MC_ME.RUN_MC[0].R     = SPC5_ME_RUN0_MC_BITS;     /* RUN0 run mode.           */
-  MC_ME.RUN_MC[1].R     = SPC5_ME_RUN1_MC_BITS;     /* RUN1 run mode.           */
-  MC_ME.RUN_MC[2].R     = SPC5_ME_RUN2_MC_BITS;     /* RUN2 run mode.           */
-  MC_ME.RUN_MC[3].R     = SPC5_ME_RUN3_MC_BITS;     /* RUN0 run mode.           */
-  MC_ME.HALT_MC.R       = SPC5_ME_HALT0_MC_BITS;    /* HALT0 run mode.          */
-  MC_ME.STOP_MC.R       = SPC5_ME_STOP0_MC_BITS;    /* STOP0 run mode.          */
+  /* PLLs initialization, the changes will have effect on mode switch.*/
+  PLLDIG.PLL0CR.R   = 0;
+  PLLDIG.PLL0DV.R   = SPC5_PLL0_DV_RFDPHI1(SPC5_PLL0_RFDPHI1_VALUE) |
+                      SPC5_PLL0_DV_RFDPHI(SPC5_PLL0_RFDPHI_VALUE) |
+                      SPC5_PLL0_DV_PREDIV(SPC5_PLL0_PREDIV_VALUE) |
+                      SPC5_PLL0_DV_MFD(SPC5_PLL0_MFD_VALUE);
+  PLLDIG.PLL1CR.R   = 0;
+  PLLDIG.PLL1DV.R   = SPC5_PLL1_DV_RFDPHI(SPC5_PLL1_RFDPHI_VALUE) |
+                      SPC5_PLL1_DV_MFD(SPC5_PLL1_MFD_VALUE);
+
+  /* Run modes initialization, note writes to the MC registers are verified
+     by a protection mechanism, the operation success is verified at the
+     end of the sequence.*/
+
+  MC_ME.IS.R        = 8;                        /* Resetting I_ICONF status.*/
+
+  MC_ME.ME.R        = SPC5_ME_ME_BITS;
+  MC_ME.SAFE_MC.R   = SPC5_ME_SAFE_MC_BITS;
+  MC_ME.DRUN_MC.R   = SPC5_ME_DRUN_MC_BITS;
+  MC_ME.RUN_MC[0].R = SPC5_ME_RUN0_MC_BITS;
+  MC_ME.RUN_MC[1].R = SPC5_ME_RUN1_MC_BITS;
+  MC_ME.RUN_MC[2].R = SPC5_ME_RUN2_MC_BITS;
+  MC_ME.RUN_MC[3].R = SPC5_ME_RUN3_MC_BITS;
+  MC_ME.HALT_MC.R  = SPC5_ME_HALT0_MC_BITS;
+  MC_ME.STOP_MC.R  = SPC5_ME_STOP0_MC_BITS;
+
+#if 0
+    MC_ME.ME.R = 0x000005E2;					/* Enable all modes */
+
+  	/* Setting RUN Configuration Register ME_RUN_PC[0] */
+  	MC_ME.RUN_PC[0].R = 0x000000FE;				/* Peripheral ON in every mode */
+  	MC_ME.RUN_PC[1].R = 0x000000FE;				/* Peripheral ON in every mode */
+  	MC_ME.RUN_PC[2].R = 0x000000FE;				/* Peripheral ON in every mode */
+  	MC_ME.RUN_PC[3].R = 0x000000FE;				/* Peripheral ON in every mode */
+  	MC_ME.RUN_PC[4].R = 0x000000FE;				/* Peripheral ON in every mode */
+  	MC_ME.RUN_PC[5].R = 0x000000FE;				/* Peripheral ON in every mode */
+  	MC_ME.RUN_PC[6].R = 0x000000FE;				/* Peripheral ON in every mode */
+  	MC_ME.RUN_PC[7].R = 0x000000FE;				/* Peripheral ON in every mode */
+
+  	/* Turn On XOSC - PLL's remain off */
+  	MC_ME.DRUN_MC.R = 0x00130020; 			  	/* Enable the XOSC */
+#endif
+
   if (MC_ME.IS.B.I_ICONF) {
     /* Configuration rejected.*/
     SPC5_CLOCK_FAILURE_HOOK();
   }
 
   /* Peripherals run and low power modes initialization.*/
-  MC_ME.RUN_PC[0].R     = SPC5_ME_RUN_PC0_BITS;
-  MC_ME.RUN_PC[1].R     = SPC5_ME_RUN_PC1_BITS;
-  MC_ME.RUN_PC[2].R     = SPC5_ME_RUN_PC2_BITS;
-  MC_ME.RUN_PC[3].R     = SPC5_ME_RUN_PC3_BITS;
-  MC_ME.RUN_PC[4].R     = SPC5_ME_RUN_PC4_BITS;
-  MC_ME.RUN_PC[5].R     = SPC5_ME_RUN_PC5_BITS;
-  MC_ME.RUN_PC[6].R     = SPC5_ME_RUN_PC6_BITS;
-  MC_ME.RUN_PC[7].R     = SPC5_ME_RUN_PC7_BITS;
-  MC_ME.LP_PC[0].R      = SPC5_ME_LP_PC0_BITS;
-  MC_ME.LP_PC[1].R      = SPC5_ME_LP_PC1_BITS;
-  MC_ME.LP_PC[2].R      = SPC5_ME_LP_PC2_BITS;
-  MC_ME.LP_PC[3].R      = SPC5_ME_LP_PC3_BITS;
-  MC_ME.LP_PC[4].R      = SPC5_ME_LP_PC4_BITS;
-  MC_ME.LP_PC[5].R      = SPC5_ME_LP_PC5_BITS;
-  MC_ME.LP_PC[6].R      = SPC5_ME_LP_PC6_BITS;
-  MC_ME.LP_PC[7].R      = SPC5_ME_LP_PC7_BITS;
+  MC_ME.RUN_PC[0].R = SPC5_ME_RUN_PC0_BITS;
+  MC_ME.RUN_PC[1].R = SPC5_ME_RUN_PC1_BITS;
+  MC_ME.RUN_PC[2].R = SPC5_ME_RUN_PC2_BITS;
+  MC_ME.RUN_PC[3].R = SPC5_ME_RUN_PC3_BITS;
+  MC_ME.RUN_PC[4].R = SPC5_ME_RUN_PC4_BITS;
+  MC_ME.RUN_PC[5].R = SPC5_ME_RUN_PC5_BITS;
+  MC_ME.RUN_PC[6].R = SPC5_ME_RUN_PC6_BITS;
+  MC_ME.RUN_PC[7].R = SPC5_ME_RUN_PC7_BITS;
+  MC_ME.LP_PC[0].R  = SPC5_ME_LP_PC0_BITS;
+  MC_ME.LP_PC[1].R  = SPC5_ME_LP_PC1_BITS;
+  MC_ME.LP_PC[2].R  = SPC5_ME_LP_PC2_BITS;
+  MC_ME.LP_PC[3].R  = SPC5_ME_LP_PC3_BITS;
+  MC_ME.LP_PC[4].R  = SPC5_ME_LP_PC4_BITS;
+  MC_ME.LP_PC[5].R  = SPC5_ME_LP_PC5_BITS;
+  MC_ME.LP_PC[6].R  = SPC5_ME_LP_PC6_BITS;
+  MC_ME.LP_PC[7].R  = SPC5_ME_LP_PC7_BITS;
 
   /* Switches again to DRUN mode (current mode) in order to update the
      settings.*/
   if (halSPCSetRunMode(SPC5_RUNMODE_DRUN) == OSAL_FAILED) {
     SPC5_CLOCK_FAILURE_HOOK();
   }
+
 #endif /* !SPC5_NO_INIT */
 }
 
@@ -205,8 +254,8 @@ void spc_clock_init(void) {
  * @param[in] mode      one of the possible run modes
  *
  * @return              The operation status.
- * @retval OSAL_SUCCESS if the switch operation has been completed.
- * @retval OSAL_FAILED  if the switch operation failed.
+ * @retval OSAL_SUCCESS   if the switch operation has been completed.
+ * @retval OSAL_FAILED    if the switch operation failed.
  */
 bool halSPCSetRunMode(spc5_runmode_t mode) {
 
@@ -256,15 +305,13 @@ uint32_t halSPCGetSystemClock(void) {
   sysclk = MC_ME.GS.B.S_SYSCLK;
   switch (sysclk) {
   case SPC5_ME_GS_SYSCLK_IRC:
-    return SPC5_IRC_CLK;
+    return SPC5_IRC_CLK / MC_CGM.SC_DC0.B.DIV;
   case SPC5_ME_GS_SYSCLK_XOSC:
-    return SPC5_XOSC_CLK;
-  case SPC5_ME_GS_SYSCLK_FMPLL0:
-    return SPC5_FMPLL0_CLK;
-#if SPC5_HAS_FMPLL1
-  case SPC5_ME_GS_SYSCLK_FMPLL1:
-    return SPC5_FMPLL1_CLK;
-#endif
+    return SPC5_XOSC_CLK / MC_CGM.SC_DC0.B.DIV;
+  case SPC5_ME_GS_SYSCLK_PLL0PHI:
+    return SPC5_PLL0_PHI_CLK / MC_CGM.SC_DC0.B.DIV;
+  case SPC5_ME_GS_SYSCLK_PLL1PHI:
+    return SPC5_PLL1_PHI_CLK / MC_CGM.SC_DC0.B.DIV;
   default:
     return 0;
   }

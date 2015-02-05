@@ -1,5 +1,5 @@
 /*
-    ChibiOS - Copyright (C) 2006..2015 Giovanni Di Sirio
+    SPC5 HAL - Copyright (C) 2013 STMicroelectronics
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -15,44 +15,26 @@
 */
 
 /**
- * @file    KL2x/kinetis_registry.h
- * @brief   KL2x capabilities registry.
+ * @file    SPC57EMxx_HSM/spc57em_registry.h
+ * @brief   SPC57EMxx_HSM capabilities registry.
  *
  * @addtogroup HAL
  * @{
  */
 
-#ifndef _KINETIS_REGISTRY_H_
-#define _KINETIS_REGISTRY_H_
+#ifndef _SPC57EM_HSM_REGISTRY_H_
+#define _SPC57EM_HSM_REGISTRY_H_
 
 /*===========================================================================*/
 /* Platform capabilities.                                                    */
 /*===========================================================================*/
 
 /**
- * @name    KL2x capabilities
+ * @name    SPC57EMxx capabilities
  * @{
  */
-/* EXT attributes.*/
-
-#define KINETIS_PORTA_IRQ_VECTOR    VectorE0
-#define KINETIS_PORTB_IRQ_VECTOR    VectorE4
-#define KINETIS_PORTC_IRQ_VECTOR    VectorE8
-#define KINETIS_PORTD_IRQ_VECTOR    VectorEC
-#define KINETIS_PORTE_IRQ_VECTOR    VectorF0
-
-/* ADC attributes.*/
-#define KINETIS_HAS_ADC0            TRUE
-#define KINETIS_ADC0_IRC_VECTOR     Vector98
-
-/* I2C attributes.*/
-#define KINETIS_I2C0_IRQ_VECTOR     Vector6C
-
-/* USB attributes */
-#define KINETIS_USB_IRQ_VECTOR      VectorCC
-
 /** @} */
 
-#endif /* _KINETIS_REGISTRY_H_ */
+#endif /* _SPC57EM_HSM_REGISTRY_H_ */
 
 /** @} */

@@ -65,9 +65,13 @@
 /** @} */
 
 /**
- * @brief   Number of PWM channels per PWM driver.
+ * @brief   Max number of PWM channels per PWM driver.
  */
+#if !defined(SPC5_PWM0_USE_SYNC_SMOD) && !defined(SPC5_PWM1_USE_SYNC_SMOD)
 #define PWM_CHANNELS                            2
+#else
+#define PWM_CHANNELS                            8
+#endif
 
 /**
  * @brief   Complementary output modes mask.
@@ -153,6 +157,15 @@
  */
 #if !defined(SPC5_PWM_USE_SMOD3) || defined(__DOXYGEN__)
 #define SPC5_PWM_USE_SMOD3                  FALSE
+#endif
+
+/**
+ * @brief   FlexPWM0 synchronization enable switch.
+ * @details If set to @p TRUE the FlexPWM0 synchronization is enabled.
+ * @note    The default is @p FALSE.
+ */
+#if !defined(SPC5_PWM0_USE_SYNC_SMOD) || defined(__DOXYGEN__)
+#define SPC5_PWM0_USE_SYNC_SMOD              FALSE
 #endif
 
 /**
@@ -242,6 +255,15 @@
 #endif
 
 /**
+ * @brief   FlexPWM1 synchronization enable switch.
+ * @details If set to @p TRUE the FlexPWM1 synchronization is enabled.
+ * @note    The default is @p FALSE.
+ */
+#if !defined(SPC5_PWM1_USE_SYNC_SMOD) || defined(__DOXYGEN__)
+#define SPC5_PWM1_USE_SYNC_SMOD              FALSE
+#endif
+
+/**
  * @brief   PWMD5 interrupt priority level setting.
  */
 #if !defined(SPC5_PWM_SMOD4_PRIORITY) || defined(__DOXYGEN__)
@@ -315,6 +337,14 @@
 
 #if !SPC5_PWM_USE_FLEXPWM0 && !SPC5_PWM_USE_FLEXPWM1
 #error "PWM driver activated but no PWM peripheral assigned"
+#endif
+
+#if SPC5_PWM0_USE_SYNC_SMOD && !SPC5_PWM_USE_SMOD0
+#error "FlexPWM0 sm0 must be activated when FlexPWM0 submodule synchronization is activated"
+#endif
+
+#if SPC5_PWM1_USE_SYNC_SMOD && !SPC5_PWM_USE_SMOD4
+#error "FlexPWM1 sm0 must be activated when FlexPWM1 submodule synchronization is activated"
 #endif
 
 /*===========================================================================*/
