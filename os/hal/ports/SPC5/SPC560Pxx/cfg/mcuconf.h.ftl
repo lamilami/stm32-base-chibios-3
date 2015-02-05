@@ -247,6 +247,7 @@
 #define SPC5_ME_LP_PC5_BITS                 (0${decode_lppc(conf.instance.initialization_settings.module_entry.peripherals_control__low_power_.pc5)})
 #define SPC5_ME_LP_PC6_BITS                 (0${decode_lppc(conf.instance.initialization_settings.module_entry.peripherals_control__low_power_.pc6)})
 #define SPC5_ME_LP_PC7_BITS                 (0${decode_lppc(conf.instance.initialization_settings.module_entry.peripherals_control__low_power_.pc7)})
+#define SPC5_FINAL_RUNMODE                  SPC5_RUNMODE_${conf.instance.initialization_settings.module_entry.final_run_mode.value[0]?trim}
 #define SPC5_CLOCK_FAILURE_HOOK()           ${conf.instance.initialization_settings.clocks.clock_failure_hook.value[0]}
 
 /*
@@ -270,10 +271,19 @@ ${channel.value[0]}
 /*
  * PWM driver system settings.
  */
+[#assign pwm0_all_sm = conf.instance.flexpwm_settings.synchronized_flexpwm0.value[0]?upper_case /]
+#define SPC5_PWM0_USE_SYNC_SMOD             ${pwm0_all_sm}
+#define SPC5_PWM1_USE_SYNC_SMOD             FALSE
 #define SPC5_PWM_USE_SMOD0                  ${conf.instance.flexpwm_settings.flexpwm0_sm0.value[0]?upper_case}
+[#if pwm0_all_sm == "FALSE"]
 #define SPC5_PWM_USE_SMOD1                  ${conf.instance.flexpwm_settings.flexpwm0_sm1.value[0]?upper_case}
 #define SPC5_PWM_USE_SMOD2                  ${conf.instance.flexpwm_settings.flexpwm0_sm2.value[0]?upper_case}
 #define SPC5_PWM_USE_SMOD3                  ${conf.instance.flexpwm_settings.flexpwm0_sm3.value[0]?upper_case}
+[#else]
+#define SPC5_PWM_USE_SMOD1                  TRUE
+#define SPC5_PWM_USE_SMOD2                  TRUE
+#define SPC5_PWM_USE_SMOD3                  TRUE
+[/#if]
 #define SPC5_PWM_SMOD0_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm0_sm0.value[0]}
 #define SPC5_PWM_SMOD1_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm0_sm1.value[0]}
 #define SPC5_PWM_SMOD2_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm0_sm2.value[0]}

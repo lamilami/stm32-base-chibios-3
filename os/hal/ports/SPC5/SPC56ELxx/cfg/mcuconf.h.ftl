@@ -77,19 +77,35 @@ ${channel.value[0]}
 /*
  * PWM driver system settings.
  */
+[#assign pwm0_all_sm = conf.instance.flexpwm_settings.synchronized_flexpwm0.value[0]?upper_case /]
+[#assign pwm1_all_sm = conf.instance.flexpwm_settings.synchronized_flexpwm1.value[0]?upper_case /]
+#define SPC5_PWM0_USE_SYNC_SMOD             ${pwm0_all_sm}
+#define SPC5_PWM1_USE_SYNC_SMOD             ${pwm1_all_sm}
 #define SPC5_PWM_USE_SMOD0                  ${conf.instance.flexpwm_settings.flexpwm0_sm0.value[0]?upper_case}
+[#if pwm0_all_sm == "FALSE"]
 #define SPC5_PWM_USE_SMOD1                  ${conf.instance.flexpwm_settings.flexpwm0_sm1.value[0]?upper_case}
 #define SPC5_PWM_USE_SMOD2                  ${conf.instance.flexpwm_settings.flexpwm0_sm2.value[0]?upper_case}
 #define SPC5_PWM_USE_SMOD3                  ${conf.instance.flexpwm_settings.flexpwm0_sm3.value[0]?upper_case}
+[#else]
+#define SPC5_PWM_USE_SMOD1                  TRUE
+#define SPC5_PWM_USE_SMOD2                  TRUE
+#define SPC5_PWM_USE_SMOD3                  TRUE
+[/#if]
 #define SPC5_PWM_SMOD0_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm0_sm0.value[0]}
 #define SPC5_PWM_SMOD1_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm0_sm1.value[0]}
 #define SPC5_PWM_SMOD2_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm0_sm2.value[0]}
 #define SPC5_PWM_SMOD3_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm0_sm3.value[0]}
 
 #define SPC5_PWM_USE_SMOD4                  ${conf.instance.flexpwm_settings.flexpwm1_sm0.value[0]?upper_case}
+[#if pwm1_all_sm == "FALSE"]
 #define SPC5_PWM_USE_SMOD5                  ${conf.instance.flexpwm_settings.flexpwm1_sm1.value[0]?upper_case}
 #define SPC5_PWM_USE_SMOD6                  ${conf.instance.flexpwm_settings.flexpwm1_sm2.value[0]?upper_case}
 #define SPC5_PWM_USE_SMOD7                  ${conf.instance.flexpwm_settings.flexpwm1_sm3.value[0]?upper_case}
+[#else]
+#define SPC5_PWM_USE_SMOD5                  TRUE
+#define SPC5_PWM_USE_SMOD6                  TRUE
+#define SPC5_PWM_USE_SMOD7                  TRUE
+[/#if]
 #define SPC5_PWM_SMOD4_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm1_sm0.value[0]}
 #define SPC5_PWM_SMOD5_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm1_sm1.value[0]}
 #define SPC5_PWM_SMOD6_PRIORITY             ${conf.instance.irq_priority_settings.flexpwm1_sm2.value[0]}

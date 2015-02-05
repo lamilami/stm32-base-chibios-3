@@ -99,10 +99,10 @@
 #define SPC5_FMPLL1_CLK_MAX         120000000
 
 /**
- * @brief   Maximum FMPLL1 1D1 output clock frequency.
+ * @brief   Maximum FMPLL1 D1 output clock frequency.
  * @note    FMPLL1 is not present on all devices.
  */
-#define SPC5_FMPLL1_1D1_CLK_MAX     80000000
+#define SPC5_FMPLL1_D1_CLK_MAX      80000000
 /** @} */
 
 /**
@@ -164,7 +164,7 @@
 #define SPC5_CGM_SS_XOSC            (2U << 24)
 #define SPC5_CGM_SS_FMPLL0          (4U << 24)
 #define SPC5_CGM_SS_FMPLL1          (5U << 24)
-#define SPC5_CGM_SS_FMPLL1_1D1      (8U << 24)
+#define SPC5_CGM_SS_FMPLL1_D1       (8U << 24)
 /** @} */
 
 /**
@@ -803,6 +803,14 @@
 #endif
 
 /**
+ * @brief   Final run mode after initialization.
+ * @note    It can be selected between DRUN, RUN0...RUN3.
+ */
+#if !defined(SPC5_FINAL_RUNMODE) || defined(__DOXYGEN__)
+#define SPC5_FINAL_RUNMODE                  SPC5_RUNMODE_RUN0
+#endif
+
+/**
  * @brief   PIT channel 0 IRQ priority.
  * @note    This PIT channel is allocated permanently for system tick
  *          generation.
@@ -929,6 +937,17 @@
 #if (SPC5_FMPLL1_CLK > SPC5_FMPLL1_CLK_MAX) && !SPC5_ALLOW_OVERCLOCK
 #error "SPC5_FMPLL1_CLK outside acceptable range (0...SPC5_FMPLL1_CLK_MAX)"
 #endif
+
+/**
+ * @brief   SPC5_FMPLL1_D1_CLK clock point.
+ */
+#define SPC5_FMPLL1_D1_CLK                                                  \
+  (SPC5_FMPLL1_VCO_CLK / 6)
+
+/* Check on SPC5_FMPLL1_D1_CLK.*/
+#if (SPC5_FMPLL1_D1_CLK > SPC5_FMPLL1_D1_CLK_MAX) && !SPC5_ALLOW_OVERCLOCK
+#error "SPC5_FMPLL1_CLK outside acceptable range (0...SPC5_FMPLL1_D1_CLK_MAX)"
+#endif
 #endif /* SPC5_HAS_FMPLL1 */
 
 /**
@@ -1043,14 +1062,14 @@
 #define SPC5_AUX2_CLK           SPC5_FMPLL0_CLK
 #elif SPC5_AUX2CLK_SRC == SPC5_CGM_SS_FMPLL1
 #define SPC5_AUX2_CLK           SPC5_FMPLL1_CLK
-#elif SPC5_AUX2CLK_SRC == SPC5_CGM_SS_FMPLL1_1D1
-#define SPC5_AUX2_CLK           SPC5_FMPLL1_1D1_CLK
+#elif SPC5_AUX2CLK_SRC == SPC5_CGM_SS_FMPLL1_D1
+#define SPC5_AUX2_CLK           SPC5_FMPLL1_D1_CLK
 #else
 #error "invalid SPC5_AUX2CLK_SRC value specified"
 #endif
 
 #if !SPC5_HAS_FMPLL1 && ((SPC5_AUX2_CLK == SPC5_CGM_SS_FMPLL1) ||           \
-                         (SPC5_AUX2_CLK == SPC5_CGM_SS_FMPLL1_1D1))
+                         (SPC5_AUX2_CLK == SPC5_CGM_SS_FMPLL1_D1))
 #error "SPC5_AUX2_CLK, FMPLL1 not present"
 #endif
 
@@ -1085,14 +1104,14 @@
 #define SPC5_AUX3_CLK           SPC5_FMPLL0_CLK
 #elif SPC5_AUX3CLK_SRC == SPC5_CGM_SS_FMPLL1
 #define SPC5_AUX3_CLK           SPC5_FMPLL1_CLK
-#elif SPC5_AUX3CLK_SRC == SPC5_CGM_SS_FMPLL1_1D1
-#define SPC5_AUX3_CLK           SPC5_FMPLL1_1D1_CLK
+#elif SPC5_AUX3CLK_SRC == SPC5_CGM_SS_FMPLL1_D1
+#define SPC5_AUX3_CLK           SPC5_FMPLL1_D1_CLK
 #else
 #error "invalid SPC5_AUX3CLK_SRC value specified"
 #endif
 
 #if !SPC5_HAS_FMPLL1 && ((SPC5_AUX2_CLK == SPC5_AUX3_CLK) ||           \
-                         (SPC5_AUX3_CLK == SPC5_CGM_SS_FMPLL1_1D1))
+                         (SPC5_AUX3_CLK == SPC5_CGM_SS_FMPLL1_D1))
 #error "SPC5_AUX3_CLK, FMPLL1 not present"
 #endif
 
