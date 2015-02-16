@@ -61,7 +61,7 @@
 /**
  * @brief   Minimum XOSC clock frequency.
  */
-#define SPC5_XOSC_CLK_MIN                   4000000
+#define SPC5_XOSC_CLK_MIN                   8000000
 
 /**
  * @brief   Maximum PLL0 input clock frequency.
@@ -129,24 +129,30 @@
 #define SPC5_PER_CLK_MAX                    80000000
 
 /**
- * @brief   Maximum SD_CLK clock frequency.
- */
-#define SPC5_SD_CLK_MAX                     16000000
-
-/**
  * @brief   Maximum SAR_CLK clock frequency.
  */
-#define SPC5_SAR_CLK_MAX                    16000000
+#define SPC5_SAR_CLK_MAX                    12000000
 
 /**
- * @brief   Maximum DSPI0_CLK clock frequency.
+ * @brief   Maximum CTU_CLK clock frequency.
  */
-#define SPC5_DSPI0_CLK_MAX                  100000000
+#define SPC5_CTU_CLK_MAX                    16000000
 
 /**
- * @brief   Maximum DSPI1_CLK and LIN_CLK clock frequency.
+ * @brief   Maximum DSPI_CLK clock frequency.
  */
-#define SPC5_DSPI1_CLK_LIN_CLK_MAX          100000000
+#define SPC5_DSPI_CLK_MAX                   80000000
+
+/**
+ * @brief   Maximum LIN_CLK clock frequency.
+ */
+#define SPC5_LIN_CLK_MAX                    80000000
+/** @} */
+
+/**
+ * @brief   Maximum ETIMER_CLK.
+ */
+#define SPC5_ETIMER_CLK_MAX                 100000000
 /** @} */
 
 /**
@@ -162,7 +168,6 @@
  */
 #define SPC5_PLL0_CR_EXPDIE                 (1U << 7)
 #define SPC5_PLL0_CR_LOLIE                  (1U << 3)
-#define SPC5_PLL0_CR_LOLRE                  (1U << 2)
 
 #define SPC5_PLL0_SR_EXTPDF                 (1U << 7)
 #define SPC5_PLL0_SR_LOLIF                  (1U << 3)
@@ -172,9 +177,9 @@
 #define SPC5_PLL0_DV_RFDPHI1(n)             ((n) << 27)
 
 #define SPC5_PLL0_DV_RFDPHI_MASK            (63U << 16)
-#define SPC5_PLL0_DV_RFDPHI(n)              ((n) << 17)
+#define SPC5_PLL0_DV_RFDPHI(n)              ((n) << 16)
 
-#define SPC5_PLL0_DV_PREDIV_MASK            (15U << 12)
+#define SPC5_PLL0_DV_PREDIV_MASK            (7U << 12)
 #define SPC5_PLL0_DV_PREDIV(n)              ((n) << 12)
 
 #define SPC5_PLL0_DV_MFD_MASK               (127U << 0)
@@ -187,7 +192,7 @@
  */
 #define SPC5_PLL1_CR_EXPDIE                 (1U << 7)
 #define SPC5_PLL1_CR_LOLIE                  (1U << 3)
-#define SPC5_PLL1_CR_LOLRE                  (1U << 2)
+
 #define SPC5_PLL1_SR_EXTPDF                 (1U << 7)
 #define SPC5_PLL1_SR_LOLIF                  (1U << 3)
 #define SPC5_PLL1_SR_LOCK                   (1U << 2)
@@ -226,16 +231,6 @@
 /** @} */
 
 /**
- * @name    Clock dividers used in the CGM_AC0_DC3.DIV_FMT field
- * @{
- */
-#define SPC5_CGM_DIV_FMT_DIV1               (0U << 0)
-#define SPC5_CGM_DIV_FMT_DIV10              (1U << 0)
-#define SPC5_CGM_DIV_FMT_DIV100             (2U << 0)
-#define SPC5_CGM_DIV_FMT_DIV1000            (3U << 0)
-/** @} */
-
-/**
  * @name    ME_GS register bits definitions
  * @{
  */
@@ -260,22 +255,6 @@
 #define SPC5_ME_ME_RUN3                     (1U << 7)
 #define SPC5_ME_ME_HALT0                    (1U << 8)
 #define SPC5_ME_ME_STOP0                    (1U << 10)
-/** @} */
-
-/**
- * @name    ME_CCTLx register bits definitions
- * @{
- */
-#define SPC5_ME_CCTL_RESET                  (1U << 0)
-#define SPC5_ME_CCTL_TEST                   (1U << 1)
-#define SPC5_ME_CCTL_SAFE                   (1U << 2)
-#define SPC5_ME_CCTL_DRUN                   (1U << 3)
-#define SPC5_ME_CCTL_RUN0                   (1U << 4)
-#define SPC5_ME_CCTL_RUN1                   (1U << 5)
-#define SPC5_ME_CCTL_RUN2                   (1U << 6)
-#define SPC5_ME_CCTL_RUN3                   (1U << 7)
-#define SPC5_ME_CCTL_HALT0                  (1U << 8)
-#define SPC5_ME_CCTL_STOP0                  (1U << 10)
 /** @} */
 
 /**
@@ -438,7 +417,7 @@
 
 /**
  * @brief   CGM_SC_DC1 clock divider value.
- * @note    Range 1..64, zero means disabled clock.
+ * @note    Range 1..16, zero means disabled clock.
  * @note    The dividers on the SC must have values that are multiples of
  *          all the other SC dividers except the lowest one.
  */
@@ -448,7 +427,7 @@
 
 /**
  * @brief   CGM_SC_DC2 clock divider value.
- * @note    Range 1..64, zero means disabled clock.
+ * @note    Range 1..256, zero means disabled clock.
  * @note    The dividers on the SC must have values that are multiples of
  *          all the other SC dividers except the lowest one.
  */
@@ -489,18 +468,10 @@
 
 /**
  * @brief   CGM_AC0_DC3 clock divider value.
- * @note    Range 1..512, zero means disabled clock.
+ * @note    Range 1..128, zero means disabled clock.
  */
 #if !defined(SPC5_CGM_AC0_DC3_DIV_VALUE) || defined(__DOXYGEN__)
 #define SPC5_CGM_AC0_DC3_DIV_VALUE          4
-#endif
-
-/**
- * @brief   CGM_AC0_DC3 clock divider multiplier value.
- * @note    Possible values are 1, 10, 100 and 1000.
- */
-#if !defined(SPC5_CGM_AC0_DC3_DIV_FMT_VALUE) || defined(__DOXYGEN__)
-#define SPC5_CGM_AC0_DC3_DIV_FMT_VALUE      1
 #endif
 
 /**
@@ -512,47 +483,10 @@
 #endif
 
 /**
- * @brief   CGM_AC6_DC0 clock divider value.
- * @note    Range 1..512, zero means disabled clock.
- */
-#if !defined(SPC5_CGM_AC6_DC0_DIV_VALUE) || defined(__DOXYGEN__)
-#define SPC5_CGM_AC6_DC0_DIV_VALUE          8
-#endif
-
-/**
- * @brief   CGM_AC7_DC0 clock divider value.
- * @note    Range 1..512, zero means disabled clock.
- */
-#if !defined(SPC5_CGM_AC7_DC0_DIV_VALUE) || defined(__DOXYGEN__)
-#define SPC5_CGM_AC7_DC0_DIV_VALUE          8
-#endif
-
-/**
  * @brief   CGM_AC3_SC clock source.
  */
 #if !defined(SPC5_CGM_AC3_SC_BITS) || defined(__DOXYGEN__)
 #define SPC5_CGM_AC3_SC_BITS                SPC5_CGM_SC_XOSC
-#endif
-
-/**
- * @brief   CGM_AC4_SC clock source.
- */
-#if !defined(SPC5_CGM_AC4_SC_BITS) || defined(__DOXYGEN__)
-#define SPC5_CGM_AC4_SC_BITS                SPC5_CGM_SC_XOSC
-#endif
-
-/**
- * @brief   CGM_AC6_SC clock source.
- */
-#if !defined(SPC5_CGM_AC6_SC_BITS) || defined(__DOXYGEN__)
-#define SPC5_CGM_AC6_SC_BITS                SPC5_CGM_SC_XOSC
-#endif
-
-/**
- * @brief   CGM_AC7_SC clock source.
- */
-#if !defined(SPC5_CGM_AC7_SC_BITS) || defined(__DOXYGEN__)
-#define SPC5_CGM_AC7_SC_BITS                SPC5_CGM_SC_XOSC
 #endif
 
 /**
@@ -898,8 +832,7 @@
 #endif
 
 /* Check on SPC5_PLL0_RFDPHI_VALUE.*/
-#if (SPC5_PLL0_RFDPHI_VALUE < 2) || (SPC5_PLL0_RFDPHI_VALUE > 126) ||       \
-    ((SPC5_PLL0_RFDPHI_VALUE & 1) != 0)
+#if (SPC5_PLL0_RFDPHI_VALUE < 1) || (SPC5_PLL0_RFDPHI_VALUE > 63)
 #error "invalid SPC5_PLL0_RFDPHI_VALUE value specified"
 #endif
 
@@ -914,8 +847,7 @@
 #endif
 
 /* Check on SPC5_PLL1_RFDPHI_VALUE.*/
-#if (SPC5_PLL1_RFDPHI_VALUE < 2) || (SPC5_PLL1_RFDPHI_VALUE > 126) ||       \
-    ((SPC5_PLL1_RFDPHI_VALUE & 1) != 0)
+#if (SPC5_PLL1_RFDPHI_VALUE < 1) || (SPC5_PLL1_RFDPHI_VALUE > 63)
 #error "invalid SPC5_PLL1_RFDPHI_VALUE value specified"
 #endif
 
@@ -937,8 +869,8 @@
 /* Check on SPC5_CGM_AC1_SC_BITS.*/
 #if SPC5_CGM_AC1_SC_BITS == SPC5_CGM_SC_XOSC
 #define SPC5_AUX1_INPUT_CLK                 SPC5_XOSC_CLK
-#elif SPC5_CGM_AC1_SC_BITS == SPC5_CGM_SC_PLL0PHI1
-#define SPC5_AUX1_INPUT_CLK                 SPC5_PLL0_PHI1_CLK
+#elif SPC5_CGM_AC1_SC_BITS == SPC5_CGM_SC_PLL0PHI
+#define SPC5_AUX1_INPUT_CLK                 SPC5_PLL0_PHI_CLK
 #else
 #error "invalid SPC5_CGM_AC1_SC_BITS value specified"
 #endif
@@ -953,10 +885,10 @@
 #endif
 
 /* Check on SPC5_CGM_AC3_SC_BITS.*/
-#if SPC5_CGM_AC3_SC_BITS == SPC5_CGM_SC_PLL0PHI
-#define SPC5_PLL1_INPUT_CLK                 SPC5_PLL0_PHI1_CLK
-#elif SPC5_CGM_AC3_SC_BITS == SPC5_CGM_SC_XOSC
+#if SPC5_CGM_AC3_SC_BITS == SPC5_CGM_SC_XOSC
 #define SPC5_PLL1_INPUT_CLK                 SPC5_XOSC_CLK
+#elif SPC5_CGM_AC3_SC_BITS == SPC5_CGM_SC_PLL0PHI
+#define SPC5_PLL1_INPUT_CLK                 SPC5_PLL0_PHI1_CLK
 #else
 #error "invalid SPC5_CGM_AC3_SC_BITS value specified"
 #endif
@@ -968,7 +900,7 @@
 /* Check on the SC divider 0 settings.*/
 #if SPC5_CGM_SC_DC0_DIV_VALUE == 0
 #define SPC5_CGM_SC_DC0_BITS                0
-#elif (SPC5_CGM_SC_DC0_DIV_VALUE >= 1) && (SPC5_CGM_SC_DC0_DIV_VALUE <= 16)
+#elif (SPC5_CGM_SC_DC0_DIV_VALUE >= 1) && (SPC5_CGM_SC_DC0_DIV_VALUE <= 8)
 #define SPC5_CGM_SC_DC0_BITS                (0x80000000U |                  \
                                              ((SPC5_CGM_SC_DC0_DIV_VALUE - 1) << 16))
 #else
@@ -988,7 +920,7 @@
 /* Check on the SC divider 2 settings.*/
 #if SPC5_CGM_SC_DC2_DIV_VALUE == 0
 #define SPC5_CGM_SC_DC2_BITS                0
-#elif (SPC5_CGM_SC_DC2_DIV_VALUE >= 1) && (SPC5_CGM_SC_DC2_DIV_VALUE <= 16)
+#elif (SPC5_CGM_SC_DC2_DIV_VALUE >= 1) && (SPC5_CGM_SC_DC2_DIV_VALUE <= 256)
 #define SPC5_CGM_SC_DC2_BITS                (0x80000000U |                  \
                                              ((SPC5_CGM_SC_DC2_DIV_VALUE - 1) << 16))
 #else
@@ -1025,25 +957,11 @@
 #error "invalid SPC5_CGM_AC0_DC2_DIV_VALUE value specified"
 #endif
 
-/* Check on the AUX0 divider 3 multiplier settings.*/
-#if SPC5_CGM_AC0_DC3_DIV_FMT_VALUE == 1
-#define SPC5_CGM_AC0_DC3_DIV_FMT            SPC5_CGM_DIV_FMT_DIV1
-#elif SPC5_CGM_AC0_DC3_DIV_FMT_VALUE == 10
-#define SPC5_CGM_AC0_DC3_DIV_FMT            SPC5_CGM_DIV_FMT_DIV10
-#elif SPC5_CGM_AC0_DC3_DIV_FMT_VALUE == 100
-#define SPC5_CGM_AC0_DC3_DIV_FMT            SPC5_CGM_DIV_FMT_DIV100
-#elif SPC5_CGM_AC0_DC3_DIV_FMT_VALUE == 1000
-#define SPC5_CGM_AC0_DC3_DIV_FMT            SPC5_CGM_DIV_FMT_DIV1000
-#else
-#error "invalid SPC5_CGM_AC0_DC3_DIV_FMT_VALUE value specified"
-#endif
-
 /* Check on the AUX0 divider 3 settings.*/
 #if SPC5_CGM_AC0_DC3_DIV_VALUE == 0
 #define SPC5_CGM_AC0_DC3_BITS               0
-#elif (SPC5_CGM_AC0_DC3_DIV_VALUE >= 1) && (SPC5_CGM_AC0_DC3_DIV_VALUE <= 512)
+#elif (SPC5_CGM_AC0_DC3_DIV_VALUE >= 1) && (SPC5_CGM_AC0_DC3_DIV_VALUE <= 128)
 #define SPC5_CGM_AC0_DC3_BITS               (0x80000000U |                  \
-                                             SPC5_CGM_AC0_DC3_DIV_FMT |     \
                                              ((SPC5_CGM_AC0_DC3_DIV_VALUE - 1) << 16))
 #else
 #error "invalid SPC5_CGM_AC0_DC3_DIV_VALUE value specified"
@@ -1072,7 +990,7 @@
 /* Check on the AUX1 divider 0 settings.*/
 #if SPC5_CGM_AC1_DC0_DIV_VALUE == 0
 #define SPC5_CGM_AC1_DC0_BITS               0
-#elif (SPC5_CGM_AC1_DC0_DIV_VALUE >= 1) && (SPC5_CGM_AC1_DC0_DIV_VALUE <= 512)
+#elif (SPC5_CGM_AC1_DC0_DIV_VALUE >= 1) && (SPC5_CGM_AC1_DC0_DIV_VALUE <= 64)
 #define SPC5_CGM_AC1_DC0_BITS               (0x80000000U |                 \
                                              ((SPC5_CGM_AC1_DC0_DIV_VALUE - 1) << 16))
 #else
@@ -1087,7 +1005,7 @@
  * @brief   SPC5_PLL0_VCO_CLK clock point.
  */
 #define SPC5_PLL0_VCO_CLK                                                   \
-  ((SPC5_PLL0_INPUT_CLK / SPC5_PLL0_PREDIV_VALUE) * SPC5_PLL0_MFD_VALUE)
+  ((SPC5_PLL0_INPUT_CLK / SPC5_PLL0_PREDIV_VALUE) * (2 * SPC5_PLL0_MFD_VALUE))
 
 /* Check on PLL0 VCO output.*/
 #if (SPC5_PLL0_VCO_CLK < SPC5_PLL0VCO_MIN) ||                               \
@@ -1099,7 +1017,7 @@
  * @brief   SPC5_PLL0_PHI_CLK clock point.
  */
 #define SPC5_PLL0_PHI_CLK                                                   \
-  (SPC5_PLL0_VCO_CLK / SPC5_PLL0_RFDPHI_VALUE)
+  ((SPC5_PLL0_VCO_CLK / SPC5_PLL0_RFDPHI_VALUE) / 2)
 
 /* Check on SPC5_PLL0_PHI_CLK.*/
 #if ((SPC5_PLL0_PHI_CLK > SPC5_PLL0_CLK_MAX) ||                             \
@@ -1111,7 +1029,7 @@
  * @brief   SPC5_PLL0_PHI1_CLK clock point.
  */
 #define SPC5_PLL0_PHI1_CLK                                                  \
-  (SPC5_PLL0_VCO_CLK / SPC5_PLL0_RFDPHI1_VALUE)
+  ((SPC5_PLL0_VCO_CLK / SPC5_PLL0_RFDPHI1_VALUE) / 2)
 
 /* Check on SPC5_PLL0_PH1I_CLK.*/
 #if ((SPC5_PLL0_PHI1_CLK > SPC5_PLL0_CLK_MAX) ||                            \
@@ -1123,7 +1041,7 @@
  * @brief   SPC5_PLL1_VCO_CLK clock point.
  */
 #define SPC5_PLL1_VCO_CLK                                                   \
-  (SPC5_PLL1_INPUT_CLK* SPC5_PLL1_MFD_VALUE)
+  (SPC5_PLL1_INPUT_CLK * SPC5_PLL1_MFD_VALUE)
 
 /* Check on PLL1 VCO output.*/
 #if (SPC5_PLL1_VCO_CLK < SPC5_PLL1VCO_MIN) ||                               \
@@ -1156,21 +1074,10 @@
 #endif
 
 /**
- * @brief   SD_CLK clock point.
- */
-#define SPC5_SD_CLK                                                         \
-  (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC1_DIV_VALUE)
-
-/* Check on SPC5_PER_CLK.*/
-#if SPC5_SD_CLK > SPC5_SD_CLK_MAX
-#error "SPC5_SD_CLK outside acceptable range (0...SPC5_SD_CLK_MAX)"
-#endif
-
-/**
  * @brief   SAR_CLK clock point.
  */
 #define SPC5_SAR_CLK                                                        \
-  (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC2_DIV_VALUE)
+  (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC1_DIV_VALUE)
 
 /* Check on SPC5_SAR_CLK.*/
 #if SPC5_SAR_CLK > SPC5_SAR_CLK_MAX
@@ -1178,26 +1085,47 @@
 #endif
 
 /**
- * @brief   DSPI0_CLK clock point.
+ * @brief   CTU clock point.
  */
-#define SPC5_DSPI0_CLK                                                      \
-  (SPC5_AUX0_CLK / (SPC5_CGM_AC0_DC3_DIV_VALUE *                            \
-                    SPC5_CGM_AC0_DC3_DIV_FMT_VALUE))
+#define SPC5_CTU_CLK                                                        \
+  (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC2_DIV_VALUE)
 
-/* Check on SPC5_DSPI0_CLK.*/
-#if SPC5_DSPI0_CLK > SPC5_DSPI0_CLK_MAX
-#error "SPC5_DSPI0_CLK outside acceptable range (0...SPC5_DSPI0_CLK_MAX)"
+/* Check on SPC5_CTU_CLK.*/
+#if SPC5_CTU_CLK > SPC5_CTU_CLK_MAX
+#error "SPC5_CTU_CLK outside acceptable range (0...SPC5_CTU_CLK_MAX)"
 #endif
 
 /**
- * @brief   DSPI1_CLK and LIN_CLK clock point.
+ * @brief   DSPI_CLK clock point.
  */
-#define SPC5_DSPI1_CLK_LIN_CLK                                              \
+#define SPC5_DSPI_CLK                                                       \
+  (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC3_DIV_VALUE)
+
+/* Check on SPC5_DSPI_CLK.*/
+#if SPC5_DSPI_CLK > SPC5_DSPI_CLK_MAX
+#error "SPC5_DSPI_CLK outside acceptable range (0...SPC5_DSPI_CLK_MAX)"
+#endif
+
+/**
+ * @brief   LIN_CLK clock point.
+ */
+#define SPC5_LIN_CLK                                                        \
   (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC4_DIV_VALUE)
 
-/* Check on SPC5_DSPI1_CLK_LIN_CLK.*/
-#if SPC5_DSPI1_CLK_LIN_CLK > SPC5_DSPI1_CLK_LIN_CLK_MAX
-#error "SPC5_DSPI1_CLK_LIN_CLK outside acceptable range (0...SPC5_DSPI1_CLK_LIN_CLK_MAX)"
+/* Check on SPC5_LIN_CLK.*/
+#if SPC5_LIN_CLK > SPC5_LIN_CLK_MAX
+#error "SPC5_LIN_CLK outside acceptable range (0...SPC5_LIN_CLK_MAX)"
+#endif
+
+/**
+ * @brief   ETIMER_CLK clock point.
+ */
+#define SPC5_ETIMER_CLK                                                     \
+  (SPC5_AUX0_CLK / SPC5_CGM_AC0_DC5_DIV_VALUE)
+
+/* Check on SPC5_ETIMER_CLK.*/
+#if SPC5_ETIMER_CLK > SPC5_ETIMER_CLK_MAX
+#error "SPC5_ETIMER_CLK outside acceptable range (0...SPC5_ETIMER_CLK_MAX)"
 #endif
 
 /*===========================================================================*/

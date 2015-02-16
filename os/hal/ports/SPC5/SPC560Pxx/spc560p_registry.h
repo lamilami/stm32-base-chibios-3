@@ -302,6 +302,7 @@
 #endif /* !(defined(_SPC560PXX_MEDIUM_) || defined(_SPC560PXX_LARGE_)) */
 
 #define SPC5_HAS_ETIMER2                    FALSE
+#define SPC5_HAS_ETIMER3                    FALSE
 
 /* FlexCAN attributes.*/
 #define SPC5_HAS_FLEXCAN0                                   TRUE

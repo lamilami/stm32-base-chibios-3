@@ -344,6 +344,88 @@
 #define SPC5_ICU_ETIMER2_STOP_PCTL          (SPC5_ME_PCTL_RUN(0) |          \
                                              SPC5_ME_PCTL_LP(0))
 #endif
+/**
+ * @brief   ICUD19 driver enable switch.
+ * @details If set to @p TRUE the support for ICUD19 is included.
+ * @note    The default is @p FALSE.
+ */
+#if !defined(SPC5_ICU_USE_SMOD18) || defined(__DOXYGEN__)
+#define SPC5_ICU_USE_SMOD18                 FALSE
+#endif
+
+/**
+ * @brief   ICUD20 driver enable switch.
+ * @details If set to @p TRUE the support for ICUD20 is included.
+ * @note    The default is @p FALSE.
+ */
+#if !defined(SPC5_ICU_USE_SMOD19) || defined(__DOXYGEN__)
+#define SPC5_ICU_USE_SMOD19                 FALSE
+#endif
+
+/**
+ * @brief   ICUD21 driver enable switch.
+ * @details If set to @p TRUE the support for ICUD21 is included.
+ * @note    The default is @p FALSE.
+ */
+#if !defined(SPC5_ICU_USE_SMOD20) || defined(__DOXYGEN__)
+#define SPC5_ICU_USE_SMOD20                 FALSE
+#endif
+
+/**
+ * @brief   ICUD22 driver enable switch.
+ * @details If set to @p TRUE the support for ICUD22 is included.
+ * @note    The default is @p FALSE.
+ */
+#if !defined(SPC5_ICU_USE_SMOD21) || defined(__DOXYGEN__)
+#define SPC5_ICU_USE_SMOD21                 FALSE
+#endif
+
+/**
+ * @brief   ICUD23 driver enable switch.
+ * @details If set to @p TRUE the support for ICUD23 is included.
+ * @note    The default is @p FALSE.
+ */
+#if !defined(SPC5_ICU_USE_SMOD22) || defined(__DOXYGEN__)
+#define SPC5_ICU_USE_SMOD22                 FALSE
+#endif
+
+/**
+ * @brief   ICUD24 driver enable switch.
+ * @details If set to @p TRUE the support for ICUD24 is included.
+ * @note    The default is @p FALSE.
+ */
+#if !defined(SPC5_ICU_USE_SMOD23) || defined(__DOXYGEN__)
+#define SPC5_ICU_USE_SMOD23                 FALSE
+#endif
+
+/**
+ * @brief   eTimer3 interrupt priority level setting.
+ */
+#if !defined(SPC5_ICU_ETIMER3_PRIORITY) || defined(__DOXYGEN__)
+#define SPC5_ICU_ETIMER3_PRIORITY           7
+#endif
+
+/**
+ * @brief   eTIMER3 peripheral configuration when started.
+ * @note    The default configuration is 1 (always run) in run mode and
+ *          2 (only halt) in low power mode. The defaults of the run modes
+ *          are defined in @p hal_lld.h.
+ */
+#if !defined(SPC5_ICU_ETIMER3_START_PCTL) || defined(__DOXYGEN__)
+#define SPC5_ICU_ETIMER3_START_PCTL         (SPC5_ME_PCTL_RUN(1) |          \
+                                             SPC5_ME_PCTL_LP(2))
+#endif
+
+/**
+ * @brief   eTIMER3 peripheral configuration when stopped.
+ * @note    The default configuration is 0 (never run) in run mode and
+ *          0 (never run) in low power mode. The defaults of the run modes
+ *          are defined in @p hal_lld.h.
+ */
+#if !defined(SPC5_ICU_ETIMER3_STOP_PCTL) || defined(__DOXYGEN__)
+#define SPC5_ICU_ETIMER3_STOP_PCTL          (SPC5_ME_PCTL_RUN(0) |          \
+                                             SPC5_ME_PCTL_LP(0))
+#endif
 /** @} */
 
 /*===========================================================================*/
@@ -371,6 +453,13 @@
                                              SPC5_ICU_USE_SMOD16 ||         \
                                              SPC5_ICU_USE_SMOD17)
 
+#define SPC5_ICU_USE_ETIMER3                (SPC5_ICU_USE_SMOD18 ||         \
+                                             SPC5_ICU_USE_SMOD19 ||         \
+                                             SPC5_ICU_USE_SMOD20 ||         \
+                                             SPC5_ICU_USE_SMOD21 ||         \
+                                             SPC5_ICU_USE_SMOD22 ||         \
+                                             SPC5_ICU_USE_SMOD23)
+											 
 #if !SPC5_HAS_ETIMER0 && SPC5_ICU_USE_ETIMER0
 #error "ETIMER0 not present in the selected device"
 #endif
@@ -383,7 +472,11 @@
 #error "ETIMER2 not present in the selected device"
 #endif
 
-#if !SPC5_ICU_USE_ETIMER0 && !SPC5_ICU_USE_ETIMER1 && !SPC5_ICU_USE_ETIMER2
+#if !SPC5_HAS_ETIMER3 && SPC5_ICU_USE_ETIMER3
+#error "ETIMER3 not present in the selected device"
+#endif
+
+#if !SPC5_ICU_USE_ETIMER0 && !SPC5_ICU_USE_ETIMER1 && !SPC5_ICU_USE_ETIMER2 && !SPC5_ICU_USE_ETIMER3
 #error "ICU driver activated but no SMOD peripheral assigned"
 #endif
 
@@ -591,6 +684,30 @@ extern ICUDriver ICUD17;
 
 #if SPC5_ICU_USE_SMOD17 && !defined(__DOXYGEN__)
 extern ICUDriver ICUD18;
+#endif
+
+#if SPC5_ICU_USE_SMOD18 && !defined(__DOXYGEN__)
+extern ICUDriver ICUD19;
+#endif
+
+#if SPC5_ICU_USE_SMOD19 && !defined(__DOXYGEN__)
+extern ICUDriver ICUD20;
+#endif
+
+#if SPC5_ICU_USE_SMOD20 && !defined(__DOXYGEN__)
+extern ICUDriver ICUD21;
+#endif
+
+#if SPC5_ICU_USE_SMOD21 && !defined(__DOXYGEN__)
+extern ICUDriver ICUD22;
+#endif
+
+#if SPC5_ICU_USE_SMOD22 && !defined(__DOXYGEN__)
+extern ICUDriver ICUD23;
+#endif
+
+#if SPC5_ICU_USE_SMOD23 && !defined(__DOXYGEN__)
+extern ICUDriver ICUD24;
 #endif
 
 #ifdef __cplusplus

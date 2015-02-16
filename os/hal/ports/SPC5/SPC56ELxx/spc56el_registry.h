@@ -246,6 +246,8 @@
 #define SPC5_ETIMER2_RCF_NUMBER             232
 #define SPC5_ETIMER2_CLK                    SPC5_MCONTROL_CLK
 
+#define SPC5_HAS_ETIMER3                    FALSE
+
 /* FlexCAN attributes.*/
 #define SPC5_HAS_FLEXCAN0                                   TRUE
 #define SPC5_FLEXCAN0_PCTL                                  16

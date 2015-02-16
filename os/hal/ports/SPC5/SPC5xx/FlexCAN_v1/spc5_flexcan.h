@@ -412,6 +412,18 @@ struct spc5_flexcan {
  * @name    FlexCAN units references
  * @{
  */
+#if defined(_SPC570Sxx_)
+/* Locations for SPC570Sxx devices.*/
+#if SPC5_HAS_FLEXCAN0 || defined(__DOXYGEN__)
+#define SPC5_FLEXCAN_0      (*(volatile struct spc5_flexcan *)0xFFEC0000UL)
+#endif
+
+#if SPC5_HAS_FLEXCAN1 || defined(__DOXYGEN__)
+#define SPC5_FLEXCAN_1      (*(volatile struct spc5_flexcan *)0xFBEC0000UL)
+#endif
+
+#else /* !defined(_SPC570Sxx_) */
+/* Locations for other devices.*/
 #if SPC5_HAS_FLEXCAN0 || defined(__DOXYGEN__)
 #define SPC5_FLEXCAN_0      (*(volatile struct spc5_flexcan *)0xFFFC0000UL)
 #endif
@@ -436,6 +448,8 @@ struct spc5_flexcan {
 #define SPC5_FLEXCAN_5      (*(volatile struct spc5_flexcan *)0xFFFD4000UL)
 #endif
 /** @} */
+
+#endif /* defined(_SPC570Sxx_) */
 
 #endif /* _SPC5_FLEXCAN_H_ */
 

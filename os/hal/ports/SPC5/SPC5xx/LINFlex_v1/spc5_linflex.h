@@ -488,8 +488,18 @@ struct spc5_linflex {
  * @name    LINFlex units references
  * @{
  */
-#if defined(_SPC57EMxx_) || defined(_SPC570Sxx_)
-/* Locations for SPC57EMxx and SPC570Sxx devices.*/
+#if defined(_SPC570Sxx_)
+/* Locations for SPC570Sxx devices.*/
+#if SPC5_HAS_LINFLEX0 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX0   (*(struct spc5_linflex *)0xFFE8C000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX1 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX1   (*(struct spc5_linflex *)0xFBE8C000UL)
+#endif
+
+#elif defined(_SPC57EMxx_)
+/* Locations for SPC57EMxx devices.*/
 #if SPC5_HAS_LINFLEX0 || defined(__DOXYGEN__)
 #define SPC5_LINFLEX0   (*(struct spc5_linflex *)0xFFE8C000UL)
 #endif
@@ -497,8 +507,7 @@ struct spc5_linflex {
 #if SPC5_HAS_LINFLEX1 || defined(__DOXYGEN__)
 #define SPC5_LINFLEX1   (*(struct spc5_linflex *)0xFFE90000UL)
 #endif
-#if defined(_SPC57EMxx_)
-/* Locations for SPC57EMxx devices.*/
+
 #if SPC5_HAS_LINFLEX2 || defined(__DOXYGEN__)
 #define SPC5_LINFLEX2   (*(struct spc5_linflex *)0xFBE8C000UL)
 #endif
@@ -510,9 +519,8 @@ struct spc5_linflex {
 #if SPC5_HAS_LINFLEX15 || defined(__DOXYGEN__)
 #define SPC5_LINFLEX15  (*(struct spc5_linflex *)0xFBEA8000UL)
 #endif
-#endif
 
-#else /* !defined(_SPC57EMxx_) */
+#else /* !defined(_SPC570Sxx_) && !defined(_SPC57EMxx_) */
 /* Default locations for SPC56x devices.*/
 #if SPC5_HAS_LINFLEX0 || defined(__DOXYGEN__)
 #define SPC5_LINFLEX0   (*(struct spc5_linflex *)0xFFE40000UL)

@@ -178,6 +178,54 @@ ICUDriver ICUD17;
 ICUDriver ICUD18;
 #endif
 
+/**
+ * @brief   ICUD19 driver identifier.
+ * @note    The driver ICUD19 allocates the complex timer SMOD18 when enabled.
+ */
+#if SPC5_ICU_USE_SMOD18 || defined(__DOXYGEN__)
+ICUDriver ICUD19;
+#endif
+
+/**
+ * @brief   ICUD20 driver identifier.
+ * @note    The driver ICUD20 allocates the complex timer SMOD19 when enabled.
+ */
+#if SPC5_ICU_USE_SMOD19 || defined(__DOXYGEN__)
+ICUDriver ICUD20;
+#endif
+
+/**
+ * @brief   ICUD21 driver identifier.
+ * @note    The driver ICUD21 allocates the complex timer SMOD20 when enabled.
+ */
+#if SPC5_ICU_USE_SMOD20 || defined(__DOXYGEN__)
+ICUDriver ICUD21;
+#endif
+
+/**
+ * @brief   ICUD22 driver identifier.
+ * @note    The driver ICUD22 allocates the complex timer SMOD21 when enabled.
+ */
+#if SPC5_ICU_USE_SMOD21 || defined(__DOXYGEN__)
+ICUDriver ICUD22;
+#endif
+
+/**
+ * @brief   ICUD23 driver identifier.
+ * @note    The driver ICUD23 allocates the complex timer SMOD22 when enabled.
+ */
+#if SPC5_ICU_USE_SMOD22 || defined(__DOXYGEN__)
+ICUDriver ICUD23;
+#endif
+
+/**
+ * @brief   ICUD24 driver identifier.
+ * @note    The driver ICUD24 allocates the complex timer SMOD23 when enabled.
+ */
+#if SPC5_ICU_USE_SMOD23 || defined(__DOXYGEN__)
+ICUDriver ICUD24;
+#endif
+
 /*===========================================================================*/
 /* Driver local variables.                                                   */
 /*===========================================================================*/
@@ -188,6 +236,7 @@ ICUDriver ICUD18;
 static uint32_t icu_active_submodules0;
 static uint32_t icu_active_submodules1;
 static uint32_t icu_active_submodules2;
+static uint32_t icu_active_submodules3;
 
 /**
  * @brief   Width and Period registers.
@@ -780,6 +829,138 @@ OSAL_IRQ_HANDLER(SPC5_ETIMER2_TC5IR_HANDLER) {
 }
 #endif /* SPC5_ICU_USE_SMOD17 */
 
+#if SPC5_ICU_USE_SMOD18
+#if !defined(SPC5_ETIMER3_TC0IR_HANDLER)
+#error "SPC5_ETIMER3_TC0IR_HANDLER not defined"
+#endif
+/**
+ * @brief   eTimer3 Channel 0 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_ETIMER3_TC0IR_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD19);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_SMOD18 */
+
+#if SPC5_ICU_USE_SMOD19
+#if !defined(SPC5_ETIMER3_TC1IR_HANDLER)
+#error "SPC5_ETIMER3_TC1IR_HANDLER not defined"
+#endif
+/**
+ * @brief   eTimer3 Channel 1 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_ETIMER3_TC1IR_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD20);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_SMOD19 */
+
+#if SPC5_ICU_USE_SMOD20
+#if !defined(SPC5_ETIMER3_TC2IR_HANDLER)
+#error "SPC5_ETIMER3_TC2IR_HANDLER not defined"
+#endif
+/**
+ * @brief   eTimer3 Channel 2 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_ETIMER3_TC2IR_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD21);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_SMOD20 */
+
+#if SPC5_ICU_USE_SMOD21
+#if !defined(SPC5_ETIMER3_TC3IR_HANDLER)
+#error "SPC5_ETIMER3_TC3IR_HANDLER not defined"
+#endif
+/**
+ * @brief   eTimer3 Channel 3 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_ETIMER3_TC3IR_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD22);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_SMOD21 */
+
+#if SPC5_ICU_USE_SMOD22
+#if !defined(SPC5_ETIMER3_TC4IR_HANDLER)
+#error "SPC5_ETIMER3_TC4IR_HANDLER not defined"
+#endif
+/**
+ * @brief   eTimer3 Channel 4 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_ETIMER3_TC4IR_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD23);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_SMOD22 */
+
+#if SPC5_ICU_USE_SMOD23
+#if !defined(SPC5_ETIMER3_TC5IR_HANDLER)
+#error "SPC5_ETIMER3_TC5IR_HANDLER not defined"
+#endif
+/**
+ * @brief   eTimer3 Channel 5 interrupt handler.
+ * @note    It is assumed that the various sources are only activated if the
+ *          associated callback pointer is not equal to @p NULL in order to not
+ *          perform an extra check in a potentially critical interrupt handler.
+ *
+ * @isr
+ */
+OSAL_IRQ_HANDLER(SPC5_ETIMER3_TC5IR_HANDLER) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  icu_lld_serve_interrupt(&ICUD24);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif /* SPC5_ICU_USE_SMOD23 */
+
 /*===========================================================================*/
 /* Driver exported functions.                                                */
 /*===========================================================================*/
@@ -795,6 +976,7 @@ void icu_lld_init(void) {
   icu_active_submodules0 = 0;
   icu_active_submodules1 = 0;
   icu_active_submodules2 = 0;
+  icu_active_submodules3 = 0;
 
   /* Reset width and period registers.*/
   width = 0;
@@ -944,40 +1126,100 @@ void icu_lld_init(void) {
   ICUD18.clock = SPC5_ETIMER2_CLK;
 #endif
 
+#if SPC5_ICU_USE_SMOD18
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD19);
+  ICUD13.etimerp = &SPC5_ETIMER_3;
+  ICUD13.smod_number = 0U;
+  ICUD13.clock = SPC5_ETIMER3_CLK;
+#endif
+
+#if SPC5_ICU_USE_SMOD19
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD20);
+  ICUD14.etimerp = &SPC5_ETIMER_3;
+  ICUD14.smod_number = 1U;
+  ICUD14.clock = SPC5_ETIMER3_CLK;
+#endif
+
+#if SPC5_ICU_USE_SMOD20
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD21);
+  ICUD15.etimerp = &SPC5_ETIMER_3;
+  ICUD15.smod_number = 2U;
+  ICUD15.clock = SPC5_ETIMER3_CLK;
+#endif
+
+#if SPC5_ICU_USE_SMOD21
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD22);
+  ICUD16.etimerp = &SPC5_ETIMER_3;
+  ICUD16.smod_number = 3U;
+  ICUD16.clock = SPC5_ETIMER3_CLK;
+#endif
+
+#if SPC5_ICU_USE_SMOD22
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD23);
+  ICUD17.etimerp = &SPC5_ETIMER_3;
+  ICUD17.smod_number = 4U;
+  ICUD17.clock = SPC5_ETIMER3_CLK;
+#endif
+
+#if SPC5_ICU_USE_SMOD23
+  /* Driver initialization.*/
+  icuObjectInit(&ICUD24);
+  ICUD18.etimerp = &SPC5_ETIMER_3;
+  ICUD18.smod_number = 5U;
+  ICUD18.clock = SPC5_ETIMER3_CLK;
+#endif
+
 #if SPC5_ICU_USE_ETIMER0
 
-  INTC.PSR[SPC5_ETIMER0_TC0IR_NUMBER].R = SPC5_ICU_ETIMER0_PRIORITY;
-  INTC.PSR[SPC5_ETIMER0_TC1IR_NUMBER].R = SPC5_ICU_ETIMER0_PRIORITY;
-  INTC.PSR[SPC5_ETIMER0_TC2IR_NUMBER].R = SPC5_ICU_ETIMER0_PRIORITY;
-  INTC.PSR[SPC5_ETIMER0_TC3IR_NUMBER].R = SPC5_ICU_ETIMER0_PRIORITY;
-  INTC.PSR[SPC5_ETIMER0_TC4IR_NUMBER].R = SPC5_ICU_ETIMER0_PRIORITY;
-  INTC.PSR[SPC5_ETIMER0_TC5IR_NUMBER].R = SPC5_ICU_ETIMER0_PRIORITY;
-  INTC.PSR[SPC5_ETIMER0_WTIF_NUMBER].R = SPC5_ICU_ETIMER0_PRIORITY;
-  INTC.PSR[SPC5_ETIMER0_RCF_NUMBER].R = SPC5_ICU_ETIMER0_PRIORITY;
+  INTC_PSR(SPC5_ETIMER0_TC0IR_NUMBER) = SPC5_ICU_ETIMER0_PRIORITY;
+  INTC_PSR(SPC5_ETIMER0_TC1IR_NUMBER) = SPC5_ICU_ETIMER0_PRIORITY;
+  INTC_PSR(SPC5_ETIMER0_TC2IR_NUMBER) = SPC5_ICU_ETIMER0_PRIORITY;
+  INTC_PSR(SPC5_ETIMER0_TC3IR_NUMBER) = SPC5_ICU_ETIMER0_PRIORITY;
+  INTC_PSR(SPC5_ETIMER0_TC4IR_NUMBER) = SPC5_ICU_ETIMER0_PRIORITY;
+  INTC_PSR(SPC5_ETIMER0_TC5IR_NUMBER) = SPC5_ICU_ETIMER0_PRIORITY;
+  INTC_PSR(SPC5_ETIMER0_WTIF_NUMBER) = SPC5_ICU_ETIMER0_PRIORITY;
+  INTC_PSR(SPC5_ETIMER0_RCF_NUMBER) = SPC5_ICU_ETIMER0_PRIORITY;
 
 #endif
 
 #if SPC5_ICU_USE_ETIMER1
 
-  INTC.PSR[SPC5_ETIMER1_TC0IR_NUMBER].R = SPC5_ICU_ETIMER1_PRIORITY;
-  INTC.PSR[SPC5_ETIMER1_TC1IR_NUMBER].R = SPC5_ICU_ETIMER1_PRIORITY;
-  INTC.PSR[SPC5_ETIMER1_TC2IR_NUMBER].R = SPC5_ICU_ETIMER1_PRIORITY;
-  INTC.PSR[SPC5_ETIMER1_TC3IR_NUMBER].R = SPC5_ICU_ETIMER1_PRIORITY;
-  INTC.PSR[SPC5_ETIMER1_TC4IR_NUMBER].R = SPC5_ICU_ETIMER1_PRIORITY;
-  INTC.PSR[SPC5_ETIMER1_TC5IR_NUMBER].R = SPC5_ICU_ETIMER1_PRIORITY;
-  INTC.PSR[SPC5_ETIMER1_RCF_NUMBER].R = SPC5_ICU_ETIMER1_PRIORITY;
+  INTC_PSR(SPC5_ETIMER1_TC0IR_NUMBER) = SPC5_ICU_ETIMER1_PRIORITY;
+  INTC_PSR(SPC5_ETIMER1_TC1IR_NUMBER) = SPC5_ICU_ETIMER1_PRIORITY;
+  INTC_PSR(SPC5_ETIMER1_TC2IR_NUMBER) = SPC5_ICU_ETIMER1_PRIORITY;
+  INTC_PSR(SPC5_ETIMER1_TC3IR_NUMBER) = SPC5_ICU_ETIMER1_PRIORITY;
+  INTC_PSR(SPC5_ETIMER1_TC4IR_NUMBER) = SPC5_ICU_ETIMER1_PRIORITY;
+  INTC_PSR(SPC5_ETIMER1_TC5IR_NUMBER) = SPC5_ICU_ETIMER1_PRIORITY;
+  INTC_PSR(SPC5_ETIMER1_RCF_NUMBER) = SPC5_ICU_ETIMER1_PRIORITY;
 
 #endif
 
 #if SPC5_ICU_USE_ETIMER2
 
-  INTC.PSR[SPC5_ETIMER2_TC0IR_NUMBER].R = SPC5_ICU_ETIMER2_PRIORITY;
-  INTC.PSR[SPC5_ETIMER2_TC1IR_NUMBER].R = SPC5_ICU_ETIMER2_PRIORITY;
-  INTC.PSR[SPC5_ETIMER2_TC2IR_NUMBER].R = SPC5_ICU_ETIMER2_PRIORITY;
-  INTC.PSR[SPC5_ETIMER2_TC3IR_NUMBER].R = SPC5_ICU_ETIMER2_PRIORITY;
-  INTC.PSR[SPC5_ETIMER2_TC4IR_NUMBER].R = SPC5_ICU_ETIMER2_PRIORITY;
-  INTC.PSR[SPC5_ETIMER2_TC5IR_NUMBER].R = SPC5_ICU_ETIMER2_PRIORITY;
-  INTC.PSR[SPC5_ETIMER2_RCF_NUMBER].R = SPC5_ICU_ETIMER2_PRIORITY;
+  INTC_PSR(SPC5_ETIMER2_TC0IR_NUMBER) = SPC5_ICU_ETIMER2_PRIORITY;
+  INTC_PSR(SPC5_ETIMER2_TC1IR_NUMBER) = SPC5_ICU_ETIMER2_PRIORITY;
+  INTC_PSR(SPC5_ETIMER2_TC2IR_NUMBER) = SPC5_ICU_ETIMER2_PRIORITY;
+  INTC_PSR(SPC5_ETIMER2_TC3IR_NUMBER) = SPC5_ICU_ETIMER2_PRIORITY;
+  INTC_PSR(SPC5_ETIMER2_TC4IR_NUMBER) = SPC5_ICU_ETIMER2_PRIORITY;
+  INTC_PSR(SPC5_ETIMER2_TC5IR_NUMBER) = SPC5_ICU_ETIMER2_PRIORITY;
+  INTC_PSR(SPC5_ETIMER2_RCF_NUMBER) = SPC5_ICU_ETIMER2_PRIORITY;
+
+#endif
+
+#if SPC5_ICU_USE_ETIMER3
+
+  INTC_PSR(SPC5_ETIMER3_TC0IR_NUMBER) = SPC5_ICU_ETIMER3_PRIORITY;
+  INTC_PSR(SPC5_ETIMER3_TC1IR_NUMBER) = SPC5_ICU_ETIMER3_PRIORITY;
+  INTC_PSR(SPC5_ETIMER3_TC2IR_NUMBER) = SPC5_ICU_ETIMER3_PRIORITY;
+  INTC_PSR(SPC5_ETIMER3_TC3IR_NUMBER) = SPC5_ICU_ETIMER3_PRIORITY;
+  INTC_PSR(SPC5_ETIMER3_TC4IR_NUMBER) = SPC5_ICU_ETIMER3_PRIORITY;
+  INTC_PSR(SPC5_ETIMER3_TC5IR_NUMBER) = SPC5_ICU_ETIMER3_PRIORITY;
+  INTC_PSR(SPC5_ETIMER3_RCF_NUMBER) = SPC5_ICU_ETIMER3_PRIORITY;
 
 #endif
 }
@@ -994,6 +1236,7 @@ void icu_lld_start(ICUDriver *icup) {
   osalDbgAssert(icu_active_submodules0 < 6, "too many submodules");
   osalDbgAssert(icu_active_submodules1 < 6, "too many submodules");
   osalDbgAssert(icu_active_submodules2 < 6, "too many submodules");
+  osalDbgAssert(icu_active_submodules3 < 6, "too many submodules");
 
   if (icup->state == ICU_STOP) {
 #if SPC5_ICU_USE_SMOD0
@@ -1068,6 +1311,30 @@ void icu_lld_start(ICUDriver *icup) {
     if (&ICUD18 == icup)
       icu_active_submodules2++;
 #endif
+#if SPC5_ICU_USE_SMOD18
+    if (&ICUD19 == icup)
+      icu_active_submodules3++;
+#endif
+#if SPC5_ICU_USE_SMOD19
+    if (&ICUD20 == icup)
+      icu_active_submodules3++;
+#endif
+#if SPC5_ICU_USE_SMOD20
+    if (&ICUD21 == icup)
+      icu_active_submodules3++;
+#endif
+#if SPC5_ICU_USE_SMOD21
+    if (&ICUD22 == icup)
+      icu_active_submodules3++;
+#endif
+#if SPC5_ICU_USE_SMOD22
+    if (&ICUD23 == icup)
+      icu_active_submodules3++;
+#endif
+#if SPC5_ICU_USE_SMOD23
+    if (&ICUD24 == icup)
+      icu_active_submodules3++;
+#endif
 
     /* Set eTimer0 Clock.*/
 #if SPC5_ICU_USE_ETIMER0
@@ -1094,6 +1361,15 @@ void icu_lld_start(ICUDriver *icup) {
     if (icu_active_submodules2 == 1) {
       halSPCSetPeripheralClockMode(SPC5_ETIMER2_PCTL,
                                    SPC5_ICU_ETIMER2_START_PCTL);
+    }
+#endif
+
+    /* Set eTimer3 Clock.*/
+#if SPC5_ICU_USE_ETIMER3
+    /* If this is the first Submodule activated then the eTimer3 is enabled.*/
+    if (icu_active_submodules3 == 1) {
+      halSPCSetPeripheralClockMode(SPC5_ETIMER3_PCTL,
+                                   SPC5_ICU_ETIMER3_START_PCTL);
     }
 #endif
 
@@ -1137,6 +1413,7 @@ void icu_lld_stop(ICUDriver *icup) {
   osalDbgAssert(icu_active_submodules0 < 6, "too many submodules");
   osalDbgAssert(icu_active_submodules1 < 6, "too many submodules");
   osalDbgAssert(icu_active_submodules2 < 6, "too many submodules");
+  osalDbgAssert(icu_active_submodules3 < 6, "too many submodules");
 
   if (icup->state == ICU_READY) {
 
@@ -1266,6 +1543,48 @@ void icu_lld_stop(ICUDriver *icup) {
       icu_active_submodules2--;
     }
 #endif
+#if SPC5_ICU_USE_SMOD18
+    if (&ICUD19 == icup) {
+      /* Disable channel.*/
+      icup->etimerp->ENBL.B.ENBL &= 0xFE;
+      icu_active_submodules3--;
+    }
+#endif
+#if SPC5_ICU_USE_SMOD19
+    if (&ICUD20 == icup) {
+      /* Disable channel.*/
+      icup->etimerp->ENBL.B.ENBL &= 0xFD;
+      icu_active_submodules3--;
+    }
+#endif
+#if SPC5_ICU_USE_SMOD20
+    if (&ICUD21 == icup) {
+      /* Disable channel.*/
+      icup->etimerp->ENBL.B.ENBL &= 0xFB;
+      icu_active_submodules3--;
+    }
+#endif
+#if SPC5_ICU_USE_SMOD21
+    if (&ICUD22 == icup) {
+      /* Disable channel.*/
+      icup->etimerp->ENBL.B.ENBL &= 0xF7;
+      icu_active_submodules3--;
+    }
+#endif
+#if SPC5_ICU_USE_SMOD22
+    if (&ICUD23 == icup) {
+      /* Disable channel.*/
+      icup->etimerp->ENBL.B.ENBL &= 0xEF;
+      icu_active_submodules3--;
+    }
+#endif
+#if SPC5_ICU_USE_SMOD23
+    if (&ICUD24 == icup) {
+      /* Disable channel.*/
+      icup->etimerp->ENBL.B.ENBL &= 0xDF;
+      icu_active_submodules3--;
+    }
+#endif
     /* eTimer0 clock deactivation.*/
 #if SPC5_ICU_USE_ETIMER0
     /* If it is the last active submodules then the eTimer0 is disabled.*/
@@ -1295,6 +1614,17 @@ void icu_lld_stop(ICUDriver *icup) {
       if (icup->etimerp->ENBL.B.ENBL == 0) {
         halSPCSetPeripheralClockMode(SPC5_ETIMER2_PCTL,
                                      SPC5_ICU_ETIMER2_STOP_PCTL);
+      }
+    }
+#endif
+
+    /* eTimer3 clock deactivation.*/
+#if SPC5_ICU_USE_ETIMER3
+    /* If it is the last active submodules then the eTimer3 is disabled.*/
+    if (icu_active_submodules3 == 0) {
+      if (icup->etimerp->ENBL.B.ENBL == 0) {
+        halSPCSetPeripheralClockMode(SPC5_ETIMER3_PCTL,
+                                     SPC5_ICU_ETIMER3_STOP_PCTL);
       }
     }
 #endif

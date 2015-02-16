@@ -298,6 +298,23 @@ struct spc5_etimer {
  * @name    FlexPWM units references
  * @{
  */
+#if defined(_SPC570Sxx_)
+#if SPC5_HAS_ETIMER0
+#define SPC5_ETIMER_0      (*(volatile struct spc5_etimer *)0xFFC20000UL)
+#endif
+
+#if SPC5_HAS_ETIMER1
+#define SPC5_ETIMER_1      (*(volatile struct spc5_etimer *)0xFFC24000UL)
+#endif
+
+#if SPC5_HAS_ETIMER2
+#define SPC5_ETIMER_2      (*(volatile struct spc5_etimer *)0xFBC20000UL)
+#endif
+
+#if SPC5_HAS_ETIMER3
+#define SPC5_ETIMER_3      (*(volatile struct spc5_etimer *)0xFBC24000UL)
+#endif
+#else /* !defined(_SPC570Sxx_) */
 #if SPC5_HAS_ETIMER0
 #define SPC5_ETIMER_0      (*(volatile struct spc5_etimer *)0xFFE18000UL)
 #endif
@@ -308,6 +325,7 @@ struct spc5_etimer {
 
 #if SPC5_HAS_ETIMER2
 #define SPC5_ETIMER_2      (*(volatile struct spc5_etimer *)0xFFE20000UL)
+#endif
 #endif
 /** @} */
 
