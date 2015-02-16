@@ -27,7 +27,7 @@
  * @{
  */
 
-#include "ch.h"
+#include "hal.h"
 #include "chprintf.h"
 #include "memstreams.h"
 
@@ -67,7 +67,7 @@ static char *long_to_string_with_divisor(char *p,
   return p;
 }
 
-static char *ltoa(char *p, long num, unsigned radix) {
+static char *ch_ltoa(char *p, long num, unsigned radix) {
 
   return long_to_string_with_divisor(p, num, radix, 0);
 }
@@ -213,7 +213,7 @@ int chvprintf(BaseSequentialStream *chp, const char *fmt, va_list ap) {
         *p++ = '-';
         l = -l;
       }
-      p = ltoa(p, l, 10);
+      p = ch_ltoa(p, l, 10);
       break;
 #if CHPRINTF_USE_FLOAT
     case 'f':
@@ -241,7 +241,7 @@ unsigned_common:
         l = va_arg(ap, unsigned long);
       else
         l = va_arg(ap, unsigned int);
-      p = ltoa(p, l, c);
+      p = ch_ltoa(p, l, c);
       break;
     default:
       *p++ = c;
@@ -321,7 +321,7 @@ int chsnprintf(char *str, size_t size, const char *fmt, ...) {
   msObjectInit(&ms, (uint8_t *)str, size_wo_nul, 0);
 
   /* Performing the print operation using the common code.*/
-  chp = (BaseSequentialStream *)&ms;
+  chp = (BaseSequentialStream *)(void *)&ms;
   va_start(ap, fmt);
   retval = chvprintf(chp, fmt, ap);
   va_end(ap);

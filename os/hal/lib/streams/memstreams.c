@@ -24,7 +24,7 @@
 
 #include <string.h>
 
-#include "ch.h"
+#include "hal.h"
 #include "memstreams.h"
 
 /*===========================================================================*/

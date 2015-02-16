@@ -1,17 +1,17 @@
 /**************************************************************************
- * FILE NAME: spc570s50l.h                     COPYRIGHT (c) ST Microelectronics 2012 * 
+ * FILE NAME: spc570s50l.h         COPYRIGHT (c) ST Microelectronics 2012 * 
  * REVISION:  0.1A                                    All Rights Reserved *
  *                                                                        *
  * DESCRIPTION:                                                           *
  * This file contains all of the register and bit field definitions for   *
- * the SPC570S50L.                                                          *
+ * the SPC570S50L.                                                        *
  *========================================================================*
  * UPDATE HISTORY                                                         *
  * REV       AUTHOR        DATE       	DESCRIPTION OF CHANGE             *
  * ---   -------------   ---------    	---------------------             *
- * 0.1a  Juhee MALA     17-Mar-13    	Initial Release for FLASH Core          *
- *						      Host Project, only following  												  *
- *                                        Peripherals are updated for SPC570S50L       *
+ * 0.1a  Juhee MALA     17-Mar-13    	Initial Release for FLASH Core    *
+ *                                      Host Project, only following      *
+ *                                      Peripherals are updated for SPC570S50L       *
  *                                        - pFLASH
  *                                         - FLASH 
  *                                         - SIUL2
@@ -37,15 +37,15 @@
     
 #include "typedefs.h"
     
-//#ifdef  __cplusplus
-//extern "C" {
-//#endif
+#ifdef  __cplusplus
+extern "C" {
+#endif
     
 #ifdef __MWERKS__
 #pragma push
 #pragma ANSI_strict off
-#endif  /* 
- */
+#endif
+
 /**************************************************************************/
 /*                   Module: CMU                                          */
 /**************************************************************************/
@@ -55,9 +55,9 @@
         struct {
             vuint32_t:8;
             vuint32_t SFM:1;
-              vuint32_t:13;
+            vuint32_t:13;
             vuint32_t CKSEL1:2;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t RCDIV:2;
             vuint32_t CME:1;
         } B;
@@ -236,17 +236,17 @@ struct DigRF_tag {
         vuint32_t R;
         struct {
             vuint32_t MSEN:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t IPGDBG:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t LSSEL:1;
             vuint32_t DRFEN:1;
             vuint32_t RXEN:1;
             vuint32_t TXEN:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t TXARBD:1;
             vuint32_t CTSEN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t DRFRST:1;
             vuint32_t DATAEN:1;
         } B;
@@ -257,9 +257,9 @@ struct DigRF_tag {
         struct {
             vuint32_t:15;
             vuint32_t DRMD:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t RDR:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t TDR:1;
         } B;
     } SCR;
@@ -268,7 +268,7 @@ struct DigRF_tag {
         vuint32_t R;
         struct {
             vuint32_t SMPSEL:8;
-              vuint32_t:20;
+            vuint32_t:20;
             vuint32_t CORRTH:3;
             vuint32_t PHSSEL:1;
         } B;
@@ -280,7 +280,7 @@ struct DigRF_tag {
             vuint32_t:6;
             vuint32_t CLKTST:1;
             vuint32_t LPON:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t LPMOD:3;
             vuint32_t LPFRMTH:16;
         } B;
@@ -300,7 +300,7 @@ struct DigRF_tag {
         struct {
             vuint32_t:12;
             vuint32_t DRCNT:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } RCDCR;
 
@@ -308,10 +308,10 @@ struct DigRF_tag {
         vuint32_t R;
         struct {
             vuint32_t HSCNT:8;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t LSCNT:4;
             vuint32_t HWKCNT:8;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t LWKCNT:4;
         } B;
     } SLCR;
@@ -322,7 +322,7 @@ struct DigRF_tag {
             vuint32_t:14;
             vuint32_t ICLCSEQ:1;
             vuint32_t SNDICLC:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t ICLCPLD:8;
         } B;
     } ICR;
@@ -333,7 +333,7 @@ struct DigRF_tag {
             vuint32_t:15;
             vuint32_t PNGREQ:1;
             vuint32_t PNGAUTO:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t PNGPYLD:8;
         } B;
     } PICR;
@@ -345,7 +345,7 @@ struct DigRF_tag {
         struct {
             vuint32_t:10;
             vuint32_t CTSMX:6;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t CTSMN:6;
         } B;
     } RFCR;
@@ -356,9 +356,9 @@ struct DigRF_tag {
             vuint32_t:14;
             vuint32_t TXIIE:1;
             vuint32_t TXOVIE:1;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t TXPNGIE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TXUNSIE:1;
             vuint32_t TXICLCIE:1;
             vuint32_t TXDTIE:1;
@@ -377,11 +377,11 @@ struct DigRF_tag {
             vuint32_t RXSZIE:1;
             vuint32_t RXICIE:1;
             vuint32_t RXLCEIE:1;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t RXCTSIE:1;
             vuint32_t RXDIE:1;
             vuint32_t RXUNSIE:1;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } RIER;
 
@@ -410,12 +410,12 @@ struct DigRF_tag {
         vuint32_t R;
         struct {
             vuint32_t IPTMOD:3;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t SWPOFF:1;
             vuint32_t SWPON:1;
             vuint32_t REFINV:1;
             vuint32_t LPCFG:2;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PLCKCW:2;
             vuint32_t FDIVEN:1;
             vuint32_t FBDIV:6;
@@ -440,7 +440,7 @@ struct DigRF_tag {
             vuint32_t TXCMUX:1;
             vuint32_t LVRFEN:1;
             vuint32_t LVLPEN:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t LVRXOP:3;
             vuint32_t LVTXOP:1;
             vuint32_t LVCKSS:1;
@@ -453,7 +453,7 @@ struct DigRF_tag {
         struct {
             vuint32_t:15;
             vuint32_t USNDRQ:1;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t UNSHDR:7;
         } B;
     } UNSTCR;
@@ -527,11 +527,11 @@ struct DigRF_tag {
         vuint32_t R;
         struct {
             vuint32_t DUALMD:1;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t LRMD:1;
             vuint32_t LDSM:1;
             vuint32_t DRSM:1;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t LPTXDN:1;
             vuint32_t LPFPDV:1;
             vuint32_t LPCPDV:1;
@@ -555,11 +555,11 @@ struct DigRF_tag {
         struct {
             vuint32_t:2;
             vuint32_t RXDCNT:6;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t RXFCNT:3;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t TXDCNT:6;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t TXFCNT:3;
         } B;
     } DFSR;
@@ -570,9 +570,9 @@ struct DigRF_tag {
             vuint32_t:14;
             vuint32_t TXIEF:1;
             vuint32_t TXOVF:1;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t TXPNGF:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TXUNSF:1;
             vuint32_t TXICLCF:1;
             vuint32_t TXDTF:1;
@@ -591,11 +591,11 @@ struct DigRF_tag {
             vuint32_t RXSZF:1;
             vuint32_t RXICF:1;
             vuint32_t RXLCEF:1;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t RXCTSF:1;
             vuint32_t RXDF:1;
             vuint32_t RXUNSF:1;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } RISR;
 
@@ -626,7 +626,7 @@ struct DigRF_tag {
             vuint32_t:14;
             vuint32_t PLLDIS:1;
             vuint32_t PLDCR:1;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t LDSLPS:1;
             vuint32_t LRSLPS:1;
             vuint32_t LDPDS:1;
@@ -639,7 +639,7 @@ struct DigRF_tag {
         struct {
             vuint32_t:23;
             vuint32_t URXDV:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t URPCNT:3;
         } B;
     } UNSRSR;
@@ -728,7 +728,7 @@ struct DMA_tag {
             vuint32_t ERGA:1;
             vuint32_t ERCA:1;
             vuint32_t EDBG:1;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } CR;
 
@@ -736,7 +736,7 @@ struct DMA_tag {
         vuint32_t R;
         struct {
             vuint32_t VLD:1;
-              vuint32_t:14;
+            vuint32_t:14;
             vuint32_t ECX:1;
             vuint32_t GPE:1;
             vuint32_t CPE:1;
@@ -1221,7 +1221,7 @@ struct DMA_tag {
         struct {
             vuint8_t EMI:1;
             vuint8_t PAL:1;
-              vuint8_t:2;
+            vuint8_t:2;
             vuint8_t MID:4;
         } B;
     } DCHMID[64];
@@ -1320,7 +1320,7 @@ struct DSPI_tag {
             vuint32_t CLR_TXF:1;
             vuint32_t CLR_RXF:1;
             vuint32_t SMPL_PT:2;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t FCPCS:1;
             vuint32_t PES:1;
             vuint32_t HALT:1;
@@ -1333,7 +1333,7 @@ struct DSPI_tag {
         vuint32_t R;
         struct {
             vuint32_t SPI_TCNT:16;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } TCR;
 
@@ -1372,15 +1372,15 @@ struct DSPI_tag {
             vuint32_t TFUF:1;
             vuint32_t DSITCF:1;
             vuint32_t TFFF:1;
-              vuint32_t:1;
-              vuint32_t:1;
+            vuint32_t:1;
+            vuint32_t:1;
             vuint32_t DPEF:1;
             vuint32_t SPEF:1;
             vuint32_t DDIF:1;
             vuint32_t RFOF:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t RFDF:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TXCTR:4;
             vuint32_t TXNXTPTR:4;
             vuint32_t RXCTR:4;
@@ -1392,22 +1392,22 @@ struct DSPI_tag {
         vuint32_t R;
         struct {
             vuint32_t TCF_RE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t SPITCF_RE:1;
             vuint32_t EOQF_RE:1;
             vuint32_t TFUF_RE:1;
             vuint32_t DSITCF_RE:1;
             vuint32_t TFFF_RE:1;
             vuint32_t TFFF_DIRS:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t DPEF_RE:1;
             vuint32_t SPEF_RE:1;
             vuint32_t DDIF_RE:1;
             vuint32_t RFOF_RE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t RFDF_RE:1;
             vuint32_t RFDF_DIRS:1;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } RSER;
 
@@ -1458,7 +1458,7 @@ struct DSPI_tag {
             vuint32_t MTOE:1;
             vuint32_t FMSZ:1;
             vuint32_t MTOCNT:6;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TRG:1;
             vuint32_t ITSB:1;
             vuint32_t TSBC:1;
@@ -1509,7 +1509,7 @@ struct DSPI_tag {
         struct {
             vuint32_t:3;
             vuint32_t TSBCNT:5;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t DSE1:1;
             vuint32_t DSE0:1;
             vuint32_t TRGPRD:8;
@@ -1704,7 +1704,7 @@ struct DSPI_tag {
         struct {
             vuint32_t:15;
             vuint32_t FMSZE:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t DTCP:11;
         } B;
     } CTARE[8];
@@ -1761,9 +1761,9 @@ struct FCCU_tag {
         struct {
             vuint32_t:22;
             vuint32_t DEBUG:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t OPS:2;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t OPR:5;
         } B;
     } CTRL;
@@ -1781,12 +1781,12 @@ struct FCCU_tag {
             vuint32_t:7;
             vuint32_t FCCU_SET_AFTER_RESET:1;
             vuint32_t FCCU_SET_CLEAR:2;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t CM:1;
             vuint32_t SM:1;
             vuint32_t PS:1;
             vuint32_t FOM:3;
-              vuint32_t:6;
+            vuint32_t:6;
         } B;
     } CFG;
 
@@ -1998,7 +1998,7 @@ struct FCCU_tag {
             vuint32_t:26;
             vuint32_t EIN1:1;
             vuint32_t EIN0:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t EOUT1:1;
             vuint32_t EOUT0:1;
         } B;
@@ -2088,19 +2088,19 @@ struct FCCU_tag {
         struct {
             vuint32_t VL3:1;
             vuint32_t FS3:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MCS3:4;
             vuint32_t VL2:1;
             vuint32_t FS2:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MCS2:4;
             vuint32_t VL1:1;
             vuint32_t FS1:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MCS1:4;
             vuint32_t VL0:1;
             vuint32_t FS0:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MCS0:4;
         } B;
     } MCS;
@@ -2265,7 +2265,7 @@ struct FEC_tag {
             vuint32_t LC:1;
             vuint32_t RL:1;
             vuint32_t UN:1;
-              vuint32_t:19;
+            vuint32_t:19;
         } B;
     } EIR;
 
@@ -2285,7 +2285,7 @@ struct FEC_tag {
             vuint32_t LC:1;
             vuint32_t RL:1;
             vuint32_t UN:1;
-              vuint32_t:19;
+            vuint32_t:19;
         } B;
     } EIMR;
 
@@ -2296,7 +2296,7 @@ struct FEC_tag {
         struct {
             vuint32_t:7;
             vuint32_t RDAR:1;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } RDAR;
 
@@ -2305,7 +2305,7 @@ struct FEC_tag {
         struct {
             vuint32_t:7;
             vuint32_t TDAR:1;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } TDAR;
 
@@ -2340,7 +2340,7 @@ struct FEC_tag {
             vuint32_t:24;
             vuint32_t DIS_PRE:1;
             vuint32_t MII_SPEED:6;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } MSCR;
 
@@ -2351,7 +2351,7 @@ struct FEC_tag {
         struct {
             vuint32_t MIB_DIS:1;
             vuint32_t MIB_IDLE:1;
-              vuint32_t:30;
+            vuint32_t:30;
         } B;
     } MIBC;
 
@@ -2362,7 +2362,7 @@ struct FEC_tag {
         struct {
             vuint32_t:5;
             vuint32_t MAX_FL:11;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t FCE:1;
             vuint32_t BC_REJ:1;
             vuint32_t PROM:1;
@@ -2458,7 +2458,7 @@ struct FEC_tag {
         struct {
             vuint32_t:22;
             vuint32_t R_BOUND:8;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } FRBR;
 
@@ -2467,7 +2467,7 @@ struct FEC_tag {
         struct {
             vuint32_t:22;
             vuint32_t R_FSTART:8;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } FRSR;
 
@@ -2477,7 +2477,7 @@ struct FEC_tag {
         vuint32_t R;
         struct {
             vuint32_t R_DES_START:30;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } ERDSR;
 
@@ -2485,7 +2485,7 @@ struct FEC_tag {
         vuint32_t R;
         struct {
             vuint32_t X_DES_START:30;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } ETDSR;
 
@@ -2494,7 +2494,7 @@ struct FEC_tag {
         struct {
             vuint32_t:21;
             vuint32_t R_BUF_SIZE:7;
-              vuint32_t:4;
+            vuint32_t:4;
         } B;
     } EMRBR;
 
@@ -2735,13 +2735,13 @@ struct FLASH_tag {
             vuint32_t EER:1;
             vuint32_t RWE:1;
             vuint32_t SBC:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PEAS:1;
             vuint32_t DONE:1;
             vuint32_t PEG:1;
             vuint32_t PECIE:1;
             vuint32_t FERS:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PGM:1;
             vuint32_t PSUS:1;
             vuint32_t ERS:1;
@@ -2776,7 +2776,7 @@ struct FLASH_tag {
         vuint32_t R;
         struct {
             vuint32_t TSLOCK:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t LLLK:14;
             vuint32_t MLLK:16;
         } B;
@@ -2844,18 +2844,18 @@ struct FLASH_tag {
         struct {
             vuint32_t UTE:1;
             vuint32_t SBCE:1;
-              vuint32_t:11;
-              vuint32_t CPR:1;
-              vuint32_t CPA:1;
-              vuint32_t CPE:1;
-              vuint32_t:6;
+            vuint32_t:11;
+            vuint32_t CPR:1;
+            vuint32_t CPA:1;
+            vuint32_t CPE:1;
+            vuint32_t:6;
             vuint32_t NAIBP:1;
             vuint32_t AIBPE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t AISUS:1;
             vuint32_t MRE:1;
             vuint32_t MRV:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t AIS:1;
             vuint32_t AIE:1;
             vuint32_t AID:1;
@@ -2963,13 +2963,13 @@ struct FR_tag {
             vuint16_t CHA:1;
             vuint16_t SFFE:1;
             vuint16_t ECCE:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t FUM:1;
             vuint16_t FAM:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t CLKSEL:1;
             vuint16_t BITRATE:3;
-              vuint16_t:1;
+            vuint16_t:1;
         } B;
     } MCR;
 
@@ -2984,7 +2984,7 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t SMBA:12;
-              vuint16_t:4;
+            vuint16_t:4;
         } B;
     } SYMBADLR;
 
@@ -2992,11 +2992,11 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t WMD:1;
-              vuint16_t:3;
+            vuint16_t:3;
             vuint16_t SEL:4;
-              vuint16_t:3;
+            vuint16_t:3;
             vuint16_t ENB:1;
-              vuint16_t:2;
+            vuint16_t:2;
             vuint16_t STBPSEL:2;
         } B;
     } STBSCR;
@@ -3008,7 +3008,7 @@ struct FR_tag {
         struct {
             vuint16_t:1;
             vuint16_t MBSEG2DS:7;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t MBSEG1DS:7;
         } B;
     } MBDSR;
@@ -3018,7 +3018,7 @@ struct FR_tag {
         struct {
             vuint16_t:1;
             vuint16_t LAST_MB_SEG1:7;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t LAST_MB_UTIL:7;
         } B;
     } MBSSUTR;
@@ -3043,11 +3043,11 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t WME:1;
-              vuint16_t:3;
+            vuint16_t:3;
             vuint16_t EOC_AP:2;
             vuint16_t ERC_AP:2;
             vuint16_t BSY_WMC:1;
-              vuint16_t:3;
+            vuint16_t:3;
             vuint16_t POCCMD:4;
         } B;
     } POCR;
@@ -3107,10 +3107,10 @@ struct FR_tag {
             vuint16_t SSI2_IF:1;
             vuint16_t SSI1_IF:1;
             vuint16_t SSI0_IF:1;
-              vuint16_t:2;
+            vuint16_t:2;
             vuint16_t EVT_IF:1;
             vuint16_t ODT_IF:1;
-              vuint16_t:4;
+            vuint16_t:4;
         } B;
     } PIFR1;
 
@@ -3147,10 +3147,10 @@ struct FR_tag {
             vuint16_t SSI2_IE:1;
             vuint16_t SSI1_IE:1;
             vuint16_t SSI0_IE:1;
-              vuint16_t:2;
+            vuint16_t:2;
             vuint16_t EVT_IE:1;
             vuint16_t ODT_IE:1;
-              vuint16_t:4;
+           vuint16_t:4;
         } B;
     } PIER1;
 
@@ -3165,7 +3165,7 @@ struct FR_tag {
             vuint16_t MBS_EF:1;
             vuint16_t MBU_EF:1;
             vuint16_t LCK_EF:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t SBCF_EF:1;
             vuint16_t FID_EF:1;
             vuint16_t DPL_EF:1;
@@ -3181,7 +3181,7 @@ struct FR_tag {
         struct {
             vuint16_t:1;
             vuint16_t TBIVEC:7;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t RBIVEC:7;
         } B;
     } MBIVEC;
@@ -3205,10 +3205,10 @@ struct FR_tag {
         struct {
             vuint16_t ERRMODE:2;
             vuint16_t SLOTMODE:2;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t PROTSTATE:3;
             vuint16_t STARTUPSTATE:4;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t WAKEUPSTATUS:3;
         } B;
     } PSR0;
@@ -3218,7 +3218,7 @@ struct FR_tag {
         struct {
             vuint16_t CSAA:1;
             vuint16_t CSP:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t REMCSAT:5;
             vuint16_t CPN:1;
             vuint16_t HHR:1;
@@ -3256,7 +3256,7 @@ struct FR_tag {
             vuint16_t ACEB:1;
             vuint16_t ASEB:1;
             vuint16_t AVFB:1;
-              vuint16_t:2;
+            vuint16_t:2;
             vuint16_t WUA:1;
             vuint16_t ABVA:1;
             vuint16_t AACA:1;
@@ -3349,7 +3349,7 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t SFT_OFFSET:15;
-              vuint16_t:1;
+            vuint16_t:1;
         } B;
     } SFTOR;
 
@@ -3363,7 +3363,7 @@ struct FR_tag {
             vuint16_t OLKS:1;
             vuint16_t EVAL:1;
             vuint16_t OVAL:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t OPT:1;
             vuint16_t SDVEN:1;
             vuint16_t SIDEN:1;
@@ -3415,13 +3415,13 @@ struct FR_tag {
             vuint16_t:2;
             vuint16_t T2_CFG:1;
             vuint16_t T2_REP:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t T2SP:1;
             vuint16_t T2TR:1;
             vuint16_t T2ST:1;
-              vuint16_t:3;
+            vuint16_t:3;
             vuint16_t T1_REP:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t T1SP:1;
             vuint16_t T1TR:1;
             vuint16_t T1ST:1;
@@ -3433,7 +3433,7 @@ struct FR_tag {
         struct {
             vuint16_t:2;
             vuint16_t T1_CYC_VAL:6;
-              vuint16_t:2;
+            vuint16_t:2;
             vuint16_t T1_CYC_MSK:6;
         } B;
     } TI1CYSR;
@@ -3451,7 +3451,7 @@ struct FR_tag {
         struct {
             vuint16_t:2;        /* for rabsolute timer selected */
             vuint16_t T2_CYC_VAL:6;     /* for rabsolute timer selected */
-              vuint16_t:2;      /* for rabsolute timer selected */
+            vuint16_t:2;      /* for rabsolute timer selected */
             vuint16_t T2_CYC_MSK:6;     /* for rabsolute timer selected */
             // vuint16_t T2_MTCNT:16;   /* for relative timer selected */
         } B;
@@ -3470,9 +3470,9 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t WMD:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t SEL:2;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t SLOTNUMBER:11;
         } B;
     } SSSR;
@@ -3481,9 +3481,9 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t WMD:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t SEL:2;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t CNTCFG:2;
             vuint16_t MCY:1;
             vuint16_t VFR:1;
@@ -3527,9 +3527,9 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t MTE:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t CYCCNTMSK:6;
-              vuint16_t:2;
+            vuint16_t:2;
             vuint16_t CYCCNTVAL:6;
         } B;
     } MTSACFR;
@@ -3538,9 +3538,9 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t MTE:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t CYCCNTMSK:6;
-              vuint16_t:2;
+            vuint16_t:2;
             vuint16_t CYCCNTVAL:6;
         } B;
     } MTSBCFR;
@@ -3549,9 +3549,9 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t WMD:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t SEL:2;
-              vuint16_t:4;
+            vuint16_t:4;
             vuint16_t RSBIDX:8;
         } B;
     } RSBIR;
@@ -3560,7 +3560,7 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t WM:8;
-              vuint16_t:7;
+            vuint16_t:7;
             vuint16_t SEL:1;
         } B;
     } RFWMSR;
@@ -3577,7 +3577,7 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t FIFO_DEPTH:8;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t ENTRY_SIZE:7;
         } B;
     } RFDSR;
@@ -3634,7 +3634,7 @@ struct FR_tag {
             vuint16_t WMD:1;
             vuint16_t IBD:1;
             vuint16_t SEL:2;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t SID:11;
         } B;
     } RFRFCFR;
@@ -3647,7 +3647,7 @@ struct FR_tag {
             vuint16_t F2MD:1;
             vuint16_t F1MD:1;
             vuint16_t F0MD:1;
-              vuint16_t:4;
+            vuint16_t:4;
             vuint16_t F3EN:1;
             vuint16_t F2EN:1;
             vuint16_t F1EN:1;
@@ -3956,7 +3956,7 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t SMBA:12;
-              vuint16_t:4;
+            vuint16_t:4;
         } B;
     } RFSYMBADLR;
 
@@ -3987,7 +3987,7 @@ struct FR_tag {
             vuint16_t LRCE_IF:1;
             vuint16_t DRNE_IF:1;
             vuint16_t DRCE_IF:1;
-              vuint16_t:4;
+            vuint16_t:4;
             vuint16_t LRNE_IE:1;
             vuint16_t LRCE_IE:1;
             vuint16_t DRNE_IE:1;
@@ -3999,11 +3999,11 @@ struct FR_tag {
         vuint16_t R;
         struct {
             vuint16_t BSY:1;
-              vuint16_t:5;
+            vuint16_t:5;
             vuint16_t ERS:2;
-              vuint16_t:3;
+            vuint16_t:3;
             vuint16_t ERM:1;
-              vuint16_t:2;
+            vuint16_t:2;
             vuint16_t EIM:1;
             vuint16_t EIE:1;
         } B;
@@ -4069,7 +4069,7 @@ struct FR_tag {
                 vuint16_t EDT:1;
                 vuint16_t LCKT:1;
                 vuint16_t MBIE:1;
-                  vuint16_t:3;
+                vuint16_t:3;
                 vuint16_t DUP:1;
                 vuint16_t DVAL:1;
                 vuint16_t EDS:1;
@@ -4134,11 +4134,11 @@ struct GTMINT_tag {
         struct {
             vuint32_t:1;
             vuint32_t MDIS:1;
-              vuint32_t:13;
+            vuint32_t:13;
             vuint32_t AEISREN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t STPS:1;
-              vuint32_t:14;
+            vuint32_t:14;
         } B;
     } MCR;
 
@@ -4168,7 +4168,7 @@ struct I2C_tag {
         vuint8_t R;
         struct {
             vuint8_t ADR:7;
-              vuint8_t:1;
+            vuint8_t:1;
         } B;
     } IBAD;
 
@@ -4200,7 +4200,7 @@ struct I2C_tag {
             vuint8_t IAAS:1;
             vuint8_t IBB:1;
             vuint8_t IBAL:1;
-              vuint8_t:1;
+            vuint8_t:1;
             vuint8_t SRW:1;
             vuint8_t IBIF:1;
             vuint8_t RXAK:1;
@@ -4218,7 +4218,7 @@ struct I2C_tag {
         vuint8_t R;
         struct {
             vuint8_t BIIE:1;
-              vuint8_t:7;
+            vuint8_t:7;
         } B;
     } IBIC;
 
@@ -4239,7 +4239,7 @@ struct IMA_tag {
         vuint32_t R;
         struct {
             vuint32_t INC:1;
-              vuint32_t:30;
+            vuint32_t:30;
             vuint32_t READ:1;
         } B;
     } CTRL;
@@ -4257,9 +4257,9 @@ struct IMA_tag {
         struct {
             vuint32_t:2;
             vuint32_t LOCK_TIMER:14;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t WRITE_LOCK:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t READ_LOCK:1;
         } B;
     } STATUS;
@@ -4368,11 +4368,11 @@ struct INTC_tag {
         struct {
             vuint32_t:19;
             vuint32_t HVEN3:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t HVEN2:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t HVEN1:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t HVEN0:1;
         } B;
     } BCR;
@@ -4392,7 +4392,7 @@ struct INTC_tag {
         struct {
             vuint32_t VTBA:20;
             vuint32_t INTVEC:10;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } IACKR[4];
 
@@ -4409,13 +4409,13 @@ struct INTC_tag {
             vuint32_t:6;
             vuint32_t SETa:1;
             vuint32_t CLRa:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETb:1;
             vuint32_t CLRb:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETc:1;
             vuint32_t CLRc:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETd:1;
             vuint32_t CLRd:1;
         } B;
@@ -4427,13 +4427,13 @@ struct INTC_tag {
             vuint32_t:6;
             vuint32_t SETa:1;
             vuint32_t CLRa:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETb:1;
             vuint32_t CLRb:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETc:1;
             vuint32_t CLRc:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETd:1;
             vuint32_t CLRd:1;
         } B;
@@ -4445,13 +4445,13 @@ struct INTC_tag {
             vuint32_t:6;
             vuint32_t SETa:1;
             vuint32_t CLRa:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETb:1;
             vuint32_t CLRb:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETc:1;
             vuint32_t CLRc:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETd:1;
             vuint32_t CLRd:1;
         } B;
@@ -4463,13 +4463,13 @@ struct INTC_tag {
             vuint32_t:6;
             vuint32_t SETa:1;
             vuint32_t CLRa:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETb:1;
             vuint32_t CLRb:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETc:1;
             vuint32_t CLRc:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETd:1;
             vuint32_t CLRd:1;
         } B;
@@ -4481,13 +4481,13 @@ struct INTC_tag {
             vuint32_t:6;
             vuint32_t SETa:1;
             vuint32_t CLRa:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETb:1;
             vuint32_t CLRb:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETc:1;
             vuint32_t CLRc:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETd:1;
             vuint32_t CLRd:1;
         } B;
@@ -4499,13 +4499,13 @@ struct INTC_tag {
             vuint32_t:6;
             vuint32_t SETa:1;
             vuint32_t CLRa:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETb:1;
             vuint32_t CLRb:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETc:1;
             vuint32_t CLRc:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETd:1;
             vuint32_t CLRd:1;
         } B;
@@ -4517,13 +4517,13 @@ struct INTC_tag {
             vuint32_t:6;
             vuint32_t SETa:1;
             vuint32_t CLRa:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETb:1;
             vuint32_t CLRb:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETc:1;
             vuint32_t CLRc:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETd:1;
             vuint32_t CLRd:1;
         } B;
@@ -4535,13 +4535,13 @@ struct INTC_tag {
             vuint32_t:6;
             vuint32_t SETa:1;
             vuint32_t CLRa:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETb:1;
             vuint32_t CLRb:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETc:1;
             vuint32_t CLRc:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SETd:1;
             vuint32_t CLRd:1;
         } B;
@@ -4551,14 +4551,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR0_1;
@@ -4567,14 +4567,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR2_3;
@@ -4583,14 +4583,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR4_5;
@@ -4599,14 +4599,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR6_7;
@@ -4615,14 +4615,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR8_9;
@@ -4631,14 +4631,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR10_11;
@@ -4647,14 +4647,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR12_13;
@@ -4663,14 +4663,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR14_15;
@@ -4679,14 +4679,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR16_17;
@@ -4695,14 +4695,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR18_19;
@@ -4711,14 +4711,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR20_21;
@@ -4727,14 +4727,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR22_23;
@@ -4743,14 +4743,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR24_25;
@@ -4759,14 +4759,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR26_27;
@@ -4775,14 +4775,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR28_29;
@@ -4791,14 +4791,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR30_31;
@@ -4807,14 +4807,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR32_33;
@@ -4823,14 +4823,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR34_35;
@@ -4839,14 +4839,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR36_37;
@@ -4855,14 +4855,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR38_39;
@@ -4871,14 +4871,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR40_41;
@@ -4887,14 +4887,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR42_43;
@@ -4903,14 +4903,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR44_45;
@@ -4919,14 +4919,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR46_47;
@@ -4935,14 +4935,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR48_49;
@@ -4951,14 +4951,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR50_51;
@@ -4967,14 +4967,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR52_53;
@@ -4983,14 +4983,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR54_55;
@@ -4999,14 +4999,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR56_57;
@@ -5015,14 +5015,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR58_59;
@@ -5031,14 +5031,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR60_61;
@@ -5047,14 +5047,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR62_63;
@@ -5063,14 +5063,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR64_65;
@@ -5079,14 +5079,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR66_67;
@@ -5095,14 +5095,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR68_69;
@@ -5111,14 +5111,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR70_71;
@@ -5127,14 +5127,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR72_73;
@@ -5143,14 +5143,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR74_75;
@@ -5159,14 +5159,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR76_77;
@@ -5175,14 +5175,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR78_79;
@@ -5191,14 +5191,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR80_81;
@@ -5207,14 +5207,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR82_83;
@@ -5223,14 +5223,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR84_85;
@@ -5239,14 +5239,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR86_87;
@@ -5255,14 +5255,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR88_89;
@@ -5271,14 +5271,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR90_91;
@@ -5287,14 +5287,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR92_93;
@@ -5303,14 +5303,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR94_95;
@@ -5319,14 +5319,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR96_97;
@@ -5335,14 +5335,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR98_99;
@@ -5351,14 +5351,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR100_101;
@@ -5367,14 +5367,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR102_103;
@@ -5383,14 +5383,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR104_105;
@@ -5399,14 +5399,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR106_107;
@@ -5415,14 +5415,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR108_109;
@@ -5431,14 +5431,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR110_111;
@@ -5447,14 +5447,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR112_113;
@@ -5463,14 +5463,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR114_115;
@@ -5479,14 +5479,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR116_117;
@@ -5495,14 +5495,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR118_119;
@@ -5511,14 +5511,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR120_121;
@@ -5527,14 +5527,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR122_123;
@@ -5543,14 +5543,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR124_125;
@@ -5559,14 +5559,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR126_127;
@@ -5575,14 +5575,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR128_129;
@@ -5591,14 +5591,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR130_131;
@@ -5607,14 +5607,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR132_133;
@@ -5623,14 +5623,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR134_135;
@@ -5639,14 +5639,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR136_137;
@@ -5655,14 +5655,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR138_139;
@@ -5671,14 +5671,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR140_141;
@@ -5687,14 +5687,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR142_143;
@@ -5703,14 +5703,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR144_145;
@@ -5719,14 +5719,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR146_147;
@@ -5735,14 +5735,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR148_149;
@@ -5751,14 +5751,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR150_151;
@@ -5767,14 +5767,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR152_153;
@@ -5783,14 +5783,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR154_155;
@@ -5799,14 +5799,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR156_157;
@@ -5815,14 +5815,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR158_159;
@@ -5831,14 +5831,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR160_161;
@@ -5847,14 +5847,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR162_163;
@@ -5863,14 +5863,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR164_165;
@@ -5879,14 +5879,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR166_167;
@@ -5895,14 +5895,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR168_169;
@@ -5911,14 +5911,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR170_171;
@@ -5927,14 +5927,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR172_173;
@@ -5943,14 +5943,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR174_175;
@@ -5959,14 +5959,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR176_177;
@@ -5975,14 +5975,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR178_179;
@@ -5991,14 +5991,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR180_181;
@@ -6007,14 +6007,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR182_183;
@@ -6023,14 +6023,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR184_185;
@@ -6039,14 +6039,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR186_187;
@@ -6055,14 +6055,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR188_189;
@@ -6071,14 +6071,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR190_191;
@@ -6087,14 +6087,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR192_193;
@@ -6103,14 +6103,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR194_195;
@@ -6119,14 +6119,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR196_197;
@@ -6135,14 +6135,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR198_199;
@@ -6151,14 +6151,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR200_201;
@@ -6167,14 +6167,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR202_203;
@@ -6183,14 +6183,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR204_205;
@@ -6199,14 +6199,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR206_207;
@@ -6215,14 +6215,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR208_209;
@@ -6231,14 +6231,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR210_211;
@@ -6247,14 +6247,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR212_213;
@@ -6263,14 +6263,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR214_215;
@@ -6279,14 +6279,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR216_217;
@@ -6295,14 +6295,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR218_219;
@@ -6311,14 +6311,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR220_221;
@@ -6327,14 +6327,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR222_223;
@@ -6343,14 +6343,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR224_225;
@@ -6359,14 +6359,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR226_227;
@@ -6375,14 +6375,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR228_229;
@@ -6391,14 +6391,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR230_231;
@@ -6407,14 +6407,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR232_233;
@@ -6423,14 +6423,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR234_235;
@@ -6439,14 +6439,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR236_237;
@@ -6455,14 +6455,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR238_239;
@@ -6471,14 +6471,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR240_241;
@@ -6487,14 +6487,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR242_243;
@@ -6503,14 +6503,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR244_245;
@@ -6519,14 +6519,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR246_247;
@@ -6535,14 +6535,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR248_249;
@@ -6551,14 +6551,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR250_251;
@@ -6567,14 +6567,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR252_253;
@@ -6583,14 +6583,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR254_255;
@@ -6599,14 +6599,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR256_257;
@@ -6615,14 +6615,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR258_259;
@@ -6631,14 +6631,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR260_261;
@@ -6647,14 +6647,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR262_263;
@@ -6663,14 +6663,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR264_265;
@@ -6679,14 +6679,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR266_267;
@@ -6695,14 +6695,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR268_269;
@@ -6711,14 +6711,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR270_271;
@@ -6727,14 +6727,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR272_273;
@@ -6743,14 +6743,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR274_275;
@@ -6759,14 +6759,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR276_277;
@@ -6775,14 +6775,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR278_279;
@@ -6791,14 +6791,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR280_281;
@@ -6807,14 +6807,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR282_283;
@@ -6823,14 +6823,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR284_285;
@@ -6839,14 +6839,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR286_287;
@@ -6855,14 +6855,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR288_289;
@@ -6871,14 +6871,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR290_291;
@@ -6887,14 +6887,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR292_293;
@@ -6903,14 +6903,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR294_295;
@@ -6919,14 +6919,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR296_297;
@@ -6935,14 +6935,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR298_299;
@@ -6951,14 +6951,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR300_301;
@@ -6967,14 +6967,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR302_303;
@@ -6983,14 +6983,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR304_305;
@@ -6999,14 +6999,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR306_307;
@@ -7015,14 +7015,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR308_309;
@@ -7031,14 +7031,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR310_311;
@@ -7047,14 +7047,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR312_313;
@@ -7063,14 +7063,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR314_315;
@@ -7079,14 +7079,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR316_317;
@@ -7095,14 +7095,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR318_319;
@@ -7111,14 +7111,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR320_321;
@@ -7127,14 +7127,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR322_323;
@@ -7143,14 +7143,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR324_325;
@@ -7159,14 +7159,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR326_327;
@@ -7175,14 +7175,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR328_329;
@@ -7191,14 +7191,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR330_331;
@@ -7207,14 +7207,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR332_333;
@@ -7223,14 +7223,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR334_335;
@@ -7239,14 +7239,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR336_337;
@@ -7255,14 +7255,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR338_339;
@@ -7271,14 +7271,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR340_341;
@@ -7287,14 +7287,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR342_343;
@@ -7303,14 +7303,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR344_345;
@@ -7319,14 +7319,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR346_347;
@@ -7335,14 +7335,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR348_349;
@@ -7351,14 +7351,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR350_351;
@@ -7367,14 +7367,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR352_353;
@@ -7383,14 +7383,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR354_355;
@@ -7399,14 +7399,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR356_357;
@@ -7415,14 +7415,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR358_359;
@@ -7431,14 +7431,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR360_361;
@@ -7447,14 +7447,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR362_363;
@@ -7463,14 +7463,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR364_365;
@@ -7479,14 +7479,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR366_367;
@@ -7495,14 +7495,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR368_369;
@@ -7511,14 +7511,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR370_371;
@@ -7527,14 +7527,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR372_373;
@@ -7543,14 +7543,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR374_375;
@@ -7559,14 +7559,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR376_377;
@@ -7575,14 +7575,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR378_379;
@@ -7591,14 +7591,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR380_381;
@@ -7607,14 +7607,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR382_383;
@@ -7623,14 +7623,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR384_385;
@@ -7639,14 +7639,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR386_387;
@@ -7655,14 +7655,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR388_389;
@@ -7671,14 +7671,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR390_391;
@@ -7687,14 +7687,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR392_393;
@@ -7703,14 +7703,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR394_395;
@@ -7719,14 +7719,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR396_397;
@@ -7735,14 +7735,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR398_399;
@@ -7751,14 +7751,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR400_401;
@@ -7767,14 +7767,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR402_403;
@@ -7783,14 +7783,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR404_405;
@@ -7799,14 +7799,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR406_407;
@@ -7815,14 +7815,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR408_409;
@@ -7831,14 +7831,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR410_411;
@@ -7847,14 +7847,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR412_413;
@@ -7863,14 +7863,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR414_415;
@@ -7879,14 +7879,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR416_417;
@@ -7895,14 +7895,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR418_419;
@@ -7911,14 +7911,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR420_421;
@@ -7927,14 +7927,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR422_423;
@@ -7943,14 +7943,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR424_425;
@@ -7959,14 +7959,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR426_427;
@@ -7975,14 +7975,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR428_429;
@@ -7991,14 +7991,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR430_431;
@@ -8007,14 +8007,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR432_433;
@@ -8023,14 +8023,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR434_435;
@@ -8039,14 +8039,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR436_437;
@@ -8055,14 +8055,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR438_439;
@@ -8071,14 +8071,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR440_441;
@@ -8087,14 +8087,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR442_443;
@@ -8103,14 +8103,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR444_445;
@@ -8119,14 +8119,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR446_447;
@@ -8135,14 +8135,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR448_449;
@@ -8151,14 +8151,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR450_451;
@@ -8167,14 +8167,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR452_453;
@@ -8183,14 +8183,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR454_455;
@@ -8199,14 +8199,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR456_457;
@@ -8215,14 +8215,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR458_459;
@@ -8231,14 +8231,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR460_461;
@@ -8247,14 +8247,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR462_463;
@@ -8263,14 +8263,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR464_465;
@@ -8279,14 +8279,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR466_467;
@@ -8295,14 +8295,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR468_469;
@@ -8311,14 +8311,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR470_471;
@@ -8327,14 +8327,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR472_473;
@@ -8343,14 +8343,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR474_475;
@@ -8359,14 +8359,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR476_477;
@@ -8375,14 +8375,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR478_479;
@@ -8391,14 +8391,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR480_481;
@@ -8407,14 +8407,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR482_483;
@@ -8423,14 +8423,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR484_485;
@@ -8439,14 +8439,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR486_487;
@@ -8455,14 +8455,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR488_489;
@@ -8471,14 +8471,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR490_491;
@@ -8487,14 +8487,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR492_493;
@@ -8503,14 +8503,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR494_495;
@@ -8519,14 +8519,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR496_497;
@@ -8535,14 +8535,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR498_499;
@@ -8551,14 +8551,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR500_501;
@@ -8567,14 +8567,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR502_503;
@@ -8583,14 +8583,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR504_505;
@@ -8599,14 +8599,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR506_507;
@@ -8615,14 +8615,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR508_509;
@@ -8631,14 +8631,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR510_511;
@@ -8647,14 +8647,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR512_513;
@@ -8663,14 +8663,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR514_515;
@@ -8679,14 +8679,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR516_517;
@@ -8695,14 +8695,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR518_519;
@@ -8711,14 +8711,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR520_521;
@@ -8727,14 +8727,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR522_523;
@@ -8743,14 +8743,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR524_525;
@@ -8759,14 +8759,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR526_527;
@@ -8775,14 +8775,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR528_529;
@@ -8791,14 +8791,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR530_531;
@@ -8807,14 +8807,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR532_533;
@@ -8823,14 +8823,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR534_535;
@@ -8839,14 +8839,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR536_537;
@@ -8855,14 +8855,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR538_539;
@@ -8871,14 +8871,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR540_541;
@@ -8887,14 +8887,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR542_543;
@@ -8903,14 +8903,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR544_545;
@@ -8919,14 +8919,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR546_547;
@@ -8935,14 +8935,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR548_549;
@@ -8951,14 +8951,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR550_551;
@@ -8967,14 +8967,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR552_553;
@@ -8983,14 +8983,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR554_555;
@@ -8999,14 +8999,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR556_557;
@@ -9015,14 +9015,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR558_559;
@@ -9031,14 +9031,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR560_561;
@@ -9047,14 +9047,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR562_563;
@@ -9063,14 +9063,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR564_565;
@@ -9079,14 +9079,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR566_567;
@@ -9095,14 +9095,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR568_569;
@@ -9111,14 +9111,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR570_571;
@@ -9127,14 +9127,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR572_573;
@@ -9143,14 +9143,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR574_575;
@@ -9159,14 +9159,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR576_577;
@@ -9175,14 +9175,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR578_579;
@@ -9191,14 +9191,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR580_581;
@@ -9207,14 +9207,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR582_583;
@@ -9223,14 +9223,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR584_585;
@@ -9239,14 +9239,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR586_587;
@@ -9255,14 +9255,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR588_589;
@@ -9271,14 +9271,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR590_591;
@@ -9287,14 +9287,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR592_593;
@@ -9303,14 +9303,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR594_595;
@@ -9319,14 +9319,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR596_597;
@@ -9335,14 +9335,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR598_599;
@@ -9351,14 +9351,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR600_601;
@@ -9367,14 +9367,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR602_603;
@@ -9383,14 +9383,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR604_605;
@@ -9399,14 +9399,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR606_607;
@@ -9415,14 +9415,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR608_609;
@@ -9431,14 +9431,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR610_611;
@@ -9447,14 +9447,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR612_613;
@@ -9463,14 +9463,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR614_615;
@@ -9479,14 +9479,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR616_617;
@@ -9495,14 +9495,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR618_619;
@@ -9511,14 +9511,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR620_621;
@@ -9527,14 +9527,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR622_623;
@@ -9543,14 +9543,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR624_625;
@@ -9559,14 +9559,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR626_627;
@@ -9575,14 +9575,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR628_629;
@@ -9591,14 +9591,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR630_631;
@@ -9607,14 +9607,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR632_633;
@@ -9623,14 +9623,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR634_635;
@@ -9639,14 +9639,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR636_637;
@@ -9655,14 +9655,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR638_639;
@@ -9671,14 +9671,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR640_641;
@@ -9687,14 +9687,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR642_643;
@@ -9703,14 +9703,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR644_645;
@@ -9719,14 +9719,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR646_647;
@@ -9735,14 +9735,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR648_649;
@@ -9751,14 +9751,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR650_651;
@@ -9767,14 +9767,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR652_653;
@@ -9783,14 +9783,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR654_655;
@@ -9799,14 +9799,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR656_657;
@@ -9815,14 +9815,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR658_659;
@@ -9831,14 +9831,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR660_661;
@@ -9847,14 +9847,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR662_663;
@@ -9863,14 +9863,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR664_665;
@@ -9879,14 +9879,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR666_667;
@@ -9895,14 +9895,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR668_669;
@@ -9911,14 +9911,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR670_671;
@@ -9927,14 +9927,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR672_673;
@@ -9943,14 +9943,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR674_675;
@@ -9959,14 +9959,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR676_677;
@@ -9975,14 +9975,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR678_679;
@@ -9991,14 +9991,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR680_681;
@@ -10007,14 +10007,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR682_683;
@@ -10023,14 +10023,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR684_685;
@@ -10039,14 +10039,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR686_687;
@@ -10055,14 +10055,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR688_689;
@@ -10071,14 +10071,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR690_691;
@@ -10087,14 +10087,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR692_693;
@@ -10103,14 +10103,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR694_695;
@@ -10119,14 +10119,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR696_697;
@@ -10135,14 +10135,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR698_699;
@@ -10151,14 +10151,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR700_701;
@@ -10167,14 +10167,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR702_703;
@@ -10183,14 +10183,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR704_705;
@@ -10199,14 +10199,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR706_707;
@@ -10215,14 +10215,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR708_709;
@@ -10231,14 +10231,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR710_711;
@@ -10247,14 +10247,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR712_713;
@@ -10263,14 +10263,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR714_715;
@@ -10279,14 +10279,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR716_717;
@@ -10295,14 +10295,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR718_719;
@@ -10311,14 +10311,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR720_721;
@@ -10327,14 +10327,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR722_723;
@@ -10343,14 +10343,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR724_725;
@@ -10359,14 +10359,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR726_727;
@@ -10375,14 +10375,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR728_729;
@@ -10391,14 +10391,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR730_731;
@@ -10407,14 +10407,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR732_733;
@@ -10423,14 +10423,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR734_735;
@@ -10439,14 +10439,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR736_737;
@@ -10455,14 +10455,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR738_739;
@@ -10471,14 +10471,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR740_741;
@@ -10487,14 +10487,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR742_743;
@@ -10503,14 +10503,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR744_745;
@@ -10519,14 +10519,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR746_747;
@@ -10535,14 +10535,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR748_749;
@@ -10551,14 +10551,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR750_751;
@@ -10567,14 +10567,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR752_753;
@@ -10583,14 +10583,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR754_755;
@@ -10599,14 +10599,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR756_757;
@@ -10615,14 +10615,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR758_759;
@@ -10631,14 +10631,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR760_761;
@@ -10647,14 +10647,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR762_763;
@@ -10663,14 +10663,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR764_765;
@@ -10679,14 +10679,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR766_767;
@@ -10695,14 +10695,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR768_769;
@@ -10711,14 +10711,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR770_771;
@@ -10727,14 +10727,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR772_773;
@@ -10743,14 +10743,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR774_775;
@@ -10759,14 +10759,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR776_777;
@@ -10775,14 +10775,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR778_779;
@@ -10791,14 +10791,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR780_781;
@@ -10807,14 +10807,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR782_783;
@@ -10823,14 +10823,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR784_785;
@@ -10839,14 +10839,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR786_787;
@@ -10855,14 +10855,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR788_789;
@@ -10871,14 +10871,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR790_791;
@@ -10887,14 +10887,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR792_793;
@@ -10903,14 +10903,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR794_795;
@@ -10919,14 +10919,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR796_797;
@@ -10935,14 +10935,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR798_799;
@@ -10951,14 +10951,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR800_801;
@@ -10967,14 +10967,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR802_803;
@@ -10983,14 +10983,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR804_805;
@@ -10999,14 +10999,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR806_807;
@@ -11015,14 +11015,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR808_809;
@@ -11031,14 +11031,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR810_811;
@@ -11047,14 +11047,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR812_813;
@@ -11063,14 +11063,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR814_815;
@@ -11079,14 +11079,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR816_817;
@@ -11095,14 +11095,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR818_819;
@@ -11111,14 +11111,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR820_821;
@@ -11127,14 +11127,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR822_823;
@@ -11143,14 +11143,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR824_825;
@@ -11159,14 +11159,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR826_827;
@@ -11175,14 +11175,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR828_829;
@@ -11191,14 +11191,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR830_831;
@@ -11207,14 +11207,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR832_833;
@@ -11223,14 +11223,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR834_835;
@@ -11239,14 +11239,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR836_837;
@@ -11255,14 +11255,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR838_839;
@@ -11271,14 +11271,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR840_841;
@@ -11287,14 +11287,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR842_843;
@@ -11303,14 +11303,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR844_845;
@@ -11319,14 +11319,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR846_847;
@@ -11335,14 +11335,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR848_849;
@@ -11351,14 +11351,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR850_851;
@@ -11367,14 +11367,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR852_853;
@@ -11383,14 +11383,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR854_855;
@@ -11399,14 +11399,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR856_857;
@@ -11415,14 +11415,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR858_859;
@@ -11431,14 +11431,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR860_861;
@@ -11447,14 +11447,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR862_863;
@@ -11463,14 +11463,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR864_865;
@@ -11479,14 +11479,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR866_867;
@@ -11495,14 +11495,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR868_869;
@@ -11511,14 +11511,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR870_871;
@@ -11527,14 +11527,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR872_873;
@@ -11543,14 +11543,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR874_875;
@@ -11559,14 +11559,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR876_877;
@@ -11575,14 +11575,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR878_879;
@@ -11591,14 +11591,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR880_881;
@@ -11607,14 +11607,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR882_883;
@@ -11623,14 +11623,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR884_885;
@@ -11639,14 +11639,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR886_887;
@@ -11655,14 +11655,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR888_889;
@@ -11671,14 +11671,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR890_891;
@@ -11687,14 +11687,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR892_893;
@@ -11703,14 +11703,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR894_895;
@@ -11719,14 +11719,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR896_897;
@@ -11735,14 +11735,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR898_899;
@@ -11751,14 +11751,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR900_901;
@@ -11767,14 +11767,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR902_903;
@@ -11783,14 +11783,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR904_905;
@@ -11799,14 +11799,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR906_907;
@@ -11815,14 +11815,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR908_909;
@@ -11831,14 +11831,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR910_911;
@@ -11847,14 +11847,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR912_913;
@@ -11863,14 +11863,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR914_915;
@@ -11879,14 +11879,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR916_917;
@@ -11895,14 +11895,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR918_919;
@@ -11911,14 +11911,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR920_921;
@@ -11927,14 +11927,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR922_923;
@@ -11943,14 +11943,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR924_925;
@@ -11959,14 +11959,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR926_927;
@@ -11975,14 +11975,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR928_929;
@@ -11991,14 +11991,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR930_931;
@@ -12007,14 +12007,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR932_933;
@@ -12023,14 +12023,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR934_935;
@@ -12039,14 +12039,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR936_937;
@@ -12055,14 +12055,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR938_939;
@@ -12071,14 +12071,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR940_941;
@@ -12087,14 +12087,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR942_943;
@@ -12103,14 +12103,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR944_945;
@@ -12119,14 +12119,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR946_947;
@@ -12135,14 +12135,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR948_949;
@@ -12151,14 +12151,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR950_951;
@@ -12167,14 +12167,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR952_953;
@@ -12183,14 +12183,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR954_955;
@@ -12199,14 +12199,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR956_957;
@@ -12215,14 +12215,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR958_959;
@@ -12231,14 +12231,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR960_961;
@@ -12247,14 +12247,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR962_963;
@@ -12263,14 +12263,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR964_965;
@@ -12279,14 +12279,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR966_967;
@@ -12295,14 +12295,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR968_969;
@@ -12311,14 +12311,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR970_971;
@@ -12327,14 +12327,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR972_973;
@@ -12343,14 +12343,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR974_975;
@@ -12359,14 +12359,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR976_977;
@@ -12375,14 +12375,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR978_979;
@@ -12391,14 +12391,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR980_981;
@@ -12407,14 +12407,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR982_983;
@@ -12423,14 +12423,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR984_985;
@@ -12439,14 +12439,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR986_987;
@@ -12455,14 +12455,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR988_989;
@@ -12471,14 +12471,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR990_991;
@@ -12487,14 +12487,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR992_993;
@@ -12503,14 +12503,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR994_995;
@@ -12519,14 +12519,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR996_997;
@@ -12535,14 +12535,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR998_999;
@@ -12551,14 +12551,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1000_1001;
@@ -12567,14 +12567,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1002_1003;
@@ -12583,14 +12583,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1004_1005;
@@ -12599,14 +12599,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1006_1007;
@@ -12615,14 +12615,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1008_1009;
@@ -12631,14 +12631,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1010_1011;
@@ -12647,14 +12647,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1012_1013;
@@ -12663,14 +12663,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1014_1015;
@@ -12679,14 +12679,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1016_1017;
@@ -12695,14 +12695,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1018_1019;
@@ -12711,14 +12711,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1020_1021;
@@ -12727,14 +12727,14 @@ struct INTC_tag {
         vuint32_t R;
         struct {
             vuint32_t PRC_SELa:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTa:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIa:6;
             vuint32_t PRC_SELb:4;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SWTb:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRIb:6;
         } B;
     } PSR1022_1023;
@@ -12748,7 +12748,7 @@ struct JDC_tag {
         struct {
             vuint32_t:15;
             vuint32_t JIN_IEN:1;
-              vuint32_t:15;
+            vuint32_t:15;
             vuint32_t JOUT_IEN:1;
         } B;
     } MCR;
@@ -12758,11 +12758,11 @@ struct JDC_tag {
         struct {
             vuint32_t:13;
             vuint32_t JIN_RDY:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t JIN_INT:1;
-              vuint32_t:13;
+            vuint32_t:13;
             vuint32_t JOUT_RDY:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t JOUT_INT:1;
         } B;
     } MSR;
@@ -12793,10 +12793,10 @@ struct JTAGM_tag {
             vuint32_t TCKSEL:3;
             vuint32_t IIE:1;
             vuint32_t SIE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t inter_jtag_frame_timer:6;
-              vuint32_t:2;
-              vuint32_t:8;
+            vuint32_t:2;
+            vuint32_t:8;
             vuint32_t evti1_assert:1;
             vuint32_t evti0_assert:1;
             vuint32_t evto_IE:1;
@@ -12820,7 +12820,7 @@ struct JTAGM_tag {
             vuint32_t evto0_edge:1;
             vuint32_t dci_status:8;
             vuint32_t digrf_status:6;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t overrun:1;
             // vuint32_t:6;                              /* SW mode */
             // vuint32_t evto1_clr:1;
@@ -12865,7 +12865,7 @@ struct JTAGM_tag {
         vuint32_t R;
         struct {
             vuint32_t Send:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t TDI_LOW:28;
         } B;
     } DOR3;
@@ -12874,7 +12874,7 @@ struct JTAGM_tag {
         vuint32_t R;
         struct {
             vuint32_t CRC:8;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } RxCRC;
 
@@ -12907,7 +12907,7 @@ struct LINFlexD_tag {
             vuint32_t AUTOWU:1;
             vuint32_t MBL:4;
             vuint32_t BF:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t LBKM:1;
             vuint32_t MME:1;
             vuint32_t SSBL:1;
@@ -12926,7 +12926,7 @@ struct LINFlexD_tag {
             vuint32_t BEIE:1;
             vuint32_t CEIE:1;
             vuint32_t HEIE:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t FEIE:1;
             vuint32_t BOIE:1;
             vuint32_t LSIE:1;
@@ -12945,7 +12945,7 @@ struct LINFlexD_tag {
             vuint32_t:13;
             vuint32_t RDC:3;
             vuint32_t LINS:4;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t RMB:1;
             vuint32_t DRBNE:1;
             vuint32_t RXbusy:1;
@@ -12972,7 +12972,7 @@ struct LINFlexD_tag {
             vuint32_t IDPEF:1;
             vuint32_t FEF:1;
             vuint32_t BOF:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t NF:1;
         } B;
     } LINESR;
@@ -13045,7 +13045,7 @@ struct LINFlexD_tag {
         struct {
             vuint32_t:20;
             vuint32_t RTO:4;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t HTO:7;
         } B;
     } LINTOCR;
@@ -13086,7 +13086,7 @@ struct LINFlexD_tag {
             vuint32_t DTRQ:1;
             vuint32_t ABRQ:1;
             vuint32_t HTRQ:1;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } LINCR2;
 
@@ -13097,7 +13097,7 @@ struct LINFlexD_tag {
             vuint32_t DFL:6;
             vuint32_t DIR:1;
             vuint32_t CCS:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t ID:6;
         } B;
     } BIDR;
@@ -13153,7 +13153,7 @@ struct LINFlexD_tag {
             vuint32_t DFL:6;
             vuint32_t DIR:1;
             vuint32_t CCS:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t ID:6;
         } B;
     } IFCR[16];
@@ -13235,7 +13235,7 @@ struct MCAN_tag {
             vuint32_t RX:1;
             vuint32_t TX:2;
             vuint32_t LBCK:1;
-              vuint32_t:4;
+            vuint32_t:4;
         } B;
     } TEST;
 
@@ -13268,7 +13268,7 @@ struct MCAN_tag {
         struct {
             vuint32_t:12;
             vuint32_t BRPE:4;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TSEG2:3;
             vuint32_t TSEG1:4;
             vuint32_t SJW:2;
@@ -13281,7 +13281,7 @@ struct MCAN_tag {
         struct {
             vuint32_t:12;
             vuint32_t TCP:4;
-              vuint32_t:14;
+            vuint32_t:14;
             vuint32_t TSS:2;
         } B;
     } TSCC;
@@ -13298,7 +13298,7 @@ struct MCAN_tag {
         vuint32_t R;
         struct {
             vuint32_t TOP:16;
-              vuint32_t:13;
+            vuint32_t:13;
             vuint32_t TOS:2;
             vuint32_t ETOC:1;
         } B;
@@ -13319,7 +13319,7 @@ struct MCAN_tag {
         struct {
             vuint32_t:8;
             vuint32_t CEL:8;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t REC:7;
             vuint32_t TEC:8;
         } B;
@@ -13354,7 +13354,7 @@ struct MCAN_tag {
             vuint32_t ELO:1;
             vuint32_t BEU:1;
             vuint32_t BEC:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TOO:1;
             vuint32_t UMD:1;
             vuint32_t TSW:1;
@@ -13392,7 +13392,7 @@ struct MCAN_tag {
             vuint32_t ELOE:1;
             vuint32_t BEUE:1;
             vuint32_t BECE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TOOE:1;
             vuint32_t UMDE:1;
             vuint32_t TSWE:1;
@@ -13430,7 +13430,7 @@ struct MCAN_tag {
             vuint32_t ELOL:1;
             vuint32_t BEUL:1;
             vuint32_t BECL:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TOOL:1;
             vuint32_t UMDL:1;
             vuint32_t TSWL:1;
@@ -13481,7 +13481,7 @@ struct MCAN_tag {
             vuint32_t:8;
             vuint32_t LSS:8;
             vuint32_t FLSSA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } SIDFC;
 
@@ -13491,7 +13491,7 @@ struct MCAN_tag {
             vuint32_t:9;
             vuint32_t LSE:7;
             vuint32_t FLESA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } XIDFC;
 
@@ -13523,10 +13523,10 @@ struct MCAN_tag {
         struct {
             vuint32_t:1;
             vuint32_t F0WM:7;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t F0S:6;
             vuint32_t FOSA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } RXF0C;
 
@@ -13536,9 +13536,9 @@ struct MCAN_tag {
             vuint32_t:6;
             vuint32_t RF0L:1;
             vuint32_t F0F:1;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t F0GI:6;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F0FL:7;
         } B;
     } RXF0S;
@@ -13558,10 +13558,10 @@ struct MCAN_tag {
         struct {
             vuint32_t:1;
             vuint32_t F1WM:7;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F1S:7;
             vuint32_t F1SA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } RXF1C;
 
@@ -13571,9 +13571,9 @@ struct MCAN_tag {
             vuint32_t:6;
             vuint32_t RF1L:1;
             vuint32_t F1F:1;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t F1G1:6;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F1FL:7;
         } B;
     } RXF1S;
@@ -13594,10 +13594,10 @@ struct MCAN_tag {
             vuint32_t:1;
             vuint32_t TQFM:1;
             vuint32_t TQFS:6;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t NDTB:6;
             vuint32_t TBSA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } TXBC;
 
@@ -13607,7 +13607,7 @@ struct MCAN_tag {
             vuint32_t:10;
             vuint32_t TFQF:1;
             vuint32_t TFQPI:5;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t TFFL:6;
         } B;
     } TXFQS;
@@ -13670,10 +13670,10 @@ struct MCAN_tag {
         struct {
             vuint32_t:2;
             vuint32_t EFWM:6;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t EFS:6;
             vuint32_t EFSA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } TXEFC;
 
@@ -13683,9 +13683,9 @@ struct MCAN_tag {
             vuint32_t:6;
             vuint32_t TEFL:1;
             vuint32_t EFF:1;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t EFGI:5;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t EFFL:6;
         } B;
     } TXEFS;
@@ -13715,7 +13715,7 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t INIT:16;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t RATE:8;
         } B;
     } PCS_DIVC1;
@@ -13740,7 +13740,7 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t INIT:16;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t RATE:8;
         } B;
     } PCS_DIVC2;
@@ -13767,7 +13767,7 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t INIT:16;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t RATE:8;
         } B;
     } PCS_DIVC4;
@@ -13788,17 +13788,54 @@ struct MC_CGM_tag {
         } B;
     } PCS_DIVE4;
 
-    uint8_t MC_CGM_reserved3[176];
+	uint8_t MC_CGM_reserved3[156];
+	
+    union {
+        vuint32_t R;
+        struct {
+            vuint32_t:31;
+            vuint32_t SYS_DIV_RATIO_CHNG:1;
+        } B;
+    } SC_DIV_RC;
+	
+    union {
+        vuint32_t R;
+        struct {
+            vuint32_t SYS_UPD_TYPE:1;
+            vuint32_t:29;
+            vuint32_t AUX1_UPD_TYPE:1;
+            vuint32_t AUX0_UPD_TYPE:1;
+        } B;
+    } DIV_UPD_TYPE;
+	
+    union {
+        vuint32_t R;
+        struct {
+            vuint32_t DIV_UPD_TGR:32;
+        } B;
+    } DIV_UPD_TRIG;
+	
+    union {
+        vuint32_t R;
+        struct {
+            vuint32_t SYS_UPD_STAT:1;
+            vuint32_t:29;
+            vuint32_t AUX1_UPD_STAT:1;
+            vuint32_t AUX0_UPD_STAT:1;
+        } B;
+    } DIV_UPD_STAT;
+	
+	uint8_t MC_CGM_reserved4[4];
 
     union {
         vuint32_t R;
         struct {
             vuint32_t:4;
             vuint32_t SELSTAT:4;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t SWTRG:3;
             vuint32_t SWIP:1;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } SC_SS;
 
@@ -13806,9 +13843,9 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t DE:1;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t DIV:3;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } SC_DC0;
 
@@ -13816,21 +13853,30 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t DE:1;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t DIV:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } SC_DC1;
 
-	
-    uint8_t MC_CGM_reserved4[16];
+     union {
+        vuint32_t R;
+        struct {
+            vuint32_t DE:1;
+            vuint32_t:7;
+            vuint32_t DIV:8;
+            vuint32_t:16;
+        } B;
+    } SC_DC2;
+
+    uint8_t MC_CGM_reserved5[12];
 
     union {
         vuint32_t R;
         struct {
             vuint32_t:4;
             vuint32_t SELCTL:4;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } AC0_SC;
 
@@ -13839,7 +13885,7 @@ struct MC_CGM_tag {
         struct {
             vuint32_t:4;
             vuint32_t SELSTAT:4;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } AC0_SS;
 
@@ -13847,9 +13893,9 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t DE:1;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t DIV:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } AC0_DC0;
 
@@ -13857,19 +13903,19 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t DE:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t DIV:7;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } AC0_DC1;
     
-       union {
+     union {
         vuint32_t R;
         struct {
             vuint32_t DE:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t DIV:7;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } AC0_DC2;
 
@@ -13877,9 +13923,9 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t DE:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t DIV:7;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } AC0_DC3;
 
@@ -13887,9 +13933,9 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t DE:1;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t DIV:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } AC0_DC4;
 
@@ -13897,9 +13943,9 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t DE:1;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t DIV:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } AC0_DC5;
 
@@ -13908,7 +13954,7 @@ struct MC_CGM_tag {
         struct {
             vuint32_t:4;
             vuint32_t SELCTL:4;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } AC1_SC;
 
@@ -13917,7 +13963,7 @@ struct MC_CGM_tag {
         struct {
             vuint32_t:4;
             vuint32_t SELSTAT:4;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } AC1_SS;
 
@@ -13925,30 +13971,20 @@ struct MC_CGM_tag {
         vuint32_t R;
         struct {
             vuint32_t DE:1;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t DIV:6;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } AC1_DC0;
 
-     union {
-        vuint32_t R;
-        struct {
-            vuint32_t DE:1;
-              vuint32_t:7;
-            vuint32_t DIV:8;
-              vuint32_t:16;
-        } B;
-    } AC1_DC1;
-
-    uint8_t MC_CGM_reserved5[16];
+    uint8_t MC_CGM_reserved6[20];
 
     union {
         vuint32_t R;
         struct {
             vuint32_t:4;
             vuint32_t SELCTL:4;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } AC2_SC;
 
@@ -13957,18 +13993,18 @@ struct MC_CGM_tag {
         struct {
             vuint32_t:4;
             vuint32_t SELSTAT:4;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } AC2_SS;
 
-    uint8_t MC_CGM_reserved6[24];
+    uint8_t MC_CGM_reserved7[24];
 
     union {
         vuint32_t R;
         struct {
             vuint32_t:4;
             vuint32_t SELCTL:4;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } AC3_SC;
 
@@ -13977,7 +14013,7 @@ struct MC_CGM_tag {
         struct {
             vuint32_t:4;
             vuint32_t SELSTAT:4;
-              vuint32_t:24;
+            vuint32_t:24;
         } B;
     } AC3_SS;
 
@@ -13992,13 +14028,13 @@ struct MC_ME_tag {
         struct {
             vuint32_t S_CURRENT_MODE:4;
             vuint32_t S_MTRANS:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t S_PDO:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t S_MVR:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t S_FLA:2;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t S_PLL1:1;
             vuint32_t S_PLL0:1;
             vuint32_t S_XOSC:1;
@@ -14011,7 +14047,7 @@ struct MC_ME_tag {
         vuint32_t R;
         struct {
             vuint32_t TARGET_MODE:4;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t KEY:16;
         } B;
     } MCTL;
@@ -14021,9 +14057,9 @@ struct MC_ME_tag {
         struct {
             vuint32_t:16;
             vuint32_t RESET_DEST:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t STOP0:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t HALT0:1;
             vuint32_t RUN3:1;
             vuint32_t RUN2:1;
@@ -14052,8 +14088,7 @@ struct MC_ME_tag {
     union {
         vuint32_t R;
         struct {
-            vuint32_t:26;
-            vuint32_t M_ICONF_CC:1;
+            vuint32_t:27;
             vuint32_t M_ICONF_CU:1;
             vuint32_t M_ICONF:1;
             vuint32_t M_IMODE:1;
@@ -14065,7 +14100,8 @@ struct MC_ME_tag {
     union {
         vuint32_t R;
         struct {
-            vuint32_t:27;
+            vuint32_t:26;
+			vuint32_t S_MRIG:1;
             vuint32_t S_MTI:1;
             vuint32_t S_MRI:1;
             vuint32_t S_DMA:1;
@@ -14078,21 +14114,21 @@ struct MC_ME_tag {
         vuint32_t R;
         struct {
             vuint32_t PREVIOUS_MODE:4;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t MPH_BUSY:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PMC_PROG:1;
             vuint32_t DBG_MODE:1;
             vuint32_t CCKL_PROG:1;
             vuint32_t PCS_PROG:1;
             vuint32_t SMR:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t VREG_CSRC_SC:1;
             vuint32_t CSRC_CSRC_SC:1;
-            vuint32_t IRC_SC:1;
+            vuint32_t IRCOSC_SC:1;
             vuint32_t SCSRC_SC:1;
             vuint32_t SYSCLK_SW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t FLASH_SC:1;
             vuint32_t CDP_PRPH_224_255:1;
             vuint32_t CDP_PRPH_192_223:1;
@@ -14112,13 +14148,13 @@ struct MC_ME_tag {
         struct {
             vuint32_t:1;
             vuint32_t PWRLVL:3;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t PDO:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MVRON:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t FLAON:2;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t PLL1ON:1;
             vuint32_t PLL0ON:1;
             vuint32_t XOSCON:1;
@@ -14132,13 +14168,13 @@ struct MC_ME_tag {
         struct {
             vuint32_t:1;
             vuint32_t PWRLVL:3;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t PDO:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MVRON:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t FLAON:2;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t PLL1ON:1;
             vuint32_t PLL0ON:1;
             vuint32_t XOSCON:1;
@@ -14152,13 +14188,13 @@ struct MC_ME_tag {
         struct {
             vuint32_t:1;
             vuint32_t PWRLVL:3;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t PDO:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MVRON:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t FLAON:2;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t PLL1ON:1;
             vuint32_t PLL0ON:1;
             vuint32_t XOSCON:1;
@@ -14172,13 +14208,13 @@ struct MC_ME_tag {
         struct {
             vuint32_t:1;
             vuint32_t PWRLVL:3;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t PDO:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MVRON:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t FLAON:2;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t PLL1ON:1;
             vuint32_t PLL0ON:1;
             vuint32_t XOSCON:1;
@@ -14192,13 +14228,13 @@ struct MC_ME_tag {
         struct {
             vuint32_t:1;
             vuint32_t PWRLVL:3;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t PDO:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MVRON:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t FLAON:2;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t PLL1ON:1;
             vuint32_t PLL0ON:1;
             vuint32_t XOSCON:1;
@@ -14212,13 +14248,13 @@ struct MC_ME_tag {
         struct {
             vuint32_t:1;
             vuint32_t PWRLVL:3;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t PDO:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MVRON:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t FLAON:2;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t PLL1ON:1;
             vuint32_t PLL0ON:1;
             vuint32_t XOSCON:1;
@@ -14234,13 +14270,13 @@ struct MC_ME_tag {
         struct {
             vuint32_t:1;
             vuint32_t PWRLVL:3;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t PDO:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MVRON:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t FLAON:2;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t PLL1ON:1;
             vuint32_t PLL0ON:1;
             vuint32_t XOSCON:1;
@@ -14256,18 +14292,18 @@ struct MC_ME_tag {
         struct {
             vuint32_t:1;
             vuint32_t S_PIT_0:1;
-              vuint32_t:30;
+            vuint32_t:30;
         } B;
     } PS0;
 
     union {
         vuint32_t R;
         struct {
-              vuint32_t:25;
+            vuint32_t:25;
             vuint32_t S_CRC_A0:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t S_DMA_CH_MUX0:1;
-              vuint32_t:4;
+            vuint32_t:4;
         } B;
     } PS1;
 
@@ -14275,10 +14311,10 @@ struct MC_ME_tag {
         vuint32_t R;
         struct {
             vuint32_t:3;
-            vuint32_t S_LINFlexD_A0:1;
-              vuint32_t:12;
+            vuint32_t S_LINFlexD_0:1;
+            vuint32_t:12;
             vuint32_t S_FlexCAN_0:1;
-              vuint32_t:15;
+            vuint32_t:15;
         } B;
     } PS2;
 
@@ -14287,20 +14323,20 @@ struct MC_ME_tag {
         struct {
             vuint32_t S_ADCSAR_0:1;
             vuint32_t S_ADCSEQ_1:1;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t S_ADCSEQ_B:1;
             vuint32_t S_ADCSAR_B:1;
-              vuint32_t:12;
-            vuint32_t S_DSPI_A0:1;
-            vuint32_t S_DSPI_A1:1;
-              vuint32_t:2;
+            vuint32_t:12;
+            vuint32_t S_DSPI_0:1;
+            vuint32_t S_DSPI_1:1;
+            vuint32_t:2;
         } B;
     } PS3;
 
     union {
         vuint32_t R;
         struct {
-	      vuint32_t:28;
+            vuint32_t:28;
             vuint32_t S_eTimer_2:1;
             vuint32_t S_eTimer_3:1;
             vuint32_t S_eTimer_0:1;
@@ -14320,9 +14356,9 @@ struct MC_ME_tag {
         struct {
             vuint32_t:3;
             vuint32_t S_LINFlexD_1:1;
-             vuint32_t:12;
+            vuint32_t:12;
             vuint32_t S_FlexCAN_1:1;
-             vuint32_t:15;
+            vuint32_t:15;
         } B;
     } PS6;
 
@@ -14331,10 +14367,10 @@ struct MC_ME_tag {
         struct {
             vuint32_t:11;
             vuint32_t S_CTU:1;
-              vuint32_t:16;
+            vuint32_t:16;
             vuint32_t S_DSPI_2:1;
             vuint32_t S_DSPI_3:1;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } PS7;
 
@@ -14358,255 +14394,23 @@ struct MC_ME_tag {
         struct {
             vuint32_t:21;
             vuint32_t STOP0:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t HALT0:1;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } LP_PC[8];
 
   /* SPC5STUDIO FIX */
   /* Removed dumb way to declare equivalent registers.*/
-  union {
-    vuint8_t R;
-    struct {
-      vuint8_t  :1;
-      vuint8_t DBG_F:1;
-      vuint8_t LP_CFG:3;
-      vuint8_t RUN_CFG:3;
-    } B;
-  } PCTL[256];
-
-#if 0
-	  uint8_t MC_ME_reserved4[30];
-
     union {
         vuint8_t R;
         struct {
-            vuint8_t:1;
+            vuint8_t  :1;
             vuint8_t DBG_F:1;
             vuint8_t LP_CFG:3;
             vuint8_t RUN_CFG:3;
         } B;
-    } PCTL30;
-
-    uint8_t MC_ME_reserved5[5];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL36;
-
-    uint8_t MC_ME_reserved6[1];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL38;
-
-    uint8_t MC_ME_reserved7[40];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL79;
-
-
-    uint8_t MC_ME_reserved8[12];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL92;
-
-    uint8_t MC_ME_reserved9[5];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL98;
-
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL99;
-
-    uint8_t MC_ME_reserved10[12];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL112;
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL113;
-
-
-    uint8_t MC_ME_reserved11[12];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL126;
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL127;
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL128;
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL129;
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL130;
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL131;
-
-    uint8_t MC_ME_reserved12[75];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL207;
-
-    uint8_t MC_ME_reserved13[12];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL220;
-
-    uint8_t MC_ME_reserved14[5];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL226;
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL227;
-
-    uint8_t MC_ME_reserved15[16];
-
-    union {
-        vuint8_t R;
-        struct {
-            vuint8_t:1;
-            vuint8_t DBG_F:1;
-            vuint8_t LP_CFG:3;
-            vuint8_t RUN_CFG:3;
-        } B;
-    } PCTL244;
-#endif
-
-
-    uint8_t MC_ME_reserved16[11];
+    } PCTL[256];
 
     union {
         vuint32_t R;
@@ -14621,7 +14425,7 @@ struct MC_ME_tag {
         struct {
             vuint16_t:5;
             vuint16_t STOP0:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t HALT0:1;
             vuint16_t RUN3:1;
             vuint16_t RUN2:1;
@@ -14632,21 +14436,21 @@ struct MC_ME_tag {
             vuint16_t TEST:1;
             vuint16_t RESET:1;
         } B;
-    } CCTL[1];
+    } CCTL0;
 
-    uint8_t MC_ME_reserved17[26];
+    uint8_t MC_ME_reserved4[26];
 
     union {
         vuint32_t R;
         struct {
             vuint32_t ADDR:30;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t RMC:1;
 
         } B;
-    } CADDR[1];
+    } CADDR0;
 
-    uint8_t MC_ME_reserved18[16];
+    uint8_t MC_ME_reserved5[16];
 
 };
 /**************************************************************************/
@@ -14659,16 +14463,16 @@ struct MC_RGM_tag {
             vuint32_t:7;
             vuint32_t F_VOR_DEST:1;
             vuint32_t F_TSR_DEST:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t F_HSM_DEST:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t F_JTAG_DEST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F_EDR:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t F_FFRR:1;
             vuint32_t F_SOFT_DEST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F_PORST:1;
             vuint32_t F_POR:1;
         } B;
@@ -14682,16 +14486,16 @@ struct MC_RGM_tag {
             vuint32_t:7;
             vuint32_t D_VOR_DEST:1;
             vuint32_t D_TSR_DEST:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t D_HSM_DEST:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t D_JTAG_DEST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t D_EDR:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t D_FFRR:1;
             vuint32_t D_SOFT_DEST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t D_PORST:1;
             vuint32_t D_POR:1;
         } B;
@@ -14704,9 +14508,9 @@ struct MC_RGM_tag {
         struct {
             vuint32_t:8;
             vuint32_t AR_TSR_DEST:1;
-              vuint32_t:21;
+            vuint32_t:21;
             vuint32_t AR_PORST:1;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } DEAR;
 
@@ -14718,16 +14522,16 @@ struct MC_RGM_tag {
             vuint32_t:7;
             vuint32_t BE_VOR_DEST:1;
             vuint32_t BE_TSR_DEST:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t BE_HSM_DEST:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t BE_JTAG_DEST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t BE_EDR:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t BE_FFRR:1;
             vuint32_t BE_SOF_DEST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t BE_PORST:1;
             vuint32_t BE_POR:1;
         } B;
@@ -14741,14 +14545,14 @@ struct MC_RGM_tag {
             vuint32_t:7;
             vuint32_t F_VOR_FUNC:1;
             vuint32_t F_TSR_FUNC:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t F_HSM_FUNC:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t F_JTAG_FUNC:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t F_FCCU_SOFT:1;
             vuint32_t F_FCCU_HARD:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F_SOFT_FUNC:1;
             vuint32_t F_ST_DONE:1;
             vuint32_t F_ESR1:1;
@@ -14764,14 +14568,14 @@ struct MC_RGM_tag {
             vuint32_t:7;
             vuint32_t D_VOR_FUNC:1;
             vuint32_t D_TSR_FUNC:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t D_HSM_FUNC:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t D_JTAG_FUNC:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t D_FCCU_SOFT:1;
             vuint32_t D_FCCU_HARD:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t D_SOFT_FUNC:1;
             vuint32_t D_ST_DONE:1;
             vuint32_t D_ESR1:1;
@@ -14787,11 +14591,11 @@ struct MC_RGM_tag {
             vuint32_t:7;
             vuint32_t AR_VOR_FUNC:1;
             vuint32_t AR_TSR_FUNC:1;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t AR_JTAG_FUNC:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t AR_SOFT_FUNC:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t AR_ESR1:1;
             vuint32_t AR_ESR0:1;
         } B;
@@ -14805,14 +14609,14 @@ struct MC_RGM_tag {
             vuint32_t:7;
             vuint32_t BE_VOR_FUNC:1;
             vuint32_t BE_TSR_FUNC:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t BE_HSM_FUNC:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t BE_JTAG_FUNC:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t BE_FCCU_SOFT:1;
             vuint32_t BE_FCCU_HARD:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t BE_SOFT_FUNC:1;
             vuint32_t BE_ST_DONE:1;
             vuint32_t BE_ESR1:1;
@@ -14828,14 +14632,14 @@ struct MC_RGM_tag {
             vuint32_t:7;
             vuint32_t SS_VOR_FUNC:1;
             vuint32_t SS_TSR_FUNC:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t SS_HSM_FUNC:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t SS_JTAG_FUNC:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SS_FCCU_SOFT:1;
             vuint32_t SS_FCCU_HARD:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t SS_SOFT_FUNC:1;
             vuint32_t SS_ST_DONE:1;
             vuint32_t SS_ESR1:1;
@@ -14860,9 +14664,9 @@ struct MC_RGM_tag {
         struct {
             vuint32_t:1;
             vuint32_t PIT_RTI_0_RST:1;
-              vuint32_t:20;
+            vuint32_t:20;
             vuint32_t DIGRF_0_RST:1;
-              vuint32_t:9;
+            vuint32_t:9;
         } B;
     } PRST0;
 
@@ -14873,11 +14677,11 @@ struct MC_RGM_tag {
             vuint32_t ADCSD_A0_RST:1;
             vuint32_t ADCSD_A1_RST:1;
             vuint32_t ADCSD_A2_RST:1;
-              vuint32_t:19;
+            vuint32_t:19;
             vuint32_t CRC_A0_RST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t DMA_CH_MUX0_RST:1;
-              vuint32_t:4;
+            vuint32_t:4;
         } B;
     } PRST1;
 
@@ -14888,15 +14692,15 @@ struct MC_RGM_tag {
             vuint32_t LINFLEX_A0_RST:1;
             vuint32_t LINFLEX_A1_RST:1;
             vuint32_t LINFLEX_A2_RST:1;
-              vuint32_t:15;
+            vuint32_t:15;
             vuint32_t CAN_RAM_CTRL0_RST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TTCAN_A0_RST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t MCAN_1_RST:1;
             vuint32_t MCAN_2_RST:1;
             vuint32_t MCAN_3_RST:1;
-              vuint32_t:4;
+            vuint32_t:4;
         } B;
     } PRST2;
 
@@ -14905,20 +14709,20 @@ struct MC_RGM_tag {
         struct {
             vuint32_t ADCSAR_A0_RST:1;
             vuint32_t ADCSAR_A1_RST:1;
-              vuint32_t:13;
+            vuint32_t:13;
             vuint32_t ADCSARB_RST:1;
             vuint32_t PSI5_A0_RST:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t FLEXRAY_A0_RST:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t SENT_A0_RST:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t IIC_A0_RST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t DSPI_A0_RST:1;
             vuint32_t DSPI_A1_RST:1;
             vuint32_t DSPI_A2_RST:1;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } PRST3;
 
@@ -14936,11 +14740,11 @@ struct MC_RGM_tag {
             vuint32_t ADCSD_B0_RST:1;
             vuint32_t ADCSD_B1_RST:1;
             vuint32_t ADCSD_B2_RST:1;
-              vuint32_t:19;
+            vuint32_t:19;
             vuint32_t CRC_B0_RST:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t DMA_CH_MUX1_RST:1;
-              vuint32_t:4;
+            vuint32_t:4;
         } B;
     } PRST5;
 
@@ -14950,7 +14754,7 @@ struct MC_RGM_tag {
             vuint32_t:3;
             vuint32_t LINFLEX_B0_RST:1;
             vuint32_t LINFLEX_B1_RST:1;
-              vuint32_t:27;
+            vuint32_t:27;
         } B;
     } PRST6;
 
@@ -14963,15 +14767,15 @@ struct MC_RGM_tag {
             vuint32_t ADCSAR_B2_RST:1;
             vuint32_t ADCSAR_B3_RST:1;
             vuint32_t ADCSAR_B4_RST:1;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t PSI5_B0_RST:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t SENT_B0_RST:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t DSPI_B2_RST:1;
             vuint32_t DSPI_B1_RST:1;
             vuint32_t DSPI_B0_RST:1;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } PRST7;
 };
@@ -14984,7 +14788,7 @@ struct MEMU_tag {
         struct {
             vuint32_t:16;
             vuint32_t SWR:1;
-              vuint32_t:15;
+            vuint32_t:15;
         } B;
     } CTRL;
 
@@ -14997,13 +14801,13 @@ struct MEMU_tag {
             vuint32_t PR_CEO:1;
             vuint32_t PR_UCO:1;
             vuint32_t PR_EBO:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t F_CE:1;
             vuint32_t F_UCE:1;
             vuint32_t F_CEO:1;
             vuint32_t F_UCO:1;
             vuint32_t F_EBO:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t SR_CE:1;
             vuint32_t SR_UCE:1;
             vuint32_t SR_CEO:1;
@@ -15023,13 +14827,13 @@ struct MEMU_tag {
             vuint32_t FR_PR_CEO:1;
             vuint32_t FR_PR_UCO:1;
             vuint32_t FR_PR_EBO:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t FR_F_CE:1;
             vuint32_t FR_F_UCE:1;
             vuint32_t FR_F_CEO:1;
             vuint32_t FR_F_UCO:1;
             vuint32_t FR_F_EBO:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t FR_SR_CE:1;
             vuint32_t FR_SR_UCE:1;
             vuint32_t FR_SR_CEO:1;
@@ -15045,7 +14849,7 @@ struct MEMU_tag {
             vuint32_t R;
             struct {
                 vuint32_t VLD:1;
-                  vuint32_t:23;
+                vuint32_t:23;
                 vuint32_t BAD_BIT:8;
             } B;
         } SYS_RAM_CERR_STS;
@@ -15062,7 +14866,7 @@ struct MEMU_tag {
         vuint32_t R;
         struct {
             vuint32_t VLD:1;
-              vuint32_t:31;
+            vuint32_t:31;
         } B;
     } SYS_RAM_UNCERR_STS;
 
@@ -15087,7 +14891,7 @@ struct MEMU_tag {
             vuint32_t R;
             struct {
                 vuint32_t VLD:1;
-                  vuint32_t:23;
+                vuint32_t:23;
                 vuint32_t BAD_BIT:8;
             } B;
         } PERIPH_RAM_CERR_STS;
@@ -15104,7 +14908,7 @@ struct MEMU_tag {
         vuint32_t R;
         struct {
             vuint32_t VLD:1;
-              vuint32_t:31;
+            vuint32_t:31;
         } B;
     } PERIPH_RAM_UNCERR_STS;
 
@@ -15129,7 +14933,7 @@ struct MEMU_tag {
             vuint32_t R;
             struct {
                 vuint32_t VLD:1;
-                  vuint32_t:23;
+                vuint32_t:23;
                 vuint32_t BAD_BIT:8;
             } B;
         } FLASH_CERR_STS;
@@ -15146,7 +14950,7 @@ struct MEMU_tag {
         vuint32_t R;
         struct {
             vuint32_t VLD:1;
-              vuint32_t:31;
+            vuint32_t:31;
         } B;
     } FLASH_UNCERR_STS;
 
@@ -15190,7 +14994,7 @@ struct PASS_tag {
         struct {
             vuint32_t CNS:1;
             vuint32_t JUN:1;
-              vuint32_t:22;
+            vuint32_t:22;
             vuint32_t LIFE:8;
         } B;
     } LCSTAT;
@@ -15230,7 +15034,7 @@ struct PASS_tag {
         vuint32_t R;
         struct {
             vuint32_t CJE:1;
-              vuint32_t:31;
+            vuint32_t:31;
         } B;
     } CJE;
 
@@ -15268,15 +15072,15 @@ struct PASS_tag {
                 vuint32_t PGL:1;
                 vuint32_t DBL:1;
                 vuint32_t MO:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t MSTR:4;
-                  vuint32_t:3;
+                vuint32_t:3;
                 vuint32_t RL4:1;
                 vuint32_t RL3:1;
                 vuint32_t RL2:1;
                 vuint32_t RL1:1;
                 vuint32_t RL0:1;
-                  vuint32_t U256L_CK_U:16;
+                vuint32_t U256L_CK_U:16;
             } B;
         } LOCK3_PG;
     } TIMER[4];
@@ -15900,13 +15704,13 @@ struct PFLASH_tag {
             vuint32_t P0_M2PFE:1;
             vuint32_t P0_M1PFE:1;
             vuint32_t P0_M0PFE:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t RWSC:5;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t P0_DPFEN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t P0_IPFEN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t P0_PFLIM:2;
             vuint32_t P0_BFEN:1;
         } B;
@@ -15931,11 +15735,11 @@ struct PFLASH_tag {
             vuint32_t P1_M2PFE:1;
             vuint32_t P1_M1PFE:1;
             vuint32_t P1_M0PFE:1;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t P1_DPFEN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t P1_IPFEN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t P1_PFLIM:2;
             vuint32_t P1_BFEN:1;
         } B;
@@ -15946,10 +15750,10 @@ struct PFLASH_tag {
         struct {
             vuint32_t P0_WCFG:2;
             vuint32_t P1_WCFG:2;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t BAF_DIS:1;
             vuint32_t ARBM:2;
-              vuint32_t:14;
+            vuint32_t:14;
         } B;
     } PFCR3;
 
@@ -16083,10 +15887,10 @@ struct PLLDIG_tag {
             vuint32_t:22;
             vuint32_t CLKCFG:2;
             vuint32_t EXPDIE:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t LOLIE:1;
             vuint32_t LOLRE:1;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } PLL0CR;
 
@@ -16095,10 +15899,10 @@ struct PLLDIG_tag {
         struct {
             vuint32_t:24;
             vuint32_t EXTPDF:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t LOLF:1;
             vuint32_t LOCK:1;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } PLL0SR;
 
@@ -16107,11 +15911,11 @@ struct PLLDIG_tag {
         struct {
             vuint32_t:1;
             vuint32_t RFDPHI1:4;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t RFDPHI:6;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PREDIV:3;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t MFD:7;
         } B;
     } PLL0DV;
@@ -16124,10 +15928,10 @@ struct PLLDIG_tag {
             vuint32_t:22;
             vuint32_t CLKCFG:2;
             vuint32_t EXPDIE:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t LOLIE:1;
             vuint32_t LOLRE:1;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } PLL1CR;
 
@@ -16136,11 +15940,11 @@ struct PLLDIG_tag {
         struct {
             vuint32_t:24;
             vuint32_t EXTPDF:1;
-              vuint32_t:2;
-              vuint32_t:1;
+            vuint32_t:2;
+            vuint32_t:1;
             vuint32_t LOLF:1;
             vuint32_t LOCK:1;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } PLL1SR;
 
@@ -16149,7 +15953,7 @@ struct PLLDIG_tag {
         struct {
             vuint32_t:10;
             vuint32_t RFDPHI:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t MFD:7;
         } B;
     } PLL1DV;
@@ -16161,7 +15965,7 @@ struct PLLDIG_tag {
             vuint32_t MODEN:1;
             vuint32_t MODSEL:1;
             vuint32_t MODPRD:13;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t INCSTP:15;
         } B;
     } PLL1FM;
@@ -16171,9 +15975,9 @@ struct PLLDIG_tag {
         struct {
             vuint32_t:1;
             vuint32_t FDEN:1;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t DTHDIS:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t FRCDIV:12;
         } B;
     } PLL1FD;
@@ -16190,15 +15994,15 @@ struct PMCDIG_tag {
             vuint32_t VD14:1;
             vuint32_t VD13:1;
             vuint32_t VD12:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t VD10:1;
             vuint32_t VD9:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t VD7:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t VD4:1;
             vuint32_t VD3:1;
-              vuint32_t:3;
+            vuint32_t:3;
         } B;
     } GR_S;
 
@@ -16223,7 +16027,7 @@ struct PMCDIG_tag {
             vuint32_t VD9_IM:1;
             vuint32_t VD9_F:1;
             vuint32_t VD9_C:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t VD7_F:1;
             vuint32_t VD7_C:1;
             vuint32_t VD4_C:1;
@@ -16240,7 +16044,7 @@ struct PMCDIG_tag {
         vuint32_t R;
         struct {
             vuint32_t IE_EN:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t TS3IE:1;
             vuint32_t TS2IE:1;
             vuint32_t TS0IE:1;
@@ -16258,14 +16062,14 @@ struct PMCDIG_tag {
             vuint32_t VD9IE_IM:1;
             vuint32_t VD9IE_F:1;
             vuint32_t VD9IE_C:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t VD7IE_F:1;
             vuint32_t VD7IE_C:1;
             vuint32_t VD4IE_C:1;
             vuint32_t VD3IE_P:1;
             vuint32_t VD3IE_F:1;
             vuint32_t VD3IE_C:1;
-              vuint32_t:3;
+            vuint32_t:3;
         } B;
     } IE_P;
 
@@ -16276,7 +16080,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t LVD2_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t LVD2_C:1;
         } B;
     } EPR_VD2;
@@ -16289,7 +16093,7 @@ struct PMCDIG_tag {
             vuint32_t:24;
             vuint32_t LVD3_P:1;
             vuint32_t LVD3_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t LVD3_C:1;
         } B;
     } EPR_VD3;
@@ -16300,7 +16104,7 @@ struct PMCDIG_tag {
             vuint32_t:24;
             vuint32_t LVD3_P:1;
             vuint32_t LVD3_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t LVD3_C:1;
         } B;
     } REE_VD3;
@@ -16311,7 +16115,7 @@ struct PMCDIG_tag {
             vuint32_t:24;
             vuint32_t LVD3_P:1;
             vuint32_t LVD3_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t LVD3_C:1;
         } B;
     } RES_VD3;
@@ -16349,7 +16153,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t HVD7_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t HVD7_C:1;
         } B;
     } EPR_VD7;
@@ -16359,7 +16163,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t HVD7_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t HVD7_C:1;
         } B;
     } REE_VD7;
@@ -16369,7 +16173,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t HVD7_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t HVD7_C:1;
         } B;
     } RES_VD7;
@@ -16381,13 +16185,13 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:17;
             vuint32_t LVD9_O:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t LVD9_IF:1;
             vuint32_t LVD9_IJ:1;
             vuint32_t LVD9_IM:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t LVD9_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t LVD9_C:1;
         } B;
     } EPR_VD9;
@@ -16397,13 +16201,13 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:17;
             vuint32_t LVD9_O:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t LVD9_IF:1;
             vuint32_t LVD9_IJ:1;
             vuint32_t LVD9_IM:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t LVD9_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t LVD9_C:1;
         } B;
     } REE_VD9;
@@ -16413,13 +16217,13 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:17;
             vuint32_t LVD9_O:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t LVD9_IF:1;
             vuint32_t LVD9_IJ:1;
             vuint32_t LVD9_IM:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t LVD9_F:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t LVD9_C:1;
         } B;
     } RES_VD9;
@@ -16431,7 +16235,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t LVD10_F:1;
-              vuint32_t:6;
+            vuint32_t:6;
         } B;
     } EPR_VD10;
 
@@ -16440,7 +16244,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t LVD10_F:1;
-              vuint32_t:6;
+            vuint32_t:6;
         } B;
     } REE_VD10;
 
@@ -16449,7 +16253,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t LVD10_F:1;
-              vuint32_t:6;
+            vuint32_t:6;
         } B;
     } RES_VD10;
 
@@ -16460,7 +16264,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t HVD12_F:1;
-              vuint32_t:6;
+            vuint32_t:6;
         } B;
     } EPR_VD12;
 
@@ -16469,7 +16273,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t HVD12_F:1;
-              vuint32_t:6;
+            vuint32_t:6;
         } B;
     } REE_VD12;
 
@@ -16478,7 +16282,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:25;
             vuint32_t HVD12_F:1;
-              vuint32_t:6;
+            vuint32_t:6;
         } B;
     } RES_VD12;
 
@@ -16489,9 +16293,9 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:16;
             vuint32_t LVD13_A:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t LVD13_IM:1;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } EPR_VD13;
 
@@ -16500,9 +16304,9 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:16;
             vuint32_t LVD13_A:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t LVD13_IM:1;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } REE_VD13;
 
@@ -16511,9 +16315,9 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:16;
             vuint32_t LVD13_A:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t LVD13_IM:1;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } RES_VD13;
 
@@ -16524,9 +16328,9 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:16;
             vuint32_t LVD14_A:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t LVD14_IM:1;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } EPR_VD14;
 
@@ -16535,9 +16339,9 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:16;
             vuint32_t LVD14_A:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t LVD14_IM:1;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } REE_VD14;
 
@@ -16546,9 +16350,9 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:16;
             vuint32_t LVD14_A:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t LVD14_IM:1;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } RES_VD14;
 
@@ -16559,7 +16363,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:16;
             vuint32_t HVD15_A:1;
-              vuint32_t:14;
+            vuint32_t:14;
             vuint32_t HVD15_C:1;
         } B;
     } EPR_VD15;
@@ -16569,7 +16373,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:16;
             vuint32_t HVD15_A:1;
-              vuint32_t:14;
+            vuint32_t:14;
             vuint32_t HVD15_C:1;
         } B;
     } REE_VD15;
@@ -16579,7 +16383,7 @@ struct PMCDIG_tag {
         struct {
             vuint32_t:16;
             vuint32_t HVD15_A:1;
-              vuint32_t:14;
+            vuint32_t:14;
             vuint32_t HVD15_C:1;
         } B;
     } RES_VD15;
@@ -16832,7 +16636,7 @@ struct PMCDIG_tag {
             vuint32_t:28;
             vuint32_t TEMP_3:1;
             vuint32_t TEMP_2:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TEMP_0:1;
         } B;
     } EPR_TD;
@@ -16843,7 +16647,7 @@ struct PMCDIG_tag {
             vuint32_t:28;
             vuint32_t TEMP_2:1;
             vuint32_t TEMP_1:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TEMP_0:1;
         } B;
     } REE_TD;
@@ -16854,7 +16658,7 @@ struct PMCDIG_tag {
             vuint32_t:28;
             vuint32_t TEMP_2:1;
             vuint32_t TEMP_1:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TEMP_0:1;
         } B;
     } RES_TD;
@@ -16931,7 +16735,7 @@ struct PSI5_tag {
             vuint32_t:14;
             vuint32_t CTC_GED:1;
             vuint32_t GLOBAL_DISABLE_REQ:1;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } GCR;
 
@@ -16942,14 +16746,14 @@ struct PSI5_tag {
             struct {
                 vuint32_t CTC_GED_SEL:1;
                 vuint32_t CTC_ED:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t MEM_DEPTH:5;
-                  vuint32_t:3;
+                vuint32_t:3;
                 vuint32_t ERROR_SELECT:5;
-                  vuint32_t:6;
+                vuint32_t:6;
                 vuint32_t DEBUG_FREEZE_CTRL:1;
                 vuint32_t SP_TS_CLK_SEL:1;
-                  vuint32_t:2;
+                vuint32_t:2;
                 vuint32_t FAST_CLK_SENT:1;
                 vuint32_t FAST_CLK_PSI5:1;
                 vuint32_t BIT_RATE:1;
@@ -16964,15 +16768,15 @@ struct PSI5_tag {
             struct {
                 vuint32_t:3;
                 vuint32_t DMA_PM_DS_WM:5;
-                  vuint32_t:5;
+                vuint32_t:5;
                 vuint32_t IE_DMA_TF_SF:1;
                 vuint32_t IE_DMA_TF_PM_DS:1;
-                  vuint32_t:5;
+                vuint32_t:5;
                 vuint32_t IE_DMA_PM_DS_FIFO_FULL:1;
                 vuint32_t IE_DMA_SFUF:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t IE_DMA_PM_DS_UF:1;
-                  vuint32_t:5;
+                vuint32_t:5;
                 vuint32_t DMA_EN_SF:1;
                 vuint32_t DMA_PM_DS_CONFIG:2;
             } B;
@@ -16983,14 +16787,14 @@ struct PSI5_tag {
             struct {
                 vuint32_t:13;
                 vuint32_t IS_DMA_TF_SF:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t IS_DMA_TF_PM_DS:1;
-                  vuint32_t:4;
+                vuint32_t:4;
                 vuint32_t IS_DMA_PM_DS_FIFO_FULL:1;
                 vuint32_t IS_DMA_SFUF:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t IS_DMA_PM_DS_UF:1;
-                  vuint32_t:8;
+                vuint32_t:8;
             } B;
         } DSR;
 
@@ -17007,9 +16811,9 @@ struct PSI5_tag {
                 vuint32_t IE_DSRR:1;
                 vuint32_t IE_BRR:1;
                 vuint32_t IE_PRR:1;
-                  vuint32_t:2;
+                vuint32_t:2;
                 vuint32_t IE_OWSM:6;
-                  vuint32_t:2;
+                vuint32_t:2;
                 vuint32_t IE_NVSM:6;
             } B;
         } GICR;
@@ -17048,9 +16852,9 @@ struct PSI5_tag {
                 vuint32_t DSR_RDY:1;
                 vuint32_t DBR_RDY:1;
                 vuint32_t DPR_RDY:1;
-                  vuint32_t:2;
+                vuint32_t:2;
                 vuint32_t IS_OWSM:6;
-                  vuint32_t:2;
+                vuint32_t:2;
                 vuint32_t IS_NVSM:6;
             } B;
         } GISR;
@@ -17927,9 +17731,9 @@ struct PSI5_tag {
             struct {
                 vuint32_t:2;
                 vuint32_t SCESM:6;
-                  vuint32_t:10;
+                vuint32_t:10;
                 vuint32_t SOWSM:6;
-                  vuint32_t:2;
+                vuint32_t:2;
                 vuint32_t SNVSM:6;
             } B;
         } SSESR;
@@ -17957,9 +17761,9 @@ struct PSI5_tag {
                 vuint32_t:13;
                 vuint32_t SLOT_EN:1;
                 vuint32_t TS_CAPT:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t SMCL:1;
-                  vuint32_t:9;
+                vuint32_t:9;
                 vuint32_t DRL:5;
                 vuint32_t CRC_P:1;
             } B;
@@ -17971,9 +17775,9 @@ struct PSI5_tag {
                 vuint32_t:13;
                 vuint32_t SLOT_EN:1;
                 vuint32_t TS_CAPT:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t SMCL:1;
-                  vuint32_t:9;
+                vuint32_t:9;
                 vuint32_t DRL:5;
                 vuint32_t CRC_P:1;
             } B;
@@ -17985,9 +17789,9 @@ struct PSI5_tag {
                 vuint32_t:13;
                 vuint32_t SLOT_EN:1;
                 vuint32_t TS_CAPT:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t SMCL:1;
-                  vuint32_t:9;
+                vuint32_t:9;
                 vuint32_t DRL:5;
                 vuint32_t CRC_P:1;
             } B;
@@ -17999,9 +17803,9 @@ struct PSI5_tag {
                 vuint32_t:13;
                 vuint32_t SLOT_EN:1;
                 vuint32_t TS_CAPT:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t SMCL:1;
-                  vuint32_t:9;
+                vuint32_t:9;
                 vuint32_t DRL:5;
                 vuint32_t CRC_P:1;
             } B;
@@ -18013,9 +17817,9 @@ struct PSI5_tag {
                 vuint32_t:13;
                 vuint32_t SLOT_EN:1;
                 vuint32_t TS_CAPT:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t SMCL:1;
-                  vuint32_t:9;
+                vuint32_t:9;
                 vuint32_t DRL:5;
                 vuint32_t CRC_P:1;
             } B;
@@ -18027,9 +17831,9 @@ struct PSI5_tag {
                 vuint32_t:13;
                 vuint32_t SLOT_EN:1;
                 vuint32_t TS_CAPT:1;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t SMCL:1;
-                  vuint32_t:9;
+                vuint32_t:9;
                 vuint32_t DRL:5;
                 vuint32_t CRC_P:1;
             } B;
@@ -18088,7 +17892,7 @@ struct PSI5_tag {
             struct {
                 vuint32_t:13;
                 vuint32_t SLOT_NO:3;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t SNEBT:15;
             } B;
         } SNEBR;
@@ -18198,7 +18002,7 @@ struct PSI5_tag {
             struct {
                 vuint32_t:21;
                 vuint32_t CRC:6;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t D:4;
             } B;
         } DBRH;
@@ -18217,7 +18021,7 @@ struct PSI5_tag {
             struct {
                 vuint32_t:21;
                 vuint32_t CRC:6;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t D:4;
             } B;
         } DSRH;
@@ -18231,11 +18035,11 @@ struct RCOSC_tag {
         struct {
             vuint32_t:7;
             vuint32_t DEM_EN:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t USER_TRIM:5;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t RCDIV:5;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } CTL;
 
@@ -18245,7 +18049,7 @@ struct RCOSC_tag {
             vuint32_t:20;
             vuint32_t REG_EN:1;
             vuint32_t TSENS_EN:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t RCTRIM:8;
         } B;
     } NT;
@@ -18255,9 +18059,9 @@ struct RCOSC_tag {
         struct {
             vuint32_t:2;
             vuint32_t COLD_TRIM:10;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t HOT_TRIM:10;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t TSENS_TRIM:6;
         } B;
     } TT;
@@ -18272,24 +18076,24 @@ struct SARADC_tag {
             vuint32_t OWREN:1;
             vuint32_t WLSIDE:1;
             vuint32_t MODE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NSTART:1;
-              vuint32_t:1;
-              vuint32_t:2;
+            vuint32_t:1;
+            vuint32_t:2;
             vuint32_t JSTART:1;
             vuint32_t JTRGEN:1;
             vuint32_t JEDGESEL:2;
             vuint32_t JTRGSEQ:1;
-              vuint32_t:1;
-              vuint32_t:1;
-              vuint32_t:1;
-              vuint32_t:4;
+            vuint32_t:1;
+            vuint32_t:1;
+            vuint32_t:1;
+            vuint32_t:4;
             vuint32_t JTRGSEL:4;
             vuint32_t ABORTCHAIN:1;
             vuint32_t ABORT:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t FRZ:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t PWDN:1;
         } B;
     } MCR;
@@ -18299,14 +18103,14 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t NSTART:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t JSTART:1;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t JABORT:1;
-              vuint32_t:1;
-              vuint32_t:1;
+            vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CHADDR:8;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t ADCSTATUS:3;
         } B;
     } MSR;
@@ -18452,7 +18256,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR[4];
@@ -18501,15 +18305,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ICDR[96];
@@ -18519,7 +18323,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR4;
@@ -18529,7 +18333,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR5;
@@ -18539,7 +18343,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR6;
@@ -18549,7 +18353,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR7;
@@ -18559,7 +18363,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR8;
@@ -18569,7 +18373,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR9;
@@ -18579,7 +18383,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR10;
@@ -18589,7 +18393,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR11;
@@ -18599,7 +18403,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR12;
@@ -18609,7 +18413,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR13;
@@ -18619,7 +18423,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR14;
@@ -18629,7 +18433,7 @@ struct SARADC_tag {
         struct {
             vuint32_t:4;
             vuint32_t THRH:12;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t THRL:12;
         } B;
     } WTHRHLR15;
@@ -18750,15 +18554,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR96;
@@ -18768,15 +18572,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR97;
@@ -18786,15 +18590,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR98;
@@ -18804,15 +18608,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR99;
@@ -18822,15 +18626,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR100;
@@ -18840,15 +18644,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR101;
@@ -18858,15 +18662,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR102;
@@ -18876,15 +18680,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR103;
@@ -18894,15 +18698,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR104;
@@ -18912,15 +18716,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR105;
@@ -18930,15 +18734,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR106;
@@ -18948,15 +18752,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR107;
@@ -18966,15 +18770,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR108;
@@ -18984,15 +18788,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR109;
@@ -19002,15 +18806,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR110;
@@ -19020,15 +18824,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR111;
@@ -19038,15 +18842,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR112;
@@ -19056,15 +18860,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR113;
@@ -19074,15 +18878,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR114;
@@ -19092,15 +18896,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR115;
@@ -19110,15 +18914,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR116;
@@ -19128,15 +18932,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR117;
@@ -19146,15 +18950,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR118;
@@ -19164,15 +18968,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR119;
@@ -19182,15 +18986,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR120;
@@ -19200,15 +19004,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR121;
@@ -19218,15 +19022,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR122;
@@ -19236,15 +19040,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR123;
@@ -19254,15 +19058,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR124;
@@ -19272,15 +19076,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR125;
@@ -19290,15 +19094,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR126;
@@ -19308,15 +19112,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } TCDR127;
@@ -19401,11 +19205,11 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t ICSEL_ECH152_159:7;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t ICSEL_ECH144_151:7;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t ICSEL_ECH136_143:7;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t ICSEL_ECH128_135:7;
         } B;
     } ECMICR[4];
@@ -19415,15 +19219,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR128;
@@ -19433,15 +19237,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR129;
@@ -19451,15 +19255,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR130;
@@ -19469,15 +19273,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR131;
@@ -19487,15 +19291,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR132;
@@ -19505,15 +19309,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR133;
@@ -19523,15 +19327,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR134;
@@ -19541,15 +19345,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR135;
@@ -19559,15 +19363,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR136;
@@ -19577,15 +19381,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR137;
@@ -19595,15 +19399,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR138;
@@ -19613,15 +19417,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR139;
@@ -19631,15 +19435,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR140;
@@ -19649,15 +19453,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR141;
@@ -19667,15 +19471,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR142;
@@ -19685,15 +19489,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR143;
@@ -19703,15 +19507,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR144;
@@ -19721,15 +19525,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR145;
@@ -19739,15 +19543,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR146;
@@ -19757,15 +19561,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR147;
@@ -19775,15 +19579,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR148;
@@ -19793,15 +19597,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR149;
@@ -19811,15 +19615,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR150;
@@ -19829,15 +19633,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR151;
@@ -19847,15 +19651,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR152;
@@ -19865,15 +19669,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR153;
@@ -19883,15 +19687,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR154;
@@ -19901,15 +19705,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR155;
@@ -19919,15 +19723,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR156;
@@ -19937,15 +19741,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR157;
@@ -19955,15 +19759,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR158;
@@ -19973,15 +19777,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR159;
@@ -19991,15 +19795,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR160;
@@ -20009,15 +19813,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR161;
@@ -20027,15 +19831,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR162;
@@ -20045,15 +19849,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR163;
@@ -20063,15 +19867,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR164;
@@ -20081,15 +19885,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR165;
@@ -20099,15 +19903,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR166;
@@ -20117,15 +19921,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR167;
@@ -20135,15 +19939,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR168;
@@ -20153,15 +19957,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR169;
@@ -20171,15 +19975,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR170;
@@ -20189,15 +19993,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR171;
@@ -20207,15 +20011,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR172;
@@ -20225,15 +20029,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR173;
@@ -20243,15 +20047,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR174;
@@ -20261,15 +20065,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR175;
@@ -20279,15 +20083,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR176;
@@ -20297,15 +20101,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR177;
@@ -20315,15 +20119,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR178;
@@ -20333,15 +20137,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR179;
@@ -20351,15 +20155,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR180;
@@ -20369,15 +20173,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR181;
@@ -20387,15 +20191,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR182;
@@ -20405,15 +20209,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR183;
@@ -20423,15 +20227,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR184;
@@ -20441,15 +20245,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR185;
@@ -20459,15 +20263,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR186;
@@ -20477,15 +20281,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR187;
@@ -20495,15 +20299,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR188;
@@ -20513,15 +20317,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR189;
@@ -20531,15 +20335,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR190;
@@ -20549,15 +20353,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR191;
@@ -20567,15 +20371,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR192;
@@ -20585,15 +20389,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR193;
@@ -20603,15 +20407,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR194;
@@ -20621,15 +20425,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR195;
@@ -20639,15 +20443,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR196;
@@ -20657,15 +20461,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR197;
@@ -20675,15 +20479,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR198;
@@ -20693,15 +20497,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR199;
@@ -20711,15 +20515,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR200;
@@ -20729,15 +20533,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR201;
@@ -20747,15 +20551,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR202;
@@ -20765,15 +20569,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR203;
@@ -20783,15 +20587,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR204;
@@ -20801,15 +20605,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR205;
@@ -20819,15 +20623,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR206;
@@ -20837,15 +20641,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR207;
@@ -20855,15 +20659,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR208;
@@ -20873,15 +20677,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR209;
@@ -20891,15 +20695,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR210;
@@ -20909,15 +20713,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR211;
@@ -20927,15 +20731,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR212;
@@ -20945,15 +20749,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR213;
@@ -20963,15 +20767,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR214;
@@ -20981,15 +20785,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR215;
@@ -20999,15 +20803,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR216;
@@ -21017,15 +20821,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR217;
@@ -21035,15 +20839,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR218;
@@ -21053,15 +20857,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR219;
@@ -21071,15 +20875,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR220;
@@ -21089,15 +20893,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR221;
@@ -21107,15 +20911,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR222;
@@ -21125,15 +20929,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR223;
@@ -21143,15 +20947,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR224;
@@ -21161,15 +20965,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR225;
@@ -21179,15 +20983,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR226;
@@ -21197,15 +21001,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR227;
@@ -21215,15 +21019,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR228;
@@ -21233,15 +21037,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR229;
@@ -21251,15 +21055,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR230;
@@ -21269,15 +21073,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR231;
@@ -21287,15 +21091,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR232;
@@ -21305,15 +21109,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR233;
@@ -21323,15 +21127,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR234;
@@ -21341,15 +21145,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR235;
@@ -21359,15 +21163,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR236;
@@ -21377,15 +21181,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR237;
@@ -21395,15 +21199,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR238;
@@ -21413,15 +21217,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR239;
@@ -21431,15 +21235,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR240;
@@ -21449,15 +21253,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR241;
@@ -21467,15 +21271,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR242;
@@ -21485,15 +21289,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR243;
@@ -21503,15 +21307,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR244;
@@ -21521,15 +21325,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR245;
@@ -21539,15 +21343,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR246;
@@ -21557,15 +21361,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR247;
@@ -21575,15 +21379,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR248;
@@ -21593,15 +21397,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR249;
@@ -21611,15 +21415,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR250;
@@ -21629,15 +21433,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR251;
@@ -21647,15 +21451,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR252;
@@ -21665,15 +21469,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR253;
@@ -21683,15 +21487,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR254;
@@ -21701,15 +21505,15 @@ struct SARADC_tag {
         struct {
             vuint32_t:1;
             vuint32_t REFSEL:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PCE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CTSEL:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t VALID:1;
             vuint32_t OVERW:1;
             vuint32_t RESULT:2;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t CDATA:12;
         } B;
     } ECDR255;
@@ -21723,20 +21527,20 @@ struct SDADC_tag {
         struct {
             vuint32_t:3;
             vuint32_t PDR:5;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PGAN:3;
             vuint32_t ODF:1;
             vuint32_t ODA:1;
             vuint32_t EMSEL:1;
             vuint32_t HPFEN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TRIGEDSEL:2;
             vuint32_t TRIGEN:1;
             vuint32_t TRIGSEL:4;
             vuint32_t FRZ:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t VCOMSEL:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t GECEN:1;
             vuint32_t MODE:1;
             vuint32_t EN:1;
@@ -21748,7 +21552,7 @@ struct SDADC_tag {
         struct {
             vuint32_t:8;
             vuint32_t BIASEN:8;
-              vuint32_t:13;
+            vuint32_t:13;
             vuint32_t ANCHSEL:3;
         } B;
     } CSR;
@@ -21766,7 +21570,7 @@ struct SDADC_tag {
         struct {
             vuint32_t:23;
             vuint32_t DFEF:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t CDVF:1;
             vuint32_t DFORF:1;
             vuint32_t DFFF:1;
@@ -21779,7 +21583,7 @@ struct SDADC_tag {
             vuint32_t:15;
             vuint32_t DFFDIRS:1;
             vuint32_t GDIGE:1;
-              vuint32_t:12;
+            vuint32_t:12;
             vuint32_t CDVEE:1;
             vuint32_t DFORIE:1;
             vuint32_t DFFDIRE:1;
@@ -21799,7 +21603,7 @@ struct SDADC_tag {
         struct {
             vuint32_t:20;
             vuint32_t FTHLD:4;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t FSIZE:2;
             vuint32_t FE:1;
         } B;
@@ -21855,7 +21659,7 @@ struct SIPI_tag {
         struct {
             vuint32_t:15;
             vuint32_t TC:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t WL:2;
             vuint32_t CHEN:1;
             vuint32_t ST:1;
@@ -21874,7 +21678,7 @@ struct SIPI_tag {
             vuint32_t TID:3;
             vuint32_t ACKR:1;
             vuint32_t CB:1;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } CSR0;
 
@@ -21928,7 +21732,7 @@ struct SIPI_tag {
         struct {
             vuint32_t:15;
             vuint32_t TC:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t WL:2;
             vuint32_t CHEN:1;
             vuint32_t ST:1;
@@ -21947,7 +21751,7 @@ struct SIPI_tag {
             vuint32_t TID:3;
             vuint32_t ACKR:1;
             vuint32_t CB:1;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } CSR1;
 
@@ -22001,7 +21805,7 @@ struct SIPI_tag {
         struct {
             vuint32_t:15;
             vuint32_t TC:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t WL:2;
             vuint32_t CHEN:1;
             vuint32_t ST:1;
@@ -22020,7 +21824,7 @@ struct SIPI_tag {
             vuint32_t TID:3;
             vuint32_t ACKR:1;
             vuint32_t CB:1;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } CSR2;
 
@@ -22074,7 +21878,7 @@ struct SIPI_tag {
         struct {
             vuint32_t:15;
             vuint32_t TC:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t WL:2;
             vuint32_t CHEN:1;
             vuint32_t ST:1;
@@ -22093,7 +21897,7 @@ struct SIPI_tag {
             vuint32_t TID:3;
             vuint32_t ACKR:1;
             vuint32_t CB:1;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } CSR3;
 
@@ -22146,15 +21950,15 @@ struct SIPI_tag {
         vuint32_t R;
         struct {
             vuint32_t FRZ:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t HALT:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t PRSCLR:11;
             vuint32_t AID:2;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t CRCIE:1;
             vuint32_t MCRIE:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t TEN:1;
             vuint32_t INIT:1;
             vuint32_t MOEN:1;
@@ -22167,10 +21971,10 @@ struct SIPI_tag {
         struct {
             vuint32_t FRZACK:1;
             vuint32_t LPMACK:1;
-              vuint32_t:19;
+            vuint32_t:19;
             vuint32_t GCRCE:1;
             vuint32_t MCR:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TE:4;
             vuint32_t STATE:4;
         } B;
@@ -22180,7 +21984,7 @@ struct SIPI_tag {
         vuint32_t R;
         struct {
             vuint32_t MXCNT:30;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } MAXCR;
 
@@ -22188,7 +21992,7 @@ struct SIPI_tag {
         vuint32_t R;
         struct {
             vuint32_t ADRLD:30;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } ARR;
 
@@ -22196,7 +22000,7 @@ struct SIPI_tag {
         vuint32_t R;
         struct {
             vuint32_t ADCNT:30;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } ACR;
 
@@ -22207,15 +22011,15 @@ struct SIPI_tag {
             vuint32_t TOE3:1;
             vuint32_t TIDE3:1;
             vuint32_t ACKE3:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t TOE2:1;
             vuint32_t TIDE2:1;
             vuint32_t ACKE2:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t TOE1:1;
             vuint32_t TIDE1:1;
             vuint32_t ACKE1:1;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t TOE0:1;
             vuint32_t TIDE0:1;
             vuint32_t ACKE0:1;
@@ -22234,7 +22038,7 @@ struct SIUL2_tag {
             vuint32_t PARTNUM:16;
             vuint32_t ED:1;
             vuint32_t PKG:5;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t MAJOR_MASK:4;
             vuint32_t MINOR_MASK:4;
         } B;
@@ -22246,9 +22050,9 @@ struct SIUL2_tag {
             vuint32_t SF:1;
             vuint32_t FLASH_SIZE_1:4;
             vuint32_t FLASH_SIZE_2:4;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t FAMILYNUM:8;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } MIDR2;
 
@@ -22271,7 +22075,7 @@ struct SIUL2_tag {
         struct {
             vuint32_t:21;
             vuint32_t:2;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t EIRE:6;
         } B;
     } DIRER0;
@@ -22294,7 +22098,7 @@ struct SIUL2_tag {
         struct {
             vuint32_t:21;
             vuint32_t:2;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t IREE:6;
         } B;
     } IREER0;
@@ -22306,7 +22110,7 @@ struct SIUL2_tag {
         struct {
             vuint32_t:21;
             vuint32_t:2;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t IFEE:6;
         } B;
     } IFEER0;
@@ -22318,7 +22122,7 @@ struct SIUL2_tag {
         struct {
             vuint32_t:21;
             vuint32_t:2;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t IFE:6;
         } B;
     } IFER0;
@@ -22422,8 +22226,8 @@ struct SMPU_tag {
         vuint32_t R;
         struct {
             vuint32_t MERR:16;
-              vuint32_t:1;
-              vuint32_t:11;
+            vuint32_t:1;
+            vuint32_t:11;
             vuint32_t HRL:3;
             vuint32_t GVLD:1;
         } B;
@@ -22433,8 +22237,8 @@ struct SMPU_tag {
         vuint32_t R;
         struct {
             vuint32_t MEOVR:16;
-              vuint32_t:1;
-              vuint32_t:11;
+            vuint32_t:1;
+            vuint32_t:11;
             vuint32_t NRGD:4;
         } B;
     } CESR1;
@@ -22453,7 +22257,7 @@ struct SMPU_tag {
             vuint32_t R;
             struct {
                 vuint32_t EACD:24;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t EATTR:2;
                 vuint32_t ERW:1;
                 vuint32_t EMN:4;
@@ -22521,10 +22325,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -22588,10 +22392,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -22655,10 +22459,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -22722,10 +22526,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -22789,10 +22593,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -22856,10 +22660,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -22923,10 +22727,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -22990,10 +22794,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -23057,10 +22861,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -23124,10 +22928,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -23191,10 +22995,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -23258,10 +23062,10 @@ struct SMPU_tag {
             vuint32_t ACCSET1:6;
             vuint32_t ACCSET2:6;
             vuint32_t ACCSET3:6;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t FMT:1;
             vuint32_t RO:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t CI:1;
             vuint32_t VLD:1;
         } B;
@@ -23276,14 +23080,14 @@ struct SRX_tag {
         vuint32_t R;
         struct {
             vuint32_t TSPRSC:8;
-              vuint32_t:14;
+            vuint32_t:14;
             vuint32_t FMDUIE:1;
             vuint32_t SMDUIE:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t FAST_CLR:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t DBG_FRZ:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t SENT_EN:1;
         } B;
     } GBL_CTRL;
@@ -23302,7 +23106,7 @@ struct SRX_tag {
             vuint32_t:22;
             vuint32_t FDMU:1;
             vuint32_t SMDU:1;
-              vuint32_t:8;
+            vuint32_t:8;
         } B;
     } GBL_STATUS;
 
@@ -23329,19 +23133,19 @@ struct SRX_tag {
         struct {
             vuint32_t:1;
             vuint32_t NIBBCH0:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH1:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH2:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH3:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NICCH4:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH5:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH6:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH7:3;
         } B;
     } DATA_CTRL1;
@@ -23351,19 +23155,19 @@ struct SRX_tag {
         struct {
             vuint32_t:1;
             vuint32_t NIBBCH8:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH9:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH10:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH11:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH12:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH13:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH14:3;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NIBBCH15:3;
         } B;
     } DATA_CTRL2;
@@ -23425,7 +23229,7 @@ struct SRX_tag {
         struct {
             vuint32_t:12;
             vuint32_t CRC4b:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } DMA_FMSG_CRC;
 
@@ -23443,12 +23247,12 @@ struct SRX_tag {
         struct {
             vuint32_t CHNUM:4;
             vuint32_t TYPE:1;
-              vuint32_t:16;
+            vuint32_t:16;
             vuint32_t CFG:1;
             vuint32_t ID:4;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IDorDATA:4;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } DMA_SMSG3;
 
@@ -23457,7 +23261,7 @@ struct SRX_tag {
         struct {
             vuint32_t:10;
             vuint32_t SMCRC:6;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t DATA:12;
         } B;
     } DMA_SMSG2;
@@ -23477,7 +23281,7 @@ struct SRX_tag {
             vuint32_t:1;
             vuint32_t CMPRSC:15;
             vuint32_t COMP_EN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PRSC:14;
         } B;
     } CH0_CLK_CTRL;
@@ -23490,7 +23294,7 @@ struct SRX_tag {
             vuint32_t CAL_20_25:1;
             vuint32_t SMSG_OFLW:1;
             vuint32_t FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PP_DIAG_ERR:1;
             vuint32_t CAL_LEN_ERR:1;
             vuint32_t CAL_DIAG_ERR:1;
@@ -23498,7 +23302,7 @@ struct SRX_tag {
             vuint32_t SMSG_CRC_ERR:1;
             vuint32_t FMSG_CRC_ERR:1;
             vuint32_t NUM_EDGES_ERR:1;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH0_STATUS;
 
@@ -23510,7 +23314,7 @@ struct SRX_tag {
             vuint32_t IE_CAL_20_25:1;
             vuint32_t IE_SMSG_OFLW:1;
             vuint32_t IE_FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IE_PP_DIAG_ERR:1;
             vuint32_t IE_CAL_LEN_ERR:1;
             vuint32_t IE_CAL_DIAG_ERR:1;
@@ -23538,7 +23342,7 @@ struct SRX_tag {
             vuint32_t:1;
             vuint32_t CMPRSC:15;
             vuint32_t COMP_EN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PRSC:14;
         } B;
     } CH1_CLK_CTRL;
@@ -23551,7 +23355,7 @@ struct SRX_tag {
             vuint32_t CAL_20_25:1;
             vuint32_t SMSG_OFLW:1;
             vuint32_t FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PP_DIAG_ERR:1;
             vuint32_t CAL_LEN_ERR:1;
             vuint32_t CAL_DIAG_ERR:1;
@@ -23559,7 +23363,7 @@ struct SRX_tag {
             vuint32_t SMSG_CRC_ERR:1;
             vuint32_t FMSG_CRC_ERR:1;
             vuint32_t NUM_EDGES_ERR:1;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH1_STATUS;
 
@@ -23571,7 +23375,7 @@ struct SRX_tag {
             vuint32_t IE_CAL_20_25:1;
             vuint32_t IE_SMSG_OFLW:1;
             vuint32_t IE_FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IE_PP_DIAG_ERR:1;
             vuint32_t IE_CAL_LEN_ERR:1;
             vuint32_t IE_CAL_DIAG_ERR:1;
@@ -23599,7 +23403,7 @@ struct SRX_tag {
             vuint32_t:1;
             vuint32_t CMPRSC:15;
             vuint32_t COMP_EN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PRSC:14;
         } B;
     } CH2_CLK_CTRL;
@@ -23612,7 +23416,7 @@ struct SRX_tag {
             vuint32_t CAL_20_25:1;
             vuint32_t SMSG_OFLW:1;
             vuint32_t FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PP_DIAG_ERR:1;
             vuint32_t CAL_LEN_ERR:1;
             vuint32_t CAL_DIAG_ERR:1;
@@ -23620,7 +23424,7 @@ struct SRX_tag {
             vuint32_t SMSG_CRC_ERR:1;
             vuint32_t FMSG_CRC_ERR:1;
             vuint32_t NUM_EDGES_ERR:1;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH2_STATUS;
 
@@ -23632,7 +23436,7 @@ struct SRX_tag {
             vuint32_t IE_CAL_20_25:1;
             vuint32_t IE_SMSG_OFLW:1;
             vuint32_t IE_FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IE_PP_DIAG_ERR:1;
             vuint32_t IE_CAL_LEN_ERR:1;
             vuint32_t IE_CAL_DIAG_ERR:1;
@@ -23660,7 +23464,7 @@ struct SRX_tag {
             vuint32_t:1;
             vuint32_t CMPRSC:15;
             vuint32_t COMP_EN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PRSC:14;
         } B;
     } CH3_CLK_CTRL;
@@ -23673,7 +23477,7 @@ struct SRX_tag {
             vuint32_t CAL_20_25:1;
             vuint32_t SMSG_OFLW:1;
             vuint32_t FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PP_DIAG_ERR:1;
             vuint32_t CAL_LEN_ERR:1;
             vuint32_t CAL_DIAG_ERR:1;
@@ -23681,7 +23485,7 @@ struct SRX_tag {
             vuint32_t SMSG_CRC_ERR:1;
             vuint32_t FMSG_CRC_ERR:1;
             vuint32_t NUM_EDGES_ERR:1;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH3_STATUS;
 
@@ -23693,7 +23497,7 @@ struct SRX_tag {
             vuint32_t IE_CAL_20_25:1;
             vuint32_t IE_SMSG_OFLW:1;
             vuint32_t IE_FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IE_PP_DIAG_ERR:1;
             vuint32_t IE_CAL_LEN_ERR:1;
             vuint32_t IE_CAL_DIAG_ERR:1;
@@ -23721,7 +23525,7 @@ struct SRX_tag {
             vuint32_t:1;
             vuint32_t CMPRSC:15;
             vuint32_t COMP_EN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PRSC:14;
         } B;
     } CH4_CLK_CTRL;
@@ -23734,7 +23538,7 @@ struct SRX_tag {
             vuint32_t CAL_20_25:1;
             vuint32_t SMSG_OFLW:1;
             vuint32_t FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t PP_DIAG_ERR:1;
             vuint32_t CAL_LEN_ERR:1;
             vuint32_t CAL_DIAG_ERR:1;
@@ -23742,7 +23546,7 @@ struct SRX_tag {
             vuint32_t SMSG_CRC_ERR:1;
             vuint32_t FMSG_CRC_ERR:1;
             vuint32_t NUM_EDGES_ERR:1;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH4_STATUS;
 
@@ -23754,7 +23558,7 @@ struct SRX_tag {
             vuint32_t IE_CAL_20_25:1;
             vuint32_t IE_SMSG_OFLW:1;
             vuint32_t IE_FMSG_OFLW:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IE_PP_DIAG_ERR:1;
             vuint32_t IE_CAL_LEN_ERR:1;
             vuint32_t IE_CAL_DIAG_ERR:1;
@@ -23795,7 +23599,7 @@ struct SRX_tag {
         struct {
             vuint32_t:12;
             vuint32_t CRC4b:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH0_FMSG_CRC;
 
@@ -23811,12 +23615,12 @@ struct SRX_tag {
         struct {
             vuint32_t CHNUM:4;
             vuint32_t TYPE:1;
-              vuint32_t:16;
+            vuint32_t:16;
             vuint32_t CFG:1;
             vuint32_t ID:4;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IDorDATA:4;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } CH0_SMSG3;
 
@@ -23825,7 +23629,7 @@ struct SRX_tag {
         struct {
             vuint32_t:10;
             vuint32_t SMCRC:6;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t DATA:12;
         } B;
     } CH0_SMSG2;
@@ -23856,7 +23660,7 @@ struct SRX_tag {
         struct {
             vuint32_t:12;
             vuint32_t CRC4b:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH1_FMSG_CRC;
 
@@ -23872,12 +23676,12 @@ struct SRX_tag {
         struct {
             vuint32_t CHNUM:4;
             vuint32_t TYPE:1;
-              vuint32_t:16;
+            vuint32_t:16;
             vuint32_t CFG:1;
             vuint32_t ID:4;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IDorDATA:4;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } CH1_SMSG3;
 
@@ -23886,7 +23690,7 @@ struct SRX_tag {
         struct {
             vuint32_t:10;
             vuint32_t SMCRC:6;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t DATA:12;
         } B;
     } CH1_SMSG2;
@@ -23917,7 +23721,7 @@ struct SRX_tag {
         struct {
             vuint32_t:12;
             vuint32_t CRC4b:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH2_FMSG_CRC;
 
@@ -23933,12 +23737,12 @@ struct SRX_tag {
         struct {
             vuint32_t CHNUM:4;
             vuint32_t TYPE:1;
-              vuint32_t:16;
+            vuint32_t:16;
             vuint32_t CFG:1;
             vuint32_t ID:4;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IDorDATA:4;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } CH2_SMSG3;
 
@@ -23947,7 +23751,7 @@ struct SRX_tag {
         struct {
             vuint32_t:10;
             vuint32_t SMCRC:6;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t DATA:12;
         } B;
     } CH2_SMSG2;
@@ -23978,7 +23782,7 @@ struct SRX_tag {
         struct {
             vuint32_t:12;
             vuint32_t CRC4b:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH3_FMSG_CRC;
 
@@ -23994,12 +23798,12 @@ struct SRX_tag {
         struct {
             vuint32_t CHNUM:4;
             vuint32_t TYPE:1;
-              vuint32_t:16;
+            vuint32_t:16;
             vuint32_t CFG:1;
             vuint32_t ID:4;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IDorDATA:4;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } CH3_SMSG3;
 
@@ -24008,7 +23812,7 @@ struct SRX_tag {
         struct {
             vuint32_t:10;
             vuint32_t SMCRC:6;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t DATA:12;
         } B;
     } CH3_SMSG2;
@@ -24039,7 +23843,7 @@ struct SRX_tag {
         struct {
             vuint32_t:12;
             vuint32_t CRC4b:4;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } CH4_FMSG_CRC;
 
@@ -24055,12 +23859,12 @@ struct SRX_tag {
         struct {
             vuint32_t CHNUM:4;
             vuint32_t TYPE:1;
-              vuint32_t:16;
+            vuint32_t:16;
             vuint32_t CFG:1;
             vuint32_t ID:4;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t IDorDATA:4;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } CH4_SMSG3;
 
@@ -24069,7 +23873,7 @@ struct SRX_tag {
         struct {
             vuint32_t:10;
             vuint32_t SMCRC:6;
-              vuint32_t:4;
+            vuint32_t:4;
             vuint32_t DATA:12;
         } B;
     } CH4_SMSG2;
@@ -24090,13 +23894,13 @@ struct SSCM_tag {
         struct {
             vuint16_t:1;
             vuint16_t CER:1;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t NXEN1:1;
             vuint16_t NXEN:1;
-              vuint16_t:3;
+            vuint16_t:3;
             vuint16_t BMODE:3;
             vuint16_t VLE:1;
-              vuint16_t:4;
+            vuint16_t:4;
         } B;
     } STATUS;
 
@@ -24104,9 +23908,9 @@ struct SSCM_tag {
         vuint16_t R;
         struct {
             vuint16_t JPIN:10;
-              vuint16_t:1;
+            vuint16_t:1;
             vuint16_t MREV:4;
-              vuint16_t:1;
+            vuint16_t:1;
         } B;
     } MEMCONFIG;
 
@@ -24169,7 +23973,7 @@ struct STCU2_tag {
             vuint32_t BYP:1;
             vuint32_t MBPLLEN:1;
             vuint32_t LBPLLEN:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t RUN:1;
         } B;
     } RUN;
@@ -24182,7 +23986,7 @@ struct STCU2_tag {
             vuint32_t LBIE:1;
             vuint32_t MBSWPLLEN:1;
             vuint32_t LBSWPLLEN:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t RUNSW_ABORT:1;
             vuint32_t RUNSW:1;
         } B;
@@ -24201,9 +24005,9 @@ struct STCU2_tag {
             vuint32_t:1;
             vuint32_t PTR:7;
             vuint32_t LB_DELAY:8;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t WRP:1;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t CRCEN:1;
             vuint32_t PMOSEN:1;
             vuint32_t CHBRD:1;
@@ -24216,9 +24020,9 @@ struct STCU2_tag {
         struct {
             vuint32_t:2;
             vuint32_t PLLODF:6;
-              vuint32_t:5;
+            vuint32_t:5;
             vuint32_t PLLIDF:3;
-              vuint32_t:9;
+            vuint32_t:9;
             vuint32_t PLLLDF:7;
         } B;
     } PLL_CFG;
@@ -24259,16 +24063,16 @@ struct STCU2_tag {
             vuint32_t:6;
             vuint32_t ABORTHW:1;
             vuint32_t ABORTSW:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t LOCKESW:1;
             vuint32_t WDTOSW:1;
             vuint32_t CRCSSW:1;
             vuint32_t ENGESW:1;
             vuint32_t INVPSW:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t CFSF:1;
             vuint32_t NCFSF:1;
-              vuint32_t:3;
+            vuint32_t:3;
             vuint32_t LOCKE:1;
             vuint32_t WDTO:1;
             vuint32_t CRCS:1;
@@ -25005,12 +24809,12 @@ struct STCU2_tag {
             struct {
                 vuint32_t CSM:1;
                 vuint32_t PTR:7;
-                  vuint32_t:4;
+                vuint32_t:4;
                 vuint32_t PRPGEN:1;
                 vuint32_t SHS:3;
                 vuint32_t SCEN_OFF:4;
                 vuint32_t SCEN_ON:4;
-                  vuint32_t:4;
+                vuint32_t:4;
                 vuint32_t PFT:1;
                 vuint32_t CWS:3;
             } B;
@@ -25353,7 +25157,7 @@ struct STCU2_tag {
             struct {
                 vuint32_t CSM:1;
                 vuint32_t PTR:7;
-                  vuint32_t:24;
+                vuint32_t:24;
             } B;
         } MB_CTRL;
     } MB[96];
@@ -25367,7 +25171,7 @@ struct STM_tag {
         struct {
             vuint32_t:16;
             vuint32_t CPS:8;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t FRZ:1;
             vuint32_t TEN:1;
         } B;
@@ -25425,7 +25229,7 @@ struct SWT_tag {
             vuint32_t MAP5:1;
             vuint32_t MAP6:1;
             vuint32_t MAP7:1;
-              vuint32_t:13;
+            vuint32_t:13;
             vuint32_t SMD:2;
             vuint32_t RIA:1;
             vuint32_t WND:1;
@@ -25516,7 +25320,7 @@ struct TTCAN_tag {
             vuint32_t RX:1;
             vuint32_t TX:2;
             vuint32_t LBCK:1;
-              vuint32_t:4;
+            vuint32_t:4;
         } B;
     } TEST;
 
@@ -25549,7 +25353,7 @@ struct TTCAN_tag {
         struct {
             vuint32_t:12;
             vuint32_t BRPE:4;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TSEG2:3;
             vuint32_t CSR:4;
             vuint32_t SJW:2;
@@ -25562,7 +25366,7 @@ struct TTCAN_tag {
         struct {
             vuint32_t:12;
             vuint32_t TCP:4;
-              vuint32_t:14;
+            vuint32_t:14;
             vuint32_t TSS:2;
         } B;
     } TSCC;
@@ -25579,7 +25383,7 @@ struct TTCAN_tag {
         vuint32_t R;
         struct {
             vuint32_t TOP:16;
-              vuint32_t:13;
+            vuint32_t:13;
             vuint32_t TOS:2;
             vuint32_t ETOC:1;
         } B;
@@ -25635,7 +25439,7 @@ struct TTCAN_tag {
             vuint32_t ELO:1;
             vuint32_t BEU:1;
             vuint32_t BEC:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TOO:1;
             vuint32_t UMD:1;
             vuint32_t TSW:1;
@@ -25673,7 +25477,7 @@ struct TTCAN_tag {
             vuint32_t ELOE:1;
             vuint32_t BEUE:1;
             vuint32_t BECE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TOOE:1;
             vuint32_t UMDE:1;
             vuint32_t TSWE:1;
@@ -25711,7 +25515,7 @@ struct TTCAN_tag {
             vuint32_t ELOL:1;
             vuint32_t BEUL:1;
             vuint32_t BECL:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TOOL:1;
             vuint32_t UMDL:1;
             vuint32_t TSWL:1;
@@ -25762,7 +25566,7 @@ struct TTCAN_tag {
             vuint32_t:8;
             vuint32_t LSS:8;
             vuint32_t FLSSA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } SIDFC;
 
@@ -25772,7 +25576,7 @@ struct TTCAN_tag {
             vuint32_t:9;
             vuint32_t LSELSE:7;
             vuint32_t FLESA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } XIDFC;
 
@@ -25804,10 +25608,10 @@ struct TTCAN_tag {
         struct {
             vuint32_t:1;
             vuint32_t F0WM:7;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F0S:7;
             vuint32_t FOSA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } RXF0C;
 
@@ -25817,9 +25621,9 @@ struct TTCAN_tag {
             vuint32_t:6;
             vuint32_t RF0L:1;
             vuint32_t F0F:1;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t F0GI:6;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F0FL:7;
         } B;
     } RXF0S;
@@ -25839,10 +25643,10 @@ struct TTCAN_tag {
         struct {
             vuint32_t:1;
             vuint32_t F1WM:7;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F1S:7;
             vuint32_t F1SA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } RXF1C;
 
@@ -25852,9 +25656,9 @@ struct TTCAN_tag {
             vuint32_t:6;
             vuint32_t RF1L:1;
             vuint32_t F1F:1;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t F1GI:6;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t F1FL:7;
         } B;
     } RXF1S;
@@ -25875,10 +25679,10 @@ struct TTCAN_tag {
             vuint32_t:1;
             vuint32_t TFQM:1;
             vuint32_t TFQS:6;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t NDTB:6;
             vuint32_t TBSA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } TXBC;
 
@@ -25888,7 +25692,7 @@ struct TTCAN_tag {
             vuint32_t:10;
             vuint32_t TFQF:1;
             vuint32_t TFQPI:5;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t TFFL:6;
         } B;
     } TXFQS;
@@ -25951,10 +25755,10 @@ struct TTCAN_tag {
         struct {
             vuint32_t:2;
             vuint32_t EFWM:6;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t EFS:6;
             vuint32_t EFSA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } TXEFC;
 
@@ -25964,9 +25768,9 @@ struct TTCAN_tag {
             vuint32_t:6;
             vuint32_t TEFL:1;
             vuint32_t EFF:1;
-              vuint32_t:11;
+            vuint32_t:11;
             vuint32_t EFGI:5;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t EFFL:6;
         } B;
     } TXEFS;
@@ -25987,7 +25791,7 @@ struct TTCAN_tag {
             vuint32_t:9;
             vuint32_t TME:7;
             vuint32_t TMSA:14;
-              vuint32_t:2;
+            vuint32_t:2;
         } B;
     } TTTMC;
 
@@ -25996,7 +25800,7 @@ struct TTCAN_tag {
         struct {
             vuint32_t RMPS:1;
             vuint32_t XTD:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t RID:29;
         } B;
     } TTRMC;
@@ -26014,7 +25818,7 @@ struct TTCAN_tag {
             vuint32_t LDSDL:3;
             vuint32_t TM:1;
             vuint32_t GEN:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t OM:2;
         } B;
     } TTOCF;
@@ -26026,7 +25830,7 @@ struct TTCAN_tag {
             vuint32_t ENTT:12;
             vuint32_t RESERVED9:4;
             vuint32_t TXEW:4;
-              vuint32_t:2;
+            vuint32_t:2;
             vuint32_t CCM:6;
         } B;
     } TTMLM;
@@ -26035,7 +25839,7 @@ struct TTCAN_tag {
         vuint32_t R;
         struct {
             vuint32_t ELT:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t DC:14;
             vuint32_t NCL:16;
         } B;
@@ -26046,13 +25850,13 @@ struct TTCAN_tag {
         struct {
             vuint32_t:16;
             vuint32_t LCKC:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t ESCN:1;
             vuint32_t NIG:1;
             vuint32_t TMG:1;
             vuint32_t FGP:1;
             vuint32_t GCS:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t TMC:2;
             vuint32_t RTIE:1;
             vuint32_t SWS:2;
@@ -26074,7 +25878,7 @@ struct TTCAN_tag {
         vuint32_t R;
         struct {
             vuint32_t LCKM:1;
-              vuint32_t:8;
+            vuint32_t:8;
             vuint32_t TICC:7;
             vuint32_t TM:16;
         } B;
@@ -26169,7 +25973,7 @@ struct TTCAN_tag {
             vuint32_t TMP:3;
             vuint32_t GFI:1;
             vuint32_t WGTD:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t RTO:8;
             vuint32_t QCS:1;
             vuint32_t QGTP:1;
@@ -26208,7 +26012,7 @@ struct TTCAN_tag {
         vuint32_t R;
         struct {
             vuint32_t SWV:16;
-              vuint32_t:10;
+            vuint32_t:10;
             vuint32_t CCV:6;
         } B;
     } TTCPT;
@@ -26230,16 +26034,16 @@ struct WKPU_tag {
         struct {
             vuint32_t NIF0:1;
             vuint32_t NOVF0:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t NIF1:1;
             vuint32_t NOVF1:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t NIF2:1;
             vuint32_t NOVF2:1;
-              vuint32_t:6;
+            vuint32_t:6;
             vuint32_t RIF:1;
             vuint32_t ROVF:1;
-              vuint32_t:6;
+            vuint32_t:6;
         } B;
     } NSR;
 
@@ -26251,31 +26055,31 @@ struct WKPU_tag {
             vuint32_t NLOCK0:1;
             vuint32_t NDSS0:2;
             vuint32_t NWRE0:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NREE0:1;
             vuint32_t NFEE0:1;
             vuint32_t NFE0:1;
             vuint32_t NLOCK1:1;
             vuint32_t NDSS1:2;
             vuint32_t NWRE1:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NREE1:1;
             vuint32_t NFEE1:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NLOCK2:1;
             vuint32_t NDSS2:2;
             vuint32_t NWRE2:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t NREE2:1;
             vuint32_t NFEE2:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t RLOCK:1;
             vuint32_t RDSS:2;
             vuint32_t RWRE:1;
-              vuint32_t:1;
+            vuint32_t:1;
             vuint32_t RREE:1;
             vuint32_t RFEE:1;
-              vuint32_t:1;
+            vuint32_t:1;
         } B;
     } NCR;
 };
@@ -26289,19 +26093,19 @@ struct XBAR_tag {
             struct {
                 vuint32_t:1;
                 vuint32_t M7:3;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t M6:3;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t M5:3;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t M4:3;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t M3:3;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t M2:3;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t M1:3;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t M0:3;
             } B;
         } PRS;
@@ -26312,12 +26116,12 @@ struct XBAR_tag {
             vuint32_t R;
             struct {
                 vuint32_t RO:1;
-                  vuint32_t:1;
-                  vuint32_t:20;
+                vuint32_t:1;
+                vuint32_t:20;
                 vuint32_t ARB:2;
-                  vuint32_t:2;
+                vuint32_t:2;
                 vuint32_t PCTL:2;
-                  vuint32_t:1;
+                vuint32_t:1;
                 vuint32_t PARK:3;
             } B;
         } CRS;
@@ -26348,7 +26152,7 @@ struct XBIC_tag {
         vuint32_t R;
         struct {
             vuint32_t EIE:1;
-              vuint32_t:16;
+            vuint32_t:16;
             vuint32_t SLV:3;
             vuint32_t MST:4;
             vuint32_t SYN:8;
@@ -26359,7 +26163,7 @@ struct XBIC_tag {
         vuint32_t R;
         struct {
             vuint32_t VLD:1;
-              vuint32_t:16;
+            vuint32_t:16;
             vuint32_t SLV:3;
             vuint32_t MST:4;
             vuint32_t SYN:8;
@@ -26370,7 +26174,7 @@ struct XBIC_tag {
         vuint32_t R;
         struct {
             vuint32_t ADDR:16;
-              vuint32_t:16;
+            vuint32_t:16;
         } B;
     } EAR;
 };
@@ -26382,14 +26186,14 @@ struct XOSC_tag {
         vuint32_t R;
         struct {
             vuint32_t OSCBYP:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t EOCV:8;
             vuint32_t M_OSC:1;
-              vuint32_t:7;
+            vuint32_t:7;
             vuint32_t I_OSC:1;
-              vuint32_t:5;
-              vuint32_t S_OSC:1;
-              vuint32_t OSCON:1;  
+            vuint32_t:5;
+            vuint32_t S_OSC:1;
+            vuint32_t OSCON:1;  
         } B;
     } XOSC_CTL;
 };
@@ -26454,8 +26258,7 @@ struct XOSC_tag {
 #define DSPI_1        (*(volatile struct DSPI_tag *)      0xFFE74000UL)
 #define DSPI_4        (*(volatile struct DSPI_tag *)      0xFFE78000UL)
 #define LINFlexD_0    (*(volatile struct LINFlexD_tag *)  0xFFE8C000UL)
-#define LINFlexD_1    (*(volatile struct LINFlexD_tag *)  0xFBE8C000UL) //0xFFE90000UL)
-#define LINFlexD_14   (*(volatile struct LINFlexD_tag *)  0xFFEA8000UL)
+#define LINFlexD_1    (*(volatile struct LINFlexD_tag *)  0xFBE8C000UL)
 #define TTCAN_0       (*(volatile struct TTCAN_tag *)     0xFFEDC000UL)
 #define MCAN_1        (*(volatile struct MCAN_tag *)      0xFFEE4000UL)
 #define MCAN_2        (*(volatile struct MCAN_tag *)      0xFFEE8000UL)
@@ -26491,13 +26294,11 @@ struct XOSC_tag {
     
 #ifdef __MWERKS__
 #pragma pop
-#endif  /* 
- */
-    
+#endif
+
 #ifdef  __cplusplus
 } 
-#endif  /* 
- */
-    
+#endif
+
 #endif /* ifdef _SPC570S50L_H */
 

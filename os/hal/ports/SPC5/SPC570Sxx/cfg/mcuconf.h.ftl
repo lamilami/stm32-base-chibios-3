@@ -65,7 +65,7 @@
                                              SPC5_ME_ME_HALT0 |             \
                                              SPC5_ME_ME_STOP0)
 #define SPC5_ME_SAFE_MC_BITS                (SPC5_ME_MC_PDO)
-#define SPC5_ME_DRUN_MC_BITS                (SPC5_ME_MC_SYSCLK_PLL0PHI |    \
+#define SPC5_ME_DRUN_MC_BITS                (SPC5_ME_MC_SYSCLK_PLL1PHI |    \
                                              SPC5_ME_MC_IRCON |             \
                                              SPC5_ME_MC_XOSC0ON |           \
                                              SPC5_ME_MC_PLL0ON |            \
@@ -166,6 +166,42 @@
                                              SPC5_ME_LP_PC_STOP0)
 #define SPC5_SSCM_ERROR_INIT                (SPC5_SSCM_ERROR_PAE |          \
                                              SPC5_SSCM_ERROR_RAE)
+
+/*
+ * ICU driver system settings.
+ */
+#define SPC5_ICU_USE_SMOD0                  ${conf.instance.etimer_settings.etimer0_ch0.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD1                  ${conf.instance.etimer_settings.etimer0_ch1.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD2                  ${conf.instance.etimer_settings.etimer0_ch2.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD3                  ${conf.instance.etimer_settings.etimer0_ch3.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD4                  ${conf.instance.etimer_settings.etimer0_ch4.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD5                  ${conf.instance.etimer_settings.etimer0_ch5.value[0]?upper_case}
+#define SPC5_ICU_ETIMER0_PRIORITY           ${conf.instance.irq_priority_settings.etimer0.value[0]}
+
+#define SPC5_ICU_USE_SMOD6                  ${conf.instance.etimer_settings.etimer1_ch0.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD7                  ${conf.instance.etimer_settings.etimer1_ch1.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD8                  ${conf.instance.etimer_settings.etimer1_ch2.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD9                  ${conf.instance.etimer_settings.etimer1_ch3.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD10                 ${conf.instance.etimer_settings.etimer1_ch4.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD11                 ${conf.instance.etimer_settings.etimer1_ch5.value[0]?upper_case}
+#define SPC5_ICU_ETIMER1_PRIORITY           ${conf.instance.irq_priority_settings.etimer1.value[0]}
+
+#define SPC5_ICU_USE_SMOD12                 ${conf.instance.etimer_settings.etimer2_ch0.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD13                 ${conf.instance.etimer_settings.etimer2_ch1.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD14                 ${conf.instance.etimer_settings.etimer2_ch2.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD15                 ${conf.instance.etimer_settings.etimer2_ch3.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD16                 ${conf.instance.etimer_settings.etimer2_ch4.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD17                 ${conf.instance.etimer_settings.etimer2_ch5.value[0]?upper_case}
+#define SPC5_ICU_ETIMER2_PRIORITY           ${conf.instance.irq_priority_settings.etimer2.value[0]}
+
+#define SPC5_ICU_USE_SMOD18                 ${conf.instance.etimer_settings.etimer3_ch0.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD19                 ${conf.instance.etimer_settings.etimer3_ch1.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD20                 ${conf.instance.etimer_settings.etimer3_ch2.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD21                 ${conf.instance.etimer_settings.etimer3_ch3.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD22                 ${conf.instance.etimer_settings.etimer3_ch4.value[0]?upper_case}
+#define SPC5_ICU_USE_SMOD23                 ${conf.instance.etimer_settings.etimer3_ch5.value[0]?upper_case}
+#define SPC5_ICU_ETIMER3_PRIORITY           ${conf.instance.irq_priority_settings.etimer3.value[0]}
+
 /*
  * SERIAL driver system settings.
  */
@@ -173,3 +209,17 @@
 #define SPC5_SERIAL_USE_LINFLEX1            ${(conf.instance.linflex_settings.linflex1.value[0] == "Serial")?string?upper_case}
 #define SPC5_SERIAL_LINFLEX0_PRIORITY       INTC_PSR_ENABLE(INTC_PSR_CORE0, ${conf.instance.irq_priority_settings.linflex0.value[0]})
 #define SPC5_SERIAL_LINFLEX1_PRIORITY       INTC_PSR_ENABLE(INTC_PSR_CORE0, ${conf.instance.irq_priority_settings.linflex1.value[0]})
+/*
+ * CAN driver system settings.
+ */
+#define SPC5_CAN_USE_FILTERS                ${conf.instance.flexcan_settings.flexcan_enable_filters.value[0]?upper_case}
+
+#define SPC5_CAN_USE_FLEXCAN0               ${conf.instance.flexcan_settings.flexcan0.value[0]?upper_case}
+#define SPC5_CAN_FLEXCAN0_USE_EXT_CLK       ${conf.instance.flexcan_settings.flexcan0_use_external_clock.value[0]?upper_case}
+#define SPC5_CAN_FLEXCAN0_PRIORITY          ${conf.instance.irq_priority_settings.flexcan0.value[0]}
+#define SPC5_CAN_NUM_RX_MAILBOXES			${conf.instance.flexcan_settings.can_configurations.mailboxes_configuration.number_of_rx_mailboxes.value[0]}
+#define SPC5_CAN_NUM_TX_MAILBOXES			${conf.instance.flexcan_settings.can_configurations.mailboxes_configuration.number_of_tx_mailboxes.value[0]}
+#define SPC5_CAN_FLEXCAN0_START_PCTL        (SPC5_ME_PCTL_RUN(1) |          \
+                                             SPC5_ME_PCTL_LP(2))
+#define SPC5_CAN_FLEXCAN0_STOP_PCTL         (SPC5_ME_PCTL_RUN(0) |          \
+                                             SPC5_ME_PCTL_LP(0))

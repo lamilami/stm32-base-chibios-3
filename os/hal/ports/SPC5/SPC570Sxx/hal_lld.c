@@ -89,18 +89,16 @@ void hal_lld_init(void) {
   /* PIT channel 0 initialization for Kernel ticks, the PIT is configured
      to run in DRUN,RUN0...RUN3 and HALT0 modes, the clock is gated in other
      modes.*/
-/* When PIT_0 is activated */
   INTC_PSR(226)      = SPC5_PIT0_IRQ_PRIORITY;
   n = SPC5_PER_CLK / OSAL_ST_FREQUENCY - 1;
-  PIT_0.MCR.B.MDIS            = 0;       
-  PIT_0.MCR.B.FRZ            = 1;       /* Clock enabled, stop while debugging. */
+  PIT_0.MCR.R            = 1;       /* Clock enabled, stop while debugging. */
   PIT_0.TIMER[0].LDVAL.R = n;
   PIT_0.TIMER[0].CVAL.R  = n;
   PIT_0.TIMER[0].TFLG.R  = 1;       /* Interrupt flag cleared.              */
-  PIT_0.TIMER[0].TCTRL.B.TIE = 1;       /* Timer active, interrupt enabled.     */
-  PIT_0.TIMER[0].TCTRL.B.TEN = 1;       /* Timer Enable Bit.     */
+  PIT_0.TIMER[0].TCTRL.R = 3;       /* Timer active, interrupt enabled.     */
+
   /* EDMA initialization.*/
-  //  edmaInit();
+//  edmaInit();
 }
 
 /**
@@ -148,6 +146,7 @@ void spc_clock_init(void) {
   /* Setting the system dividers to their final values.*/
   MC_CGM.SC_DC0.R   = SPC5_CGM_SC_DC0_BITS;
   MC_CGM.SC_DC1.R   = SPC5_CGM_SC_DC1_BITS;
+  MC_CGM.SC_DC2.R   = SPC5_CGM_SC_DC2_BITS;
   
   /* Setting the auxiliary dividers to their final values.*/
   MC_CGM.AC0_DC0.R  = SPC5_CGM_AC0_DC0_BITS;
@@ -186,9 +185,7 @@ void spc_clock_init(void) {
   /* Run modes initialization, note writes to the MC registers are verified
      by a protection mechanism, the operation success is verified at the
      end of the sequence.*/
-
   MC_ME.IS.R        = 8;                        /* Resetting I_ICONF status.*/
-
   MC_ME.ME.R        = SPC5_ME_ME_BITS;
   MC_ME.SAFE_MC.R   = SPC5_ME_SAFE_MC_BITS;
   MC_ME.DRUN_MC.R   = SPC5_ME_DRUN_MC_BITS;
@@ -196,25 +193,8 @@ void spc_clock_init(void) {
   MC_ME.RUN_MC[1].R = SPC5_ME_RUN1_MC_BITS;
   MC_ME.RUN_MC[2].R = SPC5_ME_RUN2_MC_BITS;
   MC_ME.RUN_MC[3].R = SPC5_ME_RUN3_MC_BITS;
-  MC_ME.HALT_MC.R  = SPC5_ME_HALT0_MC_BITS;
-  MC_ME.STOP_MC.R  = SPC5_ME_STOP0_MC_BITS;
-
-#if 0
-    MC_ME.ME.R = 0x000005E2;					/* Enable all modes */
-
-  	/* Setting RUN Configuration Register ME_RUN_PC[0] */
-  	MC_ME.RUN_PC[0].R = 0x000000FE;				/* Peripheral ON in every mode */
-  	MC_ME.RUN_PC[1].R = 0x000000FE;				/* Peripheral ON in every mode */
-  	MC_ME.RUN_PC[2].R = 0x000000FE;				/* Peripheral ON in every mode */
-  	MC_ME.RUN_PC[3].R = 0x000000FE;				/* Peripheral ON in every mode */
-  	MC_ME.RUN_PC[4].R = 0x000000FE;				/* Peripheral ON in every mode */
-  	MC_ME.RUN_PC[5].R = 0x000000FE;				/* Peripheral ON in every mode */
-  	MC_ME.RUN_PC[6].R = 0x000000FE;				/* Peripheral ON in every mode */
-  	MC_ME.RUN_PC[7].R = 0x000000FE;				/* Peripheral ON in every mode */
-
-  	/* Turn On XOSC - PLL's remain off */
-  	MC_ME.DRUN_MC.R = 0x00130020; 			  	/* Enable the XOSC */
-#endif
+  MC_ME.HALT_MC.R   = SPC5_ME_HALT0_MC_BITS;
+  MC_ME.STOP_MC.R   = SPC5_ME_STOP0_MC_BITS;
 
   if (MC_ME.IS.B.I_ICONF) {
     /* Configuration rejected.*/

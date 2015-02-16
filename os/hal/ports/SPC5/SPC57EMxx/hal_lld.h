@@ -898,8 +898,7 @@
 #endif
 
 /* Check on SPC5_PLL0_RFDPHI_VALUE.*/
-#if (SPC5_PLL0_RFDPHI_VALUE < 2) || (SPC5_PLL0_RFDPHI_VALUE > 126) ||       \
-    ((SPC5_PLL0_RFDPHI_VALUE & 1) != 0)
+#if (SPC5_PLL0_RFDPHI_VALUE < 1) || (SPC5_PLL0_RFDPHI_VALUE > 63)
 #error "invalid SPC5_PLL0_RFDPHI_VALUE value specified"
 #endif
 
