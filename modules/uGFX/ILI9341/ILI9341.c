@@ -150,6 +150,10 @@ THD_FUNCTION(ILI9341,arg) {
 
   tp = chThdGetSelfX();
 
+#if WATCHDOG_PRESENT
+  WatchDog_Register(uGFX);
+#endif
+
 //  coord_t width, height;
   //  coord_t i, j;
 
@@ -358,7 +362,7 @@ THD_FUNCTION(ILI9341,arg) {
       DS_Temp_Vals.temp[0] = -77 << 2;
       Core_Module_Update(Temp, 0, NULL, 1000);
       Core_Module_Read(localhost, Temp, 0, (char*)&DS_Temp_Vals);
-      if ((DS_Temp_Vals.cont_errors > 0))     // || (msg != MSG_OK))
+      if ((DS_Temp_Vals.cont_errors > 0)) // || (msg != MSG_OK))
         DS_Temp_Vals.temp[0] = -99 << 2;
 
       if (temp_old != DS_Temp_Vals.temp[0]) {
@@ -428,7 +432,9 @@ THD_FUNCTION(ILI9341,arg) {
           }
         }
       }
-
+#if WATCHDOG_PRESENT
+      WatchDog_Notify(uGFX);
+#endif
     }
 
     static uint32_t old_D1 = 0, old_H1 = 0, old_M5 = 0, old_S10 = 0;
