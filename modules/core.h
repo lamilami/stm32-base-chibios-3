@@ -18,7 +18,7 @@
 #define DHT11_PRESENT		FALSE
 #define FloorHeater_PRESENT FALSE
 #define LCD1602_PRESENT 	FALSE
-#define WATCHDOG_PRESENT	FALSE
+#define WATCHDOG_PRESENT	TRUE
 #define RGBW_PRESENT		FALSE
 #define CLI_PRESENT			FALSE
 #define PIR_PRESENT			FALSE
@@ -42,6 +42,23 @@
 #define _CORE_H_2_
 
 //#define StM() WatchDog_Start();
+
+typedef enum
+{
+    Base,
+    Temp,
+    Humidity,
+    Light,
+    Vent,
+    Heater,
+    RGBW,
+    DHT11,
+    PIR,
+    LM75,
+    uGFX,
+//  Other,
+    Core_Type_MAX
+} core_types_t;
 
 #include "radio.h"
 #include "DS18B20.h"
@@ -83,21 +100,6 @@
 #define MAX_NUMBER_OF_SENSORS 2
 
 #define MSG_ERROR	-3
-
-typedef enum
-{
-	Base,
-	Temp,
-	Humidity,
-	Light,
-	Vent,
-	Heater,
-	RGBW,
-	DHT11,
-	PIR,
-	LM75,
-	Other
-} core_types_t;
 
 //typedef msg_t (*mod_update_timeout_t)(msg_t msg, systime_t timeout);
 

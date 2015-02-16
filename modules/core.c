@@ -4,7 +4,7 @@
 
 #include "string.h"
 
-static core_array_t Modules_Array[Other];
+static core_array_t Modules_Array[Core_Type_MAX];
 
 static core_base_struct_t Core_Base;
 #ifdef CORE_NEXT
@@ -280,7 +280,7 @@ void Core_Start() {
 
   chThdSetPriority(LOWPRIO);
   register uint8_t i;
-  for (i = 0; i < Other; i++) {
+  for (i = 0; i < Core_Type_MAX; i++) {
     Modules_Array[i].Base_Struct = NULL;
 //    (*Modules_Array[i]).Base_Struct->Base_Thread = NULL;
 //    ->*Base_Thread = 0;

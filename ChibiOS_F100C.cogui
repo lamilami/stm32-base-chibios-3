@@ -20,75 +20,49 @@
 <part id="7"/>
 <part id="8"/>
 <part id="9"/>
-<part id="10"/>
-<part id="11"/>
-<part id="12"/>
-<part id="13"/>
-<part id="14"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.coocox.builder.ui.editors.ConfigEditor" name="" partName="Configuration" title="Configuration" tooltip="" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="2" verticalPosition="192"/>
-</input>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="chconf.h" partName="chconf.h" path="C:/Work/CoIDE/ChibiOS_3.0/board/STM32F100C/chconf.h" title="chconf.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0/board/STM32F100C/chconf.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/board/STM32F100C/chconf.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="435"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" partName="core.h" path="D:/Work/CoIDE/ChibiOS_3.0/modules/core.h" title="core.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/core.h" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" partName="core.h" path="C:/Work/CoIDE/ChibiOS_3.0/modules/core.h" title="core.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0/modules/core.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/core.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="378" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="4" selectionOffset="1098" selectionTopPixel="630"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="ILI9341.c" partName="ILI9341.c" path="C:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.c" title="ILI9341.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="18877" selectionTopPixel="8447"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.c" partName="WatchDog.c" path="C:/Work/CoIDE/ChibiOS_3.0/modules/Watchdog/WatchDog.c" title="WatchDog.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/modules/Watchdog/WatchDog.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/Watchdog/WatchDog.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="15" selectionOffset="754" selectionTopPixel="237"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="D:/Work/CoIDE/ChibiOS_3.0/main.c" title="main.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/main.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.h" partName="WatchDog.h" path="C:/Work/CoIDE/ChibiOS_3.0/modules/Watchdog/WatchDog.h" title="WatchDog.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0/modules/Watchdog/WatchDog.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/Watchdog/WatchDog.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="36" selectionOffset="187" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Work/CoIDE/ChibiOS_3.0/main.c" title="main.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4990" selectionTopPixel="4357"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="14376" selectionTopPixel="2808"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="ILI9341.h" partName="ILI9341.h" path="D:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.h" title="ILI9341.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="291" selectionTopPixel="90"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" partName="core.c" path="C:/Work/CoIDE/ChibiOS_3.0/modules/core.c" title="core.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/modules/core.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/core.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="7534" selectionTopPixel="4917"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="gfxconf.h" partName="gfxconf.h" path="D:/Work/CoIDE/ChibiOS_3.0/board/uGFX_ILI9341/gfxconf.h" title="gfxconf.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/board/uGFX_ILI9341/gfxconf.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/board/uGFX_ILI9341/gfxconf.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2519" selectionTopPixel="873"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="rtc.h" partName="rtc.h" path="D:/Work/CoIDE/ChibiOS_3.0/os/hal/include/rtc.h" title="rtc.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/os/hal/include/rtc.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/os/hal/include/rtc.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="3" selectionOffset="3507" selectionTopPixel="1820"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.c" partName="DHT11.c" path="C:/Work/CoIDE/ChibiOS_3.0/modules/DHT11/DHT11.c" title="DHT11.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/modules/DHT11/DHT11.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/DHT11/DHT11.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="27" selectionOffset="2110" selectionTopPixel="840"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" partName="DS18B20.c" path="C:/Work/CoIDE/ChibiOS_3.0/modules/DS18B20/DS18B20.c" title="DS18B20.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/modules/DS18B20/DS18B20.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/DS18B20/DS18B20.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4217" selectionTopPixel="1082"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4212" selectionTopPixel="945"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="mcuconf.h" partName="mcuconf.h" path="D:/Work/CoIDE/ChibiOS_3.0/board/STM32F100C/mcuconf.h" title="mcuconf.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/board/STM32F100C/mcuconf.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/board/STM32F100C/mcuconf.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4210" selectionTopPixel="1440"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="RGBW.c" partName="RGBW.c" path="C:/Work/CoIDE/ChibiOS_3.0/modules/RGBW/RGBW.c" title="RGBW.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/modules/RGBW/RGBW.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/RGBW/RGBW.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="16" selectionOffset="4606" selectionTopPixel="2070"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" partName="core.c" path="D:/Work/CoIDE/ChibiOS_3.0/modules/core.c" title="core.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/core.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/core.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="20" selectionOffset="359" selectionTopPixel="0"/>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="chevents.h" partName="chevents.h" path="C:/Work/CoIDE/ChibiOS_3.0/os/rt/include/chevents.h" title="chevents.h" tooltip="C:/Work/CoIDE/ChibiOS_3.0/os/rt/include/chevents.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/os/rt/include/chevents.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="15" selectionOffset="3872" selectionTopPixel="1275"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="onewire.c" partName="onewire.c" path="D:/Work/CoIDE/ChibiOS_3.0/modules/DS18B20/onewire.c" title="onewire.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/DS18B20/onewire.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/DS18B20/onewire.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2120" selectionTopPixel="1302"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="serial.h" partName="serial.h" path="D:/Work/CoIDE/ChibiOS_3.0/os/hal/include/serial.h" title="serial.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/os/hal/include/serial.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/os/hal/include/serial.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="7" selectionOffset="10181" selectionTopPixel="5563"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="serial.c" partName="serial.c" path="D:/Work/CoIDE/ChibiOS_3.0/os/hal/src/serial.c" title="serial.c" tooltip="D:/Work/CoIDE/ChibiOS_3.0/os/hal/src/serial.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/os/hal/src/serial.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="7" selectionOffset="5093" selectionTopPixel="3052"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.h" partName="DS18B20.h" path="D:/Work/CoIDE/ChibiOS_3.0/modules/DS18B20/DS18B20.h" title="DS18B20.h" tooltip="D:/Work/CoIDE/ChibiOS_3.0/modules/DS18B20/DS18B20.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/DS18B20/DS18B20.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="194"/>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="ILI9341.c" partName="ILI9341.c" path="C:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.c" title="ILI9341.c" tooltip="C:/Work/CoIDE/ChibiOS_3.0/modules/uGFX/ILI9341/ILI9341.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="13899" selectionTopPixel="6122"/>
 </editor>
 </editors>
 <views>
@@ -98,18 +72,24 @@
 </viewState>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="6">
 <expanded>
 <element path="/ChibiOS_F100C"/>
 <element path="/ChibiOS_F100C/board"/>
 <element path="/ChibiOS_F100C/board/STM32F100C"/>
 <element path="/ChibiOS_F100C/modules"/>
+<element path="/ChibiOS_F100C/modules/DHT11"/>
 <element path="/ChibiOS_F100C/modules/DS18B20"/>
 <element path="/ChibiOS_F100C/modules/uGFX"/>
 <element path="/ChibiOS_F100C/modules/uGFX/ILI9341"/>
+<element path="/ChibiOS_F100C/os"/>
+<element path="/ChibiOS_F100C/os/hal"/>
+<element path="/ChibiOS_F100C/os/hal/lib"/>
+<element path="/ChibiOS_F100C/os/hal/lib/streams"/>
+<element path="/ChibiOS_F100C/os/various"/>
 </expanded>
 <selection>
-<element path="/ChibiOS_F100C"/>
+<element path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c"/>
 </selection>
 </viewState>
 </view>
@@ -118,8 +98,8 @@
 </view>
 <view id="org.eclipse.search.ui.views.SearchView" partName="Search">
 <viewState isPinned="false">
-<view IMemento.internal.id="org.eclipse.search.text.FileSearchResultPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" org.eclipse.search.resultpage.limit="1000" org.eclipse.search.resultpage.sorting="2"/>
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
+<view IMemento.internal.id="org.eclipse.search.text.FileSearchResultPage" org.eclipse.search.lastActivation="1" org.eclipse.search.resultpage.layout="2" org.eclipse.search.resultpage.limit="1000" org.eclipse.search.resultpage.sorting="2"/>
 </viewState>
 </view>
 <view id="org.eclipse.debug.ui.DebugView" partName="Debug">
@@ -197,7 +177,7 @@
 </presentation>
 </folder>
 </info>
-<info part="org.coocox.builder.ui.exampleView" ratio="0.21966527" ratioLeft="420" ratioRight="1492" relationship="2" relative="org.eclipse.ui.internal.ViewStack@32835b"/>
+<info part="org.coocox.builder.ui.exampleView" ratio="0.25676525" ratioLeft="408" ratioRight="1181" relationship="2" relative="org.eclipse.ui.internal.ViewStack@32835b"/>
 <info folder="true" part="org.eclipse.ui.internal.ViewStack@13f8d12" ratio="0.71983916" ratioLeft="1074" ratioRight="418" relationship="2" relative="org.coocox.builder.ui.exampleView">
 <folder appearance="2" expanded="2">
 <page content="org.coocox.component.ui.Help" label="LabelNotFound"/>
@@ -320,176 +300,166 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DS18B20/DS18B20.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/core.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/board/STM32F100C/mcuconf.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DS18B20/DS18B20.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/board/STM32F100C/mcuconf.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/board/STM32F100C/halconf.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/core.h"/>
-<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="2" verticalPosition="0"/>
-</editor>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DS18B20/DS18B20.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/Watchdog/WatchDog.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/Watchdog/WatchDog.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/core.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DHT11/DHT11.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DS18B20/onewire.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DHT11/DHT11_hal.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DS18B20/onewire.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/hal/include/serial.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/hal/src/serial.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/os/hal/ports/STM32/LLD/USARTv1/serial_lld.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DS18B20/DS18B20.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/DS18B20/DS18B20.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/MPC/MPC.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/RGBW/RGBW.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ChibiOS_F100C/board/STM32F100C/chconf.h"/>
-<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
-<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="2" verticalPosition="192"/>
-</editor>
 </editors>
-<item historyLabel="DS18B20.c" index="1">
-<position info="not_deleted" x="876" y="0"/>
+<item historyLabel="MPC.h" index="7">
+<position info="not_deleted" x="216" y="21"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="14032" y="48"/>
+<item historyLabel="MPC.h" index="7">
+<position info="not_deleted" x="118" y="0"/>
 </item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="14121" y="0"/>
-</item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="14080" y="67"/>
-</item>
-<item historyLabel="ILI9341.c" index="0">
-<position info="not_deleted" x="15520" y="101"/>
-</item>
-<item historyLabel="core.h" index="2">
+<item historyLabel="core.h" index="0">
 <position/>
 </item>
-<item historyLabel="mcuconf.h" index="3">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="DS18B20.c" index="4">
-<position info="not_deleted" x="876" y="0"/>
-</item>
-<item historyLabel="mcuconf.h" index="5">
-<position info="not_deleted" x="4210" y="0"/>
-</item>
-<item historyLabel="halconf.h" index="6">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="mcuconf.h" index="5">
-<position info="not_deleted" x="4210" y="0"/>
-</item>
-<item historyLabel="core.h" index="7">
-<position info="not_deleted" x="694" y="5"/>
-</item>
-<item historyLabel="Configuration" index="8"/>
-<item historyLabel="DS18B20.c" index="9">
-<position info="not_deleted" x="876" y="0"/>
-</item>
-<item historyLabel="DS18B20.c" index="9">
-<position info="not_deleted" x="1275" y="0"/>
-</item>
-<item historyLabel="core.c" index="10">
-<position info="not_deleted" x="359" y="20"/>
-</item>
-<item historyLabel="DS18B20.c" index="9">
-<position info="not_deleted" x="1275" y="0"/>
-</item>
-<item historyLabel="core.c" index="10">
-<position info="not_deleted" x="359" y="20"/>
-</item>
-<item historyLabel="DS18B20.c" index="9">
-<position info="not_deleted" x="1275" y="0"/>
-</item>
-<item historyLabel="DHT11.c" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="DS18B20.c" index="9">
-<position info="not_deleted" x="4444" y="0"/>
-</item>
-<item historyLabel="DHT11.c" index="11">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="core.c" index="10">
-<position info="not_deleted" x="359" y="20"/>
-</item>
-<item historyLabel="DS18B20.c" index="9">
-<position info="not_deleted" x="4438" y="0"/>
-</item>
-<item historyLabel="core.h" index="7">
-<position info="not_deleted" x="378" y="0"/>
-</item>
-<item historyLabel="DS18B20.c" index="9">
-<position info="not_deleted" x="4438" y="0"/>
-</item>
-<item historyLabel="DS18B20.c" index="9">
+<item historyLabel="MPC.h" index="7">
 <position/>
 </item>
-<item historyLabel="onewire.h" index="12">
-<position info="not_deleted" x="337" y="7"/>
-</item>
-<item historyLabel="DS18B20.c" index="9">
+<item historyLabel="core.h" index="0">
 <position/>
 </item>
-<item historyLabel="DHT11_hal.c" index="13">
+<item historyLabel="core.c" index="4">
+<position info="not_deleted" x="7534" y="0"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="813" y="10"/>
+</item>
+<item historyLabel="MPC.h" index="7">
+<position info="not_deleted" x="118" y="0"/>
+</item>
+<item historyLabel="main.c" index="3">
+<position info="not_deleted" x="14376" y="0"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="795" y="11"/>
+</item>
+<item historyLabel="DHT11.c" index="5">
+<position info="not_deleted" x="2110" y="27"/>
+</item>
+<item historyLabel="DS18B20.c" index="6">
+<position info="not_deleted" x="4212" y="0"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="795" y="11"/>
+</item>
+<item historyLabel="MPC.h" index="7">
+<position info="not_deleted" x="118" y="0"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="795" y="11"/>
+</item>
+<item historyLabel="RGBW.c" index="8">
+<position info="not_deleted" x="1013" y="11"/>
+</item>
+<item historyLabel="RGBW.c" index="8">
+<position info="not_deleted" x="1053" y="16"/>
+</item>
+<item historyLabel="RGBW.c" index="8">
+<position info="not_deleted" x="103" y="16"/>
+</item>
+<item historyLabel="RGBW.c" index="8">
+<position info="not_deleted" x="1053" y="16"/>
+</item>
+<item historyLabel="RGBW.c" index="8">
+<position info="not_deleted" x="4606" y="16"/>
+</item>
+<item historyLabel="core.h" index="0">
+<position info="not_deleted" x="1871" y="0"/>
+</item>
+<item historyLabel="DS18B20.c" index="6">
+<position info="not_deleted" x="4212" y="0"/>
+</item>
+<item historyLabel="RGBW.c" index="8">
+<position info="not_deleted" x="4606" y="16"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="463" y="0"/>
+</item>
+<item historyLabel="WatchDog.h" index="2">
+<position info="not_deleted" x="83" y="8"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="463" y="0"/>
+</item>
+<item historyLabel="WatchDog.h" index="2">
+<position info="not_deleted" x="83" y="8"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="749" y="38"/>
+</item>
+<item historyLabel="WatchDog.h" index="2">
+<position info="not_deleted" x="223" y="0"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="837" y="40"/>
+</item>
+<item historyLabel="WatchDog.h" index="2">
+<position info="not_deleted" x="53" y="0"/>
+</item>
+<item historyLabel="core.h" index="0">
+<position info="not_deleted" x="1151" y="0"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="837" y="40"/>
+</item>
+<item historyLabel="WatchDog.h" index="2">
+<position info="not_deleted" x="53" y="0"/>
+</item>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="837" y="40"/>
+</item>
+<item historyLabel="ILI9341.c" index="9">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DS18B20.c" index="9">
-<position/>
+<item historyLabel="core.h" index="0">
+<position info="not_deleted" x="1151" y="0"/>
 </item>
-<item historyLabel="onewire.c" index="14">
+<item historyLabel="ILI9341.c" index="9">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="DHT11.c" index="11">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="core.h" index="0">
+<position info="not_deleted" x="1151" y="0"/>
 </item>
-<item historyLabel="onewire.c" index="14">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="56" y="20"/>
 </item>
-<item historyLabel="DS18B20.c" index="9">
-<position/>
+<item historyLabel="ILI9341.c" index="9">
+<position info="not_deleted" x="5095" y="0"/>
 </item>
-<item historyLabel="onewire.c" index="14">
-<position info="not_deleted" x="2583" y="0"/>
+<item historyLabel="WatchDog.h" index="2">
+<position info="not_deleted" x="187" y="36"/>
 </item>
-<item historyLabel="serial.h" index="15">
-<position info="not_deleted" x="10181" y="7"/>
+<item historyLabel="ILI9341.c" index="9">
+<position info="not_deleted" x="5087" y="0"/>
 </item>
-<item historyLabel="serial.c" index="16">
-<position info="not_deleted" x="5093" y="7"/>
+<item historyLabel="WatchDog.h" index="2">
+<position info="not_deleted" x="187" y="36"/>
 </item>
-<item historyLabel="serial_lld.h" index="17">
-<position info="not_deleted" x="7055" y="7"/>
+<item historyLabel="core.h" index="0">
+<position info="not_deleted" x="1151" y="0"/>
 </item>
-<item historyLabel="serial.c" index="16">
-<position info="not_deleted" x="5093" y="7"/>
+<item historyLabel="ILI9341.c" index="9">
+<position info="not_deleted" x="5081" y="4"/>
 </item>
-<item historyLabel="onewire.c" index="14">
-<position info="not_deleted" x="2120" y="0"/>
+<item historyLabel="core.h" index="0">
+<position info="not_deleted" x="1098" y="4"/>
 </item>
-<item historyLabel="DS18B20.c" index="9">
-<position info="not_deleted" x="3843" y="0"/>
+<item historyLabel="ILI9341.c" index="9">
+<position info="not_deleted" x="17224" y="0"/>
 </item>
-<item historyLabel="DS18B20.h" index="18">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="WatchDog.c" index="1">
+<position info="not_deleted" x="754" y="15"/>
 </item>
-<item historyLabel="DS18B20.c" index="9">
-<position info="not_deleted" x="3843" y="0"/>
-</item>
-<item historyLabel="ILI9341.c" index="19">
-<position info="not_deleted" x="16038" y="0"/>
-</item>
-<item historyLabel="chconf.h" index="20">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Configuration" index="21"/>
-<item historyLabel="chconf.h" index="20">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="Configuration" index="21"/>
-<item active="true" historyLabel="ILI9341.c" index="19">
-<position info="not_deleted" x="15872" y="0"/>
+<item active="true" historyLabel="ILI9341.c" index="9">
+<position info="not_deleted" x="17224" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -498,50 +468,50 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="crt0.c" tooltip="ChibiOS_F030F/os/common/ports/ARMCMx/compilers/GCC/crt0.c">
-<persistable path="/ChibiOS_F030F/os/common/ports/ARMCMx/compilers/GCC/crt0.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="ILI9341.c" tooltip="ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c">
+<persistable path="/ChibiOS_F100C/modules/uGFX/ILI9341/ILI9341.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chconf.h" tooltip="ChibiOS_F030F/board/STM32F030F/chconf.h">
-<persistable path="/ChibiOS_F030F/board/STM32F030F/chconf.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chevents.h" tooltip="ChibiOS_F100C/os/rt/include/chevents.h">
+<persistable path="/ChibiOS_F100C/os/rt/include/chevents.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="uart_mpc.c" tooltip="ChibiOS_F100C/modules/MPC/UART/uart_mpc.c">
+<persistable path="/ChibiOS_F100C/modules/MPC/UART/uart_mpc.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DS18B20.c" tooltip="ChibiOS_F100C/modules/DS18B20/DS18B20.c">
+<persistable path="/ChibiOS_F100C/modules/DS18B20/DS18B20.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.c" tooltip="ChibiOS_F100C/modules/DHT11/DHT11.c">
+<persistable path="/ChibiOS_F100C/modules/DHT11/DHT11.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="ChibiOS_F100C/modules/core.c">
+<persistable path="/ChibiOS_F100C/modules/core.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ChibiOS_F100C/main.c">
+<persistable path="/ChibiOS_F100C/main.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.h" tooltip="ChibiOS_F100C/modules/Watchdog/WatchDog.h">
+<persistable path="/ChibiOS_F100C/modules/Watchdog/WatchDog.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WatchDog.c" tooltip="ChibiOS_F100C/modules/Watchdog/WatchDog.c">
+<persistable path="/ChibiOS_F100C/modules/Watchdog/WatchDog.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="eeprom.h" tooltip="ChibiOS_F100C/modules/EEPROM/eeprom.h">
+<persistable path="/ChibiOS_F100C/modules/EEPROM/eeprom.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="eeprom_testsuit.c" tooltip="ChibiOS_F100C/modules/EEPROM/eeprom_testsuit.c">
+<persistable path="/ChibiOS_F100C/modules/EEPROM/eeprom_testsuit.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11_hal.h" tooltip="ChibiOS_F030F/modules/DHT11/DHT11_hal.h">
+<persistable path="/ChibiOS_F030F/modules/DHT11/DHT11_hal.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_F030F/modules/core.h">
 <persistable path="/ChibiOS_F030F/modules/core.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.h" tooltip="ChibiOS_F030F/modules/DHT11/DHT11.h">
-<persistable path="/ChibiOS_F030F/modules/DHT11/DHT11.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.c" tooltip="ChibiOS_F030F/modules/DHT11/DHT11.c">
-<persistable path="/ChibiOS_F030F/modules/DHT11/DHT11.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ChibiOS_F030F/main.c">
-<persistable path="/ChibiOS_F030F/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="cli.c" tooltip="ChibiOS_F030F/modules/Command Shell/cli.c">
-<persistable path="/ChibiOS_F030F/modules/Command Shell/cli.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="FloorHeater.c" tooltip="ChibiOS_F030F/modules/FloorHeater/FloorHeater.c">
-<persistable path="/ChibiOS_F030F/modules/FloorHeater/FloorHeater.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chcore_v6m.c" tooltip="ChibiOS_F030F/os/rt/ports/ARMCMx/chcore_v6m.c">
-<persistable path="/ChibiOS_F030F/os/rt/ports/ARMCMx/chcore_v6m.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.asm.AsmEditor" name="chcoreasm_v6m.s" tooltip="ChibiOS_F030F/os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s">
-<persistable path="/ChibiOS_F030F/os/rt/ports/ARMCMx/compilers/GCC/chcoreasm_v6m.s"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.c" tooltip="ChibiOS_F030F/modules/core.c">
 <persistable path="/ChibiOS_F030F/modules/core.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="RGBW.c" tooltip="ChibiOS_F030F/modules/RGBW/RGBW.c">
-<persistable path="/ChibiOS_F030F/modules/RGBW/RGBW.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="DHT11.h" tooltip="ChibiOS_F031F/modules/DHT11/DHT11.h">
-<persistable path="/ChibiOS_F031F/modules/DHT11/DHT11.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core.h" tooltip="ChibiOS_F031F/modules/core.h">
-<persistable path="/ChibiOS_F031F/modules/core.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="chevents.h" tooltip="ChibiOS_F030F/os/rt/include/chevents.h">
-<persistable path="/ChibiOS_F030F/os/rt/include/chevents.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="halconf.h" tooltip="ChibiOS_F100C/board/STM32F100C/halconf.h">
+<persistable path="/ChibiOS_F100C/board/STM32F100C/halconf.h"/>
 </file>
 </mruList>
 </workbench>

@@ -31,12 +31,12 @@
 #include "ch.h"
 #include "hal.h"
 
-#include "chprintf.h"
+//#include "chprintf.h"
 
 #include "eeprom/eeprom_testsuit.h"
 #include "eeprom/eeprom.h"
 
-#define USE_EEPROM_TEST_SUIT    1
+#define USE_EEPROM_TEST_SUIT    false
 
 #if USE_EEPROM_TEST_SUIT
 
