@@ -15,8 +15,8 @@
 */
 
 /**
- * @file    SPC57EMxx/hal_lld.c
- * @brief   SPC57EMxx HAL subsystem low level driver source.
+ * @file    SPC58NExx/hal_lld.c
+ * @brief   SPC58NExx HAL subsystem low level driver source.
  *
  * @addtogroup HAL
  * @{
@@ -112,7 +112,7 @@ void hal_lld_init(void) {
      to run in DRUN,RUN0...RUN3 and HALT0 modes, the clock is gated in other
      modes.*/
   INTC_PSR(226)      = SPC5_PIT0_IRQ_PRIORITY;
-  n = SPC5_PER_CLK / OSAL_ST_FREQUENCY - 1;
+  n = SPC5_AC12_DC4_CLK / OSAL_ST_FREQUENCY - 1;
   PIT_0.MCR.R            = 1;       /* Clock enabled, stop while debugging. */
   PIT_0.TIMER[0].LDVAL.R = n;
   PIT_0.TIMER[0].CVAL.R  = n;
@@ -213,14 +213,10 @@ void spc_clock_init(void) {
 #endif /* SPC5_OSC_BYPASS */
 
   /* Setting the system dividers to their final values.*/
-  MC_CGM.SC_DIV_RC.R = 0x00000001;
-  MC_CGM.DIV_UPD_TYPE.R = 0x80000000;
   MC_CGM.SC_DC0.R   = SPC5_CGM_SC_DC0_BITS;
   MC_CGM.SC_DC1.R   = SPC5_CGM_SC_DC1_BITS;
   MC_CGM.SC_DC2.R   = SPC5_CGM_SC_DC2_BITS;
-  MC_CGM.DIV_UPD_TRIG.R = 0xFEEDFACE;
-  while (MC_CGM.DIV_UPD_STAT.B.SYS_UPD_STAT == 1)
-    ;
+  MC_CGM.SC_DC3.R   = SPC5_CGM_SC_DC3_BITS;
 
   /* Setting the auxiliary dividers to their final values.*/
   MC_CGM.AC0_DC0.R  = SPC5_CGM_AC0_DC0_BITS;
@@ -230,6 +226,11 @@ void spc_clock_init(void) {
   MC_CGM.AC0_DC4.R  = SPC5_CGM_AC0_DC4_BITS;
   MC_CGM.AC6_DC0.R  = SPC5_CGM_AC6_DC0_BITS;
   MC_CGM.AC7_DC0.R  = SPC5_CGM_AC7_DC0_BITS;
+  MC_CGM.AC12_DC0.R = SPC5_CGM_AC12_DC0_BITS;
+  MC_CGM.AC12_DC1.R = SPC5_CGM_AC12_DC1_BITS;
+  MC_CGM.AC12_DC2.R = SPC5_CGM_AC12_DC2_BITS;
+  MC_CGM.AC12_DC3.R = SPC5_CGM_AC12_DC3_BITS;
+  MC_CGM.AC12_DC4.R = SPC5_CGM_AC12_DC4_BITS;
 
   /* Setting the clock selectors to their final sources.*/
   MC_CGM.AC0_SC.R   = SPC5_CGM_AC0_SC_BITS;
@@ -237,6 +238,7 @@ void spc_clock_init(void) {
   MC_CGM.AC4_SC.R   = SPC5_CGM_AC4_SC_BITS;
   MC_CGM.AC6_SC.R   = SPC5_CGM_AC6_SC_BITS;
   MC_CGM.AC7_SC.R   = SPC5_CGM_AC7_SC_BITS;
+  MC_CGM.AC12_SC.R  = SPC5_CGM_AC12_SC_BITS;
 
   /* Enables the XOSC in order to check its functionality before proceeding
      with the initialization.*/
@@ -264,10 +266,10 @@ void spc_clock_init(void) {
   MC_ME.ME.R        = SPC5_ME_ME_BITS;
   MC_ME.SAFE_MC.R   = SPC5_ME_SAFE_MC_BITS;
   MC_ME.DRUN_MC.R   = SPC5_ME_DRUN_MC_BITS;
-  MC_ME.RUN_MC[0].R = SPC5_ME_RUN0_MC_BITS;
-  MC_ME.RUN_MC[1].R = SPC5_ME_RUN1_MC_BITS;
-  MC_ME.RUN_MC[2].R = SPC5_ME_RUN2_MC_BITS;
-  MC_ME.RUN_MC[3].R = SPC5_ME_RUN3_MC_BITS;
+  MC_ME.RUN0_MC.R   = SPC5_ME_RUN0_MC_BITS;
+  MC_ME.RUN1_MC.R   = SPC5_ME_RUN1_MC_BITS;
+  MC_ME.RUN2_MC.R   = SPC5_ME_RUN2_MC_BITS;
+  MC_ME.RUN3_MC.R   = SPC5_ME_RUN3_MC_BITS;
   MC_ME.HALT0_MC.R  = SPC5_ME_HALT0_MC_BITS;
   MC_ME.STOP0_MC.R  = SPC5_ME_STOP0_MC_BITS;
   if (MC_ME.IS.B.I_ICONF) {

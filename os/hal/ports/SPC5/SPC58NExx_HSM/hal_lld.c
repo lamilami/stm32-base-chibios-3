@@ -15,8 +15,8 @@
 */
 
 /**
- * @file    SPC57EMxx_HSM/hal_lld.c
- * @brief   SPC57EMxx_HSM HAL subsystem low level driver source.
+ * @file    SPC58NExx_HSM/hal_lld.c
+ * @brief   SPC58NExx_HSM HAL subsystem low level driver source.
  *
  * @addtogroup HAL
  * @{
