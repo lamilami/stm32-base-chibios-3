@@ -1,7 +1,7 @@
 #ifndef DHT11_H_
 #define DHT11_H_
 
-#define DHT11_QUANTITY 2
+#define DHT11_QUANTITY 1
 
 #define DHT11_0_PIN	        GPIOA_PIN0
 #define DHT11_0_PORT        GPIOA

@@ -392,9 +392,9 @@ int main(void) {
 
     static DS18B20_Inner_Val DS_Temp_Vals;
     msg_t msg;
-    msg = Core_Module_Update(Temp, NULL, 1000);
+    msg = Core_Module_Update(Temp, 0, NULL, 1000);
     DS_Temp_Vals.temp[0] = -77 << 2;
-    Core_Module_Read(localhost, Temp, (char*)&DS_Temp_Vals);
+    Core_Module_Read(localhost, Temp, 0, (char*)&DS_Temp_Vals);
     if ((DS_Temp_Vals.cont_errors > 0) || (msg != MSG_OK))
     DS_Temp_Vals.temp[0] = -99 << 2;
 
@@ -405,24 +405,25 @@ int main(void) {
 #if DHT11_PRESENT
     volatile static uint32_t time_cnt = 0;
 
-    /*
+#if  !FloorHeater_PRESENT && !uGFX_PRESENT
      static DHT11_Inner_Val DHT_Temp_Vals;
      Core_Module_Update(DHT11, 0, NULL, 3000);
      chThdSleepSeconds(1);
      DHT_Temp_Vals.temp = 77 << 2;
      DHT_Temp_Vals.humidity = 0;
      Core_Module_Read(localhost, DHT11, 0, (char*) &DHT_Temp_Vals);
-     */
+#endif
+
 
 //		printf("DHT11 Temp: %d, Hum: %d,  Cnt: %d \r\n", (int) DHT_Temp_Vals.temp/4, (int) DHT_Temp_Vals.humidity, time_cnt);
     time_cnt++;
 //	return Temp_Vals.temp;
 
 //	return 25;
-#if WATCHDOG_PRESENT
-    if (time_cnt < 2160)
-    WatchDog_Reset();
-#endif
+//#if WATCHDOG_PRESENT
+//    if (time_cnt < 2160)
+//    WatchDog_Reset();
+//#endif
 #endif
 
 #if SEMIHOSTING

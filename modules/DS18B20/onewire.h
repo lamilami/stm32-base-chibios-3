@@ -1,38 +1,95 @@
-/*
- * onewire.h
- *
- *  Version 1.0.1
- */
+#ifndef _ONEWIRE_H
+#define _ONEWIRE_H
 
-#ifndef ONEWIRE_H_
-#define ONEWIRE_H_
+#define HAL_USE_ONEWIRE        TRUE   // enable driver code
 
-// первый параметр функции OW_Send
-#define OW_SEND_RESET		1
-#define OW_NO_RESET		2
+#define ONEWIRE_USE_OW1        TRUE     // 1wire bus #1
+#define ONEWIRE_USE_OW2        FALSE    // 1wire bus #2
+#define ONEWIRE_USE_SEARCH     FALSE    // compile 1wire search algorithm
+#define ONEWIRE_USE_READROM    TRUE    // compile owReadRom
+#define ONEWIRE_USE_CRC8       TRUE     // compile owCrc8
+#define ONEWIRE_USE_SELECT     FALSE    // compile selective device support
+#define ONEWIRE_USE_OVERDRIVE  FALSE    // compile OverDrive speed support
 
-// статус возврата функций
-#define OW_OK			1
-#define OW_ERROR		2
-#define OW_NO_DEVICE	3
+#if HAL_USE_ONEWIRE
 
-#define OW_NO_READ		0xff
+#if !ONEWIRE_USE_OW1 && !ONEWIRE_USE_OW2
+#error at least one 1-Wire Bus must be defined!
+#endif
 
-#define OW_READ_SLOT	0xff
+#if !HAL_USE_UART
+#error UART driver must be compiled!
+#endif
 
-uint8_t OW_Init();
-uint8_t OW_Send(uint8_t sendReset, uint8_t *command, uint8_t cLen,
-		uint8_t *data, uint8_t dLen, uint8_t readStart);
-uint8_t OW_Scan(uint8_t *buf, uint8_t num);
+#if !ONEWIRE_USE_SELECT
+#undef ONEWIRE_USE_SEARCH
+#endif
 
-#define OW_SEARCH_ROM		(uint8_t*)"\xf0"
+#if ONEWIRE_USE_SELECT //|| ONEWIRE_READROM
+typedef union
+{
+  uint64_t id;
+  uint8_t arr[8];
+} rom_id_t;
+#endif /* ONEWIRE_USE_SELECT */
 
-// shortcuts for functions
-// only send message b wich length is c with RESET flag a
-#define OW_SendOnly(a,b,c)  OW_Send(a, b, c, (void*)0, 0, OW_NO_READ)
-// send 1 command (with bus reset)
-#define OW_WriteCmd(cmd) OW_Send(1, cmd, 1, (void*)0, 0, OW_NO_READ)
-// send 1 function (without bus reset)
-#define OW_WriteFn(cmd) OW_Send(0, cmd, 1, (void*)0, 0, OW_NO_READ)
+struct OWDriver
+{
+  UARTDriver* uart;
+  UARTConfig cfg;
+  uartflags_t errfl;
+  thread_t *tp;
+#if ONEWIRE_USE_SELECT
+  rom_id_t rom;                // Selected device
+#endif
+#if ONEWIRE_USE_OVERDRIVE
+  uint8_t ODmode, ODmodeSet;   // OverDrive mode flags
+#endif
+#if ONEWIRE_USE_SEARCH
+  uint8_t FamilySearch;
+  uint8_t LastDiscrepancy;
+  uint8_t LastDeviceFlag;
+#endif
+};
 
-#endif /* ONEWIRE_H_ */
+typedef struct OWDriver OWDriver;
+
+#if ONEWIRE_USE_OW1
+extern OWDriver OWD1;
+#endif
+
+#if ONEWIRE_USE_OW2
+extern OWDriver OWD2;
+#endif
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+  void owInit( void );
+  void owStart( OWDriver *owp, UARTDriver *uartp );
+  void owStop( OWDriver *owp );
+  msg_t owResetBus( OWDriver *owp );
+  uint8_t owCrc8( uint8_t *data, size_t len );
+  msg_t owCommand( OWDriver *owp, uint8_t cmd, uint8_t *buf, int len );
+
+#if ONEWIRE_USE_SELECT
+
+  void owSearchStart( OWDriver *owp, uint8_t fam );
+  msg_t owSearch( OWDriver *owp, rom_id_t *rom_no );
+
+#if ONEWIRE_USE_OVERDRIVE
+  void owSelect( OWDriver *owp, rom_id_t *device, bool_t ovr );
+#else
+  void owSelect( OWDriver *owp, rom_id_t *device );
+#endif /* ONEWIRE_USE_OVERDRIVE */
+
+#endif /* ONEWIRE_USE_SELECT */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif
+
+#endif /* _ONEWIRE_H */

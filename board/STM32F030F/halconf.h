@@ -141,7 +141,7 @@
  * @brief   Enables the SERIAL subsystem.
  */
 #if !defined(HAL_USE_SERIAL) || defined(__DOXYGEN__)
-#if (DS18B20_PRESENT || CLI_PRESENT)
+#if (CLI_PRESENT)
 #define HAL_USE_SERIAL              TRUE
 #else
 #define HAL_USE_SERIAL              FALSE
@@ -170,7 +170,7 @@
  * @brief   Enables the UART subsystem.
  */
 #if !defined(HAL_USE_UART) || defined(__DOXYGEN__)
-#if MPC_UART_PRESENT
+#if (DS18B20_PRESENT || MPC_UART_PRESENT)
 #define HAL_USE_UART                TRUE
 #else
 #define HAL_USE_UART                FALSE
