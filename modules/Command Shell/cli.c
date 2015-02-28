@@ -1,11 +1,11 @@
 #include "ch.h"
 #include "hal.h"
-#include "shell.h"
-#include "chprintf.h"
 #include "core.h"
 
 
 #if CLI_PRESENT
+#include "shell.h"
+#include "chprintf.h"
 /*===========================================================================*/
 /* Command line related.                                                     */
 /*===========================================================================*/
