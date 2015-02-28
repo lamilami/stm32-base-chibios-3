@@ -520,6 +520,72 @@ struct spc5_linflex {
 #define SPC5_LINFLEX15  (*(struct spc5_linflex *)0xFBEA8000UL)
 #endif
 
+#elif defined(_SPC58NExx_)
+/* Locations for _SPC58NExx_ devices.*/
+#if SPC5_HAS_LINFLEX0 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX0   (*(struct spc5_linflex *)0xF7E8C000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX1 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX1   (*(struct spc5_linflex *)0xFBE8C000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX2 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX2   (*(struct spc5_linflex *)0xF7E90000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX3 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX3   (*(struct spc5_linflex *)0xFBE90000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX4 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX4   (*(struct spc5_linflex *)0xF7E94000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX5 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX5   (*(struct spc5_linflex *)0xFBE94000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX6 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX6   (*(struct spc5_linflex *)0xF7E98000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX7 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX7   (*(struct spc5_linflex *)0xFBE98000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX8 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX8   (*(struct spc5_linflex *)0x0xF7E9C000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX9 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX9   (*(struct spc5_linflex *)0xFBE9C000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX10 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX10  (*(struct spc5_linflex *)xF7EA0000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX11 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX11  (*(struct spc5_linflex *)0xFBEA0000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX12 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX12  (*(struct spc5_linflex *)0xF7EA4000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX13 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX13  (*(struct spc5_linflex *)0xFBEA4000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX14 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX14  (*(struct spc5_linflex *)0xFFEA8000UL)
+#endif
+
+#if SPC5_HAS_LINFLEX15 || defined(__DOXYGEN__)
+#define SPC5_LINFLEX15  (*(struct spc5_linflex *)0xFBEA8000UL)
+#endif
+
 #else /* !defined(_SPC570Sxx_) && !defined(_SPC57EMxx_) */
 /* Default locations for SPC56x devices.*/
 #if SPC5_HAS_LINFLEX0 || defined(__DOXYGEN__)
