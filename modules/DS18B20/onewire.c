@@ -160,12 +160,14 @@ static msg_t owSendByte(OWDriver *owp, uint8_t data) {
 
   for (i = 0; i < 8; i++) {
     txbuf[i] = (data & 1) ? 0xFF : 0x80;
+    rxbuf[i]=55; //debug
     data >>= 1;
   }
 
-  osalThreadSleepMicroseconds(1000);
 
-  uartStartReceive(owp->uart, 8, &rxbuf);
+  uartStartReceive(owp->uart, 10, &rxbuf);
+
+  osalThreadSleepMicroseconds(1000);
 
   chSysLock();
   owp->tp = chThdGetSelfX();
