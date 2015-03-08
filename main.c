@@ -368,12 +368,12 @@ int main(void) {
   FH_IV.Desired_Temp = 65;
   FH_IV.Auto_Update_Sec = 180;
   FH_IV.Get_Temp_Callback = FH_Humidifier_cb;
-  FH_IV.pGain = 2;
+	FH_IV.pGain = 2;
   FH_IV.iGain = 0;
   FH_IV.iState = 0;
-  FH_IV.iMax = 25;
+	FH_IV.iMax = 25;
   FH_IV.iMin = -2;
-  FH_IV.MaxPower = 100;
+	FH_IV.MaxPower = 100;
 
   Core_Module_Update(Heater, 1, (void *) &FH_IV, 1000);
   chThdSleepSeconds(1);
