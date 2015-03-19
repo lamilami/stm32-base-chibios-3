@@ -99,9 +99,9 @@ static void rx_buf_cb(UARTDriver *uartp) {
 
   if (owp->tp) {
     chSysLockFromISR();
-    owp->tp->p_u.rdymsg = (msg_t)0; // set RDY_OK
-    chSchReadyI(owp->tp);
-    owp->tp = NULL;
+//    owp->tp->p_u.rdymsg = (msg_t)0; // set RDY_OK
+//    chSchReadyI(owp->tp);
+//    owp->tp = NULL;
     chSysUnlockFromISR();
   }
 }
@@ -165,7 +165,7 @@ static msg_t owSendByte(OWDriver *owp, uint8_t data) {
   }
 
 
-  uartStartReceive(owp->uart, 10, &rxbuf);
+  uartStartReceive(owp->uart, 8, &rxbuf);
 
   osalThreadSleepMicroseconds(1000);
 
@@ -173,7 +173,9 @@ static msg_t owSendByte(OWDriver *owp, uint8_t data) {
   owp->tp = chThdGetSelfX();
 //  osalThreadSleepS(OSAL_US2ST(1000));
   uartStartSendI(owp->uart, 8, &txbuf);
-  result = chSchGoSleepTimeoutS(CH_STATE_SUSPENDED, MS2ST(100));
+//  result = chSchGoSleepTimeoutS(CH_STATE_SUSPENDED, MS2ST(100));
+  result = MSG_OK;
+  osalThreadSleepS(OSAL_MS2ST(50));
   owp->tp = NULL;
   chSysUnlock();
 
