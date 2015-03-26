@@ -110,6 +110,8 @@ uint16_t PIR_cb()
 }
 #endif
 
+#define FloorH_1 1
+
 #if FloorHeater_PRESENT
 #if FloorH_1
 volatile uint16_t bt136_temp = 0;
@@ -120,8 +122,8 @@ uint16_t FloorHeater_cb()
 #if DS18B20_PRESENT
 
   static DS18B20_Inner_Val Temp_Vals;
-  Core_Module_Update(Temp, NULL, 1000);
-  Core_Module_Read(Temp, (char*) &Temp_Vals);
+  Core_Module_Update(Temp, 0, NULL, 1000);
+  Core_Module_Read(localhost, Temp, 0, (char*) &Temp_Vals);
 
 #if DS18B20_NUMBER_OF_SENSORS == 1
   return Temp_Vals.temp[0];
@@ -351,8 +353,8 @@ int main(void) {
 #if FloorHeater_PRESENT
 #if FloorH_1
   FloorHeater_Inner_Val_RW FH_IV;
-  FH_IV.Desired_Temp = 32 << 2;
-//  FH_IV.Auto_Update_Sec = 180;
+  FH_IV.Desired_Temp = 20 << 2;
+  FH_IV.Auto_Update_Sec = 5;
   FH_IV.Get_Temp_Callback = FloorHeater_cb;
   FH_IV.iGain = 2;
   FH_IV.pGain = 4;
@@ -392,9 +394,9 @@ int main(void) {
 
     static DS18B20_Inner_Val DS_Temp_Vals;
     msg_t msg;
-    msg = Core_Module_Update(Temp, NULL, 1000);
+    msg = Core_Module_Update(Temp, 0, NULL, 1000);
     DS_Temp_Vals.temp[0] = -77 << 2;
-    Core_Module_Read(localhost, Temp, (char*)&DS_Temp_Vals);
+    Core_Module_Read(localhost, Temp, 0, (char*)&DS_Temp_Vals);
     if ((DS_Temp_Vals.cont_errors > 0) || (msg != MSG_OK))
     DS_Temp_Vals.temp[0] = -99 << 2;
 
@@ -601,7 +603,7 @@ int main(void) {
 //		LEDB1Swap();
 #endif
 
-    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(1));
+    time_start = chThdSleepUntilWindowed(time_start, time_start + S2ST(5));
 
 #if WATCHDOG_PRESENT
     WatchDog_Reset();
